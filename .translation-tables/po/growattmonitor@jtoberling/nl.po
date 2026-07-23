@@ -1,0 +1,84 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: growattmonitor@jtoberling 0.0.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-07-23 22:45+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:76
+#, javascript-format
+msgid ""
+"'%s' settings..\n"
+"Please enter password:"
+msgstr ""
+"'%s' instellingen..\n"
+"Voer alstublieft het wachtwoord in:"
+
+#. metadata.json->name
+#: desklet.js:92
+msgid "Growatt Monitor"
+msgstr "Growatt Monitor"
+
+#: desklet.js:306
+msgid "LOGIN_ERROR: Check credentials configuration!"
+msgstr "LOGIN_ERROR: Controleer de configuratie van de inloggegevens!"
+
+#. metadata.json->description
+msgid "Growatt Solar Monitor"
+msgstr "Growatt Zonnemonitor"
+
+#. settings-schema.json->starttime->description
+msgid "Start time of power display"
+msgstr "Starttijd van vermogensweergave"
+
+#. settings-schema.json->starttime->units
+#. settings-schema.json->endtime->units
+msgid "Hours"
+msgstr "Uren"
+
+#. settings-schema.json->endtime->description
+msgid "End time of power display"
+msgstr "Eindtijd van vermogensweergave"
+
+#. settings-schema.json->delay->description
+msgid "Referesh interva"
+msgstr "Vernieuwingsinterval"
+
+#. settings-schema.json->delay->units
+msgid "seconds"
+msgstr "seconden"
+
+#. settings-schema.json->server->description
+msgid "Growatt server"
+msgstr "Growatt server"
+
+#. settings-schema.json->server->tooltip
+msgid "https://server.growatt.com"
+msgstr "https://server.growatt.com"
+
+#. settings-schema.json->plantId->description
+msgid "Plant Id (empty for default)"
+msgstr "Fabrieks-ID (leeg voor standaard)"
+
+#. settings-schema.json->account->description
+msgid "Growatt Account"
+msgstr "Growatt Account"
+
+#. settings-schema.json->account->tooltip
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+#. settings-schema.json->savepassword->description
+msgid "Enter and save password ..."
+msgstr "Voer het wachtwoord in en sla op..."

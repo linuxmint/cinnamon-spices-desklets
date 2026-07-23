@@ -1,0 +1,125 @@
+# Romanian translations for PACKAGE package.
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 20:51+0200\n"
+"PO-Revision-Date: 2020-01-03 12:49+0200\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+
+#: desklet.js:171 4.0/desklet.js:171 3.6/desklet.js:171
+msgid ""
+"Please make sure vnstat and vnstati are installed and that the vnstat daemon "
+"is running!"
+msgstr ""
+"Te rugăm să te asiguri că vnstat și vnstati sunt instalate și că daemonul "
+"vnstat rulează!"
+
+#: desklet.js:172 4.0/desklet.js:172 3.6/desklet.js:172
+msgid ""
+"In Linux Mint, you can simply run 'apt install vnstati' and that will take "
+"care of everything."
+msgstr ""
+"În Linux Mint, poți rula pur și simplu \"apt install vnstati\", care se va "
+"ocupa de tot."
+
+#: desklet.js:173 4.0/desklet.js:173 3.6/desklet.js:173
+msgid ""
+"In other distributions it might depend on the way things are packaged but "
+"its likely to be similar."
+msgstr ""
+"În alte distribuții ar putea depinde de modul în care sunt instalate "
+"lucrurile, dar este posibil să fie similar."
+
+#: desklet.js:174 4.0/desklet.js:174 3.6/desklet.js:174
+msgid "The Interface detected was: "
+msgstr ""
+
+#. metadata.json->description
+msgid "Network usage monitor using vnstat"
+msgstr "Monitorizarea utilizării rețelei folosind vnstat"
+
+#. metadata.json->name
+msgid "Network usage monitor"
+msgstr "Monitorizarea utilizării rețelei"
+
+#. settings-schema.json->head->description
+#. 4.0->settings-schema.json->head->description
+#. 3.6->settings-schema.json->head->description
+msgid "Settings for the Network Usage Applet (uses vnstati)"
+msgstr "Setări pentru Applet de utilizare a rețelei (utilizează vnstati)"
+
+#. settings-schema.json->useExtendedDisplay->description
+#. 4.0->settings-schema.json->useExtendedDisplay->description
+#. 3.6->settings-schema.json->useExtendedDisplay->description
+msgid "Enable Extended Display Options"
+msgstr "Activează opțiunile de afișare extinsă"
+
+#. settings-schema.json->useExtendedDisplay->tooltip
+#. 4.0->settings-schema.json->useExtendedDisplay->tooltip
+#. 3.6->settings-schema.json->useExtendedDisplay->tooltip
+msgid "This is a new option from version 1.0.3"
+msgstr "Aceasta este o opțiune nouă din versiunea 1.0.3."
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Classic - Summary of Traffic for last Days and Months"
+msgstr "Classic - Rezumat al traficului din ultimele zile și luni"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Classic Plus - Classic with addition of hourly statistics"
+msgstr "Classic Plus - Clasic cu adăugarea de statistici orare"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Hourly statistics for last 24 hours"
+msgstr "Statistici orare pentru ultimele 24 de ore"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Daily statistics for last 30 days"
+msgstr "Statistici zilnice pentru ultimele 30 de zile"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Monthly statistics for last 12 months"
+msgstr "Statistici lunare pentru ultimele 12 luni"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "All time Top ten traffic days"
+msgstr "Toate timpurile Top zece zile de trafic"
+
+#. settings-schema.json->extendedDisplay->description
+#. 4.0->settings-schema.json->extendedDisplay->description
+#. 3.6->settings-schema.json->extendedDisplay->description
+msgid "Type of Display - default Classic"
+msgstr "Tipul de afișare - implicit Clasic"
+
+#. settings-schema.json->extendedDisplay->tooltip
+#. 4.0->settings-schema.json->extendedDisplay->tooltip
+#. 3.6->settings-schema.json->extendedDisplay->tooltip
+msgid ""
+"This feature offers the Classic (original) display with a number of other "
+"options"
+msgstr ""
+"Această funcție oferă afișajul clasic (original) cu o serie de alte opțiuni"

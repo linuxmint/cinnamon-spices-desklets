@@ -1,0 +1,1747 @@
+# Hungarian translation for bbcwx
+# Copyright (c) 2014 Rosetta Contributors and Canonical Ltd 2014
+# This file is distributed under the same license as the bbcwx package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2014.
+#
+# #-#-#-#-#  hu_uj.po (bbcwx@oak-wood.co.uk 3.1)  #-#-#-#-#
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: bbcwx@oak-wood.co.uk 3.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-02-24 09:59-0500\n"
+"PO-Revision-Date: 2024-02-23 07:15+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Launchpad-Export-Date: 2017-05-05 21:20+0000\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Mon"
+msgstr "Hé"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Tue"
+msgstr "Ke"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Wed"
+msgstr "Sze"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Thu"
+msgstr "Csü"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Fri"
+msgstr "Pé"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Sat"
+msgstr "Szo"
+
+#: 5.4/desklet.js:111 3.0/desklet.js:108
+msgid "Sun"
+msgstr "Va"
+
+#. metadata.json->name
+#: 5.4/desklet.js:252 3.0/desklet.js:186
+msgid "Weather"
+msgstr "Időjárás"
+
+#: 5.4/desklet.js:260 3.0/desklet.js:194
+msgid "Help"
+msgstr "Súgó"
+
+#: 5.4/desklet.js:264 3.0/desklet.js:198
+msgid "Translate"
+msgstr "Fordítás"
+
+#: 5.4/desklet.js:433 5.4/desklet.js:475 3.0/desklet.js:344 3.0/desklet.js:372
+msgid "Humidity:"
+msgstr "Páratartalom:"
+
+#: 5.4/desklet.js:437 5.4/desklet.js:474 3.0/desklet.js:345 3.0/desklet.js:371
+msgid "Pressure:"
+msgstr "Légnyomás:"
+
+#: 5.4/desklet.js:441 3.0/desklet.js:346
+msgid "Wind:"
+msgstr "Szél:"
+
+#: 5.4/desklet.js:445 3.0/desklet.js:347
+msgid "Feels like:"
+msgstr "Hőérzet:"
+
+#: 5.4/desklet.js:449 3.0/desklet.js:348
+msgid "Visibility:"
+msgstr "Látási viszonyok:"
+
+#: 5.4/desklet.js:466 3.0/desklet.js:363
+msgid "Max:"
+msgstr "Legmagasabb hőmérséklet:"
+
+#: 5.4/desklet.js:468 3.0/desklet.js:365
+msgid "Min:"
+msgstr "Legalacsonyabb hőmérséklet:"
+
+#: 5.4/desklet.js:470 3.0/desklet.js:367
+msgid "Wind speed:"
+msgstr "Szélerősség:"
+
+#: 5.4/desklet.js:472 3.0/desklet.js:369
+msgid "Dir:"
+msgstr "Szélirány:"
+
+#: 5.4/desklet.js:519 3.0/desklet.js:411
+msgid "Data from "
+msgstr "Adatszolgáltató: "
+
+#: 5.4/desklet.js:537 3.0/desklet.js:423
+msgid "Refresh"
+msgstr "Frissítés"
+
+#: 5.4/desklet.js:563
+msgid "Last updated"
+msgstr "Utoljára frissítve:"
+
+#: 5.4/desklet.js:871
+msgid "No Data Available"
+msgstr "Nincs elérhető adat"
+
+#: 5.4/desklet.js:902 5.4/desklet.js:970 3.0/desklet.js:777 3.0/desklet.js:844
+#, javascript-format
+msgid "Error: %s"
+msgstr "Hiba: %s"
+
+#: 5.4/desklet.js:902 5.4/desklet.js:970
+msgid "No Data"
+msgstr "Nincs adat"
+
+#: 5.4/desklet.js:1004 3.0/desklet.js:879
+#, javascript-format
+msgid "Click for the full forecast for %s"
+msgstr "Kattintson ide a teljes előrejelzésért: %s"
+
+#: 5.4/desklet.js:1249 3.0/desklet.js:1139
+#, javascript-format
+msgid "%f°F"
+msgstr "%f °F"
+
+#: 5.4/desklet.js:1252 3.0/desklet.js:1141
+#, javascript-format
+msgid "%f°C"
+msgstr "%f °C"
+
+#: 5.4/desklet.js:1272 3.0/desklet.js:1162
+#, javascript-format
+msgid "%fmph"
+msgstr "%f mph"
+
+#: 5.4/desklet.js:1274 3.0/desklet.js:1164
+#, javascript-format
+msgid "%fkn"
+msgstr "%f csomó"
+
+#: 5.4/desklet.js:1276 3.0/desklet.js:1166
+#, javascript-format
+msgid "%fkm/h"
+msgstr "%f km/h"
+
+#: 5.4/desklet.js:1278 3.0/desklet.js:1168
+#, javascript-format
+msgid "%fm/s"
+msgstr "%f m/s"
+
+#: 5.4/desklet.js:1311 3.0/desklet.js:1202
+#, javascript-format
+msgid "%fmb"
+msgstr "%f mb"
+
+#: 5.4/desklet.js:1313 3.0/desklet.js:1204
+#, javascript-format
+msgid "%fin"
+msgstr "%f higany/inch"
+
+#: 5.4/desklet.js:1315 3.0/desklet.js:1206
+#, javascript-format
+msgid "%fmm"
+msgstr "%fhigany/mm"
+
+#: 5.4/desklet.js:1317 3.0/desklet.js:1208
+#, javascript-format
+msgid "%fkPa"
+msgstr "%f kPa"
+
+#: 5.4/desklet.js:1366 3.0/desklet.js:1259
+#, javascript-format
+msgid "%fmi"
+msgstr "%f mérföld"
+
+#: 5.4/desklet.js:1368 3.0/desklet.js:1261
+#, javascript-format
+msgid "%fnmi"
+msgstr "%f tengeri mérföld"
+
+#: 5.4/desklet.js:1370 3.0/desklet.js:1263
+#, javascript-format
+msgid "%fkm"
+msgstr "%f km"
+
+#: 5.4/drivers/bbc.js:39 5.4/drivers/meteoblue.js:48
+#: 5.4/drivers/meteoblue.js:78 5.4/drivers/nws.js:38 5.4/drivers/nws.js:65
+#: 5.4/drivers/nws.js:73 5.4/drivers/openmeteo.js:40 5.4/drivers/owm.js:65
+#: 5.4/drivers/owmfree.js:29 5.4/drivers/weatherapi.js:75
+#: 5.4/drivers/weatherstack.js:81 5.4/drivers/wwo.js:74
+msgid "Invalid location"
+msgstr "Érvénytelen hely"
+
+#: 5.4/drivers/bbc.js:254 5.4/drivers/meteoblue.js:151
+#: 5.4/drivers/openmeteo.js:122 3.0/desklet.js:1860 3.0/desklet.js:4230
+msgid "Clear Sky"
+msgstr "Felhőtlen égbolt"
+
+#: 5.4/drivers/bbc.js:255 5.4/drivers/wxbase.js:303 3.0/desklet.js:1569
+#: 3.0/desklet.js:1872
+msgid "Drizzle"
+msgstr "Szitáló eső"
+
+#: 5.4/drivers/bbc.js:256 5.4/drivers/meteoblue.js:155
+#: 5.4/drivers/openmeteo.js:126 5.4/drivers/weatherapi.js:249
+#: 5.4/drivers/weatherstack.js:238 3.0/desklet.js:1866 3.0/desklet.js:4234
+msgid "Fog"
+msgstr "Erősebb Köd"
+
+#: 5.4/drivers/bbc.js:257 3.0/desklet.js:1869
+msgid "Grey Cloud"
+msgstr "Szürke felhő"
+
+#: 5.4/drivers/bbc.js:258 3.0/desklet.js:1886
+msgid "Hail Shower"
+msgstr "Jeges eső"
+
+#: 5.4/drivers/bbc.js:259 3.0/desklet.js:1885
+msgid "Hazy"
+msgstr "Párás"
+
+#: 5.4/drivers/bbc.js:260 3.0/desklet.js:1874
+msgid "Heavy Rain Shower"
+msgstr "Erős záporeső"
+
+#: 5.4/drivers/bbc.js:261 5.4/drivers/weatherapi.js:253
+#: 5.4/drivers/weatherstack.js:242 3.0/desklet.js:1875 3.0/desklet.js:4235
+#: 3.0/desklet.js:4243
+msgid "Heavy Rain"
+msgstr "Heves esőzés"
+
+#: 5.4/drivers/bbc.js:262 3.0/desklet.js:1880
+msgid "Heavy Snow Shower"
+msgstr "Erős havas eső"
+
+#: 5.4/drivers/bbc.js:263 5.4/drivers/weatherapi.js:255
+#: 5.4/drivers/wxbase.js:335 5.4/drivers/wxbase.js:337 3.0/desklet.js:1881
+msgid "Heavy Snow"
+msgstr "Erős havazás"
+
+#: 5.4/drivers/bbc.js:264 3.0/desklet.js:1868
+msgid "Light Cloud"
+msgstr "Fátyolfelhő"
+
+#: 5.4/drivers/bbc.js:265 5.4/drivers/weatherapi.js:260 3.0/desklet.js:1871
+msgid "Light Rain Shower"
+msgstr "Enyhe zápor"
+
+#: 5.4/drivers/bbc.js:266 5.4/drivers/meteoblue.js:162
+#: 5.4/drivers/meteoblue.js:166 5.4/drivers/weatherapi.js:259
+#: 5.4/drivers/weatherstack.js:246 3.0/desklet.js:1873 3.0/desklet.js:4241
+#: 3.0/desklet.js:4245
+msgid "Light Rain"
+msgstr "Csendes eső"
+
+#: 5.4/drivers/bbc.js:267 3.0/desklet.js:1878
+msgid "Light Snow Shower"
+msgstr "Enyhe havas eső"
+
+#: 5.4/drivers/bbc.js:268 5.4/drivers/meteoblue.js:163
+#: 5.4/drivers/meteoblue.js:167 5.4/drivers/weatherapi.js:264
+#: 3.0/desklet.js:1879 3.0/desklet.js:4242 3.0/desklet.js:4246
+msgid "Light Snow"
+msgstr "Enyhe havazás"
+
+#: 5.4/drivers/bbc.js:269 5.4/drivers/weatherapi.js:266
+#: 5.4/drivers/weatherstack.js:247 3.0/desklet.js:1865
+msgid "Mist"
+msgstr "Gyenge köd"
+
+#: 5.4/drivers/bbc.js:270 5.4/drivers/meteoblue.js:153
+#: 5.4/drivers/openmeteo.js:124 5.4/drivers/weatherapi.js:279
+#: 5.4/drivers/weatherstack.js:251 5.4/drivers/wxbase.js:323
+#: 5.4/drivers/wxbase.js:324 5.4/drivers/wxbase.js:338 3.0/desklet.js:1862
+#: 3.0/desklet.js:4232
+msgid "Partly Cloudy"
+msgstr "Részben felhős"
+
+#: 5.4/drivers/bbc.js:271 5.4/drivers/meteoblue.js:156
+#: 5.4/drivers/meteoblue.js:164 3.0/desklet.js:1887
+msgid "Rain"
+msgstr "Esik"
+
+#: 5.4/drivers/bbc.js:272 3.0/desklet.js:1864
+msgid "Sand Storm"
+msgstr "Por és Homokvihar"
+
+#: 5.4/drivers/bbc.js:273 3.0/desklet.js:1876
+msgid "Sleet Shower"
+msgstr "Ónos szitálás"
+
+#: 5.4/drivers/bbc.js:274 5.4/drivers/wxbase.js:312 3.0/desklet.js:1578
+#: 3.0/desklet.js:1877
+msgid "Sleet"
+msgstr "Ónos esőzés"
+
+#: 5.4/drivers/bbc.js:275 3.0/desklet.js:1863
+msgid "Sunny Intervals"
+msgstr "Szórványos napsütés"
+
+#: 5.4/drivers/bbc.js:276 5.4/drivers/weatherapi.js:291
+#: 5.4/drivers/weatherstack.js:258 5.4/drivers/wxbase.js:326
+#: 3.0/desklet.js:1592 3.0/desklet.js:1861
+msgid "Sunny"
+msgstr "Napos"
+
+#: 5.4/drivers/bbc.js:277 3.0/desklet.js:1870
+msgid "Thick Cloud"
+msgstr "Vastag felhőzet"
+
+#: 5.4/drivers/bbc.js:278 3.0/desklet.js:1883
+msgid "Thunder Storm"
+msgstr "Zápor, zivatar"
+
+#: 5.4/drivers/bbc.js:279 5.4/drivers/openmeteo.js:147 3.0/desklet.js:1884
+msgid "Thunderstorm"
+msgstr "Vihar"
+
+#: 5.4/drivers/bbc.js:280 5.4/drivers/meteoblue.js:158 3.0/desklet.js:1882
+#: 3.0/desklet.js:4237
+msgid "Thundery Shower"
+msgstr "Heves zápor"
+
+#: 5.4/drivers/bbc.js:281 3.0/desklet.js:1867
+msgid "White Cloud"
+msgstr "Fehér felhő"
+
+#: 5.4/drivers/meteoblue.js:52 5.4/drivers/owm.js:69 5.4/drivers/owmfree.js:33
+#: 5.4/drivers/weatherapi.js:79 5.4/drivers/weatherstack.js:85
+#: 5.4/drivers/wunderground.js:55 5.4/drivers/wwo.js:78
+msgid "No API key provided"
+msgstr "Nincs API-kulcs megadva"
+
+#: 5.4/drivers/meteoblue.js:152 5.4/drivers/wxbase.js:327
+#: 5.4/drivers/wxbase.js:328 3.0/desklet.js:1593 3.0/desklet.js:1594
+#: 3.0/desklet.js:4231
+msgid "Fair"
+msgstr "Szép idő"
+
+#: 5.4/drivers/meteoblue.js:154 5.4/drivers/weatherapi.js:248
+#: 5.4/drivers/weatherstack.js:237 5.4/drivers/wxbase.js:320
+#: 3.0/desklet.js:1586 3.0/desklet.js:4233
+msgid "Cloudy"
+msgstr "Felhős"
+
+#: 5.4/drivers/meteoblue.js:157 5.4/drivers/wxbase.js:305
+#: 5.4/drivers/wxbase.js:306 3.0/desklet.js:1571 3.0/desklet.js:1572
+#: 3.0/desklet.js:4236
+msgid "Showers"
+msgstr "Záporok"
+
+#: 5.4/drivers/meteoblue.js:159 5.4/drivers/meteoblue.js:165
+#: 5.4/drivers/wxbase.js:310 3.0/desklet.js:1576 3.0/desklet.js:4238
+#: 3.0/desklet.js:4244
+msgid "Snow"
+msgstr "Havazás"
+
+#: 5.4/drivers/meteoblue.js:160 5.4/drivers/wxbase.js:340
+msgid "Snow Showers"
+msgstr "Hózápor"
+
+#: 5.4/drivers/meteoblue.js:161 5.4/drivers/wxbase.js:299
+msgid "Mixed Rain and Snow"
+msgstr "Havas eső"
+
+#: 5.4/drivers/openmeteo.js:123
+msgid "Mainly Clear"
+msgstr "Többnyire tiszta"
+
+#: 5.4/drivers/openmeteo.js:125 5.4/drivers/weatherapi.js:278
+#: 5.4/drivers/weatherstack.js:250
+msgid "Overcast"
+msgstr "Borult"
+
+#: 5.4/drivers/openmeteo.js:127
+msgid "Depositing Rime Fog"
+msgstr "Leszálló köd"
+
+#: 5.4/drivers/openmeteo.js:128
+msgid "Drizzle: Light Intensity"
+msgstr "Szitálás: enyhe intenzitású"
+
+#: 5.4/drivers/openmeteo.js:129
+msgid "Drizzle: Moderate Intensity"
+msgstr "Szitálás: mérsékelt intenzitású"
+
+#: 5.4/drivers/openmeteo.js:130
+msgid "Drizzle: Dense Intensity"
+msgstr "Szitálás: erős intenzitású"
+
+#: 5.4/drivers/openmeteo.js:131
+msgid "Freezing Drizzle: Light Intensity"
+msgstr "Jeges szitálás: enyhe intenzitású"
+
+#: 5.4/drivers/openmeteo.js:132
+msgid "Freezing Drizzle: Dense Intensity"
+msgstr "Jeges szitálás: erős intenzitású"
+
+#: 5.4/drivers/openmeteo.js:133
+msgid "Rain: Slight Intensity"
+msgstr "Eső: enyhe intenzitású"
+
+#: 5.4/drivers/openmeteo.js:134
+msgid "Rain: Moderate Intensity"
+msgstr "Eső: közepes intenzitású"
+
+#: 5.4/drivers/openmeteo.js:135
+msgid "Rain: Heavy Intensity"
+msgstr "Eső: erős intenzitású"
+
+#: 5.4/drivers/openmeteo.js:136
+msgid "Freezing Rain: Light Intensity"
+msgstr "Jeges eső: enyhe intenzitású"
+
+#: 5.4/drivers/openmeteo.js:137
+msgid "Freezing Rain: Heavy Intensity"
+msgstr "Jeges eső: erős intenzitású"
+
+#: 5.4/drivers/openmeteo.js:138
+msgid "Snow Fall: Slight Intensity"
+msgstr "Havazás: enyhe intenzitású"
+
+#: 5.4/drivers/openmeteo.js:139
+msgid "Snow Fall: Moderate Intensity"
+msgstr "Havazás: mérsékelt intenzitású"
+
+#: 5.4/drivers/openmeteo.js:140
+msgid "Snow Fall: Heavy Intensity"
+msgstr "Havazás: erős intenzitású"
+
+#: 5.4/drivers/openmeteo.js:141
+msgid "Snow Grains"
+msgstr "Hódara"
+
+#: 5.4/drivers/openmeteo.js:142
+msgid "Rain Showers: Slight"
+msgstr "Záporeső: enyhe"
+
+#: 5.4/drivers/openmeteo.js:143
+msgid "Rain Showers: Moderate"
+msgstr "Záporeső: közepes"
+
+#: 5.4/drivers/openmeteo.js:144
+msgid "Rain Showers: Violent"
+msgstr "Záporeső: erős"
+
+#: 5.4/drivers/openmeteo.js:145
+msgid "Slight Snow Showers"
+msgstr "Enyhe havas eső"
+
+#: 5.4/drivers/openmeteo.js:146
+msgid "Heavy Snow Showers"
+msgstr "Erős havas eső"
+
+#: 5.4/drivers/openmeteo.js:148
+msgid "Thunderstorm With Slight Hail"
+msgstr "Zivatar enyhe jégesővel"
+
+#: 5.4/drivers/openmeteo.js:149
+msgid "Thunderstorm With Heavy Hail"
+msgstr "Zivatar erős jégesővel"
+
+#: 5.4/drivers/owm.js:76 5.4/drivers/owmfree.js:40
+msgid "Invalid location format"
+msgstr "Érvénytelen hely formátum"
+
+#: 5.4/drivers/weatherapi.js:245 5.4/drivers/weatherstack.js:234
+msgid "Blizzard"
+msgstr "Hóvihar"
+
+#: 5.4/drivers/weatherapi.js:246 5.4/drivers/weatherstack.js:235
+#: 5.4/drivers/wxbase.js:309
+msgid "Blowing Snow"
+msgstr "Hófúvás"
+
+#: 5.4/drivers/weatherapi.js:247 5.4/drivers/weatherstack.js:236
+#: 5.4/drivers/wxbase.js:325 3.0/desklet.js:1591
+msgid "Clear"
+msgstr "Tiszta idő"
+
+#: 5.4/drivers/weatherapi.js:250 5.4/drivers/weatherstack.js:239
+#: 5.4/drivers/wxbase.js:302
+msgid "Freezing Drizzle"
+msgstr "Jeges szitálás"
+
+#: 5.4/drivers/weatherapi.js:251 5.4/drivers/weatherstack.js:240
+msgid "Freezing Fog"
+msgstr "Fagyos köd"
+
+#: 5.4/drivers/weatherapi.js:252 5.4/drivers/weatherstack.js:241
+msgid "Heavy Freezing Drizzle"
+msgstr "Heves jeges szitálás"
+
+#: 5.4/drivers/weatherapi.js:254 5.4/drivers/weatherstack.js:243
+msgid "Heavy Rain at Times"
+msgstr "Helyenként heves esőzés"
+
+#: 5.4/drivers/weatherapi.js:256
+msgid "Ice Pellets"
+msgstr "Jégdarabkák"
+
+#: 5.4/drivers/weatherapi.js:257 5.4/drivers/weatherstack.js:244
+msgid "Light Drizzle"
+msgstr "Enyhe szitáló eső"
+
+#: 5.4/drivers/weatherapi.js:258 5.4/drivers/weatherstack.js:245
+msgid "Light Freezing Rain"
+msgstr "Enyhe fagyos eső"
+
+#: 5.4/drivers/weatherapi.js:261
+msgid "Light Showers of Ice Pellets"
+msgstr "Enyhe jégeső"
+
+#: 5.4/drivers/weatherapi.js:262
+msgid "Light Sleet"
+msgstr "Enyhe havaseső"
+
+#: 5.4/drivers/weatherapi.js:263
+msgid "Light Sleet Showers"
+msgstr "Enyhe havaseső"
+
+#: 5.4/drivers/weatherapi.js:265 5.4/drivers/wxbase.js:308
+msgid "Light Snow Showers"
+msgstr "Enyhe havazás"
+
+#: 5.4/drivers/weatherapi.js:267
+msgid "Moderate or Heavy Freezing Rain"
+msgstr "Mérsékelt vagy erős fagyos eső"
+
+#: 5.4/drivers/weatherapi.js:268
+msgid "Moderate or Heavy Rain Shower"
+msgstr "Mérsékelt vagy heves zápor"
+
+#: 5.4/drivers/weatherapi.js:269
+msgid "Moderate or Heavy Rain With Thunder"
+msgstr "Mérsékelt vagy heves eső dörgéssel"
+
+#: 5.4/drivers/weatherapi.js:270
+msgid "Moderate or Heavy Showers of Ice Pellets"
+msgstr "Mérsékelt vagy heves jégdara hullás"
+
+#: 5.4/drivers/weatherapi.js:271
+msgid "Moderate or Heavy Sleet"
+msgstr "Mérsékelt vagy heves havaseső"
+
+#: 5.4/drivers/weatherapi.js:272
+msgid "Moderate or Heavy Sleet Showers"
+msgstr "Mérsékelt vagy heves havaseső"
+
+#: 5.4/drivers/weatherapi.js:273
+msgid "Moderate or Heavy Snow Showers"
+msgstr "Mérsékelt vagy heves havazás"
+
+#: 5.4/drivers/weatherapi.js:274
+msgid "Moderate or Heavy Snow With Thunder"
+msgstr "Mérsékelt vagy heves havazás dörgéssel"
+
+#: 5.4/drivers/weatherapi.js:275 5.4/drivers/weatherstack.js:248
+msgid "Moderate Rain"
+msgstr "Mérsékelt eső"
+
+#: 5.4/drivers/weatherapi.js:276 5.4/drivers/weatherstack.js:249
+msgid "Moderate Rain at Times"
+msgstr "Helyenként mérsékelt eső"
+
+#: 5.4/drivers/weatherapi.js:277
+msgid "Moderate Snow"
+msgstr "Mérsékelt havaás"
+
+#: 5.4/drivers/weatherapi.js:280 5.4/drivers/weatherstack.js:252
+msgid "Patchy Freezing Drizzle Possible"
+msgstr "Foltokban fagyos szitálás lehetséges"
+
+#: 5.4/drivers/weatherapi.js:281
+msgid "Patchy Heavy Snow"
+msgstr "Foltokban erős havazás"
+
+#: 5.4/drivers/weatherapi.js:282 5.4/drivers/weatherstack.js:253
+msgid "Patchy Light Drizzle"
+msgstr "Foltokban enyhe szitálás"
+
+#: 5.4/drivers/weatherapi.js:283 5.4/drivers/weatherstack.js:254
+msgid "Patchy Light Rain"
+msgstr "Foltokban enyhe eső"
+
+#: 5.4/drivers/weatherapi.js:284
+msgid "Patchy Light Rain With Thunder"
+msgstr "Foltokban enyhe eső villámlással"
+
+#: 5.4/drivers/weatherapi.js:285
+msgid "Patchy Light Snow"
+msgstr "Foltokban enyhe havazás"
+
+#: 5.4/drivers/weatherapi.js:286
+msgid "Patchy Light Snow With Thunder"
+msgstr "Foltokban enyhe havazás villámlással"
+
+#: 5.4/drivers/weatherapi.js:287
+msgid "Patchy Moderate Snow"
+msgstr "Foltokban mérsékelt havazás"
+
+#: 5.4/drivers/weatherapi.js:288 5.4/drivers/weatherstack.js:255
+msgid "Patchy Rain Possible"
+msgstr "Foltokban eső lehetséges"
+
+#: 5.4/drivers/weatherapi.js:289 5.4/drivers/weatherstack.js:256
+msgid "Patchy Sleet Possible"
+msgstr "Foltokban havaseső lehetséges"
+
+#: 5.4/drivers/weatherapi.js:290 5.4/drivers/weatherstack.js:257
+msgid "Patchy Snow Possible"
+msgstr "Foltokban havazás lehetséges"
+
+#: 5.4/drivers/weatherapi.js:292 5.4/drivers/weatherstack.js:259
+msgid "Thundery Outbreaks Possible"
+msgstr "Viharos kitörések lehetségesek"
+
+#: 5.4/drivers/weatherapi.js:293
+msgid "Torrential Rain Shower"
+msgstr "Szakadó záporeső"
+
+#: 5.4/drivers/wunderground.js:47
+msgid "Invalid station ID"
+msgstr "Érvénytelen állomásazonosító"
+
+#: 5.4/drivers/wunderground.js:51
+msgid "Invalid geocode"
+msgstr "Érvénytelen geokód"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "N"
+msgstr "É"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "NNE"
+msgstr "ÉÉK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "NE"
+msgstr "ÉK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "ENE"
+msgstr "KÉK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "E"
+msgstr "K"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "ESE"
+msgstr "KDK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "SE"
+msgstr "DK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "SSE"
+msgstr "DDK"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "S"
+msgstr "D"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "SSW"
+msgstr "DDNY"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "SW"
+msgstr "DN"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "WSW"
+msgstr "NYDNY"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "W"
+msgstr "NY"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "WNW"
+msgstr "NYÉNY"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "NW"
+msgstr "ÉNY"
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "NNW"
+msgstr "ÉszÉNY"
+
+#: 5.4/drivers/wxbase.js:294 3.0/desklet.js:1560
+msgid "Tornado"
+msgstr "Tornádó"
+
+#: 5.4/drivers/wxbase.js:295
+msgid "Tropical Storm"
+msgstr "Trópusi vihar"
+
+#: 5.4/drivers/wxbase.js:296 3.0/desklet.js:1562
+msgid "Hurricane"
+msgstr "Hurrikán"
+
+#: 5.4/drivers/wxbase.js:297
+msgid "Severe Thunderstorms"
+msgstr "Heves zivatarok"
+
+#: 5.4/drivers/wxbase.js:298 3.0/desklet.js:1564
+msgid "Thunderstorms"
+msgstr "Zivatarok"
+
+#: 5.4/drivers/wxbase.js:300
+msgid "Mixed Rain and Sleet"
+msgstr "Eső és ónos eső"
+
+#: 5.4/drivers/wxbase.js:301
+msgid "Mixed Snow and Sleet"
+msgstr "Havazás és ónos eső"
+
+#: 5.4/drivers/wxbase.js:304
+msgid "Freezing Rain"
+msgstr "Fagyos eső"
+
+#: 5.4/drivers/wxbase.js:307
+msgid "Snow Flurries"
+msgstr "Hózáporok"
+
+#: 5.4/drivers/wxbase.js:311 3.0/desklet.js:1577
+msgid "Hail"
+msgstr "Jégeső"
+
+#: 5.4/drivers/wxbase.js:313 3.0/desklet.js:1579
+msgid "Dust"
+msgstr "Por"
+
+#: 5.4/drivers/wxbase.js:314 3.0/desklet.js:1580
+msgid "Foggy"
+msgstr "Ködös idő"
+
+#: 5.4/drivers/wxbase.js:315 3.0/desklet.js:1581
+msgid "Haze"
+msgstr "Köd"
+
+#: 5.4/drivers/wxbase.js:316 3.0/desklet.js:1582
+msgid "Smoky"
+msgstr "Füstös"
+
+#: 5.4/drivers/wxbase.js:317 3.0/desklet.js:1583
+msgid "Blustery"
+msgstr "Erős széllökések"
+
+#: 5.4/drivers/wxbase.js:318 3.0/desklet.js:1584
+msgid "Windy"
+msgstr "Szeles"
+
+#: 5.4/drivers/wxbase.js:319 3.0/desklet.js:1585
+msgid "Cold"
+msgstr "Hideg"
+
+#: 5.4/drivers/wxbase.js:321 5.4/drivers/wxbase.js:322
+msgid "Mostly Cloudy"
+msgstr "Nagyrészt felhős"
+
+#: 5.4/drivers/wxbase.js:329
+msgid "Mixed Rain and Hail"
+msgstr "Eső és jégeső"
+
+#: 5.4/drivers/wxbase.js:330 3.0/desklet.js:1596
+msgid "Hot"
+msgstr "Hőség"
+
+#: 5.4/drivers/wxbase.js:331
+msgid "Isolated Thunderstorms"
+msgstr "Elszigetelten zivatarok"
+
+#: 5.4/drivers/wxbase.js:332
+msgid "Scattered Thunderstorms"
+msgstr "Szórványos zivatarok"
+
+#: 5.4/drivers/wxbase.js:333 5.4/drivers/wxbase.js:334
+msgid "Scattered Showers"
+msgstr "Szórványos záporok"
+
+#: 5.4/drivers/wxbase.js:336
+msgid "Scattered Snow Showers"
+msgstr "Szórványos hózáporok"
+
+#: 5.4/drivers/wxbase.js:339 3.0/desklet.js:1605
+msgid "Thundershowers"
+msgstr "Zivatarok"
+
+#: 5.4/drivers/wxbase.js:341
+msgid "Isolated Thundershowers"
+msgstr "Elszórtan viharos zivatarok"
+
+#: 5.4/drivers/wxbase.js:342
+msgid "Not Available"
+msgstr "Nem elérhetőh"
+
+#: 3.0/desklet.js:744
+msgid "No data available"
+msgstr "Nincs elérhető adat"
+
+#: 3.0/desklet.js:777 3.0/desklet.js:844
+msgid "No data"
+msgstr "Nincs adat"
+
+#: 3.0/desklet.js:1561
+msgid "Tropical storm"
+msgstr "Trópusi vihar"
+
+#: 3.0/desklet.js:1563
+msgid "Severe thunderstorms"
+msgstr "Erős zivatarok"
+
+#: 3.0/desklet.js:1565 3.0/desklet.js:4240
+msgid "Mixed rain and snow"
+msgstr "Havas eső"
+
+#: 3.0/desklet.js:1566
+msgid "Mixed rain and sleet"
+msgstr "Eső és ónos eső"
+
+#: 3.0/desklet.js:1567
+msgid "Mixed snow and sleet"
+msgstr "Havazás és ónos eső"
+
+#: 3.0/desklet.js:1568
+msgid "Freezing drizzle"
+msgstr "Jeges szitálás"
+
+#: 3.0/desklet.js:1570
+msgid "Freezing rain"
+msgstr "Fagyos eső"
+
+#: 3.0/desklet.js:1573
+msgid "Snow flurries"
+msgstr "Hózáporok"
+
+#: 3.0/desklet.js:1574
+msgid "Light snow showers"
+msgstr "Gyenge hózáporok"
+
+#: 3.0/desklet.js:1575
+msgid "Blowing snow"
+msgstr "Hófúvás"
+
+#: 3.0/desklet.js:1587 3.0/desklet.js:1588
+msgid "Mostly cloudy"
+msgstr "Nagyrészt felhős"
+
+#: 3.0/desklet.js:1589 3.0/desklet.js:1590 3.0/desklet.js:1604
+msgid "Partly cloudy"
+msgstr "Részben felhős"
+
+#: 3.0/desklet.js:1595
+msgid "Mixed rain and hail"
+msgstr "Eső és jégeső"
+
+#: 3.0/desklet.js:1597
+msgid "Isolated thunderstorms"
+msgstr "Elszigetelten zivatarok"
+
+#: 3.0/desklet.js:1598
+msgid "Scattered thunderstorms"
+msgstr "Szórványos zivatarok"
+
+#: 3.0/desklet.js:1599 3.0/desklet.js:1600
+msgid "Scattered showers"
+msgstr "Szórványos záporok"
+
+#: 3.0/desklet.js:1601 3.0/desklet.js:1603
+msgid "Heavy snow"
+msgstr "Erős havazás"
+
+#: 3.0/desklet.js:1602
+msgid "Scattered snow showers"
+msgstr "Szórványos hózáporok"
+
+#: 3.0/desklet.js:1606 3.0/desklet.js:4239
+msgid "Snow showers"
+msgstr "Hózápor"
+
+#: 3.0/desklet.js:1607
+msgid "Isolated thundershowers"
+msgstr "Elszórtan zivatarok"
+
+#: 3.0/desklet.js:1608
+msgid "Not available"
+msgstr "Nem elérhető"
+
+#: 3.0/desklet.js:2072 3.0/desklet.js:2800
+msgid "Steady"
+msgstr "Állandó"
+
+#: 3.0/desklet.js:2072 3.0/desklet.js:2796
+msgid "Rising"
+msgstr "Növekszik"
+
+#: 3.0/desklet.js:2072 3.0/desklet.js:2798
+msgid "Falling"
+msgstr "Csökken"
+
+#. metadata.json->description
+msgid "Display the weather from several web services on your desktop"
+msgstr ""
+"Megjeleníti az időjárási adatokat az asztalon többfajta webszolgáltatást "
+"felhasználva"
+
+#. metadata.json->comments
+msgid ""
+"Please consider translating the Weather desklet into your language. See the "
+"website for more information."
+msgstr ""
+"Kérjük, fontolja meg a Weather Desklet lefordítását a anyanyelvére. További "
+"információért látogassa meg a weboldalt."
+
+#. metadata.json->contributors
+msgid "Chris Hastie"
+msgstr "Chris Hastie"
+
+#. 5.4->settings-schema.json->top->description
+#. 3.0->settings-schema.json->top->description
+msgid "Weather configuration"
+msgstr "Az időjárás előrejelzés beállítása"
+
+#. 5.4->settings-schema.json->webservice->description
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->webservice->description
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Data service"
+msgstr "Az időjárás-előrejelzés szolgáltatója"
+
+#. 5.4->settings-schema.json->webservice->options
+#. 3.0->settings-schema.json->webservice->options
+msgid "BBC"
+msgstr "BBC"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "meteoblue"
+msgstr "meteoblue"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "National Weather Service (USA Only)"
+msgstr "Országos Meteorológiai Szolgálat (csak az USA-ban)"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Open-Meteo Non-commercial"
+msgstr "Open-Meteo Nem kereskedelmi"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Open Weather Map Free"
+msgstr "Open Weather Map Ingyenes"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Open Weather Map"
+msgstr "Open Weather Map"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Weather API Free"
+msgstr "Weather API Ingyenes"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "weatherstack"
+msgstr "weatherstack"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "World Weather Online"
+msgstr "World Weather Online"
+
+#. 5.4->settings-schema.json->webservice->options
+msgid "Weather Underground"
+msgstr "Weather Underground"
+
+#. 5.4->settings-schema.json->webservice->tooltip
+#. 3.0->settings-schema.json->webservice->tooltip
+msgid "Select the data service you wish to use"
+msgstr "Válassza ki a használni kívánt szolgáltatót"
+
+#. 5.4->settings-schema.json->bbc__stationID->description
+#. 5.4->settings-schema.json->meteoblue__stationID->description
+#. 5.4->settings-schema.json->nws__stationID->description
+#. 5.4->settings-schema.json->openmeteo__stationID->description
+#. 5.4->settings-schema.json->owmfree__stationID->description
+#. 5.4->settings-schema.json->owm__stationID->description
+#. 5.4->settings-schema.json->weatherapi__stationID->description
+#. 5.4->settings-schema.json->weatherstack__stationID->description
+#. 5.4->settings-schema.json->wwo__stationID->description
+#. 3.0->settings-schema.json->stationID->description
+msgid "Location"
+msgstr "Hely"
+
+#. 5.4->settings-schema.json->bbc__stationID->tooltip
+#. 5.4->settings-schema.json->meteoblue__stationID->tooltip
+#. 5.4->settings-schema.json->nws__stationID->tooltip
+#. 5.4->settings-schema.json->openmeteo__stationID->tooltip
+#. 5.4->settings-schema.json->owmfree__stationID->tooltip
+#. 5.4->settings-schema.json->owm__stationID->tooltip
+#. 5.4->settings-schema.json->weatherapi__stationID->tooltip
+#. 5.4->settings-schema.json->weatherstack__stationID->tooltip
+#. 5.4->settings-schema.json->wwo__stationID->tooltip
+#. 3.0->settings-schema.json->stationID->tooltip
+msgid "Set your location here"
+msgstr "Itt állíthatja be a helyet"
+
+#. 5.4->settings-schema.json->meteoblue__apikey->description
+#. 5.4->settings-schema.json->owmfree__apikey->description
+#. 5.4->settings-schema.json->owm__apikey->description
+#. 5.4->settings-schema.json->weatherapi__apikey->description
+#. 5.4->settings-schema.json->weatherstack__apikey->description
+#. 5.4->settings-schema.json->wwo__apikey->description
+#. 5.4->settings-schema.json->wunderground__apikey->description
+msgid "API key (required)"
+msgstr "API-kulcs (szükséges)"
+
+#. 5.4->settings-schema.json->meteoblue__apikey->tooltip
+msgid "Enter your API key for meteoblue"
+msgstr "Adja meg a meteoblue API kulcsát"
+
+#. 5.4->settings-schema.json->owmfree__apikey->tooltip
+msgid "Enter your API key for Open Weather Map Free"
+msgstr "Adja meg az Open Weather Map Free API kulcsát"
+
+#. 5.4->settings-schema.json->owm__apikey->tooltip
+msgid "Enter your API key for Open Weather Map"
+msgstr "Adja meg az Open Weather Map API kulcsát"
+
+#. 5.4->settings-schema.json->weatherapi__apikey->tooltip
+msgid "Enter your API key for Weather API Free"
+msgstr "Adja meg a Weather API Free API kulcsát"
+
+#. 5.4->settings-schema.json->weatherstack__apikey->tooltip
+msgid "Enter your API key for weatherstack"
+msgstr "Adja meg a weatherstack API kulcsát"
+
+#. 5.4->settings-schema.json->wwo__apikey->tooltip
+msgid "Enter your API key for World Weather Online"
+msgstr "Adja meg a World Weather Online API kulcsát"
+
+#. 5.4->settings-schema.json->wunderground__stationID->description
+msgid "Station ID"
+msgstr "Állomás azonosító"
+
+#. 5.4->settings-schema.json->wunderground__stationID->tooltip
+msgid "Set your station ID here"
+msgstr "Itt állítsa be az állomás azonosítóját"
+
+#. 5.4->settings-schema.json->wunderground__geocode->description
+msgid "Geocode"
+msgstr "Geokód"
+
+#. 5.4->settings-schema.json->wunderground__geocode->tooltip
+msgid "Set your geocode here"
+msgstr "Itt állíthatja be a Geokódot"
+
+#. 5.4->settings-schema.json->wunderground__apikey->tooltip
+msgid "Enter your API key for Weather Underground"
+msgstr "Adja meg a Weather Underground API-kulcsát"
+
+#. 5.4->settings-schema.json->tunits->description
+#. 3.0->settings-schema.json->tunits->description
+msgid "Temperature measurement unit"
+msgstr "A hőmérséklet mértékegysége"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Celsius"
+msgstr "Celsius-fok"
+
+#. 5.4->settings-schema.json->tunits->options
+#. 3.0->settings-schema.json->tunits->options
+msgid "Fahrenheit"
+msgstr "Fahrenheit fok"
+
+#. 5.4->settings-schema.json->tunits->tooltip
+#. 3.0->settings-schema.json->tunits->tooltip
+msgid "Measurement units used to display temperature"
+msgstr "Az a mértékegység amelyben megjelenítjük a hőmérsékletet"
+
+#. 5.4->settings-schema.json->wunits->description
+#. 3.0->settings-schema.json->wunits->description
+msgid "Wind speed measurement unit"
+msgstr "A szél sebesség mértékegysége"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "mph"
+msgstr "mérföld/óra"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "km/h"
+msgstr "km/ó"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "knots"
+msgstr "csomó"
+
+#. 5.4->settings-schema.json->wunits->options
+#. 3.0->settings-schema.json->wunits->options
+msgid "m/s"
+msgstr "méter/mp"
+
+#. 5.4->settings-schema.json->wunits->tooltip
+#. 3.0->settings-schema.json->wunits->tooltip
+msgid "Measurement units used to display wind speed"
+msgstr "Az a mértékegység amelyben a szél sebességét megjelenítjük"
+
+#. 5.4->settings-schema.json->punits->description
+#. 3.0->settings-schema.json->punits->description
+msgid "Pressure measurement unit"
+msgstr "A légnyomás mértékegysége"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mb"
+msgstr "mb"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "in (Hg)"
+msgstr "(higany)inch"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "mm (Hg)"
+msgstr "(higany)mm"
+
+#. 5.4->settings-schema.json->punits->options
+#. 3.0->settings-schema.json->punits->options
+msgid "kPa"
+msgstr "kPa"
+
+#. 5.4->settings-schema.json->punits->tooltip
+#. 3.0->settings-schema.json->punits->tooltip
+msgid "Measurement units used to display atmospheric pressure"
+msgstr "Az a mértékegység amelyben a légnyomást megjelenítjük"
+
+#. 5.4->settings-schema.json->userno->units
+#. 3.0->settings-schema.json->userno->units
+msgid "days"
+msgstr "napra"
+
+#. 5.4->settings-schema.json->userno->description
+#. 3.0->settings-schema.json->userno->description
+msgid "Show forecast for"
+msgstr "Előrejelzés"
+
+#. 5.4->settings-schema.json->userno->tooltip
+#. 3.0->settings-schema.json->userno->tooltip
+msgid ""
+"The number of days of forecast to display. Note that not all services "
+"support all values"
+msgstr ""
+"Az előrejelzett napok számának kiválasztása. Kérjük vegye figyelembe, nem "
+"minden szolgáltató jelzi előre az összes értéket"
+
+#. 5.4->settings-schema.json->refreshtime->units
+#. 3.0->settings-schema.json->refreshtime->units
+msgid "minutes"
+msgstr "percben"
+
+#. 5.4->settings-schema.json->refreshtime->description
+#. 3.0->settings-schema.json->refreshtime->description
+msgid "Refresh forecast every"
+msgstr "Az előrejelzés frissítése minden"
+
+#. 5.4->settings-schema.json->refreshtime->tooltip
+#. 3.0->settings-schema.json->refreshtime->tooltip
+msgid ""
+"Period between refreshing forecasts. Note that not all services support "
+"lower refresh times"
+msgstr ""
+"Frissítések időköze. Kérjük vegye figyelembe, hogy nem mindegyik "
+"szolgáltatás támogatja az alacsony frissítési időközöket"
+
+#. 5.4->settings-schema.json->display->description
+#. 3.0->settings-schema.json->display->description
+msgid ""
+"Optional items to display (not all options are supported by all services)"
+msgstr ""
+"Megjelenítendő adatok (nem minden szolgáltatónál érhető el az összes adat)"
+
+#. 5.4->settings-schema.json->display__meta__country->description
+#. 3.0->settings-schema.json->display__meta__country->description
+msgid "Country"
+msgstr "Ország"
+
+#. 5.4->settings-schema.json->display__meta__country->tooltip
+#. 3.0->settings-schema.json->display__meta__country->tooltip
+msgid "Check to display the country"
+msgstr "Jelölje be az országnév megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__meta__region->description
+msgid "Region"
+msgstr "Régió"
+
+#. 5.4->settings-schema.json->display__meta__region->tooltip
+msgid "Check to display the region"
+msgstr "Jelölje be az országnév megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__weather->description
+#. 3.0->settings-schema.json->display__cc__weather->description
+msgid "Current weather and icon"
+msgstr "Aktuális időjárás és időjárás ikon"
+
+#. 5.4->settings-schema.json->display__cc__weather->tooltip
+#. 3.0->settings-schema.json->display__cc__weather->tooltip
+msgid "Check to display the current weather and large icon"
+msgstr ""
+"Jelölje be az aktuális időjárás és a nagy időjárás ikon megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__pressure->description
+#. 3.0->settings-schema.json->display__cc__pressure->description
+msgid "Current pressure"
+msgstr "Aktuális légnyomás"
+
+#. 5.4->settings-schema.json->display__cc__pressure->tooltip
+#. 3.0->settings-schema.json->display__cc__pressure->tooltip
+msgid "Check to display the current pressure"
+msgstr "Jelölje be az aktuális légnyomás megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__humidity->description
+#. 3.0->settings-schema.json->display__cc__humidity->description
+msgid "Current humidity"
+msgstr "Aktuális páratartalom"
+
+#. 5.4->settings-schema.json->display__cc__humidity->tooltip
+#. 3.0->settings-schema.json->display__cc__humidity->tooltip
+msgid "Check to display the current humidity"
+msgstr "Jelölje be az aktuális páratartalom megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->description
+#. 3.0->settings-schema.json->display__cc__wind_speed->description
+msgid "Current wind"
+msgstr "Jelenlegi szél"
+
+#. 5.4->settings-schema.json->display__cc__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__cc__wind_speed->tooltip
+msgid "Check to display the current wind"
+msgstr "Jelölje be az aktuális széljárás megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__feelslike->description
+#. 3.0->settings-schema.json->display__cc__feelslike->description
+msgid "Current 'feels like'"
+msgstr "Aktuális \"hőérzet\""
+
+#. 5.4->settings-schema.json->display__cc__feelslike->tooltip
+#. 3.0->settings-schema.json->display__cc__feelslike->tooltip
+msgid "Check to display the current apparent temperature"
+msgstr "Jelölje be az aktuális hőérzet megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__cc__visibility->description
+#. 3.0->settings-schema.json->display__cc__visibility->description
+msgid "Current visibility"
+msgstr "Aktuális látótávolság"
+
+#. 5.4->settings-schema.json->display__cc__visibility->tooltip
+#. 3.0->settings-schema.json->display__cc__visibility->tooltip
+msgid "Check to display the current visibility"
+msgstr "Jelölje be az aktuális látótávolság megjelenítéséhez"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__maximum_temperature->description
+msgid "Forecast maximum"
+msgstr "Előrejelzett legmagasabb hőmérséklet"
+
+#. 5.4->settings-schema.json->display__forecast__maximum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__maximum_temperature->tooltip
+msgid "Check to display the forecast maximum temperature"
+msgstr "Jelölje be az előrejelzett legmagasabb hőmérséklet megjelenítéséhez"
+
+#. 5.4->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+#. 3.0->settings-
+#. schema.json->display__forecast__minimum_temperature->description
+msgid "Forecast minimum"
+msgstr "Előrejelzett legalacsonyabb hőmérséklet"
+
+#. 5.4->settings-schema.json->display__forecast__minimum_temperature->tooltip
+#. 3.0->settings-schema.json->display__forecast__minimum_temperature->tooltip
+msgid "Check to display the forecast minimum temperature"
+msgstr "Jelölje be az előrejelzett legalacsonyabb hőmérséklet megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->description
+#. 3.0->settings-schema.json->display__forecast__wind_speed->description
+msgid "Forecast wind speed"
+msgstr "Szélerősség előrejelzése"
+
+#. 5.4->settings-schema.json->display__forecast__wind_speed->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_speed->tooltip
+msgid "Check to display the forecast wind speed"
+msgstr "Jelölje be az előrejelzett szélerősség megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->description
+#. 3.0->settings-schema.json->display__forecast__wind_direction->description
+msgid "Forecast wind direction"
+msgstr "Előrejelzett szélirány"
+
+#. 5.4->settings-schema.json->display__forecast__wind_direction->tooltip
+#. 3.0->settings-schema.json->display__forecast__wind_direction->tooltip
+msgid "Check to display the forecast wind direction"
+msgstr "Jelölje be az előrejelzett szélirány megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->description
+#. 3.0->settings-schema.json->display__forecast__pressure->description
+msgid "Forecast pressure"
+msgstr "Előrejelzett légnyomás"
+
+#. 5.4->settings-schema.json->display__forecast__pressure->tooltip
+#. 3.0->settings-schema.json->display__forecast__pressure->tooltip
+msgid "Check to display the forecast pressure"
+msgstr "Jelölje be az előrejelzett légnyomás megjelenítéséhez"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->description
+#. 3.0->settings-schema.json->display__forecast__humidity->description
+msgid "Forecast humidity"
+msgstr "Előrejelzett páratartalom"
+
+#. 5.4->settings-schema.json->display__forecast__humidity->tooltip
+#. 3.0->settings-schema.json->display__forecast__humidity->tooltip
+msgid "Check to display the forecast humidity"
+msgstr "Jelölje be az előrejelzett páratartalom megjelenítéséhez"
+
+#. 5.4->settings-schema.json->styling->description
+#. 3.0->settings-schema.json->styling->description
+msgid "Desklet style"
+msgstr "Aztalkalmazás stílusa"
+
+#. 5.4->settings-schema.json->zoom->units
+#. 3.0->settings-schema.json->zoom->units
+msgid "times"
+msgstr "szeresre"
+
+#. 5.4->settings-schema.json->zoom->description
+#. 3.0->settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Nagyítás"
+
+#. 5.4->settings-schema.json->zoom->tooltip
+#. 3.0->settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Megváltoztatja a desklet méretét"
+
+#. 5.4->settings-schema.json->layout->description
+#. 3.0->settings-schema.json->layout->description
+msgid "Layout"
+msgstr "Elhelyezkedés"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vízszintes elhelyezkedés"
+
+#. 5.4->settings-schema.json->layout->options
+#. 3.0->settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Függőleges elhelyezkedés"
+
+#. 5.4->settings-schema.json->layout->tooltip
+#. 3.0->settings-schema.json->layout->tooltip
+msgid "Set the overall layout of the desklet"
+msgstr "Válassza ki milyen elhelyezkedést szeretne"
+
+#. 5.4->settings-schema.json->iconstyle->description
+#. 3.0->settings-schema.json->iconstyle->description
+msgid "Icon style"
+msgstr "Ikon stílusa"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Colorful"
+msgstr "Színesek"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Dark"
+msgstr "Sötét"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Light"
+msgstr "Világos"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat colorful"
+msgstr "Lapos színes"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat black"
+msgstr "Lapos fekete"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Flat white"
+msgstr "Lapos fehér"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "VClouds"
+msgstr "VClouds"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Novacon"
+msgstr "Novacon"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Weezle"
+msgstr "Weezle"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 1"
+msgstr "Meteocons 1"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Meteocons 2"
+msgstr "Meteocons 2"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "Sketchy"
+msgstr "Vázlatos"
+
+#. 5.4->settings-schema.json->iconstyle->options
+#. 3.0->settings-schema.json->iconstyle->options
+msgid "User defined"
+msgstr "Felhasználó által megadott"
+
+#. 5.4->settings-schema.json->iconstyle->tooltip
+#. 3.0->settings-schema.json->iconstyle->tooltip
+msgid "Select the style for the weather icons"
+msgstr "Válassza ki az időjárás ikon stílusát"
+
+#. 5.4->settings-schema.json->citystyle->description
+#. 3.0->settings-schema.json->citystyle->description
+msgid "Bold city name"
+msgstr "Városnév félkövér betűkkel"
+
+#. 5.4->settings-schema.json->citystyle->tooltip
+#. 3.0->settings-schema.json->citystyle->tooltip
+msgid "Check to display the city name in bold"
+msgstr "Jelölje be a félkövér karakterek használatához a városnévben"
+
+#. 5.4->settings-schema.json->overrideTheme->description
+#. 3.0->settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+"Az asztal témájának felülírása (engedélyezi a lentebbi beállítások "
+"használatát)"
+
+#. 5.4->settings-schema.json->overrideTheme->tooltip
+#. 3.0->settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+"Jelőlje be az asztali téma felülírásához és állítsa be a megjelenést "
+"manuálisan"
+
+#. 5.4->settings-schema.json->transparency->description
+#. 3.0->settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Áttetszőség"
+
+#. 5.4->settings-schema.json->transparency->tooltip
+#. 3.0->settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "A desklet áttetszőségének mértéke"
+
+#. 5.4->settings-schema.json->textcolor->description
+#. 3.0->settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Szövegszín"
+
+#. 5.4->settings-schema.json->textcolor->tooltip
+#. 3.0->settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Új szöveg szín választáshoz kattintson a gombra"
+
+#. 5.4->settings-schema.json->textshadow->description
+#. 3.0->settings-schema.json->textshadow->description
+msgid "Text shadow"
+msgstr "Szöveg árnyékolása"
+
+#. 5.4->settings-schema.json->textshadow->tooltip
+#. 3.0->settings-schema.json->textshadow->tooltip
+msgid "Check to add a text shadow"
+msgstr "Jelölje be a szöveg árnyékolásához"
+
+#. 5.4->settings-schema.json->shadowblur->units
+#. 5.4->settings-schema.json->cornerradius->units
+#. 5.4->settings-schema.json->borderwidth->units
+#. 3.0->settings-schema.json->shadowblur->units
+#. 3.0->settings-schema.json->cornerradius->units
+#. 3.0->settings-schema.json->borderwidth->units
+msgid "px"
+msgstr "képpont"
+
+#. 5.4->settings-schema.json->shadowblur->description
+#. 3.0->settings-schema.json->shadowblur->description
+msgid "Shadow blur radius"
+msgstr "Árnyék-lekerekítés sugara"
+
+#. 5.4->settings-schema.json->shadowblur->tooltip
+#. 3.0->settings-schema.json->shadowblur->tooltip
+msgid "Set the text shadow sharp (1) or blurry (2-7)"
+msgstr "Állítsa be a szöveg árnyékát élesre (1), vagy elmosottra (2-7)"
+
+#. 5.4->settings-schema.json->bgcolor->description
+#. 3.0->settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "A háttér színe"
+
+#. 5.4->settings-schema.json->bgcolor->tooltip
+#. 3.0->settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Az új háttérszín kiválasztásához kattintson a gombra"
+
+#. 5.4->settings-schema.json->cornerradius->description
+#. 3.0->settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Sarok lekerekítés sugara"
+
+#. 5.4->settings-schema.json->cornerradius->tooltip
+#. 3.0->settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Az asztalkalmazás sarok-lekerekítésének mértéke"
+
+#. 5.4->settings-schema.json->border->description
+#. 3.0->settings-schema.json->border->description
+msgid "Show border"
+msgstr "Szegély mutatása"
+
+#. 5.4->settings-schema.json->border->tooltip
+#. 3.0->settings-schema.json->border->tooltip
+msgid "Check this to turn border on/off"
+msgstr "Szegély bekapcsolása/kikapcsolása"
+
+#. 5.4->settings-schema.json->bordercolor->description
+#. 3.0->settings-schema.json->bordercolor->description
+msgid "Border color"
+msgstr "Szegélyszín"
+
+#. 5.4->settings-schema.json->bordercolor->tooltip
+#. 3.0->settings-schema.json->bordercolor->tooltip
+msgid ""
+"Select the color for the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Válassza ki a szegély színét. Csak akkor elérhető ha a \"szegély\" "
+"jelölőnégyzetet bejelölte"
+
+#. 5.4->settings-schema.json->borderwidth->description
+#. 3.0->settings-schema.json->borderwidth->description
+msgid "Border width"
+msgstr "Szegélyvastagság"
+
+#. 5.4->settings-schema.json->borderwidth->tooltip
+#. 3.0->settings-schema.json->borderwidth->tooltip
+msgid ""
+"Select the width of the border. Only available if the 'Border' checkbox is "
+"enabled"
+msgstr ""
+"Kiválaszthatja  a szegély vastagságát. Csak akkor elérhető ha bejelölte a "
+"\"Szegély\" jelölőnégyzetet"
+
+#. 5.4->settings-schema.json->locationlookups->description
+#. 3.0->settings-schema.json->locationlookups->description
+msgid "Location display settings"
+msgstr "Hely megjelenítési beállítások"
+
+#. 5.4->settings-schema.json->locsrc->description
+#. 3.0->settings-schema.json->locsrc->description
+msgid "Get displayed location from"
+msgstr "Megjelenítendő hely betöltése"
+
+#. 5.4->settings-schema.json->locsrc->options
+#. 3.0->settings-schema.json->locsrc->options
+msgid "Google"
+msgstr "Google"
+
+#. 5.4->settings-schema.json->locsrc->tooltip
+#. 3.0->settings-schema.json->locsrc->tooltip
+msgid ""
+"The source of the text displayed as the current location. Yahoo! and Google "
+"may offer city names in other languages"
+msgstr ""
+"A megadott szöveg használata az aktuális hely megnevezéseként. Lehetséges, "
+"hogy a Yahoo! és a Google felajánl város neveket egyéb nyelveken is"
+
+#. 5.4->settings-schema.json->manuallocation->description
+#. 3.0->settings-schema.json->manuallocation->description
+msgid "Manually override displayed location"
+msgstr "A megjelenítendő hely manuális felülírása"
+
+#. 5.4->settings-schema.json->manuallocation->tooltip
+#. 3.0->settings-schema.json->manuallocation->tooltip
+msgid "Set your city name manually."
+msgstr "Állítsa be a városa nevét manuálisan."
+
+#. 5.4->settings-schema.json->experimental->description
+#. 3.0->settings-schema.json->experimental->description
+msgid "Experimental and buggy features (read documentation!!)"
+msgstr ""
+"Kísérleti és nem hibátlan működésű lehetőségek (olvassa el a leírást!!)"
+
+#. 5.4->settings-schema.json->experimental_enabled->description
+#. 3.0->settings-schema.json->experimental_enabled->description
+msgid "Enable experimental features"
+msgstr "Kísérleti lehetőségek engedélyezése"
+
+#. 5.4->settings-schema.json->experimental_enabled->tooltip
+#. 3.0->settings-schema.json->experimental_enabled->tooltip
+msgid "Check this to enable experimental and buggy features"
+msgstr ""
+"Jelölje ki a kísérleti, nem tökéletesen működő lehetőségek engedélyezéséhez"
+
+#. 5.4->settings-schema.json->gravity->description
+#. 3.0->settings-schema.json->gravity->description
+msgid "Anchor desklet by"
+msgstr "Desklet rögzítése"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Default"
+msgstr "Alapértelmezés"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top left"
+msgstr "Bal-felső"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Left center"
+msgstr "Bal-közép"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom left"
+msgstr "Bal-alsó"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom center"
+msgstr "Alsó-közép"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Bottom right"
+msgstr "Jobb-alsó"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Right center"
+msgstr "Jobb-közép"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top right"
+msgstr "Jobb-fent"
+
+#. 5.4->settings-schema.json->gravity->options
+#. 3.0->settings-schema.json->gravity->options
+msgid "Top center"
+msgstr "Fent-közép"
+
+#. 5.4->settings-schema.json->gravity->tooltip
+#. 3.0->settings-schema.json->gravity->tooltip
+msgid ""
+"Select the point on the desklet to which it is anchored. This point will "
+"remain static as the desklet grows and shrinks"
+msgstr ""
+"Válasszon egy pontot a asztalkalmazáson amely rögzítve lesz. Ez a pont "
+"állandó marad a asztalkalmazás méretének növekedése és csökkenése esetén is"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Open Weather Map (requires API key)"
+msgstr "Open Weather Map (requires API key)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Open Weather Map Free (requires API key)"
+msgstr "Open Weather Map Free (API-kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Wunderground (requires API key)"
+msgstr "Wunderground (API kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "World Weather Online (deprecated) (requires API key)"
+msgstr "World Weather Online (elavult) (API-kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "World Weather Online Premium (requires API key)"
+msgstr "World Weather Online Premium (API-kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "APIXU (requires API key)"
+msgstr "APIXU (API-kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "Forecast.io (requires API key)"
+msgstr "Forecast.io (API kulcs szükséges)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "weather.com (deprecated)"
+msgstr "weather.com (elavult)"
+
+#. 3.0->settings-schema.json->webservice->options
+msgid "meteoblue (requires API key)"
+msgstr "meteoblue (API-kulcs szükséges)"
+
+#. 3.0->settings-schema.json->apikey->description
+msgid "API key"
+msgstr "API kulcsok"
+
+#. 3.0->settings-schema.json->apikey->tooltip
+msgid ""
+"Required for some services only. Enter your API key for your chosen service"
+msgstr ""
+"Csak néhány szolgáltatáshoz szükséges. Adja meg a választott szolgáltatáshoz "
+"az API kulcsot"

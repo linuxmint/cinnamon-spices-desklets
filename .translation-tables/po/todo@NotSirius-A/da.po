@@ -1,0 +1,370 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->todo-page->title
+#. MyToolBar.js:93 desklet.js:261
+msgid "TODO"
+msgstr "GØREMÅL"
+
+#. TODOList.js:306 TODOList.js:375 TODOList.js:435
+msgid "Are you sure you want to remove this task?"
+msgstr "Er du sikker på, du vil fjerne denne opgave?"
+
+#. desklet.js:258
+msgid "Add new task"
+msgstr "Tilføj ny opgave"
+
+#. metadata.json->description
+msgid "Themeable, customizable, and easy-to-use TODO desklet."
+msgstr ""
+"Nemt at bruge gøremålsskrivebordsprogram hvor tema og andet kan tilpasses."
+
+#. metadata.json->name
+msgid "TODO Desklet"
+msgstr "GØREMÅL"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Indstillinger"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->todo-section->title
+msgid "Add or modify your tasks here"
+msgstr "Tilføj eller ændr dine opgaver her"
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr "Generelt"
+
+#. settings-schema.json->todo-preferences-section->title
+msgid "TODO list"
+msgstr "Gøremålsliste"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Udseende"
+
+#. settings-schema.json->TODO-task-theme-section->title
+msgid "TODO tasks"
+msgstr "Gøremålsopgaver"
+
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Værktøjslinje"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Skrivebordsprogrammets udseende"
+
+#. settings-schema.json->todo-bottom-label->description
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and "
+"select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+"Sådan bruges dette skrivebordsprogram:\n"
+"Du kan tilføje/redigere opgaver her eller ved at interagere med selve "
+"skrivebordsprogrammet:\n"
+" - Venstreklik på opgavens navn for at redigere den\n"
+" - Venstreklik på opgavens ikon for at markere den som udført/ikke udført\n"
+" - Højreklik for at vælge flere opgaver (kun relevant, hvis du bruger "
+"værktøjslinjen)\n"
+" - Klik med midterste museknap for at fjerne\n"
+" - Hvis du vil tilføje flere opgaver, skal du højreklikke et vilkårligt sted "
+"i skrivebordsprogrammet og vælge indstillingen “Tilføj ny opgave” i pop op-"
+"menuen \n"
+" - Skift+Enter under redigering af opgaven for at indsætte en ny linje\n"
+" - Ibus/Fcitx-indtastning er kun mulig via redigeringsknappen eller "
+"indstillingerne\n"
+"Du kan finde flere oplysninger om dette skrivebordsprogram på dets webside."
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Done"
+msgstr "Færdig"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
+msgstr "Vigtigt"
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Name"
+msgstr "Navn"
+
+#. settings-schema.json->update-button->description
+msgid "Update"
+msgstr "Opdatér"
+
+#. settings-schema.json->is-toolbar-enabled->description
+msgid "Enable toolbar"
+msgstr "Aktivér værktøjslinje"
+
+#. settings-schema.json->is-toolbar-enabled->tooltip
+msgid ""
+"Select if you want the toolbar to show up (tasks can be selected only when "
+"toolbar is enabled)."
+msgstr ""
+"Markér, hvis du vil have værktøjslinjen vist (opgaver kan kun vælges, når "
+"værktøjslinjen er aktiveret)."
+
+#. settings-schema.json->is-sort-enabled->description
+msgid "Sort marked/not marked tasks"
+msgstr "Sortér markerede/umarkerede opgaver"
+
+#. settings-schema.json->is-sort-enabled->tooltip
+msgid ""
+"Select if you tasks to be sorted based on whether they're marked done or not."
+msgstr "Vælg, om opgaver skal sorteres efter, om de er færdige eller ej."
+
+#. settings-schema.json->is-sort-reversed->description
+msgid "Reverse order"
+msgstr "Omvendt rækkefølge"
+
+#. settings-schema.json->is-sort-reversed->tooltip
+msgid "Select if you unmarked tasks to be at the top."
+msgstr "Vælg, hvis de umarkerede opgaver skal være øverst."
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Antal kolonner"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Forøg eller formindsk antallet af kolonner."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Tekstskygge"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Tekstskyggefarve"
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Vis ramme og/eller titel"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Skrifttypenavn (vælg regulære versioner)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Skift skrifttypefamilie"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Fed"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Kursiv"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstfarve"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the task text color."
+msgstr "Angiv opgavens tekstfarve."
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Størrelse (påvirker primært bredden)"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Forøg eller formindsk skrivebordsprogrammets størrelse med denne "
+"skaleringsfaktor."
+
+#. settings-schema.json->is-task-bg-transparent->description
+msgid "Transparent background"
+msgstr "Gennemsigtig baggrund"
+
+#. settings-schema.json->is-task-bg-transparent->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Vælg, om du vil have en gennemsigtig baggrund."
+
+#. settings-schema.json->task-background->description
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#. settings-schema.json->task-background->tooltip
+msgid "Set the task background."
+msgstr "Angiv opgavens baggrundsfarve."
+
+#. settings-schema.json->task-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Rammebredde (0 deaktiverer rammen)"
+
+#. settings-schema.json->task-border-width->tooltip
+msgid "Increase or decrease the task border width."
+msgstr "Forøg eller formindsk opgavens rammebredde."
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+msgid "Border color"
+msgstr "Rammefarve"
+
+#. settings-schema.json->task-border-color->tooltip
+msgid ""
+"Set the task border color (Transparent border will add more padding to "
+"tasks)."
+msgstr ""
+"Angiv opgavens rammefarve (gennemsigtig ramme tilføjer mere udfyldning)."
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr "Baggrund når markeret som vigtig"
+
+#. settings-schema.json->task-background-important->tooltip
+msgid "Set the task background when marked as important."
+msgstr "Angiv baggrundsfarven til opgaver markeret som vigtige."
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr "Ramme når markeret som vigtig"
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid ""
+"Set the task border color when marked as important (Transparent border will "
+"add more padding to tasks)."
+msgstr ""
+"Angiv rammefarven til opgaver markeret som vigtige (gennemsigtig ramme "
+"tilføjer mere udfyldning)."
+
+#. settings-schema.json->task-icon-size->description
+msgid "Task icon size (set to 0 to disable icons)"
+msgstr "Opgavens ikonstørrelse (0 deaktiverer ikoner)"
+
+#. settings-schema.json->task-icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Forøg eller formindsk ikonstørrelsen (0 deaktiverer ikoner)."
+
+#. settings-schema.json->task-marked-icon->description
+msgid "Icon marked"
+msgstr "Ikon markeret"
+
+#. settings-schema.json->task-not-marked-icon->description
+msgid "Icon not marked"
+msgstr "Ikon ikke markeret"
+
+#. settings-schema.json->toolbar-icon-size->description
+msgid "Icon size"
+msgstr "Ikonstørrelse"
+
+#. settings-schema.json->toolbar-icon-size->tooltip
+msgid "Increase or decrease the icon size."
+msgstr "Forøg eller formindsk ikonstørrelsen."
+
+#. settings-schema.json->toolbar-background->tooltip
+msgid "Set the toolbar background."
+msgstr "Angiv værktøjslinjens baggrund."
+
+#. settings-schema.json->toolbar-font-color->description
+msgid "Icon color"
+msgstr "Ikonfarve"
+
+#. settings-schema.json->toolbar-font-color->tooltip
+msgid "Set the color of toolbar icons."
+msgstr "Angiv værktøjslinjeikonernes farve."
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr "Rammebredde"
+
+#. settings-schema.json->toolbar-border-width->tooltip
+msgid ""
+"Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr ""
+"Forøg eller formindsk værktøjslinjens rammebredde (0 deaktiverer ikoner)."
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid ""
+"Set the toolbar border color (Transparent border will add more padding to "
+"toolbar)."
+msgstr ""
+"Angiv værktøjslinjens rammefarve (gennemsigtig ramme tilføjer mere "
+"udfyldning)."
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Følgende indstillinger kræver, at skrivebordsprogrammers udseende er "
+"aktiveret på dit system.\n"
+"Indstillingerne findes under Systemindstillinger > Skrivebordsprogrammer > "
+"fanen Generelle indstillinger. Her kan du aktivere ramme og titel."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Titel"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Angiv skrivebordsprogrammets titel. Sørg for, at titler er aktiveret i "
+"systemindstillingerne."
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+msgid "Enable toolbar tooltips"
+msgstr "Aktivér tip til værktøjslinje"
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+msgid ""
+"Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr ""
+"Vælg, om du vil have værktøjstip til at vises, når du holder markøren over "
+"knapper i værktøjslinjen."
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+msgid "Enable task tooltips"
+msgstr "Aktivér tip til opgaver"
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr ""
+"Vælg, om du vil have værktøjstip til at vises, når du holder markøren over "
+"opgaver."
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr "Redigér opgavens navn"
+
+#. edit_dialog_gtk.ui:74
+msgid "Name:"
+msgstr "Navn:"

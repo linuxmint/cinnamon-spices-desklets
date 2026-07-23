@@ -1,0 +1,65 @@
+# CobiAnalogClock Desklet
+# Copyright (C) 2017 Lars Mueller
+# This file is distributed under the same license as the CobiAnalog Desklet package.
+# Robert Antoni Buj Gelonch <rbuj@fedoraproject.org>, 2018.
+# Daniel <devf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 22:29+0200\n"
+"PO-Revision-Date: 2024-05-14 22:30+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: 2.8/desklet.js:172 3.0/desklet.js:191
+msgid "Settings"
+msgstr "Ajusts"
+
+#: 2.8/desklet.js:185 2.8/desklet.js:370 3.0/desklet.js:204 3.0/desklet.js:394
+msgid "Clock"
+msgstr "Rellotge"
+
+#. metadata.json->name
+msgid "CobiAnalogClock"
+msgstr "CobiAnalogClock"
+
+#. metadata.json->description
+msgid "An analog clock desklet"
+msgstr "Una miniaplicació d'escriptori de rellotge analògic"
+
+#: 2.8/settings.ui:7 3.0/settings.ui:7
+msgid "Analog Clock Settings"
+msgstr "Ajusts del rellotge analògic"
+
+#: 2.8/settings.ui:99 3.0/settings.ui:99
+msgid "Theme"
+msgstr "Tema"
+
+#: 2.8/settings.ui:138 3.0/settings.ui:138
+msgid "Size"
+msgstr "Mida"
+
+#: 2.8/settings.ui:182 3.0/settings.ui:182
+msgid "Show Seconds"
+msgstr "Mostra els segons"
+
+#: 2.8/settings.ui:220 3.0/settings.ui:220
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"
+
+#: 2.8/settings.ui:259 3.0/settings.ui:259
+msgid "Use specific timezone"
+msgstr "Utilitza una zona horària específica"
+
+#: 2.8/settings.ui:297 3.0/settings.ui:297
+msgid "Display Timezone"
+msgstr "Visualitza la zona horària"

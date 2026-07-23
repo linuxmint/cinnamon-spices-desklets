@@ -1,0 +1,25 @@
+# Romanian translations for  package.
+# Copyright (C) 2023 THE 'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the  package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
+"PO-Revision-Date: 2023-07-07 23:49-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""

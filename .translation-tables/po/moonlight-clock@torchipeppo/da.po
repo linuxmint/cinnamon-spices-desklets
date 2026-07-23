@@ -1,0 +1,797 @@
+# MOONLIGHT CLOCK
+# This file is put in the public domain.
+# torchipeppo, 2025
+#
+#
+# Please read TRANSLATORS.md for context guidance.
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. 3.4/constants.js:43 5.4/constants.js:43
+msgid "Next"
+msgstr "Næste"
+
+#. 3.4/constants.js:100 5.4/constants.js:100
+msgid "New Moon"
+msgstr "Nymåne"
+
+#. 3.4/constants.js:101 5.4/constants.js:101
+msgid "Waxing Crescent"
+msgstr "Nymåne → halvmåne"
+
+#. 3.4/constants.js:102 5.4/constants.js:102
+msgid "First Quarter"
+msgstr "Tiltagende halvmåne"
+
+#. 3.4/constants.js:103 5.4/constants.js:103
+msgid "Waxing Gibbous"
+msgstr "Halvmåne → fuldmåne"
+
+#. 3.4/constants.js:104 5.4/constants.js:104
+msgid "Full Moon"
+msgstr "Fuldmåne"
+
+#. 3.4/constants.js:105 5.4/constants.js:105
+msgid "Waning Gibbous"
+msgstr "Fuldmåne → halvmåne"
+
+#. 3.4/constants.js:106 5.4/constants.js:106
+msgid "Last Quarter"
+msgstr "Aftagende halvmåne"
+
+#. 3.4/constants.js:107 5.4/constants.js:107
+msgid "Waning Crescent"
+msgstr "Halvmåne → nymåne"
+
+#. 3.4/constants.js:111 5.4/constants.js:111
+msgid "New"
+msgstr "Ny"
+
+#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
+#. 5.4/constants.js:114
+msgid "Half"
+msgstr "Halv"
+
+#. 3.4/constants.js:113 5.4/constants.js:113
+msgid "Full"
+msgstr "Fuld"
+
+#. 3.4/constants.js:170 5.4/constants.js:170
+msgid "Clear"
+msgstr "Klart"
+
+#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
+#. 5.4/constants.js:172
+msgid "Cloudy"
+msgstr "Skyet"
+
+#. 3.4/constants.js:173 5.4/constants.js:173
+msgid "Fog"
+msgstr "Tåge"
+
+#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+msgid "Rain"
+msgstr "Regn"
+
+#. 3.4/constants.js:176 5.4/constants.js:176
+msgid "Storm"
+msgstr "Storm"
+
+#. 3.4/constants.js:177 5.4/constants.js:177
+msgid ""
+"Cold\n"
+"precip."
+msgstr ""
+"Kold\n"
+"nedbør"
+
+#. 3.4/desklet.js:149 5.4/desklet.js:149
+msgid "Date and Time Settings"
+msgstr "Indstillinger for dato og tid"
+
+#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+msgid "Limit"
+msgstr "Dage tilbage"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+#. 3.4/desklet.js:412 5.4/desklet.js:412
+msgid "None"
+msgstr "Ingen"
+
+#. 3.4/desklet.js:454 5.4/desklet.js:454
+msgid ""
+"Right-click\n"
+"to configure!"
+msgstr ""
+"Højreklik for\n"
+"at indstille!"
+
+#. metadata.json->name
+#. 3.4/desklet.js:507 5.4/desklet.js:507
+msgid "Moonlight Clock"
+msgstr "Månefaseur"
+
+#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+msgid "Late Night"
+msgstr "Sen nat"
+
+#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+msgid "Early Morning"
+msgstr "Tidlig morgen"
+
+#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+msgid "Morning"
+msgstr "Morgen"
+
+#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+msgid "Daytime"
+msgstr "Dagtimerne"
+
+#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+msgid "Afternoon"
+msgstr "Eftermiddag"
+
+#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+msgid "Evening"
+msgstr "Aften"
+
+#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+msgid "Today"
+msgstr "I dag"
+
+#. 3.4/weatherapi_source.js:102 5.4/weatherapi_source.js:102
+msgid ""
+"No network,\n"
+"retrying..."
+msgstr ""
+"Intet netværk.\n"
+"Prøver igen …"
+
+#. 3.4/weatherapi_source.js:105 5.4/weatherapi_source.js:105
+msgid ""
+"Error: see log\n"
+"Super + L"
+msgstr ""
+"Fejl: se loggen\n"
+"Super + L"
+
+#. 3.4/weatherapi_source.js:157 5.4/weatherapi_source.js:157
+msgid "Temp"
+msgstr "Midl."
+
+#. 3.4/loadDialog.py:27 3.4/saveDialog.py:30 5.4/loadDialog.py:27
+#. 5.4/saveDialog.py:30
+msgid "JSON files"
+msgstr "JSON-filer"
+
+#. 3.4/loadDialog.py:30 5.4/loadDialog.py:30
+msgid "Load"
+msgstr "Indlæs"
+
+#. 3.4/saveDialog.py:33 5.4/saveDialog.py:33
+msgid "Save"
+msgstr "Gem"
+
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+msgid "Enabled"
+msgstr "Aktiveret"
+
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+msgid "Persistent"
+msgstr "Vedvarende"
+
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+msgid "Date"
+msgstr "Dato"
+
+#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+msgid "Name"
+msgstr "Navn"
+
+#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
+#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+msgid "Add new entry"
+msgstr "Tilføj ny indgang"
+
+#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+msgid "Remove selected entry"
+msgstr "Fjern markeret indgang"
+
+#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+msgid "Edit selected entry"
+msgstr "Redigér markeret indgang"
+
+#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+msgid "Move selected entry up"
+msgstr "Flyt markeret indgang op"
+
+#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+msgid "Move selected entry down"
+msgstr "Flyt markeret indgang ned"
+
+#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+msgid "Edit entry"
+msgstr "Redigér indgang"
+
+#. metadata.json->description
+msgid ""
+"An aesthetic and customizable desklet that can function as clock, weather "
+"display, and/or tracker of important dates. Based on Persona 3."
+msgstr ""
+"Et æstetisk skrivebordsprogram, der kan tilpasses og fungerer som ur, "
+"vejrudsigt og/eller visning af vigtige datoer. Baseret på Persona 3."
+
+#. metadata.json->comments
+msgid ""
+"Best placed in the top right corner on the screen. Use the \"offset\" "
+"configuration for precise alignment."
+msgstr ""
+"Placeres bedst i øverste højre hjørne på skærmen. Brug indstillingen "
+"“forskydning” for præcis justering."
+
+#. 3.4->settings-schema.json->global-page->title
+#. 5.4->settings-schema.json->global-page->title
+msgid "Global"
+msgstr "Global"
+
+#. 3.4->settings-schema.json->top-page->title
+#. 5.4->settings-schema.json->top-page->title
+msgid "Top row"
+msgstr "Øverste række"
+
+#. 3.4->settings-schema.json->middle-page->title
+#. 5.4->settings-schema.json->middle-page->title
+msgid "Middle row"
+msgstr "Midterste række"
+
+#. 3.4->settings-schema.json->bottom-page->title
+#. 5.4->settings-schema.json->bottom-page->title
+msgid "Bottom row"
+msgstr "Nederste række"
+
+#. 3.4->settings-schema.json->data-page->title
+#. 5.4->settings-schema.json->data-page->title
+msgid "Data"
+msgstr "Data"
+
+#. 3.4->settings-schema.json->save-load-page->title
+#. 5.4->settings-schema.json->save-load-page->title
+msgid "Save/Load"
+msgstr "Gem/indlæs"
+
+#. 3.4->settings-schema.json->global-positioning-section->title
+#. 5.4->settings-schema.json->global-positioning-section->title
+msgid "Positioning"
+msgstr "Placering"
+
+#. 3.4->settings-schema.json->global-scale-section->title
+#. 3.4->settings-schema.json->bottom-emoji-size->description
+#. 5.4->settings-schema.json->global-scale-section->title
+#. 5.4->settings-schema.json->bottom-emoji-size->description
+msgid "Size"
+msgstr "Størrelse"
+
+#. 3.4->settings-schema.json->global-color-section->title
+#. 5.4->settings-schema.json->global-color-section->title
+msgid "Color"
+msgstr "Farve"
+
+#. 3.4->settings-schema.json->top-format-section->title
+#. 3.4->settings-schema.json->middle-format-section->title
+#. 5.4->settings-schema.json->top-format-section->title
+#. 5.4->settings-schema.json->middle-format-section->title
+msgid "Time format"
+msgstr "Tidsformat"
+
+#. 3.4->settings-schema.json->top-appearance-section->title
+#. 3.4->settings-schema.json->middle-appearance-section->title
+#. 5.4->settings-schema.json->top-appearance-section->title
+#. 5.4->settings-schema.json->middle-appearance-section->title
+msgid "Appearance"
+msgstr "Udseende"
+
+#. 3.4->settings-schema.json->bottom-requirements-section->title
+#. 5.4->settings-schema.json->bottom-requirements-section->title
+msgid "Requirements"
+msgstr "Krav"
+
+#. 3.4->settings-schema.json->bottom-emoji-section->title
+#. 5.4->settings-schema.json->bottom-emoji-section->title
+msgid "Emoji settings"
+msgstr "Emoji-indstillinger"
+
+#. 3.4->settings-schema.json->bottom-label-section->title
+#. 5.4->settings-schema.json->bottom-label-section->title
+msgid "Caption settings"
+msgstr "Indstillinger for tekst"
+
+#. 3.4->settings-schema.json->data-weatherapi-section->title
+#. 5.4->settings-schema.json->data-weatherapi-section->title
+msgid "WeatherAPI settings"
+msgstr "WeatherAPI-indstillinger"
+
+#. 3.4->settings-schema.json->data-countdown-section->title
+#. 5.4->settings-schema.json->data-countdown-section->title
+msgid "Custom countdown dates"
+msgstr "Brugerdefinerede nedtællingsdatoer"
+
+#. 3.4->settings-schema.json->save-section->title
+#. 5.4->settings-schema.json->save-section->title
+msgid "Save configuration"
+msgstr "Gem konfiguration"
+
+#. 3.4->settings-schema.json->load-section->title
+#. 5.4->settings-schema.json->load-section->title
+msgid "Load configuration"
+msgstr "Indlæs konfiguration"
+
+#. 3.4->settings-schema.json->global-positioning-help->description
+#. 5.4->settings-schema.json->global-positioning-help->description
+msgid ""
+"Set these offsets with respect to your desklet grid so that this fits "
+"precisely into your top right corner."
+msgstr ""
+"Indstil disse forskydninger i forhold, så skrivebordsprogrammet passer "
+"præcist ind i det øverste højre hjørne."
+
+#. 3.4->settings-schema.json->global-h-offset->description
+#. 5.4->settings-schema.json->global-h-offset->description
+msgid "Horizontal offset"
+msgstr "Vandret forskydning"
+
+#. 3.4->settings-schema.json->global-v-offset->description
+#. 3.4->settings-schema.json->top-v-offset->description
+#. 3.4->settings-schema.json->middle-v-offset->description
+#. 3.4->settings-schema.json->bottom-caption-v-offset->description
+#. 5.4->settings-schema.json->global-v-offset->description
+#. 5.4->settings-schema.json->top-v-offset->description
+#. 5.4->settings-schema.json->middle-v-offset->description
+#. 5.4->settings-schema.json->bottom-caption-v-offset->description
+msgid "Vertical offset"
+msgstr "Lodret forskydning"
+
+#. 3.4->settings-schema.json->global-scale->description
+#. 5.4->settings-schema.json->global-scale->description
+msgid "Global scale"
+msgstr "Global skalering"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Blue"
+msgstr "Blå"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Pink"
+msgstr "Lyserød"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Green"
+msgstr "Grøn"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Yellow"
+msgstr "Gul"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Red"
+msgstr "Rød"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Light Green"
+msgstr "Lysegrøn"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Purple"
+msgstr "Lilla"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Dark Blue"
+msgstr "Mørkeblå"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Grey"
+msgstr "Grå"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Custom"
+msgstr "Brugerdefineret"
+
+#. 3.4->settings-schema.json->global-color-scheme->description
+#. 5.4->settings-schema.json->global-color-scheme->description
+msgid "Color scheme"
+msgstr "Farveskema"
+
+#. 3.4->settings-schema.json->global-custom-corner1->description
+#. 5.4->settings-schema.json->global-custom-corner1->description
+msgid "Main color 1"
+msgstr "Primær farve 1"
+
+#. 3.4->settings-schema.json->global-custom-corner2->description
+#. 5.4->settings-schema.json->global-custom-corner2->description
+msgid "Main color 2"
+msgstr "Primær farve 2"
+
+#. 3.4->settings-schema.json->global-custom-time->description
+#. 5.4->settings-schema.json->global-custom-time->description
+msgid "Middle row text"
+msgstr "Tekst i midterste række"
+
+#. 3.4->settings-schema.json->global-custom-shadow->description
+#. 5.4->settings-schema.json->global-custom-shadow->description
+msgid "Text drop shadow"
+msgstr "Skyggeeffekt for tekst"
+
+#. 3.4->settings-schema.json->global-custom-date->description
+#. 5.4->settings-schema.json->global-custom-date->description
+msgid "Top row text"
+msgstr "Tekst i øverste række"
+
+#. 3.4->settings-schema.json->global-custom-bottom->description
+#. 5.4->settings-schema.json->global-custom-bottom->description
+msgid "Bottom row text"
+msgstr "Tekst i nederste række"
+
+#. 3.4->settings-schema.json->global-custom-highlight->description
+#. 5.4->settings-schema.json->global-custom-highlight->description
+msgid "Highlight color"
+msgstr "Fremhævningsfarve"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->description
+#. 5.4->settings-schema.json->global-color-invert-bottom->description
+msgid "Invert bottom colors"
+msgstr "Invertér farve i nederste række"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->tooltip
+#. 5.4->settings-schema.json->global-color-invert-bottom->tooltip
+msgid ""
+"May be useful if the bottom caption doesn't stand out against your background"
+msgstr ""
+"Kan være nyttigt, hvis den nederste tekst ikke skiller sig ud fra baggrunden."
+
+#. 3.4->settings-schema.json->global-color-use-highlight->description
+#. 5.4->settings-schema.json->global-color-use-highlight->description
+msgid "Highlight bottom number display"
+msgstr "Fremhæv tal i nederste række"
+
+#. 3.4->settings-schema.json->global-color-use-highlight->tooltip
+#. 5.4->settings-schema.json->global-color-use-highlight->tooltip
+msgid "Affects: rain chance display, temperature display, countdown displays"
+msgstr "Påvirker: chance for regn, temperatur og nedtælling"
+
+#. 3.4->settings-schema.json->top-format->description
+#. 3.4->settings-schema.json->middle-format->description
+#. 5.4->settings-schema.json->top-format->description
+#. 5.4->settings-schema.json->middle-format->description
+msgid "Format specification"
+msgstr "Formatspecifikation"
+
+#. 3.4->settings-schema.json->top-format-help->description
+#. 5.4->settings-schema.json->top-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default date according to your locale and settings."
+msgstr ""
+"Dette bruger standard strftime med tilføjelsen af %! specifikatoren for at "
+"vise en omtrentlig tidsangivelse (f.eks. morgen, eftermiddag, aften …). Lad "
+"feltet være tomt for at vise en standarddato i henhold til din lokalitet og "
+"indstillinger."
+
+#. 3.4->settings-schema.json->top-font->description
+#. 3.4->settings-schema.json->middle-font->description
+#. 3.4->settings-schema.json->bottom-caption-font->description
+#. 5.4->settings-schema.json->top-font->description
+#. 5.4->settings-schema.json->middle-font->description
+#. 5.4->settings-schema.json->bottom-caption-font->description
+msgid "Font"
+msgstr "Skrifttype"
+
+#. 3.4->settings-schema.json->top-v-offset->tooltip
+#. 3.4->settings-schema.json->middle-v-offset->tooltip
+#. 3.4->settings-schema.json->bottom-caption-v-offset->tooltip
+#. 5.4->settings-schema.json->top-v-offset->tooltip
+#. 5.4->settings-schema.json->middle-v-offset->tooltip
+#. 5.4->settings-schema.json->bottom-caption-v-offset->tooltip
+msgid ""
+"Can help conpensate for the varying vertical alignment of different fonts."
+msgstr ""
+"Kan hjælpe med at kompensere for den varierende lodrette justering af "
+"forskellige skrifttyper."
+
+#. 3.4->settings-schema.json->top-weekday->description
+#. 5.4->settings-schema.json->top-weekday->description
+msgid "Show separate weekday (fixed size)"
+msgstr "Vis ugedag (fast størrelse)"
+
+#. 3.4->settings-schema.json->middle-format-help->description
+#. 5.4->settings-schema.json->middle-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default clock according to your locale and settings."
+msgstr ""
+"Dette bruger standard strftime med tilføjelsen af %! specifikatoren for at "
+"vise en omtrentlig tidsangivelse (f.eks. morgen, eftermiddag, aften …). Lad "
+"feltet være tomt for at vise et standardur i henhold til din lokalitet og "
+"indstillinger."
+
+#. 3.4->settings-schema.json->middle-shadow->description
+#. 3.4->settings-schema.json->bottom-caption-shadow->description
+#. 5.4->settings-schema.json->middle-shadow->description
+#. 5.4->settings-schema.json->bottom-caption-shadow->description
+msgid "Drop shadow"
+msgstr "Skyggeeffekt"
+
+#. 3.4->settings-schema.json->middle-shadow-offset->description
+#. 3.4->settings-schema.json->bottom-caption-shadow-offset->description
+#. 5.4->settings-schema.json->middle-shadow-offset->description
+#. 5.4->settings-schema.json->bottom-caption-shadow-offset->description
+msgid "Drop shadow offset"
+msgstr "Forskydning af skygge"
+
+#. 3.4->settings-schema.json->bottom-requirements-help->description
+#. 5.4->settings-schema.json->bottom-requirements-help->description
+msgid ""
+"(W) - A valid WeatherAPI key is required. Go to the \"Data\" page to enable "
+"it.\n"
+"(C?) - OPTIONAL: precision can be improved by generating a local lunar "
+"calendar. See https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation for instructions.\n"
+"(D) - You must provide one or more important dates to count down to in the "
+"\"Data\" page."
+msgstr ""
+"(W) - En gyldig WeatherAPI-nøgle er påkrævet. Gå til siden “Data” for at "
+"aktivere den.\n"
+"(C?) - VALGFRIT: præcisionen kan forbedres ved at generere en lokal "
+"månekalender. Se https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation for instruktioner.\n"
+"(D) - Du skal angive en eller flere vigtige datoer, der skal tælles ned til, "
+"på siden “Data”."
+
+#. 3.4->settings-schema.json->wapi-help->description
+#. 5.4->settings-schema.json->wapi-help->description
+msgid ""
+"To access weather data from WeatherAPI, an API key is required. Sign up on "
+"weatherapi.com to get one. Be mindful of your request budget when setting "
+"the update frequency or manually requesting updates."
+msgstr ""
+"For at få adgang til vejrdata fra WeatherAPI kræves en API-nøgle. Tilmeld "
+"dig på weatherapi.com for at få en. Vær opmærksom på dit anmodningsbudget, "
+"når du indstiller opdateringsfrekvensen eller manuelt anmoder om "
+"opdateringer."
+
+#. 3.4->settings-schema.json->wapi-enable->description
+#. 5.4->settings-schema.json->wapi-enable->description
+msgid "Enable WeatherAPI for weather display"
+msgstr "Aktivér WeatherAPI til visning af vejret"
+
+#. 3.4->settings-schema.json->wapi-key->description
+#. 5.4->settings-schema.json->wapi-key->description
+msgid "WeatherAPI key"
+msgstr "WeatherAPI-nøgle"
+
+#. 3.4->settings-schema.json->wapi-key->tooltip
+#. 5.4->settings-schema.json->wapi-key->tooltip
+msgid "Your API key for WeatherAPI. Leave empty to disable weather display."
+msgstr ""
+"Din API-nøgle til WeatherAPI. Lad feltet være tomt for at deaktivere "
+"vejrudsigten."
+
+#. 3.4->settings-schema.json->wapi-query->description
+#. 5.4->settings-schema.json->wapi-query->description
+msgid "Weather location"
+msgstr "Placering for vejr"
+
+#. 3.4->settings-schema.json->wapi-query->tooltip
+#. 5.4->settings-schema.json->wapi-query->tooltip
+msgid ""
+"Enter your location name (e.g. \"Tokyo\"), your coordinates (e.g. "
+"\"123.45,98.765\"), or \"auto:ip\" for automatic lookup based on your IP "
+"address."
+msgstr ""
+"Indtast navnet på din placering (f.eks. “Tokyo”), dine koordinater (f.eks. "
+"“123.45,98.765”) eller “auto:ip” for automatisk søgning baseret på din IP-"
+"adresse."
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->options
+#. 5.4->settings-schema.json->wapi-update-period-minutes->options
+msgid "60 minutes"
+msgstr "60 minutter"
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->description
+#. 5.4->settings-schema.json->wapi-update-period-minutes->description
+msgid "Update frequency"
+msgstr "Opdateringsinterval"
+
+#. 3.4->settings-schema.json->wapi-update-button->description
+#. 5.4->settings-schema.json->wapi-update-button->description
+msgid "Refresh WeatherAPI"
+msgstr "Genindlæs WeatherAPI"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Weather (W)"
+msgstr "Vejr (W)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Moon phase (C?)"
+msgstr "Månefase (C?)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->description
+#. 5.4->settings-schema.json->bottom-emoji-type->description
+msgid "Emoji display"
+msgstr "Emoji"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Chance of rain (W)"
+msgstr "Chance for regn (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °C (W)"
+msgstr "Temperatur °C (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °F (W)"
+msgstr "Temperatur °F (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Moon countdown (C?)"
+msgstr "Månenedtælling (C?)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Custom countdown (D)"
+msgstr "Brugerdefineret nedtælling (D)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->description
+#. 5.4->settings-schema.json->bottom-caption-type->description
+msgid "Caption display"
+msgstr "Visning"
+
+#. 3.4->settings-schema.json->bottom-show-secondary-countdowns->description
+#. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
+msgid "Show more countdowns in secondary text (D)"
+msgstr "Vis flere nedtællinger i sekundær tekst (D)"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr "Vælg månefaser"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr "🌑"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr "🌓"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr "🌕"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr "🌗"
+
+#. 3.4->settings-schema.json->custom-countdown-list-label->description
+#. 5.4->settings-schema.json->custom-countdown-list-label->description
+msgid ""
+"Enter one or more dates to count down to when selecting \"Custom "
+"countdown\" (1 date) and/or \"Show more countdowns in secondary text\" (up "
+"to 2 additional dates).\n"
+"The order of the list represents the priority order for the dates.\n"
+"Disable dates to skip them.\n"
+"Dates set in the past are also skipped unless they are \"persistent\".\n"
+"\n"
+msgstr ""
+"Indtast en eller flere datoer, der skal tælles ned til, når du vælger "
+"“Brugerdefineret nedtælling” (1 dato) og/eller “Vis flere nedtællinger i "
+"sekundær tekst” (op til 2 ekstra datoer).\n"
+"Rækkefølgen på listen angiver prioritetsrækkefølgen for datoerne.\n"
+"Deaktivér datoer for at springe dem over.\n"
+"Datoer, der er indstillet i fortiden, springes også over, medmindre de er "
+"“vedvarende”.\n"
+"\n"
+
+#. 3.4->settings-schema.json->save-help->description
+#. 5.4->settings-schema.json->save-help->description
+msgid ""
+"Click the button below to save the following settings to a JSON file:\n"
+"- color scheme,\n"
+"- text style (including font selection, shadow offset, and emoji size),\n"
+"- content (including date-time format strings and bottom row selections),\n"
+"- countdown dates.\n"
+"Does NOT correspond to a full export of the configuration."
+msgstr ""
+"Klik på knappen nedenfor for at gemme følgende indstillinger i en JSON-fil:\n"
+"- farveskema,\n"
+"- tekststil (inklusive valg af skrifttype, skyggeforskydning og "
+"emojistørrelse),\n"
+"- indhold (inklusive dato- og tidsformatstrenge og valg i nederste række),\n"
+"- nedtællingsdatoer.\n"
+"Svarer IKKE til en fuld eksport af konfigurationen."
+
+#. 3.4->settings-schema.json->save-button->description
+#. 5.4->settings-schema.json->save-button->description
+msgid "Save customization"
+msgstr "Gem tilpasninger"
+
+#. 3.4->settings-schema.json->load-help->description
+#. 5.4->settings-schema.json->load-help->description
+msgid ""
+"Choose which options to load from a previous save, then click the button "
+"below to select a file to load.\n"
+"WARNING: the selected settings will be overwritten, and their original "
+"values will be lost! Unselected settings will be left untouched."
+msgstr ""
+"Vælg hvilke indstillinger der skal indlæses fra en tidligere gemt fil, og "
+"klik derefter på knappen nedenfor for at vælge en fil, der skal indlæses.\n"
+"ADVARSEL: De valgte indstillinger overskrives, og deres oprindelige værdier "
+"går tabt! Ikkevalgte indstillinger forbliver uændrede."
+
+#. 3.4->settings-schema.json->load-colors->description
+#. 5.4->settings-schema.json->load-colors->description
+msgid "Load color scheme"
+msgstr "Indlæs farveskema"
+
+#. 3.4->settings-schema.json->load-style->description
+#. 5.4->settings-schema.json->load-style->description
+msgid "Load text style"
+msgstr "Indlæs tekststil"
+
+#. 3.4->settings-schema.json->load-content->description
+#. 5.4->settings-schema.json->load-content->description
+msgid "Load content"
+msgstr "Indlæs indhold"
+
+#. 3.4->settings-schema.json->load-countdown-list->description
+#. 5.4->settings-schema.json->load-countdown-list->description
+msgid "Load countdown dates"
+msgstr "Indlæs nedtællingsdatoer"
+
+#. 3.4->settings-schema.json->load-button->description
+#. 5.4->settings-schema.json->load-button->description
+msgid "Load selected options"
+msgstr "Indlæs valgte indstillinger"

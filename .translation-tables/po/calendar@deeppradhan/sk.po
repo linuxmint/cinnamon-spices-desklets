@@ -1,0 +1,300 @@
+# Slovak translation of Calendar desklet.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
+"PO-Revision-Date: 2021-02-09 16:50+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: desklet.js:29
+msgid "January"
+msgstr "Január"
+
+#: desklet.js:29
+msgid "February"
+msgstr "Február"
+
+#: desklet.js:29
+msgid "March"
+msgstr "Marec"
+
+#: desklet.js:29
+msgid "April"
+msgstr "Apríl"
+
+#: desklet.js:29
+msgid "May"
+msgstr "Máj"
+
+#: desklet.js:30
+msgid "June"
+msgstr "Jún"
+
+#: desklet.js:30
+msgid "July"
+msgstr "Júl"
+
+#: desklet.js:30
+msgid "August"
+msgstr "August"
+
+#: desklet.js:30
+msgid "September"
+msgstr "September"
+
+#: desklet.js:30
+msgid "October"
+msgstr "Október"
+
+#: desklet.js:30
+msgid "November"
+msgstr "November"
+
+#: desklet.js:31
+msgid "December"
+msgstr "December"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Sunday"
+msgstr "Nedeľa"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Monday"
+msgstr "Pondelok"
+
+#: desklet.js:34
+msgid "Tuesday"
+msgstr "Utorok"
+
+#: desklet.js:34
+msgid "Wednesday"
+msgstr "Streda"
+
+#: desklet.js:35
+msgid "Thursday"
+msgstr "Štvrtok"
+
+#: desklet.js:35
+msgid "Friday"
+msgstr "Piatok"
+
+#: desklet.js:35
+msgid "Saturday"
+msgstr "Sobota"
+
+#: desklet.js:135
+msgid "Previous month..."
+msgstr "Predchádzajúci mesiac..."
+
+#: desklet.js:137
+msgid "Next month..."
+msgstr "Nasledujúci mesiac..."
+
+#: desklet.js:152
+msgid "Calendar"
+msgstr "Kalendár"
+
+#. metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Desklet s kalendárom poskytuje vysoko konfigurovateľný desklet, ktorý "
+"zobrazuje aktuálny dátum a prezerateľné mesiace. Obsahuje mnoho možných "
+"prispôsobení."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Konfigurovateľný desklet s kalendárom"
+
+#. metadata.json->name
+msgid "Calendar desklet"
+msgstr "Desklet s kalendárom"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Konfigurácia kalendára"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Panely na zobrazenie"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Dnes a mesiac"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Iba dnes"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Iba mesiac"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Vyberie panely, ktoré sa zobrazia v desklete"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Zobrazenie dňa v týždni"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Nie"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Úplný"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Krátky"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"Nastaví zobrazenie úplného názvu, skráteného názvu alebo zakáže zobrazenie "
+"dňa v týždni"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Skrátený názov mesiaca"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Zobrazí skrátený názov mesiaca"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Zobrazenie roku"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"Nastaví zobrazenie roka so všetkým číslicami, poslednými dvoma číslicami "
+"alebo zakáže zobrazenie roka"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Zobrazenie času"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Zobrazí alebo skryje čas (hodiny a minúty)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Používať 24 hodinový čas"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Prvý deň v týždni"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Konfigurácia štýlu deskletu"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Rozloženie deskletu"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vodorovné"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Zvislé"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Nastaví celkové rozloženie deskletu na vodorovné a zvislé"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr "Vlastná rodina písma textu (prázdna hodnota nastaví predvolenú)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Nastaví vlastnú rodinu písma pre text (prázdnou hodnotou sa nastaví "
+"predvolené písmo)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Veľkosť písma (body)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Nastaví veľkosť písma textu v bodoch"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Farba textu"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Nastaví farbu textu deskletu"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Farba textu pre nedele"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Nastaví farbu textu pre nedele"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Farba textu pre soboty"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Nastaví farbu textu pre soboty"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Farba pozadia"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Nastaví farbu pozadia deskletu"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Priehľadnosť (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Nastaví priehľadnosť deskletu v percentách"

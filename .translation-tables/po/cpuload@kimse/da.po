@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2022-10-20 19:52+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Kerne %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "CPU-forbrug"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Viser CPU-belastningen"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "CPU-belastning"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Indstillinger for CPU-belastning"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Generelt"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Vis alle CPU-kerner"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr ""
+"Vis udnyttelsen af hver enkelt CPU-kerne i stedet for den totale udnyttelse."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "sekunder"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Opdateringsinterval"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Forøg eller formindsk opdateringsintervallet i sekunder."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Layout"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Design"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Tynd"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Kompakt"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Tyk"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Cirkel"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Speedometer"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Hel cirkel"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaleringsfaktor"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Skrivebordsprogrammets størrelse"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Forøg eller formindsk skrivebordsprogrammets størrelse."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "kolonner"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Antal kolonner"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Forøg eller formindsk antallet af kolonner."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Farver"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Skriftfarve"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Farvetema"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Tilfældig"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Statisk"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Dynamisk"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Statisk temafarve"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Baggrund"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Vis baggrund"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skjul skrivebordsprogrammets omrids"

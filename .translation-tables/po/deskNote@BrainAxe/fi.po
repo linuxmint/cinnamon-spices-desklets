@@ -1,0 +1,59 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 13:42+0300\n"
+"PO-Revision-Date: 2024-11-07 19:48+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27
+msgid "Desktop Note"
+msgstr "Desktop Note"
+
+#. metadata.json->name
+msgid "Desktop Note desklet"
+msgstr "Desktop Note desklet"
+
+#. metadata.json->description
+msgid "Displays Note on Desktop!"
+msgstr "Näyttää kirjoitetun muistiinpanon työpöydällä!"
+
+#. settings-schema.json->note-entry->description
+msgid "Note:"
+msgstr "Muistiinpano:"
+
+#. settings-schema.json->note-entry->tooltip
+msgid "Set your note here"
+msgstr "Kirjoita muistiinpanosi tähän"
+
+#. settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Fontin asetukset:"
+
+#. settings-schema.json->font-size->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Fontin koko:"
+
+#. settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Fontin väri:"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"

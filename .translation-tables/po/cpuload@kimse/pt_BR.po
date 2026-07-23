@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2021-11-15 20:12-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Núcleo %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "Uso da CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Mostra o uso da CPU"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "Uso da CPU"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Configurações para o desklet Uso da CPU"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Visão geral"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Mostrar todos os núcleos da CPU"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr ""
+"Mostra a utilização de cada núcleo da CPU em vez de mostrar a utilização "
+"total."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "segundos"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Intervalo de atualização"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Aumente ou diminua o intervalo de atualização em segundos."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Leiaute"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Aparência"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Fina"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Compacta"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Grossa"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Círculo"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Velocímetro"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Círculo completo"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "escala de proporção"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Tamanho do desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Aumente ou diminua o tamanho do desklet."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "colunas"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Número de colunas"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Aumente ou diminua o número de colunas."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Cores"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Cor da fonte"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Cor do círculo"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Aleatória"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Estática"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Dinâmica"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Cor estática do círculo"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Fundo"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Exibir no círculo, em cor cinza, o espaço não utilizado da CPU"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Esconder decorações do sistema"

@@ -1,0 +1,132 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Назад"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Сброс"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Очистить"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Копировать в буфер обмена"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Вставить из буфера обмена"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Инвертировать"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Поменять знак"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Научная Нотация"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Поменять местами"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Обратное"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Градусы"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Радианы"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr ""
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "Базовый вид"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Научный вид"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Копировать"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Вставить"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Калькулятор (Desktop Calculator)"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Калькулятор на Рабочем Столе"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Вид"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Светлый"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Тёмный"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Система измерения углов"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Использовать Обратную Польскую Нотацию"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "Базовый вид"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Точность"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "числа"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Переместить на передний план"

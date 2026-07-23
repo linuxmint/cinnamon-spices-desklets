@@ -1,0 +1,210 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2017-05-06 10:43+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "时钟"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr "一个可以使用平滑指针和自由选择图片的可扩展的模拟时钟桌面小工具。"
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "模拟天文钟"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "clock@schorschii的设置"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "视觉"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "时钟风格"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "浅色"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "黑色"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "自定义"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "选择您想要使用的图形背景。"
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "显示秒针"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "显示或隐藏秒针。"
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "平滑秒针"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr "使用秒针的平滑动画效果而不是每秒刷新。"
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "平滑分针"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr "使用分针的平滑动画效果而不是每分钟只移动一次。"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "隐藏装饰"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "像素"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "桌面小工具的大小"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "增大或减小时钟的大小。"
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "自定义桌面小工具标签（仅启用装饰后可见）"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "自定义桌面小工具标签"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "选中此项允许您在上面的输入框中设置自定义标签。"
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "自定义桌面小工具标签"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"在这里设置您的自定义标签，例如用于多个时区。除非启用了以上复选框，否则无法使"
+"用这个输入框。"
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "时区"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "使用自定义时区"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr "选中此项允许您在上面的输入框中设置自定义时区。"
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "自定义时区"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "在这里输入您的时区。"
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr "自定义图片（时钟风格设置为‘自定义’时可用）"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "背景"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "选择您的背景图片。"
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "秒针"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr "选择您自己的秒针图片。应当和背景图片一样大。"
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "分针"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr "选择您自己的分针图片。应当和背景图片一样大。"
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "时针"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr "选择您自己的时针图片。应当和背景图片一样大。"
+
+#~ msgid "Custom images"
+#~ msgstr "自定义图片"
+
+#~ msgid "Settings for clock@schorschii   (Version 1.1)"
+#~ msgstr "clock@schorschii的设置（版本1.1）"
