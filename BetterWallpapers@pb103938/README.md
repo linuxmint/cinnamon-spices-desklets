@@ -16,7 +16,7 @@ When configuring the desklet specifically, be sure that a portion of the screen 
 
 ### Using Better Wallpapers with other desklets
 
-This desklet is automatically set to the lowest position in the desklet hierarchy as possible. This means all other desklets will be displayed above it. If multiple of this desklet are added to the same monitor, the most recently added one will be displayed at the bottom. Because of this, **if you have multiple displays, you should add the ones you plan to put on other monitors **first**.**
+This desklet is automatically set to the lowest position in the desklet hierarchy as possible. This means all other desklets will be displayed above it. If multiple of this desklet are added to the same monitor, the most recently added one will be displayed at the bottom. Because of this, **if you have multiple displays, you should add the ones you plan to put on other displays **first**.**
 
 When moving the desklet to the desired monitor, it may end up displaying on top of other desklets. This can be fixed by simply reloading the desklet or by reloading cinnamon. 
 

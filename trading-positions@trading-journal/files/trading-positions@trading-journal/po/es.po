@@ -1,0 +1,228 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-29 12:21+0200\n"
+"PO-Revision-Date: 2026-06-30 12:50-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: desklet.js:180
+msgid "Open positions & bots"
+msgstr "Posiciones vacantes y bots"
+
+#: desklet.js:205
+msgid "Connecting…"
+msgstr "Conectando…"
+
+#: desklet.js:235
+msgid ""
+"No API key set.\n"
+"Enter it in the desklet settings."
+msgstr ""
+"No se ha configurado ninguna clave API.\n"
+"Introdúcela en la configuración del desklet."
+
+#: desklet.js:240
+msgid "Invalid API key (401)"
+msgstr "Clave de API no válida (401)"
+
+#: desklet.js:244
+msgid "Server not reachable"
+msgstr "No se puede acceder al servidor"
+
+#: desklet.js:251
+msgid "Parse error:"
+msgstr "Error de análisis:"
+
+#: desklet.js:267
+#, javascript-format
+msgid "Updated: %s"
+msgstr "Actualizado: %s"
+
+#: desklet.js:295
+msgid "No open positions"
+msgstr "No hay posiciones vacantes"
+
+#: desklet.js:316
+msgid "position"
+msgstr "posición"
+
+#: desklet.js:316
+msgid "positions"
+msgstr "posiciones"
+
+#: desklet.js:318
+msgid "Total:"
+msgstr "Total:"
+
+#: desklet.js:328 desklet.js:358
+msgid "Symbol"
+msgstr "Símbolo"
+
+#: desklet.js:329 desklet.js:359
+msgid "Side"
+msgstr "Lateral"
+
+#: desklet.js:331 desklet.js:361
+msgid "Lvg"
+msgstr "Lvg"
+
+#: desklet.js:332
+msgid "Entry"
+msgstr "Entrada"
+
+#: desklet.js:333
+msgid "Mark"
+msgstr "Mark"
+
+#: desklet.js:334
+msgid "unr. PnL"
+msgstr "PnL no realizado"
+
+#: desklet.js:335
+msgid "real. PnL"
+msgstr "PnL realizado"
+
+#: desklet.js:349
+msgid "Bots:"
+msgstr "Bots:"
+
+#: desklet.js:349
+msgid "running"
+msgstr "en marcha"
+
+#: desklet.js:362
+msgid "Ø Entry"
+msgstr "Ø Entrada"
+
+#: desklet.js:363
+msgid "Liq"
+msgstr "Liq"
+
+#: desklet.js:364
+msgid "PnL"
+msgstr "PnL"
+
+#. metadata.json->name
+msgid "Trading Positions"
+msgstr "Posiciones de trading"
+
+#. metadata.json->description
+msgid "Shows open positions from the Crypto Trading Journal"
+msgstr "Muestra las vacantes publicadas en el Crypto Trading Journal"
+
+#. settings-schema.json->info-header->description
+msgid ""
+"This desklet requires a running Crypto Trading Journal.\n"
+"github.com/Mouses007/Crypto-Trading-Journal"
+msgstr ""
+"Este desklet requiere que Crypto Trading Journal esté en ejecución.\n"
+"github.com/Mouses007/Crypto-Trading-Journal"
+
+#. settings-schema.json->server-host->description
+msgid "Server host"
+msgstr "Servidor de alojamiento"
+
+#. settings-schema.json->server-host->tooltip
+msgid "IP or hostname, e.g. 192.168.178.100 or localhost"
+msgstr "Dirección IP o nombre de host, p. ej., 192.168.178.100 o localhost"
+
+#. settings-schema.json->server-port->description
+msgid "Server port"
+msgstr "Puerto del servidor"
+
+#. settings-schema.json->server-port->tooltip
+msgid "Default: 8080"
+msgstr "Por defecto: 8080"
+
+#. settings-schema.json->api-key->description
+msgid "ESP32 API key"
+msgstr "Clave API de ESP32"
+
+#. settings-schema.json->api-key->tooltip
+msgid ""
+"From Journal → Settings → ESP32 Display → Generate key. Works even with the "
+"password gate enabled."
+msgstr ""
+"Desde «Diario» → Configuración → Pantalla ESP32 → Generar clave. Funciona "
+"incluso con la protección por contraseña activada."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "segundos"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Intervalo de actualización"
+
+#. settings-schema.json->show-leverage->description
+msgid "Show leverage"
+msgstr "Mostrar el efecto palanca"
+
+#. settings-schema.json->show-mark-price->description
+msgid "Show mark price"
+msgstr "Mostrar precio de referencia"
+
+#. settings-schema.json->show-realized-pnl->description
+msgid "Show realized PnL"
+msgstr "Mostrar PnL realizado"
+
+#. settings-schema.json->show-realized-pnl->tooltip
+msgid "Shows the already realized PnL of the open position (e.g. funding fees)"
+msgstr ""
+"Muestra las ganancias y pérdidas (PnL) ya realizadas de la posición vacante "
+"(por ejemplo, comisiones de financiación)."
+
+#. settings-schema.json->show-bots->description
+msgid "Show Pionex bots"
+msgstr "Mostrar bots de Pionex"
+
+#. settings-schema.json->show-bots->tooltip
+msgid ""
+"Shows running Pionex bots in a dedicated section (PnL/margin in the "
+"respective coin, e.g. SOL for Coin-M)"
+msgstr ""
+"Muestra los bots de Pionex en ejecución en una sección específica (PnL/"
+"margen en la criptomoneda correspondiente, p. ej., SOL para Coin-M)"
+
+#. settings-schema.json->show-github-link->description
+msgid "Show GitHub link in footer"
+msgstr "Mostrar el enlace de GitHub en el pie de página"
+
+#. settings-schema.json->font-size->units
+#. settings-schema.json->font-size-ui->units
+#. settings-schema.json->min-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (positions)"
+msgstr "Tamaño de la fuente (posiciones)"
+
+#. settings-schema.json->font-size-ui->description
+msgid "Font size (title, footer, total)"
+msgstr "Tamaño de la fuente (título, pie de página, total)"
+
+#. settings-schema.json->bg-opacity->units
+msgid "%"
+msgstr "%"
+
+#. settings-schema.json->bg-opacity->description
+msgid "Background opacity (0 = invisible, 100 = full)"
+msgstr "Opacidad del fondo (0 = invisible, 100 = total)"
+
+#. settings-schema.json->min-width->description
+msgid "Width"
+msgstr "Ancho"
