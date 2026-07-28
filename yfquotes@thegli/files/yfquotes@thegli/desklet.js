@@ -41,6 +41,7 @@ const YF_COOKIE_URL = "https://finance.yahoo.com/quote/%5EGSPC/options";
 const YF_CONSENT_URL = "https://consent.yahoo.com/v2/collectConsent";
 const YF_CRUMB_URL = "https://query2.finance.yahoo.com/v1/test/getcrumb";
 const YF_QUOTE_URL = "https://query1.finance.yahoo.com/v7/finance/quote";
+const YF_HISTORY_URL = "https://query1.finance.yahoo.com/v7/finance/spark";
 const YF_QUOTE_WEBPAGE_URL = "https://finance.yahoo.com/quote/";
 const YF_QUOTE_FIELDS = "symbol,shortName,longName,currency,marketState,hasPrePostMarketData,"
     + "regularMarketTime,regularMarketPrice,regularMarketChange,regularMarketChangePercent,"
@@ -739,7 +740,55 @@ YahooFinanceQuoteReader.prototype = {
         });
     },
 
-    retrieveFinanceData(quoteSymbolsArg, networkSettings, callback) {
+    retrieveAndMergeHistoryData(quoteSymbolsArg, quoteResponse, networkSettings, finalCallback) {
+        this.quoteUtils.logDebug("retrieveAndMergeHistoryData");
+
+        const _that = this;
+        const maxSymbolsPerRequest = 20;
+        const allSymbols = quoteSymbolsArg.split(",");
+
+        if (maxSymbolsPerRequest >= allSymbols.length) {
+            const historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(quoteSymbolsArg)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+
+            this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
+                finalCallback.call(_that, _that.mergeHistoryDataWithResults(quoteResponse, historyResponse));
+            });
+
+            return;
+        }
+
+        let finalResponse = quoteResponse;
+        const chunks = [];
+
+        for (let i = 0; i < allSymbols.length; i += maxSymbolsPerRequest) {
+            chunks.push(allSymbols.slice(i, i + maxSymbolsPerRequest).join(","));
+        }
+
+        const chunksPromise = new Promise((resolve) => {
+            const chunkResponses = [];
+
+            chunks.forEach((chunkSymbols) => {
+                let historyUrl = `${YF_HISTORY_URL}?symbols=${encodeURIComponent(chunkSymbols)}&range=1mo&interval=1d&crumb=${_that.authParams.crumb}`;
+                this.sendFinanceRequestByNetworkSettings(historyUrl, networkSettings, (historyResponse) => {
+                    chunkResponses.push(historyResponse);
+
+                    if (chunkResponses.length === chunks.length) {
+                        resolve(chunkResponses);
+                    }
+                });
+            });
+        })
+
+        chunksPromise.then((chunkResponses) => {
+            chunkResponses.forEach((chunkResponse) => {
+                finalResponse = _that.mergeHistoryDataWithResults(finalResponse, chunkResponse);
+            })
+
+            finalCallback.call(_that, finalResponse);
+        })
+    },
+
+    retrieveFinanceData(quoteSymbolsArg, networkSettings, quoteDisplaySettings, callback) {
         this.quoteUtils.logDebug("retrieveFinanceData");
 
         const _that = this;
@@ -749,8 +798,35 @@ YahooFinanceQuoteReader.prototype = {
             return;
         }
 
+        const quotesResponseCallback = (quoteResponse) => {
+            // If no historical change enabled, continue
+            if (!quoteDisplaySettings.showWeeklyChange && !quoteDisplaySettings.showMonthlyChange) {
+                callback.call(_that, quoteResponse);
+                return;
+            }
+
+            // Check for errors
+            try {
+                const parsed = JSON.parse(quoteResponse);
+
+                if (parsed.quoteResponse && parsed.quoteResponse.error) {
+                    callback.call(_that, quoteResponse);
+                    return;
+                }
+            } catch (e) {
+                callback.call(_that, quoteResponse);
+                return;
+            }
+
+            _that.retrieveAndMergeHistoryData(quoteSymbolsArg, quoteResponse, networkSettings, callback);
+        };
+
         const requestUrl = this.createYahooQueryUrl(quoteSymbolsArg, this.authParams.crumb);
 
+        this.sendFinanceRequestByNetworkSettings(requestUrl, networkSettings, quotesResponseCallback);
+    },
+
+    sendFinanceRequestByNetworkSettings(requestUrl, networkSettings, callback) {
         if (networkSettings.enableCurl) {
             this.retrieveFinanceDataWithCurl(requestUrl, networkSettings, callback);
         } else if (IS_SOUP_2) {
@@ -871,6 +947,67 @@ YahooFinanceQuoteReader.prototype = {
         return queryUrl;
     },
 
+    mergeHistoryDataWithResults(quoteResponse, historyResponse) {
+        try {
+            const parsedQuotes = JSON.parse(quoteResponse);
+            const parsedHistoryData = JSON.parse(historyResponse);
+            const symbolKeyedHistoryData = {};
+
+            if (!parsedQuotes.quoteResponse || !parsedQuotes.quoteResponse.result) {
+                return quoteResponse;
+            }
+
+            parsedHistoryData.spark.result.forEach((historyDataItem) => {
+                const symbol = historyDataItem.symbol;
+
+                symbolKeyedHistoryData[symbol] = historyDataItem.response[0];
+            })
+
+            for (let quoteData of parsedQuotes.quoteResponse.result) {
+                let symbol = quoteData.symbol;
+
+                if (symbolKeyedHistoryData[symbol]) {
+                    let historyData = symbolKeyedHistoryData[symbol];
+                    quoteData.price7DaysAgo = this.pullHistoricalPriceFromData(historyData, 7);
+                    quoteData.price1MonthAgo = this.pullHistoricalPriceFromData(historyData, 30);
+                }
+            }
+
+            return JSON.stringify(parsedQuotes);
+        } catch (err) {
+            this.quoteUtils.logException("Error merging responses", err);
+            return quoteResponse;
+        }
+    },
+
+    pullHistoricalPriceFromData(historyData, daysAgo) {
+        if (
+            !historyData.timestamp ||
+            !historyData.indicators ||
+            !historyData.indicators.quote ||
+            0 === historyData.timestamp.length ||
+            0 === historyData.indicators.quote.length
+        ) {
+            return null;
+        }
+
+        const targetTimestamp = (Date.now() / 1000) - (daysAgo * 24 * 60 * 60);
+
+        let closestIndex = 0;
+        let minDiff = Math.abs(historyData.timestamp[0] - targetTimestamp);
+
+        for (let i = 1; i < historyData.timestamp.length; i++) {
+            let currentDiff = Math.abs(historyData.timestamp[i] - targetTimestamp);
+
+            if (currentDiff < minDiff) {
+                minDiff = currentDiff;
+                closestIndex = i;
+            }
+        }
+
+        return historyData.indicators.quote[0].close[closestIndex];
+    },
+
     buildErrorResponse(errorMsg) {
         return JSON.stringify(
             {
@@ -975,6 +1112,15 @@ QuotesTable.prototype = {
         if (settings.percentChange) {
             cellContents.push(this.createPercentChangeLabel(quote, settings, marketState));
         }
+
+        if (settings.showWeeklyChange) {
+            cellContents.push(this.createHistoricalChangeLabel(quote, settings, quote.price7DaysAgo, marketState, 'weekly'));
+        }
+
+        if (settings.showMonthlyChange) {
+            cellContents.push(this.createHistoricalChangeLabel(quote, settings, quote.price1MonthAgo, marketState, 'monthly'));
+        }
+
         if (settings.tradeTime) {
             cellContents.push(this.createTradeTimeLabel(quote, settings, marketState));
         }
@@ -1142,6 +1288,58 @@ QuotesTable.prototype = {
         });
     },
 
+    createHistoricalChangeLabel(quote, settings, historicalPrice, marketState, labelType) {
+        const currentPrice = quote.regularMarketPrice;
+
+        if (!historicalPrice || !currentPrice) {
+            return new St.Label({ text: ABSENT });
+        }
+
+        let prefix = 'weekly' === labelType ? 'W' : 'M';
+        const historyChangeType = 'weekly' === labelType ? settings.weeklyChangeType : settings.monthlyChangeType;
+
+        let valueToDisplay = historicalPrice;
+        let valueForTrendCompare = currentPrice;
+        let suffix = '';
+        let uptrendColor = settings.uptrendChangeColor;
+        let downtrendColor = settings.downtrendChangeColor;
+
+        if ('percent' === historyChangeType) {
+            valueToDisplay = ((currentPrice - historicalPrice) / historicalPrice) * 100;
+            valueForTrendCompare = 0;
+            prefix += 0 < valueToDisplay ? '+' : '';
+            suffix = '%';
+        } else if ('absolute' === historyChangeType) {
+            valueToDisplay = currentPrice - historicalPrice;
+            valueForTrendCompare = 0;
+            prefix += 0 < valueToDisplay ? '+' : '';
+        }
+
+        if ('market_price' === historyChangeType) {
+            // If the history price is higher, it needs to be red, because its downtrend and vice versa
+            uptrendColor = settings.downtrendChangeColor;
+            downtrendColor = settings.uptrendChangeColor;
+        }
+
+        let labelColor = settings.fontColor;
+
+        if (settings.colorPercentChange) {
+            if (valueToDisplay > valueForTrendCompare) {
+                labelColor = uptrendColor;
+            } else if (valueToDisplay < valueForTrendCompare) {
+                labelColor = downtrendColor;
+            } else {
+                labelColor = settings.unchangedTrendColor;
+            }
+        }
+
+        return new St.Label({
+            text: (prefix + this.roundAmount(valueToDisplay, 2, settings.strictRounding) + suffix),
+            style_class: "quotes-number",
+            style: this.buildFontStyle(settings, marketState, labelColor)
+        });
+    },
+
     roundAmount(amount, maxDecimals, strictRounding) {
         if (maxDecimals > -1) {
             if (strictRounding) {
@@ -1286,6 +1484,7 @@ StockQuoteDesklet.prototype = {
             "customDateFormat", "sortCriteria", "sortDirection", "showChangeIcon", "showQuoteName",
             "useLongQuoteName", "linkQuoteName", "showQuoteSymbol", "linkQuoteSymbol", "showMarketPrice",
             "showCurrencyCode", "showAbsoluteChange", "showPercentChange", "colorPercentChange",
+            "showWeeklyChange", "weeklyChangeType", "showMonthlyChange", "monthlyChangeType",
             "showTradeTime", "includePrePostMarketDataOption", "fontColor", "scaleFontSize", "fontScale",
             "fontStylePrePostMarketData", "uptrendChangeColor", "downtrendChangeColor", "unchangedTrendColor"];
         const dataFetchSettings = ["delayMinutes"];
@@ -1306,6 +1505,9 @@ StockQuoteDesklet.prototype = {
             // no callback, manual refresh required
             this.settings.bind(setting, setting);
         });
+
+        this.settings.bind("showWeeklyChange", "showWeeklyChange", this.onHistoricalChangeDataRequested);
+        this.settings.bind("showMonthlyChange", "showMonthlyChange", this.onHistoricalChangeDataRequested);
     },
 
     getQuoteDisplaySettings(quotes) {
@@ -1320,6 +1522,10 @@ StockQuoteDesklet.prototype = {
             "currencySymbol": this.showCurrencyCode,
             "absoluteChange": this.showAbsoluteChange,
             "percentChange": this.showPercentChange,
+            "showWeeklyChange": this.showWeeklyChange,
+            "weeklyChangeType": this.weeklyChangeType,
+            "showMonthlyChange": this.showMonthlyChange,
+            "monthlyChangeType": this.monthlyChangeType,
             "colorPercentChange": this.colorPercentChange,
             "tradeTime": this.showTradeTime,
             "prePostMarketDataOption": this.includePrePostMarketDataOption,
@@ -1463,6 +1669,15 @@ StockQuoteDesklet.prototype = {
         this.onQuotesListChanged();
     },
 
+    // called when there is a change in the settings to either show or hide historical change
+    onHistoricalChangeDataRequested() {
+        this.quoteUtils.logDebug("onHistoricalChangeDataRequested");
+
+        if (this.showWeeklyChange || this.showMonthlyChange) {
+            this.onQuotesListChanged();
+        }
+    },
+
     // called when user applies network settings
     onNetworkSettingsChanged() {
         this.quoteUtils.logDebug("onNetworkSettingsChanged");
@@ -1514,28 +1729,32 @@ StockQuoteDesklet.prototype = {
         this.quoteUtils.logDebug(`fetchFinanceDataAndRender - quotes: ${quoteSymbolsArg}, network settings: ${Object.entries(networkSettings)}`);
         const _that = this;
 
-        this.quoteReader.retrieveFinanceData(quoteSymbolsArg, networkSettings, (response, instantTimer = false, dropCachedAuthParams = false) => {
-            _that.quoteUtils.logDebug(`fetchFinanceDataAndRender - response: ${response}`);
-            if (dropCachedAuthParams) {
-                _that.saveAuthorizationParameters(true);
-            }
-            try {
-                let parsedResponse = JSON.parse(response);
-                _that.lastResponse = {
-                    symbolsArgument: quoteSymbolsArg,
-                    responseResult: parsedResponse.quoteResponse.result,
-                    responseError: parsedResponse.quoteResponse.error,
-                    lastUpdated: new Date()
+        this.quoteReader.retrieveFinanceData(
+            quoteSymbolsArg,
+            networkSettings,
+            _that.getQuoteDisplaySettings([]),
+            (response, instantTimer = false, dropCachedAuthParams = false) => {
+                _that.quoteUtils.logDebug(`fetchFinanceDataAndRender - response: ${response}`);
+                if (dropCachedAuthParams) {
+                    _that.saveAuthorizationParameters(true);
                 }
+                try {
+                    let parsedResponse = JSON.parse(response);
+                    _that.lastResponse = {
+                        symbolsArgument: quoteSymbolsArg,
+                        responseResult: parsedResponse.quoteResponse.result,
+                        responseError: parsedResponse.quoteResponse.error,
+                        lastUpdated: new Date()
+                    }
 
-                _that.replaceUpdateTimer(instantTimer);
-                _that.render();
-            } catch (err) {
-                _that.quoteUtils.logException("Query response is not valid JSON", err);
-                // set current quotes list to pass check that quotes list has not changed in render()
-                _that.processFailedFetch(err, quoteSymbolsArg);
-            }
-        });
+                    _that.replaceUpdateTimer(instantTimer);
+                    _that.render();
+                } catch (err) {
+                    _that.quoteUtils.logException("Query response is not valid JSON", err);
+                    // set current quotes list to pass check that quotes list has not changed in render()
+                    _that.processFailedFetch(err, quoteSymbolsArg);
+                }
+            });
     },
 
     fetchCookieAndRender(quoteSymbolsArg, networkSettings) {

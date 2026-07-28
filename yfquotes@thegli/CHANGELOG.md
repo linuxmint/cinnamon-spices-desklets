@@ -1,3 +1,10 @@
+### 0.18.4 - June 18, 2026
+
+Features:
+
+- option to display columns for weekly and monthly change for each stock
+
+
 ### 0.18.3 - March 5, 2026
 
 Features:
