@@ -1,0 +1,109 @@
+# PowerPulse Desklet — translation template
+msgid ""
+msgstr ""
+"Project-Id-Version: powerpulse@vicman.app 1.2.0\n"
+"Report-Msgid-Bugs-To: powerpulse@vicman.app\n"
+"POT-Creation-Date: 2026-07-29 13:00-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "PowerPulse"
+msgstr ""
+
+msgid "No battery devices found"
+msgstr ""
+
+msgid "Refresh"
+msgstr ""
+
+msgid "Power Management"
+msgstr ""
+
+msgid "Desklet settings"
+msgstr ""
+
+msgid "Copy battery summary"
+msgstr ""
+
+msgid "N/A"
+msgstr ""
+
+msgid "Disconnected"
+msgstr ""
+
+msgid "%s remaining"
+msgstr ""
+
+msgid "data may be outdated"
+msgstr ""
+
+msgid "UPower data may be outdated"
+msgstr ""
+
+msgid "%s battery is low (%s)"
+msgstr ""
+
+msgid "Battery summary copied to clipboard"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "Update interval"
+msgstr ""
+
+msgid "Custom title"
+msgstr ""
+
+msgid "Compact mode"
+msgstr ""
+
+msgid "Sort devices by"
+msgstr ""
+
+msgid "Display"
+msgstr ""
+
+msgid "Show laptop battery"
+msgstr ""
+
+msgid "Show disconnected devices"
+msgstr ""
+
+msgid "Show time remaining"
+msgstr ""
+
+msgid "Show voltage"
+msgstr ""
+
+msgid "Show progress bars"
+msgstr ""
+
+msgid "Show icons"
+msgstr ""
+
+msgid "Alerts"
+msgstr ""
+
+msgid "Low battery threshold"
+msgstr ""
+
+msgid "Enable notifications"
+msgstr ""
+
+msgid "UPower data freshness window"
+msgstr ""
+
+msgid "HeadsetControl"
+msgstr ""
+
+msgid "HeadsetControl command"
+msgstr ""
+
+msgid "HeadsetControl timeout"
+msgstr ""

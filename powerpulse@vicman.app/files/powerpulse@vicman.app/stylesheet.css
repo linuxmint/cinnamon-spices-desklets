@@ -1,0 +1,191 @@
+/* PowerPulse Desklet — compact + expandable cards */
+
+.powerpulse-root {
+    padding: 8px 10px;
+    spacing: 4px;
+    min-width: 210px;
+    background-color: rgba(0, 0, 0, 0.28);
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.powerpulse-root.compact {
+    padding: 5px 7px;
+    spacing: 2px;
+    min-width: 190px;
+}
+
+.powerpulse-header {
+    spacing: 6px;
+    padding-bottom: 1px;
+}
+
+.powerpulse-header:hover .powerpulse-title {
+    color: #ffffff;
+}
+
+.powerpulse-header-icon {
+    icon-size: 16px;
+    color: #e8e8e8;
+}
+
+.powerpulse-title {
+    font-weight: bold;
+    font-size: 1.05em;
+    color: #f0f0f0;
+}
+
+.powerpulse-separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.14);
+    margin: 2px 0 3px 0;
+}
+
+.powerpulse-summary {
+    spacing: 2px;
+    padding: 2px 0 4px 0;
+}
+
+.powerpulse-summary-body {
+    font-size: 0.78em;
+    color: rgba(240, 240, 240, 0.78);
+}
+
+.powerpulse-list {
+    spacing: 4px;
+}
+
+.powerpulse-list.compact {
+    spacing: 2px;
+}
+
+.powerpulse-device {
+    spacing: 2px;
+    padding: 1px 0;
+}
+
+.powerpulse-device.expanded {
+    padding-bottom: 4px;
+}
+
+.powerpulse-device-row {
+    spacing: 6px;
+}
+
+.powerpulse-device-icon {
+    icon-size: 14px;
+    width: 16px;
+    color: #e6e6e6;
+}
+
+.powerpulse-device-name {
+    font-size: 0.92em;
+    color: #f2f2f2;
+}
+
+.powerpulse-percent-box {
+    spacing: 3px;
+}
+
+.powerpulse-device-percent {
+    font-weight: bold;
+    font-size: 0.92em;
+    min-width: 34px;
+    text-align: right;
+}
+
+.powerpulse-status-glyph {
+    font-size: 0.78em;
+    color: rgba(240, 240, 240, 0.9);
+}
+
+.powerpulse-age-icon {
+    icon-size: 11px;
+    width: 11px;
+}
+
+.powerpulse-age-soft {
+    color: rgba(230, 195, 92, 0.55);
+}
+
+.powerpulse-age-hard {
+    color: #e6c35c;
+}
+
+.powerpulse-bar-track {
+    height: 4px;
+    border-radius: 3px;
+    background-color: rgba(255, 255, 255, 0.14);
+    margin-top: 1px;
+}
+
+.powerpulse-bar-fill {
+    height: 4px;
+    border-radius: 3px;
+}
+
+.powerpulse-details {
+    spacing: 1px;
+    padding: 4px 0 0 22px;
+}
+
+.powerpulse-detail-label {
+    font-size: 0.68em;
+    color: rgba(240, 240, 240, 0.55);
+    padding-top: 2px;
+}
+
+.powerpulse-detail-value {
+    font-size: 0.80em;
+    color: rgba(240, 240, 240, 0.88);
+}
+
+.powerpulse-level-high,
+.powerpulse-level-high .powerpulse-device-percent {
+    color: #5fd68a;
+}
+
+.powerpulse-level-medium,
+.powerpulse-level-medium .powerpulse-device-percent {
+    color: #e6c35c;
+}
+
+.powerpulse-level-low,
+.powerpulse-level-low .powerpulse-device-percent {
+    color: #e86a6a;
+}
+
+.powerpulse-level-unknown .powerpulse-device-percent,
+.powerpulse-level-disconnected .powerpulse-device-percent,
+.powerpulse-level-disconnected .powerpulse-device-name {
+    color: #9a9a9a;
+}
+
+.powerpulse-bar-fill.powerpulse-level-high {
+    background-color: #5fd68a;
+}
+
+.powerpulse-bar-fill.powerpulse-level-medium {
+    background-color: #e6c35c;
+}
+
+.powerpulse-bar-fill.powerpulse-level-low {
+    background-color: #e86a6a;
+}
+
+.powerpulse-bar-fill.powerpulse-level-unknown,
+.powerpulse-bar-fill.powerpulse-level-disconnected {
+    background-color: #8a8a8a;
+}
+
+.powerpulse-footer {
+    font-size: 0.68em;
+    color: rgba(240, 240, 240, 0.55);
+    padding-top: 2px;
+}
+
+.powerpulse-empty {
+    font-size: 0.85em;
+    color: rgba(240, 240, 240, 0.7);
+    padding: 4px 0;
+}

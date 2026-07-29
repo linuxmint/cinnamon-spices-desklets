@@ -1,0 +1,234 @@
+# English strings (source language reference)
+# Copyright (C) 2026 VicMan
+# This file is distributed under the same license as the PowerPulse package.
+msgid ""
+msgstr ""
+"Project-Id-Version: powerpulse@vicman.app 1.2.0\n"
+"Report-Msgid-Bugs-To: powerpulse@vicman.app\n"
+"POT-Creation-Date: 2026-07-29 13:00-0500\n"
+"PO-Revision-Date: 2026-07-29 18:40-0500\n"
+"Last-Translator: VicMan\n"
+"Language-Team: English\n"
+"Language: en\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "PowerPulse"
+msgstr "PowerPulse"
+
+msgid "No battery devices found"
+msgstr "No battery devices found"
+
+msgid "Refresh"
+msgstr "Refresh"
+
+msgid "Power Management"
+msgstr "Power Management"
+
+msgid "Desklet settings"
+msgstr "Desklet settings"
+
+msgid "Copy battery summary"
+msgstr "Copy battery summary"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "Disconnected"
+msgstr "Disconnected"
+
+msgid "%s remaining"
+msgstr "%s remaining"
+
+msgid "%s battery is low (%s)"
+msgstr "%s battery is low (%s)"
+
+msgid "Battery summary copied to clipboard"
+msgstr "Battery summary copied to clipboard"
+
+msgid "Updated %s"
+msgstr "Updated %s"
+
+msgid "Last UPower report %s ago. Bluetooth devices often keep a valid percentage until the level changes or they reconnect."
+msgstr "Last UPower report %s ago. Bluetooth devices often keep a valid percentage until the level changes or they reconnect."
+
+msgid "Last UPower report %s ago. The percentage may still be valid if the device only publishes updates on change."
+msgstr "Last UPower report %s ago. The percentage may still be valid if the device only publishes updates on change."
+
+msgid "General"
+msgstr "General"
+
+msgid "Update interval"
+msgstr "Update interval"
+
+msgid "Custom title"
+msgstr "Custom title"
+
+msgid "Compact mode"
+msgstr "Compact mode"
+
+msgid "Sort devices by"
+msgstr "Sort devices by"
+
+msgid "Display"
+msgstr "Display"
+
+msgid "Show laptop battery"
+msgstr "Show laptop battery"
+
+msgid "Laptop battery display name"
+msgstr "Laptop battery display name"
+
+msgid "Show disconnected devices"
+msgstr "Show disconnected devices"
+
+msgid "Show time remaining"
+msgstr "Show time remaining"
+
+msgid "Show voltage"
+msgstr "Show voltage"
+
+msgid "Show progress bars"
+msgstr "Show progress bars"
+
+msgid "Show icons"
+msgstr "Show icons"
+
+msgid "Alerts"
+msgstr "Alerts"
+
+msgid "Low battery threshold"
+msgstr "Low battery threshold"
+
+msgid "Enable notifications"
+msgstr "Enable notifications"
+
+msgid "HeadsetControl"
+msgstr "HeadsetControl"
+
+msgid "HeadsetControl command"
+msgstr "HeadsetControl command"
+
+msgid "HeadsetControl timeout"
+msgstr "HeadsetControl timeout"
+
+msgid "Refresh now"
+msgstr "Refresh now"
+
+msgid "Sort by"
+msgstr "Sort by"
+
+msgid "Battery Ascending"
+msgstr "Battery Ascending"
+
+msgid "Battery Descending"
+msgstr "Battery Descending"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Last update"
+msgstr "Last update"
+
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Expand all"
+msgstr "Expand all"
+
+msgid "Collapse all"
+msgstr "Collapse all"
+
+msgid "Settings"
+msgstr "Settings"
+
+msgid "Copy summary"
+msgstr "Copy summary"
+
+msgid "Connected"
+msgstr "Connected"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Battery health"
+msgstr "Battery health"
+
+msgid "Design capacity"
+msgstr "Design capacity"
+
+msgid "Current capacity"
+msgstr "Current capacity"
+
+msgid "Cycle count"
+msgstr "Cycle count"
+
+msgid "Charge state"
+msgstr "Charge state"
+
+msgid "Time remaining"
+msgstr "Time remaining"
+
+msgid "Voltage"
+msgstr "Voltage"
+
+msgid "Provider"
+msgstr "Provider"
+
+msgid "Connection"
+msgstr "Connection"
+
+msgid "MAC"
+msgstr "MAC"
+
+msgid "Internal"
+msgstr "Internal"
+
+msgid "Wireless"
+msgstr "Wireless"
+
+msgid "Unknown"
+msgstr "Unknown"
+
+msgid "%s ago"
+msgstr "%s ago"
+
+msgid "%s devices"
+msgstr "%s devices"
+
+msgid "%s charging"
+msgstr "%s charging"
+
+msgid "%s low"
+msgstr "%s low"
+
+msgid "Updated %s ago"
+msgstr "Updated %s ago"
+
+msgid "Providers: %s"
+msgstr "Providers: %s"
+
+msgid "Version %s"
+msgstr "Version %s"
+
+msgid "Expand on click"
+msgstr "Expand on click"
+
+msgid "Show only connected devices"
+msgstr "Show only connected devices"
+
+msgid "Show percentage"
+msgstr "Show percentage"
+
+msgid "Show battery health"
+msgstr "Show battery health"
+
+msgid "Show cycle count"
+msgstr "Show cycle count"
+
+msgid "Default sort order"
+msgstr "Default sort order"
