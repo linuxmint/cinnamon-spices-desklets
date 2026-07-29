@@ -49,7 +49,8 @@ class HeadsetControlProvider extends BaseProvider {
         }
         try {
             if (this._command.indexOf("/") === 0) {
-                this._available = GLib.file_test(this._command, GLib.FileTest.IS_EXECUTABLE);
+                // Avoid GLib.file_test(); absolute paths are confirmed by spawn in fetch().
+                this._available = true;
             } else {
                 this._available = !!GLib.find_program_in_path(this._command);
             }
@@ -113,7 +114,9 @@ class HeadsetControlProvider extends BaseProvider {
         } catch (e) {
             this._running = false;
             this._available = false;
-            this._error("failed to spawn headsetcontrol", e);
+            if (!(e.matches && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND))) {
+                this._error("failed to spawn headsetcontrol", e);
+            }
             if (callback) callback([]);
             return;
         }
