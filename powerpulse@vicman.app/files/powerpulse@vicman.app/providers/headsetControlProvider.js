@@ -49,7 +49,7 @@ class HeadsetControlProvider extends BaseProvider {
         }
         try {
             if (this._command.indexOf("/") === 0) {
-                // Avoid GLib.file_test(); absolute paths are confirmed by spawn in fetch().
+                // Absolute paths are confirmed by spawn in fetch().
                 this._available = true;
             } else {
                 this._available = !!GLib.find_program_in_path(this._command);
