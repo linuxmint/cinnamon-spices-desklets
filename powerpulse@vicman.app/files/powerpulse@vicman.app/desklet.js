@@ -21,7 +21,8 @@ const {
     friendlyName,
     sortDevices,
     markFreshness,
-    buildStats
+    buildStats,
+    shouldSkipUpowerHeadset
 } = require("./models/device");
 const {
     formatPercent,
@@ -383,16 +384,14 @@ class PowerPulseDesklet extends Desklet.Desklet {
         let list = [];
         const byId = {};
 
-        // Prefer HeadsetControl headsets over UPower headsets when both exist.
-        const headsetControl = devices.filter((d) => d.source === "headsetcontrol");
-        const hasHc = headsetControl.length > 0;
-
+        // Prefer a live HeadsetControl reading only over the matching UPower
+        // headset. Offline HC devices must not hide Bluetooth earbuds.
         devices.forEach((d) => {
             markFreshness(d, now);
             if (d.type === DeviceType.BATTERY && !this.show_laptop_battery) {
                 return;
             }
-            if (hasHc && d.type === DeviceType.HEADSET && d.source !== "headsetcontrol") {
+            if (shouldSkipUpowerHeadset(d, devices)) {
                 return;
             }
             const onlyConnected = this.connected_only !== false && this.show_disconnected !== true;

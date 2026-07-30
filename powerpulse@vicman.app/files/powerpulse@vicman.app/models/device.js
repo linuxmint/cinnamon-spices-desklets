@@ -311,6 +311,46 @@ function shouldIncludeUpowerDevice(typeCode, type, hasPercentage, present, objec
     return false;
 }
 
+/** HeadsetControl entry that currently reports a usable battery level. */
+function isLiveHeadsetControlDevice(device) {
+    return !!(
+        device &&
+        device.source === "headsetcontrol" &&
+        device.connected &&
+        device.percentage !== null &&
+        device.percentage !== undefined &&
+        !isNaN(Number(device.percentage))
+    );
+}
+
+/**
+ * Prefer a live HeadsetControl reading over a UPower duplicate of the same
+ * headset. Offline HC devices (e.g. a powered-off gaming headset) must not
+ * hide unrelated UPower Bluetooth earbuds.
+ */
+function shouldSkipUpowerHeadset(device, devices) {
+    if (!device || device.source === "headsetcontrol" || device.type !== DeviceType.HEADSET) {
+        return false;
+    }
+    const upowerName = String(device.name || "").toLowerCase();
+    const upowerModel = String(device.model || "").toLowerCase();
+    for (let i = 0; i < (devices || []).length; i++) {
+        const other = devices[i];
+        if (!isLiveHeadsetControlDevice(other)) {
+            continue;
+        }
+        const hcName = String(other.name || "").toLowerCase();
+        const hcModel = String(other.model || "").toLowerCase();
+        if ((upowerName && (upowerName === hcName || upowerName === hcModel)) ||
+            (upowerModel && (upowerModel === hcName || upowerModel === hcModel)) ||
+            (upowerName && hcName && upowerName.indexOf(hcName) !== -1) ||
+            (hcName && upowerName && hcName.indexOf(upowerName) !== -1)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 function levelClass(percentage, connected) {
     if (!connected || percentage === null || percentage === undefined || isNaN(percentage)) {
         return "powerpulse-level-disconnected";
@@ -619,6 +659,8 @@ module.exports = {
     buildStats,
     isUpowerLinePower,
     shouldIncludeUpowerDevice,
+    isLiveHeadsetControlDevice,
+    shouldSkipUpowerHeadset,
     inferTypeFromUpowerPath,
     resolveUpowerType,
     isUpowerDisplayDevice,
