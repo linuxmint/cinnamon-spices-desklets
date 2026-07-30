@@ -1,0 +1,7 @@
+{
+  "uuid": "google-news@KopfdesDaemons",
+  "name": "Google News",
+  "description": "Google News feed for your desktop.",
+  "version": "1.0.0",
+  "max-instances": "50"
+}
