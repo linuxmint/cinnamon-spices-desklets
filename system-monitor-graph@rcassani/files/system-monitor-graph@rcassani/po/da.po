@@ -6,9 +6,10 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-"
+"desklets/issues\n"
 "POT-Creation-Date: 2026-07-22 14:45+0530\n"
-"PO-Revision-Date: 2026-04-06 14:06+0200\n"
+"PO-Revision-Date: 2026-07-30 14:12+0200\n"
 "Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -29,27 +30,27 @@ msgstr "CPU-temperatur"
 
 #. desklet.js:309
 msgid "CPU Fan"
-msgstr ""
+msgstr "CPU-ventilator"
 
 #. desklet.js:313
 msgid "RPM"
-msgstr ""
+msgstr "RPM"
 
 #. desklet.js:314
 msgid "On"
-msgstr ""
+msgstr "Tændt"
 
 #. desklet.js:316
 msgid "Off"
-msgstr ""
+msgstr "Slukket"
 
 #. desklet.js:319
 msgid "Not detected"
-msgstr ""
+msgstr "Ikke registreret"
 
 #. desklet.js:321
 msgid "Detecting..."
-msgstr ""
+msgstr "Registrerer …"
 
 #. desklet.js:334 desklet.js:352 desklet.js:372 desklet.js:413 desklet.js:717
 msgid "GB"
@@ -105,7 +106,7 @@ msgstr "Oplader ikke"
 
 #. desklet.js:467
 msgid " hrs"
-msgstr "timer"
+msgstr " timer"
 
 #. desklet.js:688 desklet.js:711
 msgid "b"
@@ -195,7 +196,7 @@ msgstr "Temperatur"
 
 #. settings-schema.json->cpu-variable->options
 msgid "Fan Speed"
-msgstr ""
+msgstr "Ventilatorhastighed"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
