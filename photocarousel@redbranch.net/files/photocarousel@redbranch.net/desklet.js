@@ -2,9 +2,7 @@ const St = imports.gi.St;
 const Desklet = imports.ui.desklet;
 const Gio = imports.gi.Gio;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const GLib = imports.gi.GLib;
-const Tweener = imports.ui.tweener;
 const Clutter = imports.gi.Clutter;
 const Settings = imports.ui.settings;
 const Util = imports.misc.util;
@@ -110,9 +108,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             style_class: 'nav-icon'
         });
         this._backButton.set_child(backIcon);
-        this._backButton.connect('clicked', Lang.bind(this, this._on_back_clicked));
-        this._backButton.connect('enter-event', Lang.bind(this, this._on_nav_button_enter));
-        this._backButton.connect('leave-event', Lang.bind(this, this._on_nav_button_leave));
+        this._backButton.connect('clicked', () => this._on_back_clicked());
+        this._backButton.connect('enter-event', (...args) => this._on_nav_button_enter(...args));
+        this._backButton.connect('leave-event', (...args) => this._on_nav_button_leave(...args));
         this._navButtonsBox.add_child(this._backButton);
 
         // Folder button
@@ -126,9 +124,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             style_class: 'nav-icon'
         });
         this._folderButton.set_child(folderIcon);
-        this._folderButton.connect('clicked', Lang.bind(this, this._on_folder_clicked));
-        this._folderButton.connect('enter-event', Lang.bind(this, this._on_nav_button_enter));
-        this._folderButton.connect('leave-event', Lang.bind(this, this._on_nav_button_leave));
+        this._folderButton.connect('clicked', () => this._on_folder_clicked());
+        this._folderButton.connect('enter-event', (...args) => this._on_nav_button_enter(...args));
+        this._folderButton.connect('leave-event', (...args) => this._on_nav_button_leave(...args));
         this._navButtonsBox.add_child(this._folderButton);
 
         // Map button (initially hidden, shown only when GPS data exists)
@@ -142,9 +140,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             style_class: 'nav-icon'
         });
         this._mapButton.set_child(mapIcon);
-        this._mapButton.connect('clicked', Lang.bind(this, this._on_map_clicked));
-        this._mapButton.connect('enter-event', Lang.bind(this, this._on_nav_button_enter));
-        this._mapButton.connect('leave-event', Lang.bind(this, this._on_nav_button_leave));
+        this._mapButton.connect('clicked', () => this._on_map_clicked());
+        this._mapButton.connect('enter-event', (...args) => this._on_nav_button_enter(...args));
+        this._mapButton.connect('leave-event', (...args) => this._on_nav_button_leave(...args));
         this._mapButton.hide();
         this._navButtonsBox.add_child(this._mapButton);
 
@@ -159,9 +157,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             style_class: 'nav-icon'
         });
         this._openImageButton.set_child(openImageIcon);
-        this._openImageButton.connect('clicked', Lang.bind(this, this._on_open_image_clicked));
-        this._openImageButton.connect('enter-event', Lang.bind(this, this._on_nav_button_enter));
-        this._openImageButton.connect('leave-event', Lang.bind(this, this._on_nav_button_leave));
+        this._openImageButton.connect('clicked', () => this._on_open_image_clicked());
+        this._openImageButton.connect('enter-event', (...args) => this._on_nav_button_enter(...args));
+        this._openImageButton.connect('leave-event', (...args) => this._on_nav_button_leave(...args));
         this._navButtonsBox.add_child(this._openImageButton);
 
         // Forward button
@@ -175,9 +173,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             style_class: 'nav-icon'
         });
         this._forwardButton.set_child(forwardIcon);
-        this._forwardButton.connect('clicked', Lang.bind(this, this._on_forward_clicked));
-        this._forwardButton.connect('enter-event', Lang.bind(this, this._on_nav_button_enter));
-        this._forwardButton.connect('leave-event', Lang.bind(this, this._on_nav_button_leave));
+        this._forwardButton.connect('clicked', () => this._on_forward_clicked());
+        this._forwardButton.connect('enter-event', (...args) => this._on_nav_button_enter(...args));
+        this._forwardButton.connect('leave-event', (...args) => this._on_nav_button_leave(...args));
         this._navButtonsBox.add_child(this._forwardButton);
 
         // Position nav buttons at bottom center
@@ -193,8 +191,8 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
         // Enable mouse events
         this.actor.set_reactive(true);
-        this.actor.connect('enter-event', Lang.bind(this, this._on_mouse_enter));
-        this.actor.connect('leave-event', Lang.bind(this, this._on_mouse_leave));
+        this.actor.connect('enter-event', (...args) => this._on_mouse_enter(...args));
+        this.actor.connect('leave-event', (...args) => this._on_mouse_leave(...args));
 
         // Track failed image loading attempts
         this.failedAttempts = 0;
@@ -238,53 +236,84 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
         this.baseDir = Gio.file_new_for_uri(this.dir);
 
-        // Validate that the directory exists
-        if (!this.baseDir.query_exists(null)) {
-            global.logError('Pictures directory does not exist: ' + this.dir);
-            this._show_error_message('Pictures folder not found');
-            return;
-        }
-
         // Scan for subfolders
-        this._scan_for_folders(this.baseDir, 0);
-
-        // Check if we found any folders
-        if (this._folders.length == 0) {
-            global.logError('No folders found in Pictures directory');
-            this._show_error_message('No folders found');
-            return;
-        }
-
-        // Start the rotation loop
-        this._update_loop();
+        this._scan_for_folders(this.baseDir, 0, () => {
+            if (this._folders.length == 0) {
+                global.logError('No folders found in Pictures directory');
+                this._show_error_message('No folders found');
+                return;
+            }
+            this._update_loop();
+        });
     }
 
-    _scan_for_folders(dir, depth) {
+    _enumerate_directory(dir, callback) {
+        dir.enumerate_children_async(
+            'standard::type,standard::name,standard::is-hidden',
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            null,
+            (source, result) => {
+                try {
+                    let fileEnum = source.enumerate_children_finish(result);
+                    let infos = [];
+                    let readNext = () => fileEnum.next_files_async(
+                        1000,
+                        GLib.PRIORITY_DEFAULT,
+                        null,
+                        (enumerator, nextResult) => {
+                            try {
+                                let batch = enumerator.next_files_finish(nextResult);
+                                if (batch.length == 0) {
+                                    enumerator.close_async(GLib.PRIORITY_DEFAULT, null, () => {});
+                                    callback(null, infos);
+                                } else {
+                                    infos = infos.concat(batch);
+                                    readNext();
+                                }
+                            } catch (e) {
+                                callback(e, null);
+                            }
+                        }
+                    );
+                    readNext();
+                } catch (e) {
+                    callback(e, null);
+                }
+            }
+        );
+    }
+
+    _scan_for_folders(dir, depth, callback) {
         // Check if we've hit our limits
         if (depth >= this.maxDepth) {
             global.log('Max depth reached at: ' + dir.get_path());
+            callback();
             return;
         }
 
         if (this._folders.length >= this.maxFolders) {
             global.log('Max folder count reached: ' + this.maxFolders);
+            callback();
             return;
         }
 
         // Add the directory itself to the folders list
         this._folders.push(dir);
 
-        try {
-            let fileEnum = dir.enumerate_children(
-                'standard::type,standard::name,standard::is-hidden',
-                Gio.FileQueryInfoFlags.NONE,
-                null
-            );
-
+        this._enumerate_directory(dir, (error, infos) => {
+            if (error) {
+                global.logError('Error scanning folder: ' + error);
+                if (depth == 0) {
+                    this._folders = [];
+                    this._show_error_message('Pictures folder not found');
+                }
+                callback();
+                return;
+            }
             // First, collect all subfolders
             let subfolders = [];
-            let info;
-            while ((info = fileEnum.next_file(null)) != null) {
+            for (let info of infos) {
                 if (info.get_is_hidden()) {
                     continue;
                 }
@@ -294,7 +323,6 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                     subfolders.push(info.get_name());
                 }
             }
-            fileEnum.close(null);
 
             // Shuffle the subfolders array randomly (Fisher-Yates shuffle)
             for (let i = subfolders.length - 1; i > 0; i--) {
@@ -304,25 +332,31 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
             // Now scan the first maxSubfoldersPerDir folders from shuffled list
             let subfoldersScanned = 0;
-            for (let folderName of subfolders) {
+            let scanNext = (index) => {
+                if (index >= subfolders.length) {
+                    callback();
+                    return;
+                }
+                let folderName = subfolders[index];
                 // Stop if we've hit folder limit
                 if (this._folders.length >= this.maxFolders) {
-                    break;
+                    callback();
+                    return;
                 }
 
                 // Stop if we've scanned max subfolders in this directory
                 if (subfoldersScanned >= this.maxSubfoldersPerDir) {
                     global.log('Max subfolders per directory reached at: ' + dir.get_path());
-                    break;
+                    callback();
+                    return;
                 }
 
                 let childDir = dir.get_child(folderName);
                 subfoldersScanned++;
-                this._scan_for_folders(childDir, depth + 1); // Recursive scan with depth tracking
-            }
-        } catch (e) {
-            global.logError('Error scanning folder: ' + e);
-        }
+                this._scan_for_folders(childDir, depth + 1, () => scanNext(index + 1));
+            };
+            scanNext(0);
+        });
     }
 
     _is_image_file(filename) {
@@ -336,28 +370,30 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         return validExtensions.some(ext => lowerFilename.endsWith(ext));
     }
 
-    _get_random_image() {
+    _get_random_image(callback) {
         if (this._folders.length == 0) {
-            return null;
+            callback(null);
+            return;
         }
 
         // Try up to 10 random folders to find an image
-        for (let attempt = 0; attempt < 10; attempt++) {
+        let findInFolder = (attempt) => {
+            if (attempt >= 10) {
+                callback(null);
+                return;
+            }
             // Pick a random folder
             let randomFolderIndex = Math.floor(Math.random() * this._folders.length);
             let folder = this._folders[randomFolderIndex];
 
-            try {
-                // Get all files in this folder (non-recursive)
-                let fileEnum = folder.enumerate_children(
-                    'standard::type,standard::name,standard::is-hidden',
-                    Gio.FileQueryInfoFlags.NONE,
-                    null
-                );
-
+            this._enumerate_directory(folder, (error, infos) => {
+                if (error) {
+                    global.logError('Error reading folder: ' + error);
+                    findInFolder(attempt + 1);
+                    return;
+                }
                 let files = [];
-                let info;
-                while ((info = fileEnum.next_file(null)) != null) {
+                for (let info of infos) {
                     if (info.get_is_hidden()) {
                         continue;
                     }
@@ -372,21 +408,18 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                     }
                 }
 
-                fileEnum.close(null);
-
                 // If we found files, pick a random one
                 if (files.length > 0) {
                     let randomFileIndex = Math.floor(Math.random() * files.length);
                     let fileName = files[randomFileIndex];
                     let filePath = folder.get_child(fileName);
-                    return filePath.get_uri();
+                    callback(filePath.get_uri());
+                    return;
                 }
-            } catch (e) {
-                global.logError('Error reading folder: ' + e);
-            }
-        }
-
-        return null;
+                findInFolder(attempt + 1);
+            });
+        };
+        findInFolder(0);
     }
 
     _update_loop() {
@@ -395,7 +428,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         this.lastUpdateTime = new Date().getTime();
         // Only schedule next update if not paused
         if (!this.isPaused) {
-            this.update_id = Mainloop.timeout_add_seconds(this.delay, Lang.bind(this, this._update_loop));
+            this.update_id = Mainloop.timeout_add_seconds(this.delay, () => this._update_loop());
         }
     }
 
@@ -406,8 +439,12 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         }
         this.updateInProgress = true;
 
-        let imagePath = this._get_random_image();
+        this._get_random_image((imagePath) => {
+            this._update_with_image(imagePath);
+        });
+    }
 
+    _update_with_image(imagePath) {
         if (!imagePath) {
             this.failedAttempts++;
             global.logError('No image found, attempt ' + this.failedAttempts + ' of ' + this.maxFailedAttempts);
@@ -467,10 +504,10 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
             // Connect to size notification to maintain aspect ratio on foreground
             global.log('PhotoCarousel: Connecting notify::size callback');
-            foregroundImage._notif_id = foregroundImage.connect('notify::size', Lang.bind(this, this._size_pic));
+            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage));
 
             // Function to swap images
-            let swapImages = Lang.bind(this, function() {
+            let swapImages = () => {
                 // Remove old images first
                 if (old_pic) {
                     this._photoFrame.remove_child(old_pic);
@@ -494,25 +531,25 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
                 // Reset failed attempts counter on success
                 this.failedAttempts = 0;
-            });
+            };
 
             // Apply fade transition if fade_delay > 0
             if (this.fade_delay > 0) {
-                Tweener.addTween(this._container, {
+                this._container.ease({
                     opacity: 0,
-                    time: this.fade_delay,
-                    transition: 'easeInSine',
-                    onComplete: Lang.bind(this, function() {
+                    duration: this.fade_delay * 1000,
+                    mode: Clutter.AnimationMode.EASE_IN_SINE,
+                    onComplete: () => {
                         swapImages();
-                        Tweener.addTween(this._container, {
+                        this._container.ease({
                             opacity: 255,
-                            time: this.fade_delay,
-                            transition: 'easeOutSine',
-                            onComplete: Lang.bind(this, function() {
+                            duration: this.fade_delay * 1000,
+                            mode: Clutter.AnimationMode.EASE_OUT_SINE,
+                            onComplete: () => {
                                 this.updateInProgress = false;
-                            })
+                            }
                         });
-                    })
+                    }
                 });
             } else {
                 // No fade - swap immediately
@@ -924,10 +961,10 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
             // Connect to size notification to maintain aspect ratio on foreground
             global.log('PhotoCarousel: Connecting notify::size callback');
-            foregroundImage._notif_id = foregroundImage.connect('notify::size', Lang.bind(this, this._size_pic));
+            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage));
 
             // Function to swap images
-            let swapImages = Lang.bind(this, function() {
+            let swapImages = () => {
                 // Remove old images first
                 if (old_pic) {
                     this._photoFrame.remove_child(old_pic);
@@ -948,25 +985,25 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
                 // Show overlays that are set to "always"
                 this._update_always_overlays();
-            });
+            };
 
             // Apply fade transition if fade_delay > 0
             if (this.fade_delay > 0) {
-                Tweener.addTween(this._container, {
+                this._container.ease({
                     opacity: 0,
-                    time: this.fade_delay,
-                    transition: 'easeInSine',
-                    onComplete: Lang.bind(this, function() {
+                    duration: this.fade_delay * 1000,
+                    mode: Clutter.AnimationMode.EASE_IN_SINE,
+                    onComplete: () => {
                         swapImages();
-                        Tweener.addTween(this._container, {
+                        this._container.ease({
                             opacity: 255,
-                            time: this.fade_delay,
-                            transition: 'easeOutSine',
-                            onComplete: Lang.bind(this, function() {
+                            duration: this.fade_delay * 1000,
+                            mode: Clutter.AnimationMode.EASE_OUT_SINE,
+                            onComplete: () => {
                                 this.updateInProgress = false;
-                            })
+                            }
                         });
-                    })
+                    }
                 });
             } else {
                 // No fade - swap immediately
@@ -1021,14 +1058,15 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
         // Clear and rescan folders
         this._folders = [];
-        if (this.baseDir.query_exists(null)) {
-            this._scan_for_folders(this.baseDir, 0);
-            // Restart the update loop
-            this._update_loop();
-        } else {
-            global.logError('Directory does not exist: ' + this.dir);
-            this._show_error_message('Folder not found');
-        }
+        this._scan_for_folders(this.baseDir, 0, () => {
+            if (this._folders.length > 0) {
+                // Restart the update loop
+                this._update_loop();
+            } else {
+                global.logError('Directory does not exist: ' + this.dir);
+                this._show_error_message('Folder not found');
+            }
+        });
     }
 
     _update_always_overlays() {
@@ -1252,7 +1290,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             let delayToUse = (this.remainingDelay !== null) ? this.remainingDelay : this.delay;
 
             // Schedule the next update with the remaining time
-            this.update_id = Mainloop.timeout_add_seconds(delayToUse, Lang.bind(this, this._update_loop));
+            this.update_id = Mainloop.timeout_add_seconds(delayToUse, () => this._update_loop());
 
             // Reset remaining delay
             this.remainingDelay = null;
