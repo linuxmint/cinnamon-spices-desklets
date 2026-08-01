@@ -94,10 +94,17 @@
         "type": "header",
         "description": "Background"
     },
+    "desklet-background-color": {
+        "type": "colorchooser",
+        "default": "rgba(0,0,0,0)",
+        "description": "Desklet background",
+        "tooltip": "Background color for the whole desklet face. Use the alpha slider in the color picker to set transparency - alpha 0 keeps it fully see-through, matching the old behavior."
+    },
     "show-background": {
         "type": "checkbox",
-        "description": "Show background",
-        "default": true
+        "description": "Show gauge track",
+        "default": true,
+        "tooltip": "Show a faint ring behind each CPU gauge. This is separate from the desklet background above."
     },
     "hide-decorations": {
         "type": "checkbox",
