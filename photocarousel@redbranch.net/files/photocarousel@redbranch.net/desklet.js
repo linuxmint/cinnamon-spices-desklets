@@ -21,6 +21,13 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
         this.metadata = metadata;
         this.update_id = 0;
+        this._ioCancellables = new Set();
+        this._operationGeneration = 0;
+        this._ioTimeoutSeconds = 30;
+        this._activeImageLoad = null;
+        this.maxDirectoryEntries = 5000;
+        this.maxImageCandidates = 1000;
+        this.maxImageFileSize = 100 * 1024 * 1024;
 
         // Set up settings
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
@@ -247,44 +254,150 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         });
     }
 
-    _enumerate_directory(dir, callback) {
+    _cancel_pending_io() {
+        this._operationGeneration++;
+        for (let cancellable of this._ioCancellables) {
+            cancellable.cancel();
+        }
+        this._ioCancellables.clear();
+        this._cleanup_active_image_load();
+        try {
+            this._container.remove_all_transitions();
+        } catch (e) {
+            // The actor may already have been destroyed during desklet removal.
+        }
+    }
+
+    _cleanup_active_image_load() {
+        let imageLoad = this._activeImageLoad;
+        if (!imageLoad) {
+            return;
+        }
+        this._activeImageLoad = null;
+
+        if (imageLoad.timeoutId) {
+            Mainloop.source_remove(imageLoad.timeoutId);
+            imageLoad.timeoutId = 0;
+        }
+        for (let image of [imageLoad.foreground, imageLoad.background]) {
+            if (!image) {
+                continue;
+            }
+            if (image._notif_id) {
+                try {
+                    image.disconnect(image._notif_id);
+                } catch (e) {
+                    // The signal may already have been disconnected.
+                }
+                image._notif_id = 0;
+            }
+            if (image._load_notif_id) {
+                try {
+                    image.disconnect(image._load_notif_id);
+                } catch (e) {
+                    // The signal may already have been disconnected.
+                }
+                image._load_notif_id = 0;
+            }
+            try {
+                image.destroy();
+            } catch (e) {
+                // The texture may already have been destroyed by its parent.
+            }
+        }
+    }
+
+    _image_load_completed(image, generation) {
+        if (generation !== this._operationGeneration ||
+            !this._activeImageLoad ||
+            this._activeImageLoad.foreground !== image) {
+            return;
+        }
+        if (this._activeImageLoad.timeoutId) {
+            Mainloop.source_remove(this._activeImageLoad.timeoutId);
+        }
+        if (image._load_notif_id) {
+            try {
+                image.disconnect(image._load_notif_id);
+            } catch (e) {
+                // The signal may already have been disconnected.
+            }
+            image._load_notif_id = 0;
+        }
+        this._activeImageLoad = null;
+    }
+
+    _enumerate_directory(dir, limit, callback, generation = this._operationGeneration) {
+        let completed = false;
+        let cancellable = new Gio.Cancellable();
+        this._ioCancellables.add(cancellable);
+        let timeoutId = Mainloop.timeout_add_seconds(this._ioTimeoutSeconds, () => {
+            if (!completed) {
+                cancellable.cancel();
+                finish(new Error('Timed out reading directory: ' + dir.get_uri()), null);
+            }
+            return false;
+        });
+        let finish = (error, infos) => {
+            if (completed) {
+                return;
+            }
+            completed = true;
+            Mainloop.source_remove(timeoutId);
+            this._ioCancellables.delete(cancellable);
+            callback(error, infos);
+        };
+
         dir.enumerate_children_async(
-            'standard::type,standard::name,standard::is-hidden',
+            'standard::type,standard::name,standard::is-hidden,standard::size',
             Gio.FileQueryInfoFlags.NONE,
             GLib.PRIORITY_DEFAULT,
-            null,
+            cancellable,
             (source, result) => {
+                if (generation !== this._operationGeneration) {
+                    finish(new Error('Directory enumeration was cancelled'), null);
+                    return;
+                }
                 try {
                     let fileEnum = source.enumerate_children_finish(result);
                     let infos = [];
                     let readNext = () => fileEnum.next_files_async(
-                        1000,
+                        Math.min(1000, limit - infos.length),
                         GLib.PRIORITY_DEFAULT,
-                        null,
+                        cancellable,
                         (enumerator, nextResult) => {
+                            if (generation !== this._operationGeneration) {
+                                finish(new Error('Directory enumeration was cancelled'), null);
+                                return;
+                            }
                             try {
                                 let batch = enumerator.next_files_finish(nextResult);
-                                if (batch.length == 0) {
+                                if (batch.length == 0 || infos.length + batch.length >= limit) {
+                                    infos = infos.concat(batch.slice(0, limit - infos.length));
                                     enumerator.close_async(GLib.PRIORITY_DEFAULT, null, () => {});
-                                    callback(null, infos);
+                                    finish(null, infos);
                                 } else {
                                     infos = infos.concat(batch);
                                     readNext();
                                 }
                             } catch (e) {
-                                callback(e, null);
+                                finish(e, null);
                             }
                         }
                     );
                     readNext();
                 } catch (e) {
-                    callback(e, null);
+                    finish(e, null);
                 }
             }
         );
     }
 
-    _scan_for_folders(dir, depth, callback) {
+    _scan_for_folders(dir, depth, callback, generation = this._operationGeneration) {
+        if (generation !== this._operationGeneration) {
+            callback();
+            return;
+        }
         // Check if we've hit our limits
         if (depth >= this.maxDepth) {
             global.log('Max depth reached at: ' + dir.get_path());
@@ -301,7 +414,11 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         // Add the directory itself to the folders list
         this._folders.push(dir);
 
-        this._enumerate_directory(dir, (error, infos) => {
+        this._enumerate_directory(dir, this.maxDirectoryEntries, (error, infos) => {
+            if (generation !== this._operationGeneration) {
+                callback();
+                return;
+            }
             if (error) {
                 global.logError('Error scanning folder: ' + error);
                 if (depth == 0) {
@@ -353,7 +470,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
                 let childDir = dir.get_child(folderName);
                 subfoldersScanned++;
-                this._scan_for_folders(childDir, depth + 1, () => scanNext(index + 1));
+                this._scan_for_folders(childDir, depth + 1, () => scanNext(index + 1), generation);
             };
             scanNext(0);
         });
@@ -370,7 +487,11 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         return validExtensions.some(ext => lowerFilename.endsWith(ext));
     }
 
-    _get_random_image(callback) {
+    _get_random_image(callback, generation = this._operationGeneration) {
+        if (generation !== this._operationGeneration) {
+            callback(null);
+            return;
+        }
         if (this._folders.length == 0) {
             callback(null);
             return;
@@ -386,7 +507,11 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             let randomFolderIndex = Math.floor(Math.random() * this._folders.length);
             let folder = this._folders[randomFolderIndex];
 
-            this._enumerate_directory(folder, (error, infos) => {
+            this._enumerate_directory(folder, this.maxImageCandidates, (error, infos) => {
+                if (generation !== this._operationGeneration) {
+                    callback(null);
+                    return;
+                }
                 if (error) {
                     global.logError('Error reading folder: ' + error);
                     findInFolder(attempt + 1);
@@ -402,7 +527,8 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                     if (fileType != Gio.FileType.DIRECTORY) {
                         let fileName = info.get_name();
                         // Only add files with valid image extensions
-                        if (this._is_image_file(fileName)) {
+                        if (this._is_image_file(fileName) &&
+                            info.get_size() <= this.maxImageFileSize) {
                             files.push(fileName);
                         }
                     }
@@ -438,13 +564,21 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             return;
         }
         this.updateInProgress = true;
+        let generation = this._operationGeneration;
 
         this._get_random_image((imagePath) => {
-            this._update_with_image(imagePath);
-        });
+            if (generation !== this._operationGeneration) {
+                return;
+            }
+            this._update_with_image(imagePath, generation);
+        }, generation);
     }
 
-    _update_with_image(imagePath) {
+    _update_with_image(imagePath, generation = this._operationGeneration) {
+        if (generation !== this._operationGeneration) {
+            this.updateInProgress = false;
+            return;
+        }
         if (!imagePath) {
             this.failedAttempts++;
             global.logError('No image found, attempt ' + this.failedAttempts + ' of ' + this.maxFailedAttempts);
@@ -463,6 +597,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             return;
         }
 
+        let imageTimeoutId = 0;
         try {
             global.log('========================================');
             global.log('PhotoCarousel: Loading new image: ' + imagePath);
@@ -482,6 +617,20 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             this.currentPicture = foregroundImage;
             this.currentBackground = backgroundImage;
             this.currentImagePath = imagePath;
+            this._activeImageLoad = {
+                foreground: foregroundImage,
+                background: backgroundImage,
+                timeoutId: 0
+            };
+            imageTimeoutId = Mainloop.timeout_add_seconds(this._ioTimeoutSeconds, () => {
+                if (generation === this._operationGeneration && this.updateInProgress) {
+                    global.logError('Timed out loading image: ' + imagePath);
+                    this._cancel_pending_io();
+                    this.updateInProgress = false;
+                }
+                return false;
+            });
+            this._activeImageLoad.timeoutId = imageTimeoutId;
 
             // Add to history (remove any forward history if we're not at the end)
             if (this.historyPosition < this.imageHistory.length - 1) {
@@ -504,10 +653,13 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
             // Connect to size notification to maintain aspect ratio on foreground
             global.log('PhotoCarousel: Connecting notify::size callback');
-            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage));
+            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage, generation));
 
             // Function to swap images
             let swapImages = () => {
+                if (generation !== this._operationGeneration) {
+                    return;
+                }
                 // Remove old images first
                 if (old_pic) {
                     this._photoFrame.remove_child(old_pic);
@@ -541,6 +693,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                     mode: Clutter.AnimationMode.EASE_IN_SINE,
                     onComplete: () => {
                         swapImages();
+                        if (generation !== this._operationGeneration) {
+                            return;
+                        }
                         this._container.ease({
                             opacity: 255,
                             duration: this.fade_delay * 1000,
@@ -559,11 +714,21 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
         } catch (e) {
             global.logError('Error loading image: ' + e);
             this.failedAttempts++;
+            if (imageTimeoutId) {
+                Mainloop.source_remove(imageTimeoutId);
+            }
+            if (this._activeImageLoad && this._activeImageLoad.foreground === foregroundImage) {
+                this._cleanup_active_image_load();
+            }
             this.updateInProgress = false;
         }
     }
 
-    _size_pic(image) {
+    _size_pic(image, generation = this._operationGeneration) {
+        if (generation !== this._operationGeneration) {
+            image.destroy();
+            return;
+        }
         // Disconnect the notification handler to avoid repeated calls
         image.disconnect(image._notif_id);
 
@@ -624,6 +789,18 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             Math.round(newWidth),
             Math.round(newHeight)
         );
+
+        if (this._activeImageLoad && this._activeImageLoad.foreground === image) {
+            this._activeImageLoad.foreground = resizedImage;
+            resizedImage._load_notif_id = resizedImage.connect('notify::size', () => {
+                if (resizedImage.width > 0 && resizedImage.height > 0) {
+                    this._image_load_completed(resizedImage, generation);
+                }
+            });
+            if (resizedImage.width > 0 && resizedImage.height > 0) {
+                this._image_load_completed(resizedImage, generation);
+            }
+        }
 
         // Update current picture reference
         this.currentPicture = resizedImage;
@@ -935,6 +1112,8 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             return;
         }
         this.updateInProgress = true;
+        let generation = this._operationGeneration;
+        let imageTimeoutId = 0;
 
         try {
             global.log('========================================');
@@ -952,6 +1131,20 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             this.currentPicture = foregroundImage;
             this.currentBackground = backgroundImage;
             this.currentImagePath = imagePath;
+            this._activeImageLoad = {
+                foreground: foregroundImage,
+                background: backgroundImage,
+                timeoutId: 0
+            };
+            imageTimeoutId = Mainloop.timeout_add_seconds(this._ioTimeoutSeconds, () => {
+                if (generation === this._operationGeneration && this.updateInProgress) {
+                    global.logError('Timed out loading image: ' + imagePath);
+                    this._cancel_pending_io();
+                    this.updateInProgress = false;
+                }
+                return false;
+            });
+            this._activeImageLoad.timeoutId = imageTimeoutId;
 
             // Add blur effect to background image
             backgroundImage.clear_effects();
@@ -961,10 +1154,13 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
             // Connect to size notification to maintain aspect ratio on foreground
             global.log('PhotoCarousel: Connecting notify::size callback');
-            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage));
+            foregroundImage._notif_id = foregroundImage.connect('notify::size', () => this._size_pic(foregroundImage, generation));
 
             // Function to swap images
             let swapImages = () => {
+                if (generation !== this._operationGeneration) {
+                    return;
+                }
                 // Remove old images first
                 if (old_pic) {
                     this._photoFrame.remove_child(old_pic);
@@ -995,6 +1191,9 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                     mode: Clutter.AnimationMode.EASE_IN_SINE,
                     onComplete: () => {
                         swapImages();
+                        if (generation !== this._operationGeneration) {
+                            return;
+                        }
                         this._container.ease({
                             opacity: 255,
                             duration: this.fade_delay * 1000,
@@ -1012,11 +1211,20 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
             }
         } catch (e) {
             global.logError('Error loading image: ' + e);
+            if (imageTimeoutId) {
+                Mainloop.source_remove(imageTimeoutId);
+            }
+            if (this._activeImageLoad && this._activeImageLoad.foreground === foregroundImage) {
+                this._cleanup_active_image_load();
+            }
             this.updateInProgress = false;
         }
     }
 
     on_setting_changed() {
+        this._cancel_pending_io();
+        this.updateInProgress = false;
+
         // Stop the current update loop
         if (this.update_id != 0) {
             Mainloop.source_remove(this.update_id);
@@ -1058,7 +1266,11 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
 
         // Clear and rescan folders
         this._folders = [];
+        let generation = this._operationGeneration;
         this._scan_for_folders(this.baseDir, 0, () => {
+            if (generation !== this._operationGeneration) {
+                return;
+            }
             if (this._folders.length > 0) {
                 // Restart the update loop
                 this._update_loop();
@@ -1066,7 +1278,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
                 global.logError('Directory does not exist: ' + this.dir);
                 this._show_error_message('Folder not found');
             }
-        });
+        }, generation);
     }
 
     _update_always_overlays() {
@@ -1298,6 +1510,7 @@ class PhotoCarouselDesklet extends Desklet.Desklet {
     }
 
     on_desklet_removed() {
+        this._cancel_pending_io();
         if (this.update_id != 0) {
             Mainloop.source_remove(this.update_id);
             this.update_id = 0;
