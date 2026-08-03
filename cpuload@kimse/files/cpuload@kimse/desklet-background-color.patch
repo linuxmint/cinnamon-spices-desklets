@@ -1,0 +1,72 @@
+diff --git a/desklet.js b/desklet.js
+index bbcf4dc..44fce22 100644
+--- a/desklet.js
++++ b/desklet.js
+@@ -45,6 +45,7 @@ CpuLoadDesklet.prototype = {
+         this.settings.bindProperty(Settings.BindingDirection.IN, 'static-theme-color', 'static_theme_color', this.on_setting_changed);
+         this.settings.bindProperty(Settings.BindingDirection.IN, 'show-background', 'show_background', this.on_setting_changed);
+         this.settings.bindProperty(Settings.BindingDirection.IN, 'hide-decorations', 'hide_decorations', this.on_setting_changed);
++        this.settings.bindProperty(Settings.BindingDirection.IN, 'desklet-background-color', 'desklet_background_color', this.on_setting_changed);
+ 
+         // Properties
+         this.cpus_utilization = [];
+@@ -73,6 +74,7 @@ CpuLoadDesklet.prototype = {
+         // Refresh the desklet window
+         this.refreshScalingSizes();
+         this.toggleDecoration();
++        this.refreshBackground();
+ 
+         // Start the main desklet loop
+         this.main();
+@@ -89,6 +91,17 @@ CpuLoadDesklet.prototype = {
+         this._updateDecoration();
+     },
+ 
++    /**
++     * Apply the user-selected background color/transparency to the
++     * desklet face. `this.content` is the St.Bin the base Desklet class
++     * wraps our window in (see setContent() in ui/desklet.js) - styling
++     * it, rather than this.window, covers the full desklet bounding box
++     * instead of just the area behind the gauges.
++     */
++    refreshBackground() {
++        this.content.style = "background-color: " + this.desklet_background_color + ";";
++    },
++
+     /**
+      * Refresh desklet scaling.
+      */
+@@ -621,6 +634,9 @@ CpuLoadDesklet.prototype = {
+         // Update decoration settings
+         this.toggleDecoration();
+ 
++        // Refresh background color/transparency
++        this.refreshBackground();
++
+         // Refresh scaling sizes
+         this.refreshScalingSizes();
+ 
+diff --git a/settings-schema.json b/settings-schema.json
+index 62cd74c..064a96b 100644
+--- a/settings-schema.json
++++ b/settings-schema.json
+@@ -94,10 +94,17 @@
+         "type": "header",
+         "description": "Background"
+     },
++    "desklet-background-color": {
++        "type": "colorchooser",
++        "default": "rgba(0,0,0,0)",
++        "description": "Desklet background",
++        "tooltip": "Background color for the whole desklet face. Use the alpha slider in the color picker to set transparency - alpha 0 keeps it fully see-through, matching the old behavior."
++    },
+     "show-background": {
+         "type": "checkbox",
+-        "description": "Show background",
+-        "default": true
++        "description": "Show gauge track",
++        "default": true,
++        "tooltip": "Show a faint ring behind each CPU gauge. This is separate from the desklet background above."
+     },
+     "hide-decorations": {
+         "type": "checkbox",
