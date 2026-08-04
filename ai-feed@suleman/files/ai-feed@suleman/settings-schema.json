@@ -1,0 +1,203 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["general", "sources", "filters", "appearance", "advanced"],
+        "general": {
+            "type": "page",
+            "title": "General",
+            "sections": ["refresh-section", "order-section"]
+        },
+        "sources": {
+            "type": "page",
+            "title": "Sources",
+            "sections": ["github-source", "arxiv-source", "hn-source", "hf-source"]
+        },
+        "filters": {
+            "type": "page",
+            "title": "Filters",
+            "sections": ["github-filters", "arxiv-filters", "hn-filters", "hf-filters"]
+        },
+        "appearance": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["colors-section", "fonts-section", "dimensions-section"]
+        },
+        "advanced": {
+            "type": "page",
+            "title": "Advanced",
+            "sections": ["tokens-section", "network-section", "debug-section"]
+        },
+        "refresh-section": {
+            "type": "section",
+            "title": "Refresh",
+            "keys": ["refresh-interval"]
+        },
+        "order-section": {
+            "type": "section",
+            "title": "Source Display Order",
+            "keys": ["source-order-1", "source-order-2", "source-order-3", "source-order-4"]
+        },
+        "github-source": {
+            "type": "section",
+            "title": "GitHub Trending",
+            "keys": ["github-enabled", "github-count"]
+        },
+        "arxiv-source": {
+            "type": "section",
+            "title": "arXiv Papers",
+            "keys": ["arxiv-enabled", "arxiv-count"]
+        },
+        "hn-source": {
+            "type": "section",
+            "title": "Hacker News",
+            "keys": ["hn-enabled", "hn-count"]
+        },
+        "hf-source": {
+            "type": "section",
+            "title": "HuggingFace",
+            "keys": ["hf-enabled", "hf-count"]
+        },
+        "github-filters": {
+            "type": "section",
+            "title": "GitHub",
+            "keys": ["github-period", "github-languages"]
+        },
+        "arxiv-filters": {
+            "type": "section",
+            "title": "arXiv",
+            "keys": ["arxiv-categories", "arxiv-max-results"]
+        },
+        "hn-filters": {
+            "type": "section",
+            "title": "Hacker News",
+            "keys": ["hn-keywords", "hn-min-points", "hn-sort"]
+        },
+        "hf-filters": {
+            "type": "section",
+            "title": "HuggingFace",
+            "keys": ["hf-show-models", "hf-show-datasets", "hf-show-spaces"]
+        },
+        "colors-section": {
+            "type": "section",
+            "title": "Colors",
+            "keys": ["background-color", "font-color", "accent-color", "header-color"]
+        },
+        "fonts-section": {
+            "type": "section",
+            "title": "Fonts",
+            "keys": ["font-scale"]
+        },
+        "dimensions-section": {
+            "type": "section",
+            "title": "Dimensions",
+            "keys": ["desklet-width", "desklet-height"]
+        },
+        "tokens-section": {
+            "type": "section",
+            "title": "API Tokens (optional)",
+            "keys": ["github-token", "hf-token"]
+        },
+        "network-section": {
+            "type": "section",
+            "title": "Network",
+            "keys": ["request-timeout", "user-agent"]
+        },
+        "debug-section": {
+            "type": "section",
+            "title": "Debug",
+            "keys": ["debug-logging"]
+        }
+    },
+    "refresh-interval": {
+        "type": "scale",
+        "default": 30,
+        "min": 5,
+        "max": 300,
+        "step": 5,
+        "description": "Refresh interval (minutes)"
+    },
+    "source-order-1": {
+        "type": "combobox",
+        "default": "github",
+        "options": {
+            "GitHub Trending": "github",
+            "arXiv Papers": "arxiv",
+            "Hacker News": "hackernews",
+            "HuggingFace": "huggingface"
+        },
+        "description": "Position 1"
+    },
+    "source-order-2": {
+        "type": "combobox",
+        "default": "arxiv",
+        "options": {
+            "GitHub Trending": "github",
+            "arXiv Papers": "arxiv",
+            "Hacker News": "hackernews",
+            "HuggingFace": "huggingface"
+        },
+        "description": "Position 2"
+    },
+    "source-order-3": {
+        "type": "combobox",
+        "default": "hackernews",
+        "options": {
+            "GitHub Trending": "github",
+            "arXiv Papers": "arxiv",
+            "Hacker News": "hackernews",
+            "HuggingFace": "huggingface"
+        },
+        "description": "Position 3"
+    },
+    "source-order-4": {
+        "type": "combobox",
+        "default": "huggingface",
+        "options": {
+            "GitHub Trending": "github",
+            "arXiv Papers": "arxiv",
+            "Hacker News": "hackernews",
+            "HuggingFace": "huggingface"
+        },
+        "description": "Position 4"
+    },
+    "github-enabled": { "type": "switch", "default": true, "description": "Enable GitHub Trending" },
+    "github-count": { "type": "spinbutton", "default": 3, "min": 1, "max": 15, "step": 1, "description": "Items to show" },
+    "arxiv-enabled": { "type": "switch", "default": true, "description": "Enable arXiv Papers" },
+    "arxiv-count": { "type": "spinbutton", "default": 5, "min": 1, "max": 15, "step": 1, "description": "Items to show" },
+    "hn-enabled": { "type": "switch", "default": true, "description": "Enable Hacker News" },
+    "hn-count": { "type": "spinbutton", "default": 3, "min": 1, "max": 15, "step": 1, "description": "Items to show" },
+    "hf-enabled": { "type": "switch", "default": true, "description": "Enable HuggingFace" },
+    "hf-count": { "type": "spinbutton", "default": 3, "min": 1, "max": 15, "step": 1, "description": "Items to show" },
+    "github-period": {
+        "type": "combobox",
+        "default": "daily",
+        "options": { "Daily": "daily", "Weekly": "weekly" },
+        "description": "Time period"
+    },
+    "github-languages": { "type": "entry", "default": "Python, Jupyter Notebook, Rust, TypeScript", "description": "Language filter (comma-separated)" },
+    "arxiv-categories": { "type": "entry", "default": "cs.AI, cs.LG, cs.CL, cs.CV, stat.ML", "description": "arXiv categories (comma-separated)" },
+    "arxiv-max-results": { "type": "spinbutton", "default": 10, "min": 5, "max": 50, "step": 5, "description": "Max results per query" },
+    "hn-keywords": { "type": "entry", "default": "AI, LLM, GPT, Claude, Gemini, machine learning, deep learning, neural network, transformer, Anthropic, OpenAI, reasoning", "description": "Search keywords (comma-separated)" },
+    "hn-min-points": { "type": "spinbutton", "default": 0, "min": 0, "max": 500, "step": 10, "description": "Minimum points" },
+    "hn-sort": {
+        "type": "combobox",
+        "default": "date",
+        "options": { "Date": "date", "Relevance": "relevance" },
+        "description": "Sort by"
+    },
+    "hf-show-models": { "type": "switch", "default": true, "description": "Show models" },
+    "hf-show-datasets": { "type": "switch", "default": true, "description": "Show datasets" },
+    "hf-show-spaces": { "type": "switch", "default": false, "description": "Show spaces" },
+    "background-color": { "type": "colorchooser", "default": "rgba(28,28,32,0.92)", "description": "Background color" },
+    "font-color": { "type": "colorchooser", "default": "rgba(230,230,235,0.95)", "description": "Text color" },
+    "accent-color": { "type": "colorchooser", "default": "rgba(160,180,210,0.85)", "description": "Accent color" },
+    "header-color": { "type": "colorchooser", "default": "rgba(160,180,210,0.85)", "description": "Header text color" },
+    "font-scale": { "type": "scale", "default": 1.0, "min": 0.5, "max": 2.0, "step": 0.1, "description": "Font scale" },
+    "desklet-width": { "type": "spinbutton", "default": 400, "min": 300, "max": 600, "step": 10, "units": "px", "description": "Desklet width" },
+    "desklet-height": { "type": "spinbutton", "default": 500, "min": 300, "max": 800, "step": 10, "units": "px", "description": "Desklet height" },
+    "github-token": { "type": "entry", "default": "", "description": "GitHub Personal Access Token" },
+    "hf-token": { "type": "entry", "default": "", "description": "HuggingFace API Token" },
+    "request-timeout": { "type": "spinbutton", "default": 15, "min": 5, "max": 60, "step": 5, "units": "seconds", "description": "Request timeout" },
+    "user-agent": { "type": "entry", "default": "Mozilla/5.0 (X11; Linux x86_64) AIFeed/1.0", "description": "User-Agent string" },
+    "debug-logging": { "type": "switch", "default": false, "description": "Enable debug logging" }
+}
