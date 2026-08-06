@@ -1,0 +1,450 @@
+# GOOGLE CALENDAR
+# This file is put in the public domain.
+# slgobinath, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: googleCalendar@javahelps.com 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Số ngày cần bao gồm"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ": "
+
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#. desklet.js:126
+msgid "Google Calendar"
+msgstr "Lịch Google"
+
+#. desklet.js:219
+msgid "Open Google Calendar"
+msgstr "Mở Lịch Google"
+
+#. desklet.js:302
+msgid "No events found"
+msgstr "Không tìm thấy sự kiện"
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr "gcalendar chưa được ủy quyền"
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr "Token gcalendar đã hết hạn"
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr "Thực thi: "
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr "Lỗi không xác định"
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr "Cài đặt gcalendar để sử dụng desklet này."
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr "Truy cập: "
+
+#. desklet.js:529
+msgid "Unable to retrieve events..."
+msgstr "Không thể truy xuất sự kiện..."
+
+#. lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "SA"
+
+#. lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "CH"
+
+#. lib/xdate.js:346
+msgid "January"
+msgstr "Tháng 1"
+
+#. lib/xdate.js:346
+msgid "February"
+msgstr "Tháng 2"
+
+#. lib/xdate.js:346
+msgid "March"
+msgstr "Tháng 3"
+
+#. lib/xdate.js:346
+msgid "April"
+msgstr "Tháng 4"
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr "Tháng 5"
+
+#. lib/xdate.js:346
+msgid "June"
+msgstr "Tháng 6"
+
+#. lib/xdate.js:346
+msgid "July"
+msgstr "Tháng 7"
+
+#. lib/xdate.js:346
+msgid "August"
+msgstr "Tháng 8"
+
+#. lib/xdate.js:346
+msgid "September"
+msgstr "Tháng 9"
+
+#. lib/xdate.js:346
+msgid "October"
+msgstr "Tháng 10"
+
+#. lib/xdate.js:346
+msgid "November"
+msgstr "Tháng 11"
+
+#. lib/xdate.js:346
+msgid "December"
+msgstr "Tháng 12"
+
+#. lib/xdate.js:347
+msgid "Jan"
+msgstr "Thg 1"
+
+#. lib/xdate.js:347
+msgid "Feb"
+msgstr "Thg 2"
+
+#. lib/xdate.js:347
+msgid "Mar"
+msgstr "Thg 3"
+
+#. lib/xdate.js:347
+msgid "Apr"
+msgstr "Thg 4"
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr "Thg 5"
+
+#. lib/xdate.js:347
+msgid "Jun"
+msgstr "Thg 6"
+
+#. lib/xdate.js:347
+msgid "Jul"
+msgstr "Thg 7"
+
+#. lib/xdate.js:347
+msgid "Aug"
+msgstr "Thg 8"
+
+#. lib/xdate.js:347
+msgid "Sep"
+msgstr "Thg 9"
+
+#. lib/xdate.js:347
+msgid "Oct"
+msgstr "Thg 10"
+
+#. lib/xdate.js:347
+msgid "Nov"
+msgstr "Thg 11"
+
+#. lib/xdate.js:347
+msgid "Dec"
+msgstr "Thg 12"
+
+#. lib/xdate.js:348
+msgid "Sunday"
+msgstr "Chủ nhật"
+
+#. lib/xdate.js:348
+msgid "Monday"
+msgstr "Thứ 2"
+
+#. lib/xdate.js:348
+msgid "Tuesday"
+msgstr "Thứ 3"
+
+#. lib/xdate.js:348
+msgid "Wednesday"
+msgstr "Thứ 4"
+
+#. lib/xdate.js:348
+msgid "Thursday"
+msgstr "Thứ 5"
+
+#. lib/xdate.js:348
+msgid "Friday"
+msgstr "Thứ 6"
+
+#. lib/xdate.js:348
+msgid "Saturday"
+msgstr "Thứ 7"
+
+#. lib/xdate.js:349
+msgid "Sun"
+msgstr "CN"
+
+#. lib/xdate.js:349
+msgid "Mon"
+msgstr "T2"
+
+#. lib/xdate.js:349
+msgid "Tue"
+msgstr "T3"
+
+#. lib/xdate.js:349
+msgid "Wed"
+msgstr "T4"
+
+#. lib/xdate.js:349
+msgid "Thu"
+msgstr "T5"
+
+#. lib/xdate.js:349
+msgid "Fri"
+msgstr "T6"
+
+#. lib/xdate.js:349
+msgid "Sat"
+msgstr "T7"
+
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "Một desklet hiển thị lịch trình của bạn dựa trên Lịch Google"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Kiểu Desklet"
+
+#. settings-schema.json->display0->description
+msgid "Google Calendar authentication"
+msgstr "Xác thực Lịch Google"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "ID Khách hàng"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr "Nhập ID khách hàng dự án lịch Google của bạn. Để trống để sử dụng ID khách hàng mặc định."
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "Bí mật Khách hàng"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr "Nhập bí mật khách hàng dự án lịch Google của bạn. Để trống để sử dụng bí mật khách hàng mặc định."
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "Cấu hình lịch"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr "ID Tài khoản gcalendar"
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr "Nhập gcalendar --account id"
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr "mặc định"
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "Điền vào danh sách bên dưới với tên của tất cả lịch của tôi"
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr "Nhấp để điền vào danh sách bên dưới với tên của tất cả lịch của bạn. Có thể mất một chút thời gian."
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "Hiển thị các lịch này:"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr "Nếu bạn muốn hiển thị một lịch, hãy đặt nó thành TRUE (hoặc chọn hộp kiểm của nó)."
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "Lịch"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "Hiển thị?"
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "Hiển thị lịch trình cho số ngày này"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "ngày"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Cập nhật mỗi:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "phút"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "Định dạng ngày"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "Nhập định dạng ngày tại đây"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "Định dạng hôm nay"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "Nhập định dạng hôm nay tại đây"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "Định dạng ngày mai"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "Nhập định dạng ngày mai tại đây"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "Sử dụng đồng hồ 24h"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "Chọn để hiển thị thời gian theo 24h"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "lần"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Phóng to theo"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Thay đổi kích thước của desklet"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Độ trong suốt"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Đặt độ trong suốt của desklet"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Nhấp vào nút để chọn màu chữ mới"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr "Màu chữ sự kiện cả ngày"
+
+#. settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr "Nhấp vào nút để chọn màu chữ mới cho sự kiện cả ngày"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Nhấp vào nút để chọn màu nền mới"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr "Phân biệt lịch"
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr "Hiển thị dấu đầu dòng màu trước các sự kiện"
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr "Hiển thị địa điểm"
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr "Hiển thị địa điểm sự kiện nếu có"
+
+#. settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr "Màu chữ địa điểm"
+
+#. settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
+msgstr "Nhấp vào nút để chọn màu chữ địa điểm mới"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Bán kính góc"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Bán kính để bo tròn các góc của desklet"
+
+#. settings-schema.json->display_mode->description
+msgid "Display mode"
+msgstr "Chế độ hiển thị"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr "bình thường"
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr "nhỏ gọn"
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr "siêu nhỏ gọn"

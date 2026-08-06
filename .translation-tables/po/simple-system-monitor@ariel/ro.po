@@ -1,0 +1,262 @@
+# Translation for simple-system-monitor@ariel
+# Copyright (C) 2023 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-07 06:24-0400\n"
+"PO-Revision-Date: 2023-09-03 14:07-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: 4.0/desklet.js:35 5.8/desklet.js:43
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    on Fedora: libgtop2-devel \n"
+"\t    on Arch: libgtop \n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Lipsește dependența. Te rugăm să instalezi\n"
+"libgtop\n"
+"\t    pe Ubuntu: gir1.2-gtop-2.0\n"
+"\t    pe Fedora: libgtop2-devel\n"
+"\t    pe Arch: libgtop\n"
+"și repornești Cinnamon.\n"
+
+#: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
+msgid "CPU:"
+msgstr "CPU:"
+
+#: 4.0/desklet.js:237 5.8/desklet.js:300 3.0/desklet.js:239
+msgid "Memory:"
+msgstr "Memorie:"
+
+#: 4.0/desklet.js:238 5.8/desklet.js:302 3.0/desklet.js:240
+msgid "Download:"
+msgstr "Descărcați:"
+
+#: 4.0/desklet.js:239 5.8/desklet.js:304 3.0/desklet.js:241
+msgid "Upload:"
+msgstr "Încărcați:"
+
+#: 4.0/desklet.js:240 5.8/desklet.js:306 3.0/desklet.js:242
+msgid "Temperature:"
+msgstr "Temperatura:"
+
+#: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
+msgid "GPU:"
+msgstr "GPU:"
+
+#: 5.8/desklet.js:112
+msgid "No temp file detected at CPU path. Resetting to default."
+msgstr ""
+"Nu a fost detectat niciun fișier temporar în calea CPU. Se resetează la "
+"valoarea implicită."
+
+#: 5.8/desklet.js:116
+msgid "Invalid CPU path detected. Resetting to default."
+msgstr "A fost detectată o cale CPU invalidă. Resetare la valorile implicite."
+
+#: 5.8/desklet.js:131 5.8/desklet.js:172
+msgid "error reading:"
+msgstr "citirea erorilor:"
+
+#: 5.8/desklet.js:153
+msgid "No temp file detected at GPU path. Resetting to default."
+msgstr ""
+"Nu a fost detectat niciun fișier temporar în calea GPU. Se resetează la "
+"valoarea implicită."
+
+#: 5.8/desklet.js:157
+msgid "Invalid GPU path detected. Resetting to default."
+msgstr ""
+"A fost detectată o cale de acces la GPU invalidă. Resetare la valorile "
+"implicite."
+
+#: 5.8/desklet.js:212 5.8/desklet.js:230
+msgid "Please install missing dependencies."
+msgstr "Te rugăm să instalezi dependențele lipsă."
+
+#: 3.0/desklet.js:37
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Lipsește dependența. Te rugăm să instalezi\n"
+"libgtop, Network Manager și gir bindings\n"
+"\t    pe Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0\n"
+"\t    pe Fedora: libgtop2-devel, NetworkManager-glib-devel\n"
+"\t    pe Arch: libgtop, networkmanager\n"
+"și repornești Cinnamon.\n"
+
+#. metadata.json->description
+msgid "Shows some system status values"
+msgstr "Afișează unele valori ale stării sistemului"
+
+#. metadata.json->name
+msgid "Simple System Monitor"
+msgstr "Monitor de sistem simplu"
+
+#. 5.8->settings-schema.json->head0->description
+msgid "General Settings"
+msgstr "Setări generale"
+
+#. 5.8->settings-schema.json->title_align->description
+msgid "Alignment for title strings"
+msgstr "Aliniere pentru șirurile de titluri"
+
+#. 5.8->settings-schema.json->title_align->tooltip
+msgid "CPU, Memory, etc."
+msgstr "CPU, memorie etc."
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Left"
+msgstr "Stânga"
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Right"
+msgstr "Dreapta"
+
+#. 5.8->settings-schema.json->value_align->description
+msgid "Alignment for value strings"
+msgstr "Aliniere pentru șirurile de valori"
+
+#. 5.8->settings-schema.json->value_align->tooltip
+msgid "GB, KB, etc."
+msgstr "GB, KB, etc."
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°C"
+msgstr "°C"
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°F"
+msgstr "°F"
+
+#. 5.8->settings-schema.json->temp_units->description
+msgid "Temperature units to display"
+msgstr "Unități de temperatură de afișat"
+
+#. 5.8->settings-schema.json->font_scale_size->description
+msgid "Scale factor for font size"
+msgstr "Factor de scară pentru dimensiunea fontului"
+
+#. 5.8->settings-schema.json->font_scale_size->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Mărește sau micșorează această valoare pentru a modifica scara dimensiunii "
+"fontului (1,2 = 120%)"
+
+#. 5.8->settings-schema.json->font_color->description
+msgid "Font color"
+msgstr "Culoarea fontului"
+
+#. 5.8->settings-schema.json->font_color->tooltip
+#. 5.8->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB sau RGBA"
+
+#. 5.8->settings-schema.json->font_family->description
+msgid "Font family for text (blank to use default)"
+msgstr ""
+"Familie de caractere pentru text (gol pentru a utiliza valoarea implicită)"
+
+#. 5.8->settings-schema.json->font_family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Setează o familie de fonturi personalizată pentru text (gol pentru a utiliza "
+"fontul implicit)"
+
+#. 5.8->settings-schema.json->width->units
+msgid "px"
+msgstr "px"
+
+#. 5.8->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Lățime fixă pentru desklet"
+
+#. 5.8->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+"Mărește sau micșorează această valoare pentru a seta lățimea limitei "
+"deskletului"
+
+#. 5.8->settings-schema.json->show_decorations->description
+msgid "Show background decorations"
+msgstr "Afișează decorațiunile de fundal"
+
+#. 5.8->settings-schema.json->show_decorations->tooltip
+msgid "Toggle to control whether the background is transparent"
+msgstr "Comutator pentru a controla dacă fundalul este transparent"
+
+#. 5.8->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Culoarea de fundal"
+
+#. 5.8->settings-schema.json->head1->description
+msgid "Advanced Settings"
+msgstr "Setări avansate"
+
+#. 5.8->settings-schema.json->customCPUPath->description
+msgid "Path to CPU temperature directory (device path)"
+msgstr "Calea de acces la directorul de temperatură CPU (calea dispozitivului)"
+
+#. 5.8->settings-schema.json->customCPUPath->tooltip
+msgid ""
+"Choose your own thermal CPU object e.g. for monitoring another temperature "
+"sensor.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+"Alege propriul obiect CPU termic, de exemplu, pentru monitorizarea unui alt "
+"senzor de temperatură.\n"
+"\n"
+"Implicit:\n"
+"/sys/class/thermal/thermal_zone0"
+
+#. 5.8->settings-schema.json->display_gpu->description
+msgid "Display GPU temperature"
+msgstr "Afișarea temperaturii GPU"
+
+#. 5.8->settings-schema.json->display_gpu->tooltip
+msgid "Toggle to control whether the GPU temperature is displayed"
+msgstr "Comută pentru a controla dacă temperatura GPU este afișată sau nu."
+
+#. 5.8->settings-schema.json->customGPUPath->description
+msgid "Path to GPU temperature directory (device path)"
+msgstr "Calea către directorul de temperatură GPU (calea dispozitivului)"
+
+#. 5.8->settings-schema.json->customGPUPath->tooltip
+msgid ""
+"Choose your own thermal GPU object e.g. for monitoring a GPU.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+"Alege propriul obiect termic GPU, de exemplu, pentru monitorizarea unui "
+"GPU.\n"
+"\n"
+"Implicit:\n"
+"/sys/class/thermal/thermal_zone0"

@@ -1,0 +1,182 @@
+# Dual DateTime
+# Copyright (C) 2023
+# Rick Calixte <10281587+rcalixte@users.noreply.github.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+msgid ""
+"A highly customizable clock desklet that can display dual datetime strings"
+msgstr ""
+"Egy nagymértékben testreszabható óra asztalkalmazás, amely kettős dátum-idő "
+"karakterláncot képes megjeleníteni"
+
+#. metadata.json->name
+msgid "Dual Datetime"
+msgstr "Kettős dátumidő"
+
+#. 5.4->settings-schema.json->time_custom1->description
+msgid "Customize First Time Value"
+msgstr "Az első sor értékének testreszabása"
+
+#. 5.4->settings-schema.json->time_format1->description
+#. 5.4->settings-schema.json->time_format2->description
+msgid "Time Format"
+msgstr "Idő formátum"
+
+#. 5.4->settings-schema.json->time_format1->tooltip
+#. 5.4->settings-schema.json->time_format2->tooltip
+msgid ""
+"The datetime format to use for the output. See 'Format String Help' below "
+"for additional details."
+msgstr ""
+"A kimenethez használandó dátum-idő formátum. További részletekért olvassa el "
+"a lenti „Karakterlánc formázási súgóját”."
+
+#. 5.4->settings-schema.json->time_align1->description
+#. 5.4->settings-schema.json->time_yalign1->description
+#. 5.4->settings-schema.json->time_align2->description
+#. 5.4->settings-schema.json->time_yalign2->description
+msgid "Time Alignment"
+msgstr "Óra elrendezése"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Left"
+msgstr "Bal"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Center"
+msgstr "Középpont"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Right"
+msgstr "Jobb"
+
+#. 5.4->settings-schema.json->time_yalign1->tooltip
+#. 5.4->settings-schema.json->time_yalign2->tooltip
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr "Ez az érték csak akkor érvényes, ha az érték kisebb, mint a másik soré"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Top"
+msgstr "Felül"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Middle"
+msgstr "Közép"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Bottom"
+msgstr "Lent"
+
+#. 5.4->settings-schema.json->time_font1->description
+#. 5.4->settings-schema.json->time_font2->description
+msgid "Font Family (blank for default)"
+msgstr "Betűtípus (alapértelmezett betűtípust használja ha üres ez a mező)"
+
+#. 5.4->settings-schema.json->time_color1->description
+#. 5.4->settings-schema.json->time_color2->description
+msgid "Font Color"
+msgstr "Betű szín"
+
+#. 5.4->settings-schema.json->time_color1->tooltip
+#. 5.4->settings-schema.json->time_color2->tooltip
+#. 5.4->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB vagy RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+msgid "Font Weight"
+msgstr "Betű súly"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Növelje vagy csökkentse ezt az értéket a betűtípus súlyának módosításához "
+"(Normál = 400, Félkövér = 700)"
+
+#. 5.4->settings-schema.json->time_size1->description
+#. 5.4->settings-schema.json->time_size2->description
+msgid "Font Size"
+msgstr "Betűméret"
+
+#. 5.4->settings-schema.json->time_size1->tooltip
+#. 5.4->settings-schema.json->time_size2->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Növelje vagy csökkentse ezt az értéket a betűméret tartomány módosításához "
+"(1,2 = 120%)"
+
+#. 5.4->settings-schema.json->time_custom2->description
+msgid "Customize Second Time Value"
+msgstr "Az második sor értékének testreszabása"
+
+#. 5.4->settings-schema.json->datetime_button->description
+msgid "Format String Help"
+msgstr "Formázási karakterlánc Súgó"
+
+#. 5.4->settings-schema.json->head4->description
+msgid "Additional Options"
+msgstr "További beállítások"
+
+#. 5.4->settings-schema.json->width->units
+msgid "px"
+msgstr "px"
+
+#. 5.4->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Az asztalkalmazás szélességének rögzítése"
+
+#. 5.4->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+"Növelje vagy csökkentse ezt az értéket az asztalkalmazás határszélességének "
+"beállításához"
+
+#. 5.4->settings-schema.json->title_align->description
+msgid "Layout"
+msgstr "Elrendezés"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Vertical"
+msgstr "Függőleges"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Horizontal"
+msgstr "Vízszintes"
+
+#. 5.4->settings-schema.json->show_decorations->description
+msgid "Show decorations"
+msgstr "Díszítések megjelenítése"
+
+#. 5.4->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Háttérszín"

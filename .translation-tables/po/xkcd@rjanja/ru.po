@@ -1,0 +1,35 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-17 23:31+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:215
+msgid "xkcd"
+msgstr ""
+
+#: desklet.js:223
+msgid "View latest xkcd"
+msgstr "Просмотр последнего xkcd"
+
+#: desklet.js:226
+msgid "Open save folder"
+msgstr "Открыть каталог сохранения"
+
+#. metadata.json->name
+msgid "xkcd comics viewer"
+msgstr "Просмотрщик xkcd комиксов"
+
+#. metadata.json->description
+msgid "A viewer for today's xkcd comic"
+msgstr "Просмотреть сегодняшние xkcd комиксы"

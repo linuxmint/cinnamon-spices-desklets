@@ -1,0 +1,215 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Часы"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Аналоговые часы с возможностью выбора размера, плавной анимацией стрелок и "
+"возможностью смены фонового изображения."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Аналоговые Часы (Analog Chronometer)"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Настройки для clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Внешний вид"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Стиль Часов"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Светлый"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Тёмный"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Светлый с прозрачностью"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Тёмный с прозрачностью"
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Полупрозрачный"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Пользовательский"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Выберите стиль оформления который вы хотите использовать."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Показывать секундную стрелку"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Показать или скрыть секундную стрелку."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Плавное движение секундной стрелки"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Использовать плавную анимацию для секундной стрелки или периодическую, раз в "
+"секунду."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Плавное движение минутной стрелки"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Использовать плавную анимацию для минутной стрелки или периодическую, раз в "
+"минуту."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Скрыть декорации"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "пикселей"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Размер часов"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Увеличить или уменьшить размер часов."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Пользовательская текстовая метка на часах (видно только если декорация "
+"включена)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Использовать свою текстовую метку"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Включите для возможности установки своей текстовой метки."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Пользовательская текстовая метка"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Установите здесь свою текстовую метку, например если вы используете "
+"несколько часов с разными часовыми поясами."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Часовой пояс"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Использовать пользовательский часовой пояс"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr "Включите для возможности установки любого часового пояса."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Пользовательский часовой пояс"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Ведите пользовательский часовой пояс здесь."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Пользовательское изображение (доступно если стиль установлен как "
+"\"Пользовательский\")"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Фоновое изображение"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Выберите своё фоновое изображение."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Секундная стрелка"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Выберите своё изображение для секундной стрелки. Размер должен быть такой же "
+"как и у фонового изображения."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Минутная стрелка"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Выберите своё изображение для минутной стрелки. Размер должен быть такой же "
+"как и у фонового изображения."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Часовая стрелка"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Выберите своё изображение для часовой стрелки. Размер должен быть такой же "
+"как и у фонового изображения."

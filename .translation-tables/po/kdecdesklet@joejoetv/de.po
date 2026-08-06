@@ -1,0 +1,67 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2020-08-13 23:35+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:291
+msgid "Reply"
+msgstr "Antworten"
+
+#: desklet.js:375
+msgid "Available Devices"
+msgstr "Verfügbare Geräte"
+
+#: desklet.js:396
+msgid "Reload Desklet"
+msgstr "Desklet neuladen"
+
+#: desklet.js:401
+msgid "KDEConnect is not running!"
+msgstr "KDEConnect läuft nicht!"
+
+#: desklet.js:451
+msgid "No Device Selected!"
+msgstr "Kein Gerät ausgewählt!"
+
+#: desklet.js:580
+msgid "No paired devices!"
+msgstr "Keine gekoppelten Geräte!"
+
+#. metadata.json->name
+msgid "KDEConnect Desklet"
+msgstr "KDEConnect Desklet"
+
+#. metadata.json->description
+msgid ""
+"Desklet for displaying information about a Device connected with KDeConnect."
+msgstr ""
+"Ein Desklet, um Informationen über ein per KDEConnect verbundenes Gerät "
+"anzuzeigen und damit zu interagieren."
+
+#. settings-schema.json->header->description
+msgid "Device Settings"
+msgstr "Geräteeinstellungen"
+
+#. settings-schema.json->selected-device-id->description
+msgid "Device ID of selected Device"
+msgstr "Geräte-ID des ausgewählten Geräts"
+
+#. settings-schema.json->selected-device-id->tooltip
+msgid "KDEConnect Device ID"
+msgstr "KDEConnect Geräte-ID"

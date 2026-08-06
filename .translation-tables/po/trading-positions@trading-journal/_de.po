@@ -1,0 +1,73 @@
+# German translations for PACKAGE package
+# German messages for PACKAGE.
+# Copyright (C) 2026 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Automatically generated, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: trading-positions@trading-journal\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-29 12:21+0200\n"
+"PO-Revision-Date: 2026-06-29 12:21+0200\n"
+"Last-Translator: Mouses007\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:328 desklet.js:358
+msgid "Symbol"
+msgstr ""
+
+#: desklet.js:329 desklet.js:359
+msgid "Side"
+msgstr ""
+
+#: desklet.js:331 desklet.js:361
+msgid "Lvg"
+msgstr ""
+
+#: desklet.js:332
+msgid "Entry"
+msgstr ""
+
+#: desklet.js:333
+msgid "Mark"
+msgstr ""
+
+#: desklet.js:334
+msgid "unr. PnL"
+msgstr ""
+
+#: desklet.js:335
+msgid "real. PnL"
+msgstr ""
+
+#: desklet.js:362
+msgid "Ø Entry"
+msgstr ""
+
+#: desklet.js:363
+msgid "Liq"
+msgstr ""
+
+#: desklet.js:364
+msgid "PnL"
+msgstr ""
+
+#. metadata.json->name
+msgid "Trading Positions"
+msgstr ""
+
+#. settings-schema.json->font-size->units
+#. settings-schema.json->font-size-ui->units
+#. settings-schema.json->min-width->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->bg-opacity->units
+msgid "%"
+msgstr ""

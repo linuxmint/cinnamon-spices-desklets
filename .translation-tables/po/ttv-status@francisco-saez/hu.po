@@ -1,0 +1,127 @@
+# TWITCH.TV CHANNEL STATUS
+# This file is put in the public domain.
+# francisco-saez, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ttv-status@francisco-saez 0.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-03 14:56-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. metadata.json->name
+msgid "Twitch.tv channel status"
+msgstr "Twitch.tv csatorna állapot"
+
+#. metadata.json->description
+msgid "Get live status of Twitch channels."
+msgstr "Élő állapot megtekintése a Twitch csatornákról."
+
+#. settings-schema.json->head0->description
+msgid "Channel options"
+msgstr "Csatorna beállítások"
+
+#. settings-schema.json->channel->description
+msgid "Twitch channel"
+msgstr "Twitch csatorna"
+
+#. settings-schema.json->channel->tooltip
+msgid "Channel name can be found in the twitch url."
+msgstr "A csatorna nevét a Twitch url-ben találod."
+
+#. settings-schema.json->channel_name->description
+msgid "Display name"
+msgstr "Megjelenített név"
+
+#. settings-schema.json->refresh_rate->description
+msgid "Refresh rate"
+msgstr "Frissítési gyakoriság"
+
+#. settings-schema.json->refresh_rate->units
+#. settings-schema.json->refresh_rate_online->units
+msgid "minutes"
+msgstr "perc"
+
+#. settings-schema.json->refresh_rate_option->description
+#. settings-schema.json->refresh_rate_online->description
+msgid "Online refresh rate"
+msgstr "Online frissítési gyakoriság"
+
+#. settings-schema.json->refresh_rate_option->tooltip
+msgid ""
+"This option allows you to adjust the refresh rate for when the channel is "
+"online, which can help save data transfer."
+msgstr ""
+"Ez az opció lehetővé teszi a frissítési gyakoriság beállítását, amikor a "
+"csatorna online van, ami segíthet az adatátvitel megtakarításában."
+
+#. settings-schema.json->head1->description
+msgid "Desklet UI"
+msgstr "Asztalkalmazás felhasználói felület"
+
+#. settings-schema.json->use_custom_size->description
+msgid "Custom width and height"
+msgstr "Egyéni szélesség és magasság"
+
+#. settings-schema.json->use_custom_size->tooltip
+msgid "Checking this box allows you to set custom size."
+msgstr "A jelölőnégyzet bejelölésével egyéni méretet állíthat be."
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Szélesség"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Magasság"
+
+#. settings-schema.json->hide_decorations->description
+msgid "Custom style"
+msgstr "Egyéni stílus"
+
+#. settings-schema.json->hide_decorations->tooltip
+msgid ""
+"Selecting this option allows for UI customization by ignoring the Cinnamon "
+"theme and style."
+msgstr ""
+"Ennek a beállításnak a kiválasztása lehetővé teszi a felhasználói felület "
+"testreszabását a Cinnamon téma és stílus figyelmen kívül hagyásával."
+
+#. settings-schema.json->border_radius->description
+msgid "Border radius"
+msgstr "Szegélysugár"
+
+#. settings-schema.json->border_radius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Az asztalkalmazás sarok lekerekítésének sugara"
+
+#. settings-schema.json->padding_vertical->description
+msgid "Vertical padding"
+msgstr "Függőleges kitöltés"
+
+#. settings-schema.json->padding_vertical->tooltip
+#. settings-schema.json->padding_horizontal->tooltip
+msgid "The extra space around the container"
+msgstr "A tároló körüli extra hely"
+
+#. settings-schema.json->padding_horizontal->description
+msgid "Horizontal padding"
+msgstr "Vízszintes kitöltés"
+
+#. settings-schema.json->bg_color->description
+msgid "Background color"
+msgstr "Háttészín"

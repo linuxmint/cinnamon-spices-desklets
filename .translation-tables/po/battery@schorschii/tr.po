@@ -1,0 +1,170 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Gökhan GÖKKAYA <gokhanlnx@gmail.com>, 2018.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
+"PO-Revision-Date: 2023-07-07 23:50-0400\n"
+"Last-Translator: Gökhan GÖKKAYA <gokhanlnx@gmail.com>\n"
+"Language-Team: Linux Mint Türkiye <gokhanlnx@gmail.com>\n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:356
+msgid "Battery"
+msgstr "Pil"
+
+#. metadata.json->description
+msgid "A battery desklet in iOS style with multi-battery support."
+msgstr "Çok pil desteği ile iOS tarzında bir pil masaüstü uygulamacığı."
+
+#. metadata.json->name
+msgid "Battery Level Indicator"
+msgstr "Pil Seviyesi Göstergesi"
+
+#. settings-schema.json->head0->description
+msgid "Settings for battery@schorschii"
+msgstr "battery@schorschii için Ayarlar"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Görsel"
+
+#. settings-schema.json->showpercent->description
+msgid "Show battery capacity in percent"
+msgstr "Pil kapasitesini yüzde olarak göster"
+
+#. settings-schema.json->showpercent->tooltip
+msgid "Battery capacity is only shown when plug/flash icon is not visible."
+msgstr "Pil kapasitesi sadece fiş/flaş simgesi görünmediğinde gösterilir."
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""
+
+#. settings-schema.json->showplug->description
+msgid "Show plug/flash icon when power supply is plugged in"
+msgstr "Güç kaynağı takıldığında fiş/flaş simgesini göster"
+
+#. settings-schema.json->showplug->tooltip
+msgid ""
+"flash icon: power online and battery is charging\n"
+"plug icon: power online but battery is not charging"
+msgstr ""
+"flaş simgesi: güç takılı ve pil şarj oluyor\n"
+"fiş simgesi: güç takılı ve pil şarj olmuyor"
+
+#. settings-schema.json->bg-img->description
+msgid "Battery style"
+msgstr "Pil tarzı"
+
+#. settings-schema.json->bg-img->options
+msgid "Transparent"
+msgstr "Şeffaf"
+
+#. settings-schema.json->bg-img->options
+msgid "Black"
+msgstr "Siyah"
+
+#. settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Kullanmak istediğiniz arkaplan grafiğini seçin."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Süslemeleri gizle"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "ölçü çarpanı"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Masaüstü uygulamacığının boyutu"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the battery using this scale factor."
+msgstr "Bu ölçü çarpanını kullanarak pilin boyutunu artırın veya azaltın."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Masaüstü uygulamacığı özel etiketi (sadece süslemeler etkinse görünür)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Masaüstü uygulamacığı için özel bir etiketi kullan"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Bu kutuyu işaretlemek, aşağıda açılacak alandan özel bir etiket ayarlamanıza "
+"izin verir."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Özel masaüstü uygulamacığı etiketi"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple batteries. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Özel etiketinizi buraya yerleştirin, örneğin \"çoklu pil izlemek için\". "
+"Yukarıdaki onay kutusu etkinleştirilmemişse bu alan kullanılamaz."
+
+#. settings-schema.json->head3->description
+msgid "Advanced"
+msgstr "Gelişmiş"
+
+#. settings-schema.json->devfile_capacity->description
+msgid "Path to battery capacity file (device file)"
+msgstr "Pil kapasitesi dosyasının yolu (cihaz dosyası)"
+
+#. settings-schema.json->devfile_capacity->tooltip
+msgid ""
+"Choose your own capacity file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Kendi kapasite dosyanızı seçin, örneğin ikincil pilinizi izlemek için.\n"
+"\n"
+"Varsayılan:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"x kısmını pil numarası ile değiştirin."
+
+#. settings-schema.json->devfile_status->description
+msgid "Path to battery status file (device file)"
+msgstr "Pil durum dosyasının yolu (cihaz dosyası)"
+
+#. settings-schema.json->devfile_status->tooltip
+msgid ""
+"Choose your own status file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Kendi durum dosyanızı seçin, örneğin ikincil pilinizi izlemek için.\n"
+"\n"
+"Varsayılan:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"x kısmını pil numarası ile değiştirin."

@@ -1,0 +1,54 @@
+# DISK SPACE
+# This file is put in the public domain.
+# schorschii, 2018
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:437
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:438
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:438
+msgid "` Error: "
+msgstr ""
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->fonts-section->title
+msgid "Fonts"
+msgstr ""
+
+#. settings-schema.json->label-section->title
+msgid "Custom Label"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->description
+msgid "Number of fractional digits"
+msgstr ""
+
+#. settings-schema.json->size-fraction-digits->tooltip
+msgid "Increase or decrease the number digits after the decimal point."
+msgstr ""
+
+#. settings-schema.json->font->description
+msgid "Text font"
+msgstr ""
+
+#. settings-schema.json->font->tooltip
+msgid "Change text font family"
+msgstr ""
+
+#. settings-schema.json->font-sub->description
+msgid "Sub text font"
+msgstr ""
+
+#. settings-schema.json->font-sub->tooltip
+msgid "Change font family of the text below the percentage"
+msgstr ""

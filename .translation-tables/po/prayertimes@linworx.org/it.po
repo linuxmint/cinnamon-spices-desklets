@@ -1,0 +1,374 @@
+# SALAT PRAYER TIMES
+# This file is put in the public domain.
+# mkessas, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: prayertimes@linworx.org 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-07 13:08-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+msgid "Salat prayer times"
+msgstr "Orari preghiera Salat"
+
+#. metadata.json->description
+msgid "Salat (namaz) daily prayer times desklet"
+msgstr "Desklet per gli orari giornalieri di preghiera Salat (namaz)"
+
+#. 5.8->settings-schema.json->calculation_page->title
+msgid "Calculation Options"
+msgstr "Opzioni di calcolo"
+
+#. 5.8->settings-schema.json->location_section->title
+msgid "Your location"
+msgstr "La tua posizione"
+
+#. 5.8->settings-schema.json->calculation_section->title
+msgid "Prayer Calculation Method"
+msgstr "Metodo di calcolo degli orari di preghiera"
+
+#. 5.8->settings-schema.json->adjustments_page->title
+msgid "Time & Date Adjustments"
+msgstr "Regolazioni di tempo e data"
+
+#. 5.8->settings-schema.json->prayer_adjustment_section->title
+msgid "Prayer Time Adjustments"
+msgstr "Regolazioni orari preghiera"
+
+#. 5.8->settings-schema.json->date_adjustment_section->title
+msgid "Hijri Date Adjustment"
+msgstr "Regolazione data Hijri"
+
+#. 5.8->settings-schema.json->appearance_page->title
+msgid "Desklet Appearance"
+msgstr "Aspetto Desklet"
+
+#. 5.8->settings-schema.json->appearance_section->title
+msgid "Appearance"
+msgstr "Aspetto"
+
+#. 5.8->settings-schema.json->components_section->title
+msgid "Widgets"
+msgstr "Widget"
+
+#. 5.8->settings-schema.json->autolocation->options
+msgid "Auto-detect location"
+msgstr "Individuazione automatica posizione"
+
+#. 5.8->settings-schema.json->autolocation->options
+msgid "Manual location"
+msgstr "Posizione manuale"
+
+#. 5.8->settings-schema.json->autolocation->description
+msgid "Detect location automatically"
+msgstr "Rileva automaticamente la posizione"
+
+#. 5.8->settings-schema.json->autolocation->tooltip
+msgid "Automatic location uses Internet"
+msgstr "La posizione automatica utilizza Internet"
+
+#. 5.8->settings-schema.json->latitude->description
+msgid "Enter your location latitude"
+msgstr "Inserisci la latitudine della tua posizione"
+
+#. 5.8->settings-schema.json->latitude->tooltip
+#. 5.8->settings-schema.json->longitude->tooltip
+msgid "Input your latitude and longitude manually"
+msgstr "Inserisci manualmente latitudine e longitudine"
+
+#. 5.8->settings-schema.json->longitude->description
+msgid "Enter your location longitude"
+msgstr "Inserisci la longitudine della tua posizione"
+
+#. 5.8->settings-schema.json->method->description
+msgid "Prayer time calcuation method"
+msgstr "Metodo di calcolo degli orari di preghiera"
+
+#. 5.8->settings-schema.json->method->tooltip
+msgid "Choose a method for calcuating your prayer times"
+msgstr "Scegli un metodo per calcolare gli orari di preghiera"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Muslim World Leauge"
+msgstr "Muslim World League"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Egyptian General Survey Authority"
+msgstr "Autorità Egiziana di Rilevamento Generale"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Karachi"
+msgstr "Karachi"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Umm al Qura"
+msgstr "Umm al-Qura"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Dubai"
+msgstr "Dubai"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Qatar"
+msgstr "Qatar"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Kuwait"
+msgstr "Kuwait"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Moonsighting Committee"
+msgstr "Comitato dell’osservazione della luna"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Singapore"
+msgstr "Singapore"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Turkey"
+msgstr "Turchia"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Tehran"
+msgstr "Teheran"
+
+#. 5.8->settings-schema.json->method->options
+msgid "Islamic Society of North America (ISNA)"
+msgstr "Islamic Society of North America (ISNA)"
+
+#. 5.8->settings-schema.json->madhab->description
+msgid "Madhab"
+msgstr "Madhab"
+
+#. 5.8->settings-schema.json->madhab->tooltip
+msgid "Choose a method for calculating the Asr prayer"
+msgstr "Scegli un metodo per calcolare l’orario di preghiera Asr"
+
+#. 5.8->settings-schema.json->madhab->options
+msgid "Shafi, Maliki, Hanbali (earlier Asr)"
+msgstr "Shafi, Maliki, Hanbali (Asr anticipato)"
+
+#. 5.8->settings-schema.json->madhab->options
+msgid "Hanafi (later Asr)"
+msgstr "Hanafi (Asr posticipato)"
+
+#. 5.8->settings-schema.json->highlatitude->description
+msgid "High Latitude Rule"
+msgstr "Regola per latitudini elevate"
+
+#. 5.8->settings-schema.json->highlatitude->tooltip
+msgid "Choose a method for calcuating prayer times in high latitude locations"
+msgstr ""
+"Scegli un metodo per calcolare gli orari di preghiera in luoghi con "
+"latitudini elevate"
+
+#. 5.8->settings-schema.json->highlatitude->options
+msgid "Middle of the night"
+msgstr "Metà della notte"
+
+#. 5.8->settings-schema.json->highlatitude->options
+msgid "One-seventh of The Night"
+msgstr "Un settimo della notte"
+
+#. 5.8->settings-schema.json->highlatitude->options
+msgid "Twilight Angle"
+msgstr "Angolo del crepuscolo"
+
+#. 5.8->settings-schema.json->polar->description
+msgid "Polar circle resolution"
+msgstr "Risoluzione per il circolo polare"
+
+#. 5.8->settings-schema.json->polar->tooltip
+msgid "Choose a method for calcuating prayer times within the polar circle"
+msgstr ""
+"Scegli un metodo di calcolo degli orari di preghiera all’interno del circolo "
+"polare"
+
+#. 5.8->settings-schema.json->polar->options
+msgid "Use the nearest location (Aqrab Balad)"
+msgstr "Usa la località più vicina (Aqrab Balad)"
+
+#. 5.8->settings-schema.json->polar->options
+msgid "Use the cloest date"
+msgstr "Usa la data più vicina"
+
+#. 5.8->settings-schema.json->polar->options
+msgid "Leave sunrsie & sunset undefined"
+msgstr "Lascia alba e tramonto indefiniti"
+
+#. 5.8->settings-schema.json->shafaq->description
+msgid "Shafaq Isha calculation method"
+msgstr "Metodo di calcolo Shafaq Isha"
+
+#. 5.8->settings-schema.json->shafaq->tooltip
+msgid "Shafaq is used by the Moon sighting committee method to calculate Isha"
+msgstr ""
+"Lo Shafaq è usato dal metodo del Comitato dell’osservazione della luna per "
+"calcolare l’Isha"
+
+#. 5.8->settings-schema.json->shafaq->options
+msgid "General"
+msgstr "Generale"
+
+#. 5.8->settings-schema.json->shafaq->options
+msgid "Red (ahmer)"
+msgstr "Rosso (ahmer)"
+
+#. 5.8->settings-schema.json->shafaq->options
+msgid "White (abyad)"
+msgstr "Bianco (abyad)"
+
+#. 5.8->settings-schema.json->rounding->description
+msgid "Rounding method"
+msgstr "Metodo di arrotondamento"
+
+#. 5.8->settings-schema.json->rounding->tooltip
+msgid "Method used to round prayer times"
+msgstr "Metodo usato per arrotondare gli orari delle preghiere"
+
+#. 5.8->settings-schema.json->rounding->options
+msgid "Nearest"
+msgstr "Il più vicino"
+
+#. 5.8->settings-schema.json->rounding->options
+msgid "Up"
+msgstr "Arrotonda per eccesso"
+
+#. 5.8->settings-schema.json->rounding->options
+msgid "None"
+msgstr "Nessuno"
+
+#. 5.8->settings-schema.json->adjust_fajr->units
+#. 5.8->settings-schema.json->adjust_dhuhr->units
+#. 5.8->settings-schema.json->adjust_asr->units
+#. 5.8->settings-schema.json->adjust_maghrib->units
+#. 5.8->settings-schema.json->adjust_isha->units
+msgid "minutes"
+msgstr "minuti"
+
+#. 5.8->settings-schema.json->adjust_fajr->description
+msgid "Fajr adjustment"
+msgstr "Regolazione Fajr"
+
+#. 5.8->settings-schema.json->adjust_fajr->tooltip
+msgid "Fajr time will be adjusted by this many minutes"
+msgstr "L’orario di Fajr sarà regolato di questo numero di minuti"
+
+#. 5.8->settings-schema.json->adjust_dhuhr->description
+msgid "Dhuhr adjustment"
+msgstr "Regolazione Dhuhr"
+
+#. 5.8->settings-schema.json->adjust_dhuhr->tooltip
+msgid "Dhuhr time will be adjusted by this many minutes"
+msgstr "L’orario di Dhuhr sarà regolato di questo numero di minuti"
+
+#. 5.8->settings-schema.json->adjust_asr->description
+msgid "Asr adjustment"
+msgstr "Regolazione Asr"
+
+#. 5.8->settings-schema.json->adjust_asr->tooltip
+msgid "Asr time will be adjusted by this many minutes"
+msgstr "L’orario di Asr sarà regolato di questo numero di minuti"
+
+#. 5.8->settings-schema.json->adjust_maghrib->description
+msgid "Maghrib adjustment"
+msgstr "Regolazione Maghrib"
+
+#. 5.8->settings-schema.json->adjust_maghrib->tooltip
+msgid "Maghrib time will be adjusted by this many minutes"
+msgstr "L’orario di Maghrib sarà regolato di questo numero di minuti"
+
+#. 5.8->settings-schema.json->adjust_isha->description
+msgid "Isha adjustment"
+msgstr "Regolazione Isha"
+
+#. 5.8->settings-schema.json->adjust_isha->tooltip
+msgid "Isha time will be adjusted by this many minutes"
+msgstr "L’orario di Isha sarà regolato di questo numero di minuti"
+
+#. 5.8->settings-schema.json->adjust_date->units
+msgid "days"
+msgstr "giorni"
+
+#. 5.8->settings-schema.json->adjust_date->description
+msgid "Adjust hijri date"
+msgstr "Regola la data Hijri"
+
+#. 5.8->settings-schema.json->adjust_date->tooltip
+msgid "The hijri date will be adjusted by this many days"
+msgstr "La data Hijri sarà regolata di questo numero di giorni"
+
+#. 5.8->settings-schema.json->vertical_layout->description
+msgid "Vertical layout"
+msgstr "Layout verticale"
+
+#. 5.8->settings-schema.json->vertical_layout->tooltip
+msgid "Choose vertical or horizontal layout"
+msgstr "Scegli layout verticale o orizzontale"
+
+#. 5.8->settings-schema.json->desklet_size->description
+msgid "Size"
+msgstr "Dimensione"
+
+#. 5.8->settings-schema.json->desklet_size->tooltip
+msgid "Set the size of the desklet"
+msgstr "Imposta la dimensione del desklet"
+
+#. 5.8->settings-schema.json->transparency->description
+msgid "Opacity level"
+msgstr "Livello di opacità"
+
+#. 5.8->settings-schema.json->transparency->tooltip
+msgid "Set the opacity level of the desklet"
+msgstr "Imposta il livello di opacità del desklet"
+
+#. 5.8->settings-schema.json->color->description
+msgid "Text color"
+msgstr "Colore del testo"
+
+#. 5.8->settings-schema.json->color->tooltip
+msgid "The color of the text on the desklet"
+msgstr "Colore del testo nel desklet"
+
+#. 5.8->settings-schema.json->show_city->description
+msgid "Show location & city"
+msgstr "Mostra posizione e città"
+
+#. 5.8->settings-schema.json->show_city->tooltip
+msgid "Show your current location or manual location in the desklet"
+msgstr "Mostra la tua posizione attuale o quella manuale nel desklet"
+
+#. 5.8->settings-schema.json->show_countdown->description
+msgid "Show next prayer countdown"
+msgstr "Mostra il conto alla rovescia per la prossima preghiera"
+
+#. 5.8->settings-schema.json->show_countdown->tooltip
+msgid "Show the amount of time remaining before the next prayer"
+msgstr "Mostra il tempo rimanente prima della prossima preghiera"
+
+#. 5.8->settings-schema.json->show_table->description
+msgid "Show daily prayer times table"
+msgstr "Mostra tabella orari preghiera giornalieri"
+
+#. 5.8->settings-schema.json->show_table->tooltip
+msgid "Show the daily prayer times"
+msgstr "Mostra gli orari di preghiera giornalieri"
+
+#. 5.8->settings-schema.json->show_date->description
+msgid "Show Hijri date"
+msgstr "Mostra la data Hijri"
+
+#. 5.8->settings-schema.json->show_date->tooltip
+msgid "Show today's Hijri date"
+msgstr "Mostra la data Hijri di oggi"

@@ -1,0 +1,183 @@
+# Dual DateTime
+# Copyright (C) 2023
+# Rick Calixte <10281587+rcalixte@users.noreply.github.com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
+"PO-Revision-Date: 2023-10-21 17:11-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Poedit 3.4\n"
+
+#. metadata.json->description
+msgid ""
+"A highly customizable clock desklet that can display dual datetime strings"
+msgstr "Un desklet care poate afișa două texte de date și ore"
+
+#. metadata.json->name
+msgid "Dual Datetime"
+msgstr "Dual Datetime"
+
+#. 5.4->settings-schema.json->time_custom1->description
+msgid "Customize First Time Value"
+msgstr "Personalizează valoarea pentru prima oră"
+
+#. 5.4->settings-schema.json->time_format1->description
+#. 5.4->settings-schema.json->time_format2->description
+msgid "Time Format"
+msgstr "Format pentru oră"
+
+#. 5.4->settings-schema.json->time_format1->tooltip
+#. 5.4->settings-schema.json->time_format2->tooltip
+msgid ""
+"The datetime format to use for the output. See 'Format String Help' below "
+"for additional details."
+msgstr ""
+"Formatul datei care urmează să fie utilizat pentru ieșire. Pentru detalii "
+"suplimentare, consultă \"Ajutor pentru Format Text\" de mai jos."
+
+#. 5.4->settings-schema.json->time_align1->description
+#. 5.4->settings-schema.json->time_yalign1->description
+#. 5.4->settings-schema.json->time_align2->description
+#. 5.4->settings-schema.json->time_yalign2->description
+msgid "Time Alignment"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Left"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Center"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Right"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->tooltip
+#. 5.4->settings-schema.json->time_yalign2->tooltip
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Top"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Middle"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Bottom"
+msgstr ""
+
+#. 5.4->settings-schema.json->time_font1->description
+#. 5.4->settings-schema.json->time_font2->description
+msgid "Font Family (blank for default)"
+msgstr "Familie de caractere (gol pentru implicită)"
+
+#. 5.4->settings-schema.json->time_color1->description
+#. 5.4->settings-schema.json->time_color2->description
+msgid "Font Color"
+msgstr "Culoarea fontului"
+
+#. 5.4->settings-schema.json->time_color1->tooltip
+#. 5.4->settings-schema.json->time_color2->tooltip
+#. 5.4->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB sau RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+#, fuzzy
+msgid "Font Weight"
+msgstr "Mărimea fontului"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+#, fuzzy
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Mărește sau micșorează această valoare pentru a modifica scara dimensiunii "
+"fontului (1,2 = 120%)"
+
+#. 5.4->settings-schema.json->time_size1->description
+#. 5.4->settings-schema.json->time_size2->description
+msgid "Font Size"
+msgstr "Mărimea fontului"
+
+#. 5.4->settings-schema.json->time_size1->tooltip
+#. 5.4->settings-schema.json->time_size2->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Mărește sau micșorează această valoare pentru a modifica scara dimensiunii "
+"fontului (1,2 = 120%)"
+
+#. 5.4->settings-schema.json->time_custom2->description
+msgid "Customize Second Time Value"
+msgstr "Personalizează a doua valoare pentru oră"
+
+#. 5.4->settings-schema.json->datetime_button->description
+msgid "Format String Help"
+msgstr "Ajutor pentru Format Text"
+
+#. 5.4->settings-schema.json->head4->description
+msgid "Additional Options"
+msgstr "Opțiuni suplimentare"
+
+#. 5.4->settings-schema.json->width->units
+msgid "px"
+msgstr "px"
+
+#. 5.4->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Lățime fixă pentru desklet"
+
+#. 5.4->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+"Mărește sau micșorează această valoare pentru a seta lățimea limitei "
+"deskletului"
+
+#. 5.4->settings-schema.json->title_align->description
+msgid "Layout"
+msgstr ""
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Vertical"
+msgstr "Vertical"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Horizontal"
+msgstr "Orizontal"
+
+#. 5.4->settings-schema.json->show_decorations->description
+msgid "Show decorations"
+msgstr "Afișează decorațiuni"
+
+#. 5.4->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Culoarea de fundal"

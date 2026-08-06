@@ -1,0 +1,176 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
+"PO-Revision-Date: 2023-07-07 23:50-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:356
+msgid "Battery"
+msgstr "Аккумулятор"
+
+#. metadata.json->description
+msgid "A battery desklet in iOS style with multi-battery support."
+msgstr ""
+"Десклет заряду акумулятора в стилі iOS з підтримкою декількох акумуляторів."
+
+#. metadata.json->name
+msgid "Battery Level Indicator"
+msgstr "Індикатор заряду акумулятора"
+
+#. settings-schema.json->head0->description
+msgid "Settings for battery@schorschii"
+msgstr "Налаштування для battery@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Візуал"
+
+#. settings-schema.json->showpercent->description
+msgid "Show battery capacity in percent"
+msgstr "Показати ємність акумулятора у відсотках"
+
+#. settings-schema.json->showpercent->tooltip
+msgid "Battery capacity is only shown when plug/flash icon is not visible."
+msgstr ""
+"Ємність акумулятора відображається тільки коли значок штекера/спалаху не "
+"видно."
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""
+
+#. settings-schema.json->showplug->description
+msgid "Show plug/flash icon when power supply is plugged in"
+msgstr "Показувати значок вилки/спалаху при підключеному блоці живлення"
+
+#. settings-schema.json->showplug->tooltip
+msgid ""
+"flash icon: power online and battery is charging\n"
+"plug icon: power online but battery is not charging"
+msgstr ""
+"значок спалаху: живлення підключено і акумулятор заряджається\n"
+"значок пробки: живлення підключено, але акумулятор не заряджається"
+
+#. settings-schema.json->bg-img->description
+msgid "Battery style"
+msgstr "Стиль акумулятора"
+
+#. settings-schema.json->bg-img->options
+msgid "Transparent"
+msgstr "Прозорий"
+
+#. settings-schema.json->bg-img->options
+msgid "Black"
+msgstr "Чорний"
+
+#. settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Виберіть фон, який ви хочете використовувати."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Приховати прикраси"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "множник масштабу"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Розмір десклета"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the battery using this scale factor."
+msgstr ""
+"Збільште або зменшіть розмір акумулятора за допомогою цього множника "
+"масштабу."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Власна мітка десклета (видно тільки при включених прикрасах)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Використовувати власну мітку десклета"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Установка цього прапорця дозволяє задати власну мітку у полі нижче."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Власна мітка десклета"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple batteries. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Задайте тут свою власну мітку, наприклад, для моніторингу декількох "
+"акумуляторів. Це поле недоступне, якщо не встановлено прапорець вище."
+
+#. settings-schema.json->head3->description
+msgid "Advanced"
+msgstr "Розширені"
+
+#. settings-schema.json->devfile_capacity->description
+msgid "Path to battery capacity file (device file)"
+msgstr "Шлях до файлу ємності акумулятора (файл пристрою)"
+
+#. settings-schema.json->devfile_capacity->tooltip
+msgid ""
+"Choose your own capacity file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Виберіть власний файл ємності, наприклад, для моніторингу вторинного "
+"акумулятора.\n"
+"\n"
+"За замовчуванням:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"//sys/class/power_supply/Atx/capacity\n"
+"\n"
+"Замініть x на номер батареї."
+
+#. settings-schema.json->devfile_status->description
+msgid "Path to battery status file (device file)"
+msgstr "Шлях до файлу стану батареї (файл пристрою)"
+
+#. settings-schema.json->devfile_status->tooltip
+msgid ""
+"Choose your own status file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Виберіть власний файл стану, наприклад, для моніторингу вторинного "
+"акумулятора.\n"
+"\n"
+"За замовчуванням:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"//sys/class/power_supply/Atx/status\n"
+"\n"
+"Замініть x на номер батареї."

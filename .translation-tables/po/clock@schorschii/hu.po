@@ -1,0 +1,216 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2023-10-22 20:26+0200\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Óra"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Méretezhető analóg óra asztalkalmazás, folyamatos mutató animációval és "
+"szabad képválasztással."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analóg kronométer"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Clock@schorschii beállításai"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Vizuális"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Óra stílusa"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Világos"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Sötét"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Világos átlátszó"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Sötét átlátszó"
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Félig átlátszó"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Egyéni"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Válassza ki a használni kívánt háttérgrafikát."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Másodpercmutató megjelenítése"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "A másodpercmutató megjelenítése vagy elrejtése."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Folyamatos másodpercmutató animáció"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr "Folyamatos másodpercmutató animáció használata léptetés helyet."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Folyamatos percmutató animáció"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr "Folyamatos percmutató animáció használata léptetés helyet."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Díszítések elrejtése"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "képpont"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Növelje vagy csökkentse az óra méretét."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Egyéni asztali címke (csak akkor látható, ha a dekoráció engedélyezve van)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Egyéni asztalkalmazás címke használata"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ennek a négyzetnek a bejelölésével egyéni címkét állíthat be az alábbi "
+"mezőben."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Egyéni asztalkalmazás címke"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Itt állítsa be az egyéni címkét, például több időzónához. Ez a mező csak "
+"akkor érhető el, ha a fenti négyzet be van jelölve."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Időzóna"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Egyéni időzóna használata"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Ennek a négyzetnek a bejelölésével egyéni időzónát állíthat be az alábbi "
+"mezőben."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Egyéni időzóna"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Egyéni időzóna megadása itt."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr "Egyéni képek (akkor érhetők el, ha az óra stílusa „egyedi”)"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Háttér"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Válassza ki a saját háttérképét."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Másodpercmutató"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Válasszon ki a másodpercmutató számára egy saját képét. Akkorának kell "
+"lennie, mint a háttérnek használt képnek."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Percmutató"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Válasszon ki a percmutató számára egy saját képét. Akkorának kell lennie, "
+"mint a háttérnek használt képnek."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Óramutató"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Válasszon ki az óramutató számára egy saját képét. Akkorának kell lennie, "
+"mint a háttérnek használt képnek."

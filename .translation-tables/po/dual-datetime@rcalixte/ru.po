@@ -1,0 +1,178 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#. metadata.json->description
+msgid ""
+"A highly customizable clock desklet that can display dual datetime strings"
+msgstr "Настраиваемый десклет, отображающий дату и/или время в две строки"
+
+#. metadata.json->name
+msgid "Dual Datetime"
+msgstr "Дата и Время (Dual Datetime)"
+
+#. 5.4->settings-schema.json->time_custom1->description
+msgid "Customize First Time Value"
+msgstr "Настроить Первое Значение"
+
+#. 5.4->settings-schema.json->time_format1->description
+#. 5.4->settings-schema.json->time_format2->description
+msgid "Time Format"
+msgstr "Формат Времени"
+
+#. 5.4->settings-schema.json->time_format1->tooltip
+#. 5.4->settings-schema.json->time_format2->tooltip
+msgid ""
+"The datetime format to use for the output. See 'Format String Help' below "
+"for additional details."
+msgstr ""
+"Формат даты и времени, используемый для вывода. Дополнительные сведения "
+"смотрите в разделе 'Справка по форматированию' ниже."
+
+#. 5.4->settings-schema.json->time_align1->description
+#. 5.4->settings-schema.json->time_yalign1->description
+#. 5.4->settings-schema.json->time_align2->description
+#. 5.4->settings-schema.json->time_yalign2->description
+msgid "Time Alignment"
+msgstr "Выравнивание"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Left"
+msgstr "По левому краю"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Center"
+msgstr "По центру"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Right"
+msgstr "По правому краю"
+
+#. 5.4->settings-schema.json->time_yalign1->tooltip
+#. 5.4->settings-schema.json->time_yalign2->tooltip
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr ""
+"Это значение применяется только если значение этого времени меньше чем "
+"другого"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Top"
+msgstr "Верх"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Middle"
+msgstr "Серидина"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Bottom"
+msgstr "Низ"
+
+#. 5.4->settings-schema.json->time_font1->description
+#. 5.4->settings-schema.json->time_font2->description
+msgid "Font Family (blank for default)"
+msgstr "Шрифт (пусто по умолчанию)"
+
+#. 5.4->settings-schema.json->time_color1->description
+#. 5.4->settings-schema.json->time_color2->description
+msgid "Font Color"
+msgstr "Цвет Текста"
+
+#. 5.4->settings-schema.json->time_color1->tooltip
+#. 5.4->settings-schema.json->time_color2->tooltip
+#. 5.4->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB или RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+#, fuzzy
+msgid "Font Weight"
+msgstr "Размер Шрифта"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+#, fuzzy
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Увеличьте или уменьшите это значение для изменения размера шрифта (1.2 = "
+"120%)"
+
+#. 5.4->settings-schema.json->time_size1->description
+#. 5.4->settings-schema.json->time_size2->description
+msgid "Font Size"
+msgstr "Размер Шрифта"
+
+#. 5.4->settings-schema.json->time_size1->tooltip
+#. 5.4->settings-schema.json->time_size2->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Увеличьте или уменьшите это значение для изменения размера шрифта (1.2 = "
+"120%)"
+
+#. 5.4->settings-schema.json->time_custom2->description
+msgid "Customize Second Time Value"
+msgstr "Настроить Второе Значение"
+
+#. 5.4->settings-schema.json->datetime_button->description
+msgid "Format String Help"
+msgstr "Справка по форматированию"
+
+#. 5.4->settings-schema.json->head4->description
+msgid "Additional Options"
+msgstr "Дополнительные опции"
+
+#. 5.4->settings-schema.json->width->units
+msgid "px"
+msgstr "пикселей"
+
+#. 5.4->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Фиксированная ширина десклета"
+
+#. 5.4->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr "Увеличить или уменьшить размер десклета"
+
+#. 5.4->settings-schema.json->title_align->description
+msgid "Layout"
+msgstr "Ориентация"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Vertical"
+msgstr "Вертикальная"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Horizontal"
+msgstr "Горизонтальная"
+
+#. 5.4->settings-schema.json->show_decorations->description
+msgid "Show decorations"
+msgstr "Показать декорации"
+
+#. 5.4->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Цвет фона"

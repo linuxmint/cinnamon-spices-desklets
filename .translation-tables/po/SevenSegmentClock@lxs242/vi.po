@@ -1,0 +1,423 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: SevenSegmentClock@lxs242 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2025-10-19 05:18+0700\n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#: desklet.js:136
+msgid "Seven Segment Digital Clock"
+msgstr "Đồng hồ Kỹ thuật số Bảy đoạn"
+
+#: desklet.js:520
+msgid "Time is an illusion"
+msgstr "Thời gian là ảo ảnh"
+
+#: desklet.js:520
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr "Đồng hồ kỹ thuật số bảy đoạn có thể tùy chỉnh với ngày tháng và thời gian Unix"
+
+#. settings-schema.json->general->title
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->digit->title
+msgid "Digits"
+msgstr "Chữ số"
+
+#. settings-schema.json->clock->title
+msgid "Clock"
+msgstr "Đồng hồ"
+
+#. settings-schema.json->date-unix->title
+msgid "Date and Unix time"
+msgstr "Ngày và thời gian Unix"
+
+#. settings-schema.json->general-layout->title
+msgid "Main layout"
+msgstr "Bố cục chính"
+
+#. settings-schema.json->background->title
+msgid "Background"
+msgstr "Nền"
+
+#. settings-schema.json->digit-appearance->title
+msgid "Digit appearance"
+msgstr "Giao diện chữ số"
+
+#. settings-schema.json->digit-darksegments->title
+msgid "Dark segments"
+msgstr "Đoạn tối"
+
+#. settings-schema.json->digit-stroke->title
+msgid "Stroke"
+msgstr "Viền"
+
+#. settings-schema.json->clock-appearance->title
+msgid "Clock appearance"
+msgstr "Giao diện đồng hồ"
+
+#. settings-schema.json->date-appearance->title
+msgid "Date appearance"
+msgstr "Giao diện ngày"
+
+#. settings-schema.json->unix-appearance->title
+msgid "Unix time appearance"
+msgstr "Giao diện thời gian Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Date - Unix"
+msgstr "Đồng hồ - Ngày - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Unix - Date"
+msgstr "Đồng hồ - Unix - Ngày"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Clock - Unix"
+msgstr "Ngày - Đồng hồ - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Unix - Clock"
+msgstr "Ngày - Unix - Đồng hồ"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Clock - Date"
+msgstr "Unix - Đồng hồ - Ngày"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Date - Clock"
+msgstr "Unix - Ngày - Đồng hồ"
+
+#. settings-schema.json->main-layout->description
+msgid "Vertical order of main elements"
+msgstr "Thứ tự dọc của các phần tử chính"
+
+#. settings-schema.json->layout-gap->units
+#. settings-schema.json->stroke-width->units
+#. settings-schema.json->clock-height->units
+#. settings-schema.json->date-height->units
+#. settings-schema.json->unix-height->units
+msgid "pixel"
+msgstr "pixel"
+
+#. settings-schema.json->layout-gap->description
+msgid "Space between main elements"
+msgstr "Khoảng cách giữa các phần tử chính"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Hiển thị nền"
+
+#. settings-schema.json->background-color->description
+#. settings-schema.json->digit-color->description
+#. settings-schema.json->dark-color->description
+#. settings-schema.json->stroke-color->description
+msgid "Color"
+msgstr "Màu sắc"
+
+#. settings-schema.json->background-opacity->units
+#. settings-schema.json->digit-opacity->units
+#. settings-schema.json->digit-margin->units
+#. settings-schema.json->dark-opacity->units
+#. settings-schema.json->stroke-opacity->units
+msgid "percent"
+msgstr "phần trăm"
+
+#. settings-schema.json->background-opacity->description
+#. settings-schema.json->digit-opacity->description
+#. settings-schema.json->dark-opacity->description
+#. settings-schema.json->stroke-opacity->description
+msgid "Opacity"
+msgstr "Độ mờ"
+
+#. settings-schema.json->round-corners->description
+msgid "Round corners"
+msgstr "Góc bo tròn"
+
+#. settings-schema.json->background-shadow->description
+msgid "Shadow"
+msgstr "Đổ bóng"
+
+#. settings-schema.json->digit-skew->units
+msgid "degrees"
+msgstr "độ"
+
+#. settings-schema.json->digit-skew->description
+msgid "Skew"
+msgstr "Nghiêng"
+
+#. settings-schema.json->digit-margin->description
+msgid "Relative space between digits"
+msgstr "Khoảng cách tương đối giữa các chữ số"
+
+#. settings-schema.json->digit-margin->tooltip
+msgid "This value will be increasingly reduced by the digit skew."
+msgstr "Giá trị này sẽ bị giảm dần do độ nghiêng chữ số."
+
+#. settings-schema.json->digit-alt69->description
+msgid "Alternative 6 and 9"
+msgstr "Kiểu 6 và 9 thay thế"
+
+#. settings-schema.json->digit-alt7->description
+msgid "Alternative 7"
+msgstr "Kiểu 7 thay thế"
+
+#. settings-schema.json->dark-enabled->description
+msgid "Show dark segments of the digits"
+msgstr "Hiển thị các đoạn tối của chữ số"
+
+#. settings-schema.json->dark-color->options
+msgid "Black"
+msgstr "Đen"
+
+#. settings-schema.json->dark-color->options
+msgid "White"
+msgstr "Trắng"
+
+#. settings-schema.json->dark-color->options
+msgid "same as illuminated"
+msgstr "giống như đoạn sáng"
+
+#. settings-schema.json->stroke-enabled->description
+msgid "Add stroke"
+msgstr "Thêm viền"
+
+#. settings-schema.json->stroke-width->description
+msgid "Width"
+msgstr "Độ rộng"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Hiển thị đồng hồ"
+
+#. settings-schema.json->clock-height->description
+#. settings-schema.json->date-height->description
+#. settings-schema.json->unix-height->description
+msgid "Digit height"
+msgstr "Chiều cao chữ số"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Hiển thị giây"
+
+#. settings-schema.json->small-seconds->description
+msgid "Smaller seconds"
+msgstr "Giây nhỏ hơn"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "none"
+msgstr "không có"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "half space"
+msgstr "nửa khoảng trắng"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "full space"
+msgstr "khoảng trắng đầy đủ"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "decimal point"
+msgstr "dấu thập phân"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "colon"
+msgstr "dấu hai chấm"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "dash"
+msgstr "dấu gạch ngang"
+
+#. settings-schema.json->clock-divider->description
+#. settings-schema.json->date-divider->description
+#. settings-schema.json->unix-divider->description
+msgid "Divider type"
+msgstr "Loại dấu phân cách"
+
+#. settings-schema.json->clock-blink->description
+msgid "Blinking divider (only decimal point and colon)"
+msgstr "Dấu phân cách nhấp nháy (chỉ dấu thập phân và dấu hai chấm)"
+
+#. settings-schema.json->leading-zero->options
+msgid "on"
+msgstr "bật"
+
+#. settings-schema.json->leading-zero->options
+msgid "off"
+msgstr "tắt"
+
+#. settings-schema.json->leading-zero->options
+#. settings-schema.json->clock-ampm->options
+msgid "hide"
+msgstr "ẩn"
+
+#. settings-schema.json->leading-zero->options
+msgid "remove"
+msgstr "xóa"
+
+#. settings-schema.json->leading-zero->description
+msgid "Leading zero in hours"
+msgstr "Số 0 đứng đầu trong giờ"
+
+#. settings-schema.json->clock-12h->description
+msgid "12h instead of 24h"
+msgstr "12h thay vì 24h"
+
+#. settings-schema.json->clock-ampm->options
+msgid "only A and P"
+msgstr "chỉ A và P"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 1"
+msgstr "với M biến thể 1"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 2"
+msgstr "với M biến thể 2"
+
+#. settings-schema.json->clock-ampm->description
+msgid "AM/PM indicator"
+msgstr "Chỉ báo AM/PM"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Hiển thị ngày"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Month - Day"
+msgstr "Năm - Tháng - Ngày"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Day - Month"
+msgstr "Năm - Ngày - Tháng"
+
+#. settings-schema.json->date-format->options
+msgid "Day - Month - Year"
+msgstr "Ngày - Tháng - Năm"
+
+#. settings-schema.json->date-format->options
+msgid "Month - Day - Year"
+msgstr "Tháng - Ngày - Năm"
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Định dạng ngày"
+
+#. settings-schema.json->show-unix->description
+msgid "Show Unix time"
+msgstr "Hiển thị thời gian Unix"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by OpenClipart"
+msgstr "Kiểu bởi OpenClipart"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by alex8664"
+msgstr "Kiểu bởi alex8664"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by Cfaerber"
+msgstr "Kiểu bởi Cfaerber"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by h2g2bob"
+msgstr "Kiểu bởi h2g2bob"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Light"
+msgstr "DSEG Classic Light của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Regular"
+msgstr "DSEG Classic Regular của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Bold"
+msgstr "DSEG Classic Bold của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Light"
+msgstr "DSEG Classic Mini Light của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Regular"
+msgstr "DSEG Classic Mini Regular của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Bold"
+msgstr "DSEG Classic Mini Bold của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Light"
+msgstr "DSEG Modern Light của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Regular"
+msgstr "DSEG Modern Regular của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Bold"
+msgstr "DSEG Modern Bold của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Light"
+msgstr "DSEG Modern Mini Light của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Regular"
+msgstr "DSEG Modern Mini Regular của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Bold"
+msgstr "DSEG Modern Mini Bold của Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 1"
+msgstr "Đơn giản 1"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 2"
+msgstr "Đơn giản 2"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 3"
+msgstr "Đơn giản 3"
+
+#. settings-schema.json->digit-style->options
+msgid "Curved"
+msgstr "Cong"
+
+#. settings-schema.json->digit-style->description
+msgid "Digit style"
+msgstr "Kiểu chữ số"

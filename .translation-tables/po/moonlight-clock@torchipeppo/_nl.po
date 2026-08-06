@@ -1,0 +1,51 @@
+# MOONLIGHT CLOCK
+# This file is put in the public domain.
+# torchipeppo, 2025
+#
+#
+# Please read TRANSLATORS.md for context guidance.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"PO-Revision-Date: 2025-05-16 18:31+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Moon countdown (C?)"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr ""

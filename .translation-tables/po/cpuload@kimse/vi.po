@@ -1,0 +1,160 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2025-10-19 04:25+0700\n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Lõi %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "Sử dụng CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Hiển thị tải CPU"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "Tải CPU"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Cài đặt cho desklet Tải CPU"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Chung"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Hiển thị tất cả lõi CPU"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Hiển thị mức sử dụng của từng lõi CPU thay vì tổng mức sử dụng CPU."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "giây"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Khoảng thời gian làm mới"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Tăng hoặc giảm khoảng thời gian làm mới tính bằng giây."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Bố cục"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Thiết kế"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Mỏng"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Nhỏ gọn"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Dày"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Hình tròn"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Đồng hồ tốc độ"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Hình tròn đầy đủ"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "hệ số tỷ lệ"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Kích thước desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Tăng hoặc giảm kích thước của desklet."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "cột"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Số cột"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Tăng hoặc giảm số cột."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Màu sắc"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Chủ đề màu"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Ngẫu nhiên"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Tĩnh"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Động"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Màu chủ đề tĩnh"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Nền"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Hiển thị nền"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ẩn trang trí"

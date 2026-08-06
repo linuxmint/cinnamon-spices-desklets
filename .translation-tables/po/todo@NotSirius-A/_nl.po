@@ -1,0 +1,134 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
+"PO-Revision-Date: 2025-08-25 18:06+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->todo-bottom-label->description
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and "
+"select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Done"
+msgstr ""
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
+msgstr ""
+
+#. settings-schema.json->task-background->description
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->task-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr ""
+
+#. settings-schema.json->task-border-width->tooltip
+msgid "Increase or decrease the task border width."
+msgstr ""
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->task-border-color->tooltip
+msgid ""
+"Set the task border color (Transparent border will add more padding to "
+"tasks)."
+msgstr ""
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-background-important->tooltip
+msgid "Set the task background when marked as important."
+msgstr ""
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid ""
+"Set the task border color when marked as important (Transparent border will "
+"add more padding to tasks)."
+msgstr ""
+
+#. settings-schema.json->toolbar-icon-size->description
+msgid "Icon size"
+msgstr ""
+
+#. settings-schema.json->toolbar-font-color->description
+msgid "Icon color"
+msgstr ""
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->toolbar-border-width->tooltip
+msgid ""
+"Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr ""
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid ""
+"Set the toolbar border color (Transparent border will add more padding to "
+"toolbar)."
+msgstr ""
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+msgid "Enable toolbar tooltips"
+msgstr ""
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+msgid ""
+"Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr ""
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+msgid "Enable task tooltips"
+msgstr ""
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr ""
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr ""
+
+#. edit_dialog_gtk.ui:74
+msgid "Name:"
+msgstr ""

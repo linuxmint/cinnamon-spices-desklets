@@ -1,0 +1,171 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: procmon@ksmith 1.1.0\n"
+"POT-Creation-Date: 2026-02-17 00:00+0000\n"
+"PO-Revision-Date: 2026-02-17 00:00+0000\n"
+"Last-Translator: procmon@ksmith maintainers\n"
+"Language-Team: Spanish\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js
+msgid "Process Monitor"
+msgstr "Monitor de procesos"
+
+#: desklet.js
+msgid "PID"
+msgstr "PID"
+
+#: desklet.js
+msgid "USER"
+msgstr "USUARIO"
+
+#: desklet.js
+msgid "CPU%"
+msgstr "CPU%"
+
+#: desklet.js
+msgid "MEM"
+msgstr "MEM"
+
+#: desklet.js
+msgid "COMMAND"
+msgstr "COMANDO"
+
+#: metadata.json
+msgid "ProcMon Table"
+msgstr "Tabla ProcMon"
+
+#: metadata.json
+msgid "Sortable process table powered by top."
+msgstr "Tabla de procesos ordenable impulsada por top."
+
+#: settings-schema.json
+msgid "Refresh interval"
+msgstr "Intervalo de actualización"
+
+#: settings-schema.json
+msgid "How often to refresh the process list."
+msgstr "Frecuencia de actualización de la lista de procesos."
+
+#: settings-schema.json
+msgid "Number of rows"
+msgstr "Número de filas"
+
+#: settings-schema.json
+msgid "Maximum process rows to display."
+msgstr "Número máximo de filas de procesos a mostrar."
+
+#: settings-schema.json
+msgid "PID column width"
+msgstr "Ancho de la columna PID"
+
+#: settings-schema.json
+msgid "Width of the PID column."
+msgstr "Ancho de la columna PID."
+
+#: settings-schema.json
+msgid "USER column width"
+msgstr "Ancho de la columna USUARIO"
+
+#: settings-schema.json
+msgid "Width of the USER column."
+msgstr "Ancho de la columna USUARIO."
+
+#: settings-schema.json
+msgid "CPU% column width"
+msgstr "Ancho de la columna CPU%"
+
+#: settings-schema.json
+msgid "Width of the CPU% column."
+msgstr "Ancho de la columna CPU%."
+
+#: settings-schema.json
+msgid "MEM column width"
+msgstr "Ancho de la columna MEM"
+
+#: settings-schema.json
+msgid "Width of the MEM column."
+msgstr "Ancho de la columna MEM."
+
+#: settings-schema.json
+msgid "COMMAND column width"
+msgstr "Ancho de la columna COMANDO"
+
+#: settings-schema.json
+msgid "Width of the COMMAND column. Desklet width is the sum of all column widths."
+msgstr "Ancho de la columna COMANDO. El ancho del desklet es la suma de los anchos de todas las columnas."
+
+#: settings-schema.json
+msgid "Disable desklet decorations"
+msgstr "Desactivar decoraciones del desklet"
+
+#: settings-schema.json
+msgid "Hide Cinnamon desklet frame and header decorations."
+msgstr "Ocultar marco y encabezado del desklet de Cinnamon."
+
+#: settings-schema.json
+msgid "Header text color"
+msgstr "Color de texto del encabezado"
+
+#: settings-schema.json
+msgid "Color used for the header row text."
+msgstr "Color usado para el texto de la fila de encabezado."
+
+#: settings-schema.json
+msgid "Content text color"
+msgstr "Color de texto del contenido"
+
+#: settings-schema.json
+msgid "Color used for process row text."
+msgstr "Color usado para el texto de las filas de procesos."
+
+#: settings-schema.json
+msgid "Background color"
+msgstr "Color de fondo"
+
+#: settings-schema.json
+msgid "Base background color of the desklet."
+msgstr "Color base de fondo del desklet."
+
+#: settings-schema.json
+msgid "Background transparency"
+msgstr "Transparencia del fondo"
+
+#: settings-schema.json
+msgid "0% is opaque, 100% is fully transparent."
+msgstr "0% es opaco, 100% es totalmente transparente."
+
+#: settings-schema.json
+msgid "Only my processes"
+msgstr "Solo mis procesos"
+
+#: settings-schema.json
+msgid "Use top -u <current user> to show only your processes."
+msgstr "Usar top -u <usuario actual> para mostrar solo tus procesos."
+
+#: settings-schema.json
+msgid "CPU scaling mode"
+msgstr "Modo de escala de CPU"
+
+#: settings-schema.json
+msgid "Choose how CPU percentages are shown."
+msgstr "Elige cómo se muestran los porcentajes de CPU."
+
+#: settings-schema.json
+msgid "Per-core style (100% = one core)"
+msgstr "Estilo por núcleo (100% = un núcleo)"
+
+#: settings-schema.json
+msgid "Total-system-scaled (100% = all cores)"
+msgstr "Escala del sistema completo (100% = todos los núcleos)"
+
+#: settings-schema.json
+msgid "COMMAND max length"
+msgstr "Longitud máxima de COMANDO"
+
+#: settings-schema.json
+msgid "Long command names are truncated with ellipsis."
+msgstr "Los nombres de comando largos se truncan con puntos suspensivos."

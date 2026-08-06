@@ -1,0 +1,200 @@
+# ALBUM ART FOR RADIO3.0 AND ENHANCED SOUND APPLETS
+# This file is put in the public domain.
+# claudiux, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: AlbumArt3.0@claudiux 2.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-03 09:04+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:128
+msgid "Album Art"
+msgstr "Bìa Album"
+
+#. desklet.js:434
+msgid "Display Album Art at full size"
+msgstr "Hiển thị Bìa Album ở kích thước đầy đủ"
+
+#. desklet.js:441
+msgid "Do not display this image"
+msgstr "Không hiển thị hình ảnh này"
+
+#. desklet.js:451
+msgid "Do not display any new image"
+msgstr "Không hiển thị hình ảnh mới nào"
+
+#. metadata.json->name
+msgid "Album Art for Radio3.0 and Enhanced Sound applets"
+msgstr "Bìa Album cho tiện ích Radio3.0 và Enhanced Sound"
+
+#. metadata.json->description
+msgid "A digital photo frame desklet to display an album art, if available"
+msgstr "Một desklet khung ảnh kỹ thuật số để hiển thị bìa album, nếu có"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Chiều cao"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Chiều rộng"
+
+#. settings-schema.json->fade-effect->description
+msgid "Fade"
+msgstr "Hiệu ứng mờ dần"
+
+#. settings-schema.json->fade-effect->options
+msgid "None"
+msgstr "Không có"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quad"
+msgstr "Bậc hai"
+
+#. settings-schema.json->fade-effect->options
+msgid "Cubic"
+msgstr "Bậc ba"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quart"
+msgstr "Bậc bốn"
+
+#. settings-schema.json->fade-effect->options
+msgid "Quint"
+msgstr "Bậc năm"
+
+#. settings-schema.json->fade-effect->options
+msgid "Sine"
+msgstr "Sin"
+
+#. settings-schema.json->fade-effect->options
+msgid "Expo"
+msgstr "Mũ"
+
+#. settings-schema.json->fade-effect->options
+msgid "Circ"
+msgstr "Tròn"
+
+#. settings-schema.json->fade-effect->options
+msgid "Elastic"
+msgstr "Đàn hồi"
+
+#. settings-schema.json->fade-effect->options
+msgid "Back"
+msgstr "Lùi"
+
+#. settings-schema.json->fade-effect->options
+msgid "Bounce"
+msgstr "Nảy"
+
+#. settings-schema.json->fade-delay->description
+msgid "Fade delay"
+msgstr "Độ trễ mờ dần"
+
+#. settings-schema.json->fade-delay->units
+msgid "seconds"
+msgstr "giây"
+
+#. settings-schema.json->fade-delay->tooltip
+msgid "0 means no fade"
+msgstr "0 có nghĩa là không có hiệu ứng mờ dần"
+
+#. settings-schema.json->enable-at-startup->description
+msgid "Activate Album Art display at startup"
+msgstr "Kích hoạt hiển thị Bìa Album khi khởi động"
+
+#. settings-schema.json->show-title->description
+msgid "Show the title"
+msgstr "Hiển thị tiêu đề"
+
+#. settings-schema.json->style-font-weight->description
+msgid "Font weight"
+msgstr "Độ đậm phông chữ"
+
+#. settings-schema.json->style-font-weight->options
+msgid "normal"
+msgstr "bình thường"
+
+#. settings-schema.json->style-font-weight->options
+msgid "bold"
+msgstr "đậm"
+
+#. settings-schema.json->style-font-family->description
+msgid "Font family"
+msgstr "Họ phông chữ"
+
+#. settings-schema.json->style-font-family->options
+msgid "monospace"
+msgstr "monospace"
+
+#. settings-schema.json->style-font-family->options
+msgid "sans-serif"
+msgstr "sans-serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "serif"
+msgstr "serif"
+
+#. settings-schema.json->style-font-family->options
+msgid "cursive"
+msgstr "cursive"
+
+#. settings-schema.json->style-font-family->options
+msgid "fantasy"
+msgstr "fantasy"
+
+#. settings-schema.json->style-font-size->description
+msgid "Font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-small"
+msgstr "rất nhỏ"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-small"
+msgstr "nhỏ"
+
+#. settings-schema.json->style-font-size->options
+msgid "small"
+msgstr "nhỏ"
+
+#. settings-schema.json->style-font-size->options
+msgid "medium"
+msgstr "trung bình"
+
+#. settings-schema.json->style-font-size->options
+msgid "large"
+msgstr "lớn"
+
+#. settings-schema.json->style-font-size->options
+msgid "x-large"
+msgstr "rất lớn"
+
+#. settings-schema.json->style-font-size->options
+msgid "xx-large"
+msgstr "cực lớn"
+
+#. settings-schema.json->style-color->description
+msgid "Font color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->style-background-color->description
+msgid "Background color"
+msgstr "Màu nền"

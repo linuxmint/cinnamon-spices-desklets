@@ -1,0 +1,31 @@
+# SYSTEM TEMPERATURE
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->style-page->title
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->temperature-section->title
+msgid "Temperature"
+msgstr ""
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""

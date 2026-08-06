@@ -1,0 +1,178 @@
+# Dual Datetime desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: dual-datetime@rcalixte 1.2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-09-18 21:30-0400\n"
+"PO-Revision-Date: 2024-09-21 22:11+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+msgid ""
+"A highly customizable clock desklet that can display dual datetime strings"
+msgstr ""
+"Una miniaplicació d'escriptori d'un rellotge altament configurable que "
+"permet mostrar la data i l'hora en un format dual"
+
+#. metadata.json->name
+msgid "Dual Datetime"
+msgstr "Data i hora duals"
+
+#. 5.4->settings-schema.json->time_custom1->description
+msgid "Customize First Time Value"
+msgstr "Personalitza el primer valor"
+
+#. 5.4->settings-schema.json->time_format1->description
+#. 5.4->settings-schema.json->time_format2->description
+msgid "Time Format"
+msgstr "Format del valor"
+
+#. 5.4->settings-schema.json->time_format1->tooltip
+#. 5.4->settings-schema.json->time_format2->tooltip
+msgid ""
+"The datetime format to use for the output. See 'Format String Help' below "
+"for additional details."
+msgstr ""
+"El format a emprar amb la data i l'hora . Vegeu «Ajuda per la formatació de "
+"data i hora»."
+
+#. 5.4->settings-schema.json->time_align1->description
+#. 5.4->settings-schema.json->time_yalign1->description
+#. 5.4->settings-schema.json->time_align2->description
+#. 5.4->settings-schema.json->time_yalign2->description
+msgid "Time Alignment"
+msgstr "Alineació del valor"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Left"
+msgstr "Esquerra"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Center"
+msgstr "Centre"
+
+#. 5.4->settings-schema.json->time_align1->options
+#. 5.4->settings-schema.json->time_align2->options
+msgid "Right"
+msgstr "Dreta"
+
+#. 5.4->settings-schema.json->time_yalign1->tooltip
+#. 5.4->settings-schema.json->time_yalign2->tooltip
+msgid ""
+"This value only applies if the this time value is a smaller size than the "
+"other"
+msgstr "Només s'aplicarà si aquesta cadena és més petita que l'altra"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Top"
+msgstr "Superior"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Middle"
+msgstr "Mig"
+
+#. 5.4->settings-schema.json->time_yalign1->options
+#. 5.4->settings-schema.json->time_yalign2->options
+msgid "Bottom"
+msgstr "Inferior"
+
+#. 5.4->settings-schema.json->time_font1->description
+#. 5.4->settings-schema.json->time_font2->description
+msgid "Font Family (blank for default)"
+msgstr "Família tipogràfica (buit per a predeterminada)"
+
+#. 5.4->settings-schema.json->time_color1->description
+#. 5.4->settings-schema.json->time_color2->description
+msgid "Font Color"
+msgstr "Color de la lletra"
+
+#. 5.4->settings-schema.json->time_color1->tooltip
+#. 5.4->settings-schema.json->time_color2->tooltip
+#. 5.4->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB o RGBA"
+
+#. 5.4->settings-schema.json->time_weight1->description
+#. 5.4->settings-schema.json->time_weight2->description
+msgid "Font Weight"
+msgstr "Pes de la lletra"
+
+#. 5.4->settings-schema.json->time_weight1->tooltip
+#. 5.4->settings-schema.json->time_weight2->tooltip
+msgid ""
+"Increase or decrease this value to change the font weight (Normal = 400, "
+"Bold = 700)"
+msgstr ""
+"Incrementeu o reduïu aquest valor per a canviar el pes de la lletra (Normal "
+"= 400, Negreta = 700)"
+
+#. 5.4->settings-schema.json->time_size1->description
+#. 5.4->settings-schema.json->time_size2->description
+msgid "Font Size"
+msgstr "Mida de la lletra"
+
+#. 5.4->settings-schema.json->time_size1->tooltip
+#. 5.4->settings-schema.json->time_size2->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr "Definiu el factor d'escala de la lletra (1.2 = 120%)"
+
+#. 5.4->settings-schema.json->time_custom2->description
+msgid "Customize Second Time Value"
+msgstr "Personalitza el segon valor"
+
+#. 5.4->settings-schema.json->datetime_button->description
+msgid "Format String Help"
+msgstr "Ajuda per la formatació de data i hora"
+
+#. 5.4->settings-schema.json->head4->description
+msgid "Additional Options"
+msgstr "Paràmetres addicionals"
+
+#. 5.4->settings-schema.json->width->units
+msgid "px"
+msgstr "px"
+
+#. 5.4->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Amplada fixa de la miniaplicació"
+
+#. 5.4->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr "Defineix l'amplada de la miniaplicació d'escriptori"
+
+#. 5.4->settings-schema.json->title_align->description
+msgid "Layout"
+msgstr "Disseny"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Vertical"
+msgstr "Vertical"
+
+#. 5.4->settings-schema.json->title_align->options
+msgid "Horizontal"
+msgstr "Horitzontal"
+
+#. 5.4->settings-schema.json->show_decorations->description
+msgid "Show decorations"
+msgstr "Mostra decoracions"
+
+#. 5.4->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Color del fons"

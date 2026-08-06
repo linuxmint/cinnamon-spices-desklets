@@ -1,0 +1,443 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2021-03-18 18:50+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Unbenannt"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Tools"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Aufklappen"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Einklappen"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Cinnamon-Einstellungen öffnen"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Sandbox starten"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Befehlszeile ausführen"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Überprüfen"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Looking Glas öffnen"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Themen neu laden"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Cinnamon neu starten"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "X-Session Log"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Alte Fehler ausblenden"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Leeren"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Cinnamon Log"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Zeitstempel anzeigen"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Infos"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Warnungen"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Fehler"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Traces"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Kopieren"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "∞"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Neu laden"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Entfernen"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Instanzen"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "Maximum von"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Hervorheben"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Einrichten"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Erweiterungen"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "Erweiterungselement für UUID konnte nicht erstellt werden"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Es sind keine Erweiterungen dieses Typs aktiviert"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(Drücken Sie Pause oder Steuerung, um Ereignis zu deaktivieren)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(Drücken Sie Pause oder Steuerung, um Ereignis durchzulassen)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Länge"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Übergeordnetes Element"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Untergeordnetes Element"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Höhe"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Breite"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Sichtbar"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "Style-Klasse"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Keine"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Titel"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Klasse"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Arbeitsfläche"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "Monitor"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Größe"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Position"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Werte"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Index"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr "Map-Elemente"
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Key"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Eigenschaften"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Name"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Typ"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Wert"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Öffnen"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Speichern"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Speichern als"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Auswerten"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Style"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Aktuelles Stylesheet laden"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Keine Fehler entdeckt"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Tab schließen"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Befehl"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Status"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Läuft"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Prozess beenden"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Output"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Gestoppt"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Ausführen"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "alle"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Wechseln zu"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Schließen"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Fenster"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr ""
+"Ein Desklet für die Fehlersuche und Entwicklung in der Cinnamon-"
+"Benutzeroberfläche"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Autor"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"Dieses Desklet bietet Tools zur Fehlersuche, zum Betrachten und  Steuern "
+"bestimmter Cinnamon-Komponenten und Statusinformationen sowie zum Testen von "
+"neuem Code ohne Neustart von Cinnamon."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Entwickler-Tools"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Beim Start"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Vorherigen Zustand merken"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Anzeigen"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Eingeklappt"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Tastenkürzel, um Desklet in den Vordergrund zu bringen"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Das Desklet im Vordergrundmodus auf dem Bildschirm zentrieren"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Sandbox-Kopfzeile"
+
+#~ msgid "Applet Settings"
+#~ msgstr "Applets"
+
+#~ msgid "Desklet Settings"
+#~ msgstr "Desklets"
+
+#~ msgid "Extension Settings"
+#~ msgstr "Erweiterungen"
+
+#~ msgid "General Settings"
+#~ msgstr "Allgemein"
+
+#~ msgid "Panel Settings"
+#~ msgstr "Leiste"
+
+#~ msgid "Regional Settings"
+#~ msgstr "Regionale Einstellungen"
+
+#~ msgid "Theme Settings"
+#~ msgstr "Themen"
+
+#~ msgid "Tile Settings"
+#~ msgstr "Fensterkacheln"
+
+#~ msgid "Window Settings"
+#~ msgstr "Fenster"
+
+#~ msgid "Workspace Settings"
+#~ msgstr "Arbeitsflächen"
+
+#~ msgid "All Settings"
+#~ msgstr "Systemeinstellungen"
+
+#~ msgid "Applet"
+#~ msgstr "Applet"
+
+#~ msgid "Desklet"
+#~ msgstr "Desklet"
+
+#~ msgid "Extension"
+#~ msgstr "Erweiterung"
+
+#~ msgid "Search providers"
+#~ msgstr "Suchanbieter"
+
+#~ msgid "Description"
+#~ msgstr "Beschreibung"
+
+#~ msgid "Path"
+#~ msgstr "Pfad"
+
+#~ msgid "of"
+#~ msgstr "von"
+
+#~ msgid "Settings"
+#~ msgstr "Einstellungen"
+
+#~ msgid "Show %s"
+#~ msgstr "%s anzeigen"
+
+#~ msgid "s"
+#~ msgstr "Desklet"

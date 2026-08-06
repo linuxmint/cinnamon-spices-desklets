@@ -1,0 +1,190 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-07 21:15+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. metadata.json->name
+#. desklet.js:60
+msgid "Daily Agenda"
+msgstr "Agenda diària"
+
+#. desklet.js:219
+msgid "ICS Today: Unknown source type: "
+msgstr "ICS Avui: tipus de font desconeguda: "
+
+#. desklet.js:246
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Avui: problema en llegir el fitxer del calendari, resultat = "
+
+#. desklet.js:250
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Avui: Error en llegir el fitxer: "
+
+#. desklet.js:267
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr "ICS Avui: Error en obtenir el calendari de l'URL: "
+
+#. desklet.js:277
+msgid "Last checked"
+msgstr "Última comprovació"
+
+#. desklet.js:282
+msgid "Next"
+msgstr "Següent"
+
+#. desklet.js:302
+msgid "All day"
+msgstr "Tot el dia"
+
+#. desklet.js:305
+msgid "Today's Events:"
+msgstr "Esdeveniments d'avui:"
+
+#. desklet.js:309
+msgid "No events today."
+msgstr "No hi ha esdeveniments avui."
+
+#. metadata.json->description
+msgid "Displays today's events from your calendar"
+msgstr "Mostra els esdeveniments d'avui del vostre calendari"
+
+#. settings-schema.json->head0->description
+msgid "Calendar Source"
+msgstr "Origen del calendari"
+
+#. settings-schema.json->sourceType->description
+msgid "Calendar source"
+msgstr "Origen del calendari"
+
+#. settings-schema.json->sourceType->options
+msgid "From URL"
+msgstr "Des d'una URL"
+
+#. settings-schema.json->sourceType->options
+msgid "From local file"
+msgstr "Des d'un fitxer local"
+
+#. settings-schema.json->icsUrl->description
+msgid "Calendar URL"
+msgstr "URL del calendari"
+
+#. settings-schema.json->icsUrl->tooltip
+msgid ""
+"Only used if source is set to 'From URL'. Paste a public .ics (calendar "
+"share) link from Proton, Google, etc."
+msgstr ""
+"Només s'utilitza si l'origen està configurat com a 'Des d'una URL'. "
+"Enganxeu un enllaç .ics públic (calendari compartit) de Proton, Google, etc."
+
+#. settings-schema.json->icsFilePath->description
+msgid "Path to local .ics file"
+msgstr "Ruta d'accés al fitxer .ics"
+
+#. settings-schema.json->icsFilePath->tooltip
+msgid "Only used if source is set to 'From local file', point to an ICS file."
+msgstr ""
+"Només s'utilitza si l'origen està configurat com a 'Des d'un fitxer local', "
+"apuntant cap a un fitxer ICS."
+
+#. settings-schema.json->head1->description
+msgid "Widget Dimensions"
+msgstr "Dimensions del widget"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->width->description
+msgid "Widget width"
+msgstr "Amplada del widget"
+
+#. settings-schema.json->height->description
+msgid "Widget height"
+msgstr "Alçada del widget"
+
+#. settings-schema.json->head2->description
+msgid "Custom Styles"
+msgstr "Estils personalitzats"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr ""
+"Sobreescriu el tema de l'escriptori (activa la configuració que apareix a "
+"continuació)"
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+"Marqueu aquesta opció per a sobreescriure el tema de l'escriptori amb una "
+"configuració manual de la seva aparença"
+
+#. settings-schema.json->font->description
+msgid "Font family"
+msgstr "Família de fonts"
+
+#. settings-schema.json->font->tooltip
+msgid "Example: Sans, Monospace, Serif"
+msgstr "Exemple: Sans, Monospace, Serif"
+
+#. settings-schema.json->fontSize->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Mida de la font"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Feu clic al botó per a seleccionar un nou color pel text"
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr "Opcions de peu de pàgina"
+
+#. settings-schema.json->showLastChecked->description
+msgid "Show 'last checked' line"
+msgstr "Mostrar la línia 'Última comprovació'"
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr "Mostrar el botó 'Actualitzar ara'"
+
+#. settings-schema.json->head3->description
+msgid "Update Schedule"
+msgstr "Actualitzar el calendari"
+
+#. settings-schema.json->checkInterval->units
+msgid "minutes"
+msgstr "minuts"
+
+#. settings-schema.json->checkInterval->description
+msgid "Check interval"
+msgstr "Interval de comprovació"
+
+#. settings-schema.json->checkInterval->tooltip
+msgid "How often to check the calendar file for updates"
+msgstr ""
+"Cada quan es comprova el fitxer del calendari en busca d'actualitzacions"

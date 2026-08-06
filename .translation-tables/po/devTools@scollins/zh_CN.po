@@ -1,0 +1,442 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2017-05-01 19:25+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "无标题"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "工具"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "展开"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "折叠"
+
+#: desklet.js:432
+#, fuzzy
+msgid "Open Cinnamon Settings"
+msgstr "Cinnamon设置"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "启动沙盒"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "运行命令行"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "检查"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "打开Looking Glass"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "重新载入主题"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "重新启动Cinnamon"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "X-Session日志"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "隐藏旧的错误"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "清除"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Cinnamon日志"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "显示时间戳"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "信息"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "警告"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "错误"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "跟踪"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "复制"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "无限"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "刷新"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "移除"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "实例"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr ""
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "高亮"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr ""
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "扩展"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr ""
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr ""
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(按暂停或控制键可禁用事件经过)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(按暂停或控制键可启用事件经过)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "长度"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "父"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "子"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "高度"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "宽度"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "可见性"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "样式类"
+
+#: inspect.js:448
+msgid "None"
+msgstr "无"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "标题"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "类"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "工作区"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "显示器"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "大小"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "位置"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "值"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "索引"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr "地图元素"
+
+#: inspect.js:499
+msgid "Key"
+msgstr "键"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "属性"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "名称"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "类型"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "值"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "打开"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "保存"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "另存为"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "沙盒"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "评估"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "样式"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "载入当前样式表"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "没有检测到错误"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "关闭标签页"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "命令"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "状态"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "正在运行"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "结束进程"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "输出"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "已停止"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "运行"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "全部"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "切换到"
+
+#: windows.js:101
+msgid "Close"
+msgstr "关闭"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "窗口"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr "用于在Cinnamon用户界面中排除故障和开发的桌面小工具"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - 作者"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"这个桌面小工具提供了帮助排除故障、查看和控制某些Cinnamon组件以及状态信息的工"
+"具，甚至可以测试新代码而无需重启Cinnamon。"
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "开发者工具"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "启动时"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "记住以前的状态"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "显示"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "折叠"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "置顶快捷键"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "在置顶模式中将桌面小工具放在屏幕中间"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "沙盒头信息"
+
+#~ msgid "Applet Settings"
+#~ msgstr "小程序设置"
+
+#~ msgid "Desklet Settings"
+#~ msgstr "桌面小工具设置"
+
+#~ msgid "Extension Settings"
+#~ msgstr "扩展设置"
+
+#~ msgid "General Settings"
+#~ msgstr "常规设置"
+
+#~ msgid "Panel Settings"
+#~ msgstr "面板设置"
+
+#~ msgid "Regional Settings"
+#~ msgstr "区域设置"
+
+#~ msgid "Theme Settings"
+#~ msgstr "主题设置"
+
+#~ msgid "Tile Settings"
+#~ msgstr "窗口平铺设置"
+
+#~ msgid "Window Settings"
+#~ msgstr "窗口设置"
+
+#~ msgid "Workspace Settings"
+#~ msgstr "工作区设置"
+
+#~ msgid "All Settings"
+#~ msgstr "所有设置"
+
+#~ msgid "Applet"
+#~ msgstr "小程序"
+
+#~ msgid "Desklet"
+#~ msgstr "桌面小工具"
+
+#~ msgid "Extension"
+#~ msgstr "扩展"
+
+#~ msgid "Search providers"
+#~ msgstr "搜索提供者"
+
+#~ msgid "Description"
+#~ msgstr "描述"
+
+#~ msgid "Path"
+#~ msgstr "路径"
+
+#~ msgid "of"
+#~ msgstr "/"
+
+#~ msgid "Settings"
+#~ msgstr "设置"
+
+#, c-format
+#~ msgid "Show %s"
+#~ msgstr "显示%s"
+
+#~ msgid "Load currnet stylesheet"
+#~ msgstr "载入当前样式表"

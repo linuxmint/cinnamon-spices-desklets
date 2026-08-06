@@ -1,0 +1,221 @@
+# Slovak translation of analog clock desklet.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2021-02-10 11:39+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Hodiny"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Desklet s ručičkovými hodinami s možnou zmenou mierky a vyhladenými "
+"ručičkami s voľným výberom obrázkov."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Ručičkové hodiny"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Nastavenia deskletu clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Vizualizácia"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Štýl hodín"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Svetlý"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Tmavý"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Svetlý priehľadný"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Tmavý priehľadný"
+
+#. settings-schema.json->style->options
+#, fuzzy
+msgid "Semitransparent"
+msgstr "Svetlý priehľadný"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Vlastný"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Vyberte grafiku pozadia, ktorú by ste chceli použiť."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Zobraziť sekundovú ručičku"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Zobrazí alebo skryje sekundovú ručičku."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Vyhladená sekundová ručička"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Použije vyhladenú animáciu sekundovej ručičky namiesto obnovenia každú "
+"sekundu."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Vyhladená minútová ručička"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Použije vyhladenú animáciu minútovej ručičky namiesto posunu iba raz za "
+"minútu."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skryť dekorácie"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pixely"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Veľkosť deskletu"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Zväčší alebo zmenší veľkosť hodín."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Vlastná menovka deskletu (viditeľná iba ak sú povolené dekorácie)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Použiť vlastnú menovku deskletu"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Zaškrtnutím tejto položky vám bude umožnené nastaviť vlastnú menovku v poli "
+"nižšie."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Vlastná menovka deskletu"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Tu nastavte vašu vlastnú menovku, napr. pre viacero časových pásiem. Toto "
+"pole je dostupné až po povolení položky vyššie."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Časové pásmo"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Použiť vlastné časové pásmo"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Zaškrtnutím tejto položky vám bude umožnené nastaviť vlastné časové pásmo v "
+"poli nižšie."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Vlastné časové pásmo"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Sem zadajte vaše vlastné časové pásmo."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr "Vlastné obrázky (dostupné iba ak je štýl hodín nastavený na „vlastný“)"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Pozadie"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Zvolí váš vlastný obrázok pozadia."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Sekundová ručička"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Zvolí váš vlastný obrázok pre sekundovú ručičku. Mal by byť veľký ako "
+"obrázok pozadia."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Minútová ručička"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Zvolí váš vlastný obrázok pre minútovú ručičku. Mal by byť veľký ako obrázok "
+"pozadia."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Hodinová ručička"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Zvolí váš vlastný obrázok pre hodinovú ručičku. Mal by byť veľký ako obrázok "
+"pozadia."

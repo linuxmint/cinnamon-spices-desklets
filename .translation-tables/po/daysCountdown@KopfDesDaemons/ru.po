@@ -1,0 +1,124 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-03 13:08+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Rinaldus <forreg@rinaldus.ru>\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:19
+msgid "Days Countdown"
+msgstr "Обратный отсчет дней"
+
+#. desklet.js:77
+#, fuzzy, javascript-format
+msgid "New Year %f Countdown"
+msgstr "Обратный отсчет дней"
+
+#. desklet.js:98
+#, javascript-format
+msgid "%f days"
+msgstr "%f дней"
+
+#. metadata.json->description
+msgid "Countdown of the remaining days to a date."
+msgstr "Обратный отсчет оставшихся дней до назначенной даты."
+
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
+msgid "General"
+msgstr "Общие настройки"
+
+#. settings-schema.json->style-page->title
+msgid "Style"
+msgstr "Стиль"
+
+#. settings-schema.json->font-size-section->title
+msgid "Font Sizes"
+msgstr ""
+
+#. settings-schema.json->countdown-section->title
+#, fuzzy
+msgid "Countdown"
+msgstr "Обратный отсчет дней"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->label-text->description
+msgid "Text for the label"
+msgstr "Текст для надписи"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->countdown-date->description
+msgid "Date to which the countdown counts down"
+msgstr "Дата, до которой отсчитывается обратный отсчет"
+
+#. settings-schema.json->refresh-interval->options
+msgid "only after starting"
+msgstr "только после запуска"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 5 minutes"
+msgstr "каждые 5 минут"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 10 minutes"
+msgstr "каждые 10 минут"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 15 minutes"
+msgstr "каждые 15 минут"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 20 minutes"
+msgstr "каждые 20 минут"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 30 minutes"
+msgstr "каждые 30 минут"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 60 minutes"
+msgstr "каждые 60 минут"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Интервал обновления"
+
+#. settings-schema.json->font-size-label->description
+msgid "Font size for the label text"
+msgstr "Размер шрифта для текста надписи"
+
+#. settings-schema.json->color-label->description
+msgid "Label color"
+msgstr "Цвет надписи"
+
+#. settings-schema.json->font-size-countdown->description
+msgid "Font size for the countdown text"
+msgstr "Размер шрифта для текста обратного отсчета"
+
+#. settings-schema.json->color-countdown->description
+msgid "Countdown color"
+msgstr "Цвет обратного отсчета"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""

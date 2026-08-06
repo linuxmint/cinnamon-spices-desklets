@@ -1,0 +1,22 @@
+# MINTOO - THE MINT ASSISTANT
+# This file is put in the public domain.
+# sujitagarwal, 2020
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:42
+msgid "Lock the Screen"
+msgstr ""
+
+#. desklet.js:43
+msgid "Logout"
+msgstr ""
+
+#. desklet.js:44
+msgid "Shutdown"
+msgstr ""
+
+#. desklet.js:45
+msgid "Restart"
+msgstr ""

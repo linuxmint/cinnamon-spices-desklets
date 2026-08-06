@@ -1,0 +1,377 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2024-04-18 15:15+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Naamloos"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Hulpmiddelen"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Uitvouwen"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Samenvouwen"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Cinnamon-instellingen openen"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Sandbox starten"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Opdrachtregel uitvoeren"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Inspecteren"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Looking Glass openen"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Thema herladen"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Cinnamon herstarten"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "X-sessielogboek"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Oude fouten verbergen"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Wissen"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Cinnamon-logboek"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Tijdstempel weergeven"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Informatie"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Waarschuwingen"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Fouten"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Traces"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Oneindig"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Herladen"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Verwijderen"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Instanties"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "maximaal"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Markeren"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Configureren"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Extensies"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "kan geen extensie-item maken voor UUID"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Er zijn geen extensies van dit type ingeschakeld"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(Druk op Pauze of Control om doorvoer van events uit te schakelen)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(Druk op Pauze of Control om doorvoer van events in te schakelen)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Lengte"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Ouder"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Kinderen"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Hoogte"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Breedte"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Zichtbaar"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "Stijlklasse"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Geen"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Titel"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Klasse"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Werkruimte"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "Monitor"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Grootte"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Positie"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Waarden"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Index"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr "Elementen in kaart brengen"
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Sleutel"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Eigenschappen"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Naam"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Type"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Waarde"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Openen"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Opslaan"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Opslaan als"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Evalueren"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Stijl"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Huidige stylesheet laden"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Geen fouten gedetecteerd"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Tabblad sluiten"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Opdracht"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Status"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Bezig"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Proces beëindigen"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Uitvoer"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Gestopt"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Uitvoeren"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "alle"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Overschakelen naar"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Sluiten"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Vensters"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr "Een desklet voor probleemoplossing en ontwikkeling in de Cinnamon-UI"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - auteur"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"Deze desklet biedt tools om te helpen bij het oplossen van problemen, "
+"bekijken en controleren van bepaalde Cinnamon-componenten en "
+"statusinformatie, en zelfs het testen van nieuwe code zonder Cinnamon "
+"opnieuw te starten."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Ontwikkelaarshulpmiddelen"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Bij het opstarten"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Vorige status onthouden"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Weergeven"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Samengevouwen"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Sneltoets om naar voren te brengen"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Centreer de desklet op het scherm in naar voren gebrachte modus"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Kop van sandbox"
