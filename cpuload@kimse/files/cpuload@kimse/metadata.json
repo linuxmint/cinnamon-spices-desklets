@@ -3,5 +3,6 @@
     "description": "Displays CPU load",
     "name": "CPU Load",
     "version": "0.8",
-    "uuid": "cpuload@kimse"
+    "uuid": "cpuload@kimse",
+    "author": "schorschii"
 }

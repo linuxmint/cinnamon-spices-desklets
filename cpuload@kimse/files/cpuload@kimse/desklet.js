@@ -45,6 +45,7 @@ CpuLoadDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, 'static-theme-color', 'static_theme_color', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'show-background', 'show_background', this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, 'hide-decorations', 'hide_decorations', this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, 'desklet-background-color', 'desklet_background_color', this.on_setting_changed);
 
         // Properties
         this.cpus_utilization = [];
@@ -73,6 +74,7 @@ CpuLoadDesklet.prototype = {
         // Refresh the desklet window
         this.refreshScalingSizes();
         this.toggleDecoration();
+        this.refreshBackground();
 
         // Start the main desklet loop
         this.main();
@@ -87,6 +89,17 @@ CpuLoadDesklet.prototype = {
         this.metadata['prevent-decorations'] = this.hide_decorations;
 
         this._updateDecoration();
+    },
+
+    /**
+     * Apply the user-selected background color/transparency to the
+     * desklet face. `this.content` is the St.Bin the base Desklet class
+     * wraps our window in (see setContent() in ui/desklet.js) - styling
+     * it, rather than this.window, covers the full desklet bounding box
+     * instead of just the area behind the gauges.
+     */
+    refreshBackground() {
+        this.content.style = "background-color: " + this.desklet_background_color + ";";
     },
 
     /**
@@ -620,6 +633,9 @@ CpuLoadDesklet.prototype = {
 
         // Update decoration settings
         this.toggleDecoration();
+
+        // Refresh background color/transparency
+        this.refreshBackground();
 
         // Refresh scaling sizes
         this.refreshScalingSizes();
