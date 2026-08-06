@@ -1,0 +1,159 @@
+{
+    "section-general": {
+        "type": "section",
+        "description": "General"
+    },
+    "update-interval": {
+        "type": "combobox",
+        "default": 30,
+        "description": "Update interval",
+        "tooltip": "How often PowerPulse refreshes battery data.",
+        "options": {
+            "15 seconds": 15,
+            "30 seconds": 30,
+            "60 seconds": 60,
+            "2 minutes": 120,
+            "5 minutes": 300
+        }
+    },
+    "custom-title": {
+        "type": "entry",
+        "default": "PowerPulse",
+        "description": "Custom title"
+    },
+    "sort-by": {
+        "type": "combobox",
+        "default": "battery-asc",
+        "description": "Default sort order",
+        "options": {
+            "Battery Ascending": "battery-asc",
+            "Battery Descending": "battery-desc",
+            "Name": "name",
+            "Type": "type",
+            "Last update": "updated",
+            "Manual": "manual"
+        }
+    },
+    "manual-order": {
+        "type": "entry",
+        "default": "[]",
+        "description": "Manual order (JSON id list)",
+        "tooltip": "Used when sort mode is Manual. Example: [\"upower:/org/...\",\"headsetcontrol:...\"]"
+    },
+    "compact-mode": {
+        "type": "switch",
+        "default": true,
+        "description": "Compact mode"
+    },
+    "expand-on-click": {
+        "type": "switch",
+        "default": true,
+        "description": "Expand on click",
+        "tooltip": "Click a device row to expand its details in place."
+    },
+
+    "section-display": {
+        "type": "section",
+        "description": "Display"
+    },
+    "show-laptop-battery": {
+        "type": "switch",
+        "default": true,
+        "description": "Show laptop battery"
+    },
+    "laptop-display-name": {
+        "type": "entry",
+        "default": "Laptop",
+        "description": "Laptop battery display name",
+        "dependency": "show-laptop-battery"
+    },
+    "connected-only": {
+        "type": "switch",
+        "default": true,
+        "description": "Show only connected devices"
+    },
+    "show-disconnected": {
+        "type": "switch",
+        "default": false,
+        "description": "Show disconnected devices",
+        "tooltip": "Legacy option. When enabled, disconnected devices are shown even if connected-only is on."
+    },
+    "show-icons": {
+        "type": "switch",
+        "default": true,
+        "description": "Show icons"
+    },
+    "show-percent": {
+        "type": "switch",
+        "default": true,
+        "description": "Show percentage"
+    },
+    "show-progress-bars": {
+        "type": "switch",
+        "default": true,
+        "description": "Show progress bars"
+    },
+    "show-time-remaining": {
+        "type": "switch",
+        "default": true,
+        "description": "Show time remaining",
+        "tooltip": "Shown in the expanded device card."
+    },
+    "show-voltage": {
+        "type": "switch",
+        "default": true,
+        "description": "Show voltage",
+        "tooltip": "Shown in the expanded device card."
+    },
+    "show-health": {
+        "type": "switch",
+        "default": true,
+        "description": "Show battery health",
+        "tooltip": "Laptop expanded details: health and capacity."
+    },
+    "show-cycles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show cycle count",
+        "tooltip": "Laptop expanded details when UPower exposes ChargeCycles."
+    },
+
+    "section-alerts": {
+        "type": "section",
+        "description": "Alerts"
+    },
+    "low-battery-threshold": {
+        "type": "spinbutton",
+        "default": 20,
+        "min": 5,
+        "max": 50,
+        "step": 1,
+        "units": "%",
+        "description": "Low battery threshold"
+    },
+    "enable-notifications": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable notifications",
+        "tooltip": "Notify once when a connected device falls below the threshold."
+    },
+
+    "section-headset": {
+        "type": "section",
+        "description": "HeadsetControl"
+    },
+    "headsetcontrol-command": {
+        "type": "entry",
+        "default": "headsetcontrol",
+        "description": "HeadsetControl command"
+    },
+    "headsetcontrol-timeout": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 2,
+        "max": 30,
+        "step": 1,
+        "units": "seconds",
+        "description": "HeadsetControl timeout"
+    }
+}
