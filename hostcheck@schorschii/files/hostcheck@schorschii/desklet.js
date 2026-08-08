@@ -225,17 +225,21 @@ MyDesklet.prototype = {
 	showStatus: function() {
 		// refresh desklet content
 		// calc new sizes based on scale factor
-		let absolute_width = (this.defaultWidth * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
-		let absolute_height = (this.defaultHeight * this.scale_size * global.ui_scale) + (this.defaultInset * this.scale_size * global.ui_scale);
-		let label_size_x = this.defaultWidth * this.scale_size * global.ui_scale;
-		let label_size_y = this.defaultHeight * this.scale_size * global.ui_scale;
-		let font_size = Math.round(this.defaultFontSize * this.scale_size * global.ui_scale);
+		let label_size_x = this.defaultWidth * this.scale_size;
+		let label_size_y = this.defaultHeight * this.scale_size;
+		let font_size = Math.round(this.defaultFontSize * this.scale_size);
 		// modify label
 		let statusString = this.statusTagString + " (" + this.interval + _('s') + ")\n" + this.host;
 		this.statusLabel.set_text(statusString);
 		this.statusLabel.style_class = "statusbox "+this.colorClass;
-		this.statusLabel.style = "width:"+label_size_x+"px; height:"+label_size_y+"px; font-size:"+font_size+"px";
+		this.statusLabel.style = "width:"+label_size_x+"px; font-size:"+font_size+"px";
+		let [, preferred_label_height] = this.statusLabel.get_preferred_height(label_size_x);
+		let logical_label_height = Math.round(preferred_label_height / global.ui_scale);
+		let actual_label_height = Math.max(label_size_y, logical_label_height);
+		this.statusLabel.style += "; height:"+actual_label_height+"px";
 		// modify desklet canvas
+		let absolute_width = (label_size_x + (this.defaultInset * this.scale_size)) * global.ui_scale;
+		let absolute_height = (actual_label_height + (this.defaultInset * this.scale_size)) * global.ui_scale;
 		this.canvas.set_size(absolute_width, absolute_height);
 
 		// desktop notification
