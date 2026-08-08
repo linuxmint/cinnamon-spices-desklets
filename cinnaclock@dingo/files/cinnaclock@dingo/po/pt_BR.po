@@ -1,0 +1,144 @@
+# Cinnaclock Desklet
+# Language: pt_BR
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "Geral"
+
+msgid "Layer 1"
+msgstr "Camada 1"
+
+msgid "Layer 2"
+msgstr "Camada 2"
+
+msgid "Layer 3"
+msgstr "Camada 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "Estilo de Formato"
+
+msgid "Background Style"
+msgstr "Estilo de Fundo"
+
+msgid "Text Style"
+msgstr "Estilo de Texto"
+
+msgid "Shadow"
+msgstr "Sombra"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "Mostrar plano de fundo"
+
+msgid "Background Color"
+msgstr "Cor do fundo"
+
+msgid "Corner Radius"
+msgstr "Raio do canto"
+
+msgid "Show Layer 1"
+msgstr "Mostrar Camada 1"
+
+msgid "Show Layer 2"
+msgstr "Mostrar Camada 2"
+
+msgid "Show Layer 3"
+msgstr "Mostrar Camada 3"
+
+msgid "Layer 1 Format"
+msgstr "Formato da Camada 1"
+
+msgid "Layer 2 Format"
+msgstr "Formato da Camada 2"
+
+msgid "Layer 3 Format"
+msgstr "Formato da Camada 3"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "Deslocamento Vertical Camada 1"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "Deslocamento Vertical Camada 2"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "Deslocamento Vertical Camada 3"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "Deslocamento Horizontal Camada 1"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "Deslocamento Horizontal Camada 2"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "Deslocamento Horizontal Camada 3"
+
+msgid "Font"
+msgstr "Fonte"
+
+msgid "Color"
+msgstr "Cor"
+
+msgid "Uppercase"
+msgstr "Maiúsculas"
+
+msgid "Horizontal offset"
+msgstr "Deslocamento horizontal"
+
+msgid "Vertical offset"
+msgstr "Deslocamento vertical"
+
+msgid "Blur"
+msgstr "Desfoque"
+
+msgid "Select a Preset"
+msgstr "Selecionar um Preset"
+
+#. settings-schema.json->options
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Modern Blue"
+msgstr "Azul Moderno"
+
+msgid "Clear Orange"
+msgstr "Laranja Claro"
+
+msgid "Digital Neon"
+msgstr "Neon Digital"
+
+msgid "Minimal Dark"
+msgstr "Escuro Minimalista"
+
+msgid "Minimal White"
+msgstr "Branco Minimalista"
+
+msgid "Phantom"
+msgstr "Fantasma"
+
+msgid "Cyberpunk"
+msgstr "Cyberpunk"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "Defina a cor de fundo e transparência do desklet"
+
+msgid "Example: %H:%M for 24h"
+msgstr "Exemplo: %H:%M para 24h"
+
+msgid "Example: %A for full weekday name"
+msgstr "Exemplo: %A para o dia da semana completo"
+
+msgid "Example: %e %B %Y"
+msgstr "Exemplo: %e %B %Y"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Editar Configuração"

@@ -1,0 +1,8 @@
+.clock-container {
+    padding: 10px 15px;
+}
+
+.time-container, .day-container, .date-container {
+    margin: 2px;
+    padding: 0;
+}

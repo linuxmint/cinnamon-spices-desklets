@@ -1,0 +1,8 @@
+{
+    "uuid": "cinnaclock@dingo",
+    "prevent-decorations": true,
+    "name": "Cinnaclock Desklet",
+    "description": "A desklet that displays the time and date in an elegant and highly customizable way",
+    "max-instances": -1,
+    "cinnamon-version": ["6.0"]
+}
