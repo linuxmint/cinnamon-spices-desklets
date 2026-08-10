@@ -38,16 +38,19 @@ ThermoGaugeDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-sensors", "refresh_sensors", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refresh_interval", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "gauge-max-temp", "gauge_max_temp", this.on_settings_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "temp-unit", "temp_unit", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "layout", "layout_mode", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_settings_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "background-opacity", "background_opacity", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hide_decorations", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_settings_changed);
 
         this.timeout_id = 0;
-        this.window = new Clutter.Actor();
-        this.setContent(this.window);
+        this._root = new St.BoxLayout({ vertical: false });
+        this.setContent(this._root);
 
         this._apply_decoration();
+        this._apply_panel_style(this.scale_size || 1);
         this._rediscover_sensors().then(() => {
             if (!this._destroyed)
                 this._schedule_refresh(true);
@@ -629,10 +632,70 @@ ThermoGaugeDesklet.prototype = {
         return [0.96, 0.26, 0.21, 1.0];
     },
 
-    _label_style: function(sizePx, bold) {
-        return "font-size: " + sizePx + "px;" +
+    _use_fahrenheit: function() {
+        return this.temp_unit === "fahrenheit";
+    },
+
+    _format_temp: function(tempC) {
+        if (tempC === null)
+            return "—";
+        if (this._use_fahrenheit())
+            return Math.round(tempC * 9 / 5 + 32) + "\u00B0F";
+        return Math.round(tempC) + "\u00B0C";
+    },
+
+    _short_text: function(text, maxLen) {
+        if (!text)
+            return "";
+        text = String(text).trim();
+        if (text.length <= maxLen)
+            return text;
+        return text.substring(0, Math.max(1, maxLen - 1)) + "\u2026";
+    },
+
+    _column_width: function(scale, gaugeSize) {
+        return gaugeSize + Math.round(24 * scale);
+    },
+
+    _label_style: function(sizePx, bold, maxWidth) {
+        let style = "font-size: " + sizePx + "px;" +
             (bold ? "font-weight: bold;" : "") +
             "color: " + (this.text_color || "rgb(240,240,240)") + ";";
+        if (maxWidth)
+            style += "max-width: " + maxWidth + "px;";
+        return style;
+    },
+
+    _apply_label_fit: function(label, width) {
+        label.set_width(width);
+        label.clutter_text.set_line_wrap(false);
+        label.clutter_text.set_x_align(Clutter.ActorAlign.CENTER);
+        try {
+            label.clutter_text.set_ellipsize(3);
+        } catch (e) {
+            /* Pango.EllipsizeMode.END */
+        }
+    },
+
+    _panel_opacity: function() {
+        let opacity = this.background_opacity;
+        if (opacity === undefined || opacity === null)
+            opacity = 92;
+        return Math.max(0.01, Math.min(1, opacity / 100));
+    },
+
+    _panel_style: function(pad, radius) {
+        return "background-color: rgba(24,24,37," + this._panel_opacity() + ");" +
+            "padding: " + pad + "px;" +
+            "border-radius: " + radius + "px;";
+    },
+
+    _apply_panel_style: function(scale) {
+        let s = (scale || 1) * (global.ui_scale || 1);
+        this._root.style = this._panel_style(
+            Math.round(10 * s),
+            Math.round(8 * s)
+        );
     },
 
     _layout_signature: function(scale, gaugeSize, vertical, enabled_rows) {
@@ -645,6 +708,8 @@ ThermoGaugeDesklet.prototype = {
             vertical,
             this.text_color || "",
             this.gauge_max_temp || 100,
+            this.temp_unit || "celsius",
+            this.background_opacity || 92,
             ids
         ].join("\0");
     },
@@ -654,9 +719,14 @@ ThermoGaugeDesklet.prototype = {
         let canvas = new Clutter.Canvas();
         canvas.set_size(size, size);
 
-        let actor = new Clutter.Actor();
+        let actor = new St.Widget({
+            width: size,
+            height: size,
+            clip_to_allocation: true
+        });
         actor._gaugeTemp = null;
         actor._gaugeCanvas = canvas;
+        actor._canvasSize = size;
 
         canvas.connect("draw", function(canvas, cr, width, height) {
             let temp = actor._gaugeTemp;
@@ -666,10 +736,14 @@ ThermoGaugeDesklet.prototype = {
 
             cr.save();
             cr.setOperator(Cairo.Operator.CLEAR);
-            cr.paint();
+            cr.rectangle(0, 0, width, height);
+            cr.fill();
             cr.restore();
             cr.setOperator(Cairo.Operator.OVER);
-            cr.scale(width, height);
+
+            let side = Math.min(width, height);
+            cr.translate((width - side) * 0.5, (height - side) * 0.5);
+            cr.scale(side, side);
             cr.translate(0.5, 0.5);
 
             let radius = 0.42;
@@ -695,9 +769,16 @@ ThermoGaugeDesklet.prototype = {
         });
 
         actor.set_content(canvas);
-        actor.set_size(size, size);
-        actor._gaugeCanvas.invalidate();
         return actor;
+    },
+
+    _ensure_canvas_size: function(actor, size) {
+        if (actor._canvasSize === size)
+            return;
+        actor._canvasSize = size;
+        actor.set_size(size, size);
+        actor._gaugeCanvas.set_size(size, size);
+        actor._gaugeCanvas.invalidate();
     },
 
     _update_canvas_actor: function(actor, temp) {
@@ -708,7 +789,8 @@ ThermoGaugeDesklet.prototype = {
     },
 
     _clear_display: function() {
-        this.window.remove_all_children();
+        while (this._root.get_n_children() > 0)
+            this._root.remove_actor(this._root.get_child_at_index(0));
         this._display_items = null;
         this._hint_label = null;
         this._layout_key = null;
@@ -716,77 +798,106 @@ ThermoGaugeDesklet.prototype = {
 
     _show_hint: function(text) {
         this._clear_display();
-        this._hint_label = new St.Label({ text: text });
-        this._hint_label.set_position(0, 0);
-        this.window.add_actor(this._hint_label);
-        this.window.set_size(280, 30);
+        this._root.set_vertical(true);
+        this._apply_panel_style(this.scale_size || 1);
+        this._hint_label = new St.Label({
+            text: text,
+            style: this._label_style(Math.round(12 * (this.scale_size || 1)), false)
+        });
+        this._hint_label.clutter_text.set_x_align(Clutter.ActorAlign.CENTER);
+        this._root.add(this._hint_label, { expand: false, x_fill: true, y_fill: false });
     },
 
-    _build_display: function(items, scale, gaugeSize, colWidth, rowHeight, vertical) {
+    _build_sensor_column: function(item, gaugeSize, scale, colWidth) {
+        let col = new St.BoxLayout({
+            vertical: true,
+            x_align: Clutter.ActorAlign.CENTER,
+            width: colWidth
+        });
+
+        let canvasActor = this._make_canvas_actor(gaugeSize);
+        this._ensure_canvas_size(canvasActor, gaugeSize);
+        this._update_canvas_actor(canvasActor, item.temp);
+        col.add(canvasActor, {
+            expand: false,
+            x_fill: false,
+            y_fill: false,
+            x_align: Clutter.ActorAlign.CENTER
+        });
+
+        let valueLabel = new St.Label({
+            text: this._format_temp(item.temp),
+            style: this._label_style(Math.round(22 * scale), true, colWidth)
+        });
+        this._apply_label_fit(valueLabel, colWidth);
+        col.add(valueLabel, { expand: false, x_fill: false });
+
+        let nameLabel = new St.Label({
+            text: item.displayLabel,
+            style: this._label_style(Math.round(12 * scale), true, colWidth)
+        });
+        this._apply_label_fit(nameLabel, colWidth);
+        col.add(nameLabel, { expand: false, x_fill: false });
+
+        let subLabel = new St.Label({
+            text: item.displaySub,
+            style: this._label_style(Math.round(10 * scale), false, colWidth)
+        });
+        this._apply_label_fit(subLabel, colWidth);
+        col.add(subLabel, { expand: false, x_fill: false });
+
+        return {
+            col: col,
+            canvasActor: canvasActor,
+            valueLabel: valueLabel,
+            nameLabel: nameLabel,
+            subLabel: subLabel
+        };
+    },
+
+    _build_display: function(items, scale, gaugeSize, vertical) {
         this._clear_display();
         this._display_items = [];
+        this._apply_panel_style(scale);
+        this._root.set_vertical(vertical);
+
+        let colWidth = this._column_width(scale, gaugeSize);
 
         for (let i = 0; i < items.length; i++) {
-            let item = items[i];
-            let px = vertical ? 0 : i * colWidth;
-            let py = vertical ? i * rowHeight : 0;
-
-            let canvasActor = this._make_canvas_actor(gaugeSize);
-            canvasActor.set_position(px, py);
-            this.window.add_actor(canvasActor);
-            this._update_canvas_actor(canvasActor, item.temp);
-
-            let valueLabel = new St.Label({
-                text: item.temp === null ? "—" : Math.round(item.temp) + "°C"
-            });
-            valueLabel.set_position(px, py + gaugeSize + 2);
-            valueLabel.style = this._label_style(Math.round(22 * scale), true);
-            this.window.add_actor(valueLabel);
-
-            let nameLabel = new St.Label({ text: item.label });
-            nameLabel.set_position(px, py + gaugeSize + Math.round(24 * scale));
-            nameLabel.style = this._label_style(Math.round(12 * scale), true);
-            this.window.add_actor(nameLabel);
-
-            let subLabel = new St.Label({ text: item.sub });
-            subLabel.set_position(px, py + gaugeSize + Math.round(38 * scale));
-            subLabel.style = this._label_style(Math.round(10 * scale), false);
-            this.window.add_actor(subLabel);
-
-            this._display_items.push({
-                canvasActor: canvasActor,
-                valueLabel: valueLabel,
-                nameLabel: nameLabel,
-                subLabel: subLabel
-            });
+            let built = this._build_sensor_column(items[i], gaugeSize, scale, colWidth);
+            this._root.add(built.col, { expand: false, x_fill: false, y_fill: false });
+            if (!vertical && i < items.length - 1) {
+                this._root.add(new St.Widget({ width: Math.round(8 * scale) }), { expand: false });
+            }
+            this._display_items.push(built);
         }
-
-        let totalW = vertical ? colWidth : colWidth * items.length;
-        let totalH = vertical ? rowHeight * items.length : rowHeight;
-        this.window.set_size(totalW, totalH);
     },
 
     _update_display: function(items, scale, gaugeSize) {
+        let colWidth = this._column_width(scale, gaugeSize);
+
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             let widgets = this._display_items[i];
 
+            this._ensure_canvas_size(widgets.canvasActor, gaugeSize);
             this._update_canvas_actor(widgets.canvasActor, item.temp);
 
-            let valueText = item.temp === null ? "—" : Math.round(item.temp) + "°C";
+            let valueText = this._format_temp(item.temp);
             if (widgets.valueLabel.get_text() !== valueText)
                 widgets.valueLabel.set_text(valueText);
 
-            if (widgets.nameLabel.get_text() !== item.label)
-                widgets.nameLabel.set_text(item.label);
+            if (widgets.nameLabel.get_text() !== item.displayLabel)
+                widgets.nameLabel.set_text(item.displayLabel);
 
-            if (widgets.subLabel.get_text() !== item.sub)
-                widgets.subLabel.set_text(item.sub);
+            if (widgets.subLabel.get_text() !== item.displaySub)
+                widgets.subLabel.set_text(item.displaySub);
 
-            widgets.valueLabel.style = this._label_style(Math.round(22 * scale), true);
-            widgets.nameLabel.style = this._label_style(Math.round(12 * scale), true);
-            widgets.subLabel.style = this._label_style(Math.round(10 * scale), false);
+            widgets.valueLabel.style = this._label_style(Math.round(22 * scale), true, colWidth);
+            widgets.nameLabel.style = this._label_style(Math.round(12 * scale), true, colWidth);
+            widgets.subLabel.style = this._label_style(Math.round(10 * scale), false, colWidth);
         }
+        this._apply_panel_style(scale);
     },
 
     _refresh: function() {
@@ -811,8 +922,6 @@ ThermoGaugeDesklet.prototype = {
 
         let scale = this.scale_size || 1.0;
         let gaugeSize = Math.round(BASE_GAUGE * scale * global.ui_scale);
-        let colWidth = gaugeSize + Math.round(16 * scale * global.ui_scale);
-        let rowHeight = gaugeSize + Math.round(52 * scale * global.ui_scale);
         let vertical = this.layout_mode === "vertical";
 
         let table = this.sensor_table || [];
@@ -836,14 +945,16 @@ ThermoGaugeDesklet.prototype = {
             return this._read_sensor_temp_async(row["sensor-id"]).then((temp) => ({
                 temp: temp,
                 label: row.label,
-                sub: row.detail
+                sub: row.detail,
+                displayLabel: this._short_text(row.label, 18),
+                displaySub: this._short_text(row.detail, 26)
             }));
         })).then((items) => {
             if (this._destroyed)
                 return;
 
             if (!this._display_items || this._layout_key !== layoutKey) {
-                this._build_display(items, scale, gaugeSize, colWidth, rowHeight, vertical);
+                this._build_display(items, scale, gaugeSize, vertical);
                 this._layout_key = layoutKey;
                 return;
             }
