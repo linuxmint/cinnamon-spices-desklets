@@ -1,0 +1,97 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["sensors-page", "visual-page"],
+        "sensors-page": {
+            "type": "page",
+            "title": "Sensors",
+            "sections": ["sensors-section", "general-section"]
+        },
+        "visual-page": {
+            "type": "page",
+            "title": "Visual",
+            "sections": ["visual-section"]
+        },
+        "sensors-section": {
+            "type": "section",
+            "title": "Detected sensors",
+            "keys": ["sensor-info", "refresh-sensors", "sensor-table"]
+        },
+        "general-section": {
+            "type": "section",
+            "title": "General",
+            "keys": ["refresh-interval", "gauge-max-temp"]
+        },
+        "visual-section": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": ["layout", "scale-size", "hide-decorations", "text-color"]
+        }
+    },
+    "sensor-info": {
+        "type": "label",
+        "description": "Check Show to display a sensor on the desktop. Every temp*_input exposed in /sys is listed — nothing is filtered. Toggle “Refresh sensor list”, then turn it off again to rescan after hardware changes."
+    },
+    "refresh-sensors": {
+        "type": "switch",
+        "default": false,
+        "description": "Refresh sensor list now"
+    },
+    "sensor-table": {
+        "type": "list",
+        "description": "Temperature sensors",
+        "columns": [
+            {"id": "enabled", "title": "Show", "type": "boolean", "default": true},
+            {"id": "label", "title": "Name", "type": "string"},
+            {"id": "detail", "title": "Source", "type": "string"},
+            {"id": "sensor-id", "title": "ID", "type": "string"}
+        ],
+        "default": []
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "gauge-max-temp": {
+        "type": "spinbutton",
+        "default": 100,
+        "min": 60,
+        "max": 110,
+        "step": 5,
+        "units": "°C",
+        "description": "Gauge full scale",
+        "tooltip": "Temperature at which the arc reaches 100%."
+    },
+    "layout": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Gauge layout",
+        "options": {
+            "Side by side": "horizontal",
+            "Stacked": "vertical"
+        }
+    },
+    "scale-size": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.5,
+        "step": 0.1,
+        "description": "Scale"
+    },
+    "hide-decorations": {
+        "type": "switch",
+        "default": true,
+        "description": "Hide desklet box"
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(240,240,240)",
+        "description": "Text color"
+    }
+}
