@@ -29,6 +29,9 @@ ThermoGaugeDesklet.prototype = {
         this._syncing_table = false;
         this._discovered_sensors = null;
         this._refresh_pending = false;
+        this._display_items = null;
+        this._layout_key = null;
+        this._hint_label = null;
 
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sensor-table", "sensor_table", this.on_settings_changed);
@@ -632,14 +635,35 @@ ThermoGaugeDesklet.prototype = {
             "color: " + (this.text_color || "rgb(240,240,240)") + ";";
     },
 
-    _make_canvas_actor: function(temp, size) {
-        let maxTemp = this.gauge_max_temp || 100;
-        let ratio = temp === null ? 0 : Math.max(0, Math.min(temp / maxTemp, 1.0));
-        let color = this._temp_color(temp);
+    _layout_signature: function(scale, gaugeSize, vertical, enabled_rows) {
+        let ids = enabled_rows.map(function(row) {
+            return row["sensor-id"] + ":" + row.label + ":" + row.detail;
+        }).join("|");
+        return [
+            scale,
+            gaugeSize,
+            vertical,
+            this.text_color || "",
+            this.gauge_max_temp || 100,
+            ids
+        ].join("\0");
+    },
 
+    _make_canvas_actor: function(size) {
+        let desklet = this;
         let canvas = new Clutter.Canvas();
         canvas.set_size(size, size);
+
+        let actor = new Clutter.Actor();
+        actor._gaugeTemp = null;
+        actor._gaugeCanvas = canvas;
+
         canvas.connect("draw", function(canvas, cr, width, height) {
+            let temp = actor._gaugeTemp;
+            let maxTemp = desklet.gauge_max_temp || 100;
+            let ratio = temp === null ? 0 : Math.max(0, Math.min(temp / maxTemp, 1.0));
+            let color = desklet._temp_color(temp);
+
             cr.save();
             cr.setOperator(Cairo.Operator.CLEAR);
             cr.paint();
@@ -669,23 +693,48 @@ ThermoGaugeDesklet.prototype = {
 
             return true;
         });
-        canvas.invalidate();
 
-        let actor = new Clutter.Actor();
         actor.set_content(canvas);
         actor.set_size(size, size);
+        actor._gaugeCanvas.invalidate();
         return actor;
     },
 
-    _draw_items: function(items, scale, gaugeSize, colWidth, rowHeight, vertical) {
+    _update_canvas_actor: function(actor, temp) {
+        if (actor._gaugeTemp === temp)
+            return;
+        actor._gaugeTemp = temp;
+        actor._gaugeCanvas.invalidate();
+    },
+
+    _clear_display: function() {
+        this.window.remove_all_children();
+        this._display_items = null;
+        this._hint_label = null;
+        this._layout_key = null;
+    },
+
+    _show_hint: function(text) {
+        this._clear_display();
+        this._hint_label = new St.Label({ text: text });
+        this._hint_label.set_position(0, 0);
+        this.window.add_actor(this._hint_label);
+        this.window.set_size(280, 30);
+    },
+
+    _build_display: function(items, scale, gaugeSize, colWidth, rowHeight, vertical) {
+        this._clear_display();
+        this._display_items = [];
+
         for (let i = 0; i < items.length; i++) {
             let item = items[i];
             let px = vertical ? 0 : i * colWidth;
             let py = vertical ? i * rowHeight : 0;
 
-            let canvasActor = this._make_canvas_actor(item.temp, gaugeSize);
+            let canvasActor = this._make_canvas_actor(gaugeSize);
             canvasActor.set_position(px, py);
             this.window.add_actor(canvasActor);
+            this._update_canvas_actor(canvasActor, item.temp);
 
             let valueLabel = new St.Label({
                 text: item.temp === null ? "—" : Math.round(item.temp) + "°C"
@@ -703,11 +752,41 @@ ThermoGaugeDesklet.prototype = {
             subLabel.set_position(px, py + gaugeSize + Math.round(38 * scale));
             subLabel.style = this._label_style(Math.round(10 * scale), false);
             this.window.add_actor(subLabel);
+
+            this._display_items.push({
+                canvasActor: canvasActor,
+                valueLabel: valueLabel,
+                nameLabel: nameLabel,
+                subLabel: subLabel
+            });
         }
 
         let totalW = vertical ? colWidth : colWidth * items.length;
         let totalH = vertical ? rowHeight * items.length : rowHeight;
         this.window.set_size(totalW, totalH);
+    },
+
+    _update_display: function(items, scale, gaugeSize) {
+        for (let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let widgets = this._display_items[i];
+
+            this._update_canvas_actor(widgets.canvasActor, item.temp);
+
+            let valueText = item.temp === null ? "—" : Math.round(item.temp) + "°C";
+            if (widgets.valueLabel.get_text() !== valueText)
+                widgets.valueLabel.set_text(valueText);
+
+            if (widgets.nameLabel.get_text() !== item.label)
+                widgets.nameLabel.set_text(item.label);
+
+            if (widgets.subLabel.get_text() !== item.sub)
+                widgets.subLabel.set_text(item.sub);
+
+            widgets.valueLabel.style = this._label_style(Math.round(22 * scale), true);
+            widgets.nameLabel.style = this._label_style(Math.round(12 * scale), true);
+            widgets.subLabel.style = this._label_style(Math.round(10 * scale), false);
+        }
     },
 
     _refresh: function() {
@@ -730,8 +809,6 @@ ThermoGaugeDesklet.prototype = {
             this._sensor_table_needs_resync(this.sensor_table, this._discovered_sensors))
             this._sync_sensor_table(false);
 
-        this.window.remove_all_children();
-
         let scale = this.scale_size || 1.0;
         let gaugeSize = Math.round(BASE_GAUGE * scale * global.ui_scale);
         let colWidth = gaugeSize + Math.round(16 * scale * global.ui_scale);
@@ -746,14 +823,14 @@ ThermoGaugeDesklet.prototype = {
         }
 
         if (enabled_rows.length === 0) {
-            let hint = new St.Label({
-                text: table.length ? "No sensors selected — open desklet settings" : "Scanning sensors…"
-            });
-            hint.set_position(0, 0);
-            this.window.add_actor(hint);
-            this.window.set_size(280, 30);
+            let hint = table.length ?
+                "No sensors selected — open desklet settings" : "Scanning sensors…";
+            if (!this._hint_label || this._hint_label.get_text() !== hint)
+                this._show_hint(hint);
             return Promise.resolve();
         }
+
+        let layoutKey = this._layout_signature(scale, gaugeSize, vertical, enabled_rows);
 
         return Promise.all(enabled_rows.map((row) => {
             return this._read_sensor_temp_async(row["sensor-id"]).then((temp) => ({
@@ -764,7 +841,14 @@ ThermoGaugeDesklet.prototype = {
         })).then((items) => {
             if (this._destroyed)
                 return;
-            this._draw_items(items, scale, gaugeSize, colWidth, rowHeight, vertical);
+
+            if (!this._display_items || this._layout_key !== layoutKey) {
+                this._build_display(items, scale, gaugeSize, colWidth, rowHeight, vertical);
+                this._layout_key = layoutKey;
+                return;
+            }
+
+            this._update_display(items, scale, gaugeSize);
         });
     }
 };
