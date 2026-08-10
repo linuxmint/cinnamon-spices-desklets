@@ -1,7 +1,6 @@
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Cairo = imports.cairo;
@@ -26,7 +25,11 @@ ThermoGaugeDesklet.prototype = {
     _init: function(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
+        this._destroyed = false;
         this._syncing_table = false;
+        this._discovered_sensors = null;
+        this._refresh_pending = false;
+
         this.settings = new Settings.DeskletSettings(this, this.metadata.uuid, desklet_id);
         this.settings.bindProperty(Settings.BindingDirection.IN, "sensor-table", "sensor_table", this.on_settings_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-sensors", "refresh_sensors", this.on_settings_changed);
@@ -41,9 +44,11 @@ ThermoGaugeDesklet.prototype = {
         this.window = new Clutter.Actor();
         this.setContent(this.window);
 
-        this._sync_sensor_table(false);
         this._apply_decoration();
-        this._schedule_refresh(true);
+        this._rediscover_sensors().then(() => {
+            if (!this._destroyed)
+                this._schedule_refresh(true);
+        });
     },
 
     on_settings_changed: function() {
@@ -51,11 +56,15 @@ ThermoGaugeDesklet.prototype = {
             return;
 
         if (this.refresh_sensors) {
-            this._sync_sensor_table(true);
             this._syncing_table = true;
             this.settings.setValue("refresh-sensors", false);
             this.refresh_sensors = false;
             this._syncing_table = false;
+            this._rediscover_sensors(true).then(() => {
+                if (!this._destroyed)
+                    this._schedule_refresh(true);
+            });
+            return;
         }
 
         this._apply_decoration();
@@ -63,6 +72,7 @@ ThermoGaugeDesklet.prototype = {
     },
 
     on_desklet_removed: function() {
+        this._destroyed = true;
         if (this.timeout_id)
             Mainloop.source_remove(this.timeout_id);
         this.timeout_id = 0;
@@ -83,30 +93,79 @@ ThermoGaugeDesklet.prototype = {
         let interval = this.refresh_interval || 2;
         this.timeout_id = Mainloop.timeout_add_seconds(
             interval,
-            Lang.bind(this, this._refresh_loop)
+            () => {
+                this._refresh();
+                return GLib.SOURCE_CONTINUE;
+            }
         );
     },
 
-    _refresh_loop: function() {
-        this._refresh();
-        return true;
+    _read_text_async: function(path) {
+        return new Promise((resolve) => {
+            let file = Gio.File.new_for_path(path);
+            file.load_contents_async(null, (obj, res) => {
+                try {
+                    let [ok, bytes] = obj.load_contents_finish(res);
+                    if (!ok) {
+                        resolve(null);
+                        return;
+                    }
+                    if (imports.byteArray)
+                        resolve(imports.byteArray.toString(bytes).trim());
+                    else
+                        resolve(bytes.toString().trim());
+                } catch (e) {
+                    resolve(null);
+                }
+            });
+        });
     },
 
-    _read_text: function(path) {
-        try {
-            let file = Gio.File.new_for_path(path);
-            if (!file.query_exists(null))
-                return null;
-            let [ok, bytes] = file.load_contents(null);
-            if (ok) {
-                if (imports.byteArray)
-                    return imports.byteArray.toString(bytes).trim();
-                return bytes.toString().trim();
-            }
-        } catch (e) {
-            /* optional sysfs nodes may be absent */
-        }
-        return null;
+    _enumerate_children_async: function(dirFile) {
+        return new Promise((resolve) => {
+            dirFile.enumerate_children_async(
+                "standard::name",
+                Gio.FileQueryInfoFlags.NONE,
+                GLib.PRIORITY_DEFAULT,
+                null,
+                (file, res) => {
+                    try {
+                        resolve(file.enumerate_children_finish(res));
+                    } catch (e) {
+                        resolve(null);
+                    }
+                }
+            );
+        });
+    },
+
+    _collect_enum_names: function(enumerator) {
+        let names = [];
+        if (!enumerator)
+            return names;
+
+        let info;
+        while ((info = enumerator.next_file(null)) !== null)
+            names.push(info.get_name());
+        return names;
+    },
+
+    _query_symlink_target_async: function(file) {
+        return new Promise((resolve) => {
+            file.query_info_async(
+                "standard::symlink-target",
+                Gio.FileQueryInfoFlags.NONE,
+                GLib.PRIORITY_DEFAULT,
+                null,
+                (obj, res) => {
+                    try {
+                        resolve(obj.query_info_finish(res).get_symlink_target());
+                    } catch (e) {
+                        resolve(null);
+                    }
+                }
+            );
+        });
     },
 
     _chip_category: function(chip) {
@@ -129,57 +188,53 @@ ThermoGaugeDesklet.prototype = {
         }
     },
 
-    _nvme_index_from_hwmon: function(hwmon_base) {
-        try {
-            let file = Gio.File.new_for_path(hwmon_base + "/device");
-            let info = file.query_info(
-                "standard::symlink-target",
-                Gio.FileQueryInfoFlags.NONE,
-                null
-            );
-            let target = info.get_symlink_target();
+    _nvme_index_from_hwmon_async: function(hwmon_base) {
+        let file = Gio.File.new_for_path(hwmon_base + "/device");
+        return this._query_symlink_target_async(file).then((target) => {
             if (!target)
                 return null;
             let match = target.match(/nvme(\d+)(?:\/|$)/);
             return match ? parseInt(match[1], 10) : null;
-        } catch (e) {
-            return null;
-        }
+        });
     },
 
-    _temp_label_for: function(hwmon_base, input_name) {
+    _temp_label_for_async: function(hwmon_base, input_name) {
         let label_path = hwmon_base + "/" + input_name.replace("_input", "_label");
-        return this._read_text(label_path);
+        return this._read_text_async(label_path);
     },
 
-    _friendly_name: function(chip, temp_label, input_name, hwmon_base) {
+    _friendly_name_async: function(chip, temp_label, input_name, hwmon_base) {
         if (chip === "nvme") {
-            let idx = this._nvme_index_from_hwmon(hwmon_base);
-            let model = idx !== null ? this._nvme_short_name(idx) : "NVMe";
-            if (temp_label)
-                return model + " · " + temp_label;
-            return model + " · " + input_name.replace("_input", "");
+            return this._nvme_index_from_hwmon_async(hwmon_base).then((idx) => {
+                let model_promise = idx !== null ?
+                    this._nvme_short_name_async(idx) : Promise.resolve("NVMe");
+                return model_promise.then((model) => {
+                    if (temp_label)
+                        return model + " · " + temp_label;
+                    return model + " · " + input_name.replace("_input", "");
+                });
+            });
         }
 
         if (chip === "k10temp" || chip === "coretemp" || chip === "zenpower") {
             if (temp_label)
-                return "CPU · " + temp_label;
-            return "CPU";
+                return Promise.resolve("CPU · " + temp_label);
+            return Promise.resolve("CPU");
         }
         if (chip === "amdgpu" || chip === "amdgpu_pp" || chip === "radeon" ||
             chip === "nouveau" || chip === "nvidia") {
             if (temp_label)
-                return "GPU · " + temp_label;
-            return "GPU";
+                return Promise.resolve("GPU · " + temp_label);
+            return Promise.resolve("GPU");
         }
         if (WIFI_CHIP_RE.test(chip))
-            return temp_label ? "Wi-Fi · " + temp_label : "Wi-Fi";
+            return Promise.resolve(temp_label ? "Wi-Fi · " + temp_label : "Wi-Fi");
         if (chip === "drivetemp")
-            return temp_label ? "Drive · " + temp_label : "Drive";
+            return Promise.resolve(temp_label ? "Drive · " + temp_label : "Drive");
 
         if (temp_label)
-            return chip + " · " + temp_label;
-        return chip + " · " + input_name.replace("_input", "");
+            return Promise.resolve(chip + " · " + temp_label);
+        return Promise.resolve(chip + " · " + input_name.replace("_input", ""));
     },
 
     _sensor_detail: function(chip, temp_label, input_name, extra) {
@@ -193,115 +248,120 @@ ThermoGaugeDesklet.prototype = {
         return bits.join(" · ");
     },
 
-    _add_temp_sensor: function(sensors, seen, hwmon_base, input_name, chip, hw_tag) {
+    _add_temp_sensor_async: function(sensors, seen, hwmon_base, input_name, chip, hw_tag) {
         let path = hwmon_base + "/" + input_name;
-        if (!Gio.File.new_for_path(path).query_exists(null))
-            return;
-
         let canon = this._canonical_path(path);
         let id = "path:" + canon;
         if (seen[id])
-            return;
-        seen[id] = true;
+            return Promise.resolve();
 
-        let temp_label = this._temp_label_for(hwmon_base, input_name);
-        let input_key = input_name.replace("_input", "");
-        let category = this._chip_category(chip);
-        let index = parseInt((input_key.match(/(\d+)/) || ["0"])[1], 10);
+        return this._read_text_async(path).then((probe) => {
+            if (probe === null)
+                return;
 
-        sensors.push(this._make_sensor(
-            id,
-            this._friendly_name(chip, temp_label, input_name, hwmon_base),
-            this._sensor_detail(chip, temp_label, input_name, hw_tag || hwmon_base),
-            category * 10 + index
-        ));
+            seen[id] = true;
+            return this._temp_label_for_async(hwmon_base, input_name).then((temp_label) => {
+                let input_key = input_name.replace("_input", "");
+                let category = this._chip_category(chip);
+                let index = parseInt((input_key.match(/(\d+)/) || ["0"])[1], 10);
+
+                return this._friendly_name_async(chip, temp_label, input_name, hwmon_base).then((label) => {
+                    sensors.push(this._make_sensor(
+                        id,
+                        label,
+                        this._sensor_detail(chip, temp_label, input_name, hw_tag || hwmon_base),
+                        category * 10 + index
+                    ));
+                });
+            });
+        });
     },
 
-    _enumerate_temp_inputs: function(dir_path, callback) {
+    _enumerate_temp_inputs_async: function(dir_path) {
         let dir = Gio.File.new_for_path(dir_path);
-        if (!dir.query_exists(null))
-            return;
-
-        let enumerator;
-        try {
-            enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        } catch (e) {
-            return;
-        }
-
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            let name = info.get_name();
-            if (name.match(/^temp\d+_input$/))
-                callback(name);
-        }
+        return this._enumerate_children_async(dir).then((enumerator) => {
+            return this._collect_enum_names(enumerator).filter(function(name) {
+                return name.match(/^temp\d+_input$/);
+            });
+        });
     },
 
-    _nvme_hwmon_base: function(nvme_index) {
+    _nvme_hwmon_base_async: function(nvme_index) {
         let nvme_dir = "/sys/class/nvme/nvme" + nvme_index;
         let dir = Gio.File.new_for_path(nvme_dir);
-        if (!dir.query_exists(null))
+        return this._enumerate_children_async(dir).then((enumerator) => {
+            let names = this._collect_enum_names(enumerator);
+            for (let i = 0; i < names.length; i++) {
+                if (names[i].indexOf("hwmon") === 0)
+                    return nvme_dir + "/" + names[i];
+            }
             return null;
-
-        let enumerator;
-        try {
-            enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        } catch (e) {
-            return null;
-        }
-
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            let name = info.get_name();
-            if (name.indexOf("hwmon") === 0)
-                return nvme_dir + "/" + name;
-        }
-        return null;
+        });
     },
 
-    _nvme_short_name: function(nvme_index) {
-        let model = this._read_text("/sys/block/nvme" + nvme_index + "n1/device/model");
-        if (!model)
-            return "NVMe " + nvme_index;
-        return model.replace(/\s+/g, " ").trim();
+    _nvme_short_name_async: function(nvme_index) {
+        return this._read_text_async("/sys/block/nvme" + nvme_index + "n1/device/model").then((model) => {
+            if (!model)
+                return "NVMe " + nvme_index;
+            return model.replace(/\s+/g, " ").trim();
+        });
     },
 
-    _discover_hwmon_sensors: function(sensors, seen) {
+    _discover_hwmon_sensors_async: function(sensors, seen) {
         let dir = Gio.File.new_for_path("/sys/class/hwmon");
-        let enumerator;
-        try {
-            enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        } catch (e) {
-            return;
-        }
+        return this._enumerate_children_async(dir).then((enumerator) => {
+            let hw_names = this._collect_enum_names(enumerator);
+            let chain = Promise.resolve();
 
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            let hw = info.get_name();
-            let base = "/sys/class/hwmon/" + hw;
-            let chip = this._read_text(base + "/name");
-            if (!chip)
-                continue;
+            hw_names.forEach((hw) => {
+                chain = chain.then(() => {
+                    let base = "/sys/class/hwmon/" + hw;
+                    return this._read_text_async(base + "/name").then((chip) => {
+                        if (!chip)
+                            return;
 
-            let desklet = this;
-            this._enumerate_temp_inputs(base, function(input_name) {
-                desklet._add_temp_sensor(sensors, seen, base, input_name, chip, hw);
+                        return this._enumerate_temp_inputs_async(base).then((inputs) => {
+                            let input_chain = Promise.resolve();
+                            inputs.forEach((input_name) => {
+                                input_chain = input_chain.then(() =>
+                                    this._add_temp_sensor_async(sensors, seen, base, input_name, chip, hw)
+                                );
+                            });
+                            return input_chain;
+                        });
+                    });
+                });
             });
-        }
+
+            return chain;
+        });
     },
 
-    _discover_nvme_class_sensors: function(sensors, seen) {
-        for (let i = 0; i < 16; i++) {
-            let base = this._nvme_hwmon_base(i);
-            if (!base)
-                continue;
+    _discover_nvme_class_sensors_async: function(sensors, seen) {
+        let chain = Promise.resolve();
 
-            let tag = "nvme" + i;
-            let desklet = this;
-            this._enumerate_temp_inputs(base, function(input_name) {
-                desklet._add_temp_sensor(sensors, seen, base, input_name, "nvme", tag);
+        for (let i = 0; i < 16; i++) {
+            let idx = i;
+            chain = chain.then(() => {
+                return this._nvme_hwmon_base_async(idx).then((base) => {
+                    if (!base)
+                        return;
+
+                    let tag = "nvme" + idx;
+                    return this._enumerate_temp_inputs_async(base).then((inputs) => {
+                        let input_chain = Promise.resolve();
+                        inputs.forEach((input_name) => {
+                            input_chain = input_chain.then(() =>
+                                this._add_temp_sensor_async(sensors, seen, base, input_name, "nvme", tag)
+                            );
+                        });
+                        return input_chain;
+                    });
+                });
             });
         }
+
+        return chain;
     },
 
     _make_sensor: function(id, label, detail, sort_key) {
@@ -313,17 +373,29 @@ ThermoGaugeDesklet.prototype = {
         };
     },
 
-    _discover_all_sensors: function() {
+    _discover_all_sensors_async: function() {
         let sensors = [];
         let seen = {};
-        this._discover_hwmon_sensors(sensors, seen);
-        this._discover_nvme_class_sensors(sensors, seen);
-        sensors.sort(function(a, b) {
-            if (a.sort !== b.sort)
-                return a.sort - b.sort;
-            return a.label.localeCompare(b.label);
+
+        return this._discover_hwmon_sensors_async(sensors, seen)
+            .then(() => this._discover_nvme_class_sensors_async(sensors, seen))
+            .then(() => {
+                sensors.sort(function(a, b) {
+                    if (a.sort !== b.sort)
+                        return a.sort - b.sort;
+                    return a.label.localeCompare(b.label);
+                });
+                return sensors;
+            });
+    },
+
+    _rediscover_sensors: function(force_sync) {
+        return this._discover_all_sensors_async().then((sensors) => {
+            if (this._destroyed)
+                return;
+            this._discovered_sensors = sensors;
+            this._sync_sensor_table(force_sync === true);
         });
-        return sensors;
     },
 
     _table_signature: function(table) {
@@ -413,7 +485,10 @@ ThermoGaugeDesklet.prototype = {
     },
 
     _sync_sensor_table: function(force) {
-        let discovered = this._discover_all_sensors();
+        let discovered = this._discovered_sensors;
+        if (!discovered)
+            return;
+
         let saved = this.sensor_table;
         if (!saved || !Array.isArray(saved))
             saved = [];
@@ -439,20 +514,84 @@ ThermoGaugeDesklet.prototype = {
         }
     },
 
-    _read_sensor_temp: function(sensor_id) {
+    _read_temp_c_async: function(path) {
+        if (!path)
+            return Promise.resolve(null);
+
+        return this._read_text_async(path).then((raw) => {
+            if (!raw)
+                return null;
+            let value = parseInt(raw, 10);
+            if (isNaN(value))
+                return null;
+            return value / 1000.0;
+        });
+    },
+
+    _resolve_chip_temp_path_async: function(chip, input_key) {
+        let dir = Gio.File.new_for_path("/sys/class/hwmon");
+        let input_name = input_key.indexOf("temp") === 0 ? input_key + "_input" : input_key;
+
+        return this._enumerate_children_async(dir).then((enumerator) => {
+            let hw_names = this._collect_enum_names(enumerator);
+            let chain = Promise.resolve(null);
+
+            hw_names.forEach((hw) => {
+                chain = chain.then((found) => {
+                    if (found)
+                        return found;
+
+                    let base = "/sys/class/hwmon/" + hw;
+                    return this._read_text_async(base + "/name").then((name) => {
+                        if (name !== chip)
+                            return null;
+                        let path = base + "/" + input_name;
+                        return this._read_text_async(path).then((probe) => probe === null ? null : path);
+                    });
+                });
+            });
+
+            return chain;
+        });
+    },
+
+    _read_hwmon_max_temp_c_async: function(hwmon_base) {
+        if (!hwmon_base)
+            return Promise.resolve(null);
+
+        let dir = Gio.File.new_for_path(hwmon_base);
+        return this._enumerate_children_async(dir).then((enumerator) => {
+            let names = this._collect_enum_names(enumerator).filter(function(name) {
+                return name.match(/^temp\d+_input$/);
+            });
+
+            return Promise.all(names.map((name) =>
+                this._read_temp_c_async(hwmon_base + "/" + name)
+            )).then((temps) => {
+                let max = null;
+                temps.forEach((temp) => {
+                    if (temp !== null && (max === null || temp > max))
+                        max = temp;
+                });
+                return max;
+            });
+        });
+    },
+
+    _read_sensor_temp_async: function(sensor_id) {
         if (!sensor_id)
-            return null;
+            return Promise.resolve(null);
 
         if (sensor_id.indexOf("path:") === 0)
-            return this._read_temp_c(sensor_id.substring(5));
+            return this._read_temp_c_async(sensor_id.substring(5));
 
-        /* legacy IDs from older versions */
         if (sensor_id.indexOf("nvme:") === 0) {
             let parts = sensor_id.split(":");
             if (parts.length >= 3 && parts[2] === "max") {
                 let idx = parseInt(parts[1], 10);
-                let hwmon = this._nvme_hwmon_base(idx);
-                return this._read_hwmon_max_temp_c(hwmon);
+                return this._nvme_hwmon_base_async(idx).then((hwmon) =>
+                    this._read_hwmon_max_temp_c_async(hwmon)
+                );
             }
         }
 
@@ -460,74 +599,15 @@ ThermoGaugeDesklet.prototype = {
             let body = sensor_id.substring(5);
             let last_colon = body.lastIndexOf(":");
             if (last_colon < 0)
-                return null;
+                return Promise.resolve(null);
             let chip = body.substring(0, last_colon);
             let input_key = body.substring(last_colon + 1);
-            let path = this._resolve_chip_temp_path(chip, input_key);
-            return this._read_temp_c(path);
+            return this._resolve_chip_temp_path_async(chip, input_key).then((path) =>
+                this._read_temp_c_async(path)
+            );
         }
 
-        return null;
-    },
-
-    _resolve_chip_temp_path: function(chip, input_key) {
-        let dir = Gio.File.new_for_path("/sys/class/hwmon");
-        let enumerator;
-        try {
-            enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        } catch (e) {
-            return null;
-        }
-
-        let input_name = input_key.indexOf("temp") === 0 ? input_key + "_input" : input_key;
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            let hw = info.get_name();
-            let base = "/sys/class/hwmon/" + hw;
-            if (this._read_text(base + "/name") !== chip)
-                continue;
-            let path = base + "/" + input_name;
-            if (Gio.File.new_for_path(path).query_exists(null))
-                return path;
-        }
-        return null;
-    },
-
-    _read_temp_c: function(path) {
-        if (!path)
-            return null;
-        let raw = this._read_text(path);
-        if (!raw)
-            return null;
-        let value = parseInt(raw, 10);
-        if (isNaN(value))
-            return null;
-        return value / 1000.0;
-    },
-
-    _read_hwmon_max_temp_c: function(hwmon_base) {
-        if (!hwmon_base)
-            return null;
-
-        let dir = Gio.File.new_for_path(hwmon_base);
-        let enumerator;
-        try {
-            enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        } catch (e) {
-            return null;
-        }
-
-        let max = null;
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            let name = info.get_name();
-            if (!name.match(/^temp\d+_input$/))
-                continue;
-            let temp = this._read_temp_c(hwmon_base + "/" + name);
-            if (temp !== null && (max === null || temp > max))
-                max = temp;
-        }
-        return max;
+        return Promise.resolve(null);
     },
 
     _temp_color: function(temp) {
@@ -631,9 +711,23 @@ ThermoGaugeDesklet.prototype = {
     },
 
     _refresh: function() {
-        let discovered = this._discover_all_sensors();
+        if (this._refresh_pending)
+            return;
+        this._refresh_pending = true;
+
+        this._refresh_async().then(() => {
+            this._refresh_pending = false;
+        }, () => {
+            this._refresh_pending = false;
+        });
+    },
+
+    _refresh_async: function() {
+        if (!this._discovered_sensors)
+            return Promise.resolve();
+
         if (!this.sensor_table || !this.sensor_table.length ||
-            this._sensor_table_needs_resync(this.sensor_table, discovered))
+            this._sensor_table_needs_resync(this.sensor_table, this._discovered_sensors))
             this._sync_sensor_table(false);
 
         this.window.remove_all_children();
@@ -644,30 +738,34 @@ ThermoGaugeDesklet.prototype = {
         let rowHeight = gaugeSize + Math.round(52 * scale * global.ui_scale);
         let vertical = this.layout_mode === "vertical";
 
-        let items = [];
         let table = this.sensor_table || [];
+        let enabled_rows = [];
         for (let i = 0; i < table.length; i++) {
-            let row = table[i];
-            if (row.enabled === false)
-                continue;
-            items.push({
-                temp: this._read_sensor_temp(row["sensor-id"]),
-                label: row.label,
-                sub: row.detail
-            });
+            if (table[i].enabled !== false)
+                enabled_rows.push(table[i]);
         }
 
-        if (items.length === 0) {
+        if (enabled_rows.length === 0) {
             let hint = new St.Label({
                 text: table.length ? "No sensors selected — open desklet settings" : "Scanning sensors…"
             });
             hint.set_position(0, 0);
             this.window.add_actor(hint);
             this.window.set_size(280, 30);
-            return;
+            return Promise.resolve();
         }
 
-        this._draw_items(items, scale, gaugeSize, colWidth, rowHeight, vertical);
+        return Promise.all(enabled_rows.map((row) => {
+            return this._read_sensor_temp_async(row["sensor-id"]).then((temp) => ({
+                temp: temp,
+                label: row.label,
+                sub: row.detail
+            }));
+        })).then((items) => {
+            if (this._destroyed)
+                return;
+            this._draw_items(items, scale, gaugeSize, colWidth, rowHeight, vertical);
+        });
     }
 };
 

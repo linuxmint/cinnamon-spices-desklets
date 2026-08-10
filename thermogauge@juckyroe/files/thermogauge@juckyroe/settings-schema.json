@@ -30,7 +30,7 @@
     },
     "sensor-info": {
         "type": "label",
-        "description": "Check Show to display a sensor on the desktop. Every temp*_input exposed in /sys is listed — nothing is filtered. Toggle “Refresh sensor list”, then turn it off again to rescan after hardware changes."
+        "description": "Check Show to display a sensor on the desktop. Every temp*_input exposed in /sys is listed - nothing is filtered. Toggle \"Refresh sensor list\", then turn it off again to rescan after hardware changes."
     },
     "refresh-sensors": {
         "type": "switch",

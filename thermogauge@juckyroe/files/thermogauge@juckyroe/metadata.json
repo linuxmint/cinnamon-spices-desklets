@@ -2,7 +2,7 @@
     "uuid": "thermogauge@juckyroe",
     "name": "Thermo Gauge",
     "description": "Auto-detected temperature gauges - pick sensors in settings",
-    "version": "2.2",
+    "version": "2.3",
     "author": "juckyroe",
     "max-instances": "1",
     "prevent-decorations": false
