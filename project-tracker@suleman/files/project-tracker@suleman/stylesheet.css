@@ -1,0 +1,117 @@
+/* Project Tracker Desklet — Gray Dark Theme */
+
+.tracker-container {
+    background-color: rgba(28, 28, 32, 0.92);
+    border: 1px solid rgba(160, 160, 170, 0.15);
+    border-radius: 14px;
+    padding: 16px;
+    min-width: 400px;
+}
+
+.tracker-header {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(210, 210, 215, 0.95);
+    font-family: "Inter", "SF Pro Display", "Segoe UI", sans-serif;
+    padding-bottom: 8px;
+    text-align: center;
+}
+
+.tracker-header-accent {
+    font-size: 16px;
+    font-weight: 700;
+    color: rgba(170, 170, 180, 0.9);
+    font-family: "Inter", "SF Pro Display", "Segoe UI", sans-serif;
+    padding-bottom: 8px;
+}
+
+.tracker-scroll {
+    padding: 0;
+}
+
+.tracker-scroll-inner {
+    padding: 0;
+}
+
+.project-row {
+    background-color: rgba(42, 42, 48, 0.8);
+    border: 1px solid rgba(140, 140, 150, 0.1);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin-bottom: 8px;
+}
+
+.project-row:hover {
+    background-color: rgba(58, 58, 65, 0.9);
+    border: 1px solid rgba(180, 180, 190, 0.2);
+}
+
+.project-name {
+    font-size: 15px;
+    font-weight: 600;
+    color: rgba(230, 230, 235, 0.95);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.project-path {
+    font-size: 12px;
+    color: rgba(150, 150, 160, 0.7);
+    font-family: "Inter", "SF Pro Display", sans-serif;
+    padding-top: 2px;
+}
+
+.stat-label {
+    font-size: 12px;
+    color: rgba(155, 155, 165, 0.75);
+    font-family: "Inter", "SF Pro Display", sans-serif;
+}
+
+.stat-value {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(140, 210, 170, 0.95);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.stat-value-commits {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(190, 170, 240, 0.95);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.stat-value-size {
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(240, 190, 120, 0.95);
+    font-family: "JetBrains Mono", "Fira Code", monospace;
+}
+
+.commit-msg {
+    font-size: 12px;
+    color: rgba(175, 175, 185, 0.8);
+    font-family: "Inter", "SF Pro Display", sans-serif;
+    font-style: italic;
+    padding-top: 3px;
+    padding-bottom: 4px;
+}
+
+.time-ago {
+    font-size: 12px;
+    color: rgba(160, 180, 210, 0.85);
+    font-family: "Inter", "SF Pro Display", sans-serif;
+}
+
+.separator {
+    background-color: rgba(160, 160, 170, 0.12);
+    height: 1px;
+    margin: 6px 0;
+}
+
+.no-projects {
+    font-size: 14px;
+    color: rgba(150, 150, 160, 0.6);
+    font-family: "Inter", "SF Pro Display", sans-serif;
+    text-align: center;
+    padding: 20px;
+}
