@@ -6,15 +6,13 @@ import gettext
 import gi
 gi.require_version("Gtk", "3.0")
 
-from gi.repository import Gtk
+from gi.repository import Gtk, GLib
 from xapp.SettingsWidgets import SettingsWidget
 
 
 UUID = "speedpup@taskpuppynatani"
 LOCALE_DIR = os.path.join(
-    os.path.expanduser("~"),
-    ".local",
-    "share",
+    GLib.get_user_data_dir(),
     "locale"
 )
 

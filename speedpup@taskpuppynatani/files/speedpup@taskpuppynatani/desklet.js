@@ -21,7 +21,10 @@ const UUID = "speedpup@taskpuppynatani";
 
 Gettext.bindtextdomain(
     UUID,
-    GLib.get_home_dir() + "/.local/share/locale"
+    GLib.build_filenamev([
+        GLib.get_user_data_dir(),
+        "locale"
+    ])
 );
 
 function _(text) {
