@@ -1,0 +1,114 @@
+{
+  "layout": {
+    "type": "header",
+    "description": "Layout"
+  },
+  "layout-mode": {
+    "type": "combobox",
+    "default": "auto",
+    "description": "Grid layout mode",
+    "options": {
+      "Auto (near-square)": "auto",
+      "Fixed (rows x cols)": "fixed"
+    }
+  },
+  "fixed-rows": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "units": "rows",
+    "description": "Rows (fixed layout)",
+    "dependency": "layout-mode=fixed"
+  },
+  "fixed-cols": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "units": "cols",
+    "description": "Columns (fixed layout)",
+    "dependency": "layout-mode=fixed"
+  },
+
+  "labels": {
+    "type": "header",
+    "description": "Labels"
+  },
+  "show-index": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Prefix names with index (1-based)"
+  },
+
+  "management": {
+    "type": "header",
+    "description": "Workspace management"
+  },
+  "enable-workspace-editing": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Allow adding, removing and renaming workspaces"
+  },
+  "show-add-tile": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show a \"+\" tile to add a workspace",
+    "dependency": "enable-workspace-editing"
+  },
+  "confirm-remove": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Confirm before removing a named workspace",
+    "dependency": "enable-workspace-editing"
+  },
+
+  "behavior": {
+    "type": "header",
+    "description": "Behavior"
+  },
+  "scroll-wheel-behavior": {
+    "type": "combobox",
+    "default": "off",
+    "description": "Scroll wheel switches workspaces",
+    "options": {
+      "Off": "off",
+      "By column": "col",
+      "By row": "row"
+    }
+  },
+
+  "style": {
+    "type": "header",
+    "description": "Style"
+  },
+  "tile-spacing": {
+    "type": "spinbutton",
+    "default": 4,
+    "min": 0,
+    "max": 24,
+    "step": 1,
+    "units": "px",
+    "description": "Tile spacing"
+  },
+  "width": {
+    "type": "spinbutton",
+    "default": 600,
+    "min": 200,
+    "max": 2000,
+    "step": 50,
+    "units": "px",
+    "description": "Desklet width"
+  },
+  "height": {
+    "type": "spinbutton",
+    "default": 400,
+    "min": 200,
+    "max": 2000,
+    "step": 50,
+    "units": "px",
+    "description": "Desklet height"
+  }
+}

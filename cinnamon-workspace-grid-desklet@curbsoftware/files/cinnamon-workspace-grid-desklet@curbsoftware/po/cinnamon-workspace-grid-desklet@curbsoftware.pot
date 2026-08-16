@@ -1,0 +1,159 @@
+# WORKSPACE GRID
+# This file is put in the public domain.
+# RobertAlexanderH, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cinnamon-workspace-grid-desklet@curbsoftware 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-08-15 19:09-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:328
+msgid "Rename…"
+msgstr ""
+
+#. desklet.js:334
+msgid "Remove"
+msgstr ""
+
+#. desklet.js:343
+msgid "Add workspace"
+msgstr ""
+
+#. renameDialog.js:61
+msgid "Rename workspace"
+msgstr ""
+
+#. renameDialog.js:62
+msgid "Leave the name empty to restore the default name."
+msgstr ""
+
+#. renameDialog.js:83
+msgid "Cancel"
+msgstr ""
+
+#. renameDialog.js:88
+msgid "Rename"
+msgstr ""
+
+#. workspaceActions.js:285
+#, javascript-format
+msgid "Are you sure you want to remove workspace \"%s\"?"
+msgstr ""
+
+#. metadata.json->name
+msgid "Workspace Grid"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"A desklet that displays a clickable grid of workspaces with names and "
+"highlights the active workspace."
+msgstr ""
+
+#. settings-schema.json->layout->description
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->layout-mode->description
+msgid "Grid layout mode"
+msgstr ""
+
+#. settings-schema.json->layout-mode->options
+msgid "Auto (near-square)"
+msgstr ""
+
+#. settings-schema.json->layout-mode->options
+msgid "Fixed (rows x cols)"
+msgstr ""
+
+#. settings-schema.json->fixed-rows->units
+msgid "rows"
+msgstr ""
+
+#. settings-schema.json->fixed-rows->description
+msgid "Rows (fixed layout)"
+msgstr ""
+
+#. settings-schema.json->fixed-cols->units
+msgid "cols"
+msgstr ""
+
+#. settings-schema.json->fixed-cols->description
+msgid "Columns (fixed layout)"
+msgstr ""
+
+#. settings-schema.json->labels->description
+msgid "Labels"
+msgstr ""
+
+#. settings-schema.json->show-index->description
+msgid "Prefix names with index (1-based)"
+msgstr ""
+
+#. settings-schema.json->management->description
+msgid "Workspace management"
+msgstr ""
+
+#. settings-schema.json->enable-workspace-editing->description
+msgid "Allow adding, removing and renaming workspaces"
+msgstr ""
+
+#. settings-schema.json->show-add-tile->description
+msgid "Show a \"+\" tile to add a workspace"
+msgstr ""
+
+#. settings-schema.json->confirm-remove->description
+msgid "Confirm before removing a named workspace"
+msgstr ""
+
+#. settings-schema.json->behavior->description
+msgid "Behavior"
+msgstr ""
+
+#. settings-schema.json->scroll-wheel-behavior->description
+msgid "Scroll wheel switches workspaces"
+msgstr ""
+
+#. settings-schema.json->scroll-wheel-behavior->options
+msgid "Off"
+msgstr ""
+
+#. settings-schema.json->scroll-wheel-behavior->options
+msgid "By column"
+msgstr ""
+
+#. settings-schema.json->scroll-wheel-behavior->options
+msgid "By row"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->tile-spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->tile-spacing->description
+msgid "Tile spacing"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Desklet width"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Desklet height"
+msgstr ""
