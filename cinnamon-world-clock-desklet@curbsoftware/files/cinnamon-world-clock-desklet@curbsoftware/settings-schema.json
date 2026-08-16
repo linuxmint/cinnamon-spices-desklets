@@ -1,0 +1,145 @@
+{
+  "layout": {
+    "type": "header",
+    "description": "Layout"
+  },
+  "layout-mode": {
+    "type": "combobox",
+    "default": "auto",
+    "description": "Grid layout mode",
+    "options": {
+      "Auto (near-square)": "auto",
+      "Fixed (rows x cols)": "fixed"
+    }
+  },
+  "fixed-rows": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "units": "rows",
+    "description": "Rows (fixed layout)",
+    "dependency": "layout-mode=fixed"
+  },
+  "fixed-cols": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "units": "cols",
+    "description": "Columns (fixed layout)",
+    "dependency": "layout-mode=fixed"
+  },
+
+  "management": {
+    "type": "header",
+    "description": "Clock management"
+  },
+  "enable-clock-editing": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Allow adding, removing and editing clocks"
+  },
+  "show-add-tile": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show a \"+\" tile to add a clock",
+    "dependency": "enable-clock-editing"
+  },
+  "confirm-remove": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Confirm before removing a named clock",
+    "dependency": "enable-clock-editing"
+  },
+
+  "display": {
+    "type": "header",
+    "description": "Display"
+  },
+  "time-format": {
+    "type": "entry",
+    "default": "%H:%M:%S",
+    "description": "Time format (strftime)"
+  },
+  "date-format": {
+    "type": "entry",
+    "default": "%A, %e %B",
+    "description": "Date format (strftime)"
+  },
+  "time-size": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 6,
+    "max": 72,
+    "step": 1,
+    "units": "pt",
+    "description": "Maximum time font size",
+    "tooltip": "Tiles scale down from this size so the time stays inside the cell"
+  },
+  "date-size": {
+    "type": "spinbutton",
+    "default": 15,
+    "min": 6,
+    "max": 72,
+    "step": 1,
+    "units": "pt",
+    "description": "Maximum date font size",
+    "tooltip": "Tiles scale down from this size so the date stays inside the cell"
+  },
+  "timezone-size": {
+    "type": "spinbutton",
+    "default": 12,
+    "min": 6,
+    "max": 72,
+    "step": 1,
+    "units": "pt",
+    "description": "Maximum label font size",
+    "tooltip": "Tiles scale down from this size. Long names ellipsize rather than overflowing"
+  },
+
+  "style": {
+    "type": "header",
+    "description": "Style"
+  },
+  "tile-spacing": {
+    "type": "spinbutton",
+    "default": 4,
+    "min": 0,
+    "max": 24,
+    "step": 1,
+    "units": "px",
+    "description": "Tile spacing"
+  },
+  "width": {
+    "type": "spinbutton",
+    "default": 600,
+    "min": 200,
+    "max": 2000,
+    "step": 50,
+    "units": "px",
+    "description": "Desklet width"
+  },
+  "height": {
+    "type": "spinbutton",
+    "default": 400,
+    "min": 200,
+    "max": 2000,
+    "step": 50,
+    "units": "px",
+    "description": "Desklet height"
+  },
+
+  "clocks": {
+    "type": "generic",
+    "default": [
+      {
+        "id": "default",
+        "name": "Local",
+        "timezone": "local"
+      }
+    ]
+  }
+}

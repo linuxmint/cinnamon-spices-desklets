@@ -1,0 +1,213 @@
+# WORLD CLOCK
+# This file is put in the public domain.
+# RobertAlexanderH, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cinnamon-world-clock-desklet@curbsoftware 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-08-15 19:09-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. clockActions.js:456 clockActions.js:461 clockDialog.js:109
+msgid "Clock"
+msgstr ""
+
+#. clockActions.js:472 clockDialog.js:35
+msgid "Local"
+msgstr ""
+
+#. clockActions.js:485 clockDialog.js:42
+msgid "Local (system timezone)"
+msgstr ""
+
+#. clockDialog.js:110
+msgid "Type a name, then pick a timezone from the list."
+msgstr ""
+
+#. clockDialog.js:115
+msgid "Name"
+msgstr ""
+
+#. clockDialog.js:120
+msgid "Clock name"
+msgstr ""
+
+#. clockDialog.js:126
+msgid "Timezone"
+msgstr ""
+
+#. clockDialog.js:131
+msgid "Search city or region"
+msgstr ""
+
+#. clockDialog.js:165
+msgid "Cancel"
+msgstr ""
+
+#. clockDialog.js:170
+msgid "Save"
+msgstr ""
+
+#. clockDialog.js:303
+#, javascript-format
+msgid "Selected: %s"
+msgstr ""
+
+#. desklet.js:263
+msgid "World Clocks"
+msgstr ""
+
+#. desklet.js:495
+msgid "Edit…"
+msgstr ""
+
+#. desklet.js:501
+msgid "Remove"
+msgstr ""
+
+#. desklet.js:510
+msgid "Add clock"
+msgstr ""
+
+#. desklet.js:575
+msgid "Add Clock"
+msgstr ""
+
+#. desklet.js:593
+msgid "Edit Clock"
+msgstr ""
+
+#. desklet.js:618
+#, javascript-format
+msgid "Are you sure you want to remove clock \"%s\"?"
+msgstr ""
+
+#. metadata.json->name
+msgid "World Clock"
+msgstr ""
+
+#. metadata.json->description
+msgid "A grid of world clocks with configurable timezones"
+msgstr ""
+
+#. settings-schema.json->layout->description
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->layout-mode->description
+msgid "Grid layout mode"
+msgstr ""
+
+#. settings-schema.json->layout-mode->options
+msgid "Auto (near-square)"
+msgstr ""
+
+#. settings-schema.json->layout-mode->options
+msgid "Fixed (rows x cols)"
+msgstr ""
+
+#. settings-schema.json->fixed-rows->units
+msgid "rows"
+msgstr ""
+
+#. settings-schema.json->fixed-rows->description
+msgid "Rows (fixed layout)"
+msgstr ""
+
+#. settings-schema.json->fixed-cols->units
+msgid "cols"
+msgstr ""
+
+#. settings-schema.json->fixed-cols->description
+msgid "Columns (fixed layout)"
+msgstr ""
+
+#. settings-schema.json->management->description
+msgid "Clock management"
+msgstr ""
+
+#. settings-schema.json->enable-clock-editing->description
+msgid "Allow adding, removing and editing clocks"
+msgstr ""
+
+#. settings-schema.json->show-add-tile->description
+msgid "Show a \"+\" tile to add a clock"
+msgstr ""
+
+#. settings-schema.json->confirm-remove->description
+msgid "Confirm before removing a named clock"
+msgstr ""
+
+#. settings-schema.json->display->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->time-format->description
+msgid "Time format (strftime)"
+msgstr ""
+
+#. settings-schema.json->date-format->description
+msgid "Date format (strftime)"
+msgstr ""
+
+#. settings-schema.json->time-size->units
+#. settings-schema.json->date-size->units
+#. settings-schema.json->timezone-size->units
+msgid "pt"
+msgstr ""
+
+#. settings-schema.json->time-size->description
+msgid "Maximum time font size"
+msgstr ""
+
+#. settings-schema.json->time-size->tooltip
+msgid "Tiles scale down from this size so the time stays inside the cell"
+msgstr ""
+
+#. settings-schema.json->date-size->description
+msgid "Maximum date font size"
+msgstr ""
+
+#. settings-schema.json->date-size->tooltip
+msgid "Tiles scale down from this size so the date stays inside the cell"
+msgstr ""
+
+#. settings-schema.json->timezone-size->description
+msgid "Maximum label font size"
+msgstr ""
+
+#. settings-schema.json->timezone-size->tooltip
+msgid ""
+"Tiles scale down from this size. Long names ellipsize rather than overflowing"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->tile-spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->tile-spacing->description
+msgid "Tile spacing"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Desklet width"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Desklet height"
+msgstr ""

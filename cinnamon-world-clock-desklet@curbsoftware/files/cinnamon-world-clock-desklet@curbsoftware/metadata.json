@@ -1,0 +1,8 @@
+{
+    "uuid": "cinnamon-world-clock-desklet@curbsoftware",
+    "name": "World Clock",
+    "description": "A grid of world clocks with configurable timezones",
+    "version": "1.0.0",
+    "prevent-decorations": false,
+    "max-instances": 1
+}
