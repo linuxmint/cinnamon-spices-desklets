@@ -1,7 +1,6 @@
 /* global imports, global */
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
-const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Main = imports.ui.main;
@@ -11,7 +10,7 @@ const GLib = imports.gi.GLib;
 
 const uuid = "cinnamon-workspace-grid-desklet@curbsoftware";
 
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(uuid, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(uuid, str);
@@ -95,7 +94,7 @@ MyDesklet.prototype = {
 
         this.setContent(this.mainContainer);
 
-        this.switch_id = global.window_manager.connect('switch-workspace', Lang.bind(this, this._update));
+        this.switch_id = global.window_manager.connect('switch-workspace', this._update.bind(this));
 
         /* connect scroll handler based on current setting */
         this._connectScrollHandler();
@@ -107,7 +106,7 @@ MyDesklet.prototype = {
          * on_desklet_removed() until a 500ms fade-out completes. Without this
          * hook our signal handlers keep firing against a tearing-down desklet
          * for half a second. _cleanup() is idempotent. */
-        this._destroyId = this.connect('destroy', Lang.bind(this, this._cleanup));
+        this._destroyId = this.connect('destroy', this._cleanup.bind(this));
     },
 
     on_desklet_removed: function () {
@@ -170,7 +169,7 @@ MyDesklet.prototype = {
         if (!this.scrollWheelBehavior || this.scrollWheelBehavior === "off")
             return;
 
-        this.scroll_id = this.mainContainer.connect('scroll-event', Lang.bind(this, this._onScrollEvent));
+        this.scroll_id = this.mainContainer.connect('scroll-event', this._onScrollEvent.bind(this));
     },
 
     _onScrollEvent: function (actor, event) {
@@ -276,7 +275,7 @@ MyDesklet.prototype = {
         });
         button.set_child(label);
         button.index = index;
-        button.connect('clicked', Lang.bind(this, this._onWorkspaceButtonClicked));
+        button.connect('clicked', this._onWorkspaceButtonClicked.bind(this));
         button.set_style("margin:" + Math.max(0, this.tileSpacing || 0) + "px;");
 
         this.buttons.push(button);
@@ -294,7 +293,7 @@ MyDesklet.prototype = {
             style_class: 'workspace-add-label'
         });
         button.set_child(label);
-        button.connect('clicked', Lang.bind(this, this._onAddWorkspace));
+        button.connect('clicked', this._onAddWorkspace.bind(this));
         button.set_style("margin:" + Math.max(0, this.tileSpacing || 0) + "px;");
         return button;
     },
@@ -326,23 +325,23 @@ MyDesklet.prototype = {
             menu.actor.hide();
 
             const renameItem = new PopupMenu.PopupMenuItem(_("Rename…"));
-            renameItem.connect('activate', Lang.bind(this, function () {
+            renameItem.connect('activate', () => {
                 this._onRenameWorkspace(index);
-            }));
+            });
             menu.addMenuItem(renameItem);
 
             const removeItem = new PopupMenu.PopupMenuItem(_("Remove"));
             removeItem.setSensitive(WorkspaceActions.canRemove());
-            removeItem.connect('activate', Lang.bind(this, function () {
+            removeItem.connect('activate', () => {
                 this._onRemoveWorkspace(index);
-            }));
+            });
             menu.addMenuItem(removeItem);
 
             menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
             const addItem = new PopupMenu.PopupMenuItem(_("Add workspace"));
             addItem.setSensitive(WorkspaceActions.canAdd());
-            addItem.connect('activate', Lang.bind(this, this._onAddWorkspace));
+            addItem.connect('activate', this._onAddWorkspace.bind(this));
             menu.addMenuItem(addItem);
 
             if (this._menuManager)
@@ -468,12 +467,12 @@ MyDesklet.prototype = {
     _connectWorkspaceSignals: function () {
         if (!_loadModules())
             return;
-        this.ws_added_id = global.workspace_manager.connect('workspace-added', Lang.bind(this, this._onWorkspacesChanged));
-        this.ws_removed_id = global.workspace_manager.connect('workspace-removed', Lang.bind(this, this._onWorkspacesChanged));
+        this.ws_added_id = global.workspace_manager.connect('workspace-added', this._onWorkspacesChanged.bind(this));
+        this.ws_removed_id = global.workspace_manager.connect('workspace-removed', this._onWorkspacesChanged.bind(this));
         /* Workspace names live in org.cinnamon.desktop.wm.preferences; the old
          * org.cinnamon "workspace-name-overrides" key is deprecated and never
          * changes, so renames were previously never picked up. */
-        this.ws_name_id = WorkspaceActions.connectNameChanges(Lang.bind(this, this._onWorkspacesChanged));
+        this.ws_name_id = WorkspaceActions.connectNameChanges(this._onWorkspacesChanged.bind(this));
     },
 
     _disconnectWorkspaceSignals: function () {
@@ -497,11 +496,11 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._rebuildTimeout);
             this._rebuildTimeout = null;
         }
-        this._rebuildTimeout = Mainloop.timeout_add(100, Lang.bind(this, function () {
+        this._rebuildTimeout = Mainloop.timeout_add(100, () => {
             this._rebuildTimeout = null;
             this._rebuildGrid();
             return false; // Don't repeat
-        }));
+        });
     }
 };
 
