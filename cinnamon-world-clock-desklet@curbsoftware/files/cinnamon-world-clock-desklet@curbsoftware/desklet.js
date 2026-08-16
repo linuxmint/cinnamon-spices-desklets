@@ -1,7 +1,6 @@
 /* global imports, global */
 const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
-const Lang = imports.lang;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
 const Main = imports.ui.main;
@@ -13,7 +12,7 @@ const Pango = imports.gi.Pango;
 
 const uuid = "cinnamon-world-clock-desklet@curbsoftware";
 
-Gettext.bindtextdomain(uuid, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(uuid, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(uuid, str);
@@ -270,7 +269,7 @@ MyDesklet.prototype = {
          * on_desklet_removed() until a 500ms fade-out completes. Without this
          * hook our timeout keeps firing against a tearing-down desklet for
          * half a second. _cleanup() is idempotent. */
-        this._destroyId = this.connect("destroy", Lang.bind(this, this._cleanup));
+        this._destroyId = this.connect("destroy", this._cleanup.bind(this));
     },
 
     on_desklet_removed: function () {
@@ -342,11 +341,11 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._rebuildTimeout);
             this._rebuildTimeout = null;
         }
-        this._rebuildTimeout = Mainloop.timeout_add(100, Lang.bind(this, function () {
+        this._rebuildTimeout = Mainloop.timeout_add(100, () => {
             this._rebuildTimeout = null;
             this._rebuildGrid();
             return false;
-        }));
+        });
     },
 
     _onClocksChanged: function () {
@@ -437,7 +436,7 @@ MyDesklet.prototype = {
         const widget = new ClockWidget(clock, this);
         widget.actor.index = index;
         widget.actor.clockId = clock.id;
-        widget.actor.connect("clicked", Lang.bind(this, this._onClockTileClicked));
+        widget.actor.connect("clicked", this._onClockTileClicked.bind(this));
         widget.actor.set_style("margin:" + Math.max(0, this.tileSpacing || 0) + "px;");
         this._clockWidgets.push(widget);
         this.buttons.push(widget.actor);
@@ -461,7 +460,7 @@ MyDesklet.prototype = {
             label.clutter_text.line_wrap = false;
         } catch (e) {}
         button.set_child(label);
-        button.connect("clicked", Lang.bind(this, this._onAddClock));
+        button.connect("clicked", this._onAddClock.bind(this));
         button.set_style("margin:" + Math.max(0, this.tileSpacing || 0) + "px;");
         this._addTiles.push({ button: button, label: label });
         return button;
@@ -493,23 +492,23 @@ MyDesklet.prototype = {
             menu.actor.hide();
 
             const editItem = new PopupMenu.PopupMenuItem(_("Edit…"));
-            editItem.connect("activate", Lang.bind(this, function () {
+            editItem.connect("activate", () => {
                 this._onEditClock(index);
-            }));
+            });
             menu.addMenuItem(editItem);
 
             const removeItem = new PopupMenu.PopupMenuItem(_("Remove"));
             removeItem.setSensitive(ClockActions.canRemove(clocks));
-            removeItem.connect("activate", Lang.bind(this, function () {
+            removeItem.connect("activate", () => {
                 this._onRemoveClock(index);
-            }));
+            });
             menu.addMenuItem(removeItem);
 
             menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
 
             const addItem = new PopupMenu.PopupMenuItem(_("Add clock"));
             addItem.setSensitive(ClockActions.canAdd(clocks));
-            addItem.connect("activate", Lang.bind(this, this._onAddClock));
+            addItem.connect("activate", this._onAddClock.bind(this));
             menu.addMenuItem(addItem);
 
             if (this._menuManager)
@@ -572,11 +571,11 @@ MyDesklet.prototype = {
             const zones = ClockActions.listTimezones
                 ? ClockActions.listTimezones()
                 : null;
-            this._clockDialog = ClockDialog.promptClock(_("Add Clock"), ClockActions.DEFAULT_CLOCK, Lang.bind(this, function (values) {
+            this._clockDialog = ClockDialog.promptClock(_("Add Clock"), ClockActions.DEFAULT_CLOCK, (values) => {
                 if (this._cleanedUp)
                     return;
                 this._setClockList(ClockActions.addClock(this._getClockList(), values));
-            }), zones);
+            }, zones);
         });
     },
 
@@ -590,11 +589,11 @@ MyDesklet.prototype = {
             const zones = ClockActions.listTimezones
                 ? ClockActions.listTimezones()
                 : null;
-            this._clockDialog = ClockDialog.promptClock(_("Edit Clock"), current, Lang.bind(this, function (values) {
+            this._clockDialog = ClockDialog.promptClock(_("Edit Clock"), current, (values) => {
                 if (this._cleanedUp)
                     return;
                 this._setClockList(ClockActions.updateClock(this._getClockList(), current.id, values));
-            }), zones);
+            }, zones);
         });
     },
 
@@ -608,11 +607,11 @@ MyDesklet.prototype = {
                 return;
 
             const clock = clocks[index];
-            const doRemove = Lang.bind(this, function () {
+            const doRemove = () => {
                 if (this._cleanedUp)
                     return;
                 this._setClockList(ClockActions.removeClock(this._getClockList(), clock.id));
-            });
+            };
 
             if (this.confirmRemove && clock.name) {
                 const prompt = _("Are you sure you want to remove clock \"%s\"?").format(clock.name);
@@ -698,13 +697,13 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._fitId);
             this._fitId = null;
         }
-        this._fitId = Mainloop.timeout_add(0, Lang.bind(this, function () {
+        this._fitId = Mainloop.timeout_add(0, () => {
             this._fitId = null;
             if (this._cleanedUp)
                 return false;
             this._fitAllTiles(this._tileInner);
             return false;
-        }));
+        });
     },
 
     _fitAllTiles: function (inner) {
@@ -787,7 +786,7 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._timeout);
             this._timeout = null;
         }
-        this._timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._onTick));
+        this._timeout = Mainloop.timeout_add_seconds(1, this._onTick.bind(this));
     },
 
     _onTick: function () {
