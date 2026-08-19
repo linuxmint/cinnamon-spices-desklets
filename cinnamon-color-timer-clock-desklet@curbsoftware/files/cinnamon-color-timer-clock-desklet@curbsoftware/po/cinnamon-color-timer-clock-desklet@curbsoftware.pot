@@ -1,0 +1,306 @@
+# COLOR TIMER CLOCK
+# This file is put in the public domain.
+# RobertAlexanderH, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cinnamon-color-timer-clock-desklet@curbsoftware 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-08-19 16:56-0700\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:43
+msgid "Clock"
+msgstr ""
+
+#. desklet.js:44 desklet.js:289
+msgid "Timer"
+msgstr ""
+
+#. desklet.js:45
+msgid "Chronometer"
+msgstr ""
+
+#. desklet.js:149 desklet.js:214
+msgid "Start"
+msgstr ""
+
+#. desklet.js:152
+msgid "Reset"
+msgstr ""
+
+#. desklet.js:155
+msgid "-1 minute"
+msgstr ""
+
+#. desklet.js:156
+msgid "+1 minute"
+msgstr ""
+
+#. desklet.js:214
+msgid "Pause"
+msgstr ""
+
+#. desklet.js:284
+msgid "Time is up"
+msgstr ""
+
+#. desklet.js:293
+msgid "Ready"
+msgstr ""
+
+#. desklet.js:294
+msgid "Paused"
+msgstr ""
+
+#. metadata.json->name
+#. desklet.js:471
+msgid "Color Timer Clock"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Clock, countdown timer and chronometer cards whose background colors follow "
+"a schedule"
+msgstr ""
+
+#. settings-schema.json->cards->description
+msgid "Cards"
+msgstr ""
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock card"
+msgstr ""
+
+#. settings-schema.json->show-timer->description
+msgid "Show timer card"
+msgstr ""
+
+#. settings-schema.json->show-chronometer->description
+msgid "Show chronometer card"
+msgstr ""
+
+#. settings-schema.json->clock->description
+msgid "Clock card"
+msgstr ""
+
+#. settings-schema.json->clock-timezone->description
+msgid "Timezone"
+msgstr ""
+
+#. settings-schema.json->clock-timezone->tooltip
+msgid ""
+"IANA timezone name for the clock card, for example Europe/Berlin. Leave "
+"empty to use local time."
+msgstr ""
+
+#. settings-schema.json->clock-schedule->description
+#. settings-schema.json->timer-schedule->description
+#. settings-schema.json->chrono-schedule->description
+msgid "Color schedule"
+msgstr ""
+
+#. settings-schema.json->clock-schedule->tooltip
+msgid ""
+"Card background color at a given time of day, interpolated between stops and "
+"wrapping over midnight. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a "
+"name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, "
+"purple, magenta, grey."
+msgstr ""
+
+#. settings-schema.json->clock-schedule->columns->title
+msgid "Hour"
+msgstr ""
+
+#. settings-schema.json->clock-schedule->columns->title
+msgid "Minute"
+msgstr ""
+
+#. settings-schema.json->clock-schedule->columns->title
+#. settings-schema.json->timer-schedule->columns->title
+#. settings-schema.json->chrono-schedule->columns->title
+msgid "Color"
+msgstr ""
+
+#. settings-schema.json->clock-smooth->description
+#. settings-schema.json->timer-smooth->description
+#. settings-schema.json->chrono-smooth->description
+msgid "Smooth color transitions"
+msgstr ""
+
+#. settings-schema.json->clock-smooth->tooltip
+#. settings-schema.json->timer-smooth->tooltip
+#. settings-schema.json->chrono-smooth->tooltip
+msgid ""
+"Blend gradually between schedule stops. When disabled, each color holds "
+"until the next stop and then jumps."
+msgstr ""
+
+#. settings-schema.json->timer->description
+msgid "Timer card"
+msgstr ""
+
+#. settings-schema.json->timer-minutes->units
+msgid "min"
+msgstr ""
+
+#. settings-schema.json->timer-minutes->description
+msgid "Timer minutes"
+msgstr ""
+
+#. settings-schema.json->timer-minutes->tooltip
+msgid ""
+"Default timer duration. The +/- buttons on the card adjust it by one minute "
+"while the timer is stopped."
+msgstr ""
+
+#. settings-schema.json->timer-seconds->units
+msgid "s"
+msgstr ""
+
+#. settings-schema.json->timer-seconds->description
+msgid "Timer seconds"
+msgstr ""
+
+#. settings-schema.json->timer-schedule->tooltip
+msgid ""
+"Card background color at a given remaining time, interpolated between stops "
+"and holding the last stop's color beyond it. Colors: hex (#rgb, #rgba, "
+"#rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, "
+"green, teal, cyan, blue, purple, magenta, grey."
+msgstr ""
+
+#. settings-schema.json->timer-schedule->columns->title
+msgid "Remaining seconds"
+msgstr ""
+
+#. settings-schema.json->chrono->description
+msgid "Chronometer card"
+msgstr ""
+
+#. settings-schema.json->chrono-schedule->tooltip
+msgid ""
+"Card background color at a given elapsed time, interpolated between stops "
+"and holding the last stop's color beyond it. Colors: hex (#rgb, #rgba, "
+"#rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, "
+"green, teal, cyan, blue, purple, magenta, grey."
+msgstr ""
+
+#. settings-schema.json->chrono-schedule->columns->title
+msgid "Elapsed seconds"
+msgstr ""
+
+#. settings-schema.json->chrono-milliseconds->description
+msgid "Show hundredths of a second"
+msgstr ""
+
+#. settings-schema.json->chrono-milliseconds->tooltip
+msgid ""
+"Adds a .ss fraction to the chronometer. The card updates 20 times per second "
+"while it runs; paused it freezes the fraction, stopped it reads 00:00.00."
+msgstr ""
+
+#. settings-schema.json->display->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->time-format->description
+msgid "Time format (strftime)"
+msgstr ""
+
+#. settings-schema.json->time-format->tooltip
+msgid "Clock card time. Example: %H:%M:%S"
+msgstr ""
+
+#. settings-schema.json->date-format->description
+msgid "Date format (strftime)"
+msgstr ""
+
+#. settings-schema.json->date-format->tooltip
+msgid "Clock card date. Example: %A, %e %B"
+msgstr ""
+
+#. settings-schema.json->time-size->units
+#. settings-schema.json->date-size->units
+#. settings-schema.json->label-size->units
+msgid "pt"
+msgstr ""
+
+#. settings-schema.json->time-size->description
+msgid "Maximum time font size"
+msgstr ""
+
+#. settings-schema.json->time-size->tooltip
+msgid "Cards scale down from this size so the time stays inside the card"
+msgstr ""
+
+#. settings-schema.json->date-size->description
+msgid "Maximum date font size"
+msgstr ""
+
+#. settings-schema.json->date-size->tooltip
+msgid "Cards scale down from this size so the date stays inside the card"
+msgstr ""
+
+#. settings-schema.json->label-size->description
+msgid "Maximum card title font size"
+msgstr ""
+
+#. settings-schema.json->label-size->tooltip
+msgid ""
+"Cards scale down from this size. Long titles ellipsize rather than "
+"overflowing"
+msgstr ""
+
+#. settings-schema.json->card-spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->card-spacing->description
+msgid "Card spacing"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Desklet width"
+msgstr ""
+
+#. settings-schema.json->width->tooltip
+msgid ""
+"Cards share the width. Each card needs about 130 px; when the width cannot "
+"fit them all, the chronometer and then the timer hide automatically and come "
+"back when you widen the desklet"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Desklet height"
+msgstr ""
+
+#. settings-schema.json->reset-schedules->description
+msgid "Reset all schedules to defaults"
+msgstr ""
+
+#. settings-schema.json->reset-schedules->tooltip
+msgid ""
+"Restores the clock, timer and chronometer color schedules to their default "
+"stops"
+msgstr ""
+
+#. settings-schema.json->timer-state->description
+#. settings-schema.json->timer-state->tooltip
+msgid "Do not change: persisted timer state"
+msgstr ""
+
+#. settings-schema.json->chrono-state->description
+#. settings-schema.json->chrono-state->tooltip
+msgid "Do not change: persisted chronometer state"
+msgstr ""

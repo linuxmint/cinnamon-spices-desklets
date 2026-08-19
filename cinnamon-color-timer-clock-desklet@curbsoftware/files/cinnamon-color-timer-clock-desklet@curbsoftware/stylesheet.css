@@ -1,0 +1,119 @@
+.ctc-container {
+    /* Thin (4px) backing ring: it separates the cards from the desktop
+     * without outweighing the 12px gaps between them. Keep in sync with
+     * CARD_LAYOUT.containerPad in cardActions.js. */
+    padding: 4px;
+    border-radius: 12px;
+    background-color: rgba(0, 0, 0, 0.35);
+}
+
+.ctc-grid {
+    /* St.Table doesn't support CSS spacing directly; spacing handled via card margins */
+}
+
+/* Card chrome is a dark-backed fallback only: once a schedule provides a
+ * colour, desklet.js owns background-color/color/border-color and the
+ * transition-duration through one cached inline style. St ignores
+ * transition-property entirely (a duration alone crossfades the whole node
+ * paint), so none is declared; the inline duration is what switches between
+ * 1000ms ramps and 0ms steps. */
+.ctc-card {
+    background-color: rgba(0, 0, 0, 0.25);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 8px;
+    padding: 4px 6px;
+    color: white;
+    /* A single lit top edge: one inset shadow is all St parses, and a
+     * drop shadow would vanish against the dark desktop. Not owned by
+     * the inline colour style, so it survives the per-tick set_style. */
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.ctc-card:expired {
+    border-width: 2px;
+}
+
+/* Expiry punch: the border colour flips to the fg colour from desklet.js
+ * (see setExpired) and the title emphasizes. */
+.ctc-card:expired .ctc-card-title {
+    font-weight: 700;
+}
+
+.ctc-card-body {
+    spacing: 2px;
+}
+
+.ctc-card-title {
+    color: inherit;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ctc-card-value {
+    font-weight: bold;
+    text-align: center;
+    color: inherit;
+}
+
+.ctc-card-sub {
+    margin-top: 2px;
+    text-align: center;
+    color: inherit;
+}
+
+/* Controls pill is a FIXED dark chip, independent of the schedule colour,
+ * so the white symbolic icons stay legible on any card background. */
+.ctc-card-controls {
+    background-color: rgba(0, 0, 0, 0.35);
+    border-radius: 12px;
+    padding: 3px;
+    margin-top: 8px;
+    spacing: 4px;
+}
+
+.ctc-ctl {
+    border-radius: 9px;
+    padding: 4px 8px;
+    color: white;
+    transition-duration: 150ms;
+}
+
+.ctc-ctl:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.ctc-ctl:focus {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Inert +/- buttons while the timer runs: visible, unambiguous, but clearly
+ * not clickable - and the pill keeps one width in every state. */
+.ctc-ctl:dim {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+/* Same horizontal padding as .ctc-ctl so all glyph centers in the row
+ * sit on one rhythm; only the height is slimmer. */
+.ctc-ctl-small {
+    padding: 2px 8px;
+}
+
+@media (max-width: 240px) {
+    .ctc-card {
+        border-radius: 6px;
+        padding: 2px 4px;
+    }
+    .ctc-card-value {
+        font-weight: 600;
+    }
+    .ctc-card-controls {
+        padding: 2px;
+        margin-top: 2px;
+    }
+    .ctc-ctl {
+        padding: 2px 4px;
+    }
+    .ctc-ctl-small {
+        padding: 2px 4px;
+    }
+}
