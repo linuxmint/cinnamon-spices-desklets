@@ -3,10 +3,12 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
+const Main = imports.ui.main;
 const Tooltips = imports.ui.tooltips;
 const Gettext = imports.gettext;
 const GLib = imports.gi.GLib;
 const Pango = imports.gi.Pango;
+const Clutter = imports.gi.Clutter;
 
 const uuid = "cinnamon-color-timer-clock-desklet@curbsoftware";
 
@@ -21,17 +23,56 @@ function _(str) {
  * load-order problem surfaces as a logged error instead of a load failure. */
 let CardActions = null;
 
-function _loadModules() {
+function _loadModules(deskletPath) {
     if (CardActions)
         return true;
-    try {
-        const dir = imports.ui.deskletManager.desklets[uuid];
-        CardActions = dir.cardActions;
-        return !!CardActions;
-    } catch (e) {
-        global.logError(uuid + " could not load helper modules: " + e);
-        return false;
+    const dirs = [];
+    try { dirs.push(imports.ui.deskletManager.desklets[uuid]); } catch (e) {}
+    try { dirs.push(imports.desklets[uuid]); } catch (e) {}
+    for (let i = 0; i < dirs.length; i++) {
+        if (dirs[i] && dirs[i].cardActions) {
+            CardActions = dirs[i].cardActions;
+            return true;
+        }
     }
+    if (deskletPath) {
+        try {
+            imports.searchPath.unshift(deskletPath);
+            CardActions = imports.cardActions;
+            if (CardActions)
+                return true;
+        } catch (e) {
+            global.logError(uuid + " could not import cardActions from " + deskletPath + ": " + e);
+        }
+    }
+    global.logError(uuid + " could not load helper modules");
+    return false;
+}
+
+function _formatStrftime(date, fmt, tzName) {
+    if (!fmt)
+        return "";
+    try {
+        let tz;
+        if (tzName && String(tzName).trim())
+            tz = GLib.TimeZone.new(String(tzName).trim());
+        else
+            tz = GLib.TimeZone.new_local();
+        let dt = GLib.DateTime.new_from_unix_utc(Math.floor(date.getTime() / 1000));
+        if (tz)
+            dt = dt.to_timezone(tz);
+        let out = dt.format(fmt);
+        if (out)
+            return out;
+    } catch (e) {}
+    try {
+        if (date && typeof date.toLocaleFormat === "function") {
+            let out = date.toLocaleFormat(fmt);
+            if (out)
+                return out;
+        }
+    } catch (e2) {}
+    return "";
 }
 
 const DEFAULT_TIME_FORMAT = "%H:%M:%S";
@@ -47,6 +88,11 @@ const CARD_TITLES = {
 
 const TIMER_PHASES = ["stopped", "paused", "running", "expired"];
 const CHRONO_PHASES = ["stopped", "paused", "running"];
+
+/* A timer that finished while the desklet was unloaded only re-notifies when
+ * it expired recently; a stale expiry from hours or days ago is not worth a
+ * startup pop. Covers cinnamon --replace and quick reboots, skips the rest. */
+const STALE_EXPIRY_MS = 10 * 60 * 1000;
 
 function _pad2(n) {
     return n < 10 ? "0" + n : "" + n;
@@ -72,6 +118,27 @@ function _formatDuration(ms, ceil, hundredths) {
     if (hundredths && !ceil)
         out += "." + _pad2(Math.floor((total % 1000) / 10));
     return out;
+}
+
+function _centerLabelText(label) {
+    if (!label || !label.clutter_text)
+        return;
+    try {
+        label.clutter_text.set_line_alignment(Pango.Alignment.CENTER);
+        if (Clutter.ActorAlign)
+            label.clutter_text.x_align = Clutter.ActorAlign.CENTER;
+    } catch (e) {}
+}
+
+function _actorWidth(actor) {
+    try {
+        if (!actor || !actor.get_allocation_box)
+            return 0;
+        const box = actor.get_allocation_box();
+        return Math.max(0, box.x2 - box.x1);
+    } catch (e) {
+        return 0;
+    }
 }
 
 function CardWidget(kind, desklet) {
@@ -103,16 +170,28 @@ CardWidget.prototype = {
             this._sub.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
             this._sub.clutter_text.line_wrap = false;
         } catch (e) {}
+        _centerLabelText(this._title);
+        _centerLabelText(this._value);
+        _centerLabelText(this._sub);
 
         /* Labels live in an expanding body box: the text block centers in
          * the space above the controls, and the controls pill anchors to
          * the card bottom. The clock card carries a ghost pill (same
-         * height, invisible, inert) so all cards share one baseline grid. */
+         * height, invisible, inert) so all cards share one baseline grid.
+         * Time/date stay at natural width so BoxLayout can center them;
+         * stretching those labels with set_width left-aligns the glyphs. */
+        this._refreshButton = this._refreshCtl();
+        /* Header row at the card top: the title centers in the flexible space
+         * and a small refresh button pins to the top-right corner. */
+        this._header = new St.BoxLayout();
+        this._header.add(this._title, { expand: true, x_fill: true, x_align: St.Align.MIDDLE, y_align: St.Align.START });
+        this._header.add(this._refreshButton, { x_fill: false, x_align: St.Align.END, y_align: St.Align.START });
+        this.actor.add(this._header, { x_fill: true, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.START });
+
         this._body = new St.BoxLayout({
             vertical: true,
             style_class: "ctc-card-body"
         });
-        this._body.add(this._title, { x_fill: false, x_align: St.Align.MIDDLE });
         this._body.add(this._value, { x_fill: false, x_align: St.Align.MIDDLE });
         this._body.add(this._sub, { x_fill: false, x_align: St.Align.MIDDLE });
         this.actor.add(this._body, {
@@ -123,6 +202,11 @@ CardWidget.prototype = {
             y_align: St.Align.MIDDLE
         });
 
+        this._swatch = new St.DrawingArea();
+        this._swatch.set_width(12);
+        this._swatch.set_height(12);
+        this._swatchColor = null;
+        this._swatch.connect("repaint", () => this._paintSwatch());
         this._buildControls();
         if (kind === "clock")
             this._ghostControls();
@@ -158,7 +242,11 @@ CardWidget.prototype = {
             this._controls.add(this._plusButton);
         }
 
-        this.actor.add(this._controls, { x_fill: false, x_align: St.Align.MIDDLE });
+        /* Bottom row: controls centered, next-colour swatch at bottom-right. */
+        const bottom = new St.BoxLayout({ style_class: "ctc-card-bottom" });
+        bottom.add(this._controls, { expand: true, x_fill: false, x_align: St.Align.MIDDLE });
+        bottom.add(this._swatch, { x_fill: false, x_align: St.Align.END, y_align: St.Align.MIDDLE });
+        this.actor.add(bottom, { x_fill: true, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.END });
     },
 
     /* Reserve, don't show: the ghost keeps the clock card's geometry
@@ -188,6 +276,18 @@ CardWidget.prototype = {
         button.connect("clicked", () => {
             this.desklet._onControl(this.kind, action);
         });
+        button.connect("button-press-event", () => {
+            if (this.desklet._draggable)
+                this.desklet._draggable.inhibit = true;
+            return Clutter.EVENT_PROPAGATE;
+        });
+        button.connect("button-release-event", () => {
+            if (this.desklet._draggable) {
+                this.desklet._draggable.inhibit = false;
+                this.desklet._draggable.fakeRelease();
+            }
+            return Clutter.EVENT_PROPAGATE;
+        });
         if (tipText) {
             const tip = new Tooltips.Tooltip(button, tipText);
             if (iconName === "media-playback-start")
@@ -195,6 +295,38 @@ CardWidget.prototype = {
         }
         if (iconName === "media-playback-start")
             this._playIcon = icon;
+        return button;
+    },
+
+    /* Small top-right refresh button: reloads this card's settings in place
+     * without rebuilding the desklet, so a running timer keeps ticking. */
+    _refreshCtl: function () {
+        const icon = new St.Icon({
+            icon_name: "view-refresh",
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 14
+        });
+        const button = new St.Button({
+            style_class: "ctc-refresh",
+            can_focus: true
+        });
+        button.set_child(icon);
+        button.connect("clicked", () => {
+            this.desklet._onRefresh();
+        });
+        button.connect("button-press-event", () => {
+            if (this.desklet._draggable)
+                this.desklet._draggable.inhibit = true;
+            return Clutter.EVENT_PROPAGATE;
+        });
+        button.connect("button-release-event", () => {
+            if (this.desklet._draggable) {
+                this.desklet._draggable.inhibit = false;
+                this.desklet._draggable.fakeRelease();
+            }
+            return Clutter.EVENT_PROPAGATE;
+        });
+        new Tooltips.Tooltip(button, _("Refresh"));
         return button;
     },
 
@@ -254,8 +386,10 @@ CardWidget.prototype = {
      * @rgba (array): [r, g, b, a] from evaluate(), or null when the card has
      *   no schedule stops (stylesheet default colours then apply)
      * @smooth (boolean): animate towards this colour over 1000 ms
+     * @nextRgba (array): the next stop's colour for the solid preview swatch,
+     *   or null when there is no schedule
      */
-    update: function (now, rgba, smooth) {
+    update: function (now, rgba, smooth, nextRgba) {
         if (this.kind === "clock")
             this._updateClock(now);
         else if (this.kind === "timer")
@@ -263,14 +397,60 @@ CardWidget.prototype = {
         else
             this._updateChrono(now);
         this._applyColors(rgba, smooth);
+        this._updateSwatch(nextRgba);
+    },
+
+    /* Solid next-colour preview: the swatch repaints in one flat fill, so it
+     * snaps to each stop's colour at the breakpoint instead of fading. */
+    _updateSwatch: function (nextRgba) {
+        if (!this._swatch)
+            return;
+        if (!nextRgba) {
+            this._swatch.hide();
+            return;
+        }
+        this._swatch.show();
+        this._swatchColor = nextRgba;
+        this._swatch.queue_repaint();
+    },
+
+    /* Draw the swatch circle directly (a St.DrawingArea paints only what this
+     * callback draws, so the size and fill do not depend on CSS background). */
+    _paintSwatch: function () {
+        const area = this._swatch;
+        const cr = area.get_context();
+        if (!cr)
+            return;
+        const [w, h] = area.get_surface_size();
+        const r = Math.min(w, h) / 2 - 0.5;
+        const cx = w / 2;
+        const cy = h / 2;
+
+        cr.setSourceRGBA(0, 0, 0, 0);
+        cr.rectangle(0, 0, w, h);
+        cr.fill();
+
+        const c = this._swatchColor;
+        if (c) {
+            cr.setSourceRGBA(c[0] / 255, c[1] / 255, c[2] / 255, c[3]);
+            cr.arc(cx, cy, r, 0, 2 * Math.PI);
+            cr.fill();
+            cr.setSourceRGBA(1, 1, 1, 0.35);
+            cr.setLineWidth(1);
+            cr.arc(cx, cy, r, 0, 2 * Math.PI);
+            cr.stroke();
+        }
+
+        cr.$dispose();
     },
 
     _updateClock: function (displayDate) {
         try {
             const timeFormat = this.desklet.timeFormat || DEFAULT_TIME_FORMAT;
             const dateFormat = this.desklet.dateFormat || DEFAULT_DATE_FORMAT;
-            this._value.set_text(displayDate.toLocaleFormat(timeFormat));
-            this._sub.set_text(displayDate.toLocaleFormat(dateFormat));
+            const tz = this.desklet.clockTimezone;
+            this._value.set_text(_formatStrftime(displayDate, timeFormat, tz));
+            this._sub.set_text(_formatStrftime(displayDate, dateFormat, tz));
         } catch (e) {
             global.logError(uuid + " could not format clock: " + e);
             this._value.set_text("");
@@ -374,7 +554,12 @@ CardWidget.prototype = {
 
     _constrainTitleWidth: function (width) {
         try {
-            this._title.set_width(Math.max(1, Math.floor(width)));
+            let w = _actorWidth(this._header);
+            if (!(w > 1))
+                w = width;
+            w -= _actorWidth(this._refreshButton);
+            if (w > 1)
+                this._title.set_width(Math.max(1, Math.floor(w)));
         } catch (e) {}
     },
 
@@ -420,19 +605,21 @@ MyDesklet.prototype = {
     _init: function (metadata, deskletId) {
         Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
 
-        _loadModules();
+        _loadModules(metadata.path);
 
+        this._settingWatchIds = [];
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletId);
         this.settings.bind("show-clock", "showClock", this.on_setting_changed);
         this.settings.bind("show-timer", "showTimer", this.on_setting_changed);
         this.settings.bind("show-chronometer", "showChronometer", this.on_setting_changed);
-        this.settings.bind("clock-timezone", "clockTimezone", this.on_setting_changed);
+        this._watchStringSetting("clock-timezone", "clockTimezone", this.on_setting_changed);
         this.settings.bind("clock-schedule", "clockSchedule", this.on_setting_changed);
         this.settings.bind("clock-smooth", "clockSmooth", this.on_setting_changed);
         this.settings.bind("timer-minutes", "timerMinutes", this.on_setting_changed);
         this.settings.bind("timer-seconds", "timerSeconds", this.on_setting_changed);
         this.settings.bind("timer-schedule", "timerSchedule", this.on_setting_changed);
         this.settings.bind("timer-smooth", "timerSmooth", this.on_setting_changed);
+        this.settings.bind("timer-notify", "timerNotify", this.on_setting_changed);
         this.settings.bind("chrono-schedule", "chronoSchedule", this.on_setting_changed);
         this.settings.bind("chrono-smooth", "chronoSmooth", this.on_setting_changed);
         this.settings.bind("chrono-milliseconds", "chronoMilliseconds", this.on_setting_changed);
@@ -451,12 +638,17 @@ MyDesklet.prototype = {
 
         this._cards = [];
         this._schedules = { clock: null, timer: null, chrono: null };
+        this._notifyTimes = {};
+        this._lastPos = { clock: null, chrono: null };
         this._scheduleRows = null;
         this._lastBadTimezone = null;
         this._timeout = null;
         this._fastTimeout = null;
         this._rebuildTimeout = null;
         this._fitId = null;
+        this._fitRetryId = null;
+        this._allocW = -1;
+        this._allocH = -1;
         this._cardInner = null;
         this._widthSamples = null;
 
@@ -506,10 +698,20 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._fitId);
             this._fitId = null;
         }
+        if (this._fitRetryId) {
+            Mainloop.source_remove(this._fitRetryId);
+            this._fitRetryId = null;
+        }
 
         this._cards = [];
 
         if (this.settings) {
+            if (this._settingWatchIds) {
+                for (let i = 0; i < this._settingWatchIds.length; i++) {
+                    try { this.settings.disconnect(this._settingWatchIds[i]); } catch (e) {}
+                }
+                this._settingWatchIds = [];
+            }
             this.settings.finalize();
             this.settings = null;
         }
@@ -517,6 +719,20 @@ MyDesklet.prototype = {
         if (this._destroyId) {
             this.disconnect(this._destroyId);
             this._destroyId = 0;
+        }
+    },
+
+    _watchStringSetting: function (key, prop, callback) {
+        this[prop] = this.settings ? this.settings.getValue(key) : "";
+        if (this.settings && this.settings.connect) {
+            const id = this.settings.connect("changed::" + key, () => {
+                this[prop] = this.settings.getValue(key);
+                if (callback)
+                    callback.call(this);
+            });
+            if (!this._settingWatchIds)
+                this._settingWatchIds = [];
+            this._settingWatchIds.push(id);
         }
     },
 
@@ -575,7 +791,7 @@ MyDesklet.prototype = {
 
     _rebuildCards: function () {
         try {
-            if (!_loadModules())
+            if (!_loadModules(this.metadata && this.metadata.path))
                 return;
 
             this._refreshSchedules();
@@ -590,9 +806,14 @@ MyDesklet.prototype = {
                 global.log(uuid + ": width " + (Number(this.width) || 840) +
                     "px is too small for " + wanted.length + " cards; hiding " +
                     wanted.slice(kinds.length).join(", "));
+            /* Leave the table and cards non-reactive so the desklet actor
+             * receives the pointer grab. Cinnamon's DND then sees mouse-up
+             * and actually drops. A reactive child that forwards press
+             * (and a stage captured-event hook) left the grab stuck, so
+             * every desklet followed the cursor. Control St.Buttons stay
+             * reactive and inhibit drag while they are clicked. */
             const table = new St.Table({
                 homogeneous: true,
-                reactive: true,
                 style_class: "ctc-grid"
             });
             this.mainContainer.add(table, {
@@ -636,6 +857,7 @@ MyDesklet.prototype = {
             chrono: this.chronoSchedule
         };
         this._schedules = {};
+        this._notifyTimes = {};
         for (const kind of ["clock", "timer", "chrono"]) {
             const result = CardActions.normalizeSchedule(
                 rows[kind], CardActions.DAY_SECONDS);
@@ -643,7 +865,11 @@ MyDesklet.prototype = {
                 global.log(uuid + ": dropped " + result.dropped +
                     " " + kind + " schedule row(s) with an unparsable time or colour");
             this._schedules[kind] = result.stops;
+            this._notifyTimes[kind] = result.stops
+                .filter(s => s.notify)
+                .map(s => s.t);
         }
+        this._lastPos = { clock: null, chrono: null };
     },
 
     /* reset-schedules settings button callback. setValue does not fire the
@@ -665,6 +891,23 @@ MyDesklet.prototype = {
             this._updateAll();
         } catch (e) {
             global.logError(uuid + " schedule reset failed: " + e);
+        }
+    },
+
+    /* Per-card refresh button: re-reads schedules and re-fits the existing
+     * cards in place, so changed settings show up without tearing down the
+     * widgets and interrupting a running timer or chronometer. */
+    _onRefresh: function () {
+        if (this._cleanedUp || !CardActions)
+            return;
+        try {
+            this._refreshSchedules();
+            this._widthSamples = this._formatWidthSamples();
+            this._cardInner = this._computeCardInnerSize(this._cards.length);
+            this._fitAllCards(this._cardInner);
+            this._updateAll();
+        } catch (e) {
+            global.logError(uuid + " refresh failed: " + e);
         }
     },
 
@@ -709,8 +952,11 @@ MyDesklet.prototype = {
             : { phase: "stopped", durationSec: this._timerDurationFromSettings(), endMs: 0, remainingMs: 0 };
         if (t.phase === "stopped")
             t.durationSec = this._timerDurationFromSettings();
-        if (t.phase === "running" && t.endMs <= now)
+        if (t.phase === "running" && t.endMs <= now) {
             t.phase = "expired";
+            if (now - t.endMs <= STALE_EXPIRY_MS)
+                this._notifyTimerExpired();
+        }
         this._timer = t;
         this._persistTimer();
 
@@ -733,6 +979,49 @@ MyDesklet.prototype = {
                 endMs: this._timer.endMs,
                 remainingMs: this._timer.remainingMs
             });
+    },
+
+    /* Opt-in desktop notification on the running -> expired transition. */
+    _notifyTimerExpired: function () {
+        if (!this.timerNotify)
+            return;
+        try {
+            Main.notify(_("Timer finished"), _("The timer reached zero."));
+        } catch (e) {
+            global.logError(uuid + " notify failed: " + e);
+        }
+    },
+
+    /* Clock/chronometer schedule stops flagged notify fire once when the card's
+     * position crosses their time. The first sample after a rebuild only primes
+     * the previous position, so already-passed times do not fire on startup. */
+    _checkNotifyCrossing: function (kind, pos) {
+        const times = this._notifyTimes ? this._notifyTimes[kind] : null;
+        if (!times || !times.length)
+            return;
+        const prev = this._lastPos ? this._lastPos[kind] : null;
+        this._lastPos[kind] = pos;
+        if (prev == null)
+            return;
+        const crossed = CardActions.thresholdsCrossed(prev, pos, times, kind === "clock");
+        for (let i = 0; i < crossed.length; i++)
+            this._notifyCardTime(kind, crossed[i]);
+    },
+
+    _notifyCardTime: function (kind, t) {
+        let body;
+        if (kind === "clock") {
+            const h = Math.floor(t / 3600);
+            const m = Math.floor((t % 3600) / 60);
+            body = _("It is now %s.").format(_pad2(h) + ":" + _pad2(m));
+        } else {
+            body = _("Reached %s.").format(_formatDuration(t * 1000, false, false));
+        }
+        try {
+            Main.notify(CARD_TITLES[kind], body);
+        } catch (e) {
+            global.logError(uuid + " notify failed: " + e);
+        }
     },
 
     _persistChrono: function () {
@@ -791,6 +1080,8 @@ MyDesklet.prototype = {
                  * tick notices - must not strand the timer at 00:00/Paused:
                  * _updateAll only expires a running timer. */
                 t.phase = t.remainingMs > 0 ? "paused" : "expired";
+                if (t.phase === "expired")
+                    this._notifyTimerExpired();
             } else {
                 /* Stopped and expired both restart from the full duration;
                  * paused resumes its frozen remainingMs. */
@@ -852,21 +1143,31 @@ MyDesklet.prototype = {
     /* Date whose wall-clock fields are the card timezone's local time
      * (world-clock conversion pattern); the desklet's own time when the
      * timezone entry is empty or invalid. */
-    _clockNow: function (now) {
+    _clockWallParts: function (now) {
         const timezoneName = (this.clockTimezone || "").trim();
-        if (timezoneName) {
-            try {
-                return new Date(now.toLocaleString("en-US", { timeZone: timezoneName }));
-            } catch (e) {
-                /* This runs on every 1 s tick: one typo must not flood
-                 * ~/.xsession-errors, so log once per distinct bad value. */
-                if (this._lastBadTimezone !== timezoneName) {
-                    this._lastBadTimezone = timezoneName;
-                    global.logError(uuid + " invalid timezone: " + timezoneName + ": " + e);
-                }
+        try {
+            const tz = timezoneName
+                ? GLib.TimeZone.new(timezoneName)
+                : GLib.TimeZone.new_local();
+            const dt = GLib.DateTime.new_from_unix_utc(
+                Math.floor(now.getTime() / 1000)
+            ).to_timezone(tz);
+            return {
+                hours: dt.get_hour(),
+                minutes: dt.get_minute(),
+                seconds: dt.get_second()
+            };
+        } catch (e) {
+            if (timezoneName && this._lastBadTimezone !== timezoneName) {
+                this._lastBadTimezone = timezoneName;
+                global.logError(uuid + " invalid timezone: " + timezoneName + ": " + e);
             }
+            return {
+                hours: now.getHours(),
+                minutes: now.getMinutes(),
+                seconds: now.getSeconds()
+            };
         }
-        return now;
     },
 
     _smoothFor: function (kind) {
@@ -881,6 +1182,7 @@ MyDesklet.prototype = {
         if (this._cleanedUp || !CardActions)
             return;
 
+        try {
         const now = new Date();
         const nowMs = now.getTime();
 
@@ -889,37 +1191,48 @@ MyDesklet.prototype = {
         if (this._timer.phase === "running" && this._timer.endMs <= nowMs) {
             this._timer.phase = "expired";
             this._persistTimer();
+            this._notifyTimerExpired();
         }
 
-        const clockNow = this._clockNow(now);
+        const clockParts = this._clockWallParts(now);
 
         for (let i = 0; i < this._cards.length; i++) {
             const widget = this._cards[i];
             const smooth = this._smoothFor(widget.kind);
-            let pos, rgba;
+            let pos, rgba, nextRgba;
 
             if (widget.kind === "clock") {
-                pos = clockNow.getHours() * 3600 +
-                    clockNow.getMinutes() * 60 +
-                    clockNow.getSeconds();
+                pos = clockParts.hours * 3600 +
+                    clockParts.minutes * 60 +
+                    clockParts.seconds;
                 rgba = CardActions.evaluate(this._schedules.clock, pos, {
                     wrap: true,
                     smooth: smooth
                 });
-                widget.update(clockNow, rgba, smooth);
+                nextRgba = CardActions.nextColor
+                    ? CardActions.nextColor(this._schedules.clock, pos, { wrap: true })
+                    : null;
+                widget.update(now, rgba, smooth, nextRgba);
             } else if (widget.kind === "timer") {
                 pos = this._timerRemainingMs(nowMs) / 1000;
                 rgba = CardActions.evaluate(this._schedules.timer, pos, {
                     smooth: smooth
                 });
-                widget.update(now, rgba, smooth);
+                nextRgba = CardActions.nextColor
+                    ? CardActions.nextColor(this._schedules.timer, pos, { reverse: true })
+                    : null;
+                widget.update(now, rgba, smooth, nextRgba);
             } else {
                 pos = this._chronoElapsedMs(nowMs) / 1000;
                 rgba = CardActions.evaluate(this._schedules.chrono, pos, {
                     smooth: smooth
                 });
-                widget.update(now, rgba, smooth);
+                nextRgba = CardActions.nextColor
+                    ? CardActions.nextColor(this._schedules.chrono, pos, {})
+                    : null;
+                widget.update(now, rgba, smooth, nextRgba);
             }
+            this._checkNotifyCrossing(widget.kind, pos);
         }
 
         /* Refit when a value crosses a digit-count boundary (e.g. a
@@ -935,6 +1248,9 @@ MyDesklet.prototype = {
         }
 
         this._syncControlStates();
+        } catch (e) {
+            global.logError(uuid + " update failed: " + e);
+        }
     },
 
     _syncControlStates: function () {
@@ -999,7 +1315,11 @@ MyDesklet.prototype = {
     _onTick: function () {
         if (this._cleanedUp)
             return false;
-        this._updateAll();
+        try {
+            this._updateAll();
+        } catch (e) {
+            global.logError(uuid + " tick failed: " + e);
+        }
         return true;
     },
 
@@ -1015,6 +1335,7 @@ MyDesklet.prototype = {
     },
 
     _formatWidthSamples: function () {
+        const timeFormat = this.timeFormat || DEFAULT_TIME_FORMAT;
         const dateFormat = this.dateFormat || DEFAULT_DATE_FORMAT;
         const dates = [
             new Date(2023, 11, 27, 23, 59, 59),
@@ -1024,12 +1345,16 @@ MyDesklet.prototype = {
         let sub = "";
         for (let i = 0; i < dates.length; i++) {
             try {
-                const d = dates[i].toLocaleFormat(dateFormat);
+                const d = _formatStrftime(dates[i], dateFormat, this.clockTimezone);
                 if (String(d).length > sub.length)
                     sub = d;
             } catch (e) {}
         }
-        let value = "";
+        const clockSample = CardActions && CardActions.worstTimeSample
+            ? CardActions.worstTimeSample(timeFormat)
+            : "23:59:59";
+        const chronoSample = this.chronoMilliseconds ? "99:59:59.99" : "99:59:59";
+        let value = clockSample.length >= chronoSample.length ? clockSample : chronoSample;
         for (let i = 0; i < this._cards.length; i++) {
             const v = this._cards[i]._value.get_text();
             if (v && v.length > value.length)
@@ -1037,6 +1362,9 @@ MyDesklet.prototype = {
         }
         return {
             value: value || "23:59:59",
+            clock: clockSample,
+            chrono: chronoSample,
+            timer: "99:59:59",
             sub: sub || "Wednesday, 31 December"
         };
     },
@@ -1051,6 +1379,15 @@ MyDesklet.prototype = {
             if (this._cleanedUp)
                 return false;
             this._fitAllCards(this._cardInner);
+            if (this._fitRetryId)
+                Mainloop.source_remove(this._fitRetryId);
+            this._fitRetryId = Mainloop.timeout_add(80, () => {
+                this._fitRetryId = null;
+                if (this._cleanedUp)
+                    return false;
+                this._fitAllCards(this._cardInner);
+                return false;
+            });
             return false;
         });
     },
@@ -1062,10 +1399,19 @@ MyDesklet.prototype = {
         if (!inner)
             return;
         for (let i = 0; i < this._cards.length; i++) {
-            /* Each card fits its own value: a 5-char "05:00" must not be
-             * sized down for the clock card's 8-character worst case. */
-            this._cards[i].applyFittedSizes(inner, {
-                value: this._cards[i]._value.get_text() || samples.value,
+            const widget = this._cards[i];
+            let sampleValue = samples.value;
+            if (widget.kind === "clock" && samples.clock)
+                sampleValue = samples.clock;
+            else if (widget.kind === "chrono" && samples.chrono)
+                sampleValue = samples.chrono;
+            else if (widget.kind === "timer" && samples.timer)
+                sampleValue = samples.timer;
+            const live = widget._value.get_text() || "";
+            if (live.length > sampleValue.length)
+                sampleValue = live;
+            widget.applyFittedSizes(inner, {
+                value: sampleValue,
                 sub: samples.sub
             });
         }

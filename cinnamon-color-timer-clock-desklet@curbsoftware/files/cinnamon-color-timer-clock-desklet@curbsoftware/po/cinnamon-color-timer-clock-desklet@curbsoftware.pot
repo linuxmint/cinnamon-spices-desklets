@@ -1,14 +1,14 @@
 # COLOR TIMER CLOCK
 # This file is put in the public domain.
-# RobertAlexanderH, 2017
+# RobertAlexanderH, 2026
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cinnamon-color-timer-clock-desklet@curbsoftware 1.0.0\n"
+"Project-Id-Version: cinnamon-color-timer-clock-desklet@curbsoftware 1.4.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-08-19 16:56-0700\n"
+"POT-Creation-Date: 2026-08-20 10:41-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,53 +17,75 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:43
+#. desklet.js:84
 msgid "Clock"
 msgstr ""
 
-#. desklet.js:44 desklet.js:289
+#. desklet.js:85 desklet.js:469
 msgid "Timer"
 msgstr ""
 
-#. desklet.js:45
+#. desklet.js:86
 msgid "Chronometer"
 msgstr ""
 
-#. desklet.js:149 desklet.js:214
+#. desklet.js:233 desklet.js:346
 msgid "Start"
 msgstr ""
 
-#. desklet.js:152
+#. desklet.js:236
 msgid "Reset"
 msgstr ""
 
-#. desklet.js:155
+#. desklet.js:239
 msgid "-1 minute"
 msgstr ""
 
-#. desklet.js:156
+#. desklet.js:240
 msgid "+1 minute"
 msgstr ""
 
-#. desklet.js:214
+#. desklet.js:329
+msgid "Refresh"
+msgstr ""
+
+#. desklet.js:346
 msgid "Pause"
 msgstr ""
 
-#. desklet.js:284
+#. desklet.js:464
 msgid "Time is up"
 msgstr ""
 
-#. desklet.js:293
+#. desklet.js:473
 msgid "Ready"
 msgstr ""
 
-#. desklet.js:294
+#. desklet.js:474
 msgid "Paused"
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:471
+#. desklet.js:663
 msgid "Color Timer Clock"
+msgstr ""
+
+#. desklet.js:989
+msgid "Timer finished"
+msgstr ""
+
+#. desklet.js:989
+msgid "The timer reached zero."
+msgstr ""
+
+#. desklet.js:1016
+#, javascript-format
+msgid "It is now %s."
+msgstr ""
+
+#. desklet.js:1018
+#, javascript-format
+msgid "Reached %s."
 msgstr ""
 
 #. metadata.json->description
@@ -98,8 +120,7 @@ msgstr ""
 
 #. settings-schema.json->clock-timezone->tooltip
 msgid ""
-"IANA timezone name for the clock card, for example Europe/Berlin. Leave "
-"empty to use local time."
+"Search for a city or region, or pick Local to use this computer's timezone."
 msgstr ""
 
 #. settings-schema.json->clock-schedule->description
@@ -111,8 +132,9 @@ msgstr ""
 #. settings-schema.json->clock-schedule->tooltip
 msgid ""
 "Card background color at a given time of day, interpolated between stops and "
-"wrapping over midnight. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a "
-"name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, "
+"wrapping over midnight. Tick Notify to pop a desktop notification when the "
+"clock reaches that time. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or "
+"a name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, "
 "purple, magenta, grey."
 msgstr ""
 
@@ -128,6 +150,11 @@ msgstr ""
 #. settings-schema.json->timer-schedule->columns->title
 #. settings-schema.json->chrono-schedule->columns->title
 msgid "Color"
+msgstr ""
+
+#. settings-schema.json->clock-schedule->columns->title
+#. settings-schema.json->chrono-schedule->columns->title
+msgid "Notify"
 msgstr ""
 
 #. settings-schema.json->clock-smooth->description
@@ -182,6 +209,14 @@ msgstr ""
 msgid "Remaining seconds"
 msgstr ""
 
+#. settings-schema.json->timer-notify->description
+msgid "Show a notification when the timer finishes"
+msgstr ""
+
+#. settings-schema.json->timer-notify->tooltip
+msgid "Pops a desktop notification when the countdown reaches zero."
+msgstr ""
+
 #. settings-schema.json->chrono->description
 msgid "Chronometer card"
 msgstr ""
@@ -189,9 +224,10 @@ msgstr ""
 #. settings-schema.json->chrono-schedule->tooltip
 msgid ""
 "Card background color at a given elapsed time, interpolated between stops "
-"and holding the last stop's color beyond it. Colors: hex (#rgb, #rgba, "
-"#rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, "
-"green, teal, cyan, blue, purple, magenta, grey."
+"and holding the last stop's color beyond it. Tick Notify to pop a desktop "
+"notification when the chronometer reaches that elapsed time. Colors: hex "
+"(#rgb, #rgba, #rrggbb or #rrggbbaa) or a name: black, white, red, orange, "
+"yellow, lime, green, teal, cyan, blue, purple, magenta, grey."
 msgstr ""
 
 #. settings-schema.json->chrono-schedule->columns->title

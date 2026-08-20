@@ -128,7 +128,7 @@ function rgbaToCss(rgba) {
  * rgbaToKey:
  * @rgba (array): [r, g, b, a] with a in 0..1
  *
- * Returns (string): "#rrggbbaa" (lowercase) — a canonical key for change
+ * Returns (string): "#rrggbbaa" (lowercase), a canonical key for change
  * detection, so a colour that round-trips identically does not trigger a
  * restyle.
  */
@@ -181,7 +181,8 @@ function _rowSeconds(row) {
  * does not parse (counting them), sorts ascending and, when two rows share
  * a time, keeps the later row.
  *
- * Returns (object): { stops: [{t, rgba}], dropped }.
+ * Returns (object): { stops: [{t, rgba, notify?}], dropped }. A stop carries
+ * notify: true only when its row's notify flag was set.
  */
 function normalizeSchedule(rows, maxT) {
     if (!Array.isArray(rows))
@@ -202,11 +203,14 @@ function normalizeSchedule(rows, maxT) {
             dropped++;
             continue;
         }
-        tagged.push({
+        let stop = {
             t: Math.max(0, Math.min(limit, Math.round(t))),
             rgba: parsed.rgba,
             i: i
-        });
+        };
+        if (rows[i] && rows[i].notify)
+            stop.notify = true;
+        tagged.push(stop);
     }
 
     /* Sort by time, then input order, so equal times keep the later row
@@ -219,10 +223,95 @@ function normalizeSchedule(rows, maxT) {
     for (let i = 0; i < tagged.length; i++) {
         if (i + 1 < tagged.length && tagged[i + 1].t === tagged[i].t)
             continue; /* equal time: the later row wins */
-        stops.push({ t: tagged[i].t, rgba: tagged[i].rgba });
+        let stop = { t: tagged[i].t, rgba: tagged[i].rgba };
+        if (tagged[i].notify)
+            stop.notify = true;
+        stops.push(stop);
     }
 
     return { stops: stops, dropped: dropped };
+}
+
+/**
+ * thresholdsCrossed:
+ * @prev (number): previous sampled position
+ * @cur (number): current sampled position
+ * @times (array): sorted threshold times
+ * @wrap (boolean): treat the position as circular (clock, rolls over at 0)
+ *
+ * Returns (array): thresholds crossed moving from @prev to @cur. A monotonic
+ * position crosses prev < t <= cur; a wrapped position that went backwards
+ * (prev > cur) crosses everything above prev and at or below cur.
+ */
+function thresholdsCrossed(prev, cur, times, wrap) {
+    let out = [];
+    if (!Array.isArray(times) || !Number.isFinite(prev) || !Number.isFinite(cur))
+        return out;
+    for (let i = 0; i < times.length; i++) {
+        let t = Number(times[i]);
+        if (!Number.isFinite(t))
+            continue;
+        let crossed = (wrap && prev > cur)
+            ? (t > prev || t <= cur)
+            : (prev < t && t <= cur);
+        if (crossed)
+            out.push(t);
+    }
+    return out;
+}
+
+/**
+ * nextColor:
+ * @stops (array): normalised stops [{t, rgba}], any order
+ * @pos (number): query position in seconds
+ * @opts (object): { wrap, reverse }. wrap treats the position as circular
+ *   (clock); reverse walks the schedule backwards (timer counting down).
+ *
+ * Returns (array): the colour of the next stop in the direction of travel, or
+ * null when there are no stops. A forward schedule returns the first stop
+ * above @pos (wrapping to the first past the end when @opts.wrap, else holding
+ * the last stop); a reverse schedule returns the first stop below @pos,
+ * falling back to the lowest stop at or past the end.
+ */
+function nextColor(stops, pos, opts) {
+    opts = opts || {};
+
+    let list = [];
+    if (Array.isArray(stops)) {
+        for (let i = 0; i < stops.length; i++) {
+            let s = stops[i];
+            if (s && Number.isFinite(s.t) && Array.isArray(s.rgba))
+                list.push({ t: s.t, rgba: s.rgba });
+        }
+    }
+    if (list.length === 0)
+        return null;
+    list.sort(function (a, b) { return a.t - b.t; });
+
+    let q = Number(pos);
+    if (!Number.isFinite(q))
+        q = 0;
+    if (opts.wrap)
+        q = ((q % DAY_SECONDS) + DAY_SECONDS) % DAY_SECONDS;
+
+    if (list.length === 1)
+        return list[0].rgba.slice();
+
+    if (opts.reverse) {
+        for (let i = list.length - 1; i >= 0; i--) {
+            if (list[i].t < q)
+                return list[i].rgba.slice();
+        }
+        return list[0].rgba.slice();
+    }
+
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].t > q)
+            return list[i].rgba.slice();
+    }
+    if (opts.wrap)
+        return list[0].rgba.slice();
+    return list[list.length - 1].rgba.slice();
 }
 
 /* ------------------------------------------------------------------ *
@@ -575,23 +664,64 @@ function computeCardInnerSize(deskletWidth, deskletHeight, rows, cols, cardSpaci
     };
 }
 
+function _glyphEm(ch, em) {
+    if (ch >= "0" && ch <= "9")
+        return Math.max(em, 0.72);
+    if (ch === ":" || ch === ".")
+        return 0.38;
+    if (ch === " " || ch === ",")
+        return 0.33;
+    return em;
+}
+
+function _textEmUnits(text, em) {
+    let s = String(text || "");
+    let units = 0;
+    for (let i = 0; i < s.length; i++)
+        units += _glyphEm(s[i], em);
+    return units;
+}
+
 function _textWidthPx(text, sizePt, ptToPx, em) {
-    let n = String(text || "").length;
-    if (n === 0)
+    let units = _textEmUnits(text, em);
+    if (units <= 0)
         return 0;
-    return n * sizePt * ptToPx * em;
+    return units * sizePt * ptToPx;
 }
 
 function _maxPtForWidth(text, innerW, ptToPx, em, cap) {
-    let n = String(text || "").length;
-    if (n === 0)
+    let units = _textEmUnits(text, em);
+    if (units <= 0)
         return cap;
-    if (!(innerW > 0) || !(ptToPx > 0) || !(em > 0))
+    if (!(innerW > 0) || !(ptToPx > 0))
         return 1;
-    let pt = innerW / (n * ptToPx * em);
+    let pt = innerW / (units * ptToPx);
     if (!Number.isFinite(pt) || pt <= 0)
         return 1;
     return Math.min(cap, pt);
+}
+
+/**
+ * worstTimeSample:
+ * @format (string): strftime time format
+ * @extras (object): { hundredths } to append a ".99" fraction
+ *
+ * Returns (string): a wide sample used to size the time line before the
+ * live string is known, so enabling seconds or hundredths cannot overflow.
+ */
+function worstTimeSample(format, extras) {
+    extras = extras || {};
+    let fmt = typeof format === "string" ? format : "";
+    let hasSeconds = !fmt || /%[STcT]/.test(fmt);
+    let twelveHour = /%[IilpPr]/.test(fmt);
+    let sample;
+    if (twelveHour)
+        sample = hasSeconds ? "12:59:59 PM" : "12:59 PM";
+    else
+        sample = hasSeconds ? "23:59:59" : "23:59";
+    if (extras.hundredths)
+        sample += ".99";
+    return sample;
 }
 
 /**

@@ -2,7 +2,7 @@
     "uuid": "cinnamon-color-timer-clock-desklet@curbsoftware",
     "name": "Color Timer Clock",
     "description": "Clock, countdown timer and chronometer cards whose background colors follow a schedule",
-    "version": "1.0.0",
+    "version": "1.4.0",
     "prevent-decorations": false,
     "max-instances": 1
 }

@@ -24,20 +24,24 @@
     "description": "Clock card"
   },
   "clock-timezone": {
-    "type": "entry",
+    "type": "custom",
+    "file": "timezoneWidget.py",
+    "widget": "TimezoneChooser",
     "default": "",
     "description": "Timezone",
-    "tooltip": "IANA timezone name for the clock card, for example Europe/Berlin. Leave empty to use local time.",
+    "tooltip": "Search for a city or region, or pick Local to use this computer's timezone.",
+    "empty-label": "Local (system timezone)",
     "dependency": "show-clock"
   },
   "clock-schedule": {
     "type": "list",
     "description": "Color schedule",
-    "tooltip": "Card background color at a given time of day, interpolated between stops and wrapping over midnight. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, purple, magenta, grey.",
+    "tooltip": "Card background color at a given time of day, interpolated between stops and wrapping over midnight. Tick Notify to pop a desktop notification when the clock reaches that time. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, purple, magenta, grey.",
     "columns": [
       {"id": "hour", "title": "Hour", "type": "integer", "min": 0, "max": 23, "default": 0},
       {"id": "minute", "title": "Minute", "type": "integer", "min": 0, "max": 59, "default": 0},
-      {"id": "color", "title": "Color", "type": "string"}
+      {"id": "color", "title": "Color", "type": "string"},
+      {"id": "notify", "title": "Notify", "type": "boolean", "default": false}
     ],
     "default": [
       {"hour": 6, "color": "#f4433c"},
@@ -101,6 +105,13 @@
     "tooltip": "Blend gradually between schedule stops. When disabled, each color holds until the next stop and then jumps.",
     "dependency": "show-timer"
   },
+  "timer-notify": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show a notification when the timer finishes",
+    "tooltip": "Pops a desktop notification when the countdown reaches zero.",
+    "dependency": "show-timer"
+  },
 
   "chrono": {
     "type": "header",
@@ -109,10 +120,11 @@
   "chrono-schedule": {
     "type": "list",
     "description": "Color schedule",
-    "tooltip": "Card background color at a given elapsed time, interpolated between stops and holding the last stop's color beyond it. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, purple, magenta, grey.",
+    "tooltip": "Card background color at a given elapsed time, interpolated between stops and holding the last stop's color beyond it. Tick Notify to pop a desktop notification when the chronometer reaches that elapsed time. Colors: hex (#rgb, #rgba, #rrggbb or #rrggbbaa) or a name: black, white, red, orange, yellow, lime, green, teal, cyan, blue, purple, magenta, grey.",
     "columns": [
       {"id": "elapsed", "title": "Elapsed seconds", "type": "integer", "min": 0, "max": 86400, "default": 0},
-      {"id": "color", "title": "Color", "type": "string"}
+      {"id": "color", "title": "Color", "type": "string"},
+      {"id": "notify", "title": "Notify", "type": "boolean", "default": false}
     ],
     "default": [
       {"elapsed": 0, "color": "#00897b"},
