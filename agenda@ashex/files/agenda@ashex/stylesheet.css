@@ -1,0 +1,30 @@
+/*
+ * Base styling for the Agenda desklet.
+ *
+ * Almost every visible property is computed at runtime from the width,
+ * scale and colour settings, so this file only carries the few rules that
+ * never vary: the desklet chrome Cinnamon draws around us, and sensible
+ * fallbacks if inline styling is ever unavailable.
+ */
+
+.desklet {
+    color: rgba(255, 255, 255, 0.96);
+    font-family: inherit;
+}
+
+.desklet-header {
+    background-color: rgba(18, 18, 26, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.10);
+    border-radius: 14px 14px 0 0;
+    color: rgba(255, 255, 255, 0.62);
+    font-size: 9pt;
+    font-weight: bold;
+    padding: 6px 12px;
+}
+
+.desklet-with-borders,
+.desklet-with-borders-and-header {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+}

@@ -1,0 +1,9 @@
+{
+    "uuid": "agenda@ashex",
+    "name": "Agenda",
+    "description": "Your day at a glance. Pulls appointments from ICS calendar feeds and shows what is next, in focus, plus the rest of today.",
+    "author": "ashex",
+    "version": "1.0.0",
+    "max-instances": "3",
+    "prevent-decorations": true
+}
