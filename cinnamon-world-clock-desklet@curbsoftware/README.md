@@ -6,6 +6,14 @@ Left-click does nothing. Click the trailing **+** tile to add a clock. Right-cli
 
 ![World Clock desklet](screenshot.png)
 
+## Why this exists
+
+Good world clock apps are hard to find. On any OS. The good ones live on your phone, or they bury the feature under menus, or they insist on taking over your system timezone.
+
+I wanted the opposite. A glance at my desktop to see what time it is where my colleagues and partners are, all over the world, without touching my own clock. A grid of clocks, one per timezone, always visible. Nothing more.
+
+That's what this desklet is.
+
 ## Features
 
 - Auto (near-square) or fixed rows × columns
@@ -19,11 +27,11 @@ Left-click does nothing. Click the trailing **+** tile to add a clock. Right-cli
 
 Right-click the desklet → **Configure…**
 
-- **Grid layout mode** — auto or fixed rows/columns
-- **Allow adding, removing and editing clocks** — turn off for a read-only grid
-- **Show a "+" tile** — hide the add tile while keeping the right-click menu
-- **Time / date format** — `strftime` patterns (for example `%H:%M` or `%I:%M %p`)
-- **Maximum font sizes** — time, date, and label; tiles shrink so nothing overflows
+- **Grid layout mode**: auto or fixed rows/columns
+- **Allow adding, removing and editing clocks**: turn off for a read-only grid
+- **Show a "+" tile**: hide the add tile while keeping the right-click menu
+- **Time / date format**: `strftime` patterns (for example `%H:%M` or `%I:%M %p`)
+- **Maximum font sizes**: time, date, and label; tiles shrink so nothing overflows
 - **Tile spacing** and **desklet width / height**
 
 ## Notes

@@ -196,23 +196,64 @@ function computeTileInnerSize(deskletWidth, deskletHeight, rows, cols, tileSpaci
     };
 }
 
+function _glyphEm(ch, em) {
+    if (ch >= "0" && ch <= "9")
+        return Math.max(em, 0.72);
+    if (ch === ":" || ch === ".")
+        return 0.38;
+    if (ch === " " || ch === ",")
+        return 0.33;
+    return em;
+}
+
+function _textEmUnits(text, em) {
+    let s = String(text || "");
+    let units = 0;
+    for (let i = 0; i < s.length; i++)
+        units += _glyphEm(s[i], em);
+    return units;
+}
+
 function _textWidthPx(text, sizePt, ptToPx, em) {
-    let n = String(text || "").length;
-    if (n === 0)
+    let units = _textEmUnits(text, em);
+    if (units <= 0)
         return 0;
-    return n * sizePt * ptToPx * em;
+    return units * sizePt * ptToPx;
 }
 
 function _maxPtForWidth(text, innerW, ptToPx, em, cap) {
-    let n = String(text || "").length;
-    if (n === 0)
+    let units = _textEmUnits(text, em);
+    if (units <= 0)
         return cap;
-    if (!(innerW > 0) || !(ptToPx > 0) || !(em > 0))
+    if (!(innerW > 0) || !(ptToPx > 0))
         return 1;
-    let pt = innerW / (n * ptToPx * em);
+    let pt = innerW / (units * ptToPx);
     if (!Number.isFinite(pt) || pt <= 0)
         return 1;
     return Math.min(cap, pt);
+}
+
+/**
+ * worstTimeSample:
+ * @format (string): strftime time format
+ * @extras (object): { hundredths } to append a ".99" fraction
+ *
+ * Returns (string): a wide sample used to size the time line before the
+ * live string is known, so enabling seconds cannot overflow a tile.
+ */
+function worstTimeSample(format, extras) {
+    extras = extras || {};
+    let fmt = typeof format === "string" ? format : "";
+    let hasSeconds = !fmt || /%[STcT]/.test(fmt);
+    let twelveHour = /%[IilpPr]/.test(fmt);
+    let sample;
+    if (twelveHour)
+        sample = hasSeconds ? "12:59:59 PM" : "12:59 PM";
+    else
+        sample = hasSeconds ? "23:59:59" : "23:59";
+    if (extras.hundredths)
+        sample += ".99";
+    return sample;
 }
 
 /**
@@ -478,7 +519,7 @@ function timezoneDisplayName(tz) {
  * timezoneListLabel:
  * @tz (string)
  *
- * Returns (string): list-row text, e.g. "Los Angeles — America/Los_Angeles".
+ * Returns (string): list-row text, e.g. "Los Angeles (America/Los_Angeles)".
  */
 function timezoneListLabel(tz) {
     if (!tz || tz === "local")
@@ -486,7 +527,7 @@ function timezoneListLabel(tz) {
     let pretty = timezoneDisplayName(tz);
     if (pretty === tz)
         return tz;
-    return pretty + " — " + tz;
+    return pretty + " (" + tz + ")";
 }
 
 function _uniqueSorted(list) {
@@ -566,7 +607,8 @@ function filterTimezones(zones, query) {
     return list.filter(function (tz) {
         let id = String(tz).toLowerCase();
         let label = timezoneListLabel(tz).toLowerCase();
-        return id.indexOf(q) !== -1 || label.indexOf(q) !== -1;
+        let city = String(tz).replace(/_/g, " ").toLowerCase();
+        return id.indexOf(q) !== -1 || label.indexOf(q) !== -1 || city.indexOf(q) !== -1;
     });
 }
 

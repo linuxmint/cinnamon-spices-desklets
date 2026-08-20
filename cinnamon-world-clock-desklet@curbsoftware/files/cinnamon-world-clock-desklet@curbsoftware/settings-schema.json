@@ -133,7 +133,11 @@
   },
 
   "clocks": {
-    "type": "generic",
+    "type": "custom",
+    "file": "timezoneWidget.py",
+    "widget": "ClockListEditor",
+    "description": "Clocks",
+    "tooltip": "Add clocks and search timezones by city or region. You can also add or edit clocks from the desklet tiles.",
     "default": [
       {
         "id": "default",

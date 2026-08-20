@@ -1,6 +1,6 @@
 # WORLD CLOCK
 # This file is put in the public domain.
-# RobertAlexanderH, 2017
+# RobertAlexanderH, 2026
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cinnamon-world-clock-desklet@curbsoftware 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-08-15 19:09-0700\n"
+"POT-Creation-Date: 2026-08-20 10:43-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. clockActions.js:456 clockActions.js:461 clockDialog.js:109
+#. clockActions.js:497 clockActions.js:502 clockDialog.js:109
 msgid "Clock"
 msgstr ""
 
-#. clockActions.js:472 clockDialog.js:35
+#. clockActions.js:513 clockDialog.js:35
 msgid "Local"
 msgstr ""
 
-#. clockActions.js:485 clockDialog.js:42
+#. clockActions.js:526 clockDialog.js:42
 msgid "Local (system timezone)"
 msgstr ""
 
@@ -57,36 +57,36 @@ msgstr ""
 msgid "Save"
 msgstr ""
 
-#. clockDialog.js:303
+#. clockDialog.js:309
 #, javascript-format
 msgid "Selected: %s"
 msgstr ""
 
-#. desklet.js:263
+#. desklet.js:351
 msgid "World Clocks"
 msgstr ""
 
-#. desklet.js:495
+#. desklet.js:615
 msgid "Edit…"
 msgstr ""
 
-#. desklet.js:501
+#. desklet.js:621
 msgid "Remove"
 msgstr ""
 
-#. desklet.js:510
+#. desklet.js:630
 msgid "Add clock"
 msgstr ""
 
-#. desklet.js:575
+#. desklet.js:695
 msgid "Add Clock"
 msgstr ""
 
-#. desklet.js:593
+#. desklet.js:713
 msgid "Edit Clock"
 msgstr ""
 
-#. desklet.js:618
+#. desklet.js:738
 #, javascript-format
 msgid "Are you sure you want to remove clock \"%s\"?"
 msgstr ""
@@ -210,4 +210,14 @@ msgstr ""
 
 #. settings-schema.json->height->description
 msgid "Desklet height"
+msgstr ""
+
+#. settings-schema.json->clocks->description
+msgid "Clocks"
+msgstr ""
+
+#. settings-schema.json->clocks->tooltip
+msgid ""
+"Add clocks and search timezones by city or region. You can also add or edit "
+"clocks from the desklet tiles."
 msgstr ""

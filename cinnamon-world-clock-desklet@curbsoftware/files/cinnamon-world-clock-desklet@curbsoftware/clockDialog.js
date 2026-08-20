@@ -40,7 +40,7 @@ function _displayName(tz) {
 function _listLabel(tz) {
     if (!tz || tz === "local")
         return _("Local (system timezone)");
-    return _displayName(tz) + " — " + tz;
+    return _displayName(tz) + " (" + tz + ")";
 }
 
 function _loadTimezones() {
@@ -236,8 +236,14 @@ class ClockConfigDialog extends ModalDialog.ModalDialog {
         if (!q)
             return this._timezones;
         return this._timezones.filter((tz) => {
-            return String(tz).toLowerCase().indexOf(q) !== -1
-                || _listLabel(tz).toLowerCase().indexOf(q) !== -1;
+            let id = String(tz).toLowerCase();
+            let pretty = _displayName(tz).toLowerCase();
+            let label = _listLabel(tz).toLowerCase();
+            let city = String(tz).replace(/_/g, " ").toLowerCase();
+            return id.indexOf(q) !== -1
+                || pretty.indexOf(q) !== -1
+                || label.indexOf(q) !== -1
+                || city.indexOf(q) !== -1;
         });
     }
 
