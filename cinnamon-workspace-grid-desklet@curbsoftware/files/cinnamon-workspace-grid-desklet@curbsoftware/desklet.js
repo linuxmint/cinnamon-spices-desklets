@@ -29,6 +29,8 @@ function _loadModules() {
         const dir = imports.ui.deskletManager.desklets[uuid];
         WorkspaceActions = dir.workspaceActions;
         RenameDialog = dir.renameDialog;
+        if (!(WorkspaceActions && RenameDialog))
+            global.logError(uuid + " could not load helper modules");
         return !!(WorkspaceActions && RenameDialog);
     } catch (e) {
         global.logError(uuid + " could not load helper modules: " + e);

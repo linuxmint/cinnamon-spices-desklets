@@ -1,6 +1,6 @@
 # WORKSPACE GRID
 # This file is put in the public domain.
-# RobertAlexanderH, 2017
+# RobertAlexanderH, 2026
 #
 #, fuzzy
 msgid ""
@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: cinnamon-workspace-grid-desklet@curbsoftware 1.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-08-15 19:09-0700\n"
+"POT-Creation-Date: 2026-08-20 10:44-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:328
+#. desklet.js:329
 msgid "Rename…"
 msgstr ""
 
-#. desklet.js:334
+#. desklet.js:335
 msgid "Remove"
 msgstr ""
 
-#. desklet.js:343
+#. desklet.js:344
 msgid "Add workspace"
 msgstr ""
 
