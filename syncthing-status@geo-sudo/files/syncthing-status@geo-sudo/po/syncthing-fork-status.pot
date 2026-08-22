@@ -1,0 +1,81 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: syncthing-fork-status@geo-sudo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-05-23 10:00+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:25
+msgid "Folders"
+msgstr ""
+
+#: desklet.js:32
+msgid " folders tracked"
+msgstr ""
+
+#: desklet.js:52
+msgid "Paused"
+msgstr ""
+
+#: desklet.js:55
+msgid "Error"
+msgstr ""
+
+#: desklet.js:58
+msgid "Scanning"
+msgstr ""
+
+#: desklet.js:61
+msgid "Syncing"
+msgstr ""
+
+#: desklet.js:64
+msgid "Up to Date"
+msgstr ""
+
+# Settings: baseUrl
+msgid "Syncthing URL (include http:// and port & make sure it's accessible)"
+msgstr ""
+
+msgid "Usually http://127.0.0.1:8384 for local instances."
+msgstr ""
+
+# Settings: apiKey
+msgid "API Key"
+msgstr ""
+
+msgid "Find this in Syncthing -> Actions -> Settings -> General"
+msgstr ""
+
+# Settings: Intervals
+msgid "Refresh Interval"
+msgstr ""
+
+msgid "Timeout Interval"
+msgstr ""
+
+msgid "seconds"
+msgstr ""
+
+# Settings: scale-size
+msgid "Size Scale"
+msgstr ""
+
+msgid "Adjust the overall size of the desklet"
+msgstr ""
+
+msgid "multiplier"
+msgstr ""
+
+# Settings: darkMode
+msgid "Dark Mode"
+msgstr ""
+
+msgid "Switch between light and dark themes"
+msgstr ""

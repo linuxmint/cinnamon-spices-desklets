@@ -1,0 +1,9 @@
+{
+  "uuid": "syncthing-status@geo-sudo",
+  "name": "Syncthing Status",
+  "description": "A simple desklet to monitor Syncthing folders.",
+  "settings-schema": "settings-schema.json",
+  "prevent-decorations": false,
+  "version": "1.0.0",
+  "author": "geo-sudo"
+}
