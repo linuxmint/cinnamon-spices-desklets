@@ -4,6 +4,7 @@
  */
 
 const St = imports.gi.St;
+const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Clutter = imports.gi.Clutter;
 const Gettext = imports.gettext;
@@ -38,15 +39,24 @@ const { HoverPopover } = require("./ui/hoverPopover");
 const UUID = "powerpulse@vicman.app";
 const VERSION = "1.3.0";
 
+function localeDirHasCatalog(localeDir, lang) {
+    const mo = GLib.build_filenamev([localeDir, lang, "LC_MESSAGES", `${UUID}.mo`]);
+    try {
+        Gio.File.new_for_path(mo).read(null).close(null);
+        return true;
+    } catch (e) {
+        return false;
+    }
+}
+
 function resolveLocaleDir() {
     const lang = (GLib.getenv("LANG") || GLib.getenv("LC_MESSAGES") || "en").split(/[._@]/)[0];
     const candidates = [
-        GLib.build_filenamev([GLib.get_home_dir(), ".local", "share", "locale"]),
+        GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]),
         "/usr/share/locale"
     ];
     for (let i = 0; i < candidates.length; i++) {
-        const mo = GLib.build_filenamev([candidates[i], lang, "LC_MESSAGES", `${UUID}.mo`]);
-        if (GLib.file_test(mo, GLib.FileTest.IS_REGULAR)) {
+        if (localeDirHasCatalog(candidates[i], lang)) {
             return candidates[i];
         }
     }
@@ -637,8 +647,15 @@ class PowerPulseDesklet extends Desklet.Desklet {
 
     _openHeadsetControl(_device) {
         const command = (this.headsetcontrol_command || "headsetcontrol").trim() || "headsetcontrol";
+        let argv;
         try {
-            Util.spawnCommandLine(command);
+            const [ok, parsed] = GLib.shell_parse_argv(command);
+            argv = (ok && parsed && parsed.length) ? parsed : ["headsetcontrol"];
+        } catch (e) {
+            argv = ["headsetcontrol"];
+        }
+        try {
+            Util.trySpawn(argv);
         } catch (e) {
             try {
                 Main.notify(this._("PowerPulse"), this._("Could not open HeadsetControl"));
