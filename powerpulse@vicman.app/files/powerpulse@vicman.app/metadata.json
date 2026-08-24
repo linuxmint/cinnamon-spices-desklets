@@ -1,8 +1,7 @@
 {
     "uuid": "powerpulse@vicman.app",
     "name": "PowerPulse",
-    "description": "Monitor compacto de baterías para dispositivos inalámbricos mediante UPower y HeadsetControl.",
-    "icon": "battery-good-symbolic",
+    "description": "Compact wireless battery monitor using UPower and HeadsetControl.",
     "prevent-decorations": true,
     "max-instances": "1",
     "author": "VicMan",
