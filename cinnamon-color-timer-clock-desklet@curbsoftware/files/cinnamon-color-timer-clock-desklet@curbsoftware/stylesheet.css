@@ -43,6 +43,10 @@
     spacing: 2px;
 }
 
+.ctc-card-content {
+    spacing: 6px;
+}
+
 .ctc-card-title {
     color: inherit;
     font-weight: 600;
@@ -64,20 +68,50 @@
 /* Controls pill is a FIXED dark chip, independent of the schedule colour,
  * so the white symbolic icons stay legible on any card background. */
 .ctc-card-controls {
-    background-color: rgba(0, 0, 0, 0.35);
+    background-color: rgba(10, 14, 18, 0.74);
+    border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 12px;
-    padding: 3px;
-    spacing: 4px;
+    padding: 3px 1px;
+    spacing: 2px;
+}
+
+.ctc-card-controls-spacer {
+    min-width: 72px;
+    min-height: 36px;
 }
 
 .ctc-card-bottom {
-    margin-top: 8px;
-    spacing: 6px;
+    min-height: 38px;
+    margin-top: 5px;
+    padding: 3px 1px;
+    spacing: 2px;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.13);
+    background-color: rgba(10, 14, 18, 0.24);
+}
+
+.ctc-next-preview {
+    spacing: 2px;
+    padding: 2px;
+    border-radius: 11px;
+    border: 1px solid rgba(255, 255, 255, 0.24);
+    background-color: rgba(10, 14, 18, 0.78);
+    color: white;
+}
+
+.ctc-next-label {
+    min-width: 25px;
+    color: inherit;
+    font-size: 8.5pt;
+    font-weight: 600;
 }
 
 .ctc-ctl {
     border-radius: 9px;
-    padding: 4px 8px;
+    border: 1px solid transparent;
+    min-width: 28px;
+    min-height: 28px;
+    padding: 0 4px;
     color: white;
     transition-duration: 150ms;
 }
@@ -88,55 +122,70 @@
 
 .ctc-ctl:focus {
     background-color: rgba(255, 255, 255, 0.28);
+    border-color: rgba(255, 255, 255, 0.9);
+}
+
+.ctc-ctl:active {
+    background-color: rgba(255, 255, 255, 0.38);
 }
 
 /* Inert +/- buttons while the timer runs: visible, unambiguous, but clearly
  * not clickable - and the pill keeps one width in every state. */
 .ctc-ctl:dim {
-    color: rgba(255, 255, 255, 0.4);
+    color: rgba(255, 255, 255, 0.52);
 }
 
-/* Same horizontal padding as .ctc-ctl so all glyph centers in the row
- * sit on one rhythm; only the height is slimmer. */
 .ctc-ctl-small {
-    padding: 2px 8px;
+    padding: 0 3px;
 }
 
-/* Small top-right refresh button. Inherits the card fg colour so it stays
- * legible on any schedule; the hover/focus chip mirrors .ctc-ctl. */
-.ctc-refresh {
+.ctc-empty-container {
+    min-width: 260px;
+    min-height: 150px;
+}
+
+.ctc-empty {
+    spacing: 8px;
+    padding: 20px 24px;
+    color: rgba(255, 255, 255, 0.92);
+}
+
+.ctc-empty-icon {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.ctc-empty-title {
+    font-size: 15pt;
+    font-weight: 600;
+    text-align: center;
+}
+
+.ctc-empty-help {
+    color: rgba(255, 255, 255, 0.72);
+    text-align: center;
+}
+
+/* Cinnamon's St theme parser does not implement CSS media queries. Code
+ * applies this class whenever cards wrap onto more than one row. */
+.ctc-compact .ctc-card {
     border-radius: 6px;
+    padding: 3px 5px;
+}
+
+.ctc-compact .ctc-card-controls {
+    padding: 2px 1px;
+}
+
+.ctc-compact .ctc-card-bottom {
+    min-height: 36px;
+    margin-top: 2px;
     padding: 2px;
-    color: inherit;
-    transition-duration: 150ms;
 }
 
-.ctc-refresh:hover {
-    background-color: rgba(255, 255, 255, 0.18);
+.ctc-compact .ctc-card-content {
+    spacing: 3px;
 }
 
-.ctc-refresh:focus {
-    background-color: rgba(255, 255, 255, 0.28);
-}
-
-@media (max-width: 240px) {
-    .ctc-card {
-        border-radius: 6px;
-        padding: 2px 4px;
-    }
-    .ctc-card-value {
-        font-weight: 600;
-    }
-    .ctc-card-controls {
-        padding: 2px;
-    }
-    .ctc-card-bottom {
-        margin-top: 2px;
-    }
-    .ctc-ctl {
-        padding: 2px 4px;
-    }
-    .ctc-ctl-small {
-        padding: 2px 4px;
-    }
+.ctc-compact .ctc-next-preview {
+    padding: 1px 3px;
 }

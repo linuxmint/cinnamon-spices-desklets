@@ -1,14 +1,14 @@
 # COLOR TIMER CLOCK
 # This file is put in the public domain.
-# RobertAlexanderH, 2026
+# RobertAlexanderH, 2017
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cinnamon-color-timer-clock-desklet@curbsoftware 1.4.0\n"
+"Project-Id-Version: cinnamon-color-timer-clock-desklet@curbsoftware 1.6.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-08-20 10:41-0700\n"
+"POT-Creation-Date: 2026-08-26 18:07-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -21,7 +21,7 @@ msgstr ""
 msgid "Clock"
 msgstr ""
 
-#. desklet.js:85 desklet.js:469
+#. desklet.js:85 desklet.js:516
 msgid "Timer"
 msgstr ""
 
@@ -29,61 +29,92 @@ msgstr ""
 msgid "Chronometer"
 msgstr ""
 
-#. desklet.js:233 desklet.js:346
+#. desklet.js:254
+msgid "Next"
+msgstr ""
+
+#. desklet.js:302 desklet.js:367 desklet.js:369
 msgid "Start"
 msgstr ""
 
-#. desklet.js:236
+#. desklet.js:305
 msgid "Reset"
 msgstr ""
 
-#. desklet.js:239
+#. desklet.js:308
 msgid "-1 minute"
 msgstr ""
 
-#. desklet.js:240
+#. desklet.js:309
 msgid "+1 minute"
 msgstr ""
 
-#. desklet.js:329
-msgid "Refresh"
-msgstr ""
-
-#. desklet.js:346
+#. desklet.js:367 desklet.js:369
 msgid "Pause"
 msgstr ""
 
-#. desklet.js:464
+#. desklet.js:442
+#, javascript-format
+msgid "Next color at %s: %s"
+msgstr ""
+
+#. desklet.js:444
+#, javascript-format
+msgid "Next color at %s remaining: %s"
+msgstr ""
+
+#. desklet.js:447
+#, javascript-format
+msgid "Next color at %s elapsed: %s"
+msgstr ""
+
+#. desklet.js:511
 msgid "Time is up"
 msgstr ""
 
-#. desklet.js:473
+#. desklet.js:520
 msgid "Ready"
 msgstr ""
 
-#. desklet.js:474
+#. desklet.js:521
 msgid "Paused"
 msgstr ""
 
 #. metadata.json->name
-#. desklet.js:663
+#. desklet.js:708
 msgid "Color Timer Clock"
 msgstr ""
 
-#. desklet.js:989
+#. desklet.js:709
+msgid "Reload color schedules"
+msgstr ""
+
+#. desklet.js:946
+msgid "No cards enabled"
+msgstr ""
+
+#. desklet.js:950
+msgid "Right-click and choose Configure to show a card."
+msgstr ""
+
+#. desklet.js:959
+msgid "No cards enabled. Open Configure to show a card."
+msgstr ""
+
+#. desklet.js:1109
 msgid "Timer finished"
 msgstr ""
 
-#. desklet.js:989
+#. desklet.js:1109
 msgid "The timer reached zero."
 msgstr ""
 
-#. desklet.js:1016
+#. desklet.js:1136
 #, javascript-format
 msgid "It is now %s."
 msgstr ""
 
-#. desklet.js:1018
+#. desklet.js:1138
 #, javascript-format
 msgid "Reached %s."
 msgstr ""
@@ -312,13 +343,18 @@ msgstr ""
 
 #. settings-schema.json->width->tooltip
 msgid ""
-"Cards share the width. Each card needs about 130 px; when the width cannot "
-"fit them all, the chronometer and then the timer hide automatically and come "
-"back when you widen the desklet"
+"Cards share the width and wrap onto more rows when needed. Every enabled "
+"card stays visible"
 msgstr ""
 
 #. settings-schema.json->height->description
-msgid "Desklet height"
+msgid "Minimum desklet height"
+msgstr ""
+
+#. settings-schema.json->height->tooltip
+msgid ""
+"Wrapped layouts grow taller when needed so card text and controls do not "
+"overlap"
 msgstr ""
 
 #. settings-schema.json->reset-schedules->description

@@ -261,19 +261,17 @@ function thresholdsCrossed(prev, cur, times, wrap) {
 }
 
 /**
- * nextColor:
+ * nextStop:
  * @stops (array): normalised stops [{t, rgba}], any order
  * @pos (number): query position in seconds
  * @opts (object): { wrap, reverse }. wrap treats the position as circular
  *   (clock); reverse walks the schedule backwards (timer counting down).
  *
- * Returns (array): the colour of the next stop in the direction of travel, or
- * null when there are no stops. A forward schedule returns the first stop
- * above @pos (wrapping to the first past the end when @opts.wrap, else holding
- * the last stop); a reverse schedule returns the first stop below @pos,
- * falling back to the lowest stop at or past the end.
+ * Returns (object): a fresh {t, rgba} for the next stop in the direction of
+ * travel, or null when no stop remains. Wrapped schedules always have a next
+ * stop. This gives the desklet both the preview colour and its schedule time.
  */
-function nextColor(stops, pos, opts) {
+function nextStop(stops, pos, opts) {
     opts = opts || {};
 
     let list = [];
@@ -294,24 +292,27 @@ function nextColor(stops, pos, opts) {
     if (opts.wrap)
         q = ((q % DAY_SECONDS) + DAY_SECONDS) % DAY_SECONDS;
 
-    if (list.length === 1)
-        return list[0].rgba.slice();
-
     if (opts.reverse) {
         for (let i = list.length - 1; i >= 0; i--) {
             if (list[i].t < q)
-                return list[i].rgba.slice();
+                return { t: list[i].t, rgba: list[i].rgba.slice() };
         }
-        return list[0].rgba.slice();
+        return null;
     }
 
     for (let i = 0; i < list.length; i++) {
         if (list[i].t > q)
-            return list[i].rgba.slice();
+            return { t: list[i].t, rgba: list[i].rgba.slice() };
     }
     if (opts.wrap)
-        return list[0].rgba.slice();
-    return list[list.length - 1].rgba.slice();
+        return { t: list[0].t, rgba: list[0].rgba.slice() };
+    return null;
+}
+
+/* Compatibility helper for callers that only need the preview colour. */
+function nextColor(stops, pos, opts) {
+    let stop = nextStop(stops, pos, opts);
+    return stop ? stop.rgba : null;
 }
 
 /* ------------------------------------------------------------------ *
@@ -571,37 +572,59 @@ var CARD_LAYOUT = {
     dateEm: 0.58,
     labelEm: 0.56,
     addMaxPt: 16,
-    /* A card cannot shrink below its control pill; fitKinds() hides cards
-     * rather than let the grid overflow the container below this. */
-    minCardWidth: 120
+    /* Timer controls and the labelled next-colour chip share one footer. */
+    minCardWidth: 250,
+    /* Title, value, subtitle and control row need this much card height. */
+    minCardHeight: 124
 };
 
 /**
- * fitKinds:
- * @kinds (array): visible card kinds from the settings checkboxes, in
- *   build order (clock, timer, chrono)
+ * computeResponsiveGrid:
+ * @cardCount (number): count of enabled cards
  * @width (number): desklet width setting (px)
  * @spacing (number): card spacing setting (px, used as per-card margin)
  *
- * Returns (array): the kinds that fit. Cards drop from the end - the
- * chronometer first, then the timer - because the clock is the anchor;
- * one card always survives so the desklet never renders empty. Widening
- * restores the hidden cards on the next rebuild; the settings checkboxes
- * remain the source of truth.
+ * Returns (object): { rows, cols }. Every enabled card gets a cell. Narrow
+ * widths reduce the column count and add rows instead of hiding cards.
  */
-function fitKinds(kinds, width, spacing) {
-    let list = Array.isArray(kinds) ? kinds.slice() : [];
+function computeResponsiveGrid(cardCount, width, spacing) {
+    let count = parseInt(cardCount, 10);
+    if (!Number.isFinite(count) || count < 1)
+        return { rows: 0, cols: 0 };
     let w = Number(width);
     if (!Number.isFinite(w) || w <= 0)
         w = 840;
     let gap = Number(spacing);
     if (!Number.isFinite(gap) || gap < 0)
         gap = 0;
+    const available = Math.max(1, w - 2 * CARD_LAYOUT.containerPad);
     const min = CARD_LAYOUT.minCardWidth + 2 * gap;
-    while (list.length > 1 &&
-        list.length * min + 2 * CARD_LAYOUT.containerPad > w)
-        list.pop();
-    return list;
+    const cols = Math.max(1, Math.min(count, Math.floor(available / min)));
+    return { rows: Math.ceil(count / cols), cols: cols };
+}
+
+/**
+ * computeResponsiveHeight:
+ * @rows (number): responsive row count
+ * @height (number): configured desklet height
+ * @spacing (number): per-card margin
+ *
+ * Returns (number): configured height or safe row-dependent minimum,
+ * whichever is larger.
+ */
+function computeResponsiveHeight(rows, height, spacing) {
+    let count = parseInt(rows, 10);
+    if (!Number.isFinite(count) || count < 1)
+        count = 1;
+    let base = Number(height);
+    if (!Number.isFinite(base) || base <= 0)
+        base = 260;
+    let gap = Number(spacing);
+    if (!Number.isFinite(gap) || gap < 0)
+        gap = 0;
+    const safe = count * (CARD_LAYOUT.minCardHeight + 2 * gap) +
+        2 * CARD_LAYOUT.containerPad;
+    return Math.max(base, safe);
 }
 
 function _toPositiveInt(value, fallback) {

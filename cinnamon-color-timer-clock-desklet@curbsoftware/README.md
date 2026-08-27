@@ -2,7 +2,11 @@
 
 A Cinnamon desklet with three cards (**Clock**, **Timer** and **Chronometer**) whose background colors follow a schedule you define. Each card's color ramps between (time, color) stops: the clock by time of day wrapping over midnight, the timer by time remaining, the chronometer by time elapsed.
 
-![Color Timer Clock desklet](screenshot.png)
+![Color Timer Clock desklet](screenshots/color-timer-clock-desklet.webp)
+
+The settings window:
+
+![Color Timer Clock settings](screenshots/color-timer-clock-config.webp)
 
 ## Why this exists
 
@@ -16,7 +20,7 @@ One glance tells me the state of things. That's the whole idea.
 
 ## Features
 
-- Up to three side-by-side cards; show or hide each one
+- Up to three responsive cards. Narrow widths wrap cards onto centered rows and add enough height instead of hiding or clipping cards
 - Per-card color schedules with smooth (interpolated) or stepped transitions
 - Clock card with an optional IANA timezone
 - Timer with on-card play/pause, reset and ±60 s buttons; survives restarts and expires correctly even after downtime
@@ -24,29 +28,30 @@ One glance tells me the state of things. That's the whole idea.
 - Optional notifications when the clock or chronometer reaches a schedule stop
 - Chronometer with pause/resume; the accumulated time survives restarts, and an optional hundredths display (20 updates/s while running)
 - Text and border colors adapt to the card background for readability (WCAG contrast ratio)
-- Tooltips on every card control
-- A per-card refresh button to reload settings without interrupting a running timer or chronometer
-- A next-colour swatch on each card that previews the upcoming schedule colour
+- Keyboard focus, pressed states, accessible names and tooltips on every card control
+- One **Reload color schedules** desklet menu action that does not interrupt a running timer or chronometer
+- A labelled **Next** preview chip on each card, with a 20 px double-ring colour sample and the upcoming stop details in its tooltip
+- A clear setup message when every card is disabled
 - One-click "Reset all schedules to defaults"
 
 ## Configuration
 
-Right-click the desklet → **Configure…**
+Right-click the desklet and choose **Configure**.
 
-- **Color schedules**: a list of (time, color) stops per card. Colors are hex (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) or a name (`red`, `blue`, …). Duplicate times keep the last row; invalid rows are dropped with a log line
+- **Color schedules**: a list of (time, color) stops per card. Colors are hex (`#rgb`, `#rgba`, `#rrggbb`, `#rrggbbaa`) or a name such as `red` or `blue`. Duplicate times keep the last row; invalid rows are dropped with a log line
 - **Smooth color transitions**: blend gradually between stops, or hold each color and jump at the next stop
 - **Show a notification when the timer finishes**: pops a desktop notification when the countdown reaches zero
 - **Notify (per schedule row)**: tick a clock or chronometer schedule row's Notify checkbox to pop a notification when that time is reached
 - **Timer minutes / seconds**: the default duration the timer restarts from
-- **Refresh (per card)**: the small button in each card's top-right corner reloads that card's settings without restarting a running timer or chronometer
-- **Next-colour swatch (per card)**: the small circle in each card's bottom-right corner previews the next schedule colour and snaps to it at the breakpoint
+- **Reload color schedules**: the desklet menu action reloads all three schedules without restarting a running timer or chronometer
+- **Next colour (per card)**: the labelled footer chip previews the next schedule colour. Hover its colour sample for the stop time and exact colour value
 - **Show hundredths of a second**: adds a `.ss` fraction to the chronometer while it runs
 - **Time / date format**: `strftime` patterns for the clock card
 - **Maximum font sizes, card spacing, desklet width / height**: cards shrink text to fit
 
 ## Notes
 
-Colors interpolate piecewise-linearly in RGB, so a red→blue ramp passes through purple. The clock schedule wraps over midnight; timer and chronometer schedules hold the last stop's color beyond it. Cards share the desklet width and each needs about 130 px. When the width cannot fit them all, the chronometer and then the timer hide automatically (a note is logged) and return when the desklet is widened.
+Colors interpolate piecewise-linearly in RGB, so a red to blue ramp passes through purple. The clock schedule wraps over midnight; timer and chronometer schedules hold the last stop's color beyond it. Cards share the desklet width and wrap onto more rows when each card would otherwise become too narrow. Enabled cards never disappear because of desklet width.
 
 UUID: `cinnamon-color-timer-clock-desklet@curbsoftware`
 

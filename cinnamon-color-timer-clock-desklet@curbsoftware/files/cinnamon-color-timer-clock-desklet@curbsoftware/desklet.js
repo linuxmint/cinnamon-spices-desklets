@@ -130,15 +130,56 @@ function _centerLabelText(label) {
     } catch (e) {}
 }
 
-function _actorWidth(actor) {
-    try {
-        if (!actor || !actor.get_allocation_box)
-            return 0;
-        const box = actor.get_allocation_box();
-        return Math.max(0, box.x2 - box.x1);
-    } catch (e) {
-        return 0;
+/* ReloadXlet refreshes desklet.js but GJS can retain an older imported
+ * cardActions module. Keep small fallbacks here so a helper cache never
+ * disables responsive layout or next-stop metadata until Cinnamon restarts. */
+function _responsiveGrid(cardCount, width, spacing) {
+    if (CardActions && typeof CardActions.computeResponsiveGrid === "function" &&
+        CardActions.CARD_LAYOUT && CardActions.CARD_LAYOUT.minCardWidth >= 250)
+        return CardActions.computeResponsiveGrid(cardCount, width, spacing);
+    const count = Math.max(1, parseInt(cardCount, 10) || 1);
+    const deskletWidth = Number(width) > 0 ? Number(width) : 840;
+    const gap = Math.max(0, Number(spacing) || 0);
+    const available = Math.max(1, deskletWidth - 8);
+    const cols = Math.max(1, Math.min(count, Math.floor(available / (250 + 2 * gap))));
+    return { rows: Math.ceil(count / cols), cols: cols };
+}
+
+function _responsiveHeight(rows, height, spacing) {
+    if (CardActions && typeof CardActions.computeResponsiveHeight === "function")
+        return CardActions.computeResponsiveHeight(rows, height, spacing);
+    const count = Math.max(1, parseInt(rows, 10) || 1);
+    const base = Number(height) > 0 ? Number(height) : 260;
+    const gap = Math.max(0, Number(spacing) || 0);
+    return Math.max(base, count * (124 + 2 * gap) + 8);
+}
+
+function _nextScheduleStop(stops, pos, opts) {
+    if (CardActions && typeof CardActions.nextStop === "function")
+        return CardActions.nextStop(stops, pos, opts);
+    opts = opts || {};
+    const list = Array.isArray(stops) ? stops.filter(function (stop) {
+        return stop && Number.isFinite(stop.t) && Array.isArray(stop.rgba);
+    }).slice().sort(function (a, b) { return a.t - b.t; }) : [];
+    if (list.length === 0)
+        return null;
+    let q = Number(pos);
+    if (!Number.isFinite(q))
+        q = 0;
+    if (opts.wrap)
+        q = ((q % 86400) + 86400) % 86400;
+    if (opts.reverse) {
+        for (let i = list.length - 1; i >= 0; i--) {
+            if (list[i].t < q)
+                return { t: list[i].t, rgba: list[i].rgba.slice() };
+        }
+        return null;
     }
+    for (let i = 0; i < list.length; i++) {
+        if (list[i].t > q)
+            return { t: list[i].t, rgba: list[i].rgba.slice() };
+    }
+    return opts.wrap ? { t: list[0].t, rgba: list[0].rgba.slice() } : null;
 }
 
 function CardWidget(kind, desklet) {
@@ -174,27 +215,28 @@ CardWidget.prototype = {
         _centerLabelText(this._value);
         _centerLabelText(this._sub);
 
-        /* Labels live in an expanding body box: the text block centers in
-         * the space above the controls, and the controls pill anchors to
-         * the card bottom. The clock card carries a ghost pill (same
-         * height, invisible, inert) so all cards share one baseline grid.
-         * Time/date stay at natural width so BoxLayout can center them;
-         * stretching those labels with set_width left-aligns the glyphs. */
-        this._refreshButton = this._refreshCtl();
-        /* Header row at the card top: the title centers in the flexible space
-         * and a small refresh button pins to the top-right corner. */
-        this._header = new St.BoxLayout();
-        this._header.add(this._title, { expand: true, x_fill: true, x_align: St.Align.MIDDLE, y_align: St.Align.START });
-        this._header.add(this._refreshButton, { x_fill: false, x_align: St.Align.END, y_align: St.Align.START });
-        this.actor.add(this._header, { x_fill: true, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.START });
-
+        /* Keep title, value and subtitle as one centered reading group. This
+         * avoids a title stranded at the top and a large empty pocket below
+         * the value on taller cards. The footer remains anchored at bottom. */
+        this._content = new St.BoxLayout({
+            vertical: true,
+            style_class: "ctc-card-content"
+        });
+        this._content.add(this._title, {
+            x_fill: true,
+            x_align: St.Align.MIDDLE
+        });
         this._body = new St.BoxLayout({
             vertical: true,
             style_class: "ctc-card-body"
         });
         this._body.add(this._value, { x_fill: false, x_align: St.Align.MIDDLE });
         this._body.add(this._sub, { x_fill: false, x_align: St.Align.MIDDLE });
-        this.actor.add(this._body, {
+        this._content.add(this._body, {
+            x_fill: true,
+            x_align: St.Align.MIDDLE
+        });
+        this.actor.add(this._content, {
             expand: true,
             x_fill: true,
             y_fill: false,
@@ -202,14 +244,33 @@ CardWidget.prototype = {
             y_align: St.Align.MIDDLE
         });
 
-        this._swatch = new St.DrawingArea();
-        this._swatch.set_width(12);
-        this._swatch.set_height(12);
+        this._swatch = new St.DrawingArea({ reactive: true });
+        this._swatch.set_width(20);
+        this._swatch.set_height(20);
         this._swatchColor = null;
         this._swatch.connect("repaint", () => this._paintSwatch());
+        this._swatchTooltip = new Tooltips.Tooltip(this._swatch, "");
+        this._nextLabel = new St.Label({
+            text: _("Next"),
+            style_class: "ctc-next-label",
+            reactive: false
+        });
+        this._nextPreview = new St.BoxLayout({
+            style_class: "ctc-next-preview",
+            reactive: false
+        });
+        this._nextPreview.add(this._nextLabel, {
+            x_fill: false,
+            x_align: St.Align.MIDDLE,
+            y_align: St.Align.MIDDLE
+        });
+        this._nextPreview.add(this._swatch, {
+            x_fill: false,
+            y_fill: false,
+            x_align: St.Align.END,
+            y_align: St.Align.MIDDLE
+        });
         this._buildControls();
-        if (kind === "clock")
-            this._ghostControls();
 
         /* The card's whole inline style (margin + colours + transition) is
          * owned here, so every part must go through one string; a separate
@@ -227,38 +288,40 @@ CardWidget.prototype = {
          * colour the schedule paints the card. Plain St.Buttons on the card
          * itself - no PopupMenu, so no grab/teardown bug class and no need
          * to defer the handlers. Tooltips self-destroy with their button. */
-        this._controls = new St.BoxLayout({ style_class: "ctc-card-controls" });
         this._ctlButtons = [];
 
-        this._playButton = this._ctlButton("media-playback-start", "toggle", false, _("Start"));
-        this._controls.add(this._playButton);
+        if (this.kind === "clock") {
+            this._controls = new St.Bin({
+                style_class: "ctc-card-controls-spacer",
+                reactive: false,
+                can_focus: false
+            });
+        } else {
+            this._controls = new St.BoxLayout({ style_class: "ctc-card-controls" });
 
-        this._controls.add(this._ctlButton("view-refresh", "reset", false, _("Reset")));
+            this._playButton = this._ctlButton("media-playback-start", "toggle", false, _("Start"));
+            this._controls.add(this._playButton);
 
-        if (this.kind === "timer") {
-            this._minusButton = this._ctlButton("list-remove", "minus", true, _("-1 minute"));
-            this._plusButton = this._ctlButton("list-add", "plus", true, _("+1 minute"));
-            this._controls.add(this._minusButton);
-            this._controls.add(this._plusButton);
+            this._controls.add(this._ctlButton("view-refresh", "reset", false, _("Reset")));
+
+            if (this.kind === "timer") {
+                this._minusButton = this._ctlButton("list-remove", "minus", true, _("-1 minute"));
+                this._plusButton = this._ctlButton("list-add", "plus", true, _("+1 minute"));
+                this._controls.add(this._minusButton);
+                this._controls.add(this._plusButton);
+            }
         }
 
-        /* Bottom row: controls centered, next-colour swatch at bottom-right. */
+        /* Every card shares one intentional footer: controls stay centered
+         * and the labelled next-colour chip always lands at bottom-right. */
         const bottom = new St.BoxLayout({ style_class: "ctc-card-bottom" });
         bottom.add(this._controls, { expand: true, x_fill: false, x_align: St.Align.MIDDLE });
-        bottom.add(this._swatch, { x_fill: false, x_align: St.Align.END, y_align: St.Align.MIDDLE });
+        bottom.add(this._nextPreview, {
+            x_fill: false,
+            x_align: St.Align.END,
+            y_align: St.Align.MIDDLE
+        });
         this.actor.add(bottom, { x_fill: true, y_fill: false, x_align: St.Align.MIDDLE, y_align: St.Align.END });
-    },
-
-    /* Reserve, don't show: the ghost keeps the clock card's geometry
-     * identical to the timer/chrono cards (same pill height in any theme
-     * or @media variant) without offering any controls. */
-    _ghostControls: function () {
-        this._controls.set_opacity(0);
-        this._controls.reactive = false;
-        for (let i = 0; i < this._ctlButtons.length; i++) {
-            this._ctlButtons[i].reactive = false;
-            this._ctlButtons[i].can_focus = false;
-        }
     },
 
     _ctlButton: function (iconName, action, small, tipText) {
@@ -276,18 +339,8 @@ CardWidget.prototype = {
         button.connect("clicked", () => {
             this.desklet._onControl(this.kind, action);
         });
-        button.connect("button-press-event", () => {
-            if (this.desklet._draggable)
-                this.desklet._draggable.inhibit = true;
-            return Clutter.EVENT_PROPAGATE;
-        });
-        button.connect("button-release-event", () => {
-            if (this.desklet._draggable) {
-                this.desklet._draggable.inhibit = false;
-                this.desklet._draggable.fakeRelease();
-            }
-            return Clutter.EVENT_PROPAGATE;
-        });
+        if (tipText && button.set_accessible_name)
+            button.set_accessible_name(tipText);
         if (tipText) {
             const tip = new Tooltips.Tooltip(button, tipText);
             if (iconName === "media-playback-start")
@@ -295,38 +348,6 @@ CardWidget.prototype = {
         }
         if (iconName === "media-playback-start")
             this._playIcon = icon;
-        return button;
-    },
-
-    /* Small top-right refresh button: reloads this card's settings in place
-     * without rebuilding the desklet, so a running timer keeps ticking. */
-    _refreshCtl: function () {
-        const icon = new St.Icon({
-            icon_name: "view-refresh",
-            icon_type: St.IconType.SYMBOLIC,
-            icon_size: 14
-        });
-        const button = new St.Button({
-            style_class: "ctc-refresh",
-            can_focus: true
-        });
-        button.set_child(icon);
-        button.connect("clicked", () => {
-            this.desklet._onRefresh();
-        });
-        button.connect("button-press-event", () => {
-            if (this.desklet._draggable)
-                this.desklet._draggable.inhibit = true;
-            return Clutter.EVENT_PROPAGATE;
-        });
-        button.connect("button-release-event", () => {
-            if (this.desklet._draggable) {
-                this.desklet._draggable.inhibit = false;
-                this.desklet._draggable.fakeRelease();
-            }
-            return Clutter.EVENT_PROPAGATE;
-        });
-        new Tooltips.Tooltip(button, _("Refresh"));
         return button;
     },
 
@@ -344,6 +365,8 @@ CardWidget.prototype = {
                 : "media-playback-start";
         if (this._playTooltip && this._playTooltip.set_text)
             this._playTooltip.set_text(isRunning ? _("Pause") : _("Start"));
+        if (this._playButton && this._playButton.set_accessible_name)
+            this._playButton.set_accessible_name(isRunning ? _("Pause") : _("Start"));
     },
 
     /* The +/-60 s buttons exist only on the timer card and are reachable
@@ -386,10 +409,10 @@ CardWidget.prototype = {
      * @rgba (array): [r, g, b, a] from evaluate(), or null when the card has
      *   no schedule stops (stylesheet default colours then apply)
      * @smooth (boolean): animate towards this colour over 1000 ms
-     * @nextRgba (array): the next stop's colour for the solid preview swatch,
-     *   or null when there is no schedule
+     * @nextStop (object): the next {t, rgba} schedule stop, or null when no
+     *   stop remains in the direction of travel
      */
-    update: function (now, rgba, smooth, nextRgba) {
+    update: function (now, rgba, smooth, nextStop) {
         if (this.kind === "clock")
             this._updateClock(now);
         else if (this.kind === "timer")
@@ -397,20 +420,37 @@ CardWidget.prototype = {
         else
             this._updateChrono(now);
         this._applyColors(rgba, smooth);
-        this._updateSwatch(nextRgba);
+        this._updateSwatch(nextStop);
     },
 
-    /* Solid next-colour preview: the swatch repaints in one flat fill, so it
-     * snaps to each stop's colour at the breakpoint instead of fading. */
-    _updateSwatch: function (nextRgba) {
+    /* Solid next-colour preview. Tooltip identifies exact stop and colour. */
+    _updateSwatch: function (nextStop) {
         if (!this._swatch)
             return;
-        if (!nextRgba) {
-            this._swatch.hide();
+        if (!nextStop || !Array.isArray(nextStop.rgba)) {
+            this._nextPreview.hide();
             return;
         }
+        this._nextPreview.show();
         this._swatch.show();
-        this._swatchColor = nextRgba;
+        this._swatchColor = nextStop.rgba;
+        const color = CardActions.rgbaToKey(nextStop.rgba);
+        let text;
+        if (this.kind === "clock") {
+            const h = Math.floor(nextStop.t / 3600);
+            const m = Math.floor((nextStop.t % 3600) / 60);
+            text = _("Next color at %s: %s").format(_pad2(h) + ":" + _pad2(m), color);
+        } else if (this.kind === "timer") {
+            text = _("Next color at %s remaining: %s").format(
+                _formatDuration(nextStop.t * 1000, false, false), color);
+        } else {
+            text = _("Next color at %s elapsed: %s").format(
+                _formatDuration(nextStop.t * 1000, false, false), color);
+        }
+        if (this._swatchTooltip && this._swatchTooltip.set_text)
+            this._swatchTooltip.set_text(text);
+        if (this._swatch.set_accessible_name)
+            this._swatch.set_accessible_name(text);
         this._swatch.queue_repaint();
     },
 
@@ -422,7 +462,7 @@ CardWidget.prototype = {
         if (!cr)
             return;
         const [w, h] = area.get_surface_size();
-        const r = Math.min(w, h) / 2 - 0.5;
+        const r = Math.min(w, h) / 2 - 1;
         const cx = w / 2;
         const cy = h / 2;
 
@@ -433,11 +473,18 @@ CardWidget.prototype = {
         const c = this._swatchColor;
         if (c) {
             cr.setSourceRGBA(c[0] / 255, c[1] / 255, c[2] / 255, c[3]);
-            cr.arc(cx, cy, r, 0, 2 * Math.PI);
+            cr.arc(cx, cy, Math.max(1, r - 2.5), 0, 2 * Math.PI);
             cr.fill();
-            cr.setSourceRGBA(1, 1, 1, 0.35);
-            cr.setLineWidth(1);
+
+            /* A dark outer ring and bright inner ring keep the chip crisp on
+             * both pale and dark schedule colours. */
+            cr.setSourceRGBA(0, 0, 0, 0.78);
+            cr.setLineWidth(2);
             cr.arc(cx, cy, r, 0, 2 * Math.PI);
+            cr.stroke();
+            cr.setSourceRGBA(1, 1, 1, 0.88);
+            cr.setLineWidth(1.5);
+            cr.arc(cx, cy, Math.max(1, r - 2), 0, 2 * Math.PI);
             cr.stroke();
         }
 
@@ -535,7 +582,7 @@ CardWidget.prototype = {
          * (timer/chrono crossing an hour) triggers a refit. */
         this._fitLen = texts.time.length;
         const maxSizes = {
-            time: Number(this.desklet.timeSize) || 48,
+            time: Number(this.desklet.timeSize) || 44,
             date: Number(this.desklet.dateSize) || 13,
             timezone: Number(this.desklet.labelSize) || 11
         };
@@ -554,12 +601,8 @@ CardWidget.prototype = {
 
     _constrainTitleWidth: function (width) {
         try {
-            let w = _actorWidth(this._header);
-            if (!(w > 1))
-                w = width;
-            w -= _actorWidth(this._refreshButton);
-            if (w > 1)
-                this._title.set_width(Math.max(1, Math.floor(w)));
+            if (width > 1)
+                this._title.set_width(Math.max(1, Math.floor(width)));
         } catch (e) {}
     },
 
@@ -650,6 +693,8 @@ MyDesklet.prototype = {
         this._allocW = -1;
         this._allocH = -1;
         this._cardInner = null;
+        this._gridDims = null;
+        this._layoutHeight = this.height || 260;
         this._widthSamples = null;
 
         this.mainContainer = new St.BoxLayout({
@@ -661,6 +706,7 @@ MyDesklet.prototype = {
 
         this.setContent(this.mainContainer);
         this.setHeader(_("Color Timer Clock"));
+        this._menu.addAction(_("Reload color schedules"), this._reloadSchedules.bind(this));
 
         this._restoreState();
         this._rebuildCards();
@@ -796,27 +842,36 @@ MyDesklet.prototype = {
 
             this._refreshSchedules();
             this.mainContainer.destroy_all_children();
+            this.mainContainer.remove_style_class_name("ctc-compact");
+            this.mainContainer.remove_style_class_name("ctc-empty-container");
             this._cards = [];
 
-            const wanted = this._visibleKinds();
-            const kinds = CardActions
-                ? CardActions.fitKinds(wanted, this.width, this.cardSpacing)
-                : wanted;
-            if (kinds.length < wanted.length)
-                global.log(uuid + ": width " + (Number(this.width) || 840) +
-                    "px is too small for " + wanted.length + " cards; hiding " +
-                    wanted.slice(kinds.length).join(", "));
-            /* Leave the table and cards non-reactive so the desklet actor
-             * receives the pointer grab. Cinnamon's DND then sees mouse-up
-             * and actually drops. A reactive child that forwards press
-             * (and a stage captured-event hook) left the grab stuck, so
-             * every desklet followed the cursor. Control St.Buttons stay
-             * reactive and inhibit drag while they are clicked. */
-            const table = new St.Table({
-                homogeneous: true,
+            const kinds = this._visibleKinds();
+            if (kinds.length === 0) {
+                this._layoutHeight = Math.max(Number(this.height) || 260, 150);
+                this.mainContainer.set_height(this._layoutHeight);
+                this._showEmptyState();
+                this._gridDims = { rows: 0, cols: 0 };
+                this._cardInner = null;
+                this._widthSamples = null;
+                return;
+            }
+
+            const dims = _responsiveGrid(kinds.length, this.width, this.cardSpacing);
+            this._gridDims = dims;
+            this._layoutHeight = _responsiveHeight(dims.rows, this.height, this.cardSpacing);
+            this.mainContainer.set_height(this._layoutHeight);
+            if (dims.rows > 1)
+                this.mainContainer.add_style_class_name("ctc-compact");
+
+            /* Card surfaces stay non-reactive so Cinnamon owns desklet DND.
+             * St.Button controls consume clicks through normal event flow.
+             * Never change private draggable state or synthesize release. */
+            const grid = new St.BoxLayout({
+                vertical: true,
                 style_class: "ctc-grid"
             });
-            this.mainContainer.add(table, {
+            this.mainContainer.add(grid, {
                 expand: true,
                 x_expand: true,
                 y_expand: true,
@@ -824,12 +879,40 @@ MyDesklet.prototype = {
                 y_fill: true
             });
 
+            const rowTables = [];
+            const availableWidth = Math.max(1, (Number(this.width) || 840) - 8);
+            for (let row = 0; row < dims.rows; row++) {
+                const rowStart = row * dims.cols;
+                const rowCount = Math.min(dims.cols, kinds.length - rowStart);
+                const rowTable = new St.Table({
+                    homogeneous: true,
+                    style_class: "ctc-grid-row"
+                });
+                rowTable.set_width(Math.floor(availableWidth * rowCount / dims.cols));
+                const rowHost = new St.Bin({
+                    x_fill: false,
+                    y_fill: true,
+                    x_align: St.Align.MIDDLE,
+                    y_align: St.Align.MIDDLE
+                });
+                rowHost.set_child(rowTable);
+                grid.add(rowHost, {
+                    expand: true,
+                    x_fill: true,
+                    y_fill: true,
+                    x_align: St.Align.MIDDLE
+                });
+                rowTables.push(rowTable);
+            }
+
             for (let i = 0; i < kinds.length; i++) {
                 const widget = new CardWidget(kinds[i], this);
                 widget.setSpacing(this.cardSpacing);
-                table.add(widget.actor, {
+                const row = Math.floor(i / dims.cols);
+                const indexInRow = i % dims.cols;
+                rowTables[row].add(widget.actor, {
                     row: 0,
-                    col: i,
+                    col: indexInRow,
                     x_expand: true,
                     y_expand: true,
                     x_fill: true,
@@ -840,11 +923,47 @@ MyDesklet.prototype = {
 
             this._updateAll();
             this._widthSamples = this._formatWidthSamples();
-            this._cardInner = this._computeCardInnerSize(kinds.length);
+            this._cardInner = this._computeCardInnerSize(dims);
             this._scheduleFit();
         } catch (e) {
             global.logError(uuid + " card rebuild failed: " + e);
         }
+    },
+
+    _showEmptyState: function () {
+        this.mainContainer.add_style_class_name("ctc-empty-container");
+        const empty = new St.BoxLayout({
+            vertical: true,
+            style_class: "ctc-empty"
+        });
+        const icon = new St.Icon({
+            icon_name: "preferences-system-symbolic",
+            icon_type: St.IconType.SYMBOLIC,
+            icon_size: 32,
+            style_class: "ctc-empty-icon"
+        });
+        const title = new St.Label({
+            text: _("No cards enabled"),
+            style_class: "ctc-empty-title"
+        });
+        const help = new St.Label({
+            text: _("Right-click and choose Configure to show a card."),
+            style_class: "ctc-empty-help"
+        });
+        _centerLabelText(title);
+        _centerLabelText(help);
+        empty.add(icon, { x_fill: false, x_align: St.Align.MIDDLE });
+        empty.add(title, { x_fill: true, x_align: St.Align.MIDDLE });
+        empty.add(help, { x_fill: true, x_align: St.Align.MIDDLE });
+        if (empty.set_accessible_name)
+            empty.set_accessible_name(_("No cards enabled. Open Configure to show a card."));
+        this.mainContainer.add(empty, {
+            expand: true,
+            x_fill: false,
+            y_fill: false,
+            x_align: St.Align.MIDDLE,
+            y_align: St.Align.MIDDLE
+        });
     },
 
     /* Normalised once per settings change (rebuild), never on the 1s tick. */
@@ -894,20 +1013,21 @@ MyDesklet.prototype = {
         }
     },
 
-    /* Per-card refresh button: re-reads schedules and re-fits the existing
-     * cards in place, so changed settings show up without tearing down the
-     * widgets and interrupting a running timer or chronometer. */
-    _onRefresh: function () {
+    /* Context-menu action: re-read all schedules without replacing widgets or
+     * interrupting a running timer or chronometer. */
+    _reloadSchedules: function () {
         if (this._cleanedUp || !CardActions)
             return;
         try {
             this._refreshSchedules();
             this._widthSamples = this._formatWidthSamples();
-            this._cardInner = this._computeCardInnerSize(this._cards.length);
-            this._fitAllCards(this._cardInner);
+            if (this._cards.length > 0) {
+                this._cardInner = this._computeCardInnerSize(this._gridDims);
+                this._fitAllCards(this._cardInner);
+            }
             this._updateAll();
         } catch (e) {
-            global.logError(uuid + " refresh failed: " + e);
+            global.logError(uuid + " schedule reload failed: " + e);
         }
     },
 
@@ -1199,7 +1319,7 @@ MyDesklet.prototype = {
         for (let i = 0; i < this._cards.length; i++) {
             const widget = this._cards[i];
             const smooth = this._smoothFor(widget.kind);
-            let pos, rgba, nextRgba;
+            let pos, rgba, nextStop;
 
             if (widget.kind === "clock") {
                 pos = clockParts.hours * 3600 +
@@ -1209,28 +1329,22 @@ MyDesklet.prototype = {
                     wrap: true,
                     smooth: smooth
                 });
-                nextRgba = CardActions.nextColor
-                    ? CardActions.nextColor(this._schedules.clock, pos, { wrap: true })
-                    : null;
-                widget.update(now, rgba, smooth, nextRgba);
+                nextStop = _nextScheduleStop(this._schedules.clock, pos, { wrap: true });
+                widget.update(now, rgba, smooth, nextStop);
             } else if (widget.kind === "timer") {
                 pos = this._timerRemainingMs(nowMs) / 1000;
                 rgba = CardActions.evaluate(this._schedules.timer, pos, {
                     smooth: smooth
                 });
-                nextRgba = CardActions.nextColor
-                    ? CardActions.nextColor(this._schedules.timer, pos, { reverse: true })
-                    : null;
-                widget.update(now, rgba, smooth, nextRgba);
+                nextStop = _nextScheduleStop(this._schedules.timer, pos, { reverse: true });
+                widget.update(now, rgba, smooth, nextStop);
             } else {
                 pos = this._chronoElapsedMs(nowMs) / 1000;
                 rgba = CardActions.evaluate(this._schedules.chrono, pos, {
                     smooth: smooth
                 });
-                nextRgba = CardActions.nextColor
-                    ? CardActions.nextColor(this._schedules.chrono, pos, {})
-                    : null;
-                widget.update(now, rgba, smooth, nextRgba);
+                nextStop = _nextScheduleStop(this._schedules.chrono, pos, {});
+                widget.update(now, rgba, smooth, nextStop);
             }
             this._checkNotifyCrossing(widget.kind, pos);
         }
@@ -1327,11 +1441,13 @@ MyDesklet.prototype = {
      * Font fitting
      * ------------------------------------------------------------------ */
 
-    _computeCardInnerSize: function (cols) {
+    _computeCardInnerSize: function (dims) {
         if (!CardActions || !CardActions.computeCardInnerSize)
             return { width: 80, height: 80 };
+        dims = dims || { rows: 1, cols: Math.max(1, this._cards.length) };
         return CardActions.computeCardInnerSize(
-            this.width || 840, this.height || 260, 1, cols, this.cardSpacing);
+            this.width || 840, this._layoutHeight || this.height || 260,
+            Math.max(1, dims.rows), Math.max(1, dims.cols), this.cardSpacing);
     },
 
     _formatWidthSamples: function () {
