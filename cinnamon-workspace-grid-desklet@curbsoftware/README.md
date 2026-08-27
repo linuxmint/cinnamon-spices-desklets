@@ -34,6 +34,39 @@ Right-click the desklet and choose Configure.
 - Scroll wheel behavior
 - Tile spacing and desklet size
 
+## Manual install
+
+No root needed. Everything installs into your home directory.
+
+From a release package:
+
+```bash
+curl -fLO https://github.com/CurbSoftware/cinnamon-workspace-grid-desklet/releases/latest/download/cinnamon-workspace-grid-desklet.zip
+unzip cinnamon-workspace-grid-desklet.zip
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-workspace-grid-desklet@curbsoftware
+cp -r cinnamon-workspace-grid-desklet@curbsoftware/files/cinnamon-workspace-grid-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-workspace-grid-desklet@curbsoftware
+```
+
+Or straight from git:
+
+```bash
+git clone https://github.com/CurbSoftware/cinnamon-workspace-grid-desklet.git
+cd cinnamon-workspace-grid-desklet
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-workspace-grid-desklet@curbsoftware
+cp -r files/cinnamon-workspace-grid-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-workspace-grid-desklet@curbsoftware
+```
+
+The `rm -rf` before the copy is the upgrade path: old files are removed so
+nothing deleted upstream lingers, then the copy brings the new tree in. Your
+settings are stored separately in
+`~/.config/cinnamon/spices/cinnamon-workspace-grid-desklet@curbsoftware/`
+and survive reinstalls.
+
+Restart Cinnamon (**Alt-F2**, type `r`, Enter) and add the desklet from
+Cinnamon Settings.
+
 ## Testing
 
 ```sh
