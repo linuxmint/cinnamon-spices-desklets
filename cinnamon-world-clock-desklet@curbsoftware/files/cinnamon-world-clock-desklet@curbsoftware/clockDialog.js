@@ -175,7 +175,7 @@ class ClockConfigDialog extends ModalDialog.ModalDialog {
 
         /* Must come after setButtons(): addButton() focuses the first button
          * when nothing else has claimed focus. Focus the ClutterText, not the
-         * St.Entry wrapper — that is what receives typed characters. */
+         * St.Entry wrapper - that is what receives typed characters. */
         this.setInitialKeyFocus(this._nameEntry.clutter_text);
         this.connect("opened", () => this._focusName());
         this.connect("destroy", () => this._onDestroy());
