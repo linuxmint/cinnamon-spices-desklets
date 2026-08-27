@@ -383,16 +383,17 @@ function _toPositiveInt(value, fallback) {
  * @fixedCols (int): columns to use in fixed mode
  *
  * Returns (object): { rows, cols }. Auto mode produces a near-square grid.
- * Fixed mode returns the requested dimensions verbatim, which may be smaller
- * than @cellCount - planCells() handles that overflow.
+ * Fixed mode keeps the requested column count and grows the row count when
+ * needed. No workspace may disappear because a fixed grid is too small.
  */
 function computeGridDims(cellCount, mode, fixedRows, fixedCols) {
     let n = _toPositiveInt(cellCount, 1);
 
     if (mode === "fixed") {
+        let cols = _toPositiveInt(fixedCols, 1);
         return {
-            rows: _toPositiveInt(fixedRows, 1),
-            cols: _toPositiveInt(fixedCols, 1)
+            rows: Math.max(_toPositiveInt(fixedRows, 1), Math.ceil(n / cols)),
+            cols: cols
         };
     }
 
@@ -408,9 +409,8 @@ function computeGridDims(cellCount, mode, fixedRows, fixedCols) {
  * @rows (int): grid rows
  * @cols (int): grid columns
  *
- * Decides what goes in each grid cell, in row-major order. When the grid is
- * too small to hold everything, workspaces are truncated but the "+" tile
- * keeps the final cell so it stays reachable.
+ * Decides what goes in each grid cell, in row-major order. Dimension inputs
+ * are accepted for API compatibility, but never limit returned cells.
  *
  * Returns (array): [{ kind: "workspace"|"add", index: int }, ...]
  */
@@ -419,22 +419,48 @@ function planCells(workspaceCount, showAddTile, rows, cols) {
     if (!Number.isFinite(wsCount) || wsCount < 0)
         wsCount = 0;
 
-    let capacity = _toPositiveInt(rows, 1) * _toPositiveInt(cols, 1);
     let cells = [];
+    for (let i = 0; i < wsCount; i++)
+        cells.push({ kind: "workspace", index: i });
+    if (showAddTile)
+        cells.push({ kind: "add", index: -1 });
+    return cells;
+}
 
-    if (capacity <= 0)
-        return cells;
+/**
+ * computeScrollTarget:
+ * @active (int): active workspace index
+ * @count (int): workspace count
+ * @cols (int): effective grid column count
+ * @mode (string): "col" moves one cell, "row" moves one visual row
+ * @direction (int): -1 for up, 1 for down
+ *
+ * Returns (int): valid target index, or @active at a grid edge. Partial final
+ * rows stay addressable by clamping to the final workspace in that column.
+ */
+function computeScrollTarget(active, count, cols, mode, direction) {
+    let total = parseInt(count, 10);
+    let current = parseInt(active, 10);
+    let columnCount = _toPositiveInt(cols, 1);
+    let delta = direction < 0 ? -1 : 1;
 
-    if (!showAddTile) {
-        let limit = Math.min(wsCount, capacity);
-        for (let i = 0; i < limit; i++)
-            cells.push({ kind: "workspace", index: i });
-        return cells;
+    if (!Number.isFinite(total) || total < 1 ||
+        !Number.isFinite(current) || current < 0 || current >= total)
+        return current;
+
+    if (mode === "row") {
+        let target = current + delta * columnCount;
+        if (target < 0)
+            return current;
+        if (target >= total && delta > 0) {
+            let lastRowStart = Math.floor((total - 1) / columnCount) * columnCount;
+            if (current < lastRowStart)
+                return total - 1;
+            return current;
+        }
+        return target;
     }
 
-    let wsSlots = Math.min(wsCount, capacity - 1);
-    for (let i = 0; i < wsSlots; i++)
-        cells.push({ kind: "workspace", index: i });
-    cells.push({ kind: "add", index: -1 });
-    return cells;
+    let target = current + delta;
+    return target >= 0 && target < total ? target : current;
 }

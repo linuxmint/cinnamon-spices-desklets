@@ -32,6 +32,15 @@
     "description": "Columns (fixed layout)",
     "dependency": "layout-mode=fixed"
   },
+  "display-type": {
+    "type": "combobox",
+    "default": "buttons",
+    "description": "Workspace representation",
+    "options": {
+      "Names": "buttons",
+      "Desktop previews": "visual"
+    }
+  },
 
   "labels": {
     "type": "header",

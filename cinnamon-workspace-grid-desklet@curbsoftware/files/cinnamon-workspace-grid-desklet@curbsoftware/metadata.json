@@ -2,7 +2,7 @@
     "uuid": "cinnamon-workspace-grid-desklet@curbsoftware",
     "name": "Workspace Grid",
     "description": "A desklet that displays a clickable grid of workspaces with names and highlights the active workspace.",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "prevent-decorations": false,
     "max-instances": 1
 }

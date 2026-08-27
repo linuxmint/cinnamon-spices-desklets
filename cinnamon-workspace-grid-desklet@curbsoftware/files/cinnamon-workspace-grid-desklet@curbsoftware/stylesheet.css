@@ -1,98 +1,135 @@
-/* Workspace Grid Desklet styles */
-/* keep variable declarations comment only; remove to satisfy strict lint */
-
-.workspace-grid-container {
-  padding: 6px;
-  border-radius: 10px;
-  background-color: rgba(0,0,0,0.35);
+.curb-workspace-grid-container {
+  padding: 8px;
+  border-radius: 12px;
+  background-color: rgba(14, 17, 22, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
 }
 
-.workspace-grid-table {
-  /* St.Table doesn't support CSS spacing directly; spacing handled via button margins */
-}
-
-/* Tile chrome is deliberately dark-backed so the white text stays readable
- * on light wallpapers and light Cinnamon themes. */
-.workspace-button {
-  background-color: rgba(0, 0, 0, 0.25);
-  border: 1px solid rgba(255,255,255,0.25);
-  border-radius: 8px;
-  transition-duration: 150ms;
+.curb-workspace-grid-button {
+  background-color: rgba(255, 255, 255, 0.065);
+  border: 1px solid rgba(255, 255, 255, 0.17);
+  border-radius: 9px;
+  color: #f5f7fa;
+  transition-duration: 140ms;
   transition-property: background-color, border-color, box-shadow;
-  font-size: 1.5em;
-  font-weight: bold;
-  color: white;
 }
 
-.workspace-button:hover {
-  background-color: rgba(0, 0, 0, 0.32);
-  border-color: rgba(255, 255, 255, 0.28);
-}
-
-.workspace-button:focus {
-  background-color: rgba(0, 0, 0, 0.38);
+.curb-workspace-grid-button:hover {
+  background-color: rgba(255, 255, 255, 0.11);
   border-color: rgba(255, 255, 255, 0.34);
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.15) inset;
 }
 
-/* Active workspace highlight (GridStyle uses pseudo-class 'outlined') */
-.workspace-button:outlined {
-  border-width: 2px;
-  border-color: #4aa3ff;
-  box-shadow: 0 0 0 1px rgba(74, 163, 255, 0.35) inset, 0 0 0 2px rgba(74, 163, 255, 0.15);
-  background-color: rgba(74, 163, 255, 0.10);
+.curb-workspace-grid-button:focus {
+  background-color: rgba(255, 255, 255, 0.13);
+  border-color: rgba(126, 188, 255, 0.92);
+  box-shadow: inset 0 0 0 1px rgba(126, 188, 255, 0.45);
 }
 
-/* "+" tile used to append a workspace */
-.workspace-add-tile {
-  background-color: rgba(0, 0, 0, 0.20);
-  border: 1px dashed rgba(255, 255, 255, 0.30);
-  border-radius: 8px;
-  transition-duration: 150ms;
-  transition-property: background-color, border-color;
-  color: white;
+.curb-workspace-grid-button:outlined {
+  background-color: rgba(61, 145, 229, 0.24);
+  border: 2px solid #78baff;
+  box-shadow: inset 0 0 0 1px rgba(120, 186, 255, 0.28);
 }
 
-.workspace-add-tile:hover {
-  background-color: rgba(0, 0, 0, 0.30);
-  border-color: rgba(255, 255, 255, 0.45);
+.curb-workspace-grid-content {
+  spacing: 7px;
+  padding: 9px;
 }
 
-.workspace-add-tile:focus {
-  background-color: rgba(0, 0, 0, 0.35);
-  border-color: rgba(255, 255, 255, 0.50);
-}
-
-.workspace-add-label {
+.curb-workspace-grid-label {
   color: inherit;
-  font-size: 16pt;
+  font-size: 10.5pt;
   font-weight: 600;
   text-align: center;
-  padding: 2px 6px;
+  padding: 3px 6px;
 }
 
-/* Entry inside the rename modal dialog */
-.workspace-rename-entry {
+.curb-workspace-grid-label.visual {
+  font-size: 9.5pt;
+  padding: 1px 4px 2px;
+}
+
+.curb-workspace-grid-preview {
+  background-color: rgba(2, 4, 7, 0.52);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 4px;
+}
+
+.curb-workspace-grid-monitor {
+  background-color: rgba(16, 22, 31, 0.88);
+  border: 1px solid rgba(255, 255, 255, 0.24);
+  border-radius: 2px;
+}
+
+.curb-workspace-grid-window {
+  background-color: rgba(178, 187, 199, 0.58);
+  border: 1px solid rgba(235, 240, 246, 0.78);
+}
+
+.curb-workspace-grid-window.active {
+  background-color: rgba(92, 169, 245, 0.86);
+  border-color: rgba(220, 239, 255, 1);
+}
+
+.curb-workspace-grid-add-tile {
+  background-color: rgba(255, 255, 255, 0.035);
+  border: 1px dashed rgba(255, 255, 255, 0.32);
+  border-radius: 9px;
+  color: #f5f7fa;
+  transition-duration: 140ms;
+}
+
+.curb-workspace-grid-add-tile:hover,
+.curb-workspace-grid-add-tile:focus {
+  background-color: rgba(255, 255, 255, 0.10);
+  border-color: rgba(126, 188, 255, 0.9);
+}
+
+.curb-workspace-grid-add-label {
+  color: inherit;
+  font-size: 18pt;
+  font-weight: 500;
+  text-align: center;
+  padding: 4px 8px;
+}
+
+.curb-workspace-grid-container.compact {
+  padding: 5px;
+  border-radius: 9px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-content {
+  spacing: 3px;
+  padding: 2px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-label {
+  font-size: 8pt;
+  padding: 0 2px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-add-label {
+  font-size: 10pt;
+  padding: 0 2px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-button,
+.curb-workspace-grid-container.compact .curb-workspace-grid-add-tile {
+  border-radius: 6px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-label {
+  font-size: 9pt;
+  font-weight: 500;
+  padding: 1px 3px;
+}
+
+.curb-workspace-grid-container.compact .curb-workspace-grid-add-label {
+  font-size: 14pt;
+}
+
+.curb-workspace-rename-entry {
   min-width: 260px;
   padding: 6px 8px;
-}
-
-.workspace-label {
-  color: inherit;
-  font-weight: 600;
-  text-align: center;
-  padding: 2px 6px;
-  /* Avoid overly large labels in small tiles */
-  font-size: 10pt;
-}
-
-/* Compact mode for very small desklet sizes (optional heuristic) */
-@media (max-width: 240px), (max-height: 160px) {
-  .workspace-button {
-    border-radius: 6px;
-  }
-  .workspace-label {
-    font-size: 9pt;
-    font-weight: 500;
-  }
 }

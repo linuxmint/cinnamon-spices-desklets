@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: cinnamon-workspace-grid-desklet@curbsoftware 1.0.0\n"
+"Project-Id-Version: cinnamon-workspace-grid-desklet@curbsoftware 1.1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-08-20 10:44-0700\n"
+"POT-Creation-Date: 2026-08-25 07:51-0700\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,16 +17,25 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:329
-msgid "Rename…"
+#. desklet.js:353 desklet.js:660 desklet.js:664
+#, javascript-format
+msgid "Workspace %d: %s"
 msgstr ""
 
-#. desklet.js:335
+#. desklet.js:480 desklet.js:489 desklet.js:542
+msgid "Add workspace"
+msgstr ""
+
+#. desklet.js:527
+msgid "Rename..."
+msgstr ""
+
+#. desklet.js:533
 msgid "Remove"
 msgstr ""
 
-#. desklet.js:344
-msgid "Add workspace"
+#. desklet.js:659
+msgid "Current workspace"
 msgstr ""
 
 #. renameDialog.js:61
@@ -90,6 +99,18 @@ msgstr ""
 
 #. settings-schema.json->fixed-cols->description
 msgid "Columns (fixed layout)"
+msgstr ""
+
+#. settings-schema.json->display-type->description
+msgid "Workspace representation"
+msgstr ""
+
+#. settings-schema.json->display-type->options
+msgid "Names"
+msgstr ""
+
+#. settings-schema.json->display-type->options
+msgid "Desktop previews"
 msgstr ""
 
 #. settings-schema.json->labels->description

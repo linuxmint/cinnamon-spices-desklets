@@ -64,7 +64,7 @@ class RenameWorkspaceDialog extends ModalDialog.ModalDialog {
         this.contentLayout.add_child(content);
 
         this._entry = new St.Entry({
-            style_class: "workspace-rename-entry",
+            style_class: "curb-workspace-rename-entry",
             can_focus: true,
             track_hover: true,
             x_expand: true
