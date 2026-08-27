@@ -49,6 +49,39 @@ Right-click the desklet and choose **Configure**.
 - **Time / date format**: `strftime` patterns for the clock card
 - **Maximum font sizes, card spacing, desklet width / height**: cards shrink text to fit
 
+## Manual install
+
+No root needed. Everything installs into your home directory.
+
+From a release package:
+
+```bash
+curl -fLO https://github.com/CurbSoftware/cinnamon-color-timer-clock-desklet/releases/latest/download/cinnamon-color-timer-clock-desklet.zip
+unzip cinnamon-color-timer-clock-desklet.zip
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-color-timer-clock-desklet@curbsoftware
+cp -r cinnamon-color-timer-clock-desklet@curbsoftware/files/cinnamon-color-timer-clock-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-color-timer-clock-desklet@curbsoftware
+```
+
+Or straight from git:
+
+```bash
+git clone https://github.com/CurbSoftware/cinnamon-color-timer-clock-desklet.git
+cd cinnamon-color-timer-clock-desklet
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-color-timer-clock-desklet@curbsoftware
+cp -r files/cinnamon-color-timer-clock-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-color-timer-clock-desklet@curbsoftware
+```
+
+The `rm -rf` before the copy is the upgrade path: old files are removed so
+nothing deleted upstream lingers, then the copy brings the new tree in. Your
+settings and running timer state are stored separately in
+`~/.config/cinnamon/spices/cinnamon-color-timer-clock-desklet@curbsoftware/`
+and survive reinstalls.
+
+Restart Cinnamon (**Alt-F2**, type `r`, Enter) and add the desklet from
+Cinnamon Settings.
+
 ## Notes
 
 Colors interpolate piecewise-linearly in RGB, so a red to blue ramp passes through purple. The clock schedule wraps over midnight; timer and chronometer schedules hold the last stop's color beyond it. Cards share the desklet width and wrap onto more rows when each card would otherwise become too narrow. Enabled cards never disappear because of desklet width.
