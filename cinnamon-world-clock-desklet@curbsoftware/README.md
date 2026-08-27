@@ -38,6 +38,38 @@ Right-click the desklet to **Configure…**
 - **Maximum font sizes**: time, date, and label; tiles shrink so nothing overflows
 - **Tile spacing** and **desklet width / height**
 
+## Manual install
+
+No root needed. Everything installs into your home directory.
+
+From a release package:
+
+```bash
+curl -fLO https://github.com/CurbSoftware/cinnamon-world-clock-desklet/releases/latest/download/cinnamon-world-clock-desklet.zip
+unzip cinnamon-world-clock-desklet.zip
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-world-clock-desklet@curbsoftware
+cp -r cinnamon-world-clock-desklet@curbsoftware/files/cinnamon-world-clock-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-world-clock-desklet@curbsoftware
+```
+
+Or straight from git:
+
+```bash
+git clone https://github.com/CurbSoftware/cinnamon-world-clock-desklet.git
+cd cinnamon-world-clock-desklet
+rm -rf ~/.local/share/cinnamon/desklets/cinnamon-world-clock-desklet@curbsoftware
+cp -r files/cinnamon-world-clock-desklet@curbsoftware \
+   ~/.local/share/cinnamon/desklets/cinnamon-world-clock-desklet@curbsoftware
+```
+
+The `rm -rf` before the copy is the upgrade path: old files are removed so
+nothing deleted upstream lingers, then the copy brings the new tree in. Your
+settings are stored separately in `~/.config/cinnamon/spices/cinnamon-world-clock-desklet@curbsoftware/`
+and survive reinstalls.
+
+Restart Cinnamon (**Alt-F2**, type `r`, Enter) and add the desklet from
+Cinnamon Settings.
+
 ## Notes
 
 This is a desktop **desklet**, not the panel [World Clock Calendar](https://cinnamon-spices.linuxmint.com/applets/view/108) applet. It can run next to that applet; they do not share settings.
