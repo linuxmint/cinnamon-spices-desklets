@@ -1,0 +1,8 @@
+{
+    "uuid": "game-mode@karldreher",
+    "name": "Game Mode",
+    "description": "Disable screensaver when running a game.",
+    "version": 1,
+    "max-instances": 1,
+    "prevent-decorations": true
+}
