@@ -175,10 +175,10 @@ GameModeDesklet.prototype = {
      * @returns {Object|null} The saved settings object, or null if the
      *     file is missing, unreadable, or contains invalid data
      */
-    _loadState: function() {
+    _loadState: async function() {
         try {
             let file = Gio.file_new_for_path(STATE_FILE);
-            let [success, contents] = file.load_contents(null);
+            let [success, contents] = await file.load_contents_async(null);
             if (success) {
                 let state = JSON.parse(ByteArray.toString(contents));
                 if (state && typeof state === "object") {
