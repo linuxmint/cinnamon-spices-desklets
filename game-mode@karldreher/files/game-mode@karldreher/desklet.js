@@ -23,6 +23,19 @@ const ICON_SIZE = 48;
 const CONTAINER_SIZE = 80;
 
 /**
+ * Test whether an exception is a GLib "file not found" error.
+ * Guards against non-GError exceptions (such as the SyntaxError from
+ * JSON.parse), which have no matches() method.
+ *
+ * @param {*} e - Caught exception
+ * @returns {boolean} True if e is a Gio NOT_FOUND error
+ */
+function isNotFound(e) {
+    return e instanceof GLib.Error
+        && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND);
+}
+
+/**
  * A circular toggle desklet that enables/disables "game mode".
  * When active the desklet shows a green background and applies:
  *   - Screensaver idle-delay set to 6 hours
@@ -46,7 +59,7 @@ GameModeDesklet.prototype = {
 
     /**
      * Initialise the desklet, create settings interfaces for session,
-     * notifications, and power, detect prior active state from the
+     * notifications, and power, detect prior active state by reading the
      * persisted state file, and build the UI.
      *
      * @param {Object} metadata - Desklet metadata from metadata.json
@@ -64,8 +77,8 @@ GameModeDesklet.prototype = {
         /** @type {Gio.Settings} Power management (suspend, dimming, display sleep) */
         this._powerSettings = new Gio.Settings({ schema_id: "org.cinnamon.settings-daemon.plugins.power" });
 
-        /** @type {boolean} */
-        this._gameModeActive = GLib.file_test(STATE_FILE, GLib.FileTest.EXISTS);
+        /** @type {boolean} A readable state file means game mode is on */
+        this._gameModeActive = this._loadState() !== null;
 
         this.setupUI();
     },
@@ -173,7 +186,9 @@ GameModeDesklet.prototype = {
                 }
             }
         } catch (e) {
-            global.logWarning(UUID + ": failed to read state file: " + e.message);
+            // A missing state file is the normal "game mode off" case.
+            if (!isNotFound(e))
+                global.logWarning(UUID + ": failed to read state file: " + e.message);
         }
         return null;
     },
@@ -201,16 +216,15 @@ GameModeDesklet.prototype = {
     },
 
     /**
-     * Delete the state file if it exists.
+     * Delete the state file. An already-absent file is the expected
+     * outcome and is not reported.
      */
     _clearState: function() {
         try {
-            let file = Gio.file_new_for_path(STATE_FILE);
-            if (file.query_exists(null)) {
-                file.delete(null);
-            }
+            Gio.file_new_for_path(STATE_FILE).delete(null);
         } catch (e) {
-            global.logWarning(UUID + ": failed to clear state file: " + e.message);
+            if (!isNotFound(e))
+                global.logWarning(UUID + ": failed to clear state file: " + e.message);
         }
     },
 
