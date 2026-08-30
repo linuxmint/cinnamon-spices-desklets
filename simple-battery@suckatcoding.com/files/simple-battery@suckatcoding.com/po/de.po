@@ -1,0 +1,81 @@
+# SIMPLE BATTERY
+# This file is put in the public domain.
+# Nick 'Milchreis' Müller, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: simple-battery@suckatcoding.com 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-06-14 10:54+0200\n"
+"PO-Revision-Date: 2026-06-14 11:00+0200\n"
+"Last-Translator: Nick 'Milchreis' Müller\n"
+"Language-Team: German\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:86 desklet.js:91
+msgid "Error reading data"
+msgstr "Fehler beim Auslesen"
+
+#. desklet.js:115
+msgid "remaining"
+msgstr "verbleibend"
+
+#. desklet.js:117
+msgid "until full"
+msgstr "bis voll"
+
+#. desklet.js:119
+msgid "Fully charged"
+msgstr "Vollständig geladen"
+
+#. desklet.js:121
+msgid "AC Power"
+msgstr "Netzbetrieb"
+
+#. desklet.js:161 desklet.js:163
+msgid "Uptime:"
+msgstr "Laufzeit:"
+
+#. desklet.js:161
+msgid "h"
+msgstr "Std"
+
+#. desklet.js:161 desklet.js:163
+msgid "min"
+msgstr "Min"
+
+#. desklet.js:174 desklet.js:178
+msgid "Usage:"
+msgstr "Verbrauch:"
+
+#. desklet.js:174 desklet.js:176 desklet.js:178
+msgid "since start"
+msgstr "seit Start"
+
+#. desklet.js:176
+msgid "Charged:"
+msgstr "Geladen:"
+
+#. metadata.json->name
+msgid "Simple Battery"
+msgstr "Schlichter Akku"
+
+#. metadata.json->description
+msgid ""
+"Displays battery status, uptime, and usage in a sleek, minimalist progress "
+"bar."
+msgstr ""
+"Zeigt den Akkustand, die Laufzeit und den Verbrauch in einem schlichten, "
+"minimalistischen Fortschrittsbalken an."
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Hintergrund anzeigen"
+
+#. settings-schema.json->bg-opacity->description
+msgid "Background opacity (%)"
+msgstr "Hintergrund-Deckkraft (%)"
