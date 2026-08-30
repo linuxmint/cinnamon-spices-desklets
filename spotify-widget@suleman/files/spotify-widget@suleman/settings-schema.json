@@ -1,0 +1,96 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["appearance", "behavior"],
+        "appearance": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["colors", "fonts", "layout"]
+        },
+        "behavior": {
+            "type": "page",
+            "title": "Behavior",
+            "sections": ["general"]
+        },
+        "colors": {
+            "type": "section",
+            "title": "Colors",
+            "keys": ["background-color", "font-color", "accent-color"]
+        },
+        "fonts": {
+            "type": "section",
+            "title": "Fonts",
+            "keys": ["font-scale"]
+        },
+        "layout": {
+            "type": "section",
+            "title": "Layout",
+            "keys": ["show-album-art", "widget-size", "widget-width"]
+        },
+        "general": {
+            "type": "section",
+            "title": "General",
+            "keys": ["refresh-interval", "launcher-path"]
+        }
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(24, 24, 24, 0.85)",
+        "description": "Background color"
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgba(255, 255, 255, 1.0)",
+        "description": "Font color"
+    },
+    "accent-color": {
+        "type": "colorchooser",
+        "default": "rgba(30, 215, 96, 1.0)",
+        "description": "Accent color (progress bar, highlights)"
+    },
+    "font-scale": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.1,
+        "description": "Font scale"
+    },
+    "show-album-art": {
+        "type": "switch",
+        "default": true,
+        "description": "Show album art"
+    },
+    "widget-size": {
+        "type": "combobox",
+        "default": "full",
+        "options": {
+            "Compact": "compact",
+            "Full": "full"
+        },
+        "description": "Widget size"
+    },
+    "widget-width": {
+        "type": "spinbutton",
+        "default": 320,
+        "min": 200,
+        "max": 1500,
+        "step": 10,
+        "units": "px",
+        "description": "Widget width"
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 1000,
+        "min": 500,
+        "max": 5000,
+        "step": 100,
+        "units": "ms",
+        "description": "Refresh interval for position updates"
+    },
+    "launcher-path": {
+        "type": "entry",
+        "default": "",
+        "description": "Path to spotify-launcher.sh (leave blank for auto-detect)"
+    }
+}
