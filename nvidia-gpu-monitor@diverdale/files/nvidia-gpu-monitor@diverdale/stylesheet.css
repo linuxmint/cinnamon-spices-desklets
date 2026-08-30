@@ -1,0 +1,63 @@
+.ngm-root {
+    padding: 8px;
+    spacing: 6px;
+    background-color: rgba(0, 0, 0, 0.55);
+    border-radius: 8px;
+    color: #e6e6e6;
+    font-family: "Cantarell", "Sans";
+    font-size: 11pt;
+}
+
+.ngm-note {
+    color: #cccccc;
+    font-style: italic;
+}
+
+.ngm-gpu-row {
+    spacing: 2px;
+    padding-bottom: 6px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.ngm-header {
+    spacing: 4px;
+}
+.ngm-header-text {
+    font-weight: bold;
+}
+.ngm-status-dot {
+    font-size: 14pt;
+}
+.ngm-status-dot.ngm-green { color: #6ad26a; }
+.ngm-status-dot.ngm-amber { color: #f0b32d; }
+.ngm-status-dot.ngm-red   { color: #e85d4d; }
+
+.ngm-usage-line, .ngm-vram-line, .ngm-tfp-line, .ngm-procs-line {
+    spacing: 8px;
+}
+
+.ngm-metric, .ngm-metric-label, .ngm-vram-text {
+    font-family: "DejaVu Sans Mono", "Monospace";
+    font-size: 10pt;
+}
+.ngm-metric.ngm-green { color: #6ad26a; }
+.ngm-metric.ngm-amber { color: #f0b32d; }
+.ngm-metric.ngm-red   { color: #e85d4d; }
+
+/* VRAM bar */
+.ngm-bar-track {
+    background-color: rgba(255, 255, 255, 0.10);
+    border-radius: 3px;
+}
+.ngm-bar-fill {
+    background-color: #4aa3ff;
+    border-radius: 3px;
+}
+.ngm-bar-fill-amber { background-color: #f0b32d; }
+.ngm-bar-fill-red   { background-color: #e85d4d; }
+
+/* Sparkline */
+.ngm-sparkline {
+    background-color: rgba(255, 255, 255, 0.04);
+    border-radius: 3px;
+}
