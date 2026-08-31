@@ -1,0 +1,12 @@
+{
+    "uuid": "nepali-date@khumnath",
+    "name": "Nepali Date",
+    "description": "Bikram Sambat calendar for Cinnamon. Timezone aware, monthly view, and full Nepali/English localization.",
+    "version": "1.2.0",
+    "author": "Khumnath CG",
+    "contributors": "Khumnath CG",
+    "website": "https://khumnath.com.np",
+    "url": "https://github.com/khumnath/cinnamon-spices-desklets/tree/master/nepali-date@khumnath",
+    "comments": "Nepali calendar with toggleable daily/monthly views, customizable colors, and Nepal timezone support.",
+    "prevent-decorations": true
+}

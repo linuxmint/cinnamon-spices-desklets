@@ -1,0 +1,9 @@
+{
+  "uuid": "stoic-quote@orion",
+  "name": "Stoic Quote",
+  "description": "Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. Quote rotates at midnight and is deterministic by date.",
+  "version": "0.1.0",
+  "max-instances": "3",
+  "author": "orion",
+  "website": ""
+}

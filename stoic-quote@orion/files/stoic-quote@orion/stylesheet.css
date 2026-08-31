@@ -1,0 +1,63 @@
+/* Stoic Quote Desklet — stylesheet.css */
+
+.stoic-desklet {
+    background-color: rgba(28, 28, 30, 0.92);
+    border: 1px solid rgba(80, 70, 50, 0.4);
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 4px 18px rgba(0, 0, 0, 0.55);
+}
+
+.stoic-quote-text {
+    color: #e8e4d8;
+    font-family: "DejaVu Serif", Georgia, "Times New Roman", serif;
+    font-size: 13pt;
+    font-style: italic;
+    /* line-wrap configured in JS via clutter_text */
+}
+
+.stoic-footer {
+    margin-top: 14px;
+}
+
+.stoic-author-box {
+    /* x_expand set in JS — fills remaining footer width */
+}
+
+.stoic-author {
+    color: #c9a14a;
+    font-family: "DejaVu Serif", Georgia, serif;
+    font-size: 10pt;
+    font-variant: small-caps;
+    font-weight: bold;
+}
+
+.stoic-source {
+    color: rgba(201, 161, 74, 0.65);
+    font-family: "DejaVu Serif", Georgia, serif;
+    font-size: 8.5pt;
+    font-style: italic;
+    margin-top: 1px;
+}
+
+/* Circular refresh button — bottom-right of footer */
+.stoic-refresh-button {
+    color: #c9a14a;
+    background-color: transparent;
+    border: none;
+    border-radius: 50%;
+    font-size: 17pt;
+    padding: 0px 2px 2px 6px;
+    min-width: 28px;
+    min-height: 28px;
+}
+
+.stoic-refresh-button:hover {
+    color: #e8c870;
+    background-color: rgba(201, 161, 74, 0.14);
+}
+
+.stoic-refresh-button:active {
+    color: #fff8e0;
+    background-color: rgba(201, 161, 74, 0.25);
+}

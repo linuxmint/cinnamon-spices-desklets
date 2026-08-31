@@ -1,0 +1,218 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-06-29 12:21+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:180
+msgid "Open positions & bots"
+msgstr ""
+
+#: desklet.js:205
+msgid "Connecting…"
+msgstr ""
+
+#: desklet.js:235
+msgid ""
+"No API key set.\n"
+"Enter it in the desklet settings."
+msgstr ""
+
+#: desklet.js:240
+msgid "Invalid API key (401)"
+msgstr ""
+
+#: desklet.js:244
+msgid "Server not reachable"
+msgstr ""
+
+#: desklet.js:251
+msgid "Parse error:"
+msgstr ""
+
+#: desklet.js:267
+#, javascript-format
+msgid "Updated: %s"
+msgstr ""
+
+#: desklet.js:295
+msgid "No open positions"
+msgstr ""
+
+#: desklet.js:316
+msgid "position"
+msgstr ""
+
+#: desklet.js:316
+msgid "positions"
+msgstr ""
+
+#: desklet.js:318
+msgid "Total:"
+msgstr ""
+
+#: desklet.js:328 desklet.js:358
+msgid "Symbol"
+msgstr ""
+
+#: desklet.js:329 desklet.js:359
+msgid "Side"
+msgstr ""
+
+#: desklet.js:331 desklet.js:361
+msgid "Lvg"
+msgstr ""
+
+#: desklet.js:332
+msgid "Entry"
+msgstr ""
+
+#: desklet.js:333
+msgid "Mark"
+msgstr ""
+
+#: desklet.js:334
+msgid "unr. PnL"
+msgstr ""
+
+#: desklet.js:335
+msgid "real. PnL"
+msgstr ""
+
+#: desklet.js:349
+msgid "Bots:"
+msgstr ""
+
+#: desklet.js:349
+msgid "running"
+msgstr ""
+
+#: desklet.js:362
+msgid "Ø Entry"
+msgstr ""
+
+#: desklet.js:363
+msgid "Liq"
+msgstr ""
+
+#: desklet.js:364
+msgid "PnL"
+msgstr ""
+
+#. metadata.json->name
+msgid "Trading Positions"
+msgstr ""
+
+#. metadata.json->description
+msgid "Shows open positions from the Crypto Trading Journal"
+msgstr ""
+
+#. settings-schema.json->info-header->description
+msgid ""
+"This desklet requires a running Crypto Trading Journal.\n"
+"github.com/Mouses007/Crypto-Trading-Journal"
+msgstr ""
+
+#. settings-schema.json->server-host->description
+msgid "Server host"
+msgstr ""
+
+#. settings-schema.json->server-host->tooltip
+msgid "IP or hostname, e.g. 192.168.178.100 or localhost"
+msgstr ""
+
+#. settings-schema.json->server-port->description
+msgid "Server port"
+msgstr ""
+
+#. settings-schema.json->server-port->tooltip
+msgid "Default: 8080"
+msgstr ""
+
+#. settings-schema.json->api-key->description
+msgid "ESP32 API key"
+msgstr ""
+
+#. settings-schema.json->api-key->tooltip
+msgid ""
+"From Journal → Settings → ESP32 Display → Generate key. Works even with the "
+"password gate enabled."
+msgstr ""
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->show-leverage->description
+msgid "Show leverage"
+msgstr ""
+
+#. settings-schema.json->show-mark-price->description
+msgid "Show mark price"
+msgstr ""
+
+#. settings-schema.json->show-realized-pnl->description
+msgid "Show realized PnL"
+msgstr ""
+
+#. settings-schema.json->show-realized-pnl->tooltip
+msgid ""
+"Shows the already realized PnL of the open position (e.g. funding fees)"
+msgstr ""
+
+#. settings-schema.json->show-bots->description
+msgid "Show Pionex bots"
+msgstr ""
+
+#. settings-schema.json->show-bots->tooltip
+msgid ""
+"Shows running Pionex bots in a dedicated section (PnL/margin in the "
+"respective coin, e.g. SOL for Coin-M)"
+msgstr ""
+
+#. settings-schema.json->show-github-link->description
+msgid "Show GitHub link in footer"
+msgstr ""
+
+#. settings-schema.json->font-size->units
+#. settings-schema.json->font-size-ui->units
+#. settings-schema.json->min-width->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->font-size->description
+msgid "Font size (positions)"
+msgstr ""
+
+#. settings-schema.json->font-size-ui->description
+msgid "Font size (title, footer, total)"
+msgstr ""
+
+#. settings-schema.json->bg-opacity->units
+msgid "%"
+msgstr ""
+
+#. settings-schema.json->bg-opacity->description
+msgid "Background opacity (0 = invisible, 100 = full)"
+msgstr ""
+
+#. settings-schema.json->min-width->description
+msgid "Width"
+msgstr ""

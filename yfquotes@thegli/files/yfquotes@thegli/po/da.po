@@ -8,8 +8,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-03-05 21:41+0100\n"
-"PO-Revision-Date: 2025-11-17 17:19+0100\n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"PO-Revision-Date: 2026-04-06 14:20+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. desklet.js:99
 msgid "N/A"
-msgstr ""
+msgstr "—"
 
 #. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -38,7 +38,7 @@ msgstr "Yahoo Finance er ikke tilgængelig! Status: %s"
 #. desklet.js:804
 #, javascript-format
 msgid "Something went wrong retrieving Yahoo Finance data. %s"
-msgstr ""
+msgstr "Noget gik galt, da der skulle hentes data fra Yahoo Finance. %s"
 
 #. desklet.js:1269
 msgid "No quotes data to display"
@@ -141,7 +141,7 @@ msgstr "Dato og tid"
 
 #. settings-schema.json->detailsPrePostMarketSection->title
 msgid "Pre-/Post-Market Data"
-msgstr ""
+msgstr "Data uden for åbningstid"
 
 #. settings-schema.json->presentationFormattingSection->title
 msgid "Number Format"
@@ -510,23 +510,23 @@ msgstr "Farvelæg den procentvise ændring for at vise tendensen."
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Never"
-msgstr ""
+msgstr "Aldrig"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Prefer to regular data"
-msgstr ""
+msgstr "Foretræk over regulære data"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Show in extra columns"
-msgstr ""
+msgstr "Vis i ekstra kolonner"
 
 #. settings-schema.json->includePrePostMarketDataOption->description
 msgid "Include pre-/post-market data"
-msgstr ""
+msgstr "Medtag data uden for åbningstid"
 
 #. settings-schema.json->includePrePostMarketDataOption->tooltip
 msgid "If and how extended-hours trading data is displayed"
-msgstr ""
+msgstr "Om og hvordan data om handel uden for normal åbningstid vises"
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
@@ -568,27 +568,28 @@ msgstr "Forøg eller formindsk skriftstørrelsen"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Normal"
-msgstr ""
+msgstr "Normal"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Italic"
-msgstr ""
+msgstr "Kursiv"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold"
-msgstr ""
+msgstr "Fed"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold italic"
-msgstr ""
+msgstr "Fed kursiv"
 
 #. settings-schema.json->fontStylePrePostMarketData->description
 msgid "Font style of pre-/post-market data"
-msgstr ""
+msgstr "Skrifttypestil for data uden for åbningstid"
 
 #. settings-schema.json->fontStylePrePostMarketData->tooltip
 msgid "Accentuate extended-hours trading data (price, change, time)"
 msgstr ""
+"Fremhæv data for handel uden for normal åbningstid (kurs, ændring, tidspunkt)"
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"

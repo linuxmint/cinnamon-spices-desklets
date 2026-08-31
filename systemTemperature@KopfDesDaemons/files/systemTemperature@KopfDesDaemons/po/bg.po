@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-08 19:56+0100\n"
+"POT-Creation-Date: 2026-04-04 11:26+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:27
+#. desklet.js:20
 msgid "System Temperature"
 msgstr "Системна температура"
 
@@ -27,46 +27,64 @@ msgstr "Системна температура"
 msgid "Displays the temperature of a thermal zone in the system."
 msgstr "Показва температурата от термалните зони на системата."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Общи"
 
-#. settings-schema.json->tempFilePath->description
-msgid "Path to file with temperature value (thermal zone)"
-msgstr "Път до файла с температурна стойност (термална зона)"
-
-#. settings-schema.json->labelText->description
-msgid "Text for the label"
-msgstr "Текст на заглавието"
-
-#. settings-schema.json->temperatureUnit->options
-msgid "°C"
-msgstr "°C"
-
-#. settings-schema.json->temperatureUnit->options
-msgid "°F"
-msgstr "°F"
-
-#. settings-schema.json->temperatureUnit->description
-msgid "Temperature unit (Celsius or Fahrenheit)"
-msgstr "Единици за температура (Целзий или Фаренхайд)"
-
-#. settings-schema.json->updateInterval->description
-msgid "Update interval in seconds"
-msgstr "Интервал на опресняване в секунди"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->style-page->title
 msgid "Style"
 msgstr "Стил"
 
-#. settings-schema.json->fontSizeLabel->description
+#. settings-schema.json->temperature-section->title
+#, fuzzy
+msgid "Temperature"
+msgstr "Системна температура"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->temp-file-path->description
+msgid "Path to file with temperature value (thermal zone)"
+msgstr "Път до файла с температурна стойност (термална зона)"
+
+#. settings-schema.json->label-text->description
+msgid "Text for the label"
+msgstr "Текст на заглавието"
+
+#. settings-schema.json->temperature-unit->options
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->temperature-unit->options
+msgid "°F"
+msgstr "°F"
+
+#. settings-schema.json->temperature-unit->description
+msgid "Temperature unit (Celsius or Fahrenheit)"
+msgstr "Единици за температура (Целзий или Фаренхайд)"
+
+#. settings-schema.json->update-interval->description
+msgid "Update interval in seconds"
+msgstr "Интервал на опресняване в секунди"
+
+#. settings-schema.json->font-size-label->description
 msgid "Font size for the label text"
 msgstr "Размер на шрифта за заглавието"
 
-#. settings-schema.json->fontSizeTemperature->description
+#. settings-schema.json->font-size-temperature->description
 msgid "Font size for the temperature display"
 msgstr "Размер на шрифта за изобразяване на температурата"
 
-#. settings-schema.json->dynamicColorEnabled->description
+#. settings-schema.json->dynamic-color-enabled->description
 msgid "Dynamic color based on temperature"
 msgstr "Динамичен цвят базиран на темпертатурата"

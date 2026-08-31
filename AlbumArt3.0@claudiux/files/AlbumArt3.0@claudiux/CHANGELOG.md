@@ -1,3 +1,6 @@
+### v2.4.1~20260610
+  * Ready for Linux Mint 23.
+
 ### v2.4.0~20251122
   * Correctly resizes the album cover.
   * Fixes [#1674](https://github.com/linuxmint/cinnamon-spices-desklets/issues/1674)

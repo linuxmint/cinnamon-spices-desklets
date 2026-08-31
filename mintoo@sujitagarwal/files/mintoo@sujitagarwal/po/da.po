@@ -10,7 +10,7 @@ msgstr ""
 "issues\n"
 "POT-Creation-Date: 2026-01-08 11:21-0500\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -20,19 +20,19 @@ msgstr ""
 
 #. desklet.js:42
 msgid "Lock the Screen"
-msgstr ""
+msgstr "Lås skærmen"
 
 #. desklet.js:43
 msgid "Logout"
-msgstr ""
+msgstr "Log af"
 
 #. desklet.js:44
 msgid "Shutdown"
-msgstr ""
+msgstr "Sluk"
 
 #. desklet.js:45
 msgid "Restart"
-msgstr ""
+msgstr "Genstart"
 
 #. metadata.json->name
 msgid "Mintoo - The Mint Assistant"

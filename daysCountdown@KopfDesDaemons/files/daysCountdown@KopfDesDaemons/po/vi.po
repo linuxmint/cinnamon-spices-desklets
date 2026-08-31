@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: daysCountdown@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-12-18 21:07+0100\n"
+"POT-Creation-Date: 2026-04-03 13:08+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,11 +19,16 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:27
+#. desklet.js:19
 msgid "Days Countdown"
 msgstr "Đếm ngược ngày"
 
-#. desklet.js:76
+#. desklet.js:77
+#, fuzzy, javascript-format
+msgid "New Year %f Countdown"
+msgstr "Đếm ngược ngày"
+
+#. desklet.js:98
 #, javascript-format
 msgid "%f days"
 msgstr "%f ngày"
@@ -32,66 +37,88 @@ msgstr "%f ngày"
 msgid "Countdown of the remaining days to a date."
 msgstr "Đếm ngược số ngày còn lại đến một ngày."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Chung"
 
-#. settings-schema.json->labelText->description
-msgid "Text for the label"
-msgstr "Văn bản cho nhãn"
-
-#. settings-schema.json->countdownDate->description
-msgid "Date to which the countdown counts down"
-msgstr "Ngày mà bộ đếm ngược đếm ngược đến"
-
-#. settings-schema.json->refreshInterval->options
-msgid "only after starting"
-msgstr "chỉ sau khi khởi động"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 5 minutes"
-msgstr "mỗi 5 phút"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 10 minutes"
-msgstr "mỗi 10 phút"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 15 minutes"
-msgstr "mỗi 15 phút"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 20 minutes"
-msgstr "mỗi 20 phút"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 30 minutes"
-msgstr "mỗi 30 phút"
-
-#. settings-schema.json->refreshInterval->options
-msgid "every 60 minutes"
-msgstr "mỗi 60 phút"
-
-#. settings-schema.json->refreshInterval->description
-msgid "Refresh interval"
-msgstr "Khoảng thời gian làm mới"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->style-page->title
 msgid "Style"
 msgstr "Kiểu dáng"
 
-#. settings-schema.json->fontSizeLabel->description
+#. settings-schema.json->font-size-section->title
+msgid "Font Sizes"
+msgstr ""
+
+#. settings-schema.json->countdown-section->title
+#, fuzzy
+msgid "Countdown"
+msgstr "Đếm ngược ngày"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->label-text->description
+msgid "Text for the label"
+msgstr "Văn bản cho nhãn"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->countdown-date->description
+msgid "Date to which the countdown counts down"
+msgstr "Ngày mà bộ đếm ngược đếm ngược đến"
+
+#. settings-schema.json->refresh-interval->options
+msgid "only after starting"
+msgstr "chỉ sau khi khởi động"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 5 minutes"
+msgstr "mỗi 5 phút"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 10 minutes"
+msgstr "mỗi 10 phút"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 15 minutes"
+msgstr "mỗi 15 phút"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 20 minutes"
+msgstr "mỗi 20 phút"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 30 minutes"
+msgstr "mỗi 30 phút"
+
+#. settings-schema.json->refresh-interval->options
+msgid "every 60 minutes"
+msgstr "mỗi 60 phút"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Khoảng thời gian làm mới"
+
+#. settings-schema.json->font-size-label->description
 msgid "Font size for the label text"
 msgstr "Cỡ chữ cho văn bản nhãn"
 
-#. settings-schema.json->colorLabel->description
+#. settings-schema.json->color-label->description
 msgid "Label color"
 msgstr "Màu nhãn"
 
-#. settings-schema.json->fontSizeCountdown->description
+#. settings-schema.json->font-size-countdown->description
 msgid "Font size for the countdown text"
 msgstr "Cỡ chữ cho văn bản đếm ngược"
 
-#. settings-schema.json->colorCountdown->description
+#. settings-schema.json->color-countdown->description
 msgid "Countdown color"
 msgstr "Màu đếm ngược"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""

@@ -1,0 +1,41 @@
+{
+    "header_appearance": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    "desklet-scale": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.05,
+        "description": "Desklet Scale"
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgb(25, 25, 25)",
+        "description": "Background Color"
+    },
+    "bg-transparency": {
+        "type": "scale",
+        "default": 0.85,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background Transparency"
+    },
+    "bar-color": {
+        "type": "colorchooser",
+        "default": "rgb(52, 152, 219)",
+        "description": "Bar Color"
+    },
+    "header_storage": {
+        "type": "header",
+        "description": "Storage Settings"
+    },
+    "disk-paths": {
+        "type": "entry",
+        "default": "/",
+        "description": "Disk Paths (comma separated) (cinnamon restart required)"
+    }
+}

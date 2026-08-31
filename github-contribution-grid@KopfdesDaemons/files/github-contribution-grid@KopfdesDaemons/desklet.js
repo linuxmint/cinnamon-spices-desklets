@@ -3,15 +3,23 @@ const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const St = imports.gi.St;
 const Gettext = imports.gettext;
-const Util = imports.misc.util;
 const Settings = imports.ui.settings;
-const Tooltips = imports.ui.tooltips;
 
 const UUID = "github-contribution-grid@KopfdesDaemons";
 
-const { GitHubHelper } = require("./helpers/github.helper");
+let GitHubHelper, UiHelper, ColorPresetsHelper;
+if (typeof require !== "undefined") {
+  GitHubHelper = require("./helpers/github").GitHubHelper;
+  UiHelper = require("./helpers/ui").UiHelper;
+  ColorPresetsHelper = require("./helpers/color-presets").ColorPresetsHelper;
+} else {
+  const DESKLET_DIR = imports.ui.deskletManager.desklets[UUID];
+  GitHubHelper = DESKLET_DIR.helpers.github.GitHubHelper;
+  UiHelper = DESKLET_DIR.helpers.ui.UiHelper;
+  ColorPresetsHelper = DESKLET_DIR.helpers["color-presets"].ColorPresetsHelper;
+}
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -20,178 +28,206 @@ function _(str) {
 class MyDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("GitHub Contribution Grid"));
+
+    this._menu.addAction(_("Reload"), () => this._setupContributionData());
+
+    this._timeoutId = null;
+    this._contributionData = null;
+    this._lastError = null;
+    this._mainContainer = null;
+    this._isReloading = false;
+
+    // Default settings
     this.githubUsername = "";
     this.githubToken = "";
-    this.blockSize = 11;
+    this.scaleSize = 1;
+    this.blockSize = 16;
     this.refreshInterval = 15;
     this.backgroundColor = "rgba(255, 255, 255, 0)";
     this.showContributionCount = false;
+    this.showReloadButton = true;
     this.showUsername = true;
-    this.timeoutId = null;
-    this.contributionData = null;
-    this.mainContainer = null;
+    this.hideDecorations = true;
+    this.color0 = "#151b23";
+    this.color1 = "#033a16";
+    this.color4 = "#196c2e";
+    this.color6 = "#196c2e";
+    this.color9 = "#2ea043";
+    this.color10 = "#56d364";
+    this.colorPreset = "default";
 
-    this.bindSettings(metadata, deskletId);
-
-    this.setHeader(_("GitHub Contribution Grid"));
-
-    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
-    this.mainContainer.add_child(this._createHeader());
-    this.setContent(this.mainContainer);
-
-    this._updateLoop();
-
-    // The first request after system start will fail
-    // Delay to ensure network services are ready and try again
-    Mainloop.timeout_add_seconds(10, () => {
-      this._setupContributionData();
-    });
-  }
-
-  bindSettings(metadata, deskletId) {
+    // Bind settings
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this.onDataSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this.onStyleSettingChanged);
-    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this.onStyleSettingChanged);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-username", "githubUsername", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "github-token", "githubToken", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-interval", "refreshInterval", this._onDataSettingChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "block-size", "blockSize", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._onBackgroundColorChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-username", "showUsername", this._rerenderHeader.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-reload-button", "showReloadButton", this._rerenderHeader.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-contribution-count", "showContributionCount", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationsChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-0", "color0", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-1", "color1", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-4", "color4", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-6", "color6", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-9", "color9", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-10", "color10", this._onGridChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "color-preset", "colorPreset", this._onColorsPresetChanged.bind(this));
   }
 
-  on_desklet_removed() {
-    if (this.timeoutId) {
-      Mainloop.source_remove(this.timeoutId);
-      this.timeoutId = null;
+  on_desklet_added_to_desktop() {
+    this._mainContainer = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-main-container" });
+    this._mainContainer.add_child(
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+    );
+    this.setContent(this._mainContainer);
+
+    this._setupContributionData();
+    this._onDecorationsChanged();
+
+    if (this.githubToken && this.githubUsername) {
+      // The first request after system start will fail
+      // Delay to ensure network services are ready and try again
+
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = Mainloop.timeout_add_seconds(10, () => {
+        this._timeoutId = null;
+        this._setupContributionData();
+        return false;
+      });
     }
   }
 
-  onDataSettingChanged = () => {
-    this.mainContainer.remove_all_children();
-    this.mainContainer.add_child(this._createHeader());
-    this._setupContributionData();
-  };
+  on_desklet_removed() {
+    if (this._timeoutId) {
+      Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
+    }
+    if (this.settings && !this._isReloading) {
+      this.settings.finalize();
+    }
+  }
 
-  onStyleSettingChanged = () => {
-    this.mainContainer.remove_all_children();
-    this.mainContainer.add_child(this._createHeader());
-    this._renderContent(this.contributionData);
-  };
+  on_desklet_reloaded() {
+    this._isReloading = true;
+  }
+
+  _onDataSettingChanged() {
+    this._mainContainer.remove_all_children();
+    this._mainContainer.add_child(
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+    );
+    this._setupContributionData();
+  }
+
+  _rerenderHeader() {
+    // Destroy the current header
+    this._mainContainer.get_children()[0].destroy();
+    // Add the new header
+    this._mainContainer.insert_child_at_index(
+      UiHelper.getHeader(this.showReloadButton, this.githubUsername, this.showUsername, () => this._setupContributionData(), this.scaleSize),
+      0,
+    );
+  }
+
+  _onBackgroundColorChanged() {
+    if (this.contentContainer) {
+      this.contentContainer.style = `background-color: ${this.backgroundColor}; border-radius: 0.2em;`;
+    }
+  }
+
+  _onScaleChanged() {
+    this._onGridChanged();
+    this._rerenderHeader();
+  }
+
+  _onDecorationsChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
+  }
+
+  _onGridChanged() {
+    if (this._contributionData) {
+      this._renderGrid(this._contributionData);
+    } else if (this._lastError) {
+      this._renderError(this._lastError);
+    } else {
+      this._renderSetup();
+    }
+  }
 
   async _setupContributionData() {
-    this.contributionData = null;
+    this._contributionData = null;
+    this._lastError = null;
 
     if (!this.githubUsername || !this.githubToken) {
-      this._renderContent(null, _("Please configure username and token in settings."));
+      this._renderSetup();
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = null;
       return;
     }
 
     try {
       const response = await GitHubHelper.getContributionData(this.githubUsername, this.githubToken);
-      this.contributionData = response;
-      this._renderContent(this.contributionData);
+      this._contributionData = response;
+      this._renderGrid(this._contributionData);
+
+      // Set up auto-refresh
+      if (this._timeoutId) Mainloop.source_remove(this._timeoutId);
+      this._timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
+        this._timeoutId = null;
+        this._setupContributionData();
+        return false;
+      });
     } catch (e) {
       global.logError(`[${UUID}] Error fetching contribution data: ${e}`);
-      this._renderContent(null, e.message);
+      this._lastError = e.message;
+      this._renderError(e.message);
     }
   }
 
-  _createHeader() {
-    const headerContainer = new St.BoxLayout({ style_class: "github-contribution-grid-header-container" });
-
-    // Reload button
-    const reloadButton = new St.Button({ style_class: "github-contribution-grid-reload-bin" });
-    reloadButton.connect("button-press-event", () => this._setupContributionData());
-    const reloadIcon = new St.Icon({
-      icon_name: "view-refresh-symbolic",
-      icon_type: St.IconType.SYMBOLIC,
-      icon_size: 16,
-    });
-    new Tooltips.Tooltip(reloadButton, _("Reload"));
-    reloadButton.set_child(reloadIcon);
-    headerContainer.add_child(reloadButton);
-
-    // Username
-    if (this.showUsername) {
-      const usernameButton = new St.Button({ label: this.githubUsername, style_class: "github-contribution-grid-label-bin" });
-      usernameButton.connect("button-press-event", () => Util.spawnCommandLine(`xdg-open "https://github.com/${this.githubUsername}"`));
-      new Tooltips.Tooltip(usernameButton, _("Open GitHub profile"));
-      headerContainer.add_child(usernameButton);
-    }
-
-    return headerContainer;
-  }
-
-  _renderContent(weeks, error = null) {
+  _createContentContainer() {
     if (this.contentContainer) {
-      this.mainContainer.remove_child(this.contentContainer);
+      this._mainContainer.remove_child(this.contentContainer);
       this.contentContainer.destroy();
     }
 
-    this.contentContainer = new St.BoxLayout({
-      style_class: "github-contribution-grid-container",
-      x_expand: true,
-      style: `background-color: ${this.backgroundColor};`,
-    });
-
-    if (!this.githubUsername || !this.githubToken) {
-      // UI for Desklet Setup
-      const setupBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-setup-container" });
-      setupBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-setup-headline" }));
-      setupBox.add_child(new St.Label({ text: _("Please configure username and token in settings.") }));
-
-      const createTokenButton = new St.Button({ style_class: "github-contribution-grid-link", label: _("Create a GitHub token") });
-      createTokenButton.connect("clicked", () => Util.spawnCommandLine(`xdg-open "${GitHubHelper.gitHubTokenCrationURL}"`));
-      setupBox.add_child(createTokenButton);
-
-      this.contentContainer.add_child(setupBox);
-    } else if (error) {
-      // Error UI
-      const errorBox = new St.BoxLayout({ vertical: true, style_class: "github-contribution-grid-error-container" });
-      errorBox.add_child(new St.Label({ text: "GitHub Contribution Grid", style_class: "github-contribution-grid-error-headline" }));
-      errorBox.add_child(new St.Label({ text: _("Error:") }));
-      errorBox.add_child(new St.Label({ text: error, style_class: "github-contribution-grid-error-message" }));
-      const reloadButton = new St.Button({ style_class: "github-contribution-grid-error-reload-button", label: _("Reload") });
-      reloadButton.connect("clicked", () => this._setupContributionData());
-      errorBox.add_child(reloadButton);
-      this.contentContainer.add_child(errorBox);
-    } else if (weeks) {
-      // Render GitHub Grid
-      const gridBox = new St.BoxLayout({ style_class: "github-contribution-grid-grid-box" });
-
-      for (const week of weeks) {
-        const weekBox = new St.BoxLayout({ vertical: true, style_class: "week-container" });
-
-        for (const day of week.contributionDays) {
-          const dayBin = new St.Bin({
-            style_class: "day-bin",
-            reactive: true,
-            track_hover: true,
-            style: `font-size: ${this.blockSize}px; background-color: ${GitHubHelper.getContributionColor(day.contributionCount)};`,
-          });
-
-          new Tooltips.Tooltip(dayBin, `${day.date} ${day.contributionCount} ` + _("contributions"));
-
-          if (this.showContributionCount) {
-            const countLabel = new St.Label({ text: day.contributionCount.toString() });
-            dayBin.set_child(countLabel);
-          }
-          weekBox.add_child(dayBin);
-        }
-        gridBox.add_child(weekBox);
-      }
-      this.contentContainer.add_child(gridBox);
-    }
-
-    this.mainContainer.add_child(this.contentContainer);
+    this.contentContainer = new St.BoxLayout({ style: `background-color: ${this.backgroundColor}; border-radius: 0.2em;` });
+    this._mainContainer.add_child(this.contentContainer);
   }
 
-  _updateLoop() {
-    this._setupContributionData().finally(() => {
-      this.timeoutId = Mainloop.timeout_add_seconds(this.refreshInterval * 60, () => {
-        this._updateLoop();
-      });
-    });
+  _onColorsPresetChanged() {
+    ColorPresetsHelper.setPreset(this.colorPreset, this.settings);
+    this._onGridChanged();
+  }
+
+  _getColors() {
+    return {
+      c0: this.color0,
+      c1: this.color1,
+      c4: this.color4,
+      c6: this.color6,
+      c9: this.color9,
+      c10: this.color10,
+    };
+  }
+
+  _renderSetup() {
+    this._createContentContainer();
+    this.contentContainer.add_child(UiHelper.getSetupUI(GitHubHelper.gitHubTokenCreationURL, this.scaleSize, this.blockSize, this._getColors()));
+  }
+
+  _renderError(errorMsg) {
+    this._createContentContainer();
+    this.contentContainer.add_child(UiHelper.getErrorUI(errorMsg, () => this._setupContributionData(), this.scaleSize, this.blockSize, this._getColors()));
+  }
+
+  _renderGrid(weeks) {
+    this._createContentContainer();
+    this.contentContainer.add_child(UiHelper.getContributionGrid(weeks, this.scaleSize, this.blockSize, this.showContributionCount, this._getColors()));
   }
 }
 

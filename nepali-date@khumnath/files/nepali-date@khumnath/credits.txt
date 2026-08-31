@@ -1,0 +1,16 @@
+Nepali Date Desklet Credits
+==========================
+
+Developer:
+khumnath cg
+
+UI Inspiration:
+- nepalipatro@deeppradhan
+- Apple iOS Glassmorphism
+
+Special Thanks:
+- Cinnamon Desktop Team.
+- Linux Mint Community.
+
+Version: 1.2.0
+Release Date: April 2026

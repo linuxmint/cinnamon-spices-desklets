@@ -101,9 +101,6 @@ Thermal.prototype = {
         this.tempUnits = cpuUnits;
         this.cpuDegrees = 0;
         this.info = "N/A";
-    },
-
-    refresh: function () {
         if (GLib.file_test(this.cpuPath, GLib.FileTest.EXISTS)
             && GLib.file_test(this.cpuPath, GLib.FileTest.IS_DIR)) {
             if (GLib.file_test(this.cpuPath + '/temp', GLib.FileTest.EXISTS))
@@ -116,7 +113,10 @@ Thermal.prototype = {
             global.log(_("Invalid CPU path detected. Resetting to default."));
             this.cpuFile = '/sys/class/thermal/thermal_zone0/temp';
         }
-        if (GLib.file_test(this.cpuFile, GLib.FileTest.EXISTS)) {
+    },
+
+    refresh: function () {
+        try {
             let tempValue = GLib.file_get_contents(this.cpuFile)[1];
             let tempString = ByteArray.toString(tempValue);
             this.cpuDegrees = parseInt(tempString) / 1000;
@@ -126,9 +126,10 @@ Thermal.prototype = {
                 this.cpuDegrees = (this.cpuDegrees * 1.8) + 32;
             }
             this.info = (this.cpuDegrees).toFixed(1) + this.temp_string;
+        } catch (e) {
+            this.info = "Error";
         }
-        else
-            global.logError(_("error reading:") + ` ${this.cpuFile}`);
+
     }
 }
 
@@ -142,9 +143,6 @@ ThermalGPU.prototype = {
         this.tempUnits = gpuUnits;
         this.gpuDegrees = 0;
         this.info = "N/A";
-    },
-
-    refresh: function () {
         if (GLib.file_test(this.gpuPath, GLib.FileTest.EXISTS)
             && GLib.file_test(this.gpuPath, GLib.FileTest.IS_DIR)) {
             if (GLib.file_test(this.gpuPath + '/temp', GLib.FileTest.EXISTS))
@@ -157,7 +155,10 @@ ThermalGPU.prototype = {
             global.log(_("Invalid GPU path detected. Resetting to default."));
             this.gpuFile = '/sys/class/thermal/thermal_zone0/temp';
         }
-        if (GLib.file_test(this.gpuFile, GLib.FileTest.EXISTS)) {
+    },
+
+    refresh: function () {
+        try {
             let tempValue = GLib.file_get_contents(this.gpuFile)[1];
             let tempString = ByteArray.toString(tempValue);
             this.gpuDegrees = parseInt(tempString) / 1000;
@@ -167,9 +168,9 @@ ThermalGPU.prototype = {
                 this.gpuDegrees = (this.gpuDegrees * 1.8) + 32;
             }
             this.info = (this.gpuDegrees).toFixed(1) + this.temp_string;
+        } catch (e) {
+            this.info = "Error";
         }
-        else
-            global.logError(_("error reading:") + ` ${this.gpuFile}`);
     }
 }
 
@@ -269,6 +270,7 @@ MyDesklet.prototype = {
     _init: function (metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
         this.metadata = metadata;
+        this._timeoutId = null;
         this.setupUI();
     },
 
@@ -365,12 +367,20 @@ MyDesklet.prototype = {
     },
 
     on_desklet_removed: function () {
-        Mainloop.source_remove(this.timeout);
+        if (this._timeoutId) {
+            Mainloop.source_remove(this._timeoutId);
+            this._timeoutId = null;
+        }
     },
 
     _updateWidget: function () {
         this._updateValues();
-        this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this._updateWidget));
+
+        if (this._timeoutId) {
+            Mainloop.source_remove(this._timeoutId);
+        }
+
+        this._timeoutId = Mainloop.timeout_add_seconds(1, () => this._updateWidget());
     },
 
     _updateValues: function () {

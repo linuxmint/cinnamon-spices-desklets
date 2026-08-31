@@ -1,0 +1,54 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page-display"],
+        "page-display": {
+            "type": "page",
+            "title": "Settings",
+            "sections": ["section-display", "section-refresh"]
+        },
+        "section-display": {
+            "type": "section",
+            "title": "Display",
+            "keys": ["desklet-width", "show-source", "show-refresh-button"]
+        },
+        "section-refresh": {
+            "type": "section",
+            "title": "Refresh",
+            "keys": ["refresh-frequency"]
+        }
+    },
+
+    "desklet-width": {
+        "type": "scale",
+        "default": 380,
+        "min": 300,
+        "max": 500,
+        "step": 10,
+        "units": "px",
+        "description": "Width"
+    },
+
+    "show-source": {
+        "type": "switch",
+        "default": true,
+        "description": "Show source / book name"
+    },
+
+    "show-refresh-button": {
+        "type": "switch",
+        "default": true,
+        "description": "Show refresh button"
+    },
+
+    "refresh-frequency": {
+        "type": "combobox",
+        "default": "daily",
+        "description": "Auto-refresh frequency",
+        "options": {
+            "Daily (at midnight)": "daily",
+            "Hourly": "hourly",
+            "Manual only": "manual"
+        }
+    }
+}

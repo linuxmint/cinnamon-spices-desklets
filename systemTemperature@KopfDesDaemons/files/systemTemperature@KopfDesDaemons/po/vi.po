@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: systemTemperature@KopfDesDaemons 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2024-11-08 19:56+0100\n"
+"POT-Creation-Date: 2026-04-04 11:26+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
 "Language-Team: \n"
@@ -19,7 +19,7 @@ msgstr ""
 "X-Generator: Poedit 3.4.2\n"
 
 #. metadata.json->name
-#. desklet.js:27
+#. desklet.js:20
 msgid "System Temperature"
 msgstr "Nhiệt độ Hệ thống"
 
@@ -27,46 +27,64 @@ msgstr "Nhiệt độ Hệ thống"
 msgid "Displays the temperature of a thermal zone in the system."
 msgstr "Hiển thị nhiệt độ của vùng nhiệt trong hệ thống."
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
+#. settings-schema.json->general-section->title
 msgid "General"
 msgstr "Chung"
 
-#. settings-schema.json->tempFilePath->description
-msgid "Path to file with temperature value (thermal zone)"
-msgstr "Đường dẫn đến tập tin chứa giá trị nhiệt độ (vùng nhiệt)"
-
-#. settings-schema.json->labelText->description
-msgid "Text for the label"
-msgstr "Văn bản cho nhãn"
-
-#. settings-schema.json->temperatureUnit->options
-msgid "°C"
-msgstr "°C"
-
-#. settings-schema.json->temperatureUnit->options
-msgid "°F"
-msgstr "°F"
-
-#. settings-schema.json->temperatureUnit->description
-msgid "Temperature unit (Celsius or Fahrenheit)"
-msgstr "Đơn vị nhiệt độ (Celsius hoặc Fahrenheit)"
-
-#. settings-schema.json->updateInterval->description
-msgid "Update interval in seconds"
-msgstr "Khoảng thời gian cập nhật tính bằng giây"
-
-#. settings-schema.json->head1->description
+#. settings-schema.json->style-page->title
 msgid "Style"
 msgstr "Kiểu dáng"
 
-#. settings-schema.json->fontSizeLabel->description
+#. settings-schema.json->temperature-section->title
+#, fuzzy
+msgid "Temperature"
+msgstr "Nhiệt độ Hệ thống"
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->temp-file-path->description
+msgid "Path to file with temperature value (thermal zone)"
+msgstr "Đường dẫn đến tập tin chứa giá trị nhiệt độ (vùng nhiệt)"
+
+#. settings-schema.json->label-text->description
+msgid "Text for the label"
+msgstr "Văn bản cho nhãn"
+
+#. settings-schema.json->temperature-unit->options
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->temperature-unit->options
+msgid "°F"
+msgstr "°F"
+
+#. settings-schema.json->temperature-unit->description
+msgid "Temperature unit (Celsius or Fahrenheit)"
+msgstr "Đơn vị nhiệt độ (Celsius hoặc Fahrenheit)"
+
+#. settings-schema.json->update-interval->description
+msgid "Update interval in seconds"
+msgstr "Khoảng thời gian cập nhật tính bằng giây"
+
+#. settings-schema.json->font-size-label->description
 msgid "Font size for the label text"
 msgstr "Cỡ chữ cho văn bản nhãn"
 
-#. settings-schema.json->fontSizeTemperature->description
+#. settings-schema.json->font-size-temperature->description
 msgid "Font size for the temperature display"
 msgstr "Cỡ chữ cho hiển thị nhiệt độ"
 
-#. settings-schema.json->dynamicColorEnabled->description
+#. settings-schema.json->dynamic-color-enabled->description
 msgid "Dynamic color based on temperature"
 msgstr "Màu sắc động dựa trên nhiệt độ"
