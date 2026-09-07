@@ -1,0 +1,52 @@
+{
+  "uuid": "vinyl-player@AttilaHuns288452",
+  "name": "Vinyl Record Player",
+  "description": "A vinyl record player desklet that spins a record on your desktop. Play, pause, adjust speed, and customize font + player colors.",
+  "version": "1.0.0",
+  "author": "AttilaHuns288452",
+  "license": "GPL-2.0",
+  "website": "",
+  "categories": [
+    "fun",
+    "multimedia"
+  ],
+  "platform": "Linux",
+  " Cinnamon": ">=5.0",
+  "settings": [
+    {
+      "key": "scheme",
+      "type": "string",
+      "default": "dark",
+      "title": "Color Scheme",
+      "description": "Choose a pre-made color scheme (Dark or Light)"
+    },
+    {
+      "key": "fontColor",
+      "type": "color",
+      "default": "#b4afa5",
+      "title": "Font Color",
+      "description": "Color of the title text"
+    },
+    {
+      "key": "playerColor",
+      "type": "color",
+      "default": "#5a4a3a",
+      "title": "Platter Color",
+      "description": "Color of the turntable platter"
+    },
+    {
+      "key": "recordColor",
+      "type": "color",
+      "default": "#111111",
+      "title": "Record Color",
+      "description": "Color of the vinyl record"
+    },
+    {
+      "key": "labelColor",
+      "type": "color",
+      "default": "#c4b089",
+      "title": "Label Color",
+      "description": "Color of the record center label"
+    }
+  ]
+}
