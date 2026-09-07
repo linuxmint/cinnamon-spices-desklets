@@ -1,0 +1,8 @@
+{
+  "uuid": "speedpup@taskpuppynatani",
+  "name": "SpeedPup",
+  "description": "SpeedPup by TaskPuppyKreations: monitor live network activity and run on-demand internet speed tests.",
+  "version": "0.1.0",
+  "prevent-decorations": true,
+  "max-instances": "1"
+}
