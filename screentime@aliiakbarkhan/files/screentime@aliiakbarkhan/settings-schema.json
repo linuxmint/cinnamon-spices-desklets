@@ -1,0 +1,25 @@
+{
+  "idle-threshold": {
+    "type": "spinbutton",
+    "default": 60,
+    "min": 10,
+    "max": 900,
+    "step": 5,
+    "units": "seconds",
+    "description": "Idle time before counting pauses"
+  },
+  "show-seconds": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show seconds in the display (e.g. 3h 42m 10s)"
+  },
+  "font-size": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 8,
+    "max": 48,
+    "step": 1,
+    "units": "px",
+    "description": "Font size"
+  }
+}
