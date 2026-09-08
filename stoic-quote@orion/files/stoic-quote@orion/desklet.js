@@ -193,7 +193,7 @@ StoicQuoteDesklet.prototype = {
             global.log("[stoic-quote] Scheduled refresh fired");
             this._showQuote();
             this._scheduleNextRefresh();
-            return false;
+            return GLib.SOURCE_REMOVE;
         });
     },
 
