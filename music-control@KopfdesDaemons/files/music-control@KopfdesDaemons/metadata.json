@@ -1,0 +1,7 @@
+{
+  "uuid": "music-control@KopfdesDaemons",
+  "name": "Music Control",
+  "description": "Music and media control.",
+  "version": "1.0.0",
+  "max-instances": "50"
+}
