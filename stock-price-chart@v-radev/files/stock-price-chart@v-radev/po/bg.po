@@ -1,0 +1,172 @@
+# STOCK PRICE CHART
+# This file is put in the public domain.
+# v-radev, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stock-price-chart@v-radev 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-30 10:21+0200\n"
+"PO-Revision-Date: 2025-12-30 10:30+0200\n"
+"Last-Translator: Ventsislav Radev <v-radev>\n"
+"Language-Team: \n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+msgid "Stock Price Chart"
+msgstr "Stock Price Chart"
+
+#. metadata.json->description
+msgid "Displays a chart for a financial market stock price of specific ticker."
+msgstr "Визуализира графика на цената на акция от финансовия пазар за конкретен тикер."
+
+#. settings-schema.json->generalSettingsPage->title
+msgid "General"
+msgstr "Общи"
+
+#. settings-schema.json->renderSettingsPage->title
+msgid "Render settings"
+msgstr "Настройки за изобразяване"
+
+#. settings-schema.json->layoutSettingsPage->title
+msgid "Layout"
+msgstr "Оформление"
+
+#. settings-schema.json->generalSettingsTickerSection->title
+msgid "Financial Data"
+msgstr "Финансови данни"
+
+#. settings-schema.json->renderSettingsFontSection->title
+msgid "Font"
+msgstr "Шрифт"
+
+#. settings-schema.json->renderSettingsChartSection->title
+msgid "Chart"
+msgstr "Графика"
+
+#. settings-schema.json->layoutSizeSettingsSection->title
+msgid "Desklet"
+msgstr "Десклет"
+
+#. settings-schema.json->layoutEffectsSettingsSection->title
+msgid "Effects"
+msgstr "Ефекти"
+
+#. settings-schema.json->deskletScaleSize->description
+msgid "Desklet scale size"
+msgstr "Размер на десклет"
+
+#. settings-schema.json->deskletScaleSize->tooltip
+msgid "Adjust scale size of the desklet"
+msgstr "Променя размера на десклета"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Прозрачност на фона"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet's background"
+msgstr "Колкото по-висока е стойността, толкова по-плътен е фонът на десклета"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Цвят на фона"
+
+#. settings-schema.json->backgroundColor->tooltip
+msgid "Desklet background color"
+msgstr "Цвят на фона на десклета"
+
+#. settings-schema.json->cornerRadius->units
+msgid "pixels"
+msgstr "пиксели"
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr "Заобляне на ъглите"
+
+#. settings-schema.json->cornerRadius->tooltip
+msgid "The higher the value, the rounder the desklet's corners"
+msgstr "Колкото по-висока е стойността, толкова по-заоблени са ъглите на десклета"
+
+#. settings-schema.json->tickerSymbol->description
+msgid "Ticker symbol"
+msgstr "Тикър символ"
+
+#. settings-schema.json->tickerSymbol->tooltip
+msgid "The stock ticker symbol to display data for (e.g., AAPL, GOOGL, MSFT)"
+msgstr "Тикър символ на акцията, за която да се показват данни (напр. AAPL, GOOGL, MSFT)"
+
+#. settings-schema.json->daysPeriodToShow->description
+msgid "Days period to show"
+msgstr "Дни период за показване"
+
+#. settings-schema.json->daysPeriodToShow->tooltip
+msgid "Number of past days to display in the stock price chart"
+msgstr "Номер на изминалите дни, които да се показват в графиката на цената на акцията"
+
+#. settings-schema.json->showCompanyNameOrTicker->description
+msgid "Display full company name instead of ticker symbol"
+msgstr "Показване на пълното име на компанията вместо тикър символ"
+
+#. settings-schema.json->showCompanyNameOrTicker->tooltip
+msgid "Show the company name if available; otherwise, show the ticker symbol."
+msgstr "Покажи името на компанията, ако е налично; в противен случай покажи тикър символа."
+
+#. settings-schema.json->updateDataButton->description
+msgid "Refresh data"
+msgstr "Обнови данните"
+
+#. settings-schema.json->updateDataButton->tooltip
+msgid "Fetch the latest stock data immediately."
+msgstr "Вземете най-новите данни за акции незабавно."
+
+#. settings-schema.json->fontColor->description
+msgid "Font color"
+msgstr "Цвят на шрифта"
+
+#. settings-schema.json->fontColor->tooltip
+msgid "Color for text labels"
+msgstr "Цвят за текстови етикети"
+
+#. settings-schema.json->shouldScaleFontSize->description
+msgid "Enable font size scaling"
+msgstr "Позволи мащабиране на размера на шрифта"
+
+#. settings-schema.json->shouldScaleFontSize->tooltip
+msgid "Apply custom font size instead of the system default size"
+msgstr "Приложи персонализиран размер на шрифта вместо системния по подразбиране"
+
+#. settings-schema.json->fontScale->units
+msgid "points"
+msgstr "точки"
+
+#. settings-schema.json->fontScale->description
+msgid "Font size scale factor"
+msgstr "Фактор за мащабиране на размера на шрифта"
+
+#. settings-schema.json->fontScale->tooltip
+msgid "Enlarge/reduce the font size"
+msgstr "Увеличи/намали размера на шрифта"
+
+#. settings-schema.json->chartAxesColor->description
+msgid "Chart axes color"
+msgstr "Цвят на осите на графиката"
+
+#. settings-schema.json->chartAxesColor->tooltip
+msgid "Color for the chart axes"
+msgstr "Цвят за осите на графиката"
+
+#. settings-schema.json->chartMidlinesColor->description
+#. settings-schema.json->chartMidlinesColor->tooltip
+msgid "Chart midlines color"
+msgstr "Цвят на средните линии на графиката"
+
+#. settings-schema.json->chartLineColor->description
+#. settings-schema.json->chartLineColor->tooltip
+msgid "Chart line color"
+msgstr "Цвят на линията на графиката"
