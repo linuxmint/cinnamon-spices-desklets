@@ -4,11 +4,19 @@ const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
 const Settings = imports.ui.settings;
 
-const { SteamHelper } = require("./helpers/steam.helper");
-const { UiHelper } = require("./helpers/ui.helper");
-
 const UUID = "steamGamesStarter@KopfdesDaemons";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+let SteamHelper, UiHelper;
+if (typeof require !== "undefined") {
+  SteamHelper = require("./helpers/steam.js").SteamHelper;
+  UiHelper = require("./helpers/ui.js").UiHelper;
+} else {
+  const DESKLET_DIR = imports.ui.deskletManager.desklets[UUID];
+  SteamHelper = DESKLET_DIR.helpers.steam.SteamHelper;
+  UiHelper = DESKLET_DIR.helpers.ui.UiHelper;
+}
+
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
   return Gettext.dgettext(UUID, str);
@@ -17,79 +25,163 @@ function _(str) {
 class SteamGamesStarterDesklet extends Desklet.Desklet {
   constructor(metadata, deskletId) {
     super(metadata, deskletId);
+    this.setHeader(_("Steam Games Starter"));
+
+    this.reloading = false;
     this.games = [];
     this.error = null;
-    this.steamInstallationType = "system package";
-    this.numberOfGames = 10;
-    this.maxDeskletHeight = 400;
     this.scrollView = null;
     this.mainContainer = null;
+    this.loadId = 0;
+
+    // Default settings
+    this.steamInstallationType = "system package";
+    this.customInstallPath = null;
+    this.customCMD = "/usr/games/steam";
+    this.numberOfGames = 10;
+    this.scaleSize = 1;
+    this.maxDeskletHeight = 32;
+    this.deskletWidth = 32;
     this.backgroundColor = "rgba(58, 64, 74, 0.5)";
+    this.hideDecorations = true;
+    this.showGameHeaderImage = true;
+    this.gameHeaderImageSize = 0.4;
+    this.gameLabelFontSize = 18;
+    this.showLastPlayedLabel = true;
+    this.lastPlayedLabelFontSize = 16;
+    this.showGameStartButton = true;
+    this.showGameShopButton = true;
 
     // Setup settings and bind them to properties
-    const settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
-    settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._loadGamesAndSetupUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._loadGamesAndSetupUI.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
-    settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
+    this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
+    this.settings.bindProperty(Settings.BindingDirection.IN, "steam-install-type", "steamInstallType", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-install-path", "customInstallPath", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "custom-cmd", "customCMD", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "number-of-games", "numberOfGames", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scaleSize", this._onScaleSizeChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "max-desklet-height", "maxDeskletHeight", this._updateScrollViewStyle.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._onScaleSizeChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "background-color", "backgroundColor", this._updateScrollViewStyle.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "hide-decorations", "hideDecorations", this._onDecorationChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-header-image", "showGameHeaderImage", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "game-header-image-size", "gameHeaderImageSize", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-start-button", "showGameStartButton", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-game-shop-button", "showGameShopButton", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "game-label-font-size", "gameLabelFontSize", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "show-last-played-label", "showLastPlayedLabel", this._refresh.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "last-played-label-font-size", "lastPlayedLabelFontSize", this._refresh.bind(this));
+  }
 
-    this.setHeader(_("Steam Games Starter"));
+  on_desklet_added_to_desktop() {
     this._initUI();
-    this._loadGamesAndSetupUI();
+    this._onDecorationChanged();
+    this._refresh();
+  }
+
+  on_desklet_removed() {
+    if (this.settings && !this.reloading) {
+      this.settings.finalize();
+    }
+  }
+
+  on_desklet_reloaded() {
+    this.reloading = true;
+  }
+
+  _onDecorationChanged() {
+    this.metadata["prevent-decorations"] = this.hideDecorations;
+    this._updateDecoration();
   }
 
   _initUI() {
-    this.mainContainer = new St.BoxLayout({ vertical: true, style_class: "main-container" });
-    this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._loadGamesAndSetupUI.bind(this)));
+    if (this.mainContainer) {
+      this.mainContainer.destroy();
+    }
+
+    this.mainContainer = new St.BoxLayout({ vertical: true });
+    this.mainContainer.set_style("width:" + this.deskletWidth * this.scaleSize + "em;");
+    this.mainContainer.add_child(UiHelper.createHeader(this.metadata.path, this._refresh.bind(this), this.scaleSize));
+
+    this.scrollView = null;
     this.setContent(this.mainContainer);
   }
 
-  async _loadGamesAndSetupUI() {
-    this._setupLayout(true);
+  async _refresh() {
+    const currentLoadId = ++this.loadId;
+    this._showLoading();
 
-    this.error = null;
-    this.games = [];
+    let games = [];
+    let error = null;
 
     try {
-      this.games = await SteamHelper.getGames(this.steamInstallType);
+      games = await SteamHelper.getGames(this.steamInstallType, this.customInstallPath);
     } catch (e) {
-      this.error = e;
-      global.logError(`Error getting Steam games: ${e}`);
+      error = e;
+      global.logError(`${UUID}: Error getting Steam games: ${e}`);
     }
 
-    this._setupLayout();
+    if (this.loadId !== currentLoadId) return;
+
+    this.games = games;
+    this.error = error;
+    this._updateContent();
   }
 
-  _setupLayout(loading = false) {
-    const gamesToDisplay = this.games.slice(0, this.numberOfGames);
+  _showLoading() {
+    this._updateScrollViewContent(UiHelper.createLoadingView(this.scaleSize));
+  }
 
+  _updateContent() {
+    const gamesToDisplay = this.games.slice(0, this.numberOfGames);
+    let contentBox;
+
+    if (this.error || gamesToDisplay.length === 0) {
+      contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path, this.scaleSize);
+    } else {
+      contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
+      gamesToDisplay.forEach(game => {
+        const gameItemData = {
+          game: game,
+          steamInstallType: this.steamInstallType,
+          customCMD: this.customCMD,
+          metadataPath: this.metadata.path,
+          scaleSize: this.scaleSize,
+          showGameHeaderImage: this.showGameHeaderImage,
+          gameHeaderImageSize: this.gameHeaderImageSize,
+          gameLabelFontSize: this.gameLabelFontSize,
+          showLastPlayedLabel: this.showLastPlayedLabel,
+          lastPlayedLabelFontSize: this.lastPlayedLabelFontSize,
+          showGameStartButton: this.showGameStartButton,
+          showGameShopButton: this.showGameShopButton,
+        };
+        const gameItem = UiHelper.createGameItem(gameItemData);
+        contentBox.add_child(gameItem);
+      });
+    }
+    this._updateScrollViewContent(contentBox);
+  }
+
+  _updateScrollViewContent(content) {
     if (this.scrollView) {
-      this.mainContainer.remove_child(this.scrollView);
       this.scrollView.destroy();
     }
 
     this.scrollView = new St.ScrollView({ overlay_scrollbars: true, clip_to_allocation: true });
+    this.scrollView.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
     this._updateScrollViewStyle();
 
-    if (loading) {
-      this.scrollView.add_actor(UiHelper.createLoadingView());
-    } else if (this.error || gamesToDisplay.length === 0) {
-      this.scrollView.add_actor(UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path));
-    } else {
-      const gamesContainer = new St.BoxLayout({ vertical: true, style_class: "games-container" });
-      gamesToDisplay.forEach(game => {
-        const gameItem = UiHelper.createGameItem(game, this.steamInstallType, this.metadata.path);
-        gamesContainer.add_child(gameItem);
-      });
-      this.scrollView.add_actor(gamesContainer);
-    }
-
+    this.scrollView.add_actor(content);
     this.mainContainer.add_child(this.scrollView);
   }
 
   _updateScrollViewStyle() {
     if (!this.scrollView) return;
-    this.scrollView.set_style("max-height:" + this.maxDeskletHeight + "px; background-color: " + this.backgroundColor + ";");
+    this.scrollView.set_style("max-height:" + this.maxDeskletHeight * this.scaleSize + "em; background-color: " + this.backgroundColor + ";");
+  }
+
+  _onScaleSizeChanged() {
+    this._initUI();
+    this._updateContent();
   }
 }
 
