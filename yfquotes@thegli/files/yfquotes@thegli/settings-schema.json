@@ -103,6 +103,10 @@
                 "showChangeIcon",
                 "showAbsoluteChange",
                 "showPercentChange",
+                "showWeeklyChange",
+                "weeklyChangeType",
+                "showMonthlyChange",
+                "monthlyChangeType",
                 "colorPercentChange"
             ]
         },
@@ -425,6 +429,42 @@
         "default": true,
         "description": "Show percent change",
         "tooltip": "Display the percent change of the market price (eg. -0.53%)"
+    },
+    "showWeeklyChange": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show weekly change",
+        "tooltip": "Display the change of the market price from 7 days ago"
+    },
+    "weeklyChangeType": {
+        "type": "radiogroup",
+        "default": "percent",
+        "options": {
+            "Percent change": "percent",
+            "Absolute change": "absolute",
+            "Market price": "market_price"
+        },
+        "description": "Type of weekly change",
+        "tooltip": "What type should be the value for the weekly change",
+        "dependency": "showWeeklyChange"
+    },
+    "showMonthlyChange": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show monthly change",
+        "tooltip": "Display the change of the market price from 1 month ago"
+    },
+    "monthlyChangeType": {
+        "type": "radiogroup",
+        "default": "percent",
+        "options": {
+            "Percent change": "percent",
+            "Absolute change": "absolute",
+            "Market price": "market_price"
+        },
+        "description": "Type of monthly change",
+        "tooltip": "What type should be the value for the monthly change",
+        "dependency": "showMonthlyChange"
     },
     "colorPercentChange": {
         "type": "checkbox",
