@@ -1,0 +1,8 @@
+{
+    "max-instances": "10",
+    "description": "A simple desklet for adding per-display Wallpapers.",
+    "uuid": "BetterWallpapers@pb103938",
+    "version": "1.0.0",
+    "name": "Better Wallpapers",
+    "author": "pb103938"
+}
