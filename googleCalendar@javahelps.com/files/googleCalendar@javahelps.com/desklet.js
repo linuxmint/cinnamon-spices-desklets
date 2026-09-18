@@ -51,6 +51,8 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 const TEXT_WIDTH = 250;
 const FONT_SIZE = 14;
 const HOME_PATH = GLib.get_home_dir();
+// How long to wait for the user to finish authorizing in their browser.
+const AUTH_TIMEOUT_SECONDS = 300;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -103,6 +105,9 @@ GoogleCalendarDesklet.prototype = {
         this.helperPath = metadata.path + "/gcalendar-launcher.py";
         this.dependenciesOk = false;
         this.missingPackages = [];
+        this.needsAuthorization = false;
+        this.authProcess = null;
+        this.authTimeoutID = null;
 
         // Bind properties
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
@@ -229,8 +234,14 @@ GoogleCalendarDesklet.prototype = {
             GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
         });
         this._menu.addMenuItem(openGoogleCalendarItem, 0); // 0 for top position.
+         // Set "Authorize Google account" menu item.
+        let authorizeItem = new PopupMenu.PopupIconMenuItem(_("Authorize Google account"), "dialog-password", St.IconType.SYMBOLIC);
+        authorizeItem.connect("activate", (event) => {
+            this.onAuthorizeButtonClicked();
+        });
+        this._menu.addMenuItem(authorizeItem, 1);
         let intervalItem = new SliderMenuItem(this);
-        this._menu.addMenuItem(intervalItem, 1);
+        this._menu.addMenuItem(intervalItem, 2);
     },
 
     /**
@@ -239,6 +250,7 @@ GoogleCalendarDesklet.prototype = {
     on_desklet_removed() {
         this.isLooping = false;
         this.updateID = null;
+        this.stopAuthorization();
         remove_all_sources();
     },
 
@@ -249,6 +261,8 @@ GoogleCalendarDesklet.prototype = {
         this.isLooping = true;
         if (!this.dependenciesOk) {
             this.promptInstallDependencies();
+        } else if (this.needsAuthorization) {
+            this.onAuthorizeButtonClicked();
         } else {
             this.retrieveEventsIfAuthorized();
         }
@@ -447,6 +461,8 @@ GoogleCalendarDesklet.prototype = {
 
     retrieveEventsIfAuthorized() {
         if (!this.isLooping) return;
+        // Do not paint over the message shown while the browser is open.
+        if (this.authProcess != null) return;
         if (!this.dependenciesOk) {
             this.showMissingDependencies();
             return
@@ -461,6 +477,7 @@ GoogleCalendarDesklet.prototype = {
                 let status = output.toString().trim();
                 if (status === "Authorized") {
                     // Authorized
+                    this.needsAuthorization = false;
                     this.retrieveEvents(accountId);
                 } else {
                     this.showGcalendarStatus(status, accountId);
@@ -472,6 +489,7 @@ GoogleCalendarDesklet.prototype = {
     },
 
     showGcalendarStatus(status, accountId) {
+        this.needsAuthorization = true;
         let message = _("gcalendar is not authorized");
         if (status === "Token Expired") {
             message = _("gcalendar token expired");
@@ -479,10 +497,7 @@ GoogleCalendarDesklet.prototype = {
         // Show the status on widget
         this.resetWidget(true);
         let label = CalendarUtility.label(message, this.zoom, this.textcolor);
-        let hint = _("Execute: ") + "gcalendar";
-        if (accountId != null && accountId !== "") {
-            hint = hint + " --account " + accountId;
-        }
+        let hint = _("Click here to authorize access to your Google Calendar.");
         let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
         lblHint.style = lblHint.style + "; font-style: italic;";
 
@@ -609,6 +624,84 @@ GoogleCalendarDesklet.prototype = {
             }
         );
         dialog.open();
+    },
+
+    /**
+     * Called by the settings button and the context menu item.
+     */
+    onAuthorizeButtonClicked() {
+        if (!this.dependenciesOk) {
+            this.promptInstallDependencies();
+            return;
+        }
+        this.startAuthorization();
+    },
+
+    /**
+     * Run gcalendar so that it opens the browser for the user to grant
+     * access. gcalendar waits for the browser to come back, so the process is
+     * spawned in a way that lets it be cancelled and timed out.
+     */
+    startAuthorization() {
+        if (this.authProcess != null) return;
+        let accountId = this.gcalendarAccount;
+        if (accountId == null || accountId === "") {
+            accountId = "default";
+        }
+        try {
+            this.authProcess = new Gio.Subprocess({
+                argv: ["python3", this.helperPath, "--authorize", "--account", accountId],
+                flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
+            });
+            this.authProcess.init(null);
+        } catch (e) {
+            this.authProcess = null;
+            global.logError("[" + UUID + "] Unable to start the authorization: " + e);
+            this.showErrorMessage(e.toString());
+            return;
+        }
+
+        this.resetWidget(true);
+        this.window.add(CalendarUtility.label(_("Waiting for authorization in your web browser…"), this.zoom, this.textcolor));
+
+        this.authTimeoutID = timeout_add_seconds(AUTH_TIMEOUT_SECONDS, () => {
+            this.authTimeoutID = null;
+            this.stopAuthorization();
+            return GLib.SOURCE_REMOVE;
+        });
+
+        this.authProcess.communicate_utf8_async(null, null, (proc, result) => {
+            try {
+                proc.communicate_utf8_finish(result);
+            } catch (e) {
+                global.logError("[" + UUID + "] Authorization did not complete: " + e);
+            }
+            this.authProcess = null;
+            if (this.authTimeoutID != null) {
+                source_remove(this.authTimeoutID);
+                this.authTimeoutID = null;
+            }
+            this.needsAuthorization = false;
+            this.populate_gcalendarAccountOptions();
+            this.retrieveEventsIfAuthorized();
+        });
+    },
+
+    /**
+     * Stop a pending authorization, if any.
+     */
+    stopAuthorization() {
+        if (this.authTimeoutID != null) {
+            source_remove(this.authTimeoutID);
+            this.authTimeoutID = null;
+        }
+        if (this.authProcess != null) {
+            try {
+                this.authProcess.force_exit();
+            } catch (e) {
+                global.logError("[" + UUID + "] Unable to stop the authorization: " + e);
+            }
+        }
     },
 
     /**
