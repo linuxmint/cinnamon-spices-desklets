@@ -31,6 +31,7 @@ const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;
+const ModalDialog = imports.ui.modalDialog;
 const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("./lib/mainloopTools");
 const Tooltips = imports.ui.tooltips;
 
@@ -97,6 +98,11 @@ GoogleCalendarDesklet.prototype = {
         this._updateDecoration();
 
         this.isLooping = true;
+
+        // The bundled copy of gcalendar, and the state of its dependencies.
+        this.helperPath = metadata.path + "/gcalendar-launcher.py";
+        this.dependenciesOk = false;
+        this.missingPackages = [];
 
         // Bind properties
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
@@ -169,7 +175,7 @@ GoogleCalendarDesklet.prototype = {
      */
     onAllNamesButtonClicked() {
         let reader = new SpawnReader();
-        let command = ["gcalendar", "--output", "txt", "--list-calendars"];
+        let command = this.helperCommand(["--output", "txt", "--list-calendars"]);
         this.addAccountID(command, this.gcalendarAccount);
         // List of calendars already selected by user:
         let registeredCalendarNames = this.calendarName.toString().split(",");
@@ -191,7 +197,7 @@ GoogleCalendarDesklet.prototype = {
 
     populate_gcalendarAccountOptions() {
         let reader = new SpawnReader();
-        let command = ["gcalendar", "--output", "txt", "--list-accounts"];
+        let command = this.helperCommand(["--output", "txt", "--list-accounts"]);
         var new_accounts = {}; // We will populate it !
         reader.spawn(HOME_PATH, command, (output) => {
             let accounts = output.toString().trim().split(/\r?\n/);
@@ -208,8 +214,10 @@ GoogleCalendarDesklet.prototype = {
      * This function is called by deskletManager when the desklet is added to the desktop.
      */
      on_desklet_added_to_desktop(userEnabled) {
-         if (GLib.find_program_in_path("gcalendar"))
-            this.populate_gcalendarAccountOptions();
+         this.checkDependencies(() => {
+             if (this.dependenciesOk)
+                 this.populate_gcalendarAccountOptions();
+         });
          // Start the update loop
         this.updateID = null;
         //~ this.updateID = timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
@@ -239,10 +247,11 @@ GoogleCalendarDesklet.prototype = {
      */
     on_desklet_clicked(event) {
         this.isLooping = true;
-        if (!GLib.find_program_in_path("gcalendar"))
-            GLib.spawn_command_line_async("xdg-open https://github.com/slgobinath/gcalendar");
-        else
+        if (!this.dependenciesOk) {
+            this.promptInstallDependencies();
+        } else {
             this.retrieveEventsIfAuthorized();
+        }
     },
 
     //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
@@ -267,11 +276,10 @@ GoogleCalendarDesklet.prototype = {
      * Construct gcalendar command to retrieve events.
      */
     getCalendarCommand(accountId) {
-        let command = ["gcalendar", "--output", "json"];
+        let command = this.helperCommand(["--output", "json"]);
         if (this.clientId != null && this.clientId != "") {
             command.push("--client-id");
             command.push(this.clientId);
-            this.clientId, "--client-secret", this.clientSecret
         }
         if (this.clientSecret != null && this.clientSecret != "") {
             command.push("--client-secret");
@@ -439,15 +447,15 @@ GoogleCalendarDesklet.prototype = {
 
     retrieveEventsIfAuthorized() {
         if (!this.isLooping) return;
-        if (!GLib.find_program_in_path("gcalendar")) {
-            this.showErrorMessage("No such file or directory");
+        if (!this.dependenciesOk) {
+            this.showMissingDependencies();
             return
         }
         let accountId = this.gcalendarAccount;
         try {
             // Check the status of gcalendar
             let reader = new SpawnReader();
-            let command = ["gcalendar", "--output", "txt", "--status"];
+            let command = this.helperCommand(["--output", "txt", "--status"]);
             this.addAccountID(command, accountId);
             reader.spawn(HOME_PATH, command, (output) => {
                 let status = output.toString().trim();
@@ -486,10 +494,6 @@ GoogleCalendarDesklet.prototype = {
         this.resetWidget(true);
         let message = _("Unknown Error");
         let hint = errorMessage;
-        if (errorMessage.includes("No such file or directory")) {
-            message = _("Install gcalendar to use this desklet.");
-            hint = _("Visit: ") + "https://github.com/slgobinath/gcalendar";
-        }
         let label = CalendarUtility.label(message, this.zoom, this.textcolor);
         let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
         lblHint.style = lblHint.style + "; font-style: italic;";
@@ -534,6 +538,77 @@ GoogleCalendarDesklet.prototype = {
         } finally {
             this.updateInProgress = false;
         }
+    },
+
+    /**
+     * Build a command line running the bundled copy of gcalendar.
+     * @param {String[]} args arguments to pass to gcalendar
+     * @returns {String[]} the complete command
+     */
+    helperCommand(args) {
+        return ["python3", "\"" + this.helperPath + "\""].concat(args);
+    },
+
+    /**
+     * Find out which of the libraries gcalendar needs are missing, and
+     * remember the result. Every other command is gated on this.
+     * @param {Function} onDone called once the result is known
+     */
+    checkDependencies(onDone) {
+        let reader = new SpawnReader();
+        reader.spawn(HOME_PATH, this.helperCommand(["--check-dependencies"]), (output) => {
+            let result = output.toString().trim();
+            this.dependenciesOk = (result === "OK");
+            if (this.dependenciesOk) {
+                this.missingPackages = [];
+            } else {
+                this.missingPackages = result.replace(/^MISSING\s*/, "").split(/\s+/).filter((name) => name !== "");
+            }
+            if (onDone) onDone();
+        });
+    },
+
+    /**
+     * Tell the user which packages are missing.
+     */
+    showMissingDependencies() {
+        this.resetWidget(true);
+        let message = _("Some required components are missing.");
+        let hint = _("Click here to install them.");
+        if (this.missingPackages.length === 0) {
+            // The helper could not be run at all.
+            hint = _("Python 3 is required but was not found.");
+        }
+        let label = CalendarUtility.label(message, this.zoom, this.textcolor);
+        let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
+        lblHint.style = lblHint.style + "; font-style: italic;";
+        this.window.add(label);
+        this.window.add(lblHint);
+    },
+
+    /**
+     * Offer to install the missing packages from the distribution's own
+     * repositories, using PackageKit and its normal authentication.
+     */
+    promptInstallDependencies() {
+        if (this.missingPackages.length === 0) {
+            this.showMissingDependencies();
+            return;
+        }
+        let dialog = new ModalDialog.ConfirmDialog(
+            _("This desklet needs the following packages from your distribution: ") + this.missingPackages.join(", "),
+            () => {
+                Util.spawn_async(["pkcon", "install", "-y"].concat(this.missingPackages), () => {
+                    this.checkDependencies(() => {
+                        if (this.dependenciesOk) {
+                            this.populate_gcalendarAccountOptions();
+                        }
+                        this.retrieveEventsIfAuthorized();
+                    });
+                });
+            }
+        );
+        dialog.open();
     },
 
     /**

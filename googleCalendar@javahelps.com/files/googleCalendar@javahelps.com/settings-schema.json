@@ -83,7 +83,7 @@
     "type": "combobox",
     "default": "default",
     "description": "gcalendar Account ID",
-    "tooltip": "Enter gcalendar --account id",
+    "tooltip": "Choose which authorized Google account to show events from.",
     "options": {
             "": "default",
             "default": "default"
