@@ -1,0 +1,8 @@
+{
+    "uuid": "xtream-desklet-deck@sentinela-one",
+    "name": "Xtream Deck",
+    "description": "A lightweight Stream Deck-style button grid for the Cinnamon desktop. Each button runs a shell command you configure.",
+    "comments": "Made with care to help professionals be more productive. If it helps your workflow, consider supporting development: https://ko-fi.com/oliveirawro",
+    "version": "1.0",
+    "max-instances": "-1"
+}
