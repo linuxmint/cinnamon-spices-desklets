@@ -329,6 +329,10 @@ msgstr "Data islamica"
 msgid "Persian date"
 msgstr "Data persiana"
 
+#. desklet.js:1295
+msgid "French Republican date"
+msgstr "Data repubblicana francese"
+
 #. metadata.json->name
 msgid "Calendarium"
 msgstr "Calendarium"
@@ -948,3 +952,11 @@ msgstr "Mostra la data nel calendario islamico"
 #. settings-schema.json->show-persian->description
 msgid "Show Persian calendar date"
 msgstr "Mostra la data nel calendario persiano"
+
+#. settings-schema.json->show-french-republican->description
+msgid "Show French Republican calendar date"
+msgstr "Mostra la data nel calendario repubblicano francese"
+
+#. settings-schema.json->show-french-republican->tooltip
+msgid "Equinox-based (the historically accurate rule): each Republican year begins at the true autumnal equinox, so 5 or 6 intercalary days fall out naturally rather than from a fixed leap-year formula."
+msgstr "Basato sull'equinozio (la regola storicamente accurata): ogni anno repubblicano inizia con il vero equinozio d'autunno, quindi i 5 o 6 giorni intercalari derivano naturalmente, non da una formula fissa di anno bisestile."

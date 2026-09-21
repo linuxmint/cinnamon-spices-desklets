@@ -331,6 +331,10 @@ msgstr ""
 msgid "Persian date"
 msgstr ""
 
+#. desklet.js:1295
+msgid "French Republican date"
+msgstr ""
+
 #. metadata.json->name
 msgid "Calendarium"
 msgstr ""
@@ -394,6 +398,7 @@ msgstr ""
 msgid "Wikipedia (Internet Required)"
 msgstr ""
 
+#. settings-schema.json->page-appearance->title
 #. settings-schema.json->section-appearance->title
 msgid "Appearance"
 msgstr ""
@@ -648,7 +653,13 @@ msgid "Show equinox and solstice"
 msgstr ""
 
 #. settings-schema.json->use-manual-location->description
-msgid "Use manual location (default: Budapest, Hungary)"
+msgid "Use manual location"
+msgstr ""
+
+#. settings-schema.json->use-manual-location->tooltip
+msgid ""
+"When off, the location is detected automatically from the computer's system "
+"timezone (falling back to Budapest, Hungary if it cannot be determined)."
 msgstr ""
 
 #. settings-schema.json->location-search->description
@@ -677,6 +688,28 @@ msgstr ""
 
 #. settings-schema.json->longitude->description
 msgid "Longitude (positive = East)"
+msgstr ""
+
+#. settings-schema.json->primary-tz->description
+msgid "Primary location timezone (IANA, e.g. Europe/Budapest)"
+msgstr ""
+
+#. settings-schema.json->primary-tz->tooltip
+msgid ""
+"Timezone used for the primary location's sunrise/sunset and moonrise/moonset "
+"times. Filled automatically when using city search. Leave empty to use the "
+"computer's system timezone."
+msgstr ""
+
+#. settings-schema.json->use-primary-tz-for-clock->description
+msgid "Show the clock and date in the primary location's timezone"
+msgstr ""
+
+#. settings-schema.json->use-primary-tz-for-clock->tooltip
+msgid ""
+"When off, the clock, date and calendar follow the computer's own time. When "
+"on, they use the primary location's timezone (from the field above, or the "
+"auto-detected system timezone)."
 msgstr ""
 
 #. settings-schema.json->city1-name->description
@@ -911,6 +944,26 @@ msgid ""
 "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr ""
 
+#. settings-schema.json->show-border->description
+msgid "Draw a border around the desklet"
+msgstr ""
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr ""
+
+#. settings-schema.json->border-radius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->border-radius->tooltip
+msgid "0 = square corners"
+msgstr ""
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr ""
@@ -925,4 +978,12 @@ msgstr ""
 
 #. settings-schema.json->show-persian->description
 msgid "Show Persian calendar date"
+msgstr ""
+
+#. settings-schema.json->show-french-republican->description
+msgid "Show French Republican calendar date"
+msgstr ""
+
+#. settings-schema.json->show-french-republican->tooltip
+msgid "Equinox-based (the historically accurate rule): each Republican year begins at the true autumnal equinox, so 5 or 6 intercalary days fall out naturally rather than from a fixed leap-year formula."
 msgstr ""

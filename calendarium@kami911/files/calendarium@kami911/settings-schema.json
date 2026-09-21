@@ -1,7 +1,7 @@
 {
     "settingsLayout": {
         "type": "layout",
-        "pages": ["page-general", "page-location", "page-wikipedia"],
+        "pages": ["page-general", "page-location", "page-appearance", "page-wikipedia"],
 
         "page-general": {
             "type": "page",
@@ -16,8 +16,7 @@
                 "section-sun",
                 "section-zodiac",
                 "section-namedays",
-                "section-altcal",
-                "section-appearance"
+                "section-altcal"
             ]
         },
 
@@ -25,6 +24,12 @@
             "type": "page",
             "title": "Location",
             "sections": ["section-location"]
+        },
+
+        "page-appearance": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["section-appearance"]
         },
 
         "page-wikipedia": {
@@ -85,7 +90,7 @@
         "section-altcal": {
             "type": "section",
             "title": "Alternate Calendars",
-            "keys": ["show-julian", "show-hebrew", "show-islamic", "show-persian"]
+            "keys": ["show-julian", "show-hebrew", "show-islamic", "show-persian", "show-french-republican"]
         },
 
         "section-location": {
@@ -94,7 +99,8 @@
             "keys": [
                 "use-manual-location",
                 "location-search",
-                "latitude", "longitude",
+                "latitude", "longitude", "primary-tz",
+                "use-primary-tz-for-clock",
                 "city1-name", "city1-lat", "city1-lon", "city1-tz",
                 "city2-name", "city2-lat", "city2-lon", "city2-tz",
                 "city3-name", "city3-lat", "city3-lon", "city3-tz",
@@ -134,7 +140,8 @@
         "section-appearance": {
             "type": "section",
             "title": "Appearance",
-            "keys": ["icon-size", "text-scale", "bg-opacity"]
+            "keys": ["icon-size", "text-scale", "bg-opacity",
+                     "show-border", "border-width", "border-color", "border-radius"]
         }
     },
 
@@ -354,7 +361,8 @@
     "use-manual-location": {
         "type": "checkbox",
         "default": false,
-        "description": "Use manual location (default: Budapest, Hungary)"
+        "description": "Use manual location",
+        "tooltip": "When off, the location is detected automatically from the computer's system timezone (falling back to Budapest, Hungary if it cannot be determined)."
     },
     "location-search": {
         "type": "entry",
@@ -384,6 +392,21 @@
         "units": "degrees",
         "description": "Longitude (positive = East)",
         "dependency": "use-manual-location",
+        "indent": true
+    },
+    "primary-tz": {
+        "type": "entry",
+        "default": "",
+        "description": "Primary location timezone (IANA, e.g. Europe/Budapest)",
+        "tooltip": "Timezone used for the primary location's sunrise/sunset and moonrise/moonset times. Filled automatically when using city search. Leave empty to use the computer's system timezone.",
+        "dependency": "use-manual-location",
+        "indent": true
+    },
+    "use-primary-tz-for-clock": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show the clock and date in the primary location's timezone",
+        "tooltip": "When off, the clock, date and calendar follow the computer's own time. When on, they use the primary location's timezone (from the field above, or the auto-detected system timezone).",
         "indent": true
     },
     "city1-name": {
@@ -666,6 +689,41 @@
         "description": "Background opacity",
         "tooltip": "0 = fully transparent (wallpaper shows through), 1 = solid black background"
     },
+    "show-border": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Draw a border around the desklet"
+    },
+    "border-width": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "units": "pixels",
+        "description": "Border width",
+        "dependency": "show-border",
+        "indent": true
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.35)",
+        "description": "Border color",
+        "dependency": "show-border",
+        "indent": true
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius",
+        "tooltip": "0 = square corners",
+        "dependency": "show-border",
+        "indent": true
+    },
 
     "show-julian": {
         "type": "checkbox",
@@ -686,5 +744,11 @@
         "type": "checkbox",
         "default": false,
         "description": "Show Persian calendar date"
+    },
+    "show-french-republican": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show French Republican calendar date",
+        "tooltip": "Equinox-based (the historically accurate rule): each Republican year begins at the true autumnal equinox, so 5 or 6 intercalary days fall out naturally rather than from a fixed leap-year formula."
     }
 }
