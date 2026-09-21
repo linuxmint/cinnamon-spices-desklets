@@ -1,0 +1,8 @@
+{
+  "uuid": "spelltime@burnt1983",
+  "name": "Spelltime",
+  "description": "Spells the time in words on the desktop.",
+  "prevent-decorations": true,
+  "max-instances": "4",
+  "version": "1.0.0"
+}
