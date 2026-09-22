@@ -1,0 +1,11 @@
+{
+    "uuid": "TennisToday@greyster1",
+    "name": "TennisToday",
+    "description": "ATP and WTA tennis scores on the Cinnamon desktop.",
+    "version": "1.0.8",
+    "prevent-decorations": true,
+    "max-instances": "3",
+    "author": "greyster1",
+    "license": "GPL-3.0-or-later",
+    "website": "https://github.com/greyster1/TennisToday"
+}
