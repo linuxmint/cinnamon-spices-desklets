@@ -1,0 +1,219 @@
+.lt-desklet {
+    background-color: rgba(18, 22, 20, 0.92);
+    border: 1px solid rgba(120, 180, 90, 0.28);
+    border-radius: 10px;
+    padding: 10px 20px 8px 12px;
+    color: #e8efe4;
+}
+
+.lt-header {
+    padding: 0 0 8px 0;
+}
+
+.lt-title {
+    color: #d4f0a8;
+    font-weight: bold;
+    font-size: 12pt;
+}
+
+.lt-updated {
+    color: rgba(200, 220, 190, 0.55);
+    font-size: 8pt;
+    font-style: italic;
+}
+
+.lt-refresh-button {
+    color: #c9e38a;
+    background-color: transparent;
+    border: none;
+    border-radius: 13px;
+    font-size: 14pt;
+    padding: 0 4px;
+    min-width: 26px;
+    min-height: 26px;
+}
+
+.lt-refresh-button:hover {
+    color: #f4ffd0;
+    background-color: rgba(201, 227, 138, 0.16);
+}
+
+.lt-header-icon {
+    color: #c9e38a;
+    icon-size: 16px;
+}
+
+.lt-refresh-button:hover .lt-header-icon {
+    color: #f4ffd0;
+}
+
+.lt-section-rule {
+    background-color: rgba(201, 227, 138, 0.7);
+    height: 1px;
+    min-height: 1px;
+    max-height: 1px;
+}
+
+.lt-section-label {
+    color: rgba(201, 227, 138, 0.7);
+    font-size: 8pt;
+    font-weight: bold;
+    padding: 8px 0 4px 0;
+}
+
+.lt-tournament-row {
+    padding: 6px 0 2px 0;
+}
+
+.lt-tour-badge {
+    font-size: 8pt;
+    font-weight: bold;
+    padding: 1px 6px;
+    border-radius: 4px;
+    min-width: 36px;
+}
+
+.lt-tour-atp {
+    color: #1c1c1c;
+    background-color: #7ed957;
+}
+
+.lt-tour-wta {
+    color: #1c1c1c;
+    background-color: #f0c14b;
+}
+
+.lt-tour-slam {
+    color: #f5f0e6;
+    background-color: #3d5c4a;
+}
+
+.lt-tour-other {
+    color: #1c1c1c;
+    background-color: #9ab6d4;
+}
+
+.lt-tournament-name {
+    color: #f2f7ec;
+    font-weight: bold;
+    font-size: 10pt;
+    padding-left: 6px;
+}
+
+.lt-match {
+    padding: 4px 2px 6px 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.lt-match-meta {
+    color: rgba(210, 220, 200, 0.62);
+    font-size: 8pt;
+    padding: 0 0 2px 0;
+}
+
+.lt-status-live {
+    color: #7CFF6B;
+    font-weight: bold;
+    font-size: 8pt;
+}
+
+.lt-status-finished {
+    color: #7fd7d7;
+    font-size: 8pt;
+}
+
+.lt-status-upcoming {
+    color: #d9a6e8;
+    font-size: 8pt;
+}
+
+.lt-player-name {
+    color: #f4f7f0;
+    font-size: 10pt;
+}
+
+.lt-player-winner {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 10pt;
+}
+
+.lt-player-seed {
+    color: rgba(210, 220, 200, 0.55);
+    font-size: 8pt;
+    padding-left: 4px;
+}
+
+.lt-country {
+    color: rgba(210, 220, 200, 0.5);
+    font-size: 8pt;
+    padding-left: 4px;
+}
+
+.lt-serve-wrap {
+    width: 22px;
+    min-width: 22px;
+    padding: 0 6px 0 0;
+}
+
+.lt-serve-ball {
+    icon-size: 14px;
+}
+
+.lt-serve {
+    color: #c6e86a;
+    font-size: 11pt;
+    padding: 0 8px 0 0;
+}
+
+.lt-points-cell {
+    width: 36px;
+    min-width: 36px;
+    margin-left: 8px;
+    padding: 1px 4px;
+    border-radius: 4px;
+    background-color: rgba(201, 227, 138, 0.16);
+    border: 1px solid rgba(201, 227, 138, 0.45);
+}
+
+.lt-points {
+    color: #eaffb0;
+    font-size: 11pt;
+    font-weight: bold;
+}
+
+.lt-score-box {
+    padding-left: 6px;
+}
+
+.lt-set-cell {
+    width: 28px;
+    min-width: 28px;
+}
+
+.lt-set {
+    color: #e8efe4;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.lt-set-win {
+    color: #d4f0a8;
+}
+
+.lt-score-line {
+    color: #e8efe4;
+    font-size: 10pt;
+    font-weight: bold;
+}
+
+.lt-empty,
+.lt-error {
+    color: rgba(210, 220, 200, 0.7);
+    font-size: 10pt;
+    padding: 8px 2px;
+}
+
+.lt-error {
+    color: #e08080;
+}

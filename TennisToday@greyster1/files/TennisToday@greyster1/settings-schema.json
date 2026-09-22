@@ -1,0 +1,144 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "page-tours",
+            "page-display"
+        ],
+        "page-tours": {
+            "type": "page",
+            "title": "Tours",
+            "sections": [
+                "section-tours",
+                "section-refresh"
+            ]
+        },
+        "page-display": {
+            "type": "page",
+            "title": "Display",
+            "sections": [
+                "section-matches",
+                "section-layout"
+            ]
+        },
+        "section-tours": {
+            "type": "section",
+            "title": "Tours",
+            "keys": [
+                "enable-atp",
+                "enable-wta",
+                "enable-grand-slam",
+                "show-doubles"
+            ]
+        },
+        "section-refresh": {
+            "type": "section",
+            "title": "Updates",
+            "keys": [
+                "refresh-seconds"
+            ]
+        },
+        "section-matches": {
+            "type": "section",
+            "title": "Matches",
+            "keys": [
+                "max-live",
+                "show-upcoming",
+                "max-upcoming",
+                "show-completed",
+                "max-completed"
+            ]
+        },
+        "section-layout": {
+            "type": "section",
+            "title": "Layout",
+            "keys": [
+                "desklet-width",
+                "max-height"
+            ]
+        }
+    },
+    "enable-atp": {
+        "type": "switch",
+        "default": true,
+        "description": "Show ATP matches"
+    },
+    "enable-wta": {
+        "type": "switch",
+        "default": true,
+        "description": "Show WTA matches"
+    },
+    "enable-grand-slam": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Grand Slam"
+    },
+    "show-doubles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show doubles"
+    },
+    "refresh-seconds": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 30,
+        "max": 600,
+        "step": 5,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "show-completed": {
+        "type": "switch",
+        "default": true,
+        "description": "Show recently finished matches"
+    },
+    "max-completed": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Max finished matches",
+        "dependency": "show-completed"
+    },
+    "show-upcoming": {
+        "type": "switch",
+        "default": true,
+        "description": "Show upcoming matches today"
+    },
+    "max-upcoming": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "description": "Max upcoming matches today",
+        "dependency": "show-upcoming"
+    },
+    "max-live": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 1,
+        "max": 40,
+        "step": 1,
+        "description": "Max live matches"
+    },
+    "desklet-width": {
+        "type": "scale",
+        "default": 420,
+        "min": 280,
+        "max": 800,
+        "step": 10,
+        "units": "px",
+        "description": "Minimum width (grows to fit scores)"
+    },
+    "max-height": {
+        "type": "scale",
+        "default": 720,
+        "min": 240,
+        "max": 1000,
+        "step": 20,
+        "units": "px",
+        "description": "Max height"
+    }
+}
