@@ -1,0 +1,118 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section", "sound-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section", "circle-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["scale-size", "timer-name", "show-notification", "hide-decorations"]
+    },
+    "sound-section": {
+      "type": "section",
+      "title": "Sound",
+      "keys": ["sound-file", "use-custom-sound", "custom-sound-file"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["label-color"]
+    },
+    "circle-section": {
+      "type": "section",
+      "title": "Circle",
+      "keys": ["indicator-color", "circle-color", "circle-width", "fill-inner-circle", "inner-circle-color"]
+    }
+  },
+  "sound-file": {
+    "type": "combobox",
+    "default": "service-login.oga",
+    "description": "Sound when the timer expires",
+    "options": {
+      "No Sound": "none",
+      "Alarm Clock": "alarm-clock-elapsed.oga",
+      "Complete": "complete.oga",
+      "Service login": "service-login.oga",
+      "Service logout": "service-logout.oga"
+    },
+    "dependency": "!use-custom-sound"
+  },
+  "use-custom-sound": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Use custom sound"
+  },
+  "custom-sound-file": {
+    "type": "filechooser",
+    "default": "",
+    "description": "Custom sound file",
+    "filters": ["*.ogg", "*.oga", "*.wav", "*.mp3"],
+    "dependency": "use-custom-sound"
+  },
+  "timer-name": {
+    "type": "entry",
+    "default": "",
+    "description": "Timer name"
+  },
+  "show-notification": {
+    "type": "checkbox",
+    "description": "Show notification when timer expires",
+    "default": true
+  },
+  "label-color": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Label color"
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.7,
+    "max": 2,
+    "step": 0.05,
+    "description": "Desklet size"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": true
+  },
+  "indicator-color": {
+    "type": "colorchooser",
+    "default": "rgb(51, 209, 122)",
+    "description": "Indicator color"
+  },
+  "circle-color": {
+    "type": "colorchooser",
+    "default": "rgba(255, 255, 255, 0.2)",
+    "description": "Circle color"
+  },
+  "fill-inner-circle": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Fill inner circle"
+  },
+  "inner-circle-color": {
+    "type": "colorchooser",
+    "default": "rgba(255, 255, 255, 0.3)",
+    "description": "Inner circle color",
+    "dependency": "fill-inner-circle"
+  },
+  "circle-width": {
+    "type": "scale",
+    "default": 0.03,
+    "min": 0.01,
+    "max": 0.1,
+    "step": 0.01,
+    "description": "Circle width"
+  }
+}
