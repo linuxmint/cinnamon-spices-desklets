@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: TimeAndDate@nightflame 2.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-11-05 19:28+0100\n"
+"POT-Creation-Date: 2026-01-01 14:08+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,6 +17,23 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Poedit 3.8\n"
+
+#. desklet.js:241
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:242
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:242
+msgid "` Error: "
+msgstr ""
+
+#. desklet.js:295 desklet.js:301
+#, fuzzy
+msgid "Invalid format"
+msgstr "Formato del tiempo"
 
 #. metadata.json->description
 msgid ""
@@ -43,10 +60,12 @@ msgid "General"
 msgstr "General"
 
 #. settings-schema.json->time-theme-section->title
+#. settings-schema.json->time-font->description
 msgid "Time label font"
 msgstr "Fuente de la etiqueta de tiempo"
 
 #. settings-schema.json->date-theme-section->title
+#. settings-schema.json->date-font->description
 msgid "Date label font"
 msgstr "Fuente de la etiqueta de fecha"
 
@@ -59,7 +78,8 @@ msgid "Time format"
 msgstr "Formato del tiempo"
 
 #. settings-schema.json->time-format->tooltip
-msgid "Set your time format."
+#, fuzzy
+msgid "Set your time format. Leave empty to remove"
 msgstr "Configura tu formato de hora."
 
 #. settings-schema.json->date-format->description
@@ -67,7 +87,8 @@ msgid "Date format"
 msgstr "Formato de fecha"
 
 #. settings-schema.json->date-format->tooltip
-msgid "Set the date format."
+#, fuzzy
+msgid "Set the date format. Leave empty to remove"
 msgstr "Configura el formato de fecha."
 
 #. settings-schema.json->datetime-format-label->description
@@ -116,25 +137,11 @@ msgstr "Tamaño de ancho forzado"
 msgid "Force desklet width."
 msgstr "Forzar el ancho del desklet."
 
-#. settings-schema.json->time-font->description
-#. settings-schema.json->date-font->description
-msgid "Font name (choose regular versions)"
-msgstr "Nombre de la fuente (elija versiones normales)"
-
 #. settings-schema.json->time-font->tooltip
 #. settings-schema.json->date-font->tooltip
-msgid "Change font family"
+#, fuzzy
+msgid "Change the font and its size"
 msgstr "Cambiar la familia de fuentes"
-
-#. settings-schema.json->time-font-bold->description
-#. settings-schema.json->date-font-bold->description
-msgid "Bold"
-msgstr "Negrita"
-
-#. settings-schema.json->time-font-italic->description
-#. settings-schema.json->date-font-italic->description
-msgid "Italic"
-msgstr "Cursiva"
 
 #. settings-schema.json->time-text-color->description
 #. settings-schema.json->date-text-color->description
