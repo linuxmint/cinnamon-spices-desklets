@@ -2,11 +2,11 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const DeskletManager = imports.ui.deskletManager;
 const Settings = imports.ui.settings;
 const Global = global; // This is done so that Auto-completion for Gnome project can be used. see: https://github.com/RyanNerd/gnome-autocomplete
 const Gettext = imports.gettext;
+const Gio = imports.gi.Gio;
 
 const UUID = "top@ryannerd";
 const DESKLET_DIR = DeskletManager.deskletMeta[UUID].path; // path to this desklet (unused)
@@ -74,7 +74,11 @@ const topToJsonParser = {
      * @param {string} _line The line to parse
      */
     parseLine(_result, _name, _line) {
-        let line=_line.replace(RegExp("%","g"), "").split(":")[1].replace(RegExp(" ", "g"), "");
+        if (!_line) return;
+        let parts = _line.replace(RegExp("%","g"), "").split(":");
+        if (parts.length < 2) return;
+
+        let line=parts[1].replace(RegExp(" ", "g"), "");
         _result[_name]={};
         let lineItems=line.split(",");
         let i, item;
@@ -84,6 +88,7 @@ const topToJsonParser = {
                 value = "0.0";
             }
             let name=item.replace(value, "").replace(".0", "");
+            if (name === "sleep") name = "sleeping";
             _result[_name][name]=parseFloat(value);
         }
     },
@@ -95,6 +100,7 @@ const topToJsonParser = {
      */
     parseProcess(_result, _line) {
         let items =_line.split(",");
+        if (items.length < 12) return;
         let process = {
             pid:items[0],
             user:items[1],
@@ -120,13 +126,14 @@ const topToJsonParser = {
      */
     parse(data, pidLimit) {
         let result={process:[]};
+        if (!data) return result;
         let dataLine = data.split("\n");
 
         //sys info
-        this.parseLine(result, "task", dataLine[1]);
-        this.parseLine(result, "cpu", dataLine[2].replace(" us,", "user,").replace(" sy,", " system,").replace(" id,", " idle,"));
-        this.parseLine(result, "ram", dataLine[3].replace(RegExp("k ","g"), " ").replace(" buff/cache", "cache"));
-        this.parseLine(result, "swap", dataLine[4].replace(" used.", "used,").replace(" avail Mem", "avail"));
+        if (dataLine[1]) this.parseLine(result, "task", dataLine[1]);
+        if (dataLine[2]) this.parseLine(result, "cpu", dataLine[2].replace(" us,", "user,").replace(" sy,", " system,").replace(" id,", " idle,"));
+        if (dataLine[3]) this.parseLine(result, "ram", dataLine[3].replace(RegExp("k ","g"), " ").replace(" buff/cache", "cache"));
+        if (dataLine[4]) this.parseLine(result, "swap", dataLine[4].replace(" used.", "used,").replace(" avail Mem", "avail"));
 
         //process
         if (pidLimit) {
@@ -183,6 +190,7 @@ TopDesklet.prototype = {
     _init(metadata, deskletId) {
         try {
             Desklet.Desklet.prototype._init.call(this, metadata, deskletId);
+            this.removed = false;
 
             // Get the configuration bindings
             this.settings = new Settings.DeskletSettings(this, UUID, deskletId);
@@ -465,59 +473,83 @@ TopDesklet.prototype = {
      * @private
      */
     _updateTop() {
-        // Get the top output as a string.
-        let topOutput = this.getTopOutput();
+        this.getTopOutput((topOutput) => {
+            if (this.removed) return;
 
-        // Is topOutput not null then we have a valid string to parse.
-        if (topOutput !== null) {
-            // Parse the string into JSON for easier handling.
-            const top = topToJsonParser.parse(topOutput, this.cfgMaxPidLines);
+            // Is topOutput not null then we have a valid string to parse.
+            if (topOutput !== null) {
+                try {
+                    // Parse the string into JSON for easier handling.
+                    const top = topToJsonParser.parse(topOutput, this.cfgMaxPidLines);
+                    const safeVal = (val) => (val !== undefined && val !== null && !Number.isNaN(val)) ? val.toString() : "0";
 
-            // TASKS
-            this.taskValueTotal.text = top.task.total.toString();
-            this.taskValueRunning.text = top.task.running.toString();
-            this.taskValueSleeping.text = top.task.sleeping.toString();
-            this.taskValueStopped.text = top.task.stopped.toString();
-            this.taskValueZombie.text = top.task.zombie.toString();
+                    // TASKS
+                    if (top.task) {
+                        this.taskValueTotal.text = safeVal(top.task.total);
+                        this.taskValueRunning.text = safeVal(top.task.running);
+                        this.taskValueSleeping.text = safeVal(top.task.sleeping);
+                        this.taskValueStopped.text = safeVal(top.task.stopped);
+                        this.taskValueZombie.text = safeVal(top.task.zombie);
+                    }
 
-            // CPU
-            this.cpuValueUser.text = top.cpu.user.toString();
-            this.cpuValueSystem.text = top.cpu.system.toString();
-            this.cpuValueNi.text = top.cpu.ni.toString();
-            this.cpuValueIdle.text = top.cpu.idle.toString();
-            this.cpuValueHi.text = top.cpu.hi.toString();
-            this.cpuValueSt.text = top.cpu.st.toString();
+                    // CPU
+                    if (top.cpu) {
+                        this.cpuValueUser.text = safeVal(top.cpu.user);
+                        this.cpuValueSystem.text = safeVal(top.cpu.system);
+                        this.cpuValueNi.text = safeVal(top.cpu.ni);
+                        this.cpuValueIdle.text = safeVal(top.cpu.idle);
+                        this.cpuValueHi.text = safeVal(top.cpu.hi);
+                        this.cpuValueSt.text = safeVal(top.cpu.st);
+                    }
 
-            // RAM
-            this.ramValueTotal.text = top.ram.total.toString();
-            this.ramValueFree.text = top.ram.free.toString();
-            this.ramValueUsed.text = top.ram.used.toString();
-            this.ramValueCache.text = top.ram.cache.toString();
+                    // RAM
+                    if (top.ram) {
+                        this.ramValueTotal.text = safeVal(top.ram.total);
+                        this.ramValueFree.text = safeVal(top.ram.free);
+                        this.ramValueUsed.text = safeVal(top.ram.used);
+                        this.ramValueCache.text = safeVal(top.ram.cache);
+                    }
 
-            // SWAP
-            this.swapValueTotal.text = top.swap.total.toString();
-            this.swapValueFree.text = top.swap.free.toString();
-            this.swapValueUsed.text = top.swap.used.toString();
-            this.swapValueAvailable.text = top.swap.avail.toString();
+                    // SWAP
+                    if (top.swap) {
+                        this.swapValueTotal.text = safeVal(top.swap.total);
+                        this.swapValueFree.text = safeVal(top.swap.free);
+                        this.swapValueUsed.text = safeVal(top.swap.used);
+                        this.swapValueAvailable.text = safeVal(top.swap.avail);
+                    }
 
-            // PROCESSES
-            const processes = top.process;
-            for(let row=0; row < this.cfgMaxPidLines; row++)
-            {
-                this.procGrid[row][0].text = parseInt(processes[row].pid).toString();
-                this.procGrid[row][1].text = processes[row].user;
-                this.procGrid[row][2].text = processes[row].pr;
-                this.procGrid[row][3].text = parseInt(processes[row].ni).toString();
-                this.procGrid[row][4].text = parseInt(processes[row].virt).toString();
-                this.procGrid[row][5].text = parseInt(processes[row].res).toString();
-                this.procGrid[row][6].text = parseInt(processes[row].shr).toString();
-                this.procGrid[row][7].text = processes[row].s;
-                this.procGrid[row][8].text = parseFloat(processes[row].cpu).toString();
-                this.procGrid[row][9].text = parseFloat(processes[row].mem).toString();
-                this.procGrid[row][10].text = processes[row].time;
-                this.procGrid[row][11].text = processes[row].command;
+                    // PROCESSES
+                    const processes = top.process || [];
+                    for(let row=0; row < this.cfgMaxPidLines; row++)
+                    {
+                        if (!processes[row]) {
+                            if (this.procGrid[row]) {
+                                for (let col = 0; col <= 11; col++) {
+                                    if (this.procGrid[row][col]) this.procGrid[row][col].text = "";
+                                }
+                            }
+                            continue;
+                        }
+                        if (this.procGrid[row]) {
+                            this.procGrid[row][0].text = safeVal(parseInt(processes[row].pid));
+                            this.procGrid[row][1].text = safeVal(processes[row].user);
+                            this.procGrid[row][2].text = safeVal(processes[row].pr);
+                            this.procGrid[row][3].text = safeVal(parseInt(processes[row].ni));
+                            this.procGrid[row][4].text = safeVal(parseInt(processes[row].virt));
+                            this.procGrid[row][5].text = safeVal(parseInt(processes[row].res));
+                            this.procGrid[row][6].text = safeVal(parseInt(processes[row].shr));
+                            this.procGrid[row][7].text = safeVal(processes[row].s);
+                            this.procGrid[row][8].text = safeVal(parseFloat(processes[row].cpu));
+                            this.procGrid[row][9].text = safeVal(parseFloat(processes[row].mem));
+                            this.procGrid[row][10].text = safeVal(processes[row].time);
+                            this.procGrid[row][11].text = safeVal(processes[row].command);
+                        }
+                    }
+                } catch (e) {
+                    Global.logError("Top Desklet: Error updating UI: " + e);
+                }
             }
-        }
+        });
     },
 
     /**
@@ -526,35 +558,89 @@ TopDesklet.prototype = {
      */
     _refresh() {
         this._updateTop();
-        this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, Lang.bind(this, this._refresh));
+        this.timeout = Mainloop.timeout_add_seconds(this.cfgRefreshRate, this._refresh.bind(this));
     },
 
     /**
      * Desklet event hook.
      */
     on_desklet_removed() {
+        this.removed = true;
         if (this.timeout > 0) {
             Mainloop.source_remove(this.timeout);
         }
     },
 
     /**
-     * Executes `top` command synchronously. Upon success returns the output as a string, otherwise a null.
-     * @return {string | null}
+     * Executes the 'top' command async. Upon success returns the output as a string, otherwise a null.
+     * @param {function(string | null): void} callback
      */
-    getTopOutput() {
-        // Execute the top command.
-        let [ok, output, err, exitStatus] = GLib.spawn_command_line_sync(this.cfgTopCommand);
+    getTopOutput(callback) {
+        try {
+            const command_line = this.cfgTopCommand;
+            const [success, argv] = GLib.shell_parse_argv(command_line);
 
-        // If all is well then return the output from the command as a string.
-        if (ok && output) {
-            return output.toString();
+            if (!success) {
+                throw new Error("Failed to parse command: " + command_line);
+            }
+
+            // Add env to get the result in english
+            let envp = GLib.get_environ();
+            envp = envp.filter(envVar => !envVar.startsWith('LC_ALL='));
+            envp.push('LC_ALL=C');
+
+            let [res, pid, in_fd, out_fd, err_fd] = GLib.spawn_async_with_pipes(
+                null,
+                argv,
+                envp,
+                GLib.SpawnFlags.SEARCH_PATH | GLib.SpawnFlags.DO_NOT_REAP_CHILD,
+                null,
+            );
+
+            GLib.close(in_fd);
+            GLib.close(err_fd);
+
+            GLib.child_watch_add(GLib.PRIORITY_DEFAULT, pid, (pid, status) => {
+                GLib.spawn_close_pid(pid);
+            });
+
+            const outStream = new Gio.DataInputStream({
+                base_stream: new Gio.UnixInputStream({ fd: out_fd })
+            });
+
+            let output = "";
+
+            // Limit output size to prevent memory exhaustion (e.g. 1MB)
+            const MAX_OUTPUT_SIZE = 1024 * 1024;
+
+            const readLine = () => {
+                outStream.read_line_async(GLib.PRIORITY_DEFAULT, null, (stream, res) => {
+                    try {
+                        const [line, length] = stream.read_line_finish_utf8(res);
+                        if (line !== null) {
+                            output += line + '\n';
+                            if (output.length < MAX_OUTPUT_SIZE) {
+                                readLine();
+                            } else {
+                                outStream.close(null);
+                                callback(null);
+                            }
+                        } else {
+                            outStream.close(null);
+                            callback(output);
+                        }
+                    } catch (e) {
+                        Global.logError("Error reading stream: " + e.message);
+                        try { outStream.close(null); } catch(err) {}
+                        callback(null);
+                    }
+                });
+            };
+            readLine();
+        } catch (e) {
+            Global.logError("Error during GLib.spawn_async_with_pipes: " + e.message);
+            callback(null);
         }
-
-        // Log details of the failure.
-        Global.log("`" + this.cfgTopCommand + "` command failure (exit code:" + exitStatus +"): \n" + err.toString());
-
-        return null;
     }
 };
 
