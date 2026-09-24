@@ -1,0 +1,48 @@
+{
+    "cerbo_host": {
+        "type": "entry",
+        "default": "cerbo.local",
+        "description": "Cerbo GX hostname or IP",
+        "tooltip": "The hostname or IP address of your Victron Cerbo GX device"
+    },
+
+    "portal_id": {
+        "type": "entry",
+        "default": "",
+        "description": "VRM Portal ID",
+        "tooltip": "Your Victron VRM Portal ID (found in Cerbo GX settings or VRM portal)"
+    },
+
+    "battery_wh": {
+        "type": "spinbutton",
+        "default": 15000,
+        "min": 100,
+        "max": 500000,
+        "step": 100,
+        "description": "Battery capacity",
+        "units": "Wh",
+        "tooltip": "Total battery capacity in Watt-hours (used for time estimates)"
+    },
+
+    "update_interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "description": "Display refresh interval",
+        "units": "seconds",
+        "tooltip": "How often to repaint the display"
+    },
+
+    "keepalive_interval": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 10,
+        "max": 120,
+        "step": 5,
+        "description": "MQTT keepalive interval",
+        "units": "seconds",
+        "tooltip": "How often to send keepalive to Cerbo GX"
+    }
+}
