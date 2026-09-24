@@ -1,0 +1,56 @@
+/* Main Button (Toggle Shape) */
+.warp-button {
+  border-radius: 20px;
+  padding: 5px 15px;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+  background-gradient-direction: vertical;
+  transition-duration: 300ms;
+}
+
+/* Internal Layout */
+.warp-layout {
+  spacing: 8px;
+}
+
+/* Icon Styling */
+.warp-icon {
+  icon-size: 24px;
+}
+
+/* Label Styling */
+.warp-label {
+  font-weight: bold;
+  font-size: 1.1em;
+  padding-top: 2px;
+}
+
+/* Connected State */
+.warp-connected {
+  background-color: rgba(40, 40, 40, 0.9);
+  border-color: #f38020;
+  color: #f38020; /* Text Color */
+}
+/* Recolor the icon when connected - relies on symbolic icon + css color */
+.warp-connected .warp-icon {
+  color: #f38020;
+}
+
+/* Disconnected State */
+.warp-disconnected {
+  background-color: rgba(40, 40, 40, 0.9);
+  border-color: #666666;
+  color: #aaaaaa;
+}
+.warp-disconnected .warp-icon {
+  color: #aaaaaa;
+}
+
+/* Error State */
+.warp-error {
+  background-color: rgba(217, 48, 37, 0.9);
+  color: #ffffff;
+}
+.warp-error .warp-icon {
+  color: #ffffff;
+}
