@@ -1,0 +1,125 @@
+# Cinnaclock Desklet
+# Copyright (C) 2024
+# DINGO <c.giordano@etik.com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "General"
+
+msgid "Layer 1"
+msgstr "Capa 1"
+
+msgid "Layer 2"
+msgstr "Capa 2"
+
+msgid "Layer 3"
+msgstr "Capa 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "Estil de format"
+
+msgid "Background Style"
+msgstr "Estil de fons"
+
+msgid "Text Style"
+msgstr "Estil de text"
+
+msgid "Shadow"
+msgstr "Ombra"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "Mostra el fons"
+
+msgid "Background Color"
+msgstr "Color de fons"
+
+msgid "Corner Radius"
+msgstr "Radi dels cantons"
+
+msgid "Show Layer 1"
+msgstr "Mostra la Capa 1"
+
+msgid "Show Layer 2"
+msgstr "Mostra la Capa 2"
+
+msgid "Show Layer 3"
+msgstr "Mostra la Capa 3"
+
+msgid "Layer 1 Format"
+msgstr "Format de la Capa 1"
+
+msgid "Layer 2 Format"
+msgstr "Format de la Capa 2"
+
+msgid "Layer 3 Format"
+msgstr "Format de la Capa 3"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "Desplaçament vertical Capa 1"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "Desplaçament vertical Capa 2"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "Desplaçament vertical Capa 3"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "Desplaçament horitzontal Capa 1"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "Desplaçament horitzontal Capa 2"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "Desplaçament horitzontal Capa 3"
+
+msgid "Font"
+msgstr "Tipus de lletra"
+
+msgid "Color"
+msgstr "Color"
+
+msgid "Uppercase"
+msgstr "Majúscules"
+
+msgid "Horizontal offset"
+msgstr "Desplaçament horitzontal"
+
+msgid "Vertical offset"
+msgstr "Desplaçament vertical"
+
+msgid "Blur"
+msgstr "Difuminat"
+
+msgid "Select a Preset"
+msgstr "Selecciona un preajust"
+
+#. settings-schema.json->options
+msgid "Manual"
+msgstr "Manual"
+
+msgid "Modern Blue"
+msgstr "Blau Modern"
+
+msgid "Minimal Dark"
+msgstr "Minimalista Fosc"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "Estableix el color de fons i la transparència"
+
+msgid "Example: %H:%M for 24h"
+msgstr "Exemple: %H:%M per a 24h"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "Edita la configuració"
