@@ -1,0 +1,286 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: workspace-switcher-desklet@mgldvd 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-09-25 03:17+0000\n"
+"PO-Revision-Date: 2026-09-25 03:17+0000\n"
+"Last-Translator: mgldvd\n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. metadata.json->name
+msgid "Workspace Switcher Desklet"
+msgstr "Selector de áreas de trabajo para el escritorio"
+
+#. metadata.json->description
+msgid "One translucent rectangle per workspace on your desktop. Click or scroll to switch. Fully customizable: colors, borders, size, labels, position and multi-monitor."
+msgstr "Un rectángulo translúcido por cada área de trabajo en tu escritorio. Haz clic o usa la rueda del ratón para cambiar. Totalmente personalizable: colores, bordes, tamaño, etiquetas, posición y varios monitores."
+
+#. settings-schema.json->page-layout->title
+msgid "Layout"
+msgstr "Distribución"
+
+#. settings-schema.json->page-rects->title
+msgid "Rectangles"
+msgstr "Rectángulos"
+
+#. settings-schema.json->page-colors->title
+msgid "Colors"
+msgstr "Colores"
+
+#. settings-schema.json->page-label->title
+#. settings-schema.json->sec-label->title
+msgid "Label"
+msgstr "Etiqueta"
+
+#. settings-schema.json->page-behavior->title
+msgid "Behavior"
+msgstr "Comportamiento"
+
+#. settings-schema.json->sec-position->title
+msgid "Screen position"
+msgstr "Posición en la pantalla"
+
+#. settings-schema.json->sec-arrangement->title
+msgid "Arrangement"
+msgstr "Disposición"
+
+#. settings-schema.json->sec-size->title
+msgid "Size"
+msgstr "Tamaño"
+
+#. settings-schema.json->sec-border->title
+#. settings-schema.json->sec-border-colors->title
+msgid "Border"
+msgstr "Borde"
+
+#. settings-schema.json->sec-bg->title
+msgid "Background"
+msgstr "Fondo"
+
+#. settings-schema.json->sec-scroll->title
+msgid "Mouse wheel"
+msgstr "Rueda del ratón"
+
+#. settings-schema.json->monitor->description
+msgid "Monitor"
+msgstr "Monitor"
+
+#. settings-schema.json->monitor->tooltip
+msgid "With Manual position the desklet stays where you drag it; All monitors then copies it to the same spot on every other monitor."
+msgstr "Con la posición Manual, el desklet se queda donde lo arrastres; Todos los monitores lo copia entonces al mismo lugar en cada uno de los demás monitores."
+
+#. settings-schema.json->monitor->options
+msgid "Primary monitor"
+msgstr "Monitor principal"
+
+#. settings-schema.json->monitor->options
+msgid "All monitors"
+msgstr "Todos los monitores"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 1"
+msgstr "Monitor 1"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 2"
+msgstr "Monitor 2"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 3"
+msgstr "Monitor 3"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 4"
+msgstr "Monitor 4"
+
+#. settings-schema.json->position->description
+msgid "Position"
+msgstr "Posición"
+
+#. settings-schema.json->position->options
+msgid "Manual (drag)"
+msgstr "Manual (arrastrar)"
+
+#. settings-schema.json->position->options
+msgid "Top left"
+msgstr "Arriba a la izquierda"
+
+#. settings-schema.json->position->options
+msgid "Top center"
+msgstr "Arriba al centro"
+
+#. settings-schema.json->position->options
+msgid "Top right"
+msgstr "Arriba a la derecha"
+
+#. settings-schema.json->position->options
+msgid "Center left"
+msgstr "Centro a la izquierda"
+
+#. settings-schema.json->position->options
+msgid "Center center"
+msgstr "Centro"
+
+#. settings-schema.json->position->options
+msgid "Center right"
+msgstr "Centro a la derecha"
+
+#. settings-schema.json->position->options
+msgid "Bottom left"
+msgstr "Abajo a la izquierda"
+
+#. settings-schema.json->position->options
+msgid "Bottom center"
+msgstr "Abajo al centro"
+
+#. settings-schema.json->position->options
+msgid "Bottom right"
+msgstr "Abajo a la derecha"
+
+#. settings-schema.json->margin->units
+#. settings-schema.json->spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->border-width->units
+#. settings-schema.json->border-width-active->units
+#. settings-schema.json->border-radius->units
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->margin->description
+msgid "Margin from screen edge"
+msgstr "Margen desde el borde de la pantalla"
+
+#. settings-schema.json->orientation->description
+msgid "Orientation"
+msgstr "Orientación"
+
+#. settings-schema.json->orientation->options
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. settings-schema.json->orientation->options
+msgid "Vertical"
+msgstr "Vertical"
+
+#. settings-schema.json->per-line->description
+msgid "Rectangles per row/column (0 = all in one line)"
+msgstr "Rectángulos por fila/columna (0 = todos en una línea)"
+
+#. settings-schema.json->spacing->description
+msgid "Spacing between rectangles"
+msgstr "Espacio entre rectángulos"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Anchura"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Altura"
+
+#. settings-schema.json->shadow->description
+msgid "Drop shadow"
+msgstr "Sombra"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Grosor del borde"
+
+#. settings-schema.json->border-width-active->description
+msgid "Border width (active workspace)"
+msgstr "Grosor del borde (área de trabajo activa)"
+
+#. settings-schema.json->border-radius->description
+msgid "Corner radius"
+msgstr "Radio de las esquinas"
+
+#. settings-schema.json->bg-color->description
+#. settings-schema.json->border-color->description
+msgid "Normal"
+msgstr "Normal"
+
+#. settings-schema.json->bg-color-hover->description
+#. settings-schema.json->border-color-hover->description
+msgid "Hover"
+msgstr "Al pasar el ratón"
+
+#. settings-schema.json->bg-color-active->description
+#. settings-schema.json->border-color-active->description
+msgid "Active workspace"
+msgstr "Área de trabajo activa"
+
+#. settings-schema.json->label-mode->description
+msgid "Show"
+msgstr "Mostrar"
+
+#. settings-schema.json->label-mode->options
+msgid "Nothing"
+msgstr "Nada"
+
+#. settings-schema.json->label-mode->options
+msgid "Number (1, 2, 3)"
+msgstr "Número (1, 2, 3)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals (I, II, III)"
+msgstr "Números romanos (I, II, III)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals lowercase (i, ii, iii)"
+msgstr "Números romanos en minúsculas (i, ii, iii)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters (A, B, C)"
+msgstr "Letras (A, B, C)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters lowercase (a, b, c)"
+msgstr "Letras en minúsculas (a, b, c)"
+
+#. settings-schema.json->label-mode->options
+msgid "Workspace name"
+msgstr "Nombre del área de trabajo"
+
+#. settings-schema.json->custom-names->description
+msgid "Custom names (workspaces without one use the Cinnamon name)"
+msgstr "Nombres personalizados (las áreas sin nombre usan el de Cinnamon)"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Workspace"
+msgstr "Área de trabajo"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Name"
+msgstr "Nombre"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Tamaño de la letra"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negrita"
+
+#. settings-schema.json->label-color->description
+msgid "Text color"
+msgstr "Color del texto"
+
+#. settings-schema.json->label-color-active->description
+msgid "Text color (active workspace)"
+msgstr "Color del texto (área de trabajo activa)"
+
+#. settings-schema.json->scroll-switch->description
+msgid "Scroll to switch workspace"
+msgstr "Usar la rueda del ratón para cambiar de área de trabajo"
+
+#. settings-schema.json->scroll-wrap->description
+msgid "Wrap around at first/last workspace"
+msgstr "Pasar de la última área de trabajo a la primera y viceversa"

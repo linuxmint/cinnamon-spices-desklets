@@ -1,0 +1,286 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: workspace-switcher-desklet@mgldvd 1.0.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-09-25 03:17+0000\n"
+"PO-Revision-Date: 2026-09-25 03:17+0000\n"
+"Last-Translator: mgldvd\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. metadata.json->name
+msgid "Workspace Switcher Desklet"
+msgstr "Cambio area di lavoro (desklet)"
+
+#. metadata.json->description
+msgid "One translucent rectangle per workspace on your desktop. Click or scroll to switch. Fully customizable: colors, borders, size, labels, position and multi-monitor."
+msgstr "Un rettangolo traslucido per ogni area di lavoro sul tuo desktop. Fai clic o scorri per cambiare. Completamente personalizzabile: colori, bordi, dimensione, etichette, posizione e più monitor."
+
+#. settings-schema.json->page-layout->title
+msgid "Layout"
+msgstr "Disposizione"
+
+#. settings-schema.json->page-rects->title
+msgid "Rectangles"
+msgstr "Rettangoli"
+
+#. settings-schema.json->page-colors->title
+msgid "Colors"
+msgstr "Colori"
+
+#. settings-schema.json->page-label->title
+#. settings-schema.json->sec-label->title
+msgid "Label"
+msgstr "Etichetta"
+
+#. settings-schema.json->page-behavior->title
+msgid "Behavior"
+msgstr "Comportamento"
+
+#. settings-schema.json->sec-position->title
+msgid "Screen position"
+msgstr "Posizione sullo schermo"
+
+#. settings-schema.json->sec-arrangement->title
+msgid "Arrangement"
+msgstr "Organizzazione"
+
+#. settings-schema.json->sec-size->title
+msgid "Size"
+msgstr "Dimensione"
+
+#. settings-schema.json->sec-border->title
+#. settings-schema.json->sec-border-colors->title
+msgid "Border"
+msgstr "Bordo"
+
+#. settings-schema.json->sec-bg->title
+msgid "Background"
+msgstr "Sfondo"
+
+#. settings-schema.json->sec-scroll->title
+msgid "Mouse wheel"
+msgstr "Rotellina del mouse"
+
+#. settings-schema.json->monitor->description
+msgid "Monitor"
+msgstr "Monitor"
+
+#. settings-schema.json->monitor->tooltip
+msgid "With Manual position the desklet stays where you drag it; All monitors then copies it to the same spot on every other monitor."
+msgstr "Con la posizione Manuale il desklet resta dove lo trascini; «Tutti i monitor» lo copia poi nello stesso punto su ogni altro monitor."
+
+#. settings-schema.json->monitor->options
+msgid "Primary monitor"
+msgstr "Monitor primario"
+
+#. settings-schema.json->monitor->options
+msgid "All monitors"
+msgstr "Tutti i monitor"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 1"
+msgstr "Monitor 1"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 2"
+msgstr "Monitor 2"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 3"
+msgstr "Monitor 3"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 4"
+msgstr "Monitor 4"
+
+#. settings-schema.json->position->description
+msgid "Position"
+msgstr "Posizione"
+
+#. settings-schema.json->position->options
+msgid "Manual (drag)"
+msgstr "Manuale (trascina)"
+
+#. settings-schema.json->position->options
+msgid "Top left"
+msgstr "In alto a sinistra"
+
+#. settings-schema.json->position->options
+msgid "Top center"
+msgstr "In alto al centro"
+
+#. settings-schema.json->position->options
+msgid "Top right"
+msgstr "In alto a destra"
+
+#. settings-schema.json->position->options
+msgid "Center left"
+msgstr "Al centro a sinistra"
+
+#. settings-schema.json->position->options
+msgid "Center center"
+msgstr "Al centro"
+
+#. settings-schema.json->position->options
+msgid "Center right"
+msgstr "Al centro a destra"
+
+#. settings-schema.json->position->options
+msgid "Bottom left"
+msgstr "In basso a sinistra"
+
+#. settings-schema.json->position->options
+msgid "Bottom center"
+msgstr "In basso al centro"
+
+#. settings-schema.json->position->options
+msgid "Bottom right"
+msgstr "In basso a destra"
+
+#. settings-schema.json->margin->units
+#. settings-schema.json->spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->border-width->units
+#. settings-schema.json->border-width-active->units
+#. settings-schema.json->border-radius->units
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->margin->description
+msgid "Margin from screen edge"
+msgstr "Margine dal bordo dello schermo"
+
+#. settings-schema.json->orientation->description
+msgid "Orientation"
+msgstr "Orientamento"
+
+#. settings-schema.json->orientation->options
+msgid "Horizontal"
+msgstr "Orizzontale"
+
+#. settings-schema.json->orientation->options
+msgid "Vertical"
+msgstr "Verticale"
+
+#. settings-schema.json->per-line->description
+msgid "Rectangles per row/column (0 = all in one line)"
+msgstr "Rettangoli per riga/colonna (0 = tutti su una linea)"
+
+#. settings-schema.json->spacing->description
+msgid "Spacing between rectangles"
+msgstr "Spaziatura tra i rettangoli"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Larghezza"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Altezza"
+
+#. settings-schema.json->shadow->description
+msgid "Drop shadow"
+msgstr "Ombra"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Spessore del bordo"
+
+#. settings-schema.json->border-width-active->description
+msgid "Border width (active workspace)"
+msgstr "Spessore del bordo (area di lavoro attiva)"
+
+#. settings-schema.json->border-radius->description
+msgid "Corner radius"
+msgstr "Raggio degli angoli"
+
+#. settings-schema.json->bg-color->description
+#. settings-schema.json->border-color->description
+msgid "Normal"
+msgstr "Normale"
+
+#. settings-schema.json->bg-color-hover->description
+#. settings-schema.json->border-color-hover->description
+msgid "Hover"
+msgstr "Al passaggio del mouse"
+
+#. settings-schema.json->bg-color-active->description
+#. settings-schema.json->border-color-active->description
+msgid "Active workspace"
+msgstr "Area di lavoro attiva"
+
+#. settings-schema.json->label-mode->description
+msgid "Show"
+msgstr "Visualizza"
+
+#. settings-schema.json->label-mode->options
+msgid "Nothing"
+msgstr "Nulla"
+
+#. settings-schema.json->label-mode->options
+msgid "Number (1, 2, 3)"
+msgstr "Numero (1, 2, 3)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals (I, II, III)"
+msgstr "Numeri romani (I, II, III)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals lowercase (i, ii, iii)"
+msgstr "Numeri romani minuscoli (i, ii, iii)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters (A, B, C)"
+msgstr "Lettere (A, B, C)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters lowercase (a, b, c)"
+msgstr "Lettere minuscole (a, b, c)"
+
+#. settings-schema.json->label-mode->options
+msgid "Workspace name"
+msgstr "Nome dell'area di lavoro"
+
+#. settings-schema.json->custom-names->description
+msgid "Custom names (workspaces without one use the Cinnamon name)"
+msgstr "Nomi personalizzati (le aree senza nome usano quello di Cinnamon)"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Workspace"
+msgstr "Area di lavoro"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Name"
+msgstr "Nome"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Dimensione dei caratteri"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Grassetto"
+
+#. settings-schema.json->label-color->description
+msgid "Text color"
+msgstr "Colore del testo"
+
+#. settings-schema.json->label-color-active->description
+msgid "Text color (active workspace)"
+msgstr "Colore del testo (area di lavoro attiva)"
+
+#. settings-schema.json->scroll-switch->description
+msgid "Scroll to switch workspace"
+msgstr "Scorri per cambiare area di lavoro"
+
+#. settings-schema.json->scroll-wrap->description
+msgid "Wrap around at first/last workspace"
+msgstr "Passa dall'ultima alla prima area di lavoro e viceversa"
