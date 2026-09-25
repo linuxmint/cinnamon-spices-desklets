@@ -1,7 +1,7 @@
 {
     "name": "Workspace Switcher Desklet",
     "description": "One translucent rectangle per workspace on your desktop. Click or scroll to switch. Fully customizable: colors, borders, size, labels, position and multi-monitor.",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "uuid": "workspace-switcher-desklet@mgldvd",
     "author": "mgldvd",
     "max-instances": 10
