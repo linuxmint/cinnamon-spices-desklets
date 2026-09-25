@@ -3,9 +3,26 @@ const Main = imports.ui.main;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
+const GLib = imports.gi.GLib;
 const Clutter = imports.gi.Clutter;
+const Gettext = imports.gettext;
+
+const UUID = "workspace-switcher-desklet@mgldvd";
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
+
+function _(str) {
+    return Gettext.dgettext(UUID, str);
+}
 
 const wm = global.workspace_manager;
+
+// Touchpad scrolling: switch once the deltas add up to this (1 = one wheel notch),
+// then ignore the rest of the swipe for SCROLL_COOLDOWN ms so one swipe doesn't
+// fly through every workspace. A pause longer than SCROLL_GESTURE_GAP ms starts
+// a new gesture.
+const SCROLL_THRESHOLD = 1;
+const SCROLL_COOLDOWN = 250;
+const SCROLL_GESTURE_GAP = 150;
 
 // setting key -> property name; all of these just restyle/rebuild the rectangles
 const STYLE_KEYS = [
@@ -52,6 +69,14 @@ class WorkspacesDesklet extends Desklet.Desklet {
 
         this._pressed = -1;
         this._home = -1;
+        this._destroyed = false;
+        this._scrollDelta = 0;
+        this._scrollTime = 0;
+        this._scrollBlockedUntil = 0;
+
+        // [object, handler id] for every signal on an object that outlives us.
+        this._connections = [];
+
         this._box = new St.BoxLayout({ reactive: true });
         this._box.connect("scroll-event", (actor, event) => this._onScroll(event));
         this.setContent(this._box);
@@ -71,7 +96,7 @@ class WorkspacesDesklet extends Desklet.Desklet {
             this._activate(i);
             return Clutter.EVENT_STOP;
         });
-        this._draggable.connect("drag-begin", () => { this._pressed = -1; });
+        this._connect(this._draggable, "drag-begin", () => { this._pressed = -1; });
 
         this.settings = new Settings.DeskletSettings(this, metadata.uuid, deskletId);
         STYLE_KEYS.forEach(key => this.settings.bind(key, camel(key), () => this._rebuild()));
@@ -84,23 +109,46 @@ class WorkspacesDesklet extends Desklet.Desklet {
 
         // Follow renames done in Cinnamon itself (used when no custom name is set).
         this._wmPrefs = new Gio.Settings({ schema_id: "org.cinnamon.desktop.wm.preferences" });
-        this._wmPrefsSignal = this._wmPrefs.connect("changed::workspace-names", () => this._updateAll());
+        this._connect(this._wmPrefs, "changed::workspace-names", () => this._updateAll());
 
-        this._signals = [
-            wm.connect("workspace-added", () => this._rebuild()),
-            wm.connect("workspace-removed", () => this._rebuild()),
-            wm.connect("active-workspace-changed", () => this._updateAll())
-        ];
-        this._displaySignal = global.display.connect("workareas-changed", () => this._reposition());
-        this._monitorsSignal = Main.layoutManager.connect("monitors-changed", () => this._rebuild());
-        this._actorSignals = [
-            this.actor.connect("notify::width", () => this._reposition()),
-            this.actor.connect("notify::height", () => this._reposition()),
-            this.actor.connect("notify::x", () => this._onMoved()),
-            this.actor.connect("notify::y", () => this._onMoved())
-        ];
+        this._connect(wm, "workspace-added", () => this._rebuild());
+        this._connect(wm, "workspace-removed", () => this._rebuild());
+        this._connect(wm, "active-workspace-changed", () => this._updateAll());
+        this._connect(global.display, "workareas-changed", () => this._reposition());
+        this._connect(Main.layoutManager, "monitors-changed", () => {
+            this._updateMonitorOptions();
+            this._rebuild();
+        });
+        this._connect(this.actor, "notify::width", () => this._reposition());
+        this._connect(this.actor, "notify::height", () => this._reposition());
+        this._connect(this.actor, "notify::x", () => this._onMoved());
+        this._connect(this.actor, "notify::y", () => this._onMoved());
 
+        this._updateMonitorOptions();
         this._rebuild();
+    }
+
+    _connect(object, signal, callback) {
+        this._connections.push([object, object.connect(signal, callback)]);
+    }
+
+    // The schema can only list a fixed set of monitors, so offer one entry
+    // per monitor that is actually connected. The current choice is kept even
+    // while its monitor is unplugged, so the combobox doesn't go blank.
+    _updateMonitorOptions() {
+        let options = {};
+        options[_("Primary monitor")] = "primary";
+        options[_("All monitors")] = "all";
+
+        let n = Main.layoutManager.monitors.length;
+        let current = parseInt(this.monitor);
+        let count = Math.max(n, isNaN(current) ? 0 : current + 1);
+        for (let i = 0; i < count; i++)
+            options[_("Monitor") + " " + (i + 1)] = String(i);
+
+        // setOptions() rewrites the config file every time, so skip it when nothing changed.
+        if (JSON.stringify(options) !== JSON.stringify(this.settings.getOptions("monitor")))
+            this.settings.setOptions("monitor", options);
     }
 
     // Monitor indices to show on; the first is where the desklet itself goes,
@@ -108,9 +156,12 @@ class WorkspacesDesklet extends Desklet.Desklet {
     _targetMonitors() {
         let n = Main.layoutManager.monitors.length;
         let all = [...Array(n).keys()];
+        let primary = Main.layoutManager.primaryIndex;
+        let chosen = parseInt(this.monitor);
+        // A monitor that isn't connected (any more) falls back to the primary one.
         let wanted = this.monitor === "all" ? all
-                   : this.monitor === "primary" ? [Main.layoutManager.primaryIndex]
-                   : [Math.min(parseInt(this.monitor), n - 1)];
+                   : chosen >= 0 && chosen < n ? [chosen]
+                   : [primary];
 
         // In manual mode the desklet stays on whatever monitor it was dragged to.
         if (this.position === "manual") {
@@ -129,6 +180,7 @@ class WorkspacesDesklet extends Desklet.Desklet {
     }
 
     _rebuild() {
+        if (this._destroyed) return;
         let monitors = this._targetMonitors();
         this._home = monitors[0];
 
@@ -200,11 +252,13 @@ class WorkspacesDesklet extends Desklet.Desklet {
     }
 
     _updateAll() {
+        if (this._destroyed) return;
         [this._box].concat(this._clones).forEach(box =>
             box._rects.forEach((rect, i) => this._styleRect(rect, i)));
     }
 
     _styleRect(rect, i) {
+        if (this._destroyed) return;
         let active = i === wm.get_active_workspace_index();
         let hover = rect.hover && !active;
 
@@ -253,13 +307,23 @@ class WorkspacesDesklet extends Desklet.Desklet {
     }
 
     _onScroll(event) {
-        if (!this.scrollSwitch) return Clutter.EVENT_PROPAGATE;
+        if (!this.scrollSwitch || this._destroyed) return Clutter.EVENT_PROPAGATE;
 
         let dir = event.get_scroll_direction();
         let step;
-        if (dir === Clutter.ScrollDirection.UP || dir === Clutter.ScrollDirection.LEFT) step = -1;
-        else if (dir === Clutter.ScrollDirection.DOWN || dir === Clutter.ScrollDirection.RIGHT) step = 1;
-        else return Clutter.EVENT_PROPAGATE;
+        if (dir === Clutter.ScrollDirection.SMOOTH) {
+            step = this._smoothStep(event);
+            if (step === 0) return Clutter.EVENT_STOP;
+        } else if (event.is_pointer_emulated()) {
+            // A wheel step emulated from smooth scrolling, already handled above.
+            return Clutter.EVENT_STOP;
+        } else if (dir === Clutter.ScrollDirection.UP || dir === Clutter.ScrollDirection.LEFT) {
+            step = -1;
+        } else if (dir === Clutter.ScrollDirection.DOWN || dir === Clutter.ScrollDirection.RIGHT) {
+            step = 1;
+        } else {
+            return Clutter.EVENT_PROPAGATE;
+        }
 
         let n = wm.get_n_workspaces();
         let target = wm.get_active_workspace_index() + step;
@@ -268,6 +332,24 @@ class WorkspacesDesklet extends Desklet.Desklet {
 
         this._activate(target);
         return Clutter.EVENT_STOP;
+    }
+
+    // Adds up touchpad deltas; returns -1 or 1 when it's time to switch, else 0.
+    _smoothStep(event) {
+        let [dx, dy] = event.get_scroll_delta();
+        let time = event.get_time();
+
+        if (time - this._scrollTime > SCROLL_GESTURE_GAP) this._scrollDelta = 0;
+        this._scrollTime = time;
+        if (time < this._scrollBlockedUntil) return 0;
+
+        this._scrollDelta += Math.abs(dx) > Math.abs(dy) ? dx : dy;
+        if (Math.abs(this._scrollDelta) < SCROLL_THRESHOLD) return 0;
+
+        let step = Math.sign(this._scrollDelta);
+        this._scrollDelta = 0;
+        this._scrollBlockedUntil = time + SCROLL_COOLDOWN;
+        return step;
     }
 
     // Top-left corner for the desklet actor at the configured position on a monitor.
@@ -289,7 +371,7 @@ class WorkspacesDesklet extends Desklet.Desklet {
     _reposition() {
         // Sizes aren't known until the desklet is on stage; the first
         // allocation after that (notify::width/height) calls us again.
-        if (!this.position || !this.actor.get_stage()) return;
+        if (this._destroyed || !this.position || !this.actor.get_stage()) return;
         if (this.position !== "manual" && this._home >= 0) {
             let [x, y] = this._place(this._home);
             this.actor.set_position(x, y);
@@ -298,7 +380,7 @@ class WorkspacesDesklet extends Desklet.Desklet {
     }
 
     _onMoved() {
-        if (this.position !== "manual") return;
+        if (this._destroyed || this.position !== "manual") return;
         // Dragged onto another monitor: the set of monitors needing clones changed.
         if (this._actorMonitor() !== this._home) this._rebuild();
         else this._placeClones();
@@ -330,23 +412,29 @@ class WorkspacesDesklet extends Desklet.Desklet {
         });
     }
 
+    // Cinnamon calls destroy() right away but on_desklet_removed() only after
+    // the fade-out, by which time a reload has already built the new instance
+    // with the same settings id. Cleaning up here, before the fade, keeps
+    // settings.finalize() from unregistering the new instance's settings.
+    destroy(deleteConfig) {
+        this._cleanup();
+        super.destroy(deleteConfig);
+    }
+
     on_desklet_removed() {
-        this._signals.forEach(id => wm.disconnect(id));
-        this._actorSignals.forEach(id => this.actor.disconnect(id));
-        global.display.disconnect(this._displaySignal);
-        Main.layoutManager.disconnect(this._monitorsSignal);
-        this._wmPrefs.disconnect(this._wmPrefsSignal);
+        this._cleanup();
+    }
+
+    _cleanup() {
+        if (this._destroyed) return;
+        this._destroyed = true;
+
+        this._connections.forEach(([object, id]) => object.disconnect(id));
+        this._connections = [];
         this._clones.forEach(clone => clone.destroy());
         this._clones = [];
-
-        // On reload Cinnamon builds the new instance before this runs (after a
-        // fade-out), and both share the same settings id, so finalize() would
-        // unregister the new instance's settings. Put them back if so.
-        let registry = Main.settingsManager.uuids[this.metadata.uuid];
-        let current = registry && registry[this.settings.instanceId];
-        this.settings.finalize();
-        if (current && current !== this.settings)
-            registry[this.settings.instanceId] = current;
+        this._wmPrefs = null;
+        if (this.settings) this.settings.finalize();
     }
 }
 
