@@ -15,7 +15,7 @@
         "general-section": {
             "type": "section",
             "title": "General",
-            "keys": ["type", "filesystem", "onclick-action", "size-prefix", "size-fraction-digits", "reserved-blocks-as-used-space"]
+            "keys": ["type", "filesystem", "show-raid-status", "onclick-action", "size-prefix", "size-fraction-digits", "reserved-blocks-as-used-space"]
         },
         "design-section": {
             "type": "section",
@@ -56,6 +56,12 @@
         "tooltip": "Select the file system, which you want to monitor.",
         "allow-none" : true,
         "select-dir" : true
+    },
+    "show-raid-status": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Show RAID / ZFS status",
+        "tooltip": "Automatically detect and display RAID/ZFS status if the filesystem is on MD RAID or ZFS."
     },
     "onclick-action": {
         "type": "combobox",
