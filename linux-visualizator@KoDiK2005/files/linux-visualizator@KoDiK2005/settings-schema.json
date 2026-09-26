@@ -1,0 +1,198 @@
+{
+    "head0": {
+        "type": "header",
+        "description": "Linux Visualizator"
+    },
+    "refresh-interval": {
+        "type": "spinbutton",
+        "default": 1000,
+        "min": 200,
+        "max": 5000,
+        "step": 100,
+        "unit": "ms",
+        "description": "Refresh interval",
+        "tooltip": "How often to poll system metrics."
+    },
+    "background-opacity": {
+        "type": "spinbutton",
+        "default": 205,
+        "min": 40,
+        "max": 255,
+        "step": 5,
+        "description": "Background opacity",
+        "tooltip": "0 is nearly transparent, 255 is fully opaque."
+    },
+    "click-command": {
+        "type": "entry",
+        "default": "gnome-system-monitor",
+        "description": "Click command",
+        "tooltip": "Launched on left-click on the desklet. Leave empty to disable."
+    },
+    "ui-scale": {
+        "type": "spinbutton",
+        "default": 100,
+        "min": 75,
+        "max": 150,
+        "step": 5,
+        "unit": "%",
+        "description": "Interface scale",
+        "tooltip": "Size of rings/bars/fonts relative to the default."
+    },
+    "panel-order": {
+        "type": "entry",
+        "default": "cpu,mem,net,disk",
+        "description": "Section order",
+        "tooltip": "Comma-separated: cpu,mem,net,disk. Omitted sections are appended at the end."
+    },
+    "warn-threshold": {
+        "type": "spinbutton",
+        "default": 70,
+        "min": 1,
+        "max": 99,
+        "step": 1,
+        "unit": "%",
+        "description": "Warning threshold",
+        "tooltip": "Above this percentage, indicators turn yellow."
+    },
+    "bad-threshold": {
+        "type": "spinbutton",
+        "default": 90,
+        "min": 2,
+        "max": 100,
+        "step": 1,
+        "unit": "%",
+        "description": "Critical threshold",
+        "tooltip": "Above this percentage, indicators turn red."
+    },
+
+    "head-theme": {
+        "type": "header",
+        "description": "Color theme"
+    },
+    "accent-cpu": {
+        "type": "colorchooser",
+        "default": "rgb(79,195,247)",
+        "description": "CPU color"
+    },
+    "accent-mem": {
+        "type": "colorchooser",
+        "default": "rgb(129,199,132)",
+        "description": "RAM color"
+    },
+    "accent-net": {
+        "type": "colorchooser",
+        "default": "rgb(255,183,77)",
+        "description": "Network color",
+        "tooltip": "The \"sent\" line is drawn in a lighter shade of this color."
+    },
+    "accent-disk": {
+        "type": "colorchooser",
+        "default": "rgb(186,104,200)",
+        "description": "Disk color",
+        "tooltip": "The \"write\" line is drawn in a lighter shade of this color."
+    },
+    "accent-gpu": {
+        "type": "colorchooser",
+        "default": "rgb(77,208,225)",
+        "description": "GPU color"
+    },
+
+    "head-cpu": {
+        "type": "header",
+        "description": "Processor"
+    },
+    "show-cpu": {
+        "type": "switch",
+        "default": true,
+        "description": "Show CPU"
+    },
+    "cpu-view": {
+        "type": "combobox",
+        "default": "rings",
+        "options": {
+            "Rings per core": "rings",
+            "Bars per core": "bars",
+            "Overall load graph": "graph"
+        },
+        "description": "CPU display mode",
+        "tooltip": "How to display processor load.",
+        "dependency": "show-cpu"
+    },
+    "show-cpu-freq": {
+        "type": "switch",
+        "default": true,
+        "description": "Show CPU frequency",
+        "dependency": "show-cpu"
+    },
+    "show-cpu-temp": {
+        "type": "switch",
+        "default": true,
+        "description": "Show CPU temperature (if available)",
+        "dependency": "show-cpu"
+    },
+
+    "head-mem": {
+        "type": "header",
+        "description": "Memory"
+    },
+    "show-mem": {
+        "type": "switch",
+        "default": true,
+        "description": "Show RAM/Swap"
+    },
+
+    "head-net": {
+        "type": "header",
+        "description": "Network"
+    },
+    "show-net": {
+        "type": "switch",
+        "default": true,
+        "description": "Show network"
+    },
+    "network-interface": {
+        "type": "entry",
+        "default": "",
+        "description": "Network interfaces",
+        "tooltip": "For example, wlan0 or enp3s0,wlan0 (comma-separated). Leave empty to sum all interfaces except lo.",
+        "dependency": "show-net"
+    },
+    "net-unit": {
+        "type": "combobox",
+        "default": "bytes",
+        "options": {
+            "Bytes (KB/s)": "bytes",
+            "Bits (Kb/s)": "bits"
+        },
+        "description": "Network units",
+        "dependency": "show-net"
+    },
+
+    "head-disk": {
+        "type": "header",
+        "description": "Disks"
+    },
+    "show-disk": {
+        "type": "switch",
+        "default": true,
+        "description": "Show disks"
+    },
+    "disk-filter": {
+        "type": "entry",
+        "default": "",
+        "description": "Disk partitions",
+        "tooltip": "Comma-separated mount point substrings, e.g.: /, /home. Leave empty to show all.",
+        "dependency": "show-disk"
+    },
+
+    "head-gpu": {
+        "type": "header",
+        "description": "Graphics card"
+    },
+    "show-gpu": {
+        "type": "switch",
+        "default": true,
+        "description": "Show GPU (if detected)",
+        "tooltip": "Supports NVIDIA (nvidia-smi) and AMD (amdgpu). If no GPU is recognized, the section is hidden automatically."
+    }
+}
