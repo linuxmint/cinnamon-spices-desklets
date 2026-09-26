@@ -30,7 +30,8 @@
         "tooltip": "Select the CPU variable to monitor.",
         "options" : {
             "Usage"  : "usage",
-            "Temperature" : "temperature"
+            "Temperature" : "temperature",
+            "Fan" : "fan"
         },
         "dependency": "type=cpu"
     },
@@ -95,6 +96,13 @@
         "default": "",
         "description": "Network interface to monitor",
         "tooltip": "Leave empty to monitor all interfaces combined. Examples: eth0, wlan0, enp0s3",
+        "dependency": "type=network"
+    },
+    "network-label": {
+        "type": "entry",
+        "default": "",
+        "description": "Network label",
+        "tooltip": "Empty uses the network interface name or 'Network' if monitoring all interfaces.",
         "dependency": "type=network"
     },
     "battery-name": {

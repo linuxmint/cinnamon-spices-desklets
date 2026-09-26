@@ -2,141 +2,216 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Util = imports.misc.util;
-const Cinnamon = imports.gi.Cinnamon;
 const Lang = imports.lang;
 const Mainloop = imports.mainloop;
-const Main = imports.ui.main;
 const Clutter = imports.gi.Clutter;
-const GdkPixbuf = imports.gi.GdkPixbuf;
-const Cogl = imports.gi.Cogl;
-const Gio = imports.gi.Gio;
+const Cairo = imports.gi.cairo;
+const Settings = imports.ui.settings;
 
-const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta["temperature@india"].path;
-
+const UUID = "temperature@india";
 
 function MyDesklet(metadata, desklet_id) {
-	this._init(metadata, desklet_id);
+    this._init(metadata, desklet_id);
 }
-
-function main(metadata, desklet_id) {
-	return new MyDesklet(metadata, desklet_id);
-}
-
-function getImageAtScale(imageFileName, width, height, width2 = 0, height2 = 0) {
-	if (width2 == 0 || height2 == 0) {
-		width2 = width;
-		height2 = height;
-	}
-
-	let pixBuf = GdkPixbuf.Pixbuf.new_from_file_at_size(imageFileName, width, height);
-	let image = new Clutter.Image();
-	image.set_data(
-		pixBuf.get_pixels(),
-		pixBuf.get_has_alpha() ? Cogl.PixelFormat.RGBA_8888 : Cogl.PixelFormat.RGBA_888,
-		width, height,
-		pixBuf.get_rowstride()
-	);
-
-	let actor = new Clutter.Actor({width: width2, height: height2});
-	actor.set_content(image);
-
-	return actor;
-}
-
-
-const Thermal = function() {
-    this._init.apply(this, arguments);
-};
-
-Thermal.prototype = {
-    _init: function(sensorFile) {
-		this.file = sensorFile;
-        this.degrees = 0;
-        this.info = "N/A";
-
-	},
-
-	refresh: function() {
-        if(GLib.file_test(this.file, 1<<4)){
-            let t_str = Cinnamon.get_file_contents_utf8_sync(this.file).split("\n")[0];
-            this.degrees = parseInt(t_str) / 1000;
-            this.info = this.degrees + "°C";
-        }
-        else
-            global.logError("error reading: " + this.file);
-    }
-}
-
 
 MyDesklet.prototype = {
-	__proto__: Desklet.Desklet.prototype,
+    __proto__: Desklet.Desklet.prototype,
 
-	_init: function(metadata, desklet_id) {
-		Desklet.Desklet.prototype._init.call(this, metadata);
-		this.thermal = new Thermal("/sys/devices/virtual/thermal/thermal_zone0/temp");
-		this.setupUI();
-	},
+    _init: function(metadata, desklet_id) {
+        Desklet.Desklet.prototype._init.call(this, metadata);
+        
+        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "text-size", "text_size", this.on_setting_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "scale-size", "scale_size", this.on_setting_changed, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "update-interval", "update_interval", this.on_setting_changed, null);
 
-	setupUI: function() {
+        this.sensorsData = [];
+        this.sensorsPath = '/usr/bin/sensors';
 
-		// load images and set initial sizes
-		this.refreshDesklet(true);
+        let desklet_path = GLib.get_user_data_dir() + "/cinnamon/desklets/" + this.metadata["uuid"];
+        this.img_path = desklet_path + "/img/thermometer.svg";
+        this.mercury_img_path = desklet_path + "/img/mercury.svg"; 
+        
+        this.mainContainer = new St.Widget({ 
+            style: `background-image: url('${this.img_path}'); 
+                    background-size: 50px 500px; 
+                    background-repeat: no-repeat; 
+                    background-position: 0px 0px; 
+                    background-color: transparent;`,
+            layout_manager: new Clutter.BinLayout() 
+        });
+        
+        // Create the Mercury Widget
+        this.mercuryWidget = new St.Widget({
+            style: `background-image: url('${this.mercury_img_path}');
+                    background-size: 3px 500px;
+                    background-position: 0px 0px;
+                    background-repeat: no-repeat;`
+        });
+        
+        this.setContent(this.mainContainer);
 
-		// set root element
-		this.setContent(this.battery);
-		this.setHeader("Thermometer");
-		// start update cycle
-		this.update();
-	},
+        Util.spawn_async(['which', 'sensors'], (ret) => {
+            if (ret && ret.toString().trim() !== "") {
+                this.sensorsPath = ret.toString().split('\n', 1)[0].trim();
+                this.updateTemperature();
+            }
+        });
+    },
 
-	update: function() {
-		this.thermal.refresh();
-		this.refreshDesklet();
-		// update again in two seconds
-		this.timeout = Mainloop.timeout_add_seconds(1, Lang.bind(this, this.update));
-	},
+    on_setting_changed: function() {
+        this.updateTemperature();
+    },
 
-	refreshDesklet: function(forceRefresh = false) {
+    updateTemperature: function() {
+        if (this.sensorsPath) {
+            Util.spawn_async([this.sensorsPath], (output) => {
+                if (output) {
+                    this._parseAllSensors(output.toString());
+                }
+            });
+        }
+        
+        if (this.timeoutId) Mainloop.source_remove(this.timeoutId);
+        this.timeoutId = Mainloop.timeout_add_seconds(
+            this.update_interval || 2, 
+            () => this.updateTemperature()
+        );
+    },
 
-			// calc new sizes based on scale factor
-			let batteryWidth = 50;
-			let batteryHeight = 500;
-			let segmentHeight = 360;
-			let segmentWidth = 3;
-			let segmentHeightCalc = segmentHeight * (20+parseInt(this.thermal.info))/120 ;
+    _parseAllSensors: function(text) {
+        let regex = /([^:\n]+):\s+\+?(\d+\.\d+)°C/g;
+        let match;
+        let newData = [];
+        while ((match = regex.exec(text)) !== null) {
+            let label = match[1].trim();
+            let icon = "🌡️";
+            if (label.toLowerCase().includes("core")) icon = "⚡"; 
+            else if (label.toLowerCase().includes("gpu")) icon = "🔥"; 
+            
+            newData.push({ 
+                label: label, 
+                icon: icon,
+                temp: Math.round(parseFloat(match[2])) 
+            });
+        }
+        this.sensorsData = newData;
+        this.refreshUI();
+    },
+    
+	refreshUI: function() {
+        this.mainContainer.destroy_all_children();
+        
+        let scale = this.scale_size || 1.0;
+        let maxHeight = 400 * scale; 
+        let width = 250 * scale;
+        let fontSize = this.text_size || 14;
+        let fontColor = this.text_color || 'white';
+        let upperOffset = 30;
+        let startY = 30; 
+        let scaleX = 50 * scale; 
 
-			// set images
-			let bar_img = "mercury.svg";
-			this.bg_img = "thermometer.svg";
+        this.mainContainer.set_size(width, maxHeight+100);
 
-			// create battery background
-			this.battery = getImageAtScale(DESKLET_ROOT + "/img/" + this.bg_img, batteryWidth, batteryHeight);
+        // Draw Scale Markings (0 to 100)
+        for (let i = 0; i <= 100; i += 10) {
+            let yPos = upperOffset + (maxHeight * (100 - i)/100);
+            let markLabel = new St.Label({ 
+                text: i.toString(), 
+                style: `font-size: ${10 * scale}px; color: rgba(0,0,0,1); font-weight: bold;` 
+            });
+            this.mainContainer.add_actor(markLabel);
+            markLabel.set_position(30, yPos);
+        }
+        
+        // Draw Sensor Pointers
+        for (let sensor of this.sensorsData) {
+            let row = new St.BoxLayout({ vertical: false, style: "align-items: center;" });
+            let percentage = Math.min(Math.max(sensor.temp, 0), 100) / 100;
+            let yPos = startY + maxHeight*(1-percentage);
 
-			// create segment = variable width bar (indicates capacity)
-			this.segment = getImageAtScale(DESKLET_ROOT + "/img/" + bar_img, segmentWidth, segmentHeight, segmentWidth, segmentHeightCalc);
-			this.segment.set_position(23,40+segmentHeight - segmentHeightCalc);
+            let arrowCanvas = new Clutter.Canvas();
+            arrowCanvas.set_size(30 * scale, 15 * scale);
+            arrowCanvas.connect('draw', (canvas, cr, w, h) => {
+                this._drawVibrantPointer(cr, w, h, sensor.temp, scale);
+            });
+            let arrowActor = new Clutter.Actor({ width: 30 * scale, height: 15 * scale });
+            arrowActor.set_content(arrowCanvas);
+            arrowCanvas.invalidate();
 
-			// container for subelements (icon, label)
-			this.container = new St.Group();
+            let contentLabel = new St.Label({ 
+                text: `${sensor.icon} ${sensor.temp}° ${sensor.label}`, 
+                style: `font-size: ${fontSize}px; color: ${fontColor}; font-weight: bold;` 
+            });
+            contentLabel.set_size(300,20);
+            //arrowActor.set_size(30,15);
+            row.add_actor(arrowActor);
+            row.add_actor(contentLabel);
 
+            row.set_position(scaleX, yPos);
+            this.mainContainer.add_actor(row);
+        }
+        // Calculate Tctl Mercury Logic
+        let tctlSensor = this.sensorsData.find(s => s.label === "Tctl") || { temp: 0 };
+        let mercuryPercentage = Math.min(Math.max(tctlSensor.temp, 0), 100) / 100;
+        
+        let mercuryWidth = 3 * scale; 
+        //let mercuryX = 32 * scale; // Tweak this to move left/right into the tube
+        let mercuryFillHeight = mercuryPercentage * maxHeight;
+        let mercuryY = upperOffset + maxHeight - mercuryFillHeight;
+	
+	let thermo_height = 500 * scale;
+        let thermo_width = 50 * scale;
+        this.mainContainer.set_size(thermo_width, thermo_height);
+       	this.mainContainer.set_style(`
+        	background-image: url('${this.img_path}'); 
+                background-size: ${thermo_width}px ${thermo_height}px; 
+                background-repeat: no-repeat; 
+                background-position: bottom; 
+                `);
+        
+        // Setup Mercury Widget
+        this.mercuryWidget.set_size(mercuryWidth, mercuryFillHeight);
+        this.mercuryWidget.set_position(23*scale, mercuryY);
+        this.mercuryWidget.set_style(`
+            background-image: url('${this.mercury_img_path}');
+            background-size: ${mercuryWidth}px ${mercuryFillHeight}px;
+            background-position: bottom;
+            background-repeat: no-repeat;
+        `);
+        
+        // Insert at index 0 to ensure it is the BOTTOM layer
+        this.mainContainer.insert_child_at_index(this.mercuryWidget, 0);
 
-			// label for percent string
-			this.labelText = new St.Label({style_class:"text"});
-			this.labelText.set_text(parseInt(this.thermal.info)+"°C");
-			this.labelText.style = "font-size:10px;"
-			this.labelText.set_position(10,510);
+        
+    },
 
-			// add actor
-			this.battery.remove_all_children();
-			this.battery.add_actor(this.segment);
-			this.battery.add_actor(this.labelText);
-			this.setContent(this.battery);
+    _drawVibrantPointer: function(cr, width, height, temp, scale) {
+        cr.save();
+        cr.setOperator(Cairo.Operator.CLEAR);
+        cr.paint();
+        cr.restore();
 
+        let h = height;
+        if (temp < 45) cr.setSourceRGBA(0, 0.8, 1, 1);
+        else if (temp < 75) cr.setSourceRGBA(1, 0.8, 0, 1);
+        else cr.setSourceRGBA(1, 0.1, 0, 1);
 
-	},
+        cr.setLineWidth(2 * scale);
+        cr.moveTo(10 * scale, h/2 - 7 * scale); 
+        cr.lineTo(0, h/2); 
+        cr.lineTo(10 * scale, h/2 + 7 * scale);
+        cr.stroke();
 
+        cr.setSourceRGBA(1, 1, 1, 0.4);
+        cr.setLineWidth(1 * scale);
+        cr.moveTo(0, h/2);
+        cr.lineTo(width, h/2);
+        cr.stroke();
+    }
+};
 
-	on_desklet_removed: function() {
-		Mainloop.source_remove(this.timeout);
-	}
+function main(metadata, desklet_id) {
+    return new MyDesklet(metadata, desklet_id);
 }

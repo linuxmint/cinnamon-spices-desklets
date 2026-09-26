@@ -41,7 +41,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 		this.settings.bind("desklet_size", "desklet_size", this.setupUI);
 		this.settings.bind("color", "color", this.setupUI);
 		this.settings.bind("show_city", "show_city", this.setupUI);
-		this.settings.bind("show_countdown", "show_countdown", this.setupUI);
+		this.settings.bind("show_countdown", "show_countdown", this.updateCountdown);
 		this.settings.bind("show_table", "show_table", this.setupUI);
 		this.settings.bind("show_date", "show_date", this.setupUI);
 		this.settings.bindProperty(Settings.BindingDirection.BIDIRECTIONAL, "transparency", "transparency", this.setupUI);
@@ -60,6 +60,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 
 		this.setupUI();
 		this.getLocation();
+		this.startUpdateTimer();
 	}
 
 	async getLocation() {
@@ -93,7 +94,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 			this.calculatePrayerTimes();
 		} catch (e) {
 			this.logger.Log(`Could not get location: ${e.message}, retrying in 10 seconds`);
-			this._retryId = Mainloop.timeout_add_seconds(10, Lang.bind(this, this.getLocation));
+			this._retryId = Mainloop.timeout_add_seconds(10, () => this.getLocation());
 		}
 		this.logger.Log(`Got location: ${this.latitude}, ${this.longitude}`)
 	}
@@ -149,12 +150,29 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 		}
 
 		this.setContent(window);
-		this.refresh();
 	}
 
 	get countdown() {
 		if (!this.currentPrayer) return '--:--:--';
 		return Utils.roundTime(this.prayerTimes[this.currentPrayer])
+	}
+
+	updateCountdown() {
+		// Update only the countdown timer without rebuilding entire UI
+		if (!this.show_countdown) return;
+		
+		const now = new Date().getDate();
+		if (now != this.today) {
+			this.calculatePrayerTimes();
+			this.today = now;
+		}
+	}
+
+	startUpdateTimer() {
+		if (typeof this._timeoutId !== 'undefined') {
+			Mainloop.source_remove(this._timeoutId);
+		}
+		this._timeoutId = Mainloop.timeout_add_seconds(1, () => this.updateCountdown());
 	}
 
 
@@ -218,19 +236,7 @@ class MuslimPrayerTimesDesklet extends Desklet.Desklet {
 		this.calculatePrayerTimes();
 	}
 
-
-	refresh() {
-		this.on_desklet_removed();
-		this._timeoutId = Mainloop.timeout_add_seconds(1, Lang.bind(this, this.setupUI));
-		const today = new Date().getDate();
-		if (today != this.today) {
-			this.calculatePrayerTimes();
-			this.today = today;
-		}
-	}
-
 	on_desklet_removed() {
-		// this.logger.Log(`Cleaning up timers`)
 		if (typeof this._timeoutId !== 'undefined') {
 			Mainloop.source_remove(this._timeoutId);
 		}

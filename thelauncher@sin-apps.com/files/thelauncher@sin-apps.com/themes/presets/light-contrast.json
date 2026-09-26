@@ -1,0 +1,22 @@
+{
+  "id": "light-contrast",
+  "name": "Light Contrast",
+  "mode": "light",
+  "tokens": {
+    "link-bg-color": "#0066cc",
+    "document-bg-color": "#006633",
+    "border-color": "#000000",
+    "text-color": "#ffffff",
+    "shadow-color": "#00000000",
+    "folder-bg-color": "#ffffff",
+    "folder-border-color": "#000000",
+    "folder-icon-tint": "#000000",
+    "desklet-bg-color": "#ffffff",
+    "title-color": "#000000",
+    "hover-bg-color": "#004499",
+    "pressed-bg-color": "#003366",
+    "disabled-opacity": 0.35,
+    "tooltip-bg-color": "#000000",
+    "tooltip-text-color": "#ffffff"
+  }
+}

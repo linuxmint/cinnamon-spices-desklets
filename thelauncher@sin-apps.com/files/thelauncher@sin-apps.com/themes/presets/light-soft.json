@@ -1,0 +1,22 @@
+{
+  "id": "light-soft",
+  "name": "Light Soft",
+  "mode": "light",
+  "tokens": {
+    "link-bg-color": "#a8c8e8",
+    "document-bg-color": "#74c69d",
+    "border-color": "#d4c4b0",
+    "text-color": "#4a4a4a",
+    "shadow-color": "#00000020",
+    "folder-bg-color": "#f0ebe3",
+    "folder-border-color": "#d4c4b0",
+    "folder-icon-tint": "#8b7355",
+    "desklet-bg-color": "#faf8f5",
+    "title-color": "#5a5a5a",
+    "hover-bg-color": "#b8d4f0",
+    "pressed-bg-color": "#90b8d8",
+    "disabled-opacity": 0.45,
+    "tooltip-bg-color": "#faf8f5",
+    "tooltip-text-color": "#4a4a4a"
+  }
+}

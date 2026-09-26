@@ -1,0 +1,716 @@
+# STOIC QUOTE
+# This file is put in the public domain.
+# WanderingBread0, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: stoic-quote@orion 0.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-05-01 14:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:33 quotes.js:13
+msgid ""
+"The impediment to action advances action. What stands in the way becomes the "
+"way."
+msgstr ""
+"A cselekvés akadálya előmozdítja a cselekvést. Ami az útjában áll, az válik "
+"úttá."
+
+#. desklet.js:34 quotes.js:14 quotes.js:17 quotes.js:20 quotes.js:23
+#. quotes.js:26 quotes.js:29 quotes.js:32 quotes.js:35 quotes.js:38
+#. quotes.js:41 quotes.js:44 quotes.js:47 quotes.js:50 quotes.js:53
+#. quotes.js:56 quotes.js:59 quotes.js:62
+msgid "Marcus Aurelius"
+msgstr "Marcus Aurelius"
+
+#. desklet.js:35 quotes.js:15
+msgid "Meditations, Book 5"
+msgstr "Meditációk, 5. könyv"
+
+#. desklet.js:161
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#. quotes.js:16
+msgid "Waste no more time arguing about what a good man should be. Be one."
+msgstr ""
+"Ne vesztegesd az időd azon vitatkozni, hogy milyennek kell lennie egy jó "
+"embernek. Légy az."
+
+#. quotes.js:18
+msgid "Meditations, Book 10"
+msgstr "Meditációk, 10. könyv"
+
+#. quotes.js:19
+msgid "If it is not right, do not do it; if it is not true, do not say it."
+msgstr "Ha nem helyes, ne tedd; ha nem igaz, ne mondd."
+
+#. quotes.js:21 quotes.js:51
+msgid "Meditations, Book 12"
+msgstr "Meditációk, 12. könyv"
+
+#. quotes.js:22
+msgid "The best revenge is not to be like your enemy."
+msgstr "A legjobb bosszú az, ha nem olyan vagy, mint az ellenséged."
+
+#. quotes.js:24 quotes.js:45 quotes.js:48
+msgid "Meditations, Book 6"
+msgstr "Meditációk, 6. könyv"
+
+#. quotes.js:25
+msgid "Loss is nothing else but change, and change is Nature's delight."
+msgstr ""
+"A veszteség nem más, mint változás, a változás pedig a természet "
+"gyönyörűsége."
+
+#. quotes.js:27
+msgid "Meditations, Book 9"
+msgstr "Meditációk, 9. könyv"
+
+#. quotes.js:28
+msgid ""
+"How much more grievous are the consequences of anger than the causes of it."
+msgstr "Mennyivel súlyosabbak a harag következményei, mint okai."
+
+#. quotes.js:30
+msgid "Meditations, Book 11"
+msgstr "Meditációk, 11. könyv"
+
+#. quotes.js:31
+msgid ""
+"Never esteem anything as of advantage to you that will make you break your "
+"word or lose your self-respect."
+msgstr ""
+"Soha ne tarts semmit előnyödre, ami miatt megszegheted a szavadat, vagy "
+"elveszítheted az önbecsülésedet."
+
+#. quotes.js:33
+msgid "Meditations, Book 3"
+msgstr "Meditációk, 3. könyv"
+
+#. quotes.js:34
+msgid ""
+"Do every act of your life as though it were the very last act of your life."
+msgstr ""
+"Életed minden cselekedetét úgy tedd, mintha az életed legutolsó cselekedete "
+"lenne."
+
+#. quotes.js:36 quotes.js:57
+msgid "Meditations, Book 2"
+msgstr "Meditációk, 2. könyv"
+
+#. quotes.js:37
+msgid ""
+"You have power over your mind, not outside events. Realize this, and you "
+"will find strength."
+msgstr ""
+"A saját elméd felett van hatalmad, nem a külső események felett. Ismerd fel "
+"ezt, és erőre lelsz."
+
+#. quotes.js:39 quotes.js:54
+msgid "Meditations, Book 4"
+msgstr "Meditációk, 4. könyv"
+
+#. quotes.js:40
+msgid ""
+"Very little is needed to make a happy life; it is all within yourself, in "
+"your way of thinking."
+msgstr ""
+"Nagyon kevés kell a boldog élethez; minden benned van, a gondolkodásmódodban."
+
+#. quotes.js:42 quotes.js:60 quotes.js:63
+msgid "Meditations, Book 7"
+msgstr "Meditációk, 7. könyv"
+
+#. quotes.js:43
+msgid ""
+"Accept the things to which fate binds you, and love the people with whom "
+"fate brings you together."
+msgstr ""
+"Fogadd el azokat a dolgokat, amikhez a sors köt, és szeresd azokat az "
+"embereket, akikkel a sors összehoz."
+
+#. quotes.js:46
+msgid ""
+"The object of life is not to be on the side of the majority, but to escape "
+"finding oneself in the ranks of the insane."
+msgstr ""
+"Az élet célja nem az, hogy a többség oldalán álljunk, hanem az, hogy "
+"elkerüljük az őrültek táborát."
+
+#. quotes.js:49
+msgid ""
+"It is not death that a man should fear, but he should fear never beginning "
+"to live."
+msgstr ""
+"Nem a haláltól kell félnie az embernek, hanem attól, hogy soha nem kezdhet "
+"el élni."
+
+#. quotes.js:52
+msgid "The happiness of your life depends upon the quality of your thoughts."
+msgstr "Életed boldogsága a gondolataid minőségétől függ."
+
+#. quotes.js:55
+msgid ""
+"When you wake up in the morning, tell yourself: the people I deal with today "
+"will be meddling, ungrateful, arrogant, dishonest, jealous and surly. They "
+"are like this because they cannot tell good from evil. But I have seen the "
+"beauty of good, and the ugliness of evil, and have recognized that the "
+"wrongdoer has a nature related to my own."
+msgstr ""
+"Amikor reggel felébredsz, mondd magadnak: akikkel ma dolgom lesz, "
+"piszkálnak, hálátlanok, arrogánsak, becstelenek, féltékenyek és mogorvák "
+"lesznek. Azért ilyenek, mert nem tudják megkülönböztetni a jót a rossztól. "
+"De én láttam a jó szépségét és a rossz rútságát, és felismertem, hogy a "
+"gonosztevőnek rokon természete van az enyémmel."
+
+#. quotes.js:58
+msgid ""
+"Look back over the past, with its changing empires that rose and fell, and "
+"you can foresee the future too. Its pattern will be the same, deviating only "
+"in minor details. And to watch the mortal life of one man is to see them all."
+msgstr ""
+"Tekints vissza a múltra, a felemelkedő, hanyatló, változó birodalmakra és a "
+"jövőt is előre láthatod. A mintázata ugyanaz lesz, csak apró részletekben "
+"tér el. Egyetlen ember halandó életét szemlélni annyit tesz, mint mindet "
+"látni."
+
+#. quotes.js:61
+msgid ""
+"Almost nothing material is needed for a happy life, for he who has "
+"understood existence."
+msgstr ""
+"Szinte semmi anyagira nincs szükség a boldog élethez, annak, aki megértette "
+"a létezést."
+
+#. quotes.js:64
+msgid ""
+"Make the best use of what is in your power, and take the rest as it happens."
+msgstr ""
+"Használd ki a lehető legjobban, ami a hatalmadban áll, a többit pedig fogadd "
+"el úgy, ahogy történik."
+
+#. quotes.js:65 quotes.js:68 quotes.js:71 quotes.js:74 quotes.js:77
+#. quotes.js:80 quotes.js:83 quotes.js:86 quotes.js:89 quotes.js:92
+#. quotes.js:95 quotes.js:98 quotes.js:101 quotes.js:104 quotes.js:107
+#. quotes.js:110
+msgid "Epictetus"
+msgstr "Epiktétosz"
+
+#. quotes.js:66
+msgid "Enchiridion, I"
+msgstr "Kézikönyv, I."
+
+#. quotes.js:67
+msgid "No man is free who is not master of himself."
+msgstr "Senki sem szabad, aki nem ura önmagának."
+
+#. quotes.js:69
+msgid "Discourses, 2.1"
+msgstr "Elmélkedések, 2.1"
+
+#. quotes.js:70
+msgid ""
+"First say to yourself what you would be; and then do what you have to do."
+msgstr "Először mondd el magadnak, mi lennél; aztán tedd, amit tenned kell."
+
+#. quotes.js:72
+msgid "Discourses, 3.23"
+msgstr "Elmélkedések, 3.23"
+
+#. quotes.js:73
+msgid ""
+"If you want to improve, be content to be thought foolish and stupid with "
+"regard to external things."
+msgstr ""
+"Ha fejlődni akarsz, elégedj meg azzal, hogy a külső dolgok tekintetében "
+"ostobának és butának tartanak."
+
+#. quotes.js:75
+msgid "Enchiridion, XIII"
+msgstr "Kézikönyv, XIII"
+
+#. quotes.js:76
+msgid ""
+"Freedom is not procured by a full enjoyment of what is desired, but by "
+"controlling the desire."
+msgstr ""
+"A szabadságot nem a vágyak teljes élvezetével, hanem a vágyak feletti "
+"uralommal lehet elérni."
+
+#. quotes.js:78
+msgid "Discourses, 4.1"
+msgstr "Elmélkedések, 4.1"
+
+#. quotes.js:79
+msgid ""
+"People are disturbed not by things, but by the views which they take of "
+"things."
+msgstr ""
+"Az embereket nem a dolgok zavarják, hanem a dolgokról alkotott nézeteik."
+
+#. quotes.js:81
+msgid "Enchiridion, V"
+msgstr "Kézikönyv, V"
+
+#. quotes.js:82
+msgid "Seek not the good in external things; seek it in yourself."
+msgstr "Ne a külső dolgokban keresd a jót, hanem magadban."
+
+#. quotes.js:84
+msgid "Discourses, 3.24"
+msgstr "Elmélkedések, 3.24"
+
+#. quotes.js:85
+msgid ""
+"Never say about anything that I have lost it; but only that I have given it "
+"back."
+msgstr "Soha ne mondd semmiről, hogy elvesztettem; csak azt, hogy visszaadtam."
+
+#. quotes.js:87
+msgid "Enchiridion, XI"
+msgstr "Kézikönyv, XI"
+
+#. quotes.js:88
+msgid ""
+"Seek not for the things which happen as you wish; but wish the things which "
+"happen to be as they are, and you will have a tranquil life."
+msgstr ""
+"Ne azt keresd, ami úgy történik, ahogy szeretnéd; hanem azt kívánd, hogy a "
+"dolgok úgy legyenek, ahogy vannak, és nyugodt életed lesz."
+
+#. quotes.js:90
+msgid "Enchiridion, VIII"
+msgstr "Kézikönyv, VIII"
+
+#. quotes.js:91
+msgid ""
+"Wealth consists not in having great possessions, but in having few wants."
+msgstr ""
+"A gazdagság nem a nagy vagyonban rejlik, hanem abban, hogy kevés "
+"szükségletünk legyen."
+
+#. quotes.js:93 quotes.js:96 quotes.js:99 quotes.js:108 quotes.js:111
+msgid "Discourses"
+msgstr "Elmélkedések"
+
+#. quotes.js:94
+msgid ""
+"He is a wise man who does not grieve for the things which he has not, but "
+"rejoices for those which he has."
+msgstr ""
+"Bölcs ember az, aki nem bánkódik azon, amije nincs, hanem örül annak, amije "
+"van."
+
+#. quotes.js:97
+msgid "Don't explain your philosophy. Embody it."
+msgstr "Ne magyarázd a filozófiádat. Testesítsd meg."
+
+#. quotes.js:100
+msgid ""
+"We cannot choose our external circumstances, but we can always choose how we "
+"respond to them."
+msgstr ""
+"A külső körülményeinket nem választhatjuk meg, de azt mindig "
+"megválaszthatjuk, hogyan reagálunk rájuk."
+
+#. quotes.js:102
+msgid "Enchiridion"
+msgstr "Kézikönyv"
+
+#. quotes.js:103
+msgid "First learn the meaning of what you say, and then speak."
+msgstr "Először tanuld meg, mit jelent, amit mondasz, és csak azután beszélj."
+
+#. quotes.js:105
+msgid "Discourses, 1.17"
+msgstr "Elmélkedések, 1.17"
+
+#. quotes.js:106
+msgid ""
+"You become what you give your attention to. If you yourself don't choose "
+"what thoughts and images you expose yourself to, someone else will."
+msgstr ""
+"Azzá válsz, amire figyelsz. Ha te nem választod meg, hogy milyen "
+"gondolatoknak és képeknek teszed ki magad, akkor majd valaki más fogja "
+"megtenni."
+
+#. quotes.js:109
+msgid ""
+"There is only one way to happiness and that is to cease worrying about "
+"things which are beyond the power of our will."
+msgstr ""
+"Csak egy út vezet a boldogsághoz, és ez az, hogy ne aggódjunk olyan dolgok "
+"miatt, amelyek meghaladják akaratunk erejét."
+
+#. quotes.js:112
+msgid "All things are foreign to us; time alone is ours."
+msgstr "Minden idegen számunkra; csak az idő a miénk."
+
+#. quotes.js:113 quotes.js:116 quotes.js:119 quotes.js:122 quotes.js:125
+#. quotes.js:128 quotes.js:131 quotes.js:134 quotes.js:137 quotes.js:140
+#. quotes.js:143 quotes.js:146 quotes.js:149 quotes.js:152
+msgid "Seneca"
+msgstr "Seneca"
+
+#. quotes.js:114 quotes.js:117
+msgid "Letters from a Stoic, I"
+msgstr "Egy sztoikus levelei, I"
+
+#. quotes.js:115
+msgid "While we are postponing, life speeds by."
+msgstr "Miközben halogatunk, az élet felgyorsul."
+
+#. quotes.js:118
+msgid ""
+"It is not the man who has too little, but the man who craves more, that is "
+"poor."
+msgstr "Nem az a szegény, akinek kevés van, hanem az, aki többet kíván."
+
+#. quotes.js:120 quotes.js:144
+msgid "Letters from a Stoic, II"
+msgstr "Egy sztoikus levelei, II"
+
+#. quotes.js:121
+msgid "Begin at once to live, and count each separate day as a separate life."
+msgstr "Kezdj el azonnal élni, és minden egyes napot külön életnek tekints."
+
+#. quotes.js:123
+msgid "Letters from a Stoic, CI"
+msgstr "Egy sztoikus levelei, CI"
+
+#. quotes.js:124
+msgid ""
+"The greatest obstacle to living is expectancy, which hangs upon tomorrow and "
+"loses today."
+msgstr ""
+"Az élet legnagyobb akadálya a várakozás, amely a holnaptól függ, és a mát "
+"elveszíti."
+
+#. quotes.js:126
+msgid "On the Shortness of Life, IX"
+msgstr "Az élet rövidségéről, IX"
+
+#. quotes.js:127
+msgid "No man was ever wise by chance."
+msgstr "Soha senki sem lett bölcs a véletlenül."
+
+#. quotes.js:129
+msgid "Letters from a Stoic, LXXVI"
+msgstr "Egy sztoikus levelei, LXXVI"
+
+#. quotes.js:130
+msgid ""
+"Retire into yourself as much as you can; associate with those who are likely "
+"to improve you."
+msgstr ""
+"Zárkózz vissza magadba, amennyire csak tudsz; barátkozz azokkal, akik "
+"valószínűleg jobbá tehetnek téged."
+
+#. quotes.js:132
+msgid "Letters from a Stoic, VII"
+msgstr "Egy sztoikus levelei, VII"
+
+#. quotes.js:133
+msgid "A happy life is one which is in accordance with its own nature."
+msgstr "A boldog élet az, amely összhangban van saját természetével."
+
+#. quotes.js:135
+msgid "On the Happy Life, III"
+msgstr "A boldog életről, III"
+
+#. quotes.js:136
+msgid "If you wish to be loved, love."
+msgstr "Ha szeretve akarsz lenni, szeress."
+
+#. quotes.js:138
+msgid "Letters from a Stoic, IX"
+msgstr "Egy sztoikus levelei, IX"
+
+#. quotes.js:139
+msgid "We suffer more often in imagination than in reality."
+msgstr "Képzeletben gyakrabban szenvedünk, mint a valóságban."
+
+#. quotes.js:141
+msgid "Letters from a Stoic, XIII"
+msgstr "Egy sztoikus levelei, XIII"
+
+#. quotes.js:142
+msgid "One who is everywhere is nowhere."
+msgstr "Aki mindenhol ott van, az sehol sincs."
+
+#. quotes.js:145
+msgid "To live is to fight."
+msgstr "Élni annyit tesz, mint harcolni."
+
+#. quotes.js:147
+msgid "Letters from a Stoic, XCVI"
+msgstr "Egy sztoikus levelei, XCVI"
+
+#. quotes.js:148
+msgid "Luck is what happens when preparation meets opportunity."
+msgstr ""
+"A szerencse akkor jön, amikor a felkészültség találkozik a lehetőséggel."
+
+#. quotes.js:150
+msgid "Epistulae Morales"
+msgstr "Epistulae Morales"
+
+#. quotes.js:151
+msgid ""
+"True happiness is to enjoy the present, without anxious dependence upon the "
+"future, not to amuse ourselves with either hopes or fears but to rest "
+"satisfied with what we have, which is sufficient."
+msgstr ""
+"Az igazi boldogság az, ha élvezzük a jelent, anélkül, hogy aggódnánk a "
+"jövőtől, nem pedig reményekkel vagy félelmekkel szórakoztatjuk magunkat, "
+"hanem megelégszünk azzal, amink van, ami elegendő."
+
+#. quotes.js:153
+msgid "Letters from a Stoic"
+msgstr "Egy sztoikus levelei"
+
+#. quotes.js:154
+msgid "Better to trip with the feet than with the tongue."
+msgstr "Jobb a lábbal elbotlani, mint a nyelvvel."
+
+#. quotes.js:155 quotes.js:158 quotes.js:161 quotes.js:164 quotes.js:167
+msgid "Zeno of Citium"
+msgstr "Kitioni Zénón"
+
+#. quotes.js:156
+msgid "Lives of the Eminent Philosophers, 7.26"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.26"
+
+#. quotes.js:157
+msgid "The goal of life is to live in agreement with Nature."
+msgstr "Az élet célja, hogy összhangban éljünk a természettel."
+
+#. quotes.js:159
+msgid "Lives of the Eminent Philosophers, 7.87"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.87"
+
+#. quotes.js:160
+msgid ""
+"We have two ears and one mouth, so that we should listen more than we say."
+msgstr ""
+"Két fülünk és egy szánk van, ezért többet kell hallgatnunk, mint amennyit "
+"beszélünk."
+
+#. quotes.js:162 quotes.js:165
+msgid "Lives of the Eminent Philosophers"
+msgstr "A filozófiában jeleskedők élete és nézetei"
+
+#. quotes.js:163
+msgid "Man conquers the world by conquering himself."
+msgstr "Az ember úgy hódítja meg a világot, hogy legyőzi önmagát."
+
+#. quotes.js:166
+msgid "All the good are friends of one another."
+msgstr "Minden jó ember egymás barátja."
+
+#. quotes.js:168
+msgid "Lives of the Eminent Philosophers, 7.32"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.32"
+
+#. quotes.js:169
+msgid ""
+"Lead me, Zeus, lead me, Destiny, wherever I have been assigned by you. I "
+"will follow without hesitation; and if I am unwilling, because I am wicked, "
+"I will follow nonetheless."
+msgstr ""
+"Vezess engem, Zeusz, vezess engem, Sors, ​​ahová csak kijelöltél. Habozás "
+"nélkül követlek; és ha nem is akarom, mert gonosz vagyok, akkor is követni "
+"foglak."
+
+#. quotes.js:170 quotes.js:173 quotes.js:176
+msgid "Cleanthes"
+msgstr "Kleanthész"
+
+#. quotes.js:171 quotes.js:174
+msgid "Hymn to Zeus"
+msgstr "Himnusz Zeuszhoz"
+
+#. quotes.js:172
+msgid ""
+"All things are parts of one single system, which is called Nature; the "
+"individual life is good when it is in harmony with Nature."
+msgstr ""
+"Minden dolog egyetlen rendszer része, amelyet Természetnek nevezünk; az "
+"egyéni élet akkor jó, ha összhangban van a Természettel."
+
+#. quotes.js:175
+msgid "Practice yourself in little things, and thence proceed to greater."
+msgstr "Gyakorold magad apróságokban, és onnan haladj a nagyobbak felé."
+
+#. quotes.js:177
+msgid "Lives of the Eminent Philosophers, 7.168"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.168"
+
+#. quotes.js:178
+msgid ""
+"If you accomplish something good with hard work, the labor passes quickly, "
+"but the good endures; if you do something shameful in pursuit of pleasure, "
+"the pleasure passes quickly, but the shame endures."
+msgstr ""
+"Ha kemény munkával valami jót érsz el, a munka gyorsan elmúlik, de a jó "
+"megmarad; ha a gyönyör hajszolása közben valami szégyenletes dolgot teszel, "
+"az öröm gyorsan elmúlik, de a szégyen megmarad."
+
+#. quotes.js:179 quotes.js:182 quotes.js:185 quotes.js:188 quotes.js:191
+msgid "Musonius Rufus"
+msgstr "Caius Musonius Rufus"
+
+#. quotes.js:180
+msgid "Lectures, VI"
+msgstr "Előadások, VI"
+
+#. quotes.js:181
+msgid ""
+"We must not say that it befits only the philosopher to inquire how one ought "
+"to live rightly; for philosophy is nothing else than this — the inquiry into "
+"what is fitting and appropriate for a human being."
+msgstr ""
+"Nem szabad azt mondanunk, hogy csak a filozófusnak illik azt kutatnia, "
+"hogyan kell helyesen élni; mert a filozófia nem más, mint annak vizsgálata, "
+"hogy mi illik és mi ildomos az embernek."
+
+#. quotes.js:183
+msgid "Lectures, I"
+msgstr "Előadások, I"
+
+#. quotes.js:184
+msgid ""
+"Choose to die well while you can; wait too long, and it might become "
+"impossible to do so."
+msgstr ""
+"Válaszd a jóféle halált, amíg lehet; ha túl sokáig vársz, már nem lesz rá "
+"lehetőséged."
+
+#. quotes.js:186
+msgid "Lectures, VIII"
+msgstr "Előadások, VIII"
+
+#. quotes.js:187
+msgid ""
+"The man who is truly good and wise neither struggles with adversity nor "
+"complains of his lot; rather, he takes heart from even the harshest of "
+"conditions."
+msgstr ""
+"Az igazán jó és bölcs ember nem küzd a nehézségekkel, és nem panaszkodik a "
+"sorsa miatt; sőt, még a legzordabb körülményekből is bátorságot merít."
+
+#. quotes.js:189
+msgid "Lectures, X"
+msgstr "Előadások, X"
+
+#. quotes.js:190
+msgid ""
+"The philosopher's aim is not to hear many lectures and then fall silent, but "
+"to live by those already heard."
+msgstr ""
+"A filozófus célja nem az, hogy sok előadást halljon, majd hallgasson, hanem "
+"az, hogy a már hallottak szerint éljen."
+
+#. quotes.js:192
+msgid "Lectures"
+msgstr "Előadások"
+
+#. quotes.js:193
+msgid "If I had followed the multitude, I would not have studied philosophy."
+msgstr "Ha a sokaságot követtem volna, nem tanultam volna filozófiát."
+
+#. quotes.js:194 quotes.js:197 quotes.js:200
+msgid "Chrysippus"
+msgstr "Khrüszipposz"
+
+#. quotes.js:195
+msgid "Lives of the Eminent Philosophers, 7.183"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.183"
+
+#. quotes.js:196
+msgid ""
+"The virtues are interconnected; whoever truly possesses one virtue possesses "
+"them all."
+msgstr ""
+"Az erények összefüggenek; aki igazán birtokol egy erényt, az birtokolja az "
+"összeset."
+
+#. quotes.js:198
+msgid "Lives of the Eminent Philosophers, 7.125"
+msgstr "A filozófiában jeleskedők élete és nézetei, 7.125"
+
+#. quotes.js:199
+msgid "No one is born a sage; goodness is an art which must be learned."
+msgstr ""
+"Senki sem születik bölcsnek; a jóság egy művészet, amit meg kell tanulni."
+
+#. quotes.js:201
+msgid "Fragments"
+msgstr "Töredékek"
+
+#. metadata.json->name
+msgid "Stoic Quote"
+msgstr "Sztoikus Idézet"
+
+#. metadata.json->description
+msgid ""
+"Display a daily Stoic quote from Marcus Aurelius, Epictetus, and Seneca. "
+"Quote rotates at midnight and is deterministic by date."
+msgstr ""
+"Jelenítsen meg egy napi sztoikus idézetet Marcus Aureliustól, Epiktétosztól "
+"és Senecától. Az idézet éjfélkor váltakozik, és dátum szerint meghatározott."
+
+#. settings-schema.json->page-display->title
+msgid "Settings"
+msgstr "Beálítások"
+
+#. settings-schema.json->section-display->title
+msgid "Display"
+msgstr "Megjelenítés"
+
+#. settings-schema.json->section-refresh->title
+msgid "Refresh"
+msgstr "Frissítés"
+
+#. settings-schema.json->desklet-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->desklet-width->description
+msgid "Width"
+msgstr "Szélesség"
+
+#. settings-schema.json->show-source->description
+msgid "Show source / book name"
+msgstr "Forrás/könyv címének megjelenítése"
+
+#. settings-schema.json->show-refresh-button->description
+msgid "Show refresh button"
+msgstr "Frissítés gomb megjelenítése"
+
+#. settings-schema.json->refresh-frequency->description
+msgid "Auto-refresh frequency"
+msgstr "Automatikus frissítési gyakorisága"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Daily (at midnight)"
+msgstr "Naponta (éjfélkor)"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Hourly"
+msgstr "Óránként"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Manual only"
+msgstr "Csak munálisan"

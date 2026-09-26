@@ -10,7 +10,7 @@ msgstr ""
 "issues\n"
 "POT-Creation-Date: 2025-12-14 00:04+0100\n"
 "PO-Revision-Date: \n"
-"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
 "MIME-Version: 1.0\n"
@@ -29,7 +29,7 @@ msgstr "Adventslys med animationer på dit skrivebord."
 
 #. settings-schema.json->header0->description
 msgid "General"
-msgstr ""
+msgstr "Generelt"
 
 #. settings-schema.json->desklet-scale->description
 msgid "Scale factor for desklet size"
@@ -37,7 +37,7 @@ msgstr "Skaleringsfaktor for skrivebordsprogrammets størrelse"
 
 #. settings-schema.json->animation-enabled->description
 msgid "Animate the candle flames"
-msgstr ""
+msgstr "Animér flammerne"
 
 #. settings-schema.json->animation-speed->description
 msgid "Speed of candle animation in milliseconds"
@@ -45,60 +45,60 @@ msgstr "Hastighed på animationen i millisekunder"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "automatic"
-msgstr ""
+msgstr "automatisk"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "0"
-msgstr ""
+msgstr "0"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "1"
-msgstr ""
+msgstr "1"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "2"
-msgstr ""
+msgstr "2"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "3"
-msgstr ""
+msgstr "3"
 
 #. settings-schema.json->number-of-lit-candles->options
 msgid "4"
-msgstr ""
+msgstr "4"
 
 #. settings-schema.json->number-of-lit-candles->description
 msgid "Number of lit candles"
-msgstr ""
+msgstr "Antal tændte lys"
 
 #. settings-schema.json->header1->description
 msgid "Colors"
-msgstr ""
+msgstr "Farver"
 
 #. settings-schema.json->color-preset->options
 msgid "traditional"
-msgstr ""
+msgstr "traditionel"
 
 #. settings-schema.json->color-preset->options
 msgid "red"
-msgstr ""
+msgstr "rød"
 
 #. settings-schema.json->color-preset->description
 msgid "Color preset"
-msgstr ""
+msgstr "Farveforudindstilling"
 
 #. settings-schema.json->candle-1-color->description
 msgid "Color of the 1st candle"
-msgstr ""
+msgstr "Farve på det første lys"
 
 #. settings-schema.json->candle-2-color->description
 msgid "Color of the 2nd candle"
-msgstr ""
+msgstr "Farve på det andet lys"
 
 #. settings-schema.json->candle-3-color->description
 msgid "Color of the 3rd candle"
-msgstr ""
+msgstr "Farve på det tredje lys"
 
 #. settings-schema.json->candle-4-color->description
 msgid "Color of the 4th candle"
-msgstr ""
+msgstr "Farve på det fjerde lys"

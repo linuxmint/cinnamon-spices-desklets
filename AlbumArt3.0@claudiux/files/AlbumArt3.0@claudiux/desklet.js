@@ -11,6 +11,16 @@ const Tweener = imports.ui.tweener;
 const Util = imports.misc.util;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
+const Extension = imports.ui.extension;
+function _require(relPath) {
+    if (Extension.getCurrentExtension) {
+        var Me = Extension.getCurrentExtension();
+        return Me.imports[relPath];
+    } else {
+        return require(relPath);
+    }
+}
+
 //Mainloop:
 const { timeout_add_seconds,
         timeout_add,
@@ -21,8 +31,8 @@ const { timeout_add_seconds,
         source_exists,
         source_remove,
         remove_all_sources
-} = require("./lib/mainloopTools");
-const { to_string } = require("./lib/to-string");
+} = _require("./lib/mainloopTools");
+const { to_string } = _require("./lib/to-string");
 
 
 const UUID = "AlbumArt3.0@claudiux";
@@ -49,17 +59,18 @@ Gettext.bindtextdomain(UUID, HOME_DIR + "/.local/share/locale");
 Gettext.bindtextdomain("cinnamon", "/usr/share/locale");
 function _(str) {
     let customTrans = Gettext.dgettext(UUID, str);
-    if (customTrans.length > 0 && customTrans !== str)
-        return customTrans;
-    customTrans = Gettext.dgettext("cinnamon", str);
-    if (customTrans.length > 0 && customTrans !== str)
-        return customTrans;
-    return Gettext.gettext(str);
+    return customTrans;
+    //~ if (customTrans.length > 0 && customTrans !== str)
+        //~ return customTrans;
+    //~ customTrans = Gettext.dgettext("cinnamon", str);
+    //~ if (customTrans.length > 0 && customTrans !== str)
+        //~ return customTrans;
+    //~ return Gettext.gettext(str);
 }
 
 
 
-class AlbumArtRadio30 extends Desklet.Desklet {
+var AlbumArtRadio30 = class AlbumArtRadio30 extends Desklet.Desklet {
     constructor(metadata, desklet_id) {
         super(metadata, desklet_id);
 
@@ -295,14 +306,14 @@ class AlbumArtRadio30 extends Desklet.Desklet {
 
         if (!this.isLooping) return false;
         this._update();
-        
+
         if (this.isLooping) {
             if (this.oldRealWidth != this.realWidth || this.oldRealHeight != this.realHeight) {
                 this.oldRealWidth = this.realWidth;
                 this.oldRealHeight = this.realHeight;
                 this.on_setting_changed();
             }
-            
+
             this.update_id = timeout_add_seconds(this.delay, () => { this._update_loop() });
         } else {
             return false;
@@ -432,7 +443,7 @@ class AlbumArtRadio30 extends Desklet.Desklet {
         } else {
             if (this._bin != null) this._bin.set_child(this.currentPicture);
         }
-        
+
         this.updateInProgress = false;
     }
 
