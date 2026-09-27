@@ -1,0 +1,249 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page-theme", "page-colors", "page-typography", "page-shape", "page-content", "page-refresh"],
+        "page-theme": {
+            "type": "page",
+            "title": "Tema",
+            "sections": ["section-theme-mode"]
+        },
+        "page-colors": {
+            "type": "page",
+            "title": "Colores",
+            "sections": ["section-colors"]
+        },
+        "page-typography": {
+            "type": "page",
+            "title": "Tipografía",
+            "sections": ["section-typography"]
+        },
+        "page-shape": {
+            "type": "page",
+            "title": "Forma",
+            "sections": ["section-shape"]
+        },
+        "page-content": {
+            "type": "page",
+            "title": "Contenido",
+            "sections": ["section-content"]
+        },
+        "page-refresh": {
+            "type": "page",
+            "title": "Refresco",
+            "sections": ["section-refresh"]
+        },
+        "section-theme-mode": {
+            "type": "section",
+            "title": "Modo y tema base",
+            "keys": ["theme-mode", "base-theme", "bg-opacity", "corner-radius"]
+        },
+        "section-colors": {
+            "type": "section",
+            "title": "Colores personalizados",
+            "keys": ["color-bg", "color-text", "color-accent", "color-border", "color-divider"]
+        },
+        "section-typography": {
+            "type": "section",
+            "title": "Tipografía",
+            "keys": ["font-quote", "font-size-quote", "font-italic-quote", "font-author", "font-size-author"]
+        },
+        "section-shape": {
+            "type": "section",
+            "title": "Bordes, sombra y decoración",
+            "keys": ["border-width", "shadow-enabled", "show-ornament", "show-divider", "text-align"]
+        },
+        "section-content": {
+            "type": "section",
+            "title": "Contenido visible",
+            "keys": ["desklet-width", "show-source", "show-refresh-button"]
+        },
+        "section-refresh": {
+            "type": "section",
+            "title": "Actualización",
+            "keys": ["refresh-frequency"]
+        }
+    },
+
+    "theme-mode": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Modo de tema",
+        "options": {
+            "Claro": "light",
+            "Oscuro": "dark",
+            "Auto (según el escritorio)": "auto"
+        }
+    },
+
+    "base-theme": {
+        "type": "combobox",
+        "default": "stained-glass",
+        "description": "Tema base",
+        "options": {
+            "Personalizado (usa los colores de abajo)": "custom",
+            "Pergamino antiguo": "parchment",
+            "Vitral gótico": "stained-glass",
+            "Moderno minimalista": "modern"
+        }
+    },
+
+    "bg-opacity": {
+        "type": "scale",
+        "default": 92,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "units": "%",
+        "description": "Opacidad del fondo"
+    },
+
+    "corner-radius": {
+        "type": "scale",
+        "default": 10,
+        "min": 0,
+        "max": 30,
+        "step": 2,
+        "units": "px",
+        "description": "Radio de las esquinas"
+    },
+
+    "color-bg": {
+        "type": "colorchooser",
+        "default": "rgba(30, 26, 20, 0.92)",
+        "description": "Color de fondo"
+    },
+
+    "color-text": {
+        "type": "colorchooser",
+        "default": "rgba(240, 232, 216, 1.0)",
+        "description": "Color del texto de la cita"
+    },
+
+    "color-accent": {
+        "type": "colorchooser",
+        "default": "rgba(212, 175, 90, 1.0)",
+        "description": "Color de acento (autor, referencia)"
+    },
+
+    "color-border": {
+        "type": "colorchooser",
+        "default": "rgba(120, 95, 50, 0.45)",
+        "description": "Color del borde"
+    },
+
+    "color-divider": {
+        "type": "colorchooser",
+        "default": "rgba(212, 175, 90, 0.6)",
+        "description": "Color del divisor"
+    },
+
+    "font-quote": {
+        "type": "fontchooser",
+        "default": "DejaVu Serif 13",
+        "description": "Fuente de la cita"
+    },
+
+    "font-size-quote": {
+        "type": "scale",
+        "default": 13,
+        "min": 10,
+        "max": 22,
+        "step": 1,
+        "units": "pt",
+        "description": "Tamaño de la cita"
+    },
+
+    "font-italic-quote": {
+        "type": "switch",
+        "default": true,
+        "description": "Cita en cursiva"
+    },
+
+    "font-author": {
+        "type": "fontchooser",
+        "default": "DejaVu Serif 10",
+        "description": "Fuente del autor"
+    },
+
+    "font-size-author": {
+        "type": "scale",
+        "default": 10,
+        "min": 8,
+        "max": 16,
+        "step": 1,
+        "units": "pt",
+        "description": "Tamaño del autor"
+    },
+
+    "border-width": {
+        "type": "scale",
+        "default": 1,
+        "min": 0,
+        "max": 6,
+        "step": 1,
+        "units": "px",
+        "description": "Grosor del borde"
+    },
+
+    "shadow-enabled": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar sombra"
+    },
+
+    "show-ornament": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar adorno decorativo (✦)"
+    },
+
+    "show-divider": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar línea divisoria"
+    },
+
+    "text-align": {
+        "type": "combobox",
+        "default": "left",
+        "description": "Alineación del texto",
+        "options": {
+            "Izquierda": "left",
+            "Centro": "center",
+            "Justificado": "justify"
+        }
+    },
+
+    "desklet-width": {
+        "type": "scale",
+        "default": 380,
+        "min": 300,
+        "max": 600,
+        "step": 10,
+        "units": "px",
+        "description": "Ancho del desklet"
+    },
+
+    "show-source": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar la sección (Antiguo/Nuevo Testamento)"
+    },
+
+    "show-refresh-button": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar botón de refresco"
+    },
+
+    "refresh-frequency": {
+        "type": "combobox",
+        "default": "daily",
+        "description": "Frecuencia de refresco",
+        "options": {
+            "Diario (a medianoche)": "daily",
+            "Cada hora": "hourly",
+            "Solo manual": "manual"
+        }
+    }
+}

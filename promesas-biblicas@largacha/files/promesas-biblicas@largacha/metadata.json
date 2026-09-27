@@ -1,0 +1,9 @@
+{
+    "uuid": "promesas-biblicas@largacha",
+     "name": "Promesas Biblicas",
+     "description": "Muestra una promesa biblica diaria. Totalmente personalizable: colores, fuentes, transparencias, modo oscuro/claro automatico.",
+    "version": "0.2.0",
+    "max-instances": "3",
+    "author": "largacha",
+    "website": ""
+}
