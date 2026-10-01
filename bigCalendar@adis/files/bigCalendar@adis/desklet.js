@@ -469,7 +469,7 @@ class DayTooltip {
             return;
         }
 
-        if (this._timer) Mainloop.source_remove(this._timer);
+        this._cancelTimer();
         this._timer = Mainloop.timeout_add(TOOLTIP_SHOW_MS, () => {
             this._timer = 0;
             this.show(rows);
@@ -491,11 +491,22 @@ class DayTooltip {
         this.visible = true;
     }
 
-    hide() {
-        if (this._timer) {
-            Mainloop.source_remove(this._timer);
-            this._timer = 0;
+    /**
+     * The one place this tooltip drops its show timer. The source is asked
+     * about before it is removed because a collection can detach it first --
+     * the long version is on Desklet._cancelTimer, which does the same thing
+     * for the desklet's own timers.
+     */
+    _cancelTimer() {
+        const id = this._timer;
+        this._timer = 0;
+        if (id > 0 && GLib.MainContext.default().find_source_by_id(id)) {
+            Mainloop.source_remove(id);
         }
+    }
+
+    hide() {
+        this._cancelTimer();
         if (!this.visible) return;
 
         this._actor.hide();
@@ -573,8 +584,12 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._today = new Date();
         this._view = { year: this._today.getFullYear(), month: this._today.getMonth() };
 
+        // Timer ids, 0 meaning none. See _cancelTimer for why they are checked
+        // against the main context rather than merely tested for non-zero.
         this._dayTimer = 0;
         this._eventTimer = 0;
+        this._inputTimer = 0;
+        this._inputWatchdog = 0;
         this._feed = null;
         this._eventIndex = {};
         this._fetchToken = 0;
@@ -617,7 +632,13 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._openFeed();
     }
 
-    /** Connect to the user's calendars and pull the first batch of events. */
+    /**
+     * Connect to the user's calendars and pull the first batch of events.
+     *
+     * Called without being awaited, from the bootstrap and from the setting
+     * that turns events on, so it is written never to reject: everything that
+     * can throw is either caught here or handed to _refreshEventsSoon().
+     */
     async _openFeed() {
         if (!this._source || !this.showEvents) return;
 
@@ -630,7 +651,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         }
         if (this._destroyed) return;
 
-        await this._refreshEvents();
+        this._refreshEventsSoon();
         this._startEventTimer();
     }
 
@@ -648,7 +669,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // because the cached events were fetched for the previous range.
         const refetch = () => {
             this._render();
-            this._refreshEvents();
+            this._refreshEventsSoon();
         };
 
         // Appearance
@@ -707,9 +728,12 @@ class BigCalendarDesklet extends Desklet.Desklet {
         s.bind("event-max", "eventMax", rerender);
         s.bind("event-time-format", "eventTimeFormat", rerender);
         s.bind("show-event-tooltips", "showEventTooltips", rerender);
+        // Stopped first, unlike the watchdog's calls: this one is the new
+        // interval taking effect, and a running timer would keep the old one.
         s.bind("event-refresh", "eventRefresh", () => {
+            this._stopEventTimer();
             this._startEventTimer();
-            this._refreshEvents();
+            this._refreshEventsSoon();
         });
     }
 
@@ -1449,6 +1473,20 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._render();
     }
 
+    /**
+     * _refreshEvents() for the callers that cannot await it -- a timer, a
+     * settings callback, the bootstrap.
+     *
+     * It is async and can reject from anywhere outside its own two try blocks:
+     * a date the grid cannot build, a render that throws. Nothing holds that
+     * rejection, so GJS reports it as "Unhandled promise rejection" with a
+     * stack naming whichever timer fired it and not the line that failed. This
+     * turns it into a log entry that says what went wrong.
+     */
+    _refreshEventsSoon() {
+        this._refreshEvents().catch((e) => logError(e, "Big Calendar: refresh failed"));
+    }
+
     /** Start or stop the event fetch loop to match the current settings. */
     _openOrCloseFeed() {
         if (this.showEvents && this._source && !this._feed) {
@@ -1471,22 +1509,29 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._eventIndex = {};
     }
 
+    /**
+     * Armed only if it is not already running, so the watchdog can call this
+     * every 30 seconds without resetting the interval each time -- which would
+     * mean the refresh never came due. Changing the interval is therefore
+     * _stopEventTimer() first; see the event-refresh setting.
+     */
     _startEventTimer() {
-        this._stopEventTimer();
+        if (this._timerAlive("_eventTimer")) return;
         if (!this._feed) return;
 
         const minutes = Math.max(5, Number(this.eventRefresh) || 20);
         this._eventTimer = Mainloop.timeout_add_seconds(minutes * 60, () => {
-            this._refreshEvents();
+            if (this._destroyed) {
+                this._eventTimer = 0;
+                return GLib.SOURCE_REMOVE;
+            }
+            this._refreshEventsSoon();
             return GLib.SOURCE_CONTINUE;
         });
     }
 
     _stopEventTimer() {
-        if (this._eventTimer > 0) {
-            Mainloop.source_remove(this._eventTimer);
-            this._eventTimer = 0;
-        }
+        this._cancelTimer("_eventTimer");
     }
 
     /**
@@ -1497,8 +1542,13 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * survive for weeks.
      */
     _startDayTimer() {
-        this._stopDayTimer();
+        if (this._timerAlive("_dayTimer")) return;
+
         this._dayTimer = Mainloop.timeout_add_seconds(DAY_CHECK_SECONDS, () => {
+            if (this._destroyed) {
+                this._dayTimer = 0;
+                return GLib.SOURCE_REMOVE;
+            }
             const now = new Date();
             if (!this._utils.sameDay(now, this._today)) {
                 this._today = now;
@@ -1509,10 +1559,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
     }
 
     _stopDayTimer() {
-        if (this._dayTimer > 0) {
-            Mainloop.source_remove(this._dayTimer);
-            this._dayTimer = 0;
-        }
+        this._cancelTimer("_dayTimer");
     }
 
     /* -------------------------------------------------------------- *
@@ -1549,7 +1596,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._view.month = next.month;
         this._rememberView();
         this._render();
-        this._refreshEvents();
+        this._refreshEventsSoon();
     }
 
     _goToToday() {
@@ -1560,7 +1607,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         if (!this._ready) return;
         this._render();
-        this._refreshEvents();
+        this._refreshEventsSoon();
     }
 
     /* -------------------------------------------------------------- *
@@ -1648,16 +1695,15 @@ class BigCalendarDesklet extends Desklet.Desklet {
     /**
      * The id is checked against the context rather than merely tested for
      * having a value, so that a timer detached behind the desklet's back is
-     * replaced instead of believed in. INPUT_WATCHDOG_SEC has the story.
+     * replaced instead of believed in. See _cancelTimer.
      */
     _startInputTimer() {
-        this._startInputWatchdog();
-
-        if (this._inputTimer && this._sourceAlive(this._inputTimer)) return;
+        this._startTimerWatchdog();
+        if (this._timerAlive("_inputTimer")) return;
 
         this._inputTimer = Mainloop.timeout_add(INPUT_RECONCILE_MS, () => {
             if (this._destroyed) {
-                this._inputTimer = null;
+                this._inputTimer = 0;
                 return GLib.SOURCE_REMOVE;
             }
             this._syncInputRegion();
@@ -1666,19 +1712,27 @@ class BigCalendarDesklet extends Desklet.Desklet {
     }
 
     /**
-     * Restarts the reconcile timer if it has gone. Nothing else would: the
-     * desklet's own way back to life is the mouse, and a desklet that has lost
-     * its timer has stopped answering the mouse. See INPUT_WATCHDOG_SEC.
+     * Puts back any of this desklet's timers that have gone.
+     *
+     * Specifically the input-region one, whose loss is the one with a visible
+     * effect and the one nothing else would ever repair: the desklet's way
+     * back to life is the mouse, and a desklet that has lost that timer has
+     * stopped answering the mouse. The other two are re-armed here as well
+     * because it costs nothing and they are lost the same way -- see
+     * _cancelTimer. Each of the three starts only what is missing, so calling
+     * them every 30 seconds does not reset anything's interval.
      */
-    _startInputWatchdog() {
-        if (this._inputWatchdog && this._sourceAlive(this._inputWatchdog)) return;
+    _startTimerWatchdog() {
+        if (this._timerAlive("_inputWatchdog")) return;
 
         this._inputWatchdog = Mainloop.timeout_add_seconds(INPUT_WATCHDOG_SEC, () => {
             if (this._destroyed) {
-                this._inputWatchdog = null;
+                this._inputWatchdog = 0;
                 return GLib.SOURCE_REMOVE;
             }
             this._startInputTimer();
+            this._startEventTimer();
+            this._startDayTimer();
             return GLib.SOURCE_CONTINUE;
         });
     }
@@ -1687,27 +1741,33 @@ class BigCalendarDesklet extends Desklet.Desklet {
         return !!GLib.MainContext.default().find_source_by_id(id);
     }
 
-    /**
-     * The field is cleared first for a reason. It is not only an exception
-     * escaping `_syncInputRegion()` that can leave the id behind while GLib has
-     * already let the source go -- a collection running while this callback is
-     * pending can do it too, without any JavaScript running at all. CJS sets up
-     * a timeout with `GObject.source_set_closure()`, whose boolean result GLib
-     * initialises to false; if the runtime refuses to enter JS during the sweep,
-     * that false removes the source on our behalf. Clearing the field before the
-     * call means the stale id cannot be left behind by anything below it.
-     */
-    _stopInputTimer() {
-        for (const field of ["_inputTimer", "_inputWatchdog"]) {
-            const id = this[field];
-            this[field] = null;
-            if (!id) continue;
+    /** Whether the timer this desklet holds in `field` is still running. */
+    _timerAlive(field) {
+        return this[field] > 0 && this._sourceAlive(this[field]);
+    }
 
-            // Mainloop.source_remove() warns when the id is no longer attached
-            // -- see overrides.js, which dumps a stack through the log. Asking
-            // first turns that into a no-op.
-            if (this._sourceAlive(id)) Mainloop.source_remove(id);
-        }
+    /**
+     * Stop one of this desklet's timers, leaving the field empty.
+     *
+     * The liveness test is not paranoia. A timeout's source can be detached
+     * without any JavaScript running: CJS sets one up with
+     * GObject.source_set_closure(), whose boolean result GLib initialises to
+     * false, so a collection sweeping while the callback is ready has the
+     * source removed for it. Mainloop.source_remove() then warns and dumps a
+     * stack through the log -- see overrides.js -- which is noise at best, and
+     * at worst hides the one warning that matters. The field is cleared
+     * whatever the source turns out to be, so nothing downstream is left
+     * believing in a timer that is not there.
+     */
+    _cancelTimer(field) {
+        const id = this[field];
+        this[field] = 0;
+        if (id > 0 && this._sourceAlive(id)) Mainloop.source_remove(id);
+    }
+
+    _stopInputTimer() {
+        this._cancelTimer("_inputTimer");
+        this._cancelTimer("_inputWatchdog");
     }
 
     on_desklet_added_to_desktop() {

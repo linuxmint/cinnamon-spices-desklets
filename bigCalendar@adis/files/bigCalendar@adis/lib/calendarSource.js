@@ -471,6 +471,47 @@ function colorOf(source) {
 }
 
 /**
+ * One entry per occurrence, dropping copies of an event that arrived from more
+ * than one calendar.
+ *
+ * An event is not owned by a calendar: a meeting you are invited to sits in
+ * yours and in the organiser's shared one, and the same holiday calendar can
+ * be subscribed twice by accident. Both copies come back from a query and,
+ * without this, each draws its own dot -- the bug that prompted this was two
+ * green dots on one day from a single calendar name.
+ *
+ * Told apart by UID, which RFC 5545 requires to be globally unique per event,
+ * and by start, because every occurrence of a repeating event carries its
+ * series' UID. Equal UID and equal instant is the same thing happening once.
+ *
+ * The first copy wins. Which one that is depends on the order the calendars
+ * are registered in, so it is stable across a session but not chosen for any
+ * reason -- if the same event is drawn in two colours, one of them is simply
+ * the one that got there first.
+ *
+ * An entry with no UID is kept as it is: two of them at the same instant are
+ * not evidence of anything, and dropping one would lose a real event.
+ */
+export function dedupeOccurrences(events) {
+    const seen = new Set();
+    const out = [];
+
+    for (const event of events) {
+        if (!event.uid) {
+            out.push(event);
+            continue;
+        }
+
+        const key = event.uid + "@" + event.start;
+        if (seen.has(key)) continue;
+
+        seen.add(key);
+        out.push(event);
+    }
+    return out;
+}
+
+/**
  * A live connection to the user's calendars.
  *
  * Lifecycle: `open()` once, then `query()` as often as needed, then
@@ -624,7 +665,11 @@ export class CalendarFeed {
         }));
 
         if (this._destroyed) return [];
-        return results.flat();
+
+        // The calendars are asked in parallel and each answers for itself, so
+        // this is the first point at which one event can be seen to have
+        // arrived twice. See dedupeOccurrences().
+        return dedupeOccurrences(results.flat());
     }
 
     /**
