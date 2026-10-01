@@ -1,0 +1,347 @@
+# Translation template for the Big Calendar desklet.
+# Copyright (C) 2026 the Big Calendar authors
+# This file is distributed under the same license as the Big Calendar package.
+# adis, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Big Calendar\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-30 23:50+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:548
+msgid "Big Calendar could not start."
+msgstr ""
+
+#: desklet.js:564
+msgid "Big Calendar"
+msgstr ""
+
+#: desklet.js:767
+msgid "Today"
+msgstr ""
+
+#: desklet.js:865
+msgid "Click to return to the current month"
+msgstr ""
+
+#: desklet.js:1209
+msgid "All day"
+msgstr ""
+
+#: desklet.js:1241
+msgid "more"
+msgstr ""
+
+#: settings-schema.json:font-scale
+msgid "Text size"
+msgstr ""
+
+#: settings-schema.json:font-scale
+msgid "Scales the whole calendar. The desklet grows with it."
+msgstr ""
+
+#: settings-schema.json:padding
+msgid "Inner padding"
+msgstr ""
+
+#: settings-schema.json:cell-radius
+msgid "Corner roundness of day highlights"
+msgstr ""
+
+#: settings-schema.json:bg-color
+msgid "Background colour"
+msgstr ""
+
+#: settings-schema.json:bg-opacity
+msgid "Background opacity"
+msgstr ""
+
+#: settings-schema.json:bg-opacity
+msgid "Lower values let the wallpaper show through."
+msgstr ""
+
+#: settings-schema.json:corner-radius
+msgid "Corner radius of the calendar"
+msgstr ""
+
+#: settings-schema.json:border-width
+msgid "Border thickness"
+msgstr ""
+
+#: settings-schema.json:border-color
+msgid "Border colour"
+msgstr ""
+
+#: settings-schema.json:show-grid-lines
+msgid "Draw grid lines between days"
+msgstr ""
+
+#: settings-schema.json:grid-line-color
+msgid "Grid line colour"
+msgstr ""
+
+#: settings-schema.json:text-color
+msgid "Day numbers"
+msgstr ""
+
+#: settings-schema.json:header-color
+msgid "Month and year"
+msgstr ""
+
+#: settings-schema.json:weekday-color
+msgid "Weekday headings"
+msgstr ""
+
+#: settings-schema.json:weekend-color
+msgid "Weekend days"
+msgstr ""
+
+#: settings-schema.json:other-month-color
+msgid "Days outside this month"
+msgstr ""
+
+#: settings-schema.json:dim-other-months
+msgid "Fade days from other months"
+msgstr ""
+
+#: settings-schema.json:dim-other-months
+msgid ""
+"When off, leading and trailing days are shown at full strength, "
+"distinguished only by colour."
+msgstr ""
+
+#: settings-schema.json:other-month-opacity
+msgid "Fade amount"
+msgstr ""
+
+#: settings-schema.json:today-style
+msgid "Highlight today with"
+msgstr ""
+
+#: settings-schema.json:today-style/options
+msgid "Filled background"
+msgstr ""
+
+#: settings-schema.json:today-style/options
+msgid "Outlined ring"
+msgstr ""
+
+#: settings-schema.json:today-style/options
+msgid "Bold text"
+msgstr ""
+
+#: settings-schema.json:today-style/options
+msgid "No highlight"
+msgstr ""
+
+#: settings-schema.json:today-bg-color
+msgid "Highlight colour"
+msgstr ""
+
+#: settings-schema.json:today-text-color
+msgid "Today's number colour"
+msgstr ""
+
+#: settings-schema.json:tint-weekends
+msgid "Tint weekend days"
+msgstr ""
+
+#: settings-schema.json:weekend-tint-strength
+msgid "Weekend tint strength"
+msgstr ""
+
+#: settings-schema.json:week-start
+msgid "Week starts on"
+msgstr ""
+
+#: settings-schema.json:week-start/options
+msgid "Match my system"
+msgstr ""
+
+#: settings-schema.json:week-start/options
+msgid "Sunday"
+msgstr ""
+
+#: settings-schema.json:week-start/options
+msgid "Monday"
+msgstr ""
+
+#: settings-schema.json:week-start/options
+msgid "Saturday"
+msgstr ""
+
+#: settings-schema.json:week-start
+msgid "By default this follows your desktop's regional setting."
+msgstr ""
+
+#: settings-schema.json:week-numbering
+msgid "Week numbering"
+msgstr ""
+
+#: settings-schema.json:week-numbering/options
+msgid "ISO 8601 (Europe, most of the world)"
+msgstr ""
+
+#: settings-schema.json:week-numbering/options
+msgid "North American (weeks start Sunday)"
+msgstr ""
+
+#: settings-schema.json:week-numbering/options
+msgid "Do not number weeks"
+msgstr ""
+
+#: settings-schema.json:show-week-numbers
+msgid "Show week numbers"
+msgstr ""
+
+#: settings-schema.json:week-number-color
+msgid "Week number colour"
+msgstr ""
+
+#: settings-schema.json:rows
+msgid "Rows"
+msgstr ""
+
+#: settings-schema.json:rows/options
+msgid "Always six (fixed height)"
+msgstr ""
+
+#: settings-schema.json:rows/options
+msgid "Only as many as needed"
+msgstr ""
+
+#: settings-schema.json:rows
+msgid ""
+"A fixed six rows keeps the desklet the same height as you page through "
+"months."
+msgstr ""
+
+#: settings-schema.json:month-format
+msgid "Header format"
+msgstr ""
+
+#: settings-schema.json:month-format/options
+msgid "September 2026"
+msgstr ""
+
+#: settings-schema.json:month-format/options
+msgid "Sep 2026"
+msgstr ""
+
+#: settings-schema.json:month-format/options
+msgid "2026 September"
+msgstr ""
+
+#: settings-schema.json:month-format/options
+msgid "09/2026"
+msgstr ""
+
+#: settings-schema.json:month-format/options
+msgid "Month above year"
+msgstr ""
+
+#: settings-schema.json:show-navigation
+msgid "Show month navigation arrows"
+msgstr ""
+
+#: settings-schema.json:nav-color
+msgid "Arrow colour"
+msgstr ""
+
+#: settings-schema.json:start-on-today
+msgid "Open on the current month"
+msgstr ""
+
+#: settings-schema.json:start-on-today
+msgid ""
+"When off, the desklet stays on whichever month you last paged to, including "
+"across restarts."
+msgstr ""
+
+#: settings-schema.json:last-view
+msgid "Last month viewed, remembered as YYYY-M"
+msgstr ""
+
+#: settings-schema.json:last-view
+msgid ""
+"Saved automatically. Not shown in this dialog; clear it to forget the month "
+"you were on."
+msgstr ""
+
+#: settings-schema.json:mouse-wheel-navigation
+msgid "Change month with the scroll wheel"
+msgstr ""
+
+#: settings-schema.json:show-events
+msgid "Show events from my calendars"
+msgstr ""
+
+#: settings-schema.json:show-events
+msgid ""
+"Reads the calendars already connected in Online Accounts. The desklet stores "
+"no password and talks to no server itself."
+msgstr ""
+
+#: settings-schema.json:event-style
+msgid "Show each day's events as"
+msgstr ""
+
+#: settings-schema.json:event-style/options
+msgid "Coloured dots"
+msgstr ""
+
+#: settings-schema.json:event-style/options
+msgid "Coloured bars"
+msgstr ""
+
+#: settings-schema.json:event-style/options
+msgid "Titles"
+msgstr ""
+
+#: settings-schema.json:event-style
+msgid ""
+"Dots and bars keep the grid compact. Titles spell the events out and need "
+"more room."
+msgstr ""
+
+#: settings-schema.json:event-max
+msgid "Most indicators per day"
+msgstr ""
+
+#: settings-schema.json:event-max
+msgid "Any beyond this are counted up as \"+N\"."
+msgstr ""
+
+#: settings-schema.json:event-time-format
+msgid "Clock"
+msgstr ""
+
+#: settings-schema.json:event-time-format/options
+msgid "24-hour"
+msgstr ""
+
+#: settings-schema.json:event-time-format/options
+msgid "12-hour"
+msgstr ""
+
+#: settings-schema.json:show-event-tooltips
+msgid "List a day's events on hover"
+msgstr ""
+
+#: settings-schema.json:event-refresh
+msgid "Re-check for changes every"
+msgstr ""
+
+#: settings-schema.json:event-refresh
+msgid ""
+"The desklet reads from a local cache, so this costs nothing when nothing has "
+"changed."
+msgstr ""

@@ -1,0 +1,249 @@
+/* Big Calendar desklet -- structural styling.
+ *
+ * A desklet stylesheet is loaded into Cinnamon's global theme, so every rule
+ * here is prefixed to avoid colliding with the desktop theme or with other
+ * desklets.
+ *
+ * Colours and the base font size are set as inline styles by desklet.js,
+ * because they are user-configurable and an inline style wins over these class
+ * rules. Anything that decides how *large* something is -- widths, the base
+ * font size, and the padding of the grid's cells and indicator strip -- is set
+ * there too, and the reasons are worth reading before moving one back here;
+ * see the notes in desklet.js.
+ *
+ * What is left is alignment, weights, spacing and the few paddings outside the
+ * grid that St does honour.
+ */
+
+/* ---- Surface -------------------------------------------------------- */
+
+.bigcal-root {
+    /* background-color, border, border-radius and padding are inline. */
+}
+
+.bigcal-titlebar {
+    spacing: 6px;
+    padding-bottom: 10px;
+}
+
+/* The month heading. It is a button -- clicking it returns to the current
+ * month -- but on the current month it has nowhere to go, so it looks like the
+ * plain heading it was. The padding and radius are here rather than inline for
+ * the same reason as the nav arrows: they are decoration, not layout. */
+.bigcal-title {
+    font-weight: bold;
+    text-align: center;
+    border-radius: 6px;
+    padding: 1px 9px;
+    transition-duration: 120ms;
+}
+
+.bigcal-title:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.bigcal-title:active {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* Away from the current month, where the click does something. Cinnamon's
+ * accent, matching the "today" cell, so it reads as "this is how you get back"
+ * rather than as decoration. The colour is set inline from headerColor, so
+ * only the affordance is here. */
+.bigcal-title-away {
+    background-color: rgba(31, 158, 222, 0.22);
+}
+
+/* Spelled out again because :hover carries more weight than a bare class, and
+ * rules of equal weight are settled by order -- without these, hovering an
+ * away month would drop back to the grey it wears when it has nowhere to go. */
+.bigcal-title-away:hover {
+    background-color: rgba(31, 158, 222, 0.34);
+}
+
+.bigcal-title-away:active {
+    background-color: rgba(31, 158, 222, 0.46);
+}
+
+
+/* "Today", which returns to the current month. It is only in the header while
+ * the desklet is showing some other month, so it never sits there greyed out
+ * doing nothing -- and so that seeing it means something. The wash is
+ * Cinnamon's accent, as on the tinted heading above, and the label colour is
+ * set inline from headerColor so the two stay legible together. The label is
+ * not a name for the month; it is the action. */
+.bigcal-today {
+    border-radius: 6px;
+    padding: 1px 10px;
+    font-weight: bold;
+    background-color: rgba(31, 158, 222, 0.24);
+    transition-duration: 120ms;
+}
+
+.bigcal-today:hover {
+    background-color: rgba(31, 158, 222, 0.38);
+}
+
+.bigcal-today:active {
+    background-color: rgba(31, 158, 222, 0.52);
+}
+
+
+/* Month navigation arrows. Given a comfortable hit area so they are easy to
+ * click without being visually heavy. */
+.bigcal-nav {
+    border-radius: 6px;
+    padding: 1px 9px;
+    font-weight: bold;
+    transition-duration: 120ms;
+}
+
+.bigcal-nav:hover {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.bigcal-nav:active {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+/* ---- Grid ----------------------------------------------------------- */
+
+/* The widths, the base font size and the padding of the cells and the
+ * indicator strip are set from desklet.js, not here. St works out a widget's
+ * theme node lazily, on the first allocation, and for a desklet that is
+ * earlier than this stylesheet reaching the theme -- so an em length is
+ * resolved against the default font, and the padding of the widgets inside the
+ * table is dropped, and neither comes back. See the notes in desklet.js for
+ * what that looked like and how the fix was pinned down. */
+
+.bigcal-table {
+    /* Rows and columns are sized by their content; the cell width set in
+     * desklet.js keeps the columns aligned across every row. */
+}
+
+/* Weekday headings: MON TUE WED ... */
+.bigcal-weekday {
+    text-align: center;
+    font-weight: bold;
+    padding: 2px 3px 7px 3px;
+}
+
+/* One day: the number, then its event indicators below it.
+ *
+ * A cell is the table's direct child, so its width is what makes the seven
+ * columns line up even when the month is mostly single-digit days. Its width
+ * and its padding are both set in desklet.js, and have to leave room for event
+ * indicators, not just the number. */
+.bigcal-cell {
+}
+
+/* Wraps just the number, so the today pill and weekend tint hug the digits
+ * instead of stretching the full width of the cell. It is left at its natural
+ * width for exactly that reason, so there is no min-width here. */
+.bigcal-dayholder {
+}
+
+/* Day numbers. */
+.bigcal-day {
+    text-align: center;
+    padding: 3px 5px;
+}
+
+/* ---- Event indicators ------------------------------------------------ */
+
+/* A floor on the indicator strip's height keeps every row the same height
+ * whether or not that day happens to have events. The floor, its padding, the
+ * dot size and the dot's rounding are all set in desklet.js. */
+.bigcal-events {
+}
+
+.bigcal-eventdots {
+    spacing: 2px;
+}
+
+.bigcal-eventdot {
+}
+
+.bigcal-eventbars {
+    spacing: 2px;
+}
+
+.bigcal-eventbar {
+    height: 3px;
+    border-radius: 1.5px;
+}
+
+.bigcal-eventlist {
+    spacing: 1px;
+}
+
+/* The width is set in desklet.js instead. St does not honour width or
+ * max-width on an St.Label, and a label left unconstrained reports its full
+ * natural width -- so one long event name widens its column and can balloon
+ * the whole desklet. Ellipsizing needs a real width to truncate against. */
+.bigcal-eventtitle {
+    font-size: 0.78em;
+    text-align: left;
+}
+
+/* The colour is set in desklet.js. That is also what makes the rules here
+ * take effect: a widget with an inline style resolves its theme node while it
+ * is being built, instead of on the first allocation when the stylesheet is
+ * not yet in the theme.
+ *
+ * The font-size is set in desklet.js too, and deliberately not here. The row
+ * that holds this label has to know how wide the label is before it can
+ * decide how many dots to keep, and it has to ask that while the label is
+ * still unparented -- with no theme context, so a size given here would not
+ * have been applied yet and the label would report the width of a far larger
+ * default font. */
+.bigcal-eventmore {
+    padding-left: 2px;
+}
+
+/* Week numbers down the left edge. The column width is set in desklet.js. */
+.bigcal-weeknum {
+    text-align: center;
+    padding: 3px 6px;
+}
+
+
+/* ---- Day tooltip ---------------------------------------------------- */
+
+/* One tooltip, shared by every day, living in the uiGroup rather than in the
+ * desklet so it can hang over the edge of the calendar. It is not Cinnamon's
+ * Tooltips.Tooltip: that is a single St.Label and can carry one colour, and
+ * these rows each carry their own. See DayTooltip in desklet.js.
+ *
+ * The background is set inline from the desklet's own, so the tooltip belongs
+ * to the calendar whatever theme it is on. */
+/* The font-size is set inline from the desklet's scale setting, here rather
+ * than on desklet.js's root because this actor hangs in the uiGroup and
+ * inherits nothing from the calendar. The lengths below are in ems and ride on
+ * it, so the whole tooltip grows with the text the way the calendar does. */
+.bigcal-tip {
+    border-radius: 8px;
+    padding: 0.45em;
+}
+
+/* One event: filled with its own colour, set inline from that event's
+ * calendar. The rows stretch to the width of the widest, so they read as one
+ * column rather than as strips as long as their own text, and the gap below
+ * keeps two events that share a colour from merging into a single block. */
+.bigcal-tip-row {
+    padding: 0.18em 0.7em;
+    border-radius: 4px;
+    margin-bottom: 0.12em;
+}
+
+/* The date, and the "+N more" count: no colour of their own, so their colour
+ * is derived from the tooltip's surface and set inline. */
+.bigcal-tip-plain {
+    padding: 0.18em 0.7em;
+}
+
+/* The date heads the tooltip: it stands apart from the events below it, which
+ * are separate rows of their own colour. */
+.bigcal-tip-date {
+    padding-bottom: 0.45em;
+}

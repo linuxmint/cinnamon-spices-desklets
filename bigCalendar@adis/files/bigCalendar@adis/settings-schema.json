@@ -1,0 +1,404 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page_appearance", "page_layout", "page_events", "page_behaviour"],
+
+        "page_appearance": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["sec_scale", "sec_surface", "sec_text", "sec_today", "sec_weekend"]
+        },
+        "sec_scale": {
+            "type": "section",
+            "title": "Size and spacing",
+            "keys": ["font-scale", "padding", "cell-radius"]
+        },
+        "sec_surface": {
+            "type": "section",
+            "title": "Background",
+            "keys": ["bg-color", "bg-opacity", "corner-radius", "border-width", "border-color",
+                     "show-grid-lines", "grid-line-color"]
+        },
+        "sec_text": {
+            "type": "section",
+            "title": "Text colours",
+            "keys": ["text-color", "header-color", "weekday-color", "weekend-color",
+                     "other-month-color", "dim-other-months", "other-month-opacity"]
+        },
+        "sec_today": {
+            "type": "section",
+            "title": "Today",
+            "keys": ["today-style", "today-bg-color", "today-text-color"]
+        },
+        "sec_weekend": {
+            "type": "section",
+            "title": "Weekends",
+            "keys": ["tint-weekends", "weekend-tint-strength"]
+        },
+
+        "page_layout": {
+            "type": "page",
+            "title": "Layout",
+            "sections": ["sec_week", "sec_grid", "sec_header"]
+        },
+        "sec_week": {
+            "type": "section",
+            "title": "Week",
+            "keys": ["week-start", "week-numbering", "show-week-numbers", "week-number-color"]
+        },
+        "sec_grid": {
+            "type": "section",
+            "title": "Month grid",
+            "keys": ["rows", "month-format"]
+        },
+        "sec_header": {
+            "type": "section",
+            "title": "Header",
+            "keys": ["show-navigation", "nav-color"]
+        },
+
+        "page_events": {
+            "type": "page",
+            "title": "Events",
+            "sections": ["sec_events", "sec_events_look", "sec_events_sync"]
+        },
+        "sec_events": {
+            "type": "section",
+            "title": "Calendars",
+            "keys": ["show-events"]
+        },
+        "sec_events_look": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": ["event-style", "event-max", "event-time-format", "show-event-tooltips"]
+        },
+        "sec_events_sync": {
+            "type": "section",
+            "title": "Refresh",
+            "keys": ["event-refresh"]
+        },
+
+        "page_behaviour": {
+            "type": "page",
+            "title": "Behaviour",
+            "sections": ["sec_behaviour"]
+        },
+        "sec_behaviour": {
+            "type": "section",
+            "title": "",
+            "keys": ["start-on-today", "mouse-wheel-navigation"]
+        }
+    },
+
+    "font-scale": {
+        "type": "scale",
+        "default": 200,
+        "min": 50,
+        "max": 400,
+        "step": 5,
+        "show-value": true,
+        "units": "%",
+        "description": "Text size",
+        "tooltip": "Scales the whole calendar. The desklet grows with it."
+    },
+    "padding": {
+        "type": "spinbutton",
+        "default": 16,
+        "min": 0,
+        "max": 80,
+        "step": 2,
+        "units": "pixels",
+        "description": "Inner padding"
+    },
+    "cell-radius": {
+        "type": "spinbutton",
+        "default": 8,
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner roundness of day highlights"
+    },
+
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "#303036",
+        "description": "Background colour"
+    },
+    "bg-opacity": {
+        "type": "scale",
+        "default": 85,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "show-value": true,
+        "units": "%",
+        "description": "Background opacity",
+        "tooltip": "Lower values let the wallpaper show through."
+    },
+    "corner-radius": {
+        "type": "spinbutton",
+        "default": 14,
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius of the calendar"
+    },
+    "border-width": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 10,
+        "step": 1,
+        "units": "pixels",
+        "description": "Border thickness"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "#3c3c44",
+        "description": "Border colour",
+        "dependency": "border-width>0"
+    },
+    "show-grid-lines": {
+        "type": "switch",
+        "default": false,
+        "description": "Draw grid lines between days"
+    },
+    "grid-line-color": {
+        "type": "colorchooser",
+        "default": "#3c3c44",
+        "description": "Grid line colour",
+        "dependency": "show-grid-lines"
+    },
+
+    "text-color": {
+        "type": "colorchooser",
+        "default": "#e1e1e1",
+        "description": "Day numbers"
+    },
+    "header-color": {
+        "type": "colorchooser",
+        "default": "#ffffff",
+        "description": "Month and year"
+    },
+    "weekday-color": {
+        "type": "colorchooser",
+        "default": "#9a9a9a",
+        "description": "Weekday headings"
+    },
+    "weekend-color": {
+        "type": "colorchooser",
+        "default": "#1f9ede",
+        "description": "Weekend days"
+    },
+    "other-month-color": {
+        "type": "colorchooser",
+        "default": "#6a6a72",
+        "description": "Days outside this month"
+    },
+    "dim-other-months": {
+        "type": "switch",
+        "default": true,
+        "description": "Fade days from other months",
+        "tooltip": "When off, leading and trailing days are shown at full strength, distinguished only by colour."
+    },
+    "other-month-opacity": {
+        "type": "scale",
+        "default": 35,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "show-value": true,
+        "units": "%",
+        "description": "Fade amount",
+        "dependency": "dim-other-months"
+    },
+
+    "today-style": {
+        "type": "combobox",
+        "default": "filled",
+        "description": "Highlight today with",
+        "options": {
+            "Filled background": "filled",
+            "Outlined ring": "ring",
+            "Bold text": "bold",
+            "No highlight": "none"
+        }
+    },
+    "today-bg-color": {
+        "type": "colorchooser",
+        "default": "#1f9ede",
+        "description": "Highlight colour",
+        "dependency": "today-style!=none"
+    },
+    "today-text-color": {
+        "type": "colorchooser",
+        "default": "#ffffff",
+        "description": "Today's number colour",
+        "dependency": "today-style!=none"
+    },
+
+    "tint-weekends": {
+        "type": "switch",
+        "default": true,
+        "description": "Tint weekend days"
+    },
+    "weekend-tint-strength": {
+        "type": "scale",
+        "default": 10,
+        "min": 0,
+        "max": 60,
+        "step": 1,
+        "show-value": true,
+        "units": "%",
+        "description": "Weekend tint strength",
+        "dependency": "tint-weekends"
+    },
+
+    "week-start": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Week starts on",
+        "options": {
+            "Match my system": "auto",
+            "Sunday": "sunday",
+            "Monday": "monday",
+            "Saturday": "saturday"
+        },
+        "tooltip": "By default this follows your desktop's regional setting."
+    },
+    "week-numbering": {
+        "type": "combobox",
+        "default": "iso",
+        "description": "Week numbering",
+        "options": {
+            "ISO 8601 (Europe, most of the world)": "iso",
+            "North American (weeks start Sunday)": "us",
+            "Do not number weeks": "none"
+        }
+    },
+    "show-week-numbers": {
+        "type": "switch",
+        "default": false,
+        "description": "Show week numbers",
+        "dependency": "week-numbering!=none"
+    },
+    "week-number-color": {
+        "type": "colorchooser",
+        "default": "#6a6a72",
+        "description": "Week number colour",
+        "dependency": "show-week-numbers"
+    },
+
+    "rows": {
+        "type": "combobox",
+        "default": "6",
+        "description": "Rows",
+        "options": {
+            "Always six (fixed height)": "6",
+            "Only as many as needed": "auto"
+        },
+        "tooltip": "A fixed six rows keeps the desklet the same height as you page through months."
+    },
+    "month-format": {
+        "type": "combobox",
+        "default": "long",
+        "description": "Header format",
+        "options": {
+            "September 2026": "long",
+            "Sep 2026": "short",
+            "2026 September": "year-first",
+            "09/2026": "numeric",
+            "Month above year": "stacked"
+        }
+    },
+    "show-navigation": {
+        "type": "switch",
+        "default": true,
+        "description": "Show month navigation arrows"
+    },
+    "nav-color": {
+        "type": "colorchooser",
+        "default": "#c3c3c3",
+        "description": "Arrow colour",
+        "dependency": "show-navigation"
+    },
+
+    "start-on-today": {
+        "type": "switch",
+        "default": true,
+        "description": "Open on the current month",
+        "tooltip": "When off, the desklet stays on whichever month you last paged to, including across restarts."
+    },
+
+    "last-view": {
+        "type": "entry",
+        "default": "",
+        "description": "Last month viewed, remembered as YYYY-M",
+        "tooltip": "Saved automatically. Not shown in this dialog; clear it to forget the month you were on."
+    },
+
+    "mouse-wheel-navigation": {
+        "type": "switch",
+        "default": true,
+        "description": "Change month with the scroll wheel"
+    },
+
+    "show-events": {
+        "type": "switch",
+        "default": true,
+        "description": "Show events from my calendars",
+        "tooltip": "Reads the calendars already connected in Online Accounts. The desklet stores no password and talks to no server itself."
+    },
+    "event-style": {
+        "type": "combobox",
+        "default": "dots",
+        "description": "Show each day's events as",
+        "options": {
+            "Coloured dots": "dots",
+            "Coloured bars": "bars",
+            "Titles": "titles"
+        },
+        "tooltip": "Dots and bars keep the grid compact. Titles spell the events out and need more room.",
+        "dependency": "show-events"
+    },
+    "event-max": {
+        "type": "spinbutton",
+        "default": 3,
+        "min": 1,
+        "max": 8,
+        "step": 1,
+        "description": "Most indicators per day",
+        "tooltip": "Any beyond this are counted up as \"+N\".",
+        "dependency": "show-events"
+    },
+    "event-time-format": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Clock",
+        "options": {
+            "Match my system": "auto",
+            "24-hour": "24",
+            "12-hour": "12"
+        },
+        "dependency": "show-events"
+    },
+    "show-event-tooltips": {
+        "type": "switch",
+        "default": true,
+        "description": "List a day's events on hover",
+        "dependency": "show-events"
+    },
+    "event-refresh": {
+        "type": "spinbutton",
+        "default": 20,
+        "min": 5,
+        "max": 240,
+        "step": 5,
+        "units": "minutes",
+        "description": "Re-check for changes every",
+        "tooltip": "The desklet reads from a local cache, so this costs nothing when nothing has changed.",
+        "dependency": "show-events"
+    }
+}
