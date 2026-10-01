@@ -1693,6 +1693,56 @@ class BigCalendarDesklet extends Desklet.Desklet {
     }
 
     /**
+     * Clear away a flashspot that has finished but not gone.
+     *
+     * Cinnamon fires one of these over a desklet's rectangle whenever the
+     * desklet is added to the desktop -- see on_desklet_added_to_desktop_internal
+     * in Cinnamon's own desklet.js -- as a flash of light showing where it
+     * landed. A flashspot is a Lightbox, and a Lightbox's actor is an St.Bin
+     * built with `reactive: params.inhibitEvents`, which for a flashspot is
+     * true. So while one is up it is a *reactive* rectangle lying exactly over
+     * the desklet, and every mouse event that lands on the desklet goes to it
+     * instead. It has no handlers, so the events stop there.
+     *
+     * It removes itself in the onComplete of its own ease. When that callback
+     * does not run -- the same lost-callback failure the timers here are
+     * written around, and likelier the more often a desklet is reloaded -- what
+     * is left behind is an actor at opacity 0 that is still mapped, still
+     * reactive, and still on top of the desklet. The desklet then answers
+     * nothing: no hover, no tooltips, no scroll wheel, because none of those
+     * events are reaching it. Nothing else can notice, because an actor at
+     * opacity 0 has nothing to see and Cinnamon's own guard asks about windows.
+     *
+     * So the desklet takes them down itself, and only ones that are both over
+     * it and already faded to nothing. At any other opacity the flash is still
+     * running and clearing it would be wrong. Hiding rather than destroying is
+     * deliberate: hidden is enough to stop it being picked, and it leaves
+     * Cinnamon's own object intact in case its callback runs after all.
+     */
+    _clearStuckFlashspot() {
+        const [x, y] = this.actor.get_transformed_position();
+        const [w, h] = this.actor.get_transformed_size();
+        if (!w || !h) return;
+
+        for (const child of Main.uiGroup.get_children()) {
+            if (!child.get_style_class_name) continue;
+            if (child.get_style_class_name() !== "flashspot") continue;
+            if (!child.visible || child.opacity !== 0) continue;
+
+            const [cx, cy] = child.get_transformed_position();
+            const [cw, ch] = child.get_transformed_size();
+            if (cx >= x + w || cx + cw <= x || cy >= y + h || cy + ch <= y)
+                continue;
+
+            child.hide();
+            // Worth a line: it means a callback was dropped somewhere, and it
+            // is the explanation for a desklet that has stopped answering the
+            // mouse. global.log, because print() does not reach the log.
+            global.log("Big Calendar: cleared a flashspot left over the desklet");
+        }
+    }
+
+    /**
      * The id is checked against the context rather than merely tested for
      * having a value, so that a timer detached behind the desklet's back is
      * replaced instead of believed in. See _cancelTimer.
@@ -1706,6 +1756,10 @@ class BigCalendarDesklet extends Desklet.Desklet {
                 this._inputTimer = 0;
                 return GLib.SOURCE_REMOVE;
             }
+            // A flashspot over the desklet swallows the very events the input
+            // region is being held for, so it is cleared before the region is
+            // decided rather than after.
+            this._clearStuckFlashspot();
             this._syncInputRegion();
             return GLib.SOURCE_CONTINUE;
         });
