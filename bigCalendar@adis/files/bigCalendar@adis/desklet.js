@@ -65,6 +65,23 @@ const DAY_CHECK_SECONDS = 60;
 // then clicking in it.
 const INPUT_RECONCILE_MS = 200;
 
+// How often the reconcile timer above is checked for still existing.
+//
+// A repeating timeout can be detached without any JavaScript running: CJS sets
+// one up with GObject.source_set_closure(), whose boolean result GLib
+// initialises to false, so when a collection is sweeping and the runtime
+// refuses to enter the callback, that false removes the source by itself. The
+// field keeps the old id, so `if (this._inputTimer)` sees a timer that is not
+// there and never starts another one -- and the desklet stops re-checking the
+// input region for the rest of its life, which shows up as a desklet that
+// swallows clicks over a window, or one that has quietly stopped responding to
+// the mouse. It is rare (a source has to be ready at the instant of the sweep),
+// and this is what makes it recoverable rather than permanent.
+//
+// Two timers rather than one because the sweep has to catch this one ready as
+// well to do any harm, and this one is ready 150 times less often.
+const INPUT_WATCHDOG_SEC = 30;
+
 // How many events a day tooltip lists before collapsing the rest into a
 // "+N more" line. Beyond this the tooltip stops being readable.
 const TOOLTIP_MAX_EVENTS = 10;
@@ -1628,8 +1645,15 @@ class BigCalendarDesklet extends Desklet.Desklet {
         else this._trackMouse();
     }
 
+    /**
+     * The id is checked against the context rather than merely tested for
+     * having a value, so that a timer detached behind the desklet's back is
+     * replaced instead of believed in. INPUT_WATCHDOG_SEC has the story.
+     */
     _startInputTimer() {
-        if (this._inputTimer) return;
+        this._startInputWatchdog();
+
+        if (this._inputTimer && this._sourceAlive(this._inputTimer)) return;
 
         this._inputTimer = Mainloop.timeout_add(INPUT_RECONCILE_MS, () => {
             if (this._destroyed) {
@@ -1641,10 +1665,49 @@ class BigCalendarDesklet extends Desklet.Desklet {
         });
     }
 
+    /**
+     * Restarts the reconcile timer if it has gone. Nothing else would: the
+     * desklet's own way back to life is the mouse, and a desklet that has lost
+     * its timer has stopped answering the mouse. See INPUT_WATCHDOG_SEC.
+     */
+    _startInputWatchdog() {
+        if (this._inputWatchdog && this._sourceAlive(this._inputWatchdog)) return;
+
+        this._inputWatchdog = Mainloop.timeout_add_seconds(INPUT_WATCHDOG_SEC, () => {
+            if (this._destroyed) {
+                this._inputWatchdog = null;
+                return GLib.SOURCE_REMOVE;
+            }
+            this._startInputTimer();
+            return GLib.SOURCE_CONTINUE;
+        });
+    }
+
+    _sourceAlive(id) {
+        return !!GLib.MainContext.default().find_source_by_id(id);
+    }
+
+    /**
+     * The field is cleared first for a reason. It is not only an exception
+     * escaping `_syncInputRegion()` that can leave the id behind while GLib has
+     * already let the source go -- a collection running while this callback is
+     * pending can do it too, without any JavaScript running at all. CJS sets up
+     * a timeout with `GObject.source_set_closure()`, whose boolean result GLib
+     * initialises to false; if the runtime refuses to enter JS during the sweep,
+     * that false removes the source on our behalf. Clearing the field before the
+     * call means the stale id cannot be left behind by anything below it.
+     */
     _stopInputTimer() {
-        if (!this._inputTimer) return;
-        Mainloop.source_remove(this._inputTimer);
-        this._inputTimer = null;
+        for (const field of ["_inputTimer", "_inputWatchdog"]) {
+            const id = this[field];
+            this[field] = null;
+            if (!id) continue;
+
+            // Mainloop.source_remove() warns when the id is no longer attached
+            // -- see overrides.js, which dumps a stack through the log. Asking
+            // first turns that into a no-op.
+            if (this._sourceAlive(id)) Mainloop.source_remove(id);
+        }
     }
 
     on_desklet_added_to_desktop() {
@@ -1660,6 +1723,25 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     on_desklet_removed() {
         this._destroyed = true;
+
+        // Give up the input region here, and stop being reactive, rather than
+        // leaving both to the actor's destruction.
+        //
+        // Cinnamon does destroy the actor, but only after this returns and only
+        // if it returns: Desklet.destroy() nulls the menu, starts a fade, and
+        // calls this from the fade's onComplete with `this.actor.destroy()` as
+        // the next statement. Everything here is therefore on the critical path
+        // for that. A desklet that throws, or whose onComplete never runs,
+        // leaves a mapped actor at opacity 0 -- invisible, but still reactive
+        // and still holding the input region, so it goes on swallowing clicks
+        // over a rectangle of desktop nobody can see. It cannot open its own
+        // menu any more either, so each of those clicks raises inside Cinnamon:
+        // "TypeError: this._menu is null", from _onButtonReleaseEvent.
+        //
+        // Both lines are cheap and both make that failure benign -- at worst a
+        // transparent rectangle where a dead patch of desktop used to be.
+        this._untrackMouse();
+        if (this.actor) this.actor.reactive = false;
 
         this._stopDayTimer();
         this._stopEventTimer();
@@ -1689,19 +1771,33 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // Removes every settings binding and disconnects its signals, so the
         // configuration dialog cannot reach into a desklet that is gone.
         //
-        // Only if this object is still the one registered, though. Cinnamon
-        // destroys a desklet from inside its fade-out animation, so this runs
-        // a moment later -- long enough for a reload to have brought the
-        // replacement up under the same uuid and instance id. Unregistering
-        // then would null the *new* instance's entry, and the configuration
-        // dialog, which finds the live desklet through that entry, would
-        // silently stop applying changes until the next restart.
+        // The unregister is guarded, because it is the one part that touches
+        // shared state. Cinnamon destroys a desklet from inside its fade-out
+        // animation, so this runs a moment later -- long enough for a reload to
+        // have brought the replacement up under the same uuid and instance id.
+        // Unregistering then would null the *new* instance's entry, and the
+        // configuration dialog, which finds the live desklet through that
+        // entry, would silently stop applying changes until the next restart.
+        //
+        // It is only the unregister, though. Unbinding the 38 bind() calls and
+        // disconnecting the signals are local to this object and always have to
+        // happen, or every one of them outlives the desklet that made it.
+        // finalize() does all three -- see settings.js, whose finalize() is
+        // exactly these three calls -- so it is taken apart here rather than
+        // called, to skip the first alone.
         if (this.settings) {
-            const registry = Main.settingsManager.uuids[this.settings.uuid];
-            if (!registry || registry[this.settings.instanceId] === this.settings) {
-                this.settings.finalize();
-            }
+            const settings = this.settings;
             this.settings = null;
+
+            const registry = Main.settingsManager.uuids[settings.uuid];
+            if (!registry || registry[settings.instanceId] === settings) {
+                Main.settingsManager.unregister(settings.uuid, settings.instanceId);
+            }
+
+            for (const key in settings.bindings) {
+                settings.unbindAll(key);
+            }
+            settings.disconnectAll();
         }
     }
 }
