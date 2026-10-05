@@ -39,15 +39,14 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Soup = imports.gi.Soup;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const Gettext = imports.gettext;
 
 const UUID = "claude-usage@marioegymamdouh";
 const USAGE_URL = "https://api.anthropic.com/api/oauth/usage";
 const OAUTH_BETA = "oauth-2025-04-20";
-const DEFAULT_CREDENTIALS = "~/.claude/.credentials.json";
+const DEFAULT_CREDENTIALS = GLib.build_filenamev([GLib.get_home_dir(), ".claude", ".credentials.json"]);
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -56,12 +55,6 @@ function _(str) {
 function bytesToString(data) {
     if (typeof TextDecoder !== "undefined") return new TextDecoder("utf-8").decode(data);
     return imports.byteArray.toString(data);
-}
-
-function expandHome(p) {
-    if (p.indexOf("~/") === 0) return GLib.get_home_dir() + p.substring(1);
-    if (p === "~") return GLib.get_home_dir();
-    return p;
 }
 
 function pad2(n) { return (n < 10 ? "0" : "") + n; }
@@ -155,7 +148,7 @@ ClaudeUsageDesklet.prototype = {
         this._buildUi();
         this._watchCredentials();
 
-        this._menu.addAction(_("Refresh now"), Lang.bind(this, function () { this.refresh(); }));
+        this._menu.addAction(_("Refresh now"), () => this.refresh());
         this._menu.addAction(_("Open usage page on claude.ai"), function () {
             Gio.app_info_launch_default_for_uri("https://claude.ai/settings/usage", null);
         });
@@ -167,10 +160,10 @@ ClaudeUsageDesklet.prototype = {
 
     _buildUi: function () {
         this._root = new St.BoxLayout({ vertical: true, style_class: "cu-root", reactive: true });
-        this._root.connect("button-release-event", Lang.bind(this, function (actor, event) {
+        this._root.connect("button-release-event", (actor, event) => {
             if (event.get_button() === 1) { this.refresh(); return Clutter.EVENT_STOP; }
             return Clutter.EVENT_PROPAGATE;
-        }));
+        });
 
         const header = new St.BoxLayout({ vertical: false, style_class: "cu-header" });
         this._title = new St.Label({ text: _("Claude usage"), style_class: "cu-title" });
@@ -212,31 +205,32 @@ ClaudeUsageDesklet.prototype = {
     _onCredentialsPathChanged: function () { this._watchCredentials(); this.refresh(); },
 
     _credentialsFile: function () {
-        return Gio.File.new_for_path(expandHome(this.credentialsPath || DEFAULT_CREDENTIALS));
+        // parse_name() expands a leading ~ and also accepts file:// URIs.
+        return Gio.File.parse_name(this.credentialsPath || DEFAULT_CREDENTIALS);
     },
 
     _schedule: function () {
         if (this._timeoutId) { Mainloop.source_remove(this._timeoutId); this._timeoutId = 0; }
         const secs = Math.max(60, Math.round((this.refreshMinutes || 2) * 60));
-        this._timeoutId = Mainloop.timeout_add_seconds(secs, Lang.bind(this, function () {
+        this._timeoutId = Mainloop.timeout_add_seconds(secs, () => {
             this.refresh();
             return GLib.SOURCE_CONTINUE;
-        }));
+        });
     },
 
     _watchCredentials: function () {
         if (this._monitor) { this._monitor.cancel(); this._monitor = null; }
         try {
             this._monitor = this._credentialsFile().monitor_file(Gio.FileMonitorFlags.NONE, null);
-            this._monitor.connect("changed", Lang.bind(this, function () {
+            this._monitor.connect("changed", () => {
                 // Claude Code rewrites the file when it refreshes the token; wait a moment, then re-fetch.
                 if (this._debounceId) Mainloop.source_remove(this._debounceId);
-                this._debounceId = Mainloop.timeout_add_seconds(3, Lang.bind(this, function () {
+                this._debounceId = Mainloop.timeout_add_seconds(3, () => {
                     this._debounceId = 0;
                     this.refresh();
                     return GLib.SOURCE_REMOVE;
-                }));
-            }));
+                });
+            });
         } catch (e) {
             global.logWarning(UUID + ": cannot watch credentials file: " + e);
         }
@@ -245,7 +239,7 @@ ClaudeUsageDesklet.prototype = {
     // Reads the token asynchronously; calls back with {error} or {token, expiresAt, ...}.
     _readToken: function (callback) {
         const file = this._credentialsFile();
-        file.load_contents_async(null, Lang.bind(this, function (f, result) {
+        file.load_contents_async(null, (f, result) => {
             let contents;
             try {
                 [, contents] = f.load_contents_finish(result);
@@ -253,7 +247,7 @@ ClaudeUsageDesklet.prototype = {
                 if (e.matches && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
                     callback({ error: _("No Claude Code login found. Run `claude` and sign in, then this will populate.") });
                 } else {
-                    callback({ error: _("Could not read %s").format(f.get_path()) });
+                    callback({ error: _("Could not read %s").format(f.get_parse_name()) });
                 }
                 return;
             }
@@ -275,7 +269,7 @@ ClaudeUsageDesklet.prototype = {
                 subscriptionType: oauth.subscriptionType || "",
                 rateLimitTier: oauth.rateLimitTier || "",
             });
-        }));
+        });
     },
 
     refresh: function () {
@@ -284,7 +278,7 @@ ClaudeUsageDesklet.prototype = {
         this._status.set_text(this._lastData ? _("Refreshing...") : _("Loading..."));
         this._status.show();
 
-        this._readToken(Lang.bind(this, function (cred) {
+        this._readToken((cred) => {
             if (cred.error) {
                 this._inflight = false;
                 this._showError(cred.error, false);
@@ -292,7 +286,7 @@ ClaudeUsageDesklet.prototype = {
             }
             this._cred = cred;
             this._fetchUsage(cred);
-        }));
+        });
     },
 
     _fetchUsage: function (cred) {
@@ -302,7 +296,7 @@ ClaudeUsageDesklet.prototype = {
         headers.append("anthropic-beta", OAUTH_BETA);
         headers.append("Accept", "application/json");
 
-        this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, Lang.bind(this, function (session, result) {
+        this._session.send_and_read_async(message, GLib.PRIORITY_DEFAULT, null, (session, result) => {
             this._inflight = false;
             let body = "";
             try {
@@ -332,7 +326,7 @@ ClaudeUsageDesklet.prototype = {
             }
             this._lastFetched = new Date();
             this._render();
-        }));
+        });
     },
 
     _showError: function (text, keepData) {
