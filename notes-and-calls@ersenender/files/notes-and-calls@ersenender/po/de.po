@@ -1,0 +1,186 @@
+# German translation of the desklet notes-and-calls@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: notes-and-calls@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-06 22:56+0200\n"
+"PO-Revision-Date: 2026-10-06 22:56+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:38
+msgid "Notes"
+msgstr "Notizen"
+
+#: desklet.js:39
+#, javascript-format
+msgid "Notes: %d"
+msgstr "%d Zettel"
+
+#: desklet.js:40
+#, javascript-format
+msgid "%d callback open"
+msgstr "%d Rückruf offen"
+
+#: desklet.js:41
+#, javascript-format
+msgid "%d callbacks open"
+msgstr "%d Rückrufe offen"
+
+#: desklet.js:42
+msgid ""
+"Nothing noted yet.\n"
+"Yellow plus: note.\n"
+"Phone: call note of a phone call."
+msgstr ""
+"Noch nichts notiert.\n"
+"Gelbes Plus: Notizzettel.\n"
+"Telefon: Gesprächsnotiz eines Anrufs."
+
+#: desklet.js:43
+msgid "New note …"
+msgstr "Neuer Notizzettel …"
+
+#: desklet.js:44
+msgid "New call note …"
+msgstr "Neue Gesprächsnotiz …"
+
+#: desklet.js:45
+msgid "Call back"
+msgstr "Rückruf"
+
+#: desklet.js:46
+msgid "done"
+msgstr "erledigt"
+
+#: desklet.js:47
+msgid "Call"
+msgstr "Anruf"
+
+#: desklet.js:48
+msgid "Unknown caller"
+msgstr "Unbekannter Anrufer"
+
+#: desklet.js:49
+#, javascript-format
+msgid "today %s"
+msgstr "heute %s"
+
+#: desklet.js:50
+#, javascript-format
+msgid "yesterday %s"
+msgstr "gestern %s"
+
+#: desklet.js:51
+msgid "Click a note: edit"
+msgstr "Klick auf einen Zettel: bearbeiten"
+
+#: desklet.js:52
+msgid "Remove completed call notes"
+msgstr "Erledigte Gesprächsnotizen entfernen"
+
+#: desklet.js:392
+msgid "%a, %-d/%-m/%Y · %H:%M"
+msgstr "%a, %-d.%-m.%Y · %H:%M"
+
+#: helper.py:30
+msgid "Note"
+msgstr "Notizzettel"
+
+#: helper.py:31
+msgid "Call note"
+msgstr "Gesprächsnotiz"
+
+#: helper.py:32
+msgid "Save"
+msgstr "Speichern"
+
+#: helper.py:33
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: helper.py:34
+msgid "Delete"
+msgstr "Löschen"
+
+#: helper.py:35
+msgid "Who called?"
+msgstr "Wer hat angerufen?"
+
+#: helper.py:36
+msgid "Phone number"
+msgstr "Telefonnummer"
+
+#: helper.py:37
+msgid "What is it about?"
+msgstr "Worum geht es?"
+
+#: helper.py:38
+msgid "Asks to be called back"
+msgstr "Bittet um Rückruf"
+
+#: helper.py:39
+msgid "Save with Ctrl+Enter"
+msgstr "Speichern mit Strg+Eingabe"
+
+#: helper.py:40
+msgid "Note …"
+msgstr "Notiz …"
+
+#: helper.py:41
+msgid "What was discussed? What needs to be done?"
+msgstr "Was wurde besprochen? Was ist zu tun?"
+
+#. metadata.json->name
+msgid "Notes and Calls"
+msgstr "Notizen und Anrufe"
+
+#. metadata.json->description
+msgid ""
+"Notes and call notes of phone calls on the desktop - quick to add, callbacks"
+" in view."
+msgstr ""
+"Notizzettel und Gesprächsnotizen von Telefonaten auf dem Desktop – schnell "
+"anlegen, Rückrufe im Blick."
+
+#. settings-schema.json->kopf-liste->description
+msgid "List"
+msgstr "Liste"
+
+#. settings-schema.json->ueberschrift->description
+msgid "Heading (empty = default)"
+msgstr "Überschrift (leer = „Notizen“)"
+
+#. settings-schema.json->liste-zeilen->description
+msgid "Maximum list height in text lines, scroll for more (satır)"
+msgstr "Höchste Höhe der Liste in Textzeilen, der Rest per Mausrad (satır)"
+
+#. settings-schema.json->zeilen-je-zettel->description
+msgid "Text lines per note in the overview"
+msgstr "Textzeilen je Zettel in der Übersicht"
+
+#. settings-schema.json->erledigte-tage->units
+msgid "days"
+msgstr "Tage"
+
+#. settings-schema.json->erledigte-tage->description
+msgid "Remove completed call notes after (0 = never)"
+msgstr "Erledigte Gesprächsnotizen entfernen nach (0 = nie)"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"

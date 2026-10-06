@@ -1,0 +1,184 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-06 22:56+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:38
+msgid "Notes"
+msgstr ""
+
+#: desklet.js:39
+#, javascript-format
+msgid "Notes: %d"
+msgstr ""
+
+#: desklet.js:40
+#, javascript-format
+msgid "%d callback open"
+msgstr ""
+
+#: desklet.js:41
+#, javascript-format
+msgid "%d callbacks open"
+msgstr ""
+
+#: desklet.js:42
+msgid ""
+"Nothing noted yet.\n"
+"Yellow plus: note.\n"
+"Phone: call note of a phone call."
+msgstr ""
+
+#: desklet.js:43
+msgid "New note …"
+msgstr ""
+
+#: desklet.js:44
+msgid "New call note …"
+msgstr ""
+
+#: desklet.js:45
+msgid "Call back"
+msgstr ""
+
+#: desklet.js:46
+msgid "done"
+msgstr ""
+
+#: desklet.js:47
+msgid "Call"
+msgstr ""
+
+#: desklet.js:48
+msgid "Unknown caller"
+msgstr ""
+
+#: desklet.js:49
+#, javascript-format
+msgid "today %s"
+msgstr ""
+
+#: desklet.js:50
+#, javascript-format
+msgid "yesterday %s"
+msgstr ""
+
+#: desklet.js:51
+msgid "Click a note: edit"
+msgstr ""
+
+#: desklet.js:52
+msgid "Remove completed call notes"
+msgstr ""
+
+#: desklet.js:392
+msgid "%a, %-d/%-m/%Y · %H:%M"
+msgstr ""
+
+#: helper.py:30
+msgid "Note"
+msgstr ""
+
+#: helper.py:31
+msgid "Call note"
+msgstr ""
+
+#: helper.py:32
+msgid "Save"
+msgstr ""
+
+#: helper.py:33
+msgid "Cancel"
+msgstr ""
+
+#: helper.py:34
+msgid "Delete"
+msgstr ""
+
+#: helper.py:35
+msgid "Who called?"
+msgstr ""
+
+#: helper.py:36
+msgid "Phone number"
+msgstr ""
+
+#: helper.py:37
+msgid "What is it about?"
+msgstr ""
+
+#: helper.py:38
+msgid "Asks to be called back"
+msgstr ""
+
+#: helper.py:39
+msgid "Save with Ctrl+Enter"
+msgstr ""
+
+#: helper.py:40
+msgid "Note …"
+msgstr ""
+
+#: helper.py:41
+msgid "What was discussed? What needs to be done?"
+msgstr ""
+
+#. metadata.json->name
+msgid "Notes and Calls"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Notes and call notes of phone calls on the desktop - quick to add, callbacks"
+" in view."
+msgstr ""
+
+#. settings-schema.json->kopf-liste->description
+msgid "List"
+msgstr ""
+
+#. settings-schema.json->ueberschrift->description
+msgid "Heading (empty = default)"
+msgstr ""
+
+#. settings-schema.json->liste-zeilen->description
+msgid "Maximum list height in text lines, scroll for more (satır)"
+msgstr ""
+
+#. settings-schema.json->zeilen-je-zettel->description
+msgid "Text lines per note in the overview"
+msgstr ""
+
+#. settings-schema.json->erledigte-tage->units
+msgid "days"
+msgstr ""
+
+#. settings-schema.json->erledigte-tage->description
+msgid "Remove completed call notes after (0 = never)"
+msgstr ""
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr ""
