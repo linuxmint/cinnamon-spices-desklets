@@ -20,7 +20,6 @@ const ByteArray = imports.byteArray;
 const Desklet = imports.ui.desklet;
 const Settings = imports.ui.settings;
 const PopupMenu = imports.ui.popupMenu;
-const Util = imports.misc.util;
 
 const Gettext = imports.gettext;
 const UUID = "notes-and-calls@ersenender";
@@ -54,6 +53,31 @@ const TEXTE = {
 
 function tagNr(dt) {
     return dt.get_year() * 10000 + dt.get_month() * 100 + dt.get_day_of_month();
+}
+
+// Programm mit Argumentliste starten (kein Befehlstext für eine Shell), `eingabe` geht an dessen stdin
+// -> Promise<Ausgabe | null>; null = nicht startbar oder mit Fehler beendet
+function starten(argv, eingabe) {
+    return new Promise(fertig => {
+        try {
+            let prozess = new Gio.Subprocess({
+                argv: argv,
+                flags: Gio.SubprocessFlags.STDIN_PIPE | Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE,
+            });
+            prozess.init(null);
+            prozess.communicate_utf8_async(eingabe, null, (p, ergebnis) => {
+                try {
+                    let [, ausgabe] = p.communicate_utf8_finish(ergebnis);
+                    fertig(p.get_successful() ? ausgabe : null);
+                } catch (e) {
+                    fertig(null);
+                }
+            });
+        } catch (e) {
+            global.logError("notes-and-calls@ersenender: Fenster nicht startbar: " + e);
+            fertig(null);
+        }
+    });
 }
 
 class NotizenDesklet extends Desklet.Desklet {
@@ -228,9 +252,9 @@ class NotizenDesklet extends Desklet.Desklet {
         this.fensterOffen = true;
         let alt = notiz ? {id: notiz.id, text: notiz.text, wer: notiz.wer, nummer: notiz.nummer,
                            wegen: notiz.wegen, rueckruf: notiz.rueckruf} : {};
-        Util.spawnCommandLineAsyncIO(null, (stdout, stderr, code) => {
+        starten(["python3", this.helper, art], JSON.stringify(alt) + "\n").then(stdout => {
             this.fensterOffen = false;
-            if (code !== 0 || !stdout)
+            if (!stdout)
                 return;
             let neu;
             try {
@@ -266,8 +290,7 @@ class NotizenDesklet extends Desklet.Desklet {
                 await this._speichern();
                 this._zeichnen();
             });
-        }, {argv: ["python3", this.helper, art],
-            input: JSON.stringify(alt) + "\n"});
+        });
     }
 
     // ------------------------------------------------------------ Aufbau

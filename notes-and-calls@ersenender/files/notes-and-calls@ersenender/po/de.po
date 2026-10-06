@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: notes-and-calls@ersenender 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 22:56+0200\n"
-"PO-Revision-Date: 2026-10-06 22:56+0200\n"
+"POT-Creation-Date: 2026-10-06 23:26+0200\n"
+"PO-Revision-Date: 2026-10-06 23:26+0200\n"
 "Last-Translator: ersenender\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -14,26 +14,26 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: desklet.js:38
+#: desklet.js:37
 msgid "Notes"
 msgstr "Notizen"
 
-#: desklet.js:39
+#: desklet.js:38
 #, javascript-format
 msgid "Notes: %d"
 msgstr "%d Zettel"
 
-#: desklet.js:40
+#: desklet.js:39
 #, javascript-format
 msgid "%d callback open"
 msgstr "%d Rückruf offen"
 
-#: desklet.js:41
+#: desklet.js:40
 #, javascript-format
 msgid "%d callbacks open"
 msgstr "%d Rückrufe offen"
 
-#: desklet.js:42
+#: desklet.js:41
 msgid ""
 "Nothing noted yet.\n"
 "Yellow plus: note.\n"
@@ -43,49 +43,49 @@ msgstr ""
 "Gelbes Plus: Notizzettel.\n"
 "Telefon: Gesprächsnotiz eines Anrufs."
 
-#: desklet.js:43
+#: desklet.js:42
 msgid "New note …"
 msgstr "Neuer Notizzettel …"
 
-#: desklet.js:44
+#: desklet.js:43
 msgid "New call note …"
 msgstr "Neue Gesprächsnotiz …"
 
-#: desklet.js:45
+#: desklet.js:44
 msgid "Call back"
 msgstr "Rückruf"
 
-#: desklet.js:46
+#: desklet.js:45
 msgid "done"
 msgstr "erledigt"
 
-#: desklet.js:47
+#: desklet.js:46
 msgid "Call"
 msgstr "Anruf"
 
-#: desklet.js:48
+#: desklet.js:47
 msgid "Unknown caller"
 msgstr "Unbekannter Anrufer"
 
-#: desklet.js:49
+#: desklet.js:48
 #, javascript-format
 msgid "today %s"
 msgstr "heute %s"
 
-#: desklet.js:50
+#: desklet.js:49
 #, javascript-format
 msgid "yesterday %s"
 msgstr "gestern %s"
 
-#: desklet.js:51
+#: desklet.js:50
 msgid "Click a note: edit"
 msgstr "Klick auf einen Zettel: bearbeiten"
 
-#: desklet.js:52
+#: desklet.js:51
 msgid "Remove completed call notes"
 msgstr "Erledigte Gesprächsnotizen entfernen"
 
-#: desklet.js:392
+#: desklet.js:415
 msgid "%a, %-d/%-m/%Y · %H:%M"
 msgstr "%a, %-d.%-m.%Y · %H:%M"
 
