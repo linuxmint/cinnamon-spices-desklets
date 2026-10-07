@@ -23,7 +23,7 @@ const PopupMenu = imports.ui.popupMenu;
 
 const Gettext = imports.gettext;
 const UUID = "notes-and-calls@ersenender";
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(text) {
     return Gettext.dgettext(UUID, text);
