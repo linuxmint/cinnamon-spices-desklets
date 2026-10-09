@@ -10,7 +10,7 @@ Requires GStreamer 1.0 with the usual plugins (`gir1.2-gstreamer-1.0`, `gstreame
 
 ## Settings
 
-Right-click the desklet and choose *Configure*.
+Right-click the desklet and choose *Configure*. Besides the options above you can choose the accent colour (seven presets or your own) and the colour of the card.
 
 ## Languages
 

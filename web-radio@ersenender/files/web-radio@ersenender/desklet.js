@@ -164,6 +164,222 @@ function bildActor(pfad, px) {
     return St.TextureCache.get_default().load_uri_async(GLib.filename_to_uri(pfad, null), w, h);
 }
 
+// >>> Farbwahl: Akzentfarbe und Kartengrund aus den Einstellungen
+// Die Stildatei (stylesheet.css) und die selbst gezeichneten Teile sind in Gelb geschrieben; für eine andere
+// Akzentfarbe erzeugt das Desklet daraus eine zweite Stildatei mit den umgerechneten Farben und lädt sie dazu.
+const AKZENTE = {gelb: [255, 203, 8], rot: [228, 6, 19], orange: [255, 140, 26], gruen: [63, 185, 80],
+                 tuerkis: [43, 181, 168], blau: [53, 132, 228], violett: [163, 113, 247]};
+const HINTERGRUENDE = {grau: [35, 31, 32], tuerkis: [16, 60, 62], blau: [22, 32, 54], schwarz: [14, 14, 16]};
+// die laufenden Farben dieses Desklets (0–255): Akzent, Schrift auf dem Akzent, Akzent als Schrift auf der
+// dunklen Karte (bei dunklen Farben aufgehellt) und der Kartengrund; farbeAnwenden() hält sie aktuell
+let FARBE = {akzent: [255, 203, 8], auf: [35, 31, 32], text: [255, 203, 8], grund: [35, 31, 32]};
+
+// "#rrggbb" · "rgb(r, g, b)" · "rgba(r, g, b, a)" -> [r, g, b] oder null
+function farbeLesen(wert) {
+    let s = String(wert || "").trim();
+    let m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i.exec(s);
+    if (m)
+        return [parseInt(m[1], 16), parseInt(m[2], 16), parseInt(m[3], 16)];
+    m = /^rgba?\(\s*([0-9.]+)\s*,\s*([0-9.]+)\s*,\s*([0-9.]+)/i.exec(s);
+    return m ? [1, 2, 3].map(i => Math.max(0, Math.min(255, Math.round(parseFloat(m[i]))))) : null;
+}
+
+// Helligkeit 0–1, wie das Auge sie sieht
+function farbeHell(c) {
+    let [r, g, b] = c.map(v => {
+        v /= 255;
+        return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4);
+    });
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+}
+
+function farbeMischen(a, b, anteil) {
+    return a.map((v, i) => Math.round(v + (b[i] - v) * anteil));
+}
+
+function farbeHex(c) {
+    return "#" + c.map(v => (v < 16 ? "0" : "") + v.toString(16)).join("");
+}
+
+// Farbe für Zeichenflächen: [r, g, b, Deckkraft] in 0–1; welche = "akzent" (Vorgabe) | "auf" | "text" | "grund"
+function farbeCairo(deckkraft, welche) {
+    let c = FARBE[welche || "akzent"];
+    return [c[0] / 255, c[1] / 255, c[2] / 255, deckkraft === undefined ? 1 : deckkraft];
+}
+
+// Aus der gelben Stildatei die Regeln mit Akzentfarbe in der neuen Farbe; jede Regel gilt nur unter der
+// Marke dieses Desklets (und geht deshalb der gelben Regel vor)
+function farbeStil(css, wurzel, marke) {
+    let akzent = FARBE.akzent, weiss = [255, 255, 255], schwarz = [0, 0, 0];
+    let aufWeiss = FARBE.auf[0] > 128;
+    let aus = [];
+    let regel = /([^{}]+)\{([^{}]*)\}/g, m;
+    css = css.replace(/\/\*[\s\S]*?\*\//g, "");
+    while ((m = regel.exec(css)) !== null) {
+        let inhalt = m[2];
+        if (!/#ffcb08|255, ?203, ?8|#ffd94a|#ffd83d|#e0b200|#c99700/i.test(inhalt)
+            && !/(^|[;\s])color:\s*(#231f20|rgba\(35, ?31, ?32)/i.test(inhalt))
+            continue;
+        inhalt = inhalt
+            // Schrift AUF der Akzentfläche
+            .replace(/(^|[;\s])(color:\s*)#231f20/gi, "$1$2" + farbeHex(FARBE.auf))
+            .replace(/rgba\(35, ?31, ?32, ?0\.72\)/g, "rgba(" + FARBE.auf.join(", ") + ", " + (aufWeiss ? "0.85" : "0.72") + ")")
+            // Akzent als SCHRIFT auf der dunklen Karte
+            .replace(/(^|[;\s])(color:\s*)#ffcb08/gi, "$1$2" + farbeHex(FARBE.text))
+            // Abstufungen der Knöpfe
+            .replace(/#ffd94a|#ffd83d/gi, farbeHex(farbeMischen(akzent, weiss, 0.22)))
+            .replace(/#e0b200/gi, farbeHex(farbeMischen(akzent, schwarz, 0.14)))
+            .replace(/#c99700/gi, farbeHex(farbeMischen(akzent, schwarz, 0.24)))
+            // Akzent als Fläche, Rand, Linie
+            .replace(/#ffcb08/gi, farbeHex(akzent))
+            .replace(/255, ?203, ?8\b/g, akzent.join(", "));
+        let wahl = m[1].split(",").map(s => {
+            s = s.trim();
+            return s.indexOf("." + wurzel) === 0 && !/[\w-]/.test(s.charAt(wurzel.length + 1))
+                ? "." + wurzel + "." + marke + s.slice(wurzel.length + 1) : "." + marke + " " + s;
+        });
+        aus.push(wahl.join(", ") + " {" + inhalt + "}");
+    }
+    return aus.join("\n") + "\n";
+}
+
+// Akzentfarbe und Kartengrund aus den Einstellungen übernehmen: d = das Desklet (mit d.akzent, d.akzentEigen,
+// d.hintergrund und d.box), farben = seine Tabelle FARBEN für die selbst gezeichneten Teile (oder null)
+function farbeAnwenden(d, farben) {
+    let akzent = AKZENTE[d.akzent] || (d.akzent === "eigen" && farbeLesen(d.akzentEigen)) || AKZENTE.gelb;
+    let weiss = [255, 255, 255];
+    let text = akzent;
+    for (let i = 0; i < 14 && farbeHell(text) < 0.3; i++)
+        text = farbeMischen(text, weiss, 0.12);
+    FARBE = {akzent: akzent, auf: farbeHell(akzent) > 0.4 ? [35, 31, 32] : weiss, text: text,
+             grund: HINTERGRUENDE[d.hintergrund] || HINTERGRUENDE.grau};
+
+    // selbst gezeichnete Teile: was in der Tabelle gelb ist, bekommt den Akzent (Ziffern die aufgehellte
+    // Schriftfarbe), was dunkel auf Gelb steht, die Schriftfarbe auf dem Akzent
+    if (farben) {
+        if (!farben._gelb)
+            Object.defineProperty(farben, "_gelb", {value: JSON.parse(JSON.stringify(farben))});
+        let gleich = (c, r, g, b) => Math.abs(c[0] * 255 - r) < 1 && Math.abs(c[1] * 255 - g) < 1 && Math.abs(c[2] * 255 - b) < 1;
+        for (let k in farben._gelb) {
+            let alt = farben._gelb[k];
+            let neu = gleich(alt, 255, 203, 8) ? (/^ziffer/.test(k) ? FARBE.text : akzent)
+                : gleich(alt, 35, 31, 32) ? FARBE.auf : null;
+            if (neu)
+                farben[k] = neu.map(v => v / 255).concat(alt.slice(3));
+        }
+    }
+
+    let St = imports.gi.St, GLib = imports.gi.GLib, Gio = imports.gi.Gio, Main = imports.ui.main;
+    let uuid = d._uuid || d.metadata.uuid;
+    let thema = () => St.ThemeContext.get_for_stage(global.stage).get_theme();
+    // Die Regeln einer Farbe gelten nur unter einer Marke am Wurzelelement, die es für jede Farbe eigens gibt.
+    // Das ist nötig: Cinnamon merkt sich berechnete Stile je Klassenkombination und rechnet beim Laden einer
+    // Stildatei nichts neu – eine neue Marke ist eine neue Kombination und bekommt sofort die neuen Farben.
+    let markeWeg = () => {
+        if (d._farbMarke) {
+            d.box.remove_style_class_name(d._farbMarke);
+            d._farbMarke = null;
+        }
+    };
+    // alles neu zeichnen, auch die Zeichenflächen
+    let fertig = () => {
+        if (d._farbWeg)
+            return;
+        if (d._stil)
+            d._stil();
+        if (d._zeichnen)
+            d._zeichnen();
+        let alle = a => {
+            if (a instanceof St.DrawingArea)
+                a.queue_repaint();
+            if (a.get_children)
+                a.get_children().forEach(alle);
+        };
+        alle(d.box);
+    };
+    // wechselt das Theme des Desktops, sind die zugeladenen Stildateien weg: dann neu anwenden
+    if (!d._farbThema)
+        d._farbThema = Main.themeManager.connect("theme-set", () => {
+            d._farbGeladen = {};
+            markeWeg();
+            farbeAnwenden(d, farben);
+        });
+
+    let lauf = d._farbLauf = (d._farbLauf || 0) + 1;
+    if (akzent.join() === AKZENTE.gelb.join()) {            // Gelb steht schon in der Stildatei
+        markeWeg();
+        fertig();
+        return;
+    }
+    let quelle = Gio.File.new_for_path(GLib.build_filenamev([d.metadata.path, "stylesheet.css"]));
+    quelle.load_contents_async(null, (datei, ergebnis) => {
+        let css;
+        try {
+            css = imports.byteArray.toString(datei.load_contents_finish(ergebnis)[1]);
+        } catch (e) {
+            fertig();
+            return;
+        }
+        let wurzel = (d.box.get_style_class_name() || "").split(/\s+/)[0];
+        // Marke aus Desklet, Stildatei und Farbe: ändert sich eines davon, entsteht eine neue
+        let marke = "f" + GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, uuid + css + farbeHex(akzent), -1).slice(0, 12);
+        let ordner = Gio.File.new_for_path(GLib.build_filenamev([GLib.get_user_cache_dir(), uuid]));
+        let ziel = ordner.get_child("farben-" + marke + ".css");
+        let text = farbeStil(css, wurzel, marke);
+        ordner.make_directory_async(GLib.PRIORITY_DEFAULT, null, (o, erg) => {
+            try {
+                o.make_directory_finish(erg);
+            } catch (e) {
+                // gibt es schon
+            }
+            ziel.replace_contents_bytes_async(new GLib.Bytes(imports.byteArray.fromString(text)), null, false,
+                Gio.FileCreateFlags.REPLACE_DESTINATION, null, (z, erg2) => {
+                    try {
+                        z.replace_contents_finish(erg2);
+                    } catch (e) {
+                        global.logWarning(uuid + ": Farben nicht anwendbar: " + e);
+                        fertig();
+                        return;
+                    }
+                    if (lauf !== d._farbLauf || d._farbWeg)
+                        return;                             // inzwischen wurde eine andere Farbe gewählt
+                    let pfad = ziel.get_path();
+                    d._farbGeladen = d._farbGeladen || {};
+                    try {
+                        if (!d._farbGeladen[pfad]) {
+                            thema().load_stylesheet(pfad);
+                            d._farbGeladen[pfad] = true;
+                        }
+                        markeWeg();
+                        d.box.add_style_class_name(marke);
+                        d._farbMarke = marke;
+                    } catch (e) {
+                        global.logWarning(uuid + ": Stildatei der Farben nicht ladbar: " + e);
+                    }
+                    fertig();
+                });
+        });
+    });
+}
+
+// beim Entfernen des Desklets: zugeladene Stildateien und Theme-Beobachtung wieder weg
+function farbeEntfernen(d) {
+    d._farbWeg = true;
+    if (d._farbThema) {
+        imports.ui.main.themeManager.disconnect(d._farbThema);
+        d._farbThema = 0;
+    }
+    for (let pfad in d._farbGeladen || {}) {
+        try {
+            imports.gi.St.ThemeContext.get_for_stage(global.stage).get_theme().unload_stylesheet(pfad);
+        } catch (e) {
+            // nichts zu retten
+        }
+    }
+    d._farbGeladen = {};
+}
+// <<< Farbwahl
+
 class WebradioDesklet extends Desklet.Desklet {
     constructor(metadata, desklet_id) {
         super(metadata, desklet_id);
@@ -181,6 +397,9 @@ class WebradioDesklet extends Desklet.Desklet {
         this.busId = 0;
 
         this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
+        this.settings.bind("akzent", "akzent", this._farbe);
+        this.settings.bind("akzent-eigen", "akzentEigen", this._farbe);
+        this.settings.bind("hintergrund", "hintergrund", this._farbe);
         this.settings.bind("sender", "sender", this._senderGeaendert);
         this.settings.bind("lautstaerke", "lautstaerke", this._lautSetzen);
         this.settings.bind("autostart", "autostart");
@@ -198,6 +417,7 @@ class WebradioDesklet extends Desklet.Desklet {
     }
 
     on_desklet_added_to_desktop() {
+        this._farbe();
         this._stil();
         this._zeichnen();
         if (this.autostart && this._index() >= 0)
@@ -205,6 +425,7 @@ class WebradioDesklet extends Desklet.Desklet {
     }
 
     on_desklet_removed() {
+        farbeEntfernen(this);
         this._grossZu();
         if (this.rollIdle) {
             Mainloop.source_remove(this.rollIdle);
@@ -668,7 +889,7 @@ class WebradioDesklet extends Desklet.Desklet {
                 cr.stroke();
             };
             strich(w, [242 / 255, 239 / 255, 230 / 255, 0.16]);
-            strich(this.balkenWert * w, [255 / 255, 203 / 255, 8 / 255, 1]);
+            strich(this.balkenWert * w, farbeCairo(1));
             cr.$dispose();
         });
         // Drücken abfangen (EVENT_STOP): sonst zieht der Rahmen des Desklets zum Verschieben die Maus an sich
@@ -722,10 +943,15 @@ class WebradioDesklet extends Desklet.Desklet {
         }
     }
 
+    // Akzentfarbe und Kartengrund aus den Einstellungen anwenden (zeichnet danach alles neu)
+    _farbe() {
+        farbeAnwenden(this, typeof FARBEN === "undefined" ? null : FARBEN);
+    }
+
     _stil() {
         let a = Math.max(0, Math.min(1, this.deckkraft));
         this.box.set_style("font-size: " + (10 * this.groesse).toFixed(1) + "pt; " +
-                           "background-color: rgba(35, 31, 32, " + a.toFixed(2) + ");");
+                           "background-color: rgba(" + FARBE.grund.join(", ") + ", " + a.toFixed(2) + ");");
         let px = n => Math.round(n * this.groesse);
         this.tStart.icon.set_icon_size(px(22));
         for (let t of [this.tZurueck, this.tWeiter])
