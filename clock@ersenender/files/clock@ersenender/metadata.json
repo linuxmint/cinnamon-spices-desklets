@@ -1,0 +1,9 @@
+{
+    "uuid": "clock@ersenender",
+    "name": "Clock",
+    "description": "Clock with date, analog or digital - with alarm and timer.",
+    "prevent-decorations": true,
+    "max-instances": "3",
+    "version": "1.0",
+    "author": "ersenender"
+}
