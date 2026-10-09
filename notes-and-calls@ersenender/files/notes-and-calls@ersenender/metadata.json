@@ -1,0 +1,9 @@
+{
+    "uuid": "notes-and-calls@ersenender",
+    "name": "Notes and Calls",
+    "description": "Notes and call notes of phone calls on the desktop - quick to add, callbacks in view.",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "version": "1.0",
+    "author": "ersenender"
+}
