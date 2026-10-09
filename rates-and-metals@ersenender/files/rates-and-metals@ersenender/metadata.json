@@ -1,0 +1,9 @@
+{
+    "uuid": "rates-and-metals@ersenender",
+    "name": "Rates and Metals",
+    "description": "Exchange rates (ECB) and precious metal prices as a list - choose in the settings what is shown.",
+    "prevent-decorations": true,
+    "max-instances": "3",
+    "version": "1.0",
+    "author": "ersenender"
+}
