@@ -1,0 +1,124 @@
+{
+    "kopf-ort": {
+        "type": "header",
+        "description": "Place"
+    },
+    "ort-knopf": {
+        "type": "button",
+        "description": "Search place …",
+        "callback": "ortWaehlen",
+        "tooltip": "Opens the place search. The chosen place is then shown at the top of the desklet."
+    },
+    "breite": {
+        "type": "generic",
+        "default": ""
+    },
+    "laenge": {
+        "type": "generic",
+        "default": ""
+    },
+    "ort-name": {
+        "type": "generic",
+        "default": ""
+    },
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "einheit": {
+        "type": "combobox",
+        "default": "metrisch",
+        "description": "Units",
+        "options": {
+            "°C, km/h, mm": "metrisch",
+            "°F, mph, inch": "imperial"
+        }
+    },
+    "tage": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 0,
+        "max": 7,
+        "step": 1,
+        "units": "",
+        "description": "Days in the forecast"
+    },
+    "zeige-details": {
+        "type": "switch",
+        "default": true,
+        "description": "Feels-like temperature, wind and humidity"
+    },
+    "zeige-sonne": {
+        "type": "switch",
+        "default": true,
+        "description": "Sunrise and sunset"
+    },
+    "zeige-stunden": {
+        "type": "switch",
+        "default": true,
+        "description": "Next 24 hours as a chart (temperature and chance of rain)"
+    },
+    "zeige-hinweis": {
+        "type": "switch",
+        "default": true,
+        "description": "Note from when or until when it rains"
+    },
+    "zeige-luft": {
+        "type": "switch",
+        "default": true,
+        "description": "UV index and air quality",
+        "tooltip": "Air quality comes from a second request to Open-Meteo (air quality service). When switched off it is not sent."
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}
