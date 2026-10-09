@@ -1,0 +1,239 @@
+# Turkish translation of the desklet web-radio@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: web-radio@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
+"PO-Revision-Date: 2026-10-09 23:44+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:45
+msgid "Web radio"
+msgstr "İnternet Radyosu"
+
+#: desklet.js:46
+msgid "Stopped"
+msgstr "Durduruldu"
+
+#: desklet.js:47
+msgid "Connecting …"
+msgstr "Bağlanıyor …"
+
+#: desklet.js:48
+#, javascript-format
+msgid "Buffering … %d%%"
+msgstr "Arabelleğe alınıyor … %%%d"
+
+#: desklet.js:49
+msgid "Playing"
+msgstr "Çalıyor"
+
+#: desklet.js:50
+msgid "Station not reachable"
+msgstr "Radyoya ulaşılamıyor"
+
+#: desklet.js:51
+msgid "No stations stored"
+msgstr "Kayıtlı radyo yok"
+
+#: desklet.js:52
+msgid "Right-click → Configure"
+msgstr "Sağ tık → Yapılandır"
+
+#: desklet.js:53
+#, javascript-format
+msgid "Volume %d%%"
+msgstr "Ses %%%d"
+
+#: desklet.js:54
+msgid "Previous station"
+msgstr "Önceki radyo"
+
+#: desklet.js:55
+msgid "Next station"
+msgstr "Sonraki radyo"
+
+#: desklet.js:56
+msgid "Start playback"
+msgstr "Çalmayı başlat"
+
+#: desklet.js:57
+msgid "Stop playback"
+msgstr "Çalmayı durdur"
+
+#: desklet.js:58
+msgid "Quieter"
+msgstr "Sesi kıs"
+
+#: desklet.js:59
+msgid "Louder"
+msgstr "Sesi aç"
+
+#: desklet.js:60
+msgid "Click or drag – the mouse wheel works too"
+msgstr "Tıkla veya sürükle – fare tekerleği de olur"
+
+#: desklet.js:61
+msgid "Click: play this station"
+msgstr "Tıkla: bu radyoyu çal"
+
+#: desklet.js:62
+msgid "Click: show large"
+msgstr "Tıkla: büyük göster"
+
+#. metadata.json->name
+msgid "Web Radio"
+msgstr "İnternet Radyosu"
+
+#. metadata.json->description
+msgid ""
+"Small radio player: store stations (stream addresses) in the settings, play "
+"them on the desktop."
+msgstr ""
+"Küçük radyo çalar: radyoları (yayın adresleri) ayarlara kaydedin, "
+"masaüstünde dinleyin."
+
+#. settings-schema.json->kopf-sender->description
+msgid "Stations"
+msgstr "Radyolar"
+
+#. settings-schema.json->sender->description
+msgid "Name and stream address per station; sort with the arrows"
+msgstr "Her radyo için ad ve yayın adresi"
+
+#. settings-schema.json->sender->tooltip
+msgid ""
+"The address is the direct stream (usually ending in .mp3, .aac or .m3u8), "
+"not the station's website. Logo: leave empty = looked up automatically; "
+"otherwise an image address (https://…) or a file (/home/…/logo.png)."
+msgstr ""
+"Adres doğrudan yayındır (çoğunlukla .mp3, .aac veya .m3u8 ile biter), "
+"radyonun web sitesi değil. Logo: boş bırakılırsa kendiliğinden aranır; yoksa"
+" resim adresi (https://…) veya dosya (/home/…/logo.png)."
+
+#. settings-schema.json->sender->columns->title
+msgid "Name"
+msgstr "Ad"
+
+#. settings-schema.json->sender->columns->title
+msgid "Stream address"
+msgstr "Yayın adresi"
+
+#. settings-schema.json->sender->columns->title
+msgid "Logo (optional)"
+msgstr "Logo (optional)"
+
+#. settings-schema.json->kopf-wiedergabe->description
+msgid "Playback"
+msgstr "Oynatma"
+
+#. settings-schema.json->lautstaerke->description
+msgid "Volume"
+msgstr "Ses düzeyi"
+
+#. settings-schema.json->autostart->description
+msgid "Play the last station after login"
+msgstr "Oturum açınca son radyoyu çal"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Görünüm"
+
+#. settings-schema.json->zeige-cover->description
+msgid "Show track cover or station logo"
+msgstr "Şarkı kapağını veya radyo logosunu göster"
+
+#. settings-schema.json->zeige-cover->tooltip
+msgid ""
+"The cover is looked up by the track text at iTunes and Deezer, the logo at "
+"radio-browser.info. When switched off, none of these requests are sent."
+msgstr ""
+"Kapak, şarkı adıyla iTunes ve Deezer'da, logo radio-browser.info'da aranır. "
+"Kapalıyken bu sorgular gönderilmez."
+
+#. settings-schema.json->zeige-liste->description
+msgid "Station list in the desklet (click = play)"
+msgstr "Radyo listesini göster"
+
+#. settings-schema.json->liste-zeilen->description
+msgid "Visible stations, scroll for more"
+msgstr "Görünen radyo sayısı, kalanı fare tekeriyle"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Boyut"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"

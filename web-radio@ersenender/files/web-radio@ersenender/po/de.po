@@ -1,0 +1,240 @@
+# German translation of the desklet web-radio@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: web-radio@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
+"PO-Revision-Date: 2026-10-09 23:44+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:45
+msgid "Web radio"
+msgstr "Webradio"
+
+#: desklet.js:46
+msgid "Stopped"
+msgstr "Gestoppt"
+
+#: desklet.js:47
+msgid "Connecting …"
+msgstr "Verbinde …"
+
+#: desklet.js:48
+#, javascript-format
+msgid "Buffering … %d%%"
+msgstr "Puffern … %d %%"
+
+#: desklet.js:49
+msgid "Playing"
+msgstr "Wiedergabe"
+
+#: desklet.js:50
+msgid "Station not reachable"
+msgstr "Sender nicht erreichbar"
+
+#: desklet.js:51
+msgid "No stations stored"
+msgstr "Keine Sender hinterlegt"
+
+#: desklet.js:52
+msgid "Right-click → Configure"
+msgstr "Rechtsklick → Konfigurieren"
+
+#: desklet.js:53
+#, javascript-format
+msgid "Volume %d%%"
+msgstr "Lautstärke %d %%"
+
+#: desklet.js:54
+msgid "Previous station"
+msgstr "Vorheriger Sender"
+
+#: desklet.js:55
+msgid "Next station"
+msgstr "Nächster Sender"
+
+#: desklet.js:56
+msgid "Start playback"
+msgstr "Wiedergabe starten"
+
+#: desklet.js:57
+msgid "Stop playback"
+msgstr "Wiedergabe stoppen"
+
+#: desklet.js:58
+msgid "Quieter"
+msgstr "Leiser"
+
+#: desklet.js:59
+msgid "Louder"
+msgstr "Lauter"
+
+#: desklet.js:60
+msgid "Click or drag – the mouse wheel works too"
+msgstr "Klicken oder ziehen – das Mausrad geht auch"
+
+#: desklet.js:61
+msgid "Click: play this station"
+msgstr "Klick: diesen Sender spielen"
+
+#: desklet.js:62
+msgid "Click: show large"
+msgstr "Klick: groß anzeigen"
+
+#. metadata.json->name
+msgid "Web Radio"
+msgstr "Webradio"
+
+#. metadata.json->description
+msgid ""
+"Small radio player: store stations (stream addresses) in the settings, play "
+"them on the desktop."
+msgstr ""
+"Kleiner Radio-Player: Sender (Stream-Adressen) in den Einstellungen "
+"hinterlegen, auf dem Desktop abspielen."
+
+#. settings-schema.json->kopf-sender->description
+msgid "Stations"
+msgstr "Sender"
+
+#. settings-schema.json->sender->description
+msgid "Name and stream address per station; sort with the arrows"
+msgstr "Name und Stream-Adresse je Sender; mit den Pfeilen sortieren"
+
+#. settings-schema.json->sender->tooltip
+msgid ""
+"The address is the direct stream (usually ending in .mp3, .aac or .m3u8), "
+"not the station's website. Logo: leave empty = looked up automatically; "
+"otherwise an image address (https://…) or a file (/home/…/logo.png)."
+msgstr ""
+"Die Adresse ist der direkte Stream (meist endet sie auf .mp3, .aac oder "
+".m3u8), nicht die Webseite des Senders. Logo: leer lassen = wird automatisch"
+" gesucht; sonst Bild-Adresse (https://…) oder Datei (/home/…/logo.png)."
+
+#. settings-schema.json->sender->columns->title
+msgid "Name"
+msgstr "Name"
+
+#. settings-schema.json->sender->columns->title
+msgid "Stream address"
+msgstr "Stream-Adresse"
+
+#. settings-schema.json->sender->columns->title
+msgid "Logo (optional)"
+msgstr "Logo (optional)"
+
+#. settings-schema.json->kopf-wiedergabe->description
+msgid "Playback"
+msgstr "Wiedergabe"
+
+#. settings-schema.json->lautstaerke->description
+msgid "Volume"
+msgstr "Lautstärke"
+
+#. settings-schema.json->autostart->description
+msgid "Play the last station after login"
+msgstr "Nach dem Anmelden den zuletzt gehörten Sender abspielen"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->zeige-cover->description
+msgid "Show track cover or station logo"
+msgstr "Titel-Cover bzw. Senderlogo anzeigen"
+
+#. settings-schema.json->zeige-cover->tooltip
+msgid ""
+"The cover is looked up by the track text at iTunes and Deezer, the logo at "
+"radio-browser.info. When switched off, none of these requests are sent."
+msgstr ""
+"Das Cover wird über den Titeltext bei iTunes und Deezer nachgeschlagen, das "
+"Logo bei radio-browser.info. Ausgeschaltet geht keine dieser Anfragen ins "
+"Netz."
+
+#. settings-schema.json->zeige-liste->description
+msgid "Station list in the desklet (click = play)"
+msgstr "Senderliste im Desklet (Klick = abspielen)"
+
+#. settings-schema.json->liste-zeilen->description
+msgid "Visible stations, scroll for more"
+msgstr "Sichtbare Sender, der Rest per Mausrad"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"

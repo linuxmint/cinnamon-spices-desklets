@@ -1,0 +1,235 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:45
+msgid "Web radio"
+msgstr ""
+
+#: desklet.js:46
+msgid "Stopped"
+msgstr ""
+
+#: desklet.js:47
+msgid "Connecting …"
+msgstr ""
+
+#: desklet.js:48
+#, javascript-format
+msgid "Buffering … %d%%"
+msgstr ""
+
+#: desklet.js:49
+msgid "Playing"
+msgstr ""
+
+#: desklet.js:50
+msgid "Station not reachable"
+msgstr ""
+
+#: desklet.js:51
+msgid "No stations stored"
+msgstr ""
+
+#: desklet.js:52
+msgid "Right-click → Configure"
+msgstr ""
+
+#: desklet.js:53
+#, javascript-format
+msgid "Volume %d%%"
+msgstr ""
+
+#: desklet.js:54
+msgid "Previous station"
+msgstr ""
+
+#: desklet.js:55
+msgid "Next station"
+msgstr ""
+
+#: desklet.js:56
+msgid "Start playback"
+msgstr ""
+
+#: desklet.js:57
+msgid "Stop playback"
+msgstr ""
+
+#: desklet.js:58
+msgid "Quieter"
+msgstr ""
+
+#: desklet.js:59
+msgid "Louder"
+msgstr ""
+
+#: desklet.js:60
+msgid "Click or drag – the mouse wheel works too"
+msgstr ""
+
+#: desklet.js:61
+msgid "Click: play this station"
+msgstr ""
+
+#: desklet.js:62
+msgid "Click: show large"
+msgstr ""
+
+#. metadata.json->name
+msgid "Web Radio"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Small radio player: store stations (stream addresses) in the settings, play "
+"them on the desktop."
+msgstr ""
+
+#. settings-schema.json->kopf-sender->description
+msgid "Stations"
+msgstr ""
+
+#. settings-schema.json->sender->description
+msgid "Name and stream address per station; sort with the arrows"
+msgstr ""
+
+#. settings-schema.json->sender->tooltip
+msgid ""
+"The address is the direct stream (usually ending in .mp3, .aac or .m3u8), "
+"not the station's website. Logo: leave empty = looked up automatically; "
+"otherwise an image address (https://…) or a file (/home/…/logo.png)."
+msgstr ""
+
+#. settings-schema.json->sender->columns->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->sender->columns->title
+msgid "Stream address"
+msgstr ""
+
+#. settings-schema.json->sender->columns->title
+msgid "Logo (optional)"
+msgstr ""
+
+#. settings-schema.json->kopf-wiedergabe->description
+msgid "Playback"
+msgstr ""
+
+#. settings-schema.json->lautstaerke->description
+msgid "Volume"
+msgstr ""
+
+#. settings-schema.json->autostart->description
+msgid "Play the last station after login"
+msgstr ""
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->zeige-cover->description
+msgid "Show track cover or station logo"
+msgstr ""
+
+#. settings-schema.json->zeige-cover->tooltip
+msgid ""
+"The cover is looked up by the track text at iTunes and Deezer, the logo at "
+"radio-browser.info. When switched off, none of these requests are sent."
+msgstr ""
+
+#. settings-schema.json->zeige-liste->description
+msgid "Station list in the desklet (click = play)"
+msgstr ""
+
+#. settings-schema.json->liste-zeilen->description
+msgid "Visible stations, scroll for more"
+msgstr ""
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr ""
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr ""
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr ""
