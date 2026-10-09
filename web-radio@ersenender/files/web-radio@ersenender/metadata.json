@@ -1,0 +1,9 @@
+{
+    "uuid": "web-radio@ersenender",
+    "name": "Web Radio",
+    "description": "Small radio player: store stations (stream addresses) in the settings, play them on the desktop.",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "version": "1.0",
+    "author": "ersenender"
+}
