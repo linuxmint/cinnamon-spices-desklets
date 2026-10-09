@@ -1,0 +1,271 @@
+# Turkish translation of the desklet battery@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: battery@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. metadata.json->name
+#: desklet.js:47
+msgid "Battery"
+msgstr "Pil"
+
+#: desklet.js:48
+msgid "Charging"
+msgstr "Şarj oluyor"
+
+#: desklet.js:49
+msgid "On battery"
+msgstr "Pilde çalışıyor"
+
+#: desklet.js:50
+msgid "Fully charged · plugged in"
+msgstr "Tam dolu · prizde"
+
+#: desklet.js:51
+msgid "Plugged in · not charging"
+msgstr "Prizde · şarj olmuyor"
+
+#: desklet.js:52
+#, javascript-format
+msgid "%s h left"
+msgstr "%s sa kaldı"
+
+#: desklet.js:53
+#, javascript-format
+msgid "full in %s h"
+msgstr "%s sa sonra dolu"
+
+#: desklet.js:54
+msgid "No battery installed"
+msgstr "Pil takılı değil"
+
+#: desklet.js:55
+#, javascript-format
+msgid "Battery level %s"
+msgstr "Pil düzeyi %s"
+
+#: desklet.js:56
+#, javascript-format
+msgid "Charge %s of %s Wh"
+msgstr "Şarj %s / %s Wh"
+
+#: desklet.js:57
+#, javascript-format
+msgid "Power %s W"
+msgstr "Güç %s W"
+
+#: desklet.js:58
+#, javascript-format
+msgid "Capacity %s of design capacity"
+msgstr "Kapasite: fabrika değerinin %s"
+
+#: desklet.js:59
+#, javascript-format
+msgid "Charge cycles: %s"
+msgstr "Şarj döngüsü: %s"
+
+#: desklet.js:60
+#, javascript-format
+msgid "Health %s"
+msgstr "Sağlık %s"
+
+#: desklet.js:61
+#, javascript-format
+msgid "%s cycles"
+msgstr "%s döngü"
+
+#: desklet.js:62
+#, javascript-format
+msgid "Charge limit %s"
+msgstr "Şarj sınırı %s"
+
+#: desklet.js:63
+msgid "Battery low"
+msgstr "Pil azaldı"
+
+#: desklet.js:64
+msgid "Plug in the charger"
+msgstr "Şarj aletini takın"
+
+#: desklet.js:65
+msgid "Battery care"
+msgstr "Pil bakımı"
+
+#: desklet.js:66
+#, javascript-format
+msgid "%s reached – unplug the charger"
+msgstr "%s oldu – şarj aletini çıkarın"
+
+#: desklet.js:67
+#, javascript-format
+msgid "below %s – charge now"
+msgstr "%s altında – şimdi şarj edin"
+
+#: desklet.js:124
+#, javascript-format
+msgid "%s%%"
+msgstr "%%%s"
+
+#. metadata.json->description
+msgid ""
+"Battery level with manufacturer, model and health of the battery, a warning "
+"threshold and battery care."
+msgstr ""
+"Pil durumu: üretici, model ve pil sağlığı, uyarı sınırı ve pil bakımı."
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Görünüm"
+
+#. settings-schema.json->art->description
+msgid "Show battery level as"
+msgstr "Pil durumu gösterimi"
+
+#. settings-schema.json->art->options
+msgid "Percent and graphic"
+msgstr "Yüzde ve grafik"
+
+#. settings-schema.json->art->options
+msgid "Percent only"
+msgstr "Yalnızca yüzde"
+
+#. settings-schema.json->art->options
+msgid "Graphic only"
+msgstr "Yalnızca grafik"
+
+#. settings-schema.json->zeige-kopf->description
+msgid "Heading"
+msgstr "Başlık"
+
+#. settings-schema.json->zeige-status->description
+msgid "Status and time remaining"
+msgstr "Durum ve kalan süre"
+
+#. settings-schema.json->zeige-details->description
+msgid "Battery details (manufacturer, model, health, cycles)"
+msgstr "Pil bilgileri (üretici, model, sağlık, döngü)"
+
+#. settings-schema.json->kopf-warnung->description
+msgid "Warning and battery care"
+msgstr "Uyarı ve pil bakımı"
+
+#. settings-schema.json->warn-ab->units
+#. settings-schema.json->pflege-oben->units
+#. settings-schema.json->pflege-unten->units
+msgid "%"
+msgstr "%"
+
+#. settings-schema.json->warn-ab->description
+msgid "Warn when on battery below"
+msgstr "Pilde çalışırken bundan azsa uyar"
+
+#. settings-schema.json->pflege->description
+msgid "Battery care: remind to unplug and plug in the charger"
+msgstr "Pil bakımı: şarj aletini çıkarmayı ve takmayı hatırlat"
+
+#. settings-schema.json->pflege->tooltip
+msgid ""
+"Lithium batteries last longer when they are not kept fully charged on the "
+"charger all the time and are not deeply discharged. The desklet only reminds"
+" you - it cannot limit charging itself."
+msgstr ""
+"Lityum piller sürekli tam dolu prizde tutulmaz ve çok boşaltılmazsa daha "
+"uzun dayanır. Desklet yalnızca hatırlatır - şarjı kendisi sınırlayamaz."
+
+#. settings-schema.json->pflege-oben->description
+msgid "On the charger: unplug at"
+msgstr "Prizdeyken: şu düzeyde çıkar"
+
+#. settings-schema.json->pflege-unten->description
+msgid "On battery: charge at"
+msgstr "Pilde çalışırken: şu düzeyde şarj et"
+
+#. settings-schema.json->melden->description
+msgid "Also show a notification"
+msgstr "Ayrıca bildirim göster"
+
+#. settings-schema.json->kopf-aussehen->description
+msgid "Appearance"
+msgstr "Görünüm"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Boyut"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"
