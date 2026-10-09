@@ -1,0 +1,266 @@
+# German translation of the desklet clock@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: clock@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:53
+#, javascript-format
+msgid "Calendar week %d"
+msgstr "Kalenderwoche %d"
+
+#: desklet.js:54
+#, javascript-format
+msgid "Week %d"
+msgstr "KW %d"
+
+#: desklet.js:55
+#, javascript-format
+msgid "Timer %s"
+msgstr "Timer %s"
+
+#: desklet.js:56
+msgid "Timer finished"
+msgstr "Timer abgelaufen"
+
+#: desklet.js:57
+#, javascript-format
+msgid "Alarm %s"
+msgstr "Wecker %s"
+
+#: desklet.js:58
+#, javascript-format
+msgid "Timer: %d minutes"
+msgstr "Timer: %d Minuten"
+
+#: desklet.js:59
+msgid "Stop timer"
+msgstr "Timer stoppen"
+
+#: desklet.js:60
+msgid "Click: dismiss"
+msgstr "Klick: ausschalten"
+
+#: desklet.js:61
+msgid "Right-click the desklet: stop timer"
+msgstr "Rechtsklick auf das Desklet: Timer stoppen"
+
+#: desklet.js:93
+msgid "%-d %B %Y"
+msgstr "%-d. %B %Y"
+
+#: desklet.js:93
+msgid "%-d %B"
+msgstr "%-d. %B"
+
+#: desklet.js:102
+msgid "%A, %-d %B %Y"
+msgstr "%A, %-d. %B %Y"
+
+#: desklet.js:102
+msgid "%A, %-d %B"
+msgstr "%A, %-d. %B"
+
+#. metadata.json->name
+#. settings-schema.json->kopf-uhr->description
+msgid "Clock"
+msgstr "Uhr"
+
+#. metadata.json->description
+msgid "Clock with date, analog or digital - with alarm and timer."
+msgstr "Uhr mit Datum, analog oder digital - mit Wecker und Timer."
+
+#. settings-schema.json->art->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->art->options
+msgid "Analog (hands)"
+msgstr "Analog (Zeiger)"
+
+#. settings-schema.json->art->options
+msgid "Digital (digits)"
+msgstr "Digital (Ziffern)"
+
+#. settings-schema.json->zifferblatt->description
+msgid "Dial"
+msgstr "Zifferblatt"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Arabic numerals (1, 2, 3 …)"
+msgstr "Arabische Ziffern (1, 2, 3 …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Eastern Arabic numerals (١, ٢, ٣ …)"
+msgstr "Ostarabische Ziffern (١, ٢, ٣ …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Roman numerals (I, II, III …)"
+msgstr "Römische Ziffern (I, II, III …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Marks"
+msgstr "Striche"
+
+#. settings-schema.json->uhr-groesse->description
+msgid "Clock diameter"
+msgstr "Durchmesser der Uhr"
+
+#. settings-schema.json->sekunden->description
+msgid "Show seconds"
+msgstr "Sekunden anzeigen"
+
+#. settings-schema.json->zeige-datum->description
+msgid "Date below the clock"
+msgstr "Datum unter der Uhr"
+
+#. settings-schema.json->format12->description
+msgid "12-hour digital display (AM/PM)"
+msgstr "12-Stunden-Anzeige der Digitaluhr (AM/PM)"
+
+#. settings-schema.json->zeige-kw->description
+msgid "Calendar week after the date"
+msgstr "Kalenderwoche hinter dem Datum"
+
+#. settings-schema.json->kopf-wecker->description
+msgid "Alarm and timer"
+msgstr "Wecker und Timer"
+
+#. settings-schema.json->wecker->description
+msgid "Alarm"
+msgstr "Wecker"
+
+#. settings-schema.json->wecker-std->units
+msgid "h"
+msgstr "h"
+
+#. settings-schema.json->wecker-std->description
+msgid "Alarm time: hour"
+msgstr "Weckzeit: Stunde"
+
+#. settings-schema.json->wecker-min->units
+#. settings-schema.json->timer-eigen->units
+msgid "min"
+msgstr "min"
+
+#. settings-schema.json->wecker-min->description
+msgid "Alarm time: minute"
+msgstr "Weckzeit: Minute"
+
+#. settings-schema.json->wecker-tage->description
+msgid "Ring on"
+msgstr "Wecken an"
+
+#. settings-schema.json->wecker-tage->options
+msgid "Every day"
+msgstr "Jeden Tag"
+
+#. settings-schema.json->wecker-tage->options
+msgid "Monday to Friday"
+msgstr "Montag bis Freitag"
+
+#. settings-schema.json->timer-eigen->description
+msgid "Custom timer length in the right-click menu"
+msgstr "Eigene Timer-Dauer im Rechtsklick-Menü"
+
+#. settings-schema.json->timer-eigen->tooltip
+msgid ""
+"Start the timer with a right-click on the desklet: 5, 10, 15, 30, 60 minutes"
+" or this length."
+msgstr ""
+"Den Timer startet man mit einem Rechtsklick auf das Desklet: 5, 10, 15, 30, "
+"60 Minuten oder diese Dauer."
+
+#. settings-schema.json->ton->description
+msgid "Play a sound"
+msgstr "Ton abspielen"
+
+#. settings-schema.json->melden->description
+msgid "Also show a notification"
+msgstr "Zusätzlich eine Benachrichtigung zeigen"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Appearance"
+msgstr "Darstellung"
+
+#. settings-schema.json->groesse->description
+msgid "Font size (digital clock too)"
+msgstr "Schriftgröße (auch der Digitaluhr)"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"
