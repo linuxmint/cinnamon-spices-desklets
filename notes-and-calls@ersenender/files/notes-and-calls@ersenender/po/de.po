@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: notes-and-calls@ersenender 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 23:26+0200\n"
-"PO-Revision-Date: 2026-10-06 23:26+0200\n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
+"PO-Revision-Date: 2026-10-09 23:44+0200\n"
 "Last-Translator: ersenender\n"
 "Language-Team: \n"
 "Language: de\n"
@@ -14,78 +14,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: desklet.js:37
+#: desklet.js:38
 msgid "Notes"
 msgstr "Notizen"
 
-#: desklet.js:38
+#: desklet.js:39
 #, javascript-format
 msgid "Notes: %d"
 msgstr "%d Zettel"
 
-#: desklet.js:39
+#: desklet.js:40
 #, javascript-format
 msgid "%d callback open"
 msgstr "%d Rückruf offen"
 
-#: desklet.js:40
+#: desklet.js:41
 #, javascript-format
 msgid "%d callbacks open"
 msgstr "%d Rückrufe offen"
 
-#: desklet.js:41
+#: desklet.js:42
 msgid ""
 "Nothing noted yet.\n"
-"Yellow plus: note.\n"
+"Plus: note.\n"
 "Phone: call note of a phone call."
 msgstr ""
 "Noch nichts notiert.\n"
-"Gelbes Plus: Notizzettel.\n"
+"Plus: Notizzettel.\n"
 "Telefon: Gesprächsnotiz eines Anrufs."
 
-#: desklet.js:42
+#: desklet.js:43
 msgid "New note …"
 msgstr "Neuer Notizzettel …"
 
-#: desklet.js:43
+#: desklet.js:44
 msgid "New call note …"
 msgstr "Neue Gesprächsnotiz …"
 
-#: desklet.js:44
+#: desklet.js:45
 msgid "Call back"
 msgstr "Rückruf"
 
-#: desklet.js:45
+#: desklet.js:46
 msgid "done"
 msgstr "erledigt"
 
-#: desklet.js:46
+#: desklet.js:47
 msgid "Call"
 msgstr "Anruf"
 
-#: desklet.js:47
+#: desklet.js:48
 msgid "Unknown caller"
 msgstr "Unbekannter Anrufer"
 
-#: desklet.js:48
+#: desklet.js:49
 #, javascript-format
 msgid "today %s"
 msgstr "heute %s"
 
-#: desklet.js:49
+#: desklet.js:50
 #, javascript-format
 msgid "yesterday %s"
 msgstr "gestern %s"
 
-#: desklet.js:50
+#: desklet.js:51
 msgid "Click a note: edit"
 msgstr "Klick auf einen Zettel: bearbeiten"
 
-#: desklet.js:51
+#: desklet.js:52
 msgid "Remove completed call notes"
 msgstr "Erledigte Gesprächsnotizen entfernen"
 
-#: desklet.js:415
+#: desklet.js:53
+msgid "Mark the callback as done"
+msgstr "Rückruf als erledigt markieren"
+
+#: desklet.js:54
+msgid "Reopen the callback"
+msgstr "Rückruf wieder öffnen"
+
+#: desklet.js:657
 msgid "%a, %-d/%-m/%Y · %H:%M"
 msgstr "%a, %-d.%-m.%Y · %H:%M"
 
@@ -184,3 +192,67 @@ msgstr "Größe"
 #. settings-schema.json->deckkraft->description
 msgid "Background opacity"
 msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"

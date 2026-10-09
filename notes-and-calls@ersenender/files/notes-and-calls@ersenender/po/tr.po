@@ -4,8 +4,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: notes-and-calls@ersenender 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 23:26+0200\n"
-"PO-Revision-Date: 2026-10-06 23:26+0200\n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
+"PO-Revision-Date: 2026-10-09 23:44+0200\n"
 "Last-Translator: ersenender\n"
 "Language-Team: \n"
 "Language: tr\n"
@@ -14,78 +14,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: desklet.js:37
+#: desklet.js:38
 msgid "Notes"
 msgstr "Notlar"
 
-#: desklet.js:38
+#: desklet.js:39
 #, javascript-format
 msgid "Notes: %d"
 msgstr "%d not"
 
-#: desklet.js:39
+#: desklet.js:40
 #, javascript-format
 msgid "%d callback open"
 msgstr "%d geri arama bekliyor"
 
-#: desklet.js:40
+#: desklet.js:41
 #, javascript-format
 msgid "%d callbacks open"
 msgstr "%d geri arama bekliyor"
 
-#: desklet.js:41
+#: desklet.js:42
 msgid ""
 "Nothing noted yet.\n"
-"Yellow plus: note.\n"
+"Plus: note.\n"
 "Phone: call note of a phone call."
 msgstr ""
 "Henüz not yok.\n"
-"Sarı artı: not.\n"
+"Artı: not.\n"
 "Telefon: bir aramanın görüşme notu."
 
-#: desklet.js:42
+#: desklet.js:43
 msgid "New note …"
 msgstr "Yeni not …"
 
-#: desklet.js:43
+#: desklet.js:44
 msgid "New call note …"
 msgstr "Yeni görüşme notu …"
 
-#: desklet.js:44
+#: desklet.js:45
 msgid "Call back"
 msgstr "Geri ara"
 
-#: desklet.js:45
+#: desklet.js:46
 msgid "done"
 msgstr "tamam"
 
-#: desklet.js:46
+#: desklet.js:47
 msgid "Call"
 msgstr "Arama"
 
-#: desklet.js:47
+#: desklet.js:48
 msgid "Unknown caller"
 msgstr "Bilinmeyen arayan"
 
-#: desklet.js:48
+#: desklet.js:49
 #, javascript-format
 msgid "today %s"
 msgstr "bugün %s"
 
-#: desklet.js:49
+#: desklet.js:50
 #, javascript-format
 msgid "yesterday %s"
 msgstr "dün %s"
 
-#: desklet.js:50
+#: desklet.js:51
 msgid "Click a note: edit"
 msgstr "Nota tıkla: düzenle"
 
-#: desklet.js:51
+#: desklet.js:52
 msgid "Remove completed call notes"
 msgstr "Tamamlanan görüşme notlarını sil"
 
-#: desklet.js:415
+#: desklet.js:53
+msgid "Mark the callback as done"
+msgstr "Geri aramayı tamamlandı olarak işaretle"
+
+#: desklet.js:54
+msgid "Reopen the callback"
+msgstr "Geri aramayı yeniden aç"
+
+#: desklet.js:657
 msgid "%a, %-d/%-m/%Y · %H:%M"
 msgstr "%-d.%-m.%Y %H:%M"
 
@@ -184,3 +192,67 @@ msgstr "Boyut"
 #. settings-schema.json->deckkraft->description
 msgid "Background opacity"
 msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"

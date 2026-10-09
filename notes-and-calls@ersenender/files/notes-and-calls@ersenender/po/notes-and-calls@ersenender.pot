@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-06 23:26+0200\n"
+"POT-Creation-Date: 2026-10-09 23:44+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,75 +17,83 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:37
-msgid "Notes"
-msgstr ""
-
 #: desklet.js:38
-#, javascript-format
-msgid "Notes: %d"
+msgid "Notes"
 msgstr ""
 
 #: desklet.js:39
 #, javascript-format
-msgid "%d callback open"
+msgid "Notes: %d"
 msgstr ""
 
 #: desklet.js:40
 #, javascript-format
-msgid "%d callbacks open"
+msgid "%d callback open"
 msgstr ""
 
 #: desklet.js:41
-msgid ""
-"Nothing noted yet.\n"
-"Yellow plus: note.\n"
-"Phone: call note of a phone call."
+#, javascript-format
+msgid "%d callbacks open"
 msgstr ""
 
 #: desklet.js:42
-msgid "New note …"
+msgid ""
+"Nothing noted yet.\n"
+"Plus: note.\n"
+"Phone: call note of a phone call."
 msgstr ""
 
 #: desklet.js:43
-msgid "New call note …"
+msgid "New note …"
 msgstr ""
 
 #: desklet.js:44
-msgid "Call back"
+msgid "New call note …"
 msgstr ""
 
 #: desklet.js:45
-msgid "done"
+msgid "Call back"
 msgstr ""
 
 #: desklet.js:46
-msgid "Call"
+msgid "done"
 msgstr ""
 
 #: desklet.js:47
-msgid "Unknown caller"
+msgid "Call"
 msgstr ""
 
 #: desklet.js:48
-#, javascript-format
-msgid "today %s"
+msgid "Unknown caller"
 msgstr ""
 
 #: desklet.js:49
 #, javascript-format
-msgid "yesterday %s"
+msgid "today %s"
 msgstr ""
 
 #: desklet.js:50
-msgid "Click a note: edit"
+#, javascript-format
+msgid "yesterday %s"
 msgstr ""
 
 #: desklet.js:51
+msgid "Click a note: edit"
+msgstr ""
+
+#: desklet.js:52
 msgid "Remove completed call notes"
 msgstr ""
 
-#: desklet.js:415
+#: desklet.js:53
+msgid "Mark the callback as done"
+msgstr ""
+
+#: desklet.js:54
+msgid "Reopen the callback"
+msgstr ""
+
+#: desklet.js:657
 msgid "%a, %-d/%-m/%Y · %H:%M"
 msgstr ""
 
@@ -181,4 +189,68 @@ msgstr ""
 
 #. settings-schema.json->deckkraft->description
 msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr ""
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr ""
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
 msgstr ""

@@ -8,7 +8,7 @@ Requires `python3` with GTK 3 bindings (`python3-gi`), preinstalled on Linux Min
 
 ## Settings
 
-Right-click the desklet and choose *Configure*.
+Right-click the desklet and choose *Configure*. Besides the options above you can choose the accent colour (seven presets or your own) and the colour of the card.
 
 ## Languages
 
