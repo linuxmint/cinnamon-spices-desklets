@@ -1,0 +1,290 @@
+# German translation of the desklet system@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: system@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. metadata.json->name
+#: desklet.js:47
+msgid "System"
+msgstr "System"
+
+#: desklet.js:48
+msgid "CPU load"
+msgstr "CPU-Auslastung"
+
+#: desklet.js:49
+msgid "System disk free"
+msgstr "Systemplatte frei"
+
+#: desklet.js:50
+#, javascript-format
+msgid "⚠ Less than %s GB free"
+msgstr "⚠ Weniger als %s GB frei"
+
+#: desklet.js:51
+msgid "System disk almost full"
+msgstr "Systemplatte fast voll"
+
+#: desklet.js:52
+#, javascript-format
+msgid "Only %s GB left."
+msgstr "Nur noch %s GB frei."
+
+#: desklet.js:53
+msgid "CPU temperature"
+msgstr "CPU-Temperatur"
+
+#: desklet.js:54
+msgid "GPU temperature"
+msgstr "GPU-Temperatur"
+
+#: desklet.js:55
+msgid "RAM free"
+msgstr "RAM frei"
+
+#: desklet.js:56
+msgid "in the processor"
+msgstr "im Prozessor"
+
+#: desklet.js:57
+#, javascript-format
+msgid "%s of %s GB used"
+msgstr "%s von %s GB belegt"
+
+#: desklet.js:58
+#, javascript-format
+msgid "%d cores"
+msgstr "%d Kerne"
+
+#: desklet.js:59
+#, javascript-format
+msgid "%s GB free of %s GB"
+msgstr "%s GB frei von %s GB"
+
+#: desklet.js:60
+#, javascript-format
+msgid "%s GB used (%s)"
+msgstr "%s GB belegt (%s)"
+
+#: desklet.js:61
+#, javascript-format
+msgid "Warning from %s °C"
+msgstr "Warnung ab %s °C"
+
+#: desklet.js:62
+#, javascript-format
+msgid "Warning below %s GB"
+msgstr "Warnung unter %s GB"
+
+#: desklet.js:63
+msgid "Top consumers"
+msgstr "Größte Verbraucher"
+
+#: desklet.js:64
+msgid "Fan"
+msgstr "Lüfter"
+
+#: desklet.js:65
+#, javascript-format
+msgid "%s rpm"
+msgstr "%s U/min"
+
+#: desklet.js:66
+#, javascript-format
+msgid "Up for %s"
+msgstr "Läuft seit %s"
+
+#: desklet.js:67
+#, javascript-format
+msgid "Load (1, 5, 15 min): %s"
+msgstr "Last (1, 5, 15 min): %s"
+
+#: desklet.js:68
+#, javascript-format
+msgid "Swap: %s of %s GB used"
+msgstr "Auslagerung: %s von %s GB belegt"
+
+#: desklet.js:69
+#, javascript-format
+msgid "%d d"
+msgstr "%d T"
+
+#: desklet.js:70
+#, javascript-format
+msgid "%s h"
+msgstr "%s Std."
+
+#: desklet.js:71
+#, javascript-format
+msgid "%s (process %s)"
+msgstr "%s (Prozess %s)"
+
+#: desklet.js:72
+#, javascript-format
+msgid "Share of all %d cores"
+msgstr "Anteil an allen %d Kernen"
+
+#: desklet.js:73
+#, javascript-format
+msgid "History of the last %d seconds"
+msgstr "Verlauf der letzten %d Sekunden"
+
+#: desklet.js:169
+#, javascript-format
+msgid "%s%%"
+msgstr "%s %%"
+
+#. metadata.json->description
+msgid ""
+"CPU load with history, temperatures, fan, free disk space and memory, top "
+"consumers."
+msgstr ""
+"CPU-Auslastung mit Verlauf, Temperaturen, Lüfter, freier Platz und Speicher,"
+" größte Verbraucher."
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->takt->units
+msgid "s"
+msgstr "s"
+
+#. settings-schema.json->takt->description
+msgid "Refresh every"
+msgstr "Aktualisieren alle"
+
+#. settings-schema.json->warn-ab->units
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->warn-ab->description
+msgid "Temperature red from"
+msgstr "Temperatur rot ab"
+
+#. settings-schema.json->zeige-modell->description
+msgid "Show processor name"
+msgstr "Prozessorname anzeigen"
+
+#. settings-schema.json->zeige-verlauf->description
+msgid "CPU load as a history curve instead of a bar"
+msgstr "CPU-Auslastung als Verlaufskurve statt Balken"
+
+#. settings-schema.json->zeige-platte->description
+msgid "Show free space on the system disk"
+msgstr "Freien Platz der Systemplatte anzeigen"
+
+#. settings-schema.json->platte-warn-ab->units
+msgid "GB"
+msgstr "GB"
+
+#. settings-schema.json->platte-warn-ab->description
+msgid "Warn when the system disk has less free space than"
+msgstr "Warnen, wenn auf der Systemplatte weniger frei ist als"
+
+#. settings-schema.json->platte-warn-ab->tooltip
+msgid ""
+"Number and bar turn red, a note appears below and the card border turns red."
+" 0 = never warn."
+msgstr ""
+"Zahl und Balken werden rot, darunter erscheint ein Hinweis und der Rand der "
+"Karte wird rot. 0 = nie warnen."
+
+#. settings-schema.json->platte-melden->description
+msgid "Also show a notification once"
+msgstr "Zusätzlich einmal als Benachrichtigung melden"
+
+#. settings-schema.json->zeige-luefter->description
+msgid "Show fan speed (if the computer reports it)"
+msgstr "Lüfterdrehzahl anzeigen (wenn der Rechner sie meldet)"
+
+#. settings-schema.json->zeige-prozesse->description
+msgid "Show the top consumers of CPU time and memory"
+msgstr "Größte Verbraucher von Rechenzeit und Arbeitsspeicher anzeigen"
+
+#. settings-schema.json->zeige-prozesse->tooltip
+msgid "For this the program top is started briefly every few seconds."
+msgstr "Dafür wird alle paar Sekunden kurz das Programm top gestartet."
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"

@@ -1,0 +1,35 @@
+/* System-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten. */
+.sy-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+    width: 17em;
+}
+.sy-warnung { font-size: 0.86em; font-weight: bold; color: #ff7b72; text-align: center; padding-top: 0.45em; }
+.sy-kopf { font-size: 1.25em; font-weight: bold; color: #ffcb08; }
+.sy-modell { font-size: 0.86em; color: #a39e94; padding-top: 0.15em; }
+.sy-last-box {
+    margin-top: 0.8em;
+    padding: 0.55em 0 0.7em 0;
+    border-top: 1px solid rgba(242, 239, 230, 0.14);
+    border-bottom: 1px solid rgba(242, 239, 230, 0.14);
+}
+/* zweiter Block direkt darunter: die Linie des ersten trennt schon */
+.sy-folge-box { margin-top: 0; border-top-width: 0; }
+.sy-last-titel { font-size: 0.86em; color: #a39e94; text-align: center; }
+.sy-last { font-size: 2.1em; font-weight: bold; text-align: center; }
+.sy-spur { height: 0.4em; margin: 0.3em 0.6em 0 0.6em; border-radius: 3px; background-color: rgba(242, 239, 230, 0.14); }
+.sy-balken { height: 0.4em; border-radius: 3px; background-color: #ffcb08; }
+.sy-zeilen { margin-top: 0.55em; }
+.sy-zeile { padding: 0.28em 0.6em; border-radius: 7px; }
+.sy-zeile-name { font-size: 1em; }
+.sy-zeile-zusatz { font-size: 0.8em; color: #a39e94; }
+.sy-zeile-wert { font-size: 1em; font-weight: bold; }
+.sy-heiss { color: #ff7b72; }
+.sy-heiss-balken { background-color: #ff7b72; }
+.sy-status { font-size: 0.8em; color: #a39e94; padding-top: 0.6em; text-align: center; }
+/* Kurve der CPU-Auslastung (zeichnet desklet.js, Farben dort in FARBEN); die Höhe setzt desklet.js */
+.sy-verlauf { margin-top: 0.35em; }
+.sy-prozesse { margin-top: 0.45em; padding-top: 0.5em; border-top: 1px solid rgba(242, 239, 230, 0.14); }
+.sy-abschnitt { font-size: 0.8em; color: #a39e94; padding: 0 0.6em 0.1em 0.75em; }

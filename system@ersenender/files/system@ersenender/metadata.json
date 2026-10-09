@@ -1,0 +1,9 @@
+{
+    "uuid": "system@ersenender",
+    "name": "System",
+    "description": "CPU load with history, temperatures, fan, free disk space and memory, top consumers.",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "version": "1.0",
+    "author": "ersenender"
+}

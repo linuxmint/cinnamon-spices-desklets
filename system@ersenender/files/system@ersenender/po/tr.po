@@ -1,0 +1,290 @@
+# Turkish translation of the desklet system@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: system@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#. metadata.json->name
+#: desklet.js:47
+msgid "System"
+msgstr "Sistem"
+
+#: desklet.js:48
+msgid "CPU load"
+msgstr "İşlemci kullanımı"
+
+#: desklet.js:49
+msgid "System disk free"
+msgstr "Sistem diskinde boş alan"
+
+#: desklet.js:50
+#, javascript-format
+msgid "⚠ Less than %s GB free"
+msgstr "⚠ %s GB'den az boş alan"
+
+#: desklet.js:51
+msgid "System disk almost full"
+msgstr "Sistem diski dolmak üzere"
+
+#: desklet.js:52
+#, javascript-format
+msgid "Only %s GB left."
+msgstr "Yalnızca %s GB boş."
+
+#: desklet.js:53
+msgid "CPU temperature"
+msgstr "İşlemci sıcaklığı"
+
+#: desklet.js:54
+msgid "GPU temperature"
+msgstr "Ekran kartı sıcaklığı"
+
+#: desklet.js:55
+msgid "RAM free"
+msgstr "Boş bellek"
+
+#: desklet.js:56
+msgid "in the processor"
+msgstr "işlemcide"
+
+#: desklet.js:57
+#, javascript-format
+msgid "%s of %s GB used"
+msgstr "%s / %s GB kullanılıyor"
+
+#: desklet.js:58
+#, javascript-format
+msgid "%d cores"
+msgstr "%d çekirdek"
+
+#: desklet.js:59
+#, javascript-format
+msgid "%s GB free of %s GB"
+msgstr "%s GB boş (toplam %s GB)"
+
+#: desklet.js:60
+#, javascript-format
+msgid "%s GB used (%s)"
+msgstr "%s GB dolu (%s)"
+
+#: desklet.js:61
+#, javascript-format
+msgid "Warning from %s °C"
+msgstr "%s °C'den itibaren uyarı"
+
+#: desklet.js:62
+#, javascript-format
+msgid "Warning below %s GB"
+msgstr "%s GB altında uyarı"
+
+#: desklet.js:63
+msgid "Top consumers"
+msgstr "En çok kullananlar"
+
+#: desklet.js:64
+msgid "Fan"
+msgstr "Fan"
+
+#: desklet.js:65
+#, javascript-format
+msgid "%s rpm"
+msgstr "%s dev/dk"
+
+#: desklet.js:66
+#, javascript-format
+msgid "Up for %s"
+msgstr "Çalışma süresi: %s"
+
+#: desklet.js:67
+#, javascript-format
+msgid "Load (1, 5, 15 min): %s"
+msgstr "Yük (1, 5, 15 dk): %s"
+
+#: desklet.js:68
+#, javascript-format
+msgid "Swap: %s of %s GB used"
+msgstr "Takas: %s / %s GB kullanılıyor"
+
+#: desklet.js:69
+#, javascript-format
+msgid "%d d"
+msgstr "%d g"
+
+#: desklet.js:70
+#, javascript-format
+msgid "%s h"
+msgstr "%s sa"
+
+#: desklet.js:71
+#, javascript-format
+msgid "%s (process %s)"
+msgstr "%s (süreç %s)"
+
+#: desklet.js:72
+#, javascript-format
+msgid "Share of all %d cores"
+msgstr "%d çekirdeğin tümüne oranı"
+
+#: desklet.js:73
+#, javascript-format
+msgid "History of the last %d seconds"
+msgstr "Son %d saniyenin seyri"
+
+#: desklet.js:169
+#, javascript-format
+msgid "%s%%"
+msgstr "%%%s"
+
+#. metadata.json->description
+msgid ""
+"CPU load with history, temperatures, fan, free disk space and memory, top "
+"consumers."
+msgstr ""
+"İşlemci kullanımı ve seyri, sıcaklıklar, fan, boş disk ve bellek, en çok "
+"kullanan süreçler."
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Görünüm"
+
+#. settings-schema.json->takt->units
+msgid "s"
+msgstr "s"
+
+#. settings-schema.json->takt->description
+msgid "Refresh every"
+msgstr "Yenileme aralığı"
+
+#. settings-schema.json->warn-ab->units
+msgid "°C"
+msgstr "°C"
+
+#. settings-schema.json->warn-ab->description
+msgid "Temperature red from"
+msgstr "Sıcaklık uyarısı"
+
+#. settings-schema.json->zeige-modell->description
+msgid "Show processor name"
+msgstr "İşlemci adını göster"
+
+#. settings-schema.json->zeige-verlauf->description
+msgid "CPU load as a history curve instead of a bar"
+msgstr "İşlemci kullanımını çubuk yerine eğri olarak göster"
+
+#. settings-schema.json->zeige-platte->description
+msgid "Show free space on the system disk"
+msgstr "Sistem diskindeki boş alanı göster"
+
+#. settings-schema.json->platte-warn-ab->units
+msgid "GB"
+msgstr "GB"
+
+#. settings-schema.json->platte-warn-ab->description
+msgid "Warn when the system disk has less free space than"
+msgstr "Boş alan bundan azsa uyar"
+
+#. settings-schema.json->platte-warn-ab->tooltip
+msgid ""
+"Number and bar turn red, a note appears below and the card border turns red."
+" 0 = never warn."
+msgstr ""
+"Sayı ve çubuk kırmızı olur, altında bir uyarı görünür ve kartın kenarı "
+"kırmızıya döner. 0 = hiç uyarma."
+
+#. settings-schema.json->platte-melden->description
+msgid "Also show a notification once"
+msgstr "Ayrıca bir kez bildirim göster"
+
+#. settings-schema.json->zeige-luefter->description
+msgid "Show fan speed (if the computer reports it)"
+msgstr "Fan hızını göster (bilgisayar bildiriyorsa)"
+
+#. settings-schema.json->zeige-prozesse->description
+msgid "Show the top consumers of CPU time and memory"
+msgstr "En çok işlemci ve bellek kullanan süreçleri göster"
+
+#. settings-schema.json->zeige-prozesse->tooltip
+msgid "For this the program top is started briefly every few seconds."
+msgstr "Bunun için birkaç saniyede bir top programı kısaca çalıştırılır."
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Boyut"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"

@@ -1,0 +1,119 @@
+{
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "takt": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 10,
+        "step": 1,
+        "units": "s",
+        "description": "Refresh every"
+    },
+    "warn-ab": {
+        "type": "spinbutton",
+        "default": 85,
+        "min": 60,
+        "max": 100,
+        "step": 1,
+        "units": "°C",
+        "description": "Temperature red from"
+    },
+    "zeige-modell": {
+        "type": "switch",
+        "default": true,
+        "description": "Show processor name"
+    },
+    "zeige-verlauf": {
+        "type": "switch",
+        "default": true,
+        "description": "CPU load as a history curve instead of a bar"
+    },
+    "zeige-platte": {
+        "type": "switch",
+        "default": true,
+        "description": "Show free space on the system disk"
+    },
+    "platte-warn-ab": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 0,
+        "max": 500,
+        "step": 0.5,
+        "units": "GB",
+        "dependency": "zeige-platte",
+        "description": "Warn when the system disk has less free space than",
+        "tooltip": "Number and bar turn red, a note appears below and the card border turns red. 0 = never warn."
+    },
+    "platte-melden": {
+        "type": "switch",
+        "default": true,
+        "dependency": "zeige-platte",
+        "description": "Also show a notification once"
+    },
+    "zeige-luefter": {
+        "type": "switch",
+        "default": true,
+        "description": "Show fan speed (if the computer reports it)"
+    },
+    "zeige-prozesse": {
+        "type": "switch",
+        "default": true,
+        "description": "Show the top consumers of CPU time and memory",
+        "tooltip": "For this the program top is started briefly every few seconds."
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}
