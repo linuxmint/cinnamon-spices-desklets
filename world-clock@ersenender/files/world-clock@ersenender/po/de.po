@@ -1,0 +1,958 @@
+# German translation of the desklet world-clock@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: world-clock@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 00:39+0200\n"
+"PO-Revision-Date: 2026-10-10 00:39+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:72
+msgid "World time"
+msgstr "Weltzeit"
+
+#: desklet.js:73
+msgid "Local time"
+msgstr "Ortszeit"
+
+#: desklet.js:74
+msgid "tomorrow"
+msgstr "morgen"
+
+#: desklet.js:75
+msgid "yesterday"
+msgstr "gestern"
+
+#: desklet.js:76
+#, javascript-format
+msgid "%s h"
+msgstr "%s Std."
+
+#: desklet.js:77
+#, javascript-format
+msgid "in %s h"
+msgstr "in %s Std."
+
+#: desklet.js:78
+msgid "Back to now"
+msgstr "Zurück zu jetzt"
+
+#: desklet.js:79
+msgid "%-d/%-m"
+msgstr "%-d.%-m."
+
+#: desklet.js:80
+#, javascript-format
+msgid "%s: %s"
+msgstr "%s: %s"
+
+#: desklet.js:81
+#, javascript-format
+msgid "From %s the time difference is %s"
+msgstr "Ab %s beträgt der Zeitunterschied %s"
+
+#: desklet.js:82
+#, javascript-format
+msgid "Clock change on %s"
+msgstr "Zeitumstellung am %s"
+
+#: desklet.js:83
+msgid ""
+"The next 24 hours per place: strong = working hours (9-17), light = awake (7-22), dark = night.\n"
+"Line on top: hours when it is daytime everywhere.\n"
+"Mouse wheel: shift the time in 30-minute steps."
+msgstr ""
+"Die nächsten 24 Stunden je Ort: kräftig = Arbeitszeit (9–17 Uhr), hell = wach (7–22 Uhr), dunkel = Nacht.\n"
+"Strich oben: Stunden, in denen überall Tag ist.\n"
+"Mausrad: Zeit in Schritten von 30 Minuten verschieben."
+
+#: desklet.js:120
+msgid "%-d %B %Y"
+msgstr "%-d. %B %Y"
+
+#: desklet.js:120
+msgid "%-d %B"
+msgstr "%-d. %B"
+
+#: desklet.js:129
+msgid "%A, %-d %B %Y"
+msgstr "%A, %-d. %B %Y"
+
+#: desklet.js:129
+msgid "%A, %-d %B"
+msgstr "%A, %-d. %B"
+
+#. metadata.json->name
+msgid "World Time"
+msgstr "Weltzeit"
+
+#. metadata.json->description
+msgid "Two to eight analog clocks side by side, each with its own city."
+msgstr "Zwei bis acht Analoguhren nebeneinander, jede mit eigener Stadt."
+
+#. settings-schema.json->kopf-uhren->description
+msgid "Clocks"
+msgstr "Uhren"
+
+#. settings-schema.json->anzahl->description
+msgid "Number of clocks"
+msgstr "Anzahl der Uhren"
+
+#. settings-schema.json->uhr1->description
+msgid "Clock 1"
+msgstr "Uhr 1"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Local time of this computer"
+msgstr "Ortszeit dieses Rechners"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Algiers"
+msgstr "Algier"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Almaty"
+msgstr "Almaty"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Amsterdam"
+msgstr "Amsterdam"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Anchorage"
+msgstr "Anchorage"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Athens"
+msgstr "Athen"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Auckland"
+msgstr "Auckland"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Baghdad"
+msgstr "Bagdad"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Baku"
+msgstr "Baku"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Bangkok"
+msgstr "Bangkok"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Berlin"
+msgstr "Berlin"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Brussels"
+msgstr "Brüssel"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Buenos Aires"
+msgstr "Buenos Aires"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Casablanca"
+msgstr "Casablanca"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Chicago"
+msgstr "Chicago"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Damascus"
+msgstr "Damaskus"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Delhi"
+msgstr "Delhi"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Denver"
+msgstr "Denver"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Dhaka"
+msgstr "Dhaka"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Dubai"
+msgstr "Dubai"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Hong Kong"
+msgstr "Hongkong"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Honolulu"
+msgstr "Honolulu"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Istanbul"
+msgstr "Istanbul"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Jakarta"
+msgstr "Jakarta"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Jerusalem"
+msgstr "Jerusalem"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Johannesburg"
+msgstr "Johannesburg"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Kabul"
+msgstr "Kabul"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Cairo"
+msgstr "Kairo"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Karachi"
+msgstr "Karatschi"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Kuala Lumpur"
+msgstr "Kuala Lumpur"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Lagos"
+msgstr "Lagos"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Lisbon"
+msgstr "Lissabon"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "London"
+msgstr "London"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Los Angeles"
+msgstr "Los Angeles"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Madrid"
+msgstr "Madrid"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Mecca"
+msgstr "Mekka"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Mexico City"
+msgstr "Mexiko-Stadt"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Moscow"
+msgstr "Moskau"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Nairobi"
+msgstr "Nairobi"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "New York"
+msgstr "New York"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Paris"
+msgstr "Paris"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Beijing"
+msgstr "Peking"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Reykjavik"
+msgstr "Reykjavík"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Rome"
+msgstr "Rom"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "São Paulo"
+msgstr "São Paulo"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Sarajevo"
+msgstr "Sarajevo"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Seoul"
+msgstr "Seoul"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Singapore"
+msgstr "Singapur"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Stockholm"
+msgstr "Stockholm"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Sydney"
+msgstr "Sydney"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Tashkent"
+msgstr "Taschkent"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Tehran"
+msgstr "Teheran"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Tokyo"
+msgstr "Tokio"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Toronto"
+msgstr "Toronto"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Tunis"
+msgstr "Tunis"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Vancouver"
+msgstr "Vancouver"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Vienna"
+msgstr "Wien"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "Zurich"
+msgstr "Zürich"
+
+#. settings-schema.json->uhr1->options
+#. settings-schema.json->uhr2->options
+#. settings-schema.json->uhr3->options
+#. settings-schema.json->uhr4->options
+#. settings-schema.json->uhr5->options
+#. settings-schema.json->uhr6->options
+#. settings-schema.json->uhr7->options
+#. settings-schema.json->uhr8->options
+msgid "UTC"
+msgstr "UTC (Weltzeit)"
+
+#. settings-schema.json->name1->description
+msgid "Own label for clock 1 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 1 (leer = Ortsname)"
+
+#. settings-schema.json->uhr2->description
+msgid "Clock 2"
+msgstr "Uhr 2"
+
+#. settings-schema.json->name2->description
+msgid "Own label for clock 2 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 2 (leer = Ortsname)"
+
+#. settings-schema.json->uhr3->description
+msgid "Clock 3"
+msgstr "Uhr 3"
+
+#. settings-schema.json->name3->description
+msgid "Own label for clock 3 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 3 (leer = Ortsname)"
+
+#. settings-schema.json->uhr4->description
+msgid "Clock 4"
+msgstr "Uhr 4"
+
+#. settings-schema.json->name4->description
+msgid "Own label for clock 4 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 4 (leer = Ortsname)"
+
+#. settings-schema.json->uhr5->description
+msgid "Clock 5"
+msgstr "Uhr 5"
+
+#. settings-schema.json->name5->description
+msgid "Own label for clock 5 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 5 (leer = Ortsname)"
+
+#. settings-schema.json->uhr6->description
+msgid "Clock 6"
+msgstr "Uhr 6"
+
+#. settings-schema.json->name6->description
+msgid "Own label for clock 6 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 6 (leer = Ortsname)"
+
+#. settings-schema.json->uhr7->description
+msgid "Clock 7"
+msgstr "Uhr 7"
+
+#. settings-schema.json->name7->description
+msgid "Own label for clock 7 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 7 (leer = Ortsname)"
+
+#. settings-schema.json->uhr8->description
+msgid "Clock 8"
+msgstr "Uhr 8"
+
+#. settings-schema.json->name8->description
+msgid "Own label for clock 8 (empty = place name)"
+msgstr "Eigene Bezeichnung für Uhr 8 (leer = Ortsname)"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->zifferblatt->description
+msgid "Dial"
+msgstr "Zifferblatt"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Arabic numerals (1, 2, 3 …)"
+msgstr "Arabische Ziffern (1, 2, 3 …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Eastern Arabic numerals (١, ٢, ٣ …)"
+msgstr "Ostarabische Ziffern (١, ٢, ٣ …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Roman numerals (I, II, III …)"
+msgstr "Römische Ziffern (I, II, III …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Marks"
+msgstr "Striche"
+
+#. settings-schema.json->sekunden->description
+msgid "Second hand"
+msgstr "Sekundenzeiger"
+
+#. settings-schema.json->zeige-digital->description
+msgid "Time in digits below the clock"
+msgstr "Uhrzeit in Ziffern unter der Uhr"
+
+#. settings-schema.json->zeige-abstand->description
+msgid "Time difference to local time"
+msgstr "Zeitunterschied zur Ortszeit"
+
+#. settings-schema.json->zeige-kopf->description
+msgid "Heading with date"
+msgstr "Überschrift mit Datum"
+
+#. settings-schema.json->format12->description
+msgid "12-hour display (AM/PM)"
+msgstr "12-Stunden-Anzeige (AM/PM)"
+
+#. settings-schema.json->zeige-leiste->description
+msgid "Timeline: the next 24 hours per place"
+msgstr "Zeitleiste: die nächsten 24 Stunden je Ort"
+
+#. settings-schema.json->zeige-leiste->tooltip
+msgid ""
+"Shows working hours, waking hours and night per place - and on top the hours"
+" when it is daytime everywhere. The mouse wheel over the desklet shifts the "
+"time."
+msgstr ""
+"Zeigt je Ort Arbeitszeit, wache Stunden und Nacht – und oben die Stunden, in"
+" denen überall Tag ist. Mit dem Mausrad über dem Desklet lässt sich die Zeit"
+" verschieben."
+
+#. settings-schema.json->zeige-wechsel->description
+msgid "Note when a time difference changes soon (daylight saving)"
+msgstr ""
+"Hinweis, wenn sich ein Zeitunterschied bald ändert (Sommer-/Winterzeit)"
+
+#. settings-schema.json->uhr-groesse->description
+msgid "Clock diameter"
+msgstr "Durchmesser der Uhren"
+
+#. settings-schema.json->groesse->description
+msgid "Font size"
+msgstr "Schriftgröße"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"
