@@ -1,0 +1,487 @@
+# Turkish translation of the desklet calendar-sheet@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: calendar-sheet@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:37
+msgid "January"
+msgstr "Ocak"
+
+#: desklet.js:37
+msgid "February"
+msgstr "Şubat"
+
+#: desklet.js:37
+msgid "March"
+msgstr "Mart"
+
+#: desklet.js:37
+msgid "April"
+msgstr "Nisan"
+
+#: desklet.js:37
+msgid "May"
+msgstr "Mayıs"
+
+#: desklet.js:37
+msgid "June"
+msgstr "Haziran"
+
+#: desklet.js:37
+msgid "July"
+msgstr "Temmuz"
+
+#: desklet.js:37
+msgid "August"
+msgstr "Ağustos"
+
+#: desklet.js:37
+msgid "September"
+msgstr "Eylül"
+
+#: desklet.js:37
+msgid "October"
+msgstr "Ekim"
+
+#: desklet.js:37
+msgid "November"
+msgstr "Kasım"
+
+#: desklet.js:37
+msgid "December"
+msgstr "Aralık"
+
+#: desklet.js:38
+msgid "Mo"
+msgstr "Pt"
+
+#: desklet.js:38
+msgid "Tu"
+msgstr "Sa"
+
+#: desklet.js:38
+msgid "We"
+msgstr "Ça"
+
+#: desklet.js:38
+msgid "Th"
+msgstr "Pe"
+
+#: desklet.js:38
+msgid "Fr"
+msgstr "Cu"
+
+#: desklet.js:38
+msgid "Sa"
+msgstr "Ct"
+
+#: desklet.js:38
+msgid "Su"
+msgstr "Pz"
+
+#: desklet.js:40
+msgid "Wk"
+msgstr "Hf"
+
+#: desklet.js:41
+msgid "Back to the current month"
+msgstr "Bu aya dön"
+
+#: desklet.js:42
+msgid "Calendar file cannot be read"
+msgstr "Takvim dosyası okunamıyor"
+
+#: desklet.js:43
+msgid "Calendar subscription not reachable"
+msgstr "Takvim aboneliğine ulaşılamıyor"
+
+#: desklet.js:44
+msgid "Refresh calendar subscriptions now"
+msgstr "Takvim aboneliklerini şimdi güncelle"
+
+#: desklet.js:45
+msgid "Full moon"
+msgstr "Dolunay"
+
+#: desklet.js:46
+msgid "New moon"
+msgstr "Yeni ay"
+
+#: desklet.js:47
+msgid "today"
+msgstr "bugün"
+
+#: desklet.js:48
+msgid "tomorrow"
+msgstr "yarın"
+
+#: desklet.js:49
+#, javascript-format
+msgid "in %d d"
+msgstr "%d gün"
+
+#: desklet.js:58
+msgid "New Year's Day"
+msgstr "Yılbaşı"
+
+#: desklet.js:59
+msgid "Epiphany"
+msgstr "Üç Kral Bayramı"
+
+#: desklet.js:60
+msgid "International Women's Day"
+msgstr "Dünya Kadınlar Günü"
+
+#: desklet.js:61
+msgid "Good Friday"
+msgstr "Kutsal Cuma"
+
+#: desklet.js:62
+msgid "Easter Sunday"
+msgstr "Paskalya Pazarı"
+
+#: desklet.js:63
+msgid "Easter Monday"
+msgstr "Paskalya Pazartesi"
+
+#: desklet.js:64
+msgid "Labour Day"
+msgstr "İşçi Bayramı"
+
+#: desklet.js:65
+msgid "Ascension Day"
+msgstr "İsa'nın Göğe Yükselişi"
+
+#: desklet.js:66
+msgid "Whit Sunday"
+msgstr "Pentekost Pazarı"
+
+#: desklet.js:67
+msgid "Whit Monday"
+msgstr "Pentekost Pazartesi"
+
+#: desklet.js:68
+msgid "Corpus Christi"
+msgstr "Fronleichnam"
+
+#: desklet.js:69
+msgid "Assumption Day"
+msgstr "Meryem'in Göğe Kabulü"
+
+#: desklet.js:70
+msgid "World Children's Day"
+msgstr "Dünya Çocuk Günü"
+
+#: desklet.js:71
+msgid "German Unity Day"
+msgstr "Alman Birliği Günü"
+
+#: desklet.js:72
+msgid "Reformation Day"
+msgstr "Reform Günü"
+
+#: desklet.js:73
+msgid "All Saints' Day"
+msgstr "Azizler Günü"
+
+#: desklet.js:74
+msgid "Day of Repentance and Prayer"
+msgstr "Tövbe ve Dua Günü"
+
+#: desklet.js:75
+msgid "Christmas Day"
+msgstr "Noel 1. gün"
+
+#: desklet.js:76
+msgid "2nd Day of Christmas"
+msgstr "Noel 2. gün"
+
+#. metadata.json->name
+msgid "Calendar"
+msgstr "Takvim Yaprağı"
+
+#. metadata.json->description
+msgid ""
+"Month calendar with week numbers and holidays, optionally as a three-month "
+"view. German public holidays per state, own days and import from a calendar "
+"file."
+msgstr ""
+"Hafta numaraları ve tatillerle aylık takvim, istenirse üç aylık görünüm. "
+"Eyalete göre Almanya resmî tatilleri, kendi günleriniz ve takvim dosyasından"
+" içe aktarma."
+
+#. settings-schema.json->kopf-ansicht->description
+msgid "View"
+msgstr "Görünüm"
+
+#. settings-schema.json->ansicht->description
+msgid "Range"
+msgstr "Kapsam"
+
+#. settings-schema.json->ansicht->options
+msgid "One month"
+msgstr "Bir ay"
+
+#. settings-schema.json->ansicht->options
+msgid "Three months side by side"
+msgstr "Üç ay yan yana"
+
+#. settings-schema.json->ansicht->options
+msgid "Three months stacked"
+msgstr "Üç ay alt alta"
+
+#. settings-schema.json->drei-lage->description
+msgid "Three-month view shows"
+msgstr "Üç aylık görünüm"
+
+#. settings-schema.json->drei-lage->options
+msgid "Previous – current – next month"
+msgstr "Önceki – bu ay – sonraki ay"
+
+#. settings-schema.json->drei-lage->options
+msgid "Current month and the next two"
+msgstr "Bu ay ve sonraki iki ay"
+
+#. settings-schema.json->zeige-kw->description
+msgid "Show week numbers"
+msgstr "Hafta numaralarını göster"
+
+#. settings-schema.json->wochenstart->description
+msgid "Week starts on"
+msgstr "Hafta başlangıcı"
+
+#. settings-schema.json->wochenstart->options
+msgid "Monday"
+msgstr "Pazartesi"
+
+#. settings-schema.json->wochenstart->options
+msgid "Sunday"
+msgstr "Pazar"
+
+#. settings-schema.json->zeige-mond->description
+msgid "Mark new moon and full moon"
+msgstr "Yeni ayı ve dolunayı işaretle"
+
+#. settings-schema.json->zeige-liste->description
+msgid "List the holidays of the shown months below"
+msgstr "Tatilleri altta listele"
+
+#. settings-schema.json->liste-max->description
+msgid "Maximum entries in the list"
+msgstr "Listede en çok"
+
+#. settings-schema.json->zeige-abstand->description
+msgid "Show the distance in the list (today, tomorrow, in 5 days)"
+msgstr "Listede kalan süreyi göster (bugün, yarın, 5 gün sonra)"
+
+#. settings-schema.json->kopf-feiertage->description
+msgid "Holidays"
+msgstr "Tatiller"
+
+#. settings-schema.json->land->description
+msgid "Public holidays for"
+msgstr "Resmî tatiller"
+
+#. settings-schema.json->land->options
+msgid "Nordrhein-Westfalen"
+msgstr "Nordrhein-Westfalen"
+
+#. settings-schema.json->land->options
+msgid "Baden-Württemberg"
+msgstr "Baden-Württemberg"
+
+#. settings-schema.json->land->options
+msgid "Bayern"
+msgstr "Bayern"
+
+#. settings-schema.json->land->options
+msgid "Berlin"
+msgstr "Berlin"
+
+#. settings-schema.json->land->options
+msgid "Brandenburg"
+msgstr "Brandenburg"
+
+#. settings-schema.json->land->options
+msgid "Bremen"
+msgstr "Bremen"
+
+#. settings-schema.json->land->options
+msgid "Hamburg"
+msgstr "Hamburg"
+
+#. settings-schema.json->land->options
+msgid "Hessen"
+msgstr "Hessen"
+
+#. settings-schema.json->land->options
+msgid "Mecklenburg-Vorpommern"
+msgstr "Mecklenburg-Vorpommern"
+
+#. settings-schema.json->land->options
+msgid "Niedersachsen"
+msgstr "Niedersachsen"
+
+#. settings-schema.json->land->options
+msgid "Rheinland-Pfalz"
+msgstr "Rheinland-Pfalz"
+
+#. settings-schema.json->land->options
+msgid "Saarland"
+msgstr "Saarland"
+
+#. settings-schema.json->land->options
+msgid "Sachsen"
+msgstr "Sachsen"
+
+#. settings-schema.json->land->options
+msgid "Sachsen-Anhalt"
+msgstr "Sachsen-Anhalt"
+
+#. settings-schema.json->land->options
+msgid "Schleswig-Holstein"
+msgstr "Schleswig-Holstein"
+
+#. settings-schema.json->land->options
+msgid "Thüringen"
+msgstr "Thüringen"
+
+#. settings-schema.json->land->options
+msgid "Nationwide holidays only"
+msgstr "Yalnızca ülke çapındaki tatiller"
+
+#. settings-schema.json->land->options
+msgid "None"
+msgstr "Yok"
+
+#. settings-schema.json->eigene->description
+msgid "Own days (DD.MM. for every year or DD.MM.YYYY for one year)"
+msgstr "Kendi günleriniz (her yıl için GG.AA. veya tek yıl için GG.AA.YYYY)"
+
+#. settings-schema.json->eigene->columns->title
+msgid "Date"
+msgstr "Tarih"
+
+#. settings-schema.json->eigene->columns->title
+#. settings-schema.json->abos->columns->title
+msgid "Name"
+msgstr "Ad"
+
+#. settings-schema.json->import-datei->description
+msgid "Import calendar file (.ics)"
+msgstr "Takvim dosyası (.ics)"
+
+#. settings-schema.json->import-datei->tooltip
+msgid ""
+"For example school holidays or religious holidays as an iCalendar file. All-"
+"day entries appear as marked days; yearly recurring ones apply to every "
+"year. The file is only read."
+msgstr ""
+"Örneğin okul tatilleri veya dinî günler, iCalendar dosyası olarak. Tüm gün "
+"süren kayıtlar işaretli gün olarak görünür; her yıl yinelenenler her yıl "
+"için geçerlidir. Dosya yalnızca okunur."
+
+#. settings-schema.json->abos->description
+msgid "Calendar subscriptions: address of an .ics file on the web"
+msgstr "Takvim abonelikleri: internetteki bir .ics dosyasının adresi"
+
+#. settings-schema.json->abos->tooltip
+msgid ""
+"For example the public holidays of another country, school holidays or your "
+"own online calendar (webcal:// works too). The addresses are fetched every "
+"six hours; timed and recurring entries are read as well."
+msgstr ""
+"Örneğin başka bir ülkenin resmî tatilleri, okul tatilleri veya kendi çevrim "
+"içi takviminiz (webcal:// de olur). Adresler altı saatte bir alınır; saatli "
+"ve yinelenen kayıtlar da okunur."
+
+#. settings-schema.json->abos->columns->title
+msgid "Address"
+msgstr "Adres"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Appearance"
+msgstr "Görünüm"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Boyut"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"
