@@ -4,6 +4,7 @@
 	font-size: 16px;
 	text-align: center;
 	vertical-align: middle;
+	box-sizing: border-box;
 	width: 140px;
 	height: 42px;
 	background-color: #DDDDDD;
