@@ -1,0 +1,556 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the agenda@ashex package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: agenda@ashex\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-07-27 11:45+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:70
+msgid "Agenda"
+msgstr ""
+
+#: desklet.js:72 settings-schema.json
+msgid "Refresh now"
+msgstr ""
+
+#: desklet.js:145 desklet.js:373
+msgid "Today"
+msgstr ""
+
+#: desklet.js:286
+msgid "Join"
+msgstr ""
+
+#: desklet.js:287
+#, javascript-format
+msgid "Join %s"
+msgstr ""
+
+#: desklet.js:318
+#, javascript-format
+msgid "Open %s"
+msgstr ""
+
+#: desklet.js:375
+#, javascript-format
+msgid "Today  ·  %d left"
+msgid_plural "Today  ·  %d left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:432
+msgid "HAPPENING NOW"
+msgstr ""
+
+#: desklet.js:432
+msgid "NEXT UP"
+msgstr ""
+
+#: desklet.js:466 desklet.js:568
+msgid "All day"
+msgstr ""
+
+#: desklet.js:570
+msgid "Now"
+msgstr ""
+
+#: desklet.js:653
+msgid "No calendars yet. Add an ICS link in settings."
+msgstr ""
+
+#: desklet.js:655
+msgid "Checking your calendars…"
+msgstr ""
+
+#: desklet.js:661
+msgid "Could not reach your calendars."
+msgstr ""
+
+#: desklet.js:663
+msgid "Nothing scheduled today."
+msgstr ""
+
+#: desklet.js:665
+msgid "That is everything for today."
+msgstr ""
+
+#: desklet.js:677
+#, javascript-format
+msgid "Tomorrow at %s"
+msgstr ""
+
+#: desklet.js:678
+#, javascript-format
+msgid "Tomorrow starts at %s"
+msgstr ""
+
+#: desklet.js:705
+#, javascript-format
+msgid "%d calendar could not be reached"
+msgid_plural "%d calendars could not be reached"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:715
+#, javascript-format
+msgid "%d more today"
+msgid_plural "%d more today"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:719
+msgid "showing saved copy"
+msgstr ""
+
+#: desklet.js:785
+#, javascript-format
+msgid "%s: could not be read"
+msgstr ""
+
+#: lib/format.js:127
+msgid "now"
+msgstr ""
+
+#: lib/format.js:129
+msgid "in under a minute"
+msgstr ""
+
+#: lib/format.js:133
+#, javascript-format
+msgid "in %d minute"
+msgid_plural "in %d minutes"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:139
+#, javascript-format
+msgid "in %d day"
+msgid_plural "in %d days"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:142
+#, javascript-format
+msgid "in %d hour"
+msgid_plural "in %d hours"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:143
+#, javascript-format
+msgid "in %dh %dm"
+msgstr ""
+
+#: lib/format.js:149
+msgid "just started"
+msgstr ""
+
+#: lib/format.js:151
+#, javascript-format
+msgid "started %d minute ago"
+msgid_plural "started %d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:157
+#, javascript-format
+msgid "started %d hour ago"
+msgid_plural "started %d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:158
+#, javascript-format
+msgid "started %dh %dm ago"
+msgstr ""
+
+#: lib/format.js:164
+msgid "ending now"
+msgstr ""
+
+#: lib/format.js:166
+#, javascript-format
+msgid "%d minute left"
+msgid_plural "%d minutes left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:171
+#, javascript-format
+msgid "%d hour left"
+msgid_plural "%d hours left"
+msgstr[0] ""
+msgstr[1] ""
+
+#: lib/format.js:172
+#, javascript-format
+msgid "%dh %dm left"
+msgstr ""
+
+#: lib/format.js:180
+#, javascript-format
+msgid "%d min"
+msgstr ""
+
+#: lib/format.js:185
+#, javascript-format
+msgid "%d h"
+msgstr ""
+
+#: lib/format.js:186
+#, javascript-format
+msgid "%dh %dm"
+msgstr ""
+
+#: settings-schema.json
+msgid "Calendar feeds"
+msgstr ""
+
+#: settings-schema.json
+msgid "ICS feed URLs, one per line (up to 10)"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"One ICS or webcal address per line. Put a name and a vertical bar in front "
+"of an address to label that calendar. Lines starting with # are ignored."
+msgstr ""
+
+#: settings-schema.json
+msgid "Refresh feeds every"
+msgstr ""
+
+#: settings-schema.json
+msgid "How often to re-download the calendar feeds."
+msgstr ""
+
+#: settings-schema.json
+msgid "minutes"
+msgstr ""
+
+#: settings-schema.json
+msgid "Network timeout"
+msgstr ""
+
+#: settings-schema.json
+msgid "Give up on a feed that does not respond within this time."
+msgstr ""
+
+#: settings-schema.json
+msgid "seconds"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show a warning when a feed fails to load"
+msgstr ""
+
+#: settings-schema.json
+msgid "Displays a small notice rather than silently showing an incomplete day."
+msgstr ""
+
+#: settings-schema.json
+msgid "What to show"
+msgstr ""
+
+#: settings-schema.json
+msgid "Maximum upcoming events listed"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Events shown below the focused 'next' card. The list only ever covers the "
+"rest of today."
+msgstr ""
+
+#: settings-schema.json
+msgid "Treat an event happening right now as the focused event"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"When on, an appointment already in progress stays in the spotlight until it "
+"ends."
+msgstr ""
+
+#: settings-schema.json
+msgid "Include all-day events"
+msgstr ""
+
+#: settings-schema.json
+msgid "All-day events appear in a separate strip above the focused card."
+msgstr ""
+
+#: settings-schema.json
+msgid "Hide cancelled and declined events"
+msgstr ""
+
+#: settings-schema.json
+msgid "Skips events marked CANCELLED, and invitations you have declined."
+msgstr ""
+
+#: settings-schema.json
+msgid "Hide events marked as free / not busy"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Skips events with TRANSP:TRANSPARENT, which usually means 'does not block my "
+"time'."
+msgstr ""
+
+#: settings-schema.json
+msgid "Show location"
+msgstr ""
+
+#: settings-schema.json
+msgid "Displays the event location on the focused card when there is room."
+msgstr ""
+
+#: settings-schema.json
+msgid "Show which calendar an event came from"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"The calendar's own name is read from the feed. If it does not publish one, "
+"the name you typed before the URL is used, and failing that the site it came "
+"from."
+msgstr ""
+
+#: settings-schema.json
+msgid "Only when you have more than one"
+msgstr ""
+
+#: settings-schema.json
+msgid "Always"
+msgstr ""
+
+#: settings-schema.json
+msgid "Never"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show a join button for video meetings"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Finds the meeting link for Google Meet, Zoom, Teams, Webex, Jitsi and "
+"others, and puts a join button on the focused card."
+msgstr ""
+
+#: settings-schema.json
+msgid "Also mark later meetings in the list"
+msgstr ""
+
+#: settings-schema.json
+msgid "Adds a small join button to upcoming events that have a video link."
+msgstr ""
+
+#: settings-schema.json
+msgid "Only show the join button within"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Hides the join button until the meeting is this close, so it appears when it "
+"is actually useful. Set to 0 to always show it."
+msgstr ""
+
+#: settings-schema.json
+msgid "Show a live countdown to the next event"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Ticks every ten seconds in the last minutes before an appointment, and less "
+"often when the day is quiet."
+msgstr ""
+
+#: settings-schema.json
+msgid "Flag an event as imminent when it starts within"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Imminent events get a brighter accent and a stronger glow. Set to 0 to "
+"disable."
+msgstr ""
+
+#: settings-schema.json
+msgid "Time format"
+msgstr ""
+
+#: settings-schema.json
+msgid "Follow system locale"
+msgstr ""
+
+#: settings-schema.json
+msgid "12 hour"
+msgstr ""
+
+#: settings-schema.json
+msgid "24 hour"
+msgstr ""
+
+#: settings-schema.json
+msgid "Size and layout"
+msgstr ""
+
+#: settings-schema.json
+msgid "Width"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"The layout adapts itself to this width: narrow widths switch to a compact "
+"single-column form, wide widths reveal more detail."
+msgstr ""
+
+#: settings-schema.json
+msgid "px"
+msgstr ""
+
+#: settings-schema.json
+msgid "Text scale"
+msgstr ""
+
+#: settings-schema.json
+msgid "Scales every font size and spacing in the desklet."
+msgstr ""
+
+#: settings-schema.json
+msgid "Layout density"
+msgstr ""
+
+#: settings-schema.json
+msgid "Adapt to width"
+msgstr ""
+
+#: settings-schema.json
+msgid "Compact"
+msgstr ""
+
+#: settings-schema.json
+msgid "Comfortable"
+msgstr ""
+
+#: settings-schema.json
+msgid "Spacious"
+msgstr ""
+
+#: settings-schema.json
+msgid "Show the date header"
+msgstr ""
+
+#: settings-schema.json
+msgid "The line reading 'Today' with the date and remaining event count."
+msgstr ""
+
+#: settings-schema.json
+msgid "Show a progress bar for an event in progress"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"A thin accent bar showing how far through the current appointment you are."
+msgstr ""
+
+#: settings-schema.json
+msgid "Appearance"
+msgstr ""
+
+#: settings-schema.json
+msgid "Assign rainbow colours by"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"'Position in the day' walks the rainbow down the list. 'Calendar feed' keeps "
+"each calendar a stable colour. 'Time of day' maps morning to evening across "
+"the spectrum."
+msgstr ""
+
+#: settings-schema.json
+msgid "Position in the day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Calendar feed"
+msgstr ""
+
+#: settings-schema.json
+msgid "Time of day"
+msgstr ""
+
+#: settings-schema.json
+msgid "Background opacity"
+msgstr ""
+
+#: settings-schema.json
+msgid ""
+"Fluent acrylic works best somewhere between 0.55 and 0.85. Set to 0 for a "
+"fully transparent surface."
+msgstr ""
+
+#: settings-schema.json
+msgid "Accent glow on the focused card"
+msgstr ""
+
+#: settings-schema.json
+msgid "Soft neon bloom around the next appointment."
+msgstr ""
+
+#: settings-schema.json
+msgid "Tint surfaces with the accent colour"
+msgstr ""
+
+#: settings-schema.json
+msgid "Bleeds a trace of the event's neon colour into its card background."
+msgstr ""
+
+#: settings-schema.json
+msgid "Dark surface"
+msgstr ""
+
+#: settings-schema.json
+msgid "Turn off for a light acrylic surface with dark text."
+msgstr ""
+
+#: settings-schema.json
+msgid "Behaviour"
+msgstr ""
+
+#: settings-schema.json
+msgid "On click"
+msgstr ""
+
+#: settings-schema.json
+msgid "Do nothing"
+msgstr ""
+
+#: settings-schema.json
+msgid "Open calendar application"
+msgstr ""
+
+#: settings-schema.json
+msgid "Calendar command"
+msgstr ""
+
+#: settings-schema.json
+msgid "Command run when the desklet is clicked."
+msgstr ""
