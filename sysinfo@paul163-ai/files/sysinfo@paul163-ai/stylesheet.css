@@ -1,0 +1,51 @@
+.sysinfo-root {
+    min-width: 330px;
+    padding: 14px 18px;
+}
+
+.sysinfo-hostname {
+    font-weight: bold;
+    color: white;
+}
+
+.sysinfo-os {
+    color: rgba(255, 255, 255, 0.65);
+    padding-top: 1px;
+}
+
+.sysinfo-kernel {
+    color: rgba(255, 255, 255, 0.5);
+    padding-top: 1px;
+}
+
+.sysinfo-section-title {
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 1px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.sysinfo-dim {
+    color: rgba(255, 255, 255, 0.6);
+    min-width: 105px;
+}
+
+.sysinfo-val {
+    font-weight: bold;
+    color: white;
+    text-align: right;
+}
+
+.sysinfo-bar-bg {
+    background-color: rgba(255, 255, 255, 0.12);
+    min-height: 5px;
+    height: 5px;
+    border-radius: 3px;
+}
+
+.sysinfo-bar-fill {
+    min-height: 5px;
+    height: 5px;
+    border-radius: 3px;
+}
