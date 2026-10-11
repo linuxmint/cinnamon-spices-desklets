@@ -1,0 +1,146 @@
+/* Spotify Widget — Matte Card
+ * Horizontal layout: art left, info + inline controls right.
+ * Volume as toggleable horizontal slider row.
+ */
+
+/* ── Main Card ── */
+.spotify-widget {
+    padding: 14px;
+    border-radius: 14px;
+    min-width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.spotify-widget-compact {
+    padding: 10px;
+    border-radius: 10px;
+    min-width: 220px;
+    border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+/* ── Top Row: Art + Info ── */
+.top-row {
+    spacing: 14px;
+}
+
+.top-row-compact {
+    spacing: 10px;
+}
+
+/* ── Album Art ── */
+.album-art {
+    border-radius: 8px;
+    width: 100px;
+    height: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.album-art-compact {
+    border-radius: 6px;
+    width: 56px;
+    height: 56px;
+}
+
+/* ── Track Info ── */
+.info-column {
+    spacing: 2px;
+}
+
+.track-title {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+.track-artist {
+    font-size: 12px;
+    opacity: 0.55;
+}
+
+/* ── Controls Row ── */
+.controls-box {
+    spacing: 2px;
+    margin-top: 8px;
+}
+
+.control-button {
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 16px;
+    border: none;
+    padding: 0px;
+}
+
+.control-button:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.play-pause-button {
+    min-width: 36px;
+    min-height: 36px;
+    border-radius: 18px;
+}
+
+.utility-button {
+    min-width: 32px;
+    min-height: 32px;
+    border-radius: 16px;
+}
+
+/* ── Progress Bar ── */
+.progress-section {
+    margin-top: 10px;
+    spacing: 4px;
+}
+
+.progress-container {
+    height: 4px;
+    border-radius: 2px;
+    background-color: rgba(255, 255, 255, 0.12);
+}
+
+.progress-bar {
+    height: 4px;
+    border-radius: 2px;
+}
+
+.time-row {
+    spacing: 0px;
+}
+
+.time-label {
+    font-size: 10px;
+    opacity: 0.4;
+}
+
+/* ── Volume Slider Row (horizontal, toggled by icon) ── */
+.volume-row {
+    margin-top: 6px;
+    spacing: 8px;
+}
+
+.volume-slider-container {
+    height: 4px;
+    border-radius: 2px;
+    min-width: 100px;
+}
+
+.volume-slider-fill {
+    height: 4px;
+    border-radius: 2px 0 0 2px;
+}
+
+.volume-slider-bg {
+    height: 4px;
+    border-radius: 0 2px 2px 0;
+}
+
+.volume-label {
+    font-size: 10px;
+    opacity: 0.5;
+    min-width: 32px;
+}
+
+/* ── Kill Button ── */
+.utility-button:last-child {
+    opacity: 0.35;
+}
