@@ -1,0 +1,8 @@
+{
+    "uuid": "project-tracker@suleman",
+    "name": "Project Tracker",
+    "description": "Desktop widget to track your VS Code projects. Shows last edited time, git stats (commits, repo size, last commit), and lets you pin favorites. Click to open in VS Code. Customizable colors, font scale, and git-only filter.",
+    "author": "suleman",
+    "website": "",
+    "comments": "Reads VS Code workspaceStorage to find recent projects. Supports pinning, scrollable list, and full color customization via settings."
+}
