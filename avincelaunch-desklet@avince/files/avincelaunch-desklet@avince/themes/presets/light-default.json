@@ -1,0 +1,22 @@
+{
+  "id": "light-default",
+  "name": "Light Default",
+  "mode": "light",
+  "tokens": {
+    "link-bg-color": "#3d7bc8",
+    "document-bg-color": "#40916c",
+    "border-color": "#cccccc",
+    "text-color": "#ffffff",
+    "shadow-color": "#00000040",
+    "folder-bg-color": "#e8e8e8",
+    "folder-border-color": "#cccccc",
+    "folder-icon-tint": "#555555",
+    "desklet-bg-color": "#f5f5f5",
+    "title-color": "#333333",
+    "hover-bg-color": "#5a9fd4",
+    "pressed-bg-color": "#2d6cb5",
+    "disabled-opacity": 0.35,
+    "tooltip-bg-color": "#ffffff",
+    "tooltip-text-color": "#333333"
+  }
+}

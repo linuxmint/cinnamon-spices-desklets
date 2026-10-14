@@ -1,0 +1,241 @@
+/* SPDX-License-Identifier: GPL-3.0-only AND MIT
+ * Copyright (c) 2026 Angelo Vincenti, aVince Industrietechnik
+ * Portions copyright (c) MHK924 (TheLauncher), MIT - see THIRD-PARTY-NOTICES.md
+ */
+
+.thelauncher-desklet {
+    padding: 8px;
+    border-radius: 8px;
+    spacing: 0;
+}
+
+.thelauncher-grid {
+    spacing: 0;
+}
+
+.desklet:highlight .thelauncher-desklet,
+.desklet-with-borders:highlight .thelauncher-desklet,
+.desklet-with-borders-and-header:highlight .thelauncher-desklet {
+    outline: 2px dashed rgba(255, 255, 255, 0.55);
+    outline-offset: 2px;
+}
+
+.thelauncher-title-row {
+    padding: 2px 4px 4px 4px;
+    margin-bottom: 2px;
+}
+
+.thelauncher-title-grip {
+    opacity: 0.75;
+}
+
+/* AP12-1: Menue-Knopf links in der Titelzeile */
+.avincelaunch-title-menu-button {
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+.avincelaunch-title-menu-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+}
+
+.avincelaunch-title-menu-button:hover .thelauncher-title-grip {
+    opacity: 1;
+}
+
+/* AP12-1, Modus "slide": Lasche oben auf der Kante des Fence. Farbe und
+   Abstaende setzt der Code (Hintergrund wie der Fence). */
+.avincelaunch-title-tab {
+    spacing: 2px;
+}
+
+/* AP12-3: Suchfeld ueber dem Fence */
+.avincelaunch-search-entry {
+    min-width: 260px;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+.avincelaunch-search-popup {
+    border: 1px solid rgba(168, 243, 72, 0.75);
+    border-radius: 8px;
+    box-shadow: 0px 3px 10px 0px rgba(0, 0, 0, 0.55);
+}
+
+/* Solange die Lasche steht: Fence oben eckig, damit beides wie ein Stueck
+   wirkt. */
+.thelauncher-desklet.avincelaunch-tab-joined {
+    border-radius: 0 0 8px 8px;
+}
+
+.thelauncher-title {
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.thelauncher-scroll {
+    padding: 0;
+}
+
+.thelauncher-nav {
+    margin-bottom: 6px;
+}
+
+.thelauncher-back-button {
+    min-width: 28px;
+    width: 28px;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.thelauncher-nav-spacer {
+    min-width: 28px;
+    width: 28px;
+}
+
+.thelauncher-breadcrumb-box {
+    padding: 0 6px;
+}
+
+.thelauncher-breadcrumb {
+    font-size: 13px;
+    font-weight: bold;
+    opacity: 0.85;
+    padding: 3px 0 0;
+}
+
+.thelauncher-item {
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+.thelauncher-item:hover {
+    /* Hover colors are applied in desklet.js */
+}
+
+.thelauncher-item-disabled {
+    opacity: 0.15;
+}
+
+.thelauncher-item-disabled:hover {
+    /* Disabled items keep their base styling */
+}
+
+.thelauncher-item-label {
+    font-size: 12px;
+    text-align: center;
+}
+
+.thelauncher-item .thelauncher-item-label {
+    padding-top: 2px;
+}
+
+.thelauncher-empty {
+    font-size: 12px;
+    opacity: 0.8;
+    padding: 12px;
+}
+
+.thelauncher-list {
+    spacing: 0;
+}
+
+.thelauncher-list-item {
+    padding: 4px 8px;
+    border-radius: 4px;
+    text-align: left;
+    spacing: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-icon {
+    margin-right: 8px;
+}
+
+.thelauncher-list-item .thelauncher-item-label {
+    text-align: left;
+    padding-top: 0;
+    padding-left: 0;
+}
+
+
+/* THELAUNCHER CUSTOM SCROLLBAR */
+.thelauncher-scroll StScrollBar {
+    min-width: 10px;
+    max-width: 10px;
+}
+
+.thelauncher-scroll StScrollBar StBin#trough {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-radius: 5px;
+}
+
+.thelauncher-scroll StScrollBar StButton#vhandle {
+    background-color: rgba(255, 255, 255, 0.32);
+    border-radius: 5px;
+}
+
+.thelauncher-scroll StScrollBar StButton#vhandle:hover {
+    background-color: rgba(255, 255, 255, 0.48);
+}
+
+/* AP13a: Rahmen waehrend des Groesseziehens */
+.avincelaunch-resize-outline {
+    border: 2px dashed rgba(255, 255, 255, 0.85);
+    border-radius: 6px;
+    background-color: rgba(40, 40, 40, 0.25);
+}
+
+.avincelaunch-resize-label {
+    font-size: 13px;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.55);
+    padding: 4px 10px;
+    border-radius: 4px;
+}
+
+/* AP13b: Hilfslinien beim Ziehen - helles Markengruen mit dunklem Saum,
+   damit sie auf jedem Hintergrundbild sichtbar bleiben. */
+.avincelaunch-guide {
+    background-color: #A8F348;
+    box-shadow: 0 0 1px rgba(20, 28, 34, 0.7);
+}
+
+/* AP13b: Hinweis im Kontextmenue, solange der Fence entsperrt ist -
+   im Gruen der Hilfslinien, ohne Schatten (Wunsch 01.10.). Auch im
+   ausgegrauten Menuezustand, damit das Thema die Farbe nicht dimmt. */
+.avincelaunch-unlocked-hint,
+.popup-menu-item:insensitive .avincelaunch-unlocked-hint {
+    color: #A8F348;
+    font-weight: 600;
+}
+
+/* AP18-1: Name des Symbols oben im Kontextmenue - Markengruen und fett,
+   auch im ausgegrauten Zustand (der Eintrag ist nicht anklickbar). */
+.avincelaunch-item-header,
+.popup-menu-item:insensitive .avincelaunch-item-header {
+    color: #A8F348;
+    font-weight: bold;
+}
+
+/* AP13c: Verlaufszeile im Menue - Uhrzeit, mit etwa 1 cm Luft dahinter die
+   Symbole (Wunsch 02.10.). */
+.avincelaunch-history-row {
+    spacing: 8px;
+}
+
+.avincelaunch-history-time {
+    padding-right: 40px;
+}
+
+/* AP09c: Kurzbeschreibung hinter dem Symbol, etwas Luft zum naechsten. */
+.avincelaunch-history-kind {
+    padding-right: 12px;
+}
+
+/* AP18-3: Nadel an angepinnten Symbolen - Markengruen mit dunklem Saum,
+   auf hellen und dunklen Fences lesbar. */
+.avincelaunch-pin-badge {
+    color: #A8F348;
+    icon-shadow: 0 0 2px rgba(20, 28, 34, 0.9);
+}
