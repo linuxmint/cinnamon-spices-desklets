@@ -398,7 +398,7 @@
         "step": 5,
         "units": "minutes",
         "description": "Calendar refresh interval",
-        "tooltip": "Requests online synchronization and checks saved events at this interval. Changes also appear automatically when downloaded. Refresh events requests an earlier update.",
+        "tooltip": "Requests online synchronization and checks saved events at this interval. Changes also appear automatically when downloaded. Use the right-click Refresh events action for an earlier update.",
         "dependency": "show-events"
     }
 }

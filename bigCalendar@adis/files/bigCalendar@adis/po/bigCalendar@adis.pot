@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-14 23:22+0300\n"
+"POT-Creation-Date: 2026-10-14 23:23+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,43 +24,23 @@ msgstr ""
 msgid "Big Calendar"
 msgstr ""
 
-#: desklet.js:675
-msgid "Requesting calendar refresh…"
-msgstr ""
-
-#: desklet.js:680
-msgid "Refresh already requested. Please wait a moment."
-msgstr ""
-
-#: desklet.js:682
-msgid "Some calendars could not be refreshed. Showing saved events."
-msgstr ""
-
-#: desklet.js:683
-msgid "Refresh requested. Events update as changes arrive."
-msgstr ""
-
-#: desklet.js:688
-msgid "Could not refresh calendars. Showing saved events."
-msgstr ""
-
-#: desklet.js:884
+#: desklet.js:872
 msgid "Today"
 msgstr ""
 
-#: desklet.js:894 desklet.js:897 desklet.js:898
+#: desklet.js:878
 msgid "Refresh events"
 msgstr ""
 
-#: desklet.js:987
+#: desklet.js:966
 msgid "Click to return to the current month"
 msgstr ""
 
-#: desklet.js:1333
+#: desklet.js:1310
 msgid "All day"
 msgstr ""
 
-#: desklet.js:1365
+#: desklet.js:1342
 msgid "more"
 msgstr ""
 
@@ -443,6 +423,6 @@ msgstr ""
 #: settings-schema.json:event-refresh
 msgid ""
 "Requests online synchronization and checks saved events at this interval. "
-"Changes also appear automatically when downloaded. Refresh events requests "
-"an earlier update."
+"Changes also appear automatically when downloaded. Use the right-click "
+"Refresh events action for an earlier update."
 msgstr ""

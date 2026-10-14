@@ -671,25 +671,13 @@ class BigCalendarDesklet extends Desklet.Desklet {
         const feed = this._feed;
         if (this._destroyed || !this.showEvents || !feed || this._remoteRefreshPending) return;
         this._remoteRefreshPending = true;
-        this._refreshButton.set_label("…");
-        this._refreshTip.set_text(_("Requesting calendar refresh…"));
         try {
-            const status = await feed.refreshRemote();
-            if (!this._destroyed && this._feed === feed && this.showEvents) {
-                this._refreshTip.set_text(status && status.cooldown
-                    ? _("Refresh already requested. Please wait a moment.")
-                    : status && status.failed
-                        ? _("Some calendars could not be refreshed. Showing saved events.")
-                        : _("Refresh requested. Events update as changes arrive."));
-            }
+            await feed.refreshRemote();
         } catch (e) {
-            if (!this._destroyed) {
+            if (!this._destroyed)
                 logError(e, "Big Calendar: could not request calendar refresh");
-                this._refreshTip.set_text(_("Could not refresh calendars. Showing saved events."));
-            }
         } finally {
             this._remoteRefreshPending = false;
-            if (!this._destroyed) this._refreshButton.set_label("↻");
             // Also recover the local cache if the online request failed.
             if (!this._destroyed && this._feed === feed && this.showEvents)
                 this._refreshEventsSoon();
@@ -887,14 +875,6 @@ class BigCalendarDesklet extends Desklet.Desklet {
         });
         this._todayButton.connect("clicked", () => this._goToToday());
 
-        this._refreshButton = new St.Button({
-            style_class: "bigcal-nav",
-            label: "↻",
-            can_focus: true,
-            accessible_name: _("Refresh events")
-        });
-        this._refreshButton.connect("clicked", () => this._requestRemoteRefresh());
-        this._refreshTip = new Tooltips.Tooltip(this._refreshButton, _("Refresh events"));
         this._menu.addAction(_("Refresh events"), () => this._requestRemoteRefresh());
 
         this._nextButton = new St.Button({
@@ -907,7 +887,6 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._titleBar.add(this._prevButton, { y_align: St.Align.MIDDLE });
         this._titleBar.add(this._titleButton, { expand: true, y_align: St.Align.MIDDLE });
         this._titleBar.add(this._todayButton, { y_align: St.Align.MIDDLE });
-        this._titleBar.add(this._refreshButton, { y_align: St.Align.MIDDLE });
         this._titleBar.add(this._nextButton, { y_align: St.Align.MIDDLE });
 
         // St.Table is what Cinnamon's own calendar uses for a month view; it
@@ -996,8 +975,6 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._nextButton.visible = navVisible;
         this._prevButton.set_style("color: " + this.navColor + ";");
         this._nextButton.set_style("color: " + this.navColor + ";");
-        this._refreshButton.visible = !!this.showEvents && !!this._source;
-        this._refreshButton.set_style("color: " + this.navColor + ";");
     }
 
     _renderWeekdayHeader(firstDay, showWeekNumbers) {
@@ -1609,7 +1586,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
                 this._eventTimer = 0;
                 return GLib.SOURCE_REMOVE;
             }
-            // The same bounded, coalesced online request as the manual button.
+            // The same bounded, coalesced request as the context-menu action.
             // Completion rereads the cache; revisions pick up later downloads.
             this._requestRemoteRefresh();
             return GLib.SOURCE_CONTINUE;
@@ -1983,10 +1960,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             this._titleTip.destroy();
             this._titleTip = null;
         }
-        if (this._refreshTip) {
-            this._refreshTip.destroy();
-            this._refreshTip = null;
-        }
+
 
         if (this._dayTip) {
             this._dayTip.destroy();

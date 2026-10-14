@@ -27,8 +27,8 @@ is nothing to log into and no password to give it.
 
 ## Event updates
 
-Changes appear after EDS downloads them and reports a cache revision. The **↻**
-button requests an online refresh; it does not promise that downloading is
+Changes appear after EDS downloads them and reports a cache revision. The right-click **Refresh events**
+action requests an online refresh; it does not promise that downloading is
 finished. The desklet requests online synchronization every **five minutes** by
 default and also checks the local cache. The interval is configurable; requests
 are asynchronous, and unchanged events do not cause redraws.
@@ -47,7 +47,7 @@ show.
 ## Privacy
 
 **The desklet has no account, no password and no network code of its own.** It
-asks your own system what your events are, and draws the answer. The desklet sends no event data to a separate service. Pressing **↻** asks EDS
+asks your own system what your events are, and draws the answer. The desklet sends no event data to a separate service. Choosing **Refresh events** asks EDS
 to synchronize with your existing calendar providers.
 
 - **It stores no credentials.** There is no OAuth client ID, no token, no
