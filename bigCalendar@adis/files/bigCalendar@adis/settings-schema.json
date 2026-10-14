@@ -397,8 +397,8 @@
         "max": 240,
         "step": 5,
         "units": "minutes",
-        "description": "Re-check for changes every",
-        "tooltip": "The desklet reads from a local cache, so this costs nothing when nothing has changed.",
+        "description": "Recovery check interval",
+        "tooltip": "Changes normally appear automatically. This periodic local check recovers missed notifications. Use Refresh events to request an online update.",
         "dependency": "show-events"
     }
 }

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-09-30 23:50+0300\n"
+"POT-Creation-Date: 2026-10-14 23:06+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,28 +16,120 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:548
+#: desklet.js:622
 msgid "Big Calendar could not start."
 msgstr ""
 
-#: desklet.js:564
+#: desklet.js:638
 msgid "Big Calendar"
 msgstr ""
 
-#: desklet.js:767
+#: desklet.js:675
+msgid "Requesting calendar refresh…"
+msgstr ""
+
+#: desklet.js:681
+msgid "Refresh already requested. Please wait a moment."
+msgstr ""
+
+#: desklet.js:683
+msgid "Some calendars could not be refreshed. Showing saved events."
+msgstr ""
+
+#: desklet.js:684
+msgid "Refresh requested. Events update as changes arrive."
+msgstr ""
+
+#: desklet.js:689
+msgid "Could not refresh calendars. Showing saved events."
+msgstr ""
+
+#: desklet.js:882
 msgid "Today"
 msgstr ""
 
-#: desklet.js:865
+#: desklet.js:892 desklet.js:895 desklet.js:896
+msgid "Refresh events"
+msgstr ""
+
+#: desklet.js:985
 msgid "Click to return to the current month"
 msgstr ""
 
-#: desklet.js:1209
+#: desklet.js:1331
 msgid "All day"
 msgstr ""
 
-#: desklet.js:1241
+#: desklet.js:1363
 msgid "more"
+msgstr ""
+
+#: lib/eventIndex.js:200
+msgid "AM"
+msgstr ""
+
+#: lib/eventIndex.js:200
+msgid "PM"
+msgstr ""
+
+#: lib/eventIndex.js:208 lib/eventIndex.js:231
+msgid "(no title)"
+msgstr ""
+
+#: settings-schema.json:layout/page_appearance
+msgid "Appearance"
+msgstr ""
+
+#: settings-schema.json:layout/sec_scale
+msgid "Size and spacing"
+msgstr ""
+
+#: settings-schema.json:layout/sec_surface
+msgid "Background"
+msgstr ""
+
+#: settings-schema.json:layout/sec_text
+msgid "Text colours"
+msgstr ""
+
+#: settings-schema.json:layout/sec_weekend
+msgid "Weekends"
+msgstr ""
+
+#: settings-schema.json:layout/page_layout
+msgid "Layout"
+msgstr ""
+
+#: settings-schema.json:layout/sec_week
+msgid "Week"
+msgstr ""
+
+#: settings-schema.json:layout/sec_grid
+msgid "Month grid"
+msgstr ""
+
+#: settings-schema.json:layout/sec_header
+msgid "Header"
+msgstr ""
+
+#: settings-schema.json:layout/page_events
+msgid "Events"
+msgstr ""
+
+#: settings-schema.json:layout/sec_events
+msgid "Calendars"
+msgstr ""
+
+#: settings-schema.json:layout/sec_events_sync
+msgid "Refresh"
+msgstr ""
+
+#: settings-schema.json:layout/page_behaviour
+msgid "Behaviour"
+msgstr ""
+
+#: settings-schema.json:font-scale
+msgid "%"
 msgstr ""
 
 #: settings-schema.json:font-scale
@@ -46,6 +138,10 @@ msgstr ""
 
 #: settings-schema.json:font-scale
 msgid "Scales the whole calendar. The desklet grows with it."
+msgstr ""
+
+#: settings-schema.json:padding
+msgid "pixels"
 msgstr ""
 
 #: settings-schema.json:padding
@@ -337,11 +433,15 @@ msgid "List a day's events on hover"
 msgstr ""
 
 #: settings-schema.json:event-refresh
-msgid "Re-check for changes every"
+msgid "minutes"
+msgstr ""
+
+#: settings-schema.json:event-refresh
+msgid "Recovery check interval"
 msgstr ""
 
 #: settings-schema.json:event-refresh
 msgid ""
-"The desklet reads from a local cache, so this costs nothing when nothing has "
-"changed."
+"Changes normally appear automatically. This periodic local check recovers "
+"missed notifications. Use Refresh events to request an online update."
 msgstr ""

@@ -133,6 +133,9 @@ export function buildEventIndex(events, fromKey, toKey) {
     if (!events) return index;
 
     for (const event of events) {
+        if (!event || !Number.isFinite(event.start) || !Number.isFinite(event.end) ||
+            !Number.isFinite(new Date(event.start).getTime()) ||
+            !Number.isFinite(new Date(event.end).getTime())) continue;
         const startKey = dayOfEventStart(event);
         let endKey = dayOfEventEnd(event);
 
@@ -189,21 +192,21 @@ export function maxEventsInMonth(index, year, month) {
 }
 
 /** "14:30", or "2:30 PM". */
-export function formatEventTime(ms, use24h) {
+export function formatEventTime(ms, use24h, _ = text => text) {
     const d = new Date(ms);
     let h = d.getHours();
     const m = d.getMinutes();
     if (use24h) return pad2(h) + ":" + pad2(m);
-    const suffix = h < 12 ? "AM" : "PM";
+    const suffix = h < 12 ? _("AM") : _("PM");
     h = h % 12;
     if (h === 0) h = 12;
     return h + ":" + pad2(m) + " " + suffix;
 }
 
 /** One-line summary of an event, for a tooltip row. */
-export function describeEvent(event, use24h) {
-    const title = event.summary && event.summary.length ? event.summary : "(no title)";
-    return event.allDay ? title : formatEventTime(event.start, use24h) + "  " + title;
+export function describeEvent(event, use24h, _ = text => text) {
+    const title = event.summary && event.summary.length ? event.summary : _("(no title)");
+    return event.allDay ? title : formatEventTime(event.start, use24h, _) + "  " + title;
 }
 
 // Marks an event that began on an earlier day. U+21B3, "downwards arrow with
@@ -221,10 +224,10 @@ const CONTINUED = "↳";
  * On any cell but the first, the time is dropped and the event is marked as
  * carried over. All-day events never carried a time and are unaffected.
  */
-export function describeEntry(entry, use24h) {
+export function describeEntry(entry, use24h, _ = text => text) {
     const event = entry.event;
-    if (entry.first || event.allDay) return describeEvent(event, use24h);
+    if (entry.first || event.allDay) return describeEvent(event, use24h, _);
 
-    const title = event.summary && event.summary.length ? event.summary : "(no title)";
+    const title = event.summary && event.summary.length ? event.summary : _("(no title)");
     return CONTINUED + "  " + title;
 }

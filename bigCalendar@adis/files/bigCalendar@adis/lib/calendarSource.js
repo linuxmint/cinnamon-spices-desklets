@@ -52,8 +52,8 @@
  *      strength of that missing `new_async`, which put a call that waits on a
  *      D-Bus service back on the compositor's thread.
  *
- *      It runs once when the feed is opened and again on each re-open -- see
- *      open(). Re-opening is what lets a calendar that was unreachable at
+ *      The registry is retained after opening. Re-opening the feed is what
+ *      lets a calendar that was unreachable at
  *      startup connect later without restarting Cinnamon, and it is
  *      deliberately cheap: calendars that are already open are skipped before
  *      any real work.
@@ -64,11 +64,42 @@
  */
 
 import Gio from 'gi://Gio';
+import GLib from 'gi://GLib';
 import ICalGLib from 'gi://ICalGLib?version=3.0';
 import ECal from 'gi://ECal?version=2.0';
 import EDataServer from 'gi://EDataServer?version=1.2';
 
 const pad2 = (n) => (n < 10 ? "0" : "") + n;
+
+/** Bound a calendar operation without waiting on Cinnamon's main thread.
+ * Even a service that never replies must release the refresh queue. */
+export function calendarCall(parent, invoke, finish, timeoutMs = 15000) {
+    return new Promise((resolve, reject) => {
+        const cancellable = new Gio.Cancellable();
+        let settled = false, timer = 0;
+        const cancelId = parent ? parent.connect(() => cancellable.cancel()) : 0;
+        const settle = (error, value) => {
+            if (settled) return;
+            settled = true;
+            if (timer) GLib.source_remove(timer);
+            if (cancelId) parent.disconnect(cancelId);
+            if (error) reject(error);
+            else resolve(value);
+        };
+        timer = GLib.timeout_add(GLib.PRIORITY_DEFAULT, timeoutMs, () => {
+            timer = 0;
+            cancellable.cancel();
+            settle(new Error("Calendar operation timed out"));
+            return GLib.SOURCE_REMOVE;
+        });
+        try {
+            invoke(cancellable, (object, result) => {
+                try { settle(null, finish(object, result)); }
+                catch (e) { settle(e); }
+            });
+        } catch (e) { settle(e); }
+    });
+}
 
 /**
  * An iCalendar date/time as a millisecond instant.
@@ -99,6 +130,7 @@ const pad2 = (n) => (n < 10 ? "0" : "") + n;
  */
 function toMillis(datetime) {
     const value = datetime.get_value ? datetime.get_value() : datetime;
+    if (value.is_date()) return civilMillis(value);
 
     const zone = value.get_timezone ? value.get_timezone() : null;
     if (zone && value.as_timet_with_zone) return value.as_timet_with_zone(zone) * 1000;
@@ -109,7 +141,9 @@ function toMillis(datetime) {
         if (builtin) return value.as_timet_with_zone(builtin) * 1000;
     }
 
-    return value.as_timet() * 1000;
+    // RFC 5545 floating times follow the viewer's local clock. An unknown
+    // explicit TZID keeps the existing UTC fallback instead of guessing.
+    return tzid ? value.as_timet() * 1000 : localMillis(value);
 }
 
 /**
@@ -151,8 +185,9 @@ function builtinZone(tzid) {
  * them with the arguments their names imply raises type errors. Building on a
  * signature that cannot be stated confidently would be worse than not using
  * it, so the rule is expanded here instead, with ICalGLib.RecurIterator --
- * libical's own recurrence engine, the same one EDS expands with, driven
- * without blocking.
+ * libical's own recurrence engine, the same one EDS expands with. Expansion
+ * is CPU work on the main thread, so queries are coalesced and clean results
+ * reused rather than repeatedly expanded.
  *
  * What is handled: RRULE, COUNT and UNTIL, EXDATE, and the detached overrides
  * Google writes when a single occurrence of a series is edited (those arrive
@@ -167,9 +202,24 @@ function builtinZone(tzid) {
 const MAX_OCCURRENCES = 5000;
 
 /** The instant an ICalGLib.Time names, given the zone its component uses. */
+function civilMillis(time) {
+    const date = new Date(0);
+    date.setUTCFullYear(time.get_year(), time.get_month() - 1, time.get_day());
+    return date.getTime();
+}
+
+function localMillis(time) {
+    const date = new Date(0);
+    date.setFullYear(time.get_year(), time.get_month() - 1, time.get_day());
+    date.setHours(time.get_hour(), time.get_minute(), time.get_second(), 0);
+    return date.getTime();
+}
+
 function instantOf(time, zone) {
+    if (time.is_date()) return civilMillis(time);
+    zone = time.get_timezone() || zone;
     if (zone && time.as_timet_with_zone) return time.as_timet_with_zone(zone) * 1000;
-    return time.as_timet() * 1000;
+    return localMillis(time);
 }
 
 /**
@@ -180,7 +230,7 @@ function instantOf(time, zone) {
  */
 function zoneOf(wrapper) {
     const tzid = wrapper && wrapper.get_tzid ? wrapper.get_tzid() : null;
-    return tzid ? builtinZone(tzid) : null;
+    return tzid ? builtinZone(tzid) || ICalGLib.Timezone.get_utc_timezone() : null;
 }
 
 /** Whether a component repeats. */
@@ -203,52 +253,24 @@ function ruleOf(component) {
     }
 }
 
-/**
- * The dates an EXDATE excludes, as the iCalendar text of each.
- *
- * Compared as text rather than as instants because that is what the two sides
- * have in common: the exception and the occurrence are both written by libical
- * from the same calendar, so the same date is spelled the same way. Comparing
- * instants would mean resolving a zone on the exception too, which is more
- * moving parts for no more certainty.
- */
-function exdatesOf(component) {
+/** Exceptions compared as instants: UTC and zoned values can name the same
+ * occurrence with different text. Date-only exceptions remain civil dates. */
+function exdatesOf(component, defaultZone) {
     const out = new Set();
-    let property = null;
-    try {
-        const ical = component.get_icalcomponent();
-        property = ical.get_first_property(ICalGLib.PropertyKind.EXDATE_PROPERTY);
-        while (property) {
-            for (const text of exdateTexts(property)) out.add(text);
-            property = ical.get_next_property(property);
+    const ical = component.get_icalcomponent();
+    let property = ical.get_first_property(ICalGLib.PropertyKind.EXDATE_PROPERTY);
+    while (property) {
+        try {
+            const parameter = property.get_first_parameter(ICalGLib.ParameterKind.TZID_PARAMETER);
+            const zone = parameter ? builtinZone(parameter.get_tzid()) : defaultZone;
+            for (const text of String(property.get_value_as_string()).split(",")) {
+                const time = ICalGLib.Time.new_from_string(text);
+                if (time && !time.is_null_time()) out.add(instantOf(time, time.get_timezone() || zone));
+            }
+        } catch (e) {
+            // A malformed exception must not hide the other valid exceptions.
         }
-    } catch (e) {
-        // An unreadable exception list means nothing is excluded, which draws
-        // an event that was cancelled. Annoying, and better than throwing the
-        // whole calendar away.
-    }
-    return out;
-}
-
-/** The individual times inside one EXDATE property, as iCalendar text. */
-function exdateTexts(property) {
-    const out = [];
-    try {
-        const value = property.get_value();
-        // One EXDATE line can hold several dates, and libical hands those back
-        // as an array; a single date comes back as the value itself.
-        const times = Array.isArray(value) ? value : [value];
-        for (const time of times) {
-            if (time && time.as_ical_string) out.push(String(time.as_ical_string()));
-        }
-    } catch (e) {
-        // Fall back to the property's own text, which covers the single-date
-        // case that is by far the common one.
-        const text = String(property.get_value_as_string ? property.get_value_as_string() : "");
-        for (const part of text.split(",")) {
-            const cleaned = part.trim();
-            if (cleaned) out.push(cleaned);
-        }
+        property = ical.get_next_property(ICalGLib.PropertyKind.EXDATE_PROPERTY);
     }
     return out;
 }
@@ -266,9 +288,10 @@ function occurrencesOf(component, wrapper, startMs, endMs) {
 
     const masterMs = toMillis(wrapper);
     const end = component.get_dtend();
-    const duration = end ? Math.max(0, toMillis(end) - masterMs) : 0;
+    const duration = end ? Math.max(0, toMillis(end) - masterMs)
+        : wrapper.get_value().is_date() ? 86400000 : 0;
     const zone = zoneOf(wrapper);
-    const excluded = exdatesOf(component);
+    const excluded = exdatesOf(component, zone);
 
     let iterator;
     try {
@@ -293,10 +316,9 @@ function occurrencesOf(component, wrapper, startMs, endMs) {
 
         // Occurrences come in order, so the first one past the window ends it.
         if (ms >= endMs) break;
-        if (ms + duration <= startMs) continue;
+        if (ms + Math.max(duration, 1) <= startMs) continue;
 
-        const text = time.as_ical_string ? String(time.as_ical_string()) : "";
-        if (text && excluded.has(text)) continue;
+        if (excluded.has(ms)) continue;
 
         out.push({ start: ms, end: ms + duration });
     }
@@ -355,10 +377,12 @@ function recuridMillis(component) {
         const recurid = component.get_recurid();
         if (!recurid) return null;
 
-        const value = recurid.get_value ? recurid.get_value() : null;
+        // ECal returns ComponentRange, whose datetime is another wrapper.
+        const datetime = recurid.get_datetime ? recurid.get_datetime() : recurid;
+        const value = datetime && datetime.get_value ? datetime.get_value() : null;
         if (!value || (value.is_null_time && value.is_null_time())) return null;
 
-        return toMillis(recurid);
+        return toMillis(datetime);
     } catch (e) {
         return null;
     }
@@ -379,16 +403,9 @@ function toIcalUtc(ms) {
  * every out-value except the last (see fetchComponents below).
  */
 function connectClient(source, cancellable) {
-    return new Promise((resolve, reject) => {
-        ECal.Client.connect(source, ECal.ClientSourceType.EVENTS, 10, cancellable,
-            (obj, result) => {
-                try {
-                    resolve(ECal.Client.connect_finish(result));
-                } catch (e) {
-                    reject(e);
-                }
-            });
-    });
+    return calendarCall(cancellable,
+        (cancel, callback) => ECal.Client.connect(source, ECal.ClientSourceType.EVENTS, 10, cancel, callback),
+        (object, result) => ECal.Client.connect_finish(result));
 }
 
 /**
@@ -400,18 +417,26 @@ function connectClient(source, cancellable) {
  * yields nothing at all. Unwrapping by hand is the only correct option.
  */
 function fetchComponents(client, sexp, cancellable) {
-    return new Promise((resolve, reject) => {
-        client.get_object_list_as_comps(sexp, cancellable, (obj, result) => {
-            try {
+    return calendarCall(cancellable,
+        (cancel, callback) => client.get_object_list_as_comps(sexp, cancel, callback),
+        (obj, result) => {
                 const out = client.get_object_list_as_comps_finish(result);
                 const ok = out[0];
                 const components = out[1];
-                resolve(ok && components ? components : []);
-            } catch (e) {
-                reject(e);
-            }
+                // EDS 3.52 returns false without GError for an empty list.
+                // Actual errors throw from finish(); false alone is not an
+                // outage (in particular after deleting the last event).
+                return ok && components ? components : [];
         });
-    });
+}
+
+function fetchSeries(client, uid, cancellable) {
+    return calendarCall(cancellable,
+        (cancel, callback) => client.get_objects_for_uid(uid, cancel, callback),
+        (object, result) => {
+            const [ok, components] = client.get_objects_for_uid_finish(result);
+            return ok && components ? components : [];
+        });
 }
 
 /**
@@ -428,15 +453,9 @@ function fetchComponents(client, sexp, cancellable) {
  * worth reporting or worth trying again.
  */
 export function openRegistry(cancellable) {
-    return new Promise((resolve, reject) => {
-        EDataServer.SourceRegistry.new(cancellable || null, (source, result) => {
-            try {
-                resolve(EDataServer.SourceRegistry.new_finish(result));
-            } catch (e) {
-                reject(e);
-            }
-        });
-    });
+    return calendarCall(cancellable,
+        (cancel, callback) => EDataServer.SourceRegistry.new(cancel, callback),
+        (source, result) => EDataServer.SourceRegistry.new_finish(result));
 }
 
 /**
@@ -518,11 +537,51 @@ export function dedupeOccurrences(events) {
  * `destroy()` when the desklet goes away.
  */
 export class CalendarFeed {
-    constructor() {
+    constructor(onChanged = null, onError = null) {
         this._entries = [];       // [{uid, name, color, client}]
         this._cancellable = null;
         this._destroyed = false;
         this._openPromise = null;
+        this._registry = null;
+        this._registrySignals = [];
+        this._onChanged = onChanged;
+        this._onError = onError;
+        this._refreshPromise = null;
+        this._lastRemoteRefresh = -Infinity;
+    }
+
+    _changed() {
+        if (!this._destroyed && this._onChanged) this._onChanged();
+    }
+
+    _report(entry, error) {
+        if (this._destroyed) return;
+        const message = String(error.message || error);
+        if (entry.error !== message && this._onError) this._onError(error);
+        entry.error = message;
+    }
+
+    _watchEntry(entry) {
+        entry.version = 0;
+        entry.dirty = true;
+        entry.signals = [
+            entry.client.connect("backend-property-changed", (client, name) => {
+                if (name !== "revision" && name !== "online") return;
+                entry.version++;
+                entry.dirty = true;
+                this._changed();
+            }),
+            entry.client.connect("backend-died", () => {
+                entry.dead = true;
+                entry.dirty = true;
+                this._changed();
+            })
+        ];
+    }
+
+    _disconnectEntry(entry) {
+        for (const id of entry.signals || []) entry.client.disconnect(id);
+        entry.signals = [];
     }
 
     get isOpen() {
@@ -589,7 +648,7 @@ export class CalendarFeed {
         // than reaching the caller's error log.
         let built;
         try {
-            built = registry || await openRegistry(this._cancellable);
+            built = registry || this._registry || await openRegistry(this._cancellable);
         } catch (e) {
             if (this._destroyed) return;
             throw e;
@@ -599,13 +658,39 @@ export class CalendarFeed {
 
         if (this._destroyed) return;
 
+        if (!registry && !this._registry) {
+            this._registry = built;
+            this._registrySignals = ["source-added", "source-removed", "source-changed"].map(
+                name => built.connect(name, () => {
+                    for (const entry of this._entries) {
+                        entry.version++;
+                        entry.dirty = true;
+                    }
+                    this._changed();
+                }));
+        }
+
         const present = new Set(sources.map((source) => source.get_uid()));
 
         // A calendar whose account was removed in Online Accounts is dropped
         // here. Its entry would otherwise be queried forever: the query fails,
         // the failure is caught per-calendar, and the desklet goes on asking.
-        this._entries = this._entries.filter((entry) => present.has(entry.uid));
-        const have = new Set(this._entries.map((entry) => entry.uid));
+        this._entries = this._entries.filter((entry) => {
+            if (present.has(entry.uid)) return true;
+            this._disconnectEntry(entry);
+            return false;
+        });
+        const have = new Set(this._entries.filter(entry => !entry.dead).map(entry => entry.uid));
+
+        for (const source of sources) {
+            const entry = this._entries.find(item => item.uid === source.get_uid());
+            if (entry && source.get_display_name) {
+                const name = source.get_display_name(), color = colorOf(source);
+                if (entry.name !== name || entry.color !== color) entry.dirty = true;
+                entry.name = name;
+                entry.color = color;
+            }
+        }
 
         const connected = await Promise.all(sources.map(async (source) => {
             const uid = source.get_uid();
@@ -614,20 +699,67 @@ export class CalendarFeed {
             try {
                 const client = await connectClient(source, this._cancellable);
                 if (this._destroyed) return null;
-                return {
+                const entry = {
                     uid,
                     name: source.get_display_name(),
                     color: colorOf(source),
                     client
                 };
+                this._watchEntry(entry);
+                return entry;
             } catch (e) {
                 // Account offline, removed mid-connect, or cancelled.
                 return null;
             }
         }));
 
+        if (this._destroyed) {
+            for (const entry of connected.filter(Boolean)) this._disconnectEntry(entry);
+            return;
+        }
+        for (const entry of connected.filter(Boolean)) {
+            const previous = this._entries.find(item => item.uid === entry.uid);
+            if (previous) {
+                entry.cached = previous.cached;
+                this._disconnectEntry(previous);
+                this._entries = this._entries.filter(item => item !== previous);
+            }
+            this._entries.push(entry);
+        }
+    }
+
+    /** Request EDS's online sync. Completion means requested, not downloaded.
+     * Revision notifications tell us when new data actually arrives. */
+    refreshRemote() {
+        if (this._destroyed) return Promise.resolve();
+        if (this._refreshPromise) return this._refreshPromise;
+        const now = GLib.get_monotonic_time();
+        if (now - this._lastRemoteRefresh < 30 * 1000000) return Promise.resolve({ cooldown: true });
+        this._lastRemoteRefresh = now;
+        this._refreshPromise = this._requestRemoteRefresh().finally(() => {
+            this._refreshPromise = null;
+        });
+        return this._refreshPromise;
+    }
+
+    async _requestRemoteRefresh() {
+        await this.open();
         if (this._destroyed) return;
-        this._entries = this._entries.concat(connected.filter(Boolean));
+        const status = { requested: 0, failed: 0 };
+        await Promise.all(this._entries.map(async entry => {
+            if (entry.dead) { status.failed++; return; }
+            if (!entry.client.check_refresh_supported()) return;
+            try {
+                await calendarCall(this._cancellable,
+                    (cancel, callback) => entry.client.refresh(cancel, callback),
+                    (client, result) => client.refresh_finish(result));
+                status.requested++;
+            } catch (e) {
+                status.failed++;
+                this._report(entry, e);
+            }
+        }));
+        return status;
     }
 
     /**
@@ -642,25 +774,55 @@ export class CalendarFeed {
      * is wrong: the binding asks for a callback the C function does not take,
      * and the matching `_finish` is not exposed at all. libical's own
      * RecurIterator is used instead -- the same engine EDS would run, in
-     * process, without a round trip.)
+     * process.)
      *
      * The window is widened by a day at each end. All-day events travel as
      * midnight UTC, so in a negative-offset timezone an event on the first
      * day of the window would otherwise fall just outside it.
      */
-    async query(startMs, endMs) {
+    async query(startMs, endMs, force = true) {
         if (this._destroyed || !this._entries.length) return [];
 
         const sexp = '(occur-in-time-range? (make-time "' + toIcalUtc(startMs - 86400000) +
             '") (make-time "' + toIcalUtc(endMs + 86400000) + '"))';
 
         const results = await Promise.all(this._entries.map(async (entry) => {
+            const cached = entry.cached;
+            const sameRange = cached && cached.start === startMs && cached.end === endMs;
+            if (sameRange && !force && !entry.dirty) return cached.events;
+            const version = entry.version;
             try {
+                if (entry.dead) throw new Error("Calendar service disconnected");
                 const components = await fetchComponents(entry.client, sexp, this._cancellable);
-                return this._collect(components, entry, startMs, endMs);
+                if (this._destroyed) return [];
+                // A moved exception can be outside the range query, while its
+                // master still generates the old slot inside it. Load complete
+                // families only for recurring masters that matched this range.
+                // Two local requests at most in parallel, reused until dirty.
+                const uids = [...new Set(components.filter(repeats).map(c => valueOf(c.get_uid())))];
+                const families = new Map();
+                for (let i = 0; i < uids.length; i += 2) {
+                    await Promise.all(uids.slice(i, i + 2).map(async uid => {
+                        const family = await fetchSeries(entry.client, uid, this._cancellable);
+                        families.set(uid, family);
+                    }));
+                    if (this._destroyed) return [];
+                }
+                const complete = families.size
+                    ? components.filter(c => !families.has(valueOf(c.get_uid()))) : components.slice();
+                for (const family of families.values()) complete.push(...family);
+                const events = this._collect(complete, entry, startMs - 86400000, endMs + 86400000).filter(event =>
+                    event.start < endMs + 86400000 && Math.max(event.end, event.start + 1) > startMs - 86400000);
+                entry.cached = { start: startMs, end: endMs, events };
+                entry.dirty = entry.version !== version;
+                entry.error = null;
+                return events;
             } catch (e) {
-                // A calendar that errors contributes nothing; the rest stand.
-                return [];
+                entry.dirty = true;
+                this._report(entry, e);
+                // An outage is not an empty calendar. Keep the last successful
+                // result for this range; never reuse a different month's data.
+                return sameRange ? cached.events : [];
             }
         }));
 
@@ -755,7 +917,7 @@ export class CalendarFeed {
         const startValue = startWrapper.get_value();
         const startMs = toMillis(startWrapper);
 
-        let endMs = startMs;
+        let endMs = startMs + (startValue.is_date() ? 86400000 : 0);
         const end = component.get_dtend();
         if (end) endMs = toMillis(end);
 
@@ -778,6 +940,14 @@ export class CalendarFeed {
      */
     destroy() {
         this._destroyed = true;
+        this._onChanged = null;
+        this._onError = null;
+        for (const entry of this._entries) this._disconnectEntry(entry);
+        if (this._registry) {
+            for (const id of this._registrySignals) this._registry.disconnect(id);
+        }
+        this._registrySignals = [];
+        this._registry = null;
         this._entries = [];
         if (this._cancellable) {
             this._cancellable.cancel();

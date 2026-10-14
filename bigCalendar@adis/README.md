@@ -3,8 +3,7 @@
 A large, configurable month-view calendar for the Cinnamon desktop, with events
 from the calendars already connected in Online Accounts.
 
-Everything about it is configurable — size, colours, layout, which events are
-shown and how. It reads the calendars your system already knows about, so there
+Size, colours, layout and event display style are configurable. It reads the calendars your system already knows about, so there
 is nothing to log into and no password to give it.
 
 ## What it does
@@ -26,6 +25,13 @@ is nothing to log into and no password to give it.
 - Light and dark themes both work — it starts from the Mint-Y palette and every
   colour is a setting.
 
+## Event updates
+
+Changes appear after EDS downloads them and reports a cache revision. The **↻**
+button requests an online refresh; it does not promise that downloading is
+finished. The 20-minute interval is a local recovery check for missed notifications.
+Failed calendars retain their last successful result for the displayed dates.
+
 ## Requirements
 
 - Cinnamon 6.0 or newer.
@@ -39,8 +45,8 @@ show.
 ## Privacy
 
 **The desklet has no account, no password and no network code of its own.** It
-asks your own system what your events are, and draws the answer. Nothing about
-you leaves the machine because of this desklet.
+asks your own system what your events are, and draws the answer. The desklet sends no event data to a separate service. Pressing **↻** asks EDS
+to synchronize with your existing calendar providers.
 
 - **It stores no credentials.** There is no OAuth client ID, no token, no
   password, and no calendar URL anywhere in it. Google sign-in is handled
@@ -158,7 +164,7 @@ All of these are in the desklet's **Configure** dialog, sorted into four pages.
 
 | Setting | Key | Default |
 |---|---|---|
-| Re-check for changes every | `event-refresh` | 20 min (5–240) |
+| Recovery check interval | `event-refresh` | 20 min (5–240) |
 
 ### Behaviour
 
@@ -169,13 +175,17 @@ All of these are in the desklet's **Configure** dialog, sorted into four pages.
 
 ## Known limitations
 
+- RDATE-only recurrence, multiple RRULEs, custom VTIMEZONE definitions and
+  THISANDFUTURE overrides are not fully supported. Expansion is limited to
+  5,000 steps, which can omit very old or high-frequency series.
+
 - **All calendars are shown, with no per-calendar filter.** There is no way yet
   to hide, say, a birthday calendar while keeping your work one. The
   `show-events` setting is all-or-nothing.
 - **A day shows fewer dots than `event-max` when they will not fit.** The dots
-  are drawn to a fixed pixel size and the cell is only so wide, so the desklet
+  scale with the text size and the cell is only so wide, so the desklet
   caps the row at what actually fits and counts the rest into the `+N` label.
-  The count is always in the tooltip.
+  The tooltip lists up to ten events and counts any remaining ones.
 
 ## Licence
 

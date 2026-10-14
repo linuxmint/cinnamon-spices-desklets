@@ -36,28 +36,30 @@ export const MS_PER_WEEK = 604800000;
  * ------------------------------------------------------------------ */
 
 // First day of the week, by ISO 3166-1 alpha-2 region code.
-// 0 = Sunday, 1 = Monday, 6 = Saturday.
+// CLDR 48 weekData (unicode-org/cldr-json), standard rather than variant rules.
+// 0 = Sunday, 1 = Monday, 5 = Friday, 6 = Saturday.
 //
 // Most of the world starts the week on Monday (ISO 8601). The Americas,
 // Japan, Israel and a few others start on Sunday. Much of the Middle East
 // and North Africa starts on Saturday.
 const SATURDAY_FIRST = [
-    "AE", "AF", "BH", "DZ", "EG", "IQ", "IR", "JO", "KW", "LY", "OM",
-    "QA", "SA", "SD", "SY", "YE"
+    "AF", "BH", "DJ", "DZ", "EG", "IQ", "IR", "JO", "KW", "LY", "OM",
+    "QA", "SD", "SY"
 ];
 
 const SUNDAY_FIRST = [
-    "AG", "AS", "AU", "BD", "BR", "BS", "BT", "BW", "BZ", "CA", "CN",
-    "CO", "DM", "DO", "ET", "FM", "GB", "GD", "GT", "GU", "HK", "HN",
-    "ID", "IL", "IN", "JM", "JP", "KE", "KH", "KR", "LA", "MH", "MM",
+    "AG", "AS", "BD", "BR", "BS", "BT", "BW", "BZ", "CA",
+    "CO", "DM", "DO", "ET", "GT", "GU", "HK", "HN",
+    "ID", "IL", "IN", "IS", "JM", "JP", "KE", "KH", "KR", "LA", "MH", "MM",
     "MO", "MT", "MX", "MZ", "NI", "NP", "PA", "PE", "PH", "PK", "PR",
-    "PT", "PY", "SG", "SV", "TH", "TT", "TW", "UM", "US", "VE", "VI",
+    "PT", "PY", "SA", "SG", "SV", "TH", "TT", "TW", "UM", "US", "VE", "VI",
     "WS", "YE", "ZA", "ZW"
 ];
 
 export function firstDayOfWeekForRegion(region) {
     if (!region) return 1;
     const cc = String(region).toUpperCase();
+    if (cc === "MV") return 5;
     if (SATURDAY_FIRST.indexOf(cc) !== -1) return 6;
     if (SUNDAY_FIRST.indexOf(cc) !== -1) return 0;
     return 1;
@@ -68,6 +70,7 @@ export function regionFromLocale(locale) {
     if (!locale) return "";
     const parts = String(locale).replace(/_/g, "-").split("-");
     for (let i = 1; i < parts.length; i++) {
+        if (parts[i].length === 1) break; // extensions are not region subtags
         if (/^[A-Za-z]{2}$/.test(parts[i])) return parts[i].toUpperCase();
     }
     // A bare language with no region falls back to a small language map.

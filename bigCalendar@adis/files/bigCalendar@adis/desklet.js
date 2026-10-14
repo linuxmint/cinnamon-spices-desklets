@@ -552,7 +552,9 @@ class DayTooltip {
      * stays on the monitor and never covers the day it describes.
      */
     _place() {
-        const monitor = Main.layoutManager.findMonitorForActor(this._actor) ||
+        const monitor = Main.layoutManager.monitors.find(m =>
+            this._pointer[0] >= m.x && this._pointer[0] < m.x + m.width &&
+            this._pointer[1] >= m.y && this._pointer[1] < m.y + m.height) ||
             Main.layoutManager.primaryMonitor;
         const [, width] = this._actor.get_preferred_width(-1);
         const [, height] = this._actor.get_preferred_height(width);
@@ -588,6 +590,11 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // against the main context rather than merely tested for non-zero.
         this._dayTimer = 0;
         this._eventTimer = 0;
+        this._eventChangeTimer = 0;
+        this._refreshTask = null;
+        this._refreshQueued = false;
+        this._refreshForce = false;
+        this._eventSignature = null;
         this._inputTimer = 0;
         this._inputWatchdog = 0;
         this._feed = null;
@@ -635,24 +642,56 @@ class BigCalendarDesklet extends Desklet.Desklet {
     /**
      * Connect to the user's calendars and pull the first batch of events.
      *
-     * Called without being awaited, from the bootstrap and from the setting
-     * that turns events on, so it is written never to reject: everything that
-     * can throw is either caught here or handed to _refreshEventsSoon().
+     * The refresh queue opens the connection; the recovery timer is armed
+     * even if that fails. Repeated enable/startup calls share the same feed.
      */
-    async _openFeed() {
-        if (!this._source || !this.showEvents) return;
+    _openFeed() {
+        if (this._destroyed || !this._source || !this.showEvents || this._feed) return;
 
-        this._feed = new this._source.CalendarFeed();
-        try {
-            await this._feed.open();
-        } catch (e) {
-            logError(e, "Big Calendar: could not open calendars");
-            return;
-        }
-        if (this._destroyed) return;
-
-        this._refreshEventsSoon();
+        this._feed = new this._source.CalendarFeed(
+            () => this._calendarChanged(),
+            e => logError(e, "Big Calendar: calendar temporarily unavailable"));
+        // Arm recovery before opening: an unavailable registry at startup must
+        // not leave the desklet permanently disconnected.
         this._startEventTimer();
+        this._refreshEventsSoon();
+    }
+
+    _calendarChanged() {
+        if (this._destroyed || !this.showEvents || this._timerAlive("_eventChangeTimer")) return;
+        // One update per burst, not one full query/render per downloaded event.
+        this._eventChangeTimer = Mainloop.timeout_add(250, () => {
+            this._eventChangeTimer = 0;
+            this._refreshEventsSoon(false);
+            return GLib.SOURCE_REMOVE;
+        });
+    }
+
+    async _requestRemoteRefresh() {
+        const feed = this._feed;
+        if (this._destroyed || !this.showEvents || !feed || this._remoteRefreshPending) return;
+        this._remoteRefreshPending = true;
+        this._refreshButton.set_label("…");
+        this._refreshTip.set_text(_("Requesting calendar refresh…"));
+        try {
+            const status = await feed.refreshRemote();
+            if (!this._destroyed && this._feed === feed && this.showEvents) {
+                this._refreshEventsSoon();
+                this._refreshTip.set_text(status && status.cooldown
+                    ? _("Refresh already requested. Please wait a moment.")
+                    : status && status.failed
+                        ? _("Some calendars could not be refreshed. Showing saved events.")
+                        : _("Refresh requested. Events update as changes arrive."));
+            }
+        } catch (e) {
+            if (!this._destroyed) {
+                logError(e, "Big Calendar: could not request calendar refresh");
+                this._refreshTip.set_text(_("Could not refresh calendars. Showing saved events."));
+            }
+        } finally {
+            this._remoteRefreshPending = false;
+            if (!this._destroyed) this._refreshButton.set_label("↻");
+        }
     }
 
     /* -------------------------------------------------------------- *
@@ -721,8 +760,8 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         // Events
         s.bind("show-events", "showEvents", () => {
-            this._render();
             this._openOrCloseFeed();
+            this._render();
         });
         s.bind("event-style", "eventStyle", rerender);
         s.bind("event-max", "eventMax", rerender);
@@ -846,6 +885,16 @@ class BigCalendarDesklet extends Desklet.Desklet {
         });
         this._todayButton.connect("clicked", () => this._goToToday());
 
+        this._refreshButton = new St.Button({
+            style_class: "bigcal-nav",
+            label: "↻",
+            can_focus: true,
+            accessible_name: _("Refresh events")
+        });
+        this._refreshButton.connect("clicked", () => this._requestRemoteRefresh());
+        this._refreshTip = new Tooltips.Tooltip(this._refreshButton, _("Refresh events"));
+        this._menu.addAction(_("Refresh events"), () => this._requestRemoteRefresh());
+
         this._nextButton = new St.Button({
             style_class: "bigcal-nav",
             label: "›",
@@ -856,6 +905,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._titleBar.add(this._prevButton, { y_align: St.Align.MIDDLE });
         this._titleBar.add(this._titleButton, { expand: true, y_align: St.Align.MIDDLE });
         this._titleBar.add(this._todayButton, { y_align: St.Align.MIDDLE });
+        this._titleBar.add(this._refreshButton, { y_align: St.Align.MIDDLE });
         this._titleBar.add(this._nextButton, { y_align: St.Align.MIDDLE });
 
         // St.Table is what Cinnamon's own calendar uses for a month view; it
@@ -870,13 +920,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._root.add(this._titleBar);
         this._root.add(this._table);
 
-        this._root.connect("scroll-event", (actor, event) => {
-            if (!this.mouseWheelNavigation) return Clutter.EVENT_PROPAGATE;
-            const dir = event.get_scroll_direction();
-            if (dir === Clutter.ScrollDirection.UP) this._shiftMonth(-1);
-            else if (dir === Clutter.ScrollDirection.DOWN) this._shiftMonth(1);
-            return Clutter.EVENT_STOP;
-        });
+        this._root.connect("scroll-event", (actor, event) => this._onScroll(event));
 
         this.setContent(this._root);
     }
@@ -897,7 +941,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
     }
 
     _render() {
-        if (!this._table || !this._utils) return;
+        if (this._destroyed || !this._table || !this._utils) return;
 
         this._clearTable();
         this._applyRootStyle();
@@ -950,6 +994,8 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._nextButton.visible = navVisible;
         this._prevButton.set_style("color: " + this.navColor + ";");
         this._nextButton.set_style("color: " + this.navColor + ";");
+        this._refreshButton.visible = !!this.showEvents && !!this._source;
+        this._refreshButton.set_style("color: " + this.navColor + ";");
     }
 
     _renderWeekdayHeader(firstDay, showWeekNumbers) {
@@ -1105,7 +1151,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
                     style_class: "bigcal-eventtitle",
                     text: this._eventLabel(entry)
                 });
-                label.set_style("color: " + entry.event.color + ";");
+                label.set_style("color: " + (solid(entry.event.color) || "#9a9cff") + ";");
                 // St ignores width and max-width on a label, and an
                 // unconstrained label reports its full natural width -- so
                 // without an explicit pixel width a single long event name
@@ -1124,7 +1170,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             const list = new St.BoxLayout({ vertical: true, style_class: "bigcal-eventbars" });
             for (const entry of shown) {
                 const bar = new St.Bin({ style_class: "bigcal-eventbar" });
-                bar.set_style("background-color: " + entry.event.color + ";");
+                bar.set_style("background-color: " + (solid(entry.event.color) || "#9a9cff") + ";");
                 list.add(bar);
             }
             if (hidden > 0) {
@@ -1147,7 +1193,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         let fits = this._dotsThatFit(room, size);
         let more = null;
 
-        if (entries.length > fits) {
+        if (entries.length > Math.min(fits, shown.length)) {
             // A "+N" label needs a place in the same row, so the dots give up
             // the width of it. Measured at the full count, which is the widest
             // the label will ever be in this cell -- the count only shrinks
@@ -1170,7 +1216,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         const dots = new St.BoxLayout({ style_class: "bigcal-eventdots" });
         for (const entry of visible) {
             const dot = new St.Bin({ style_class: "bigcal-eventdot" });
-            dot.set_style("background-color: " + entry.event.color +
+            dot.set_style("background-color: " + (solid(entry.event.color) || "#9a9cff") +
                 "; border-radius: " + Math.round(size / 2) + "px;");
             dot.set_size(size, size);
             dots.add(dot);
@@ -1285,7 +1331,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         if (ev.allDay) return ev.summary || _("All day");
         // describeEntry, not a start time: on the second day of an event that
         // runs past midnight the start time is on a different day.
-        return this._index.describeEntry(entry, this._use24HourClock());
+        return this._index.describeEntry(entry, this._use24HourClock(), _);
     }
 
     /**
@@ -1308,7 +1354,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             rows.push({
                 // Carries the start time for a timed event, in whichever clock
                 // the settings ask for; see describeEntry.
-                text: this._index.describeEntry(entry, this._use24HourClock()),
+                text: this._index.describeEntry(entry, this._use24HourClock(), _),
                 color: entry.event ? entry.event.color : null
             });
         }
@@ -1427,8 +1473,31 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * The fetch token guards against out-of-order responses: paging through
      * months quickly starts several queries, and only the newest may win.
      */
-    async _refreshEvents() {
-        if (this._destroyed || !this._feed || !this.showEvents) return;
+    _refreshEvents(force = true) {
+        if (this._destroyed || !this._feed || !this.showEvents) return Promise.resolve();
+        this._refreshQueued = true;
+        this._refreshForce = this._refreshForce || force;
+        ++this._fetchToken;
+        if (this._refreshTask) return this._refreshTask;
+
+        this._refreshTask = this._drainEventRefreshes().finally(() => {
+            this._refreshTask = null;
+        });
+        return this._refreshTask;
+    }
+
+    async _drainEventRefreshes() {
+        while (this._refreshQueued && !this._destroyed && this.showEvents && this._feed) {
+            this._refreshQueued = false;
+            const force = this._refreshForce;
+            this._refreshForce = false;
+            const feed = this._feed;
+            const token = this._fetchToken;
+            await this._readEvents(feed, token, force);
+        }
+    }
+
+    async _readEvents(feed, token, force) {
 
         // Retry any calendar that failed to connect, and pick up any account
         // added since. Cheap and idempotent: a calendar already open is left
@@ -1437,13 +1506,16 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // that was unreachable when the desklet started stayed missing until
         // Cinnamon was restarted.
         try {
-            await this._feed.open();
+            await feed.open();
         } catch (e) {
             logError(e, "Big Calendar: could not open calendars");
         }
-        if (this._destroyed) return;
+        if (this._destroyed || !this.showEvents || this._feed !== feed) return;
+        if (token !== this._fetchToken) {
+            this._refreshForce = this._refreshForce || force;
+            return;
+        }
 
-        const token = ++this._fetchToken;
         const range = this._utils.gridRange(
             this._view.year, this._view.month, this._firstDayOfWeek(),
             this.rows === "auto" ? "auto" : Number(this.rows) || 6
@@ -1451,13 +1523,13 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         let events;
         try {
-            events = await this._feed.query(range.start.getTime(), range.end.getTime());
+            events = await feed.query(range.start.getTime(), range.end.getTime(), force);
         } catch (e) {
             logError(e, "Big Calendar: event query failed");
             return;
         }
 
-        if (this._destroyed || token !== this._fetchToken) return;
+        if (this._destroyed || !this.showEvents || this._feed !== feed || token !== this._fetchToken) return;
 
         // The grid's own first and last days, so the index covers exactly what
         // is on screen. range.start is local midnight of the first drawn day
@@ -1469,8 +1541,13 @@ class BigCalendarDesklet extends Desklet.Desklet {
         const to = this._index.dayKey(
             lastDay.getFullYear(), lastDay.getMonth(), lastDay.getDate());
 
-        this._eventIndex = this._index.buildEventIndex(events, from, to);
-        this._render();
+        const index = this._index.buildEventIndex(events, from, to);
+        const signature = JSON.stringify(Object.keys(index).sort().map(key => [key, index[key]]));
+        this._eventIndex = index;
+        if (signature !== this._eventSignature) {
+            this._eventSignature = signature;
+            this._render();
+        }
     }
 
     /**
@@ -1483,8 +1560,8 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * stack naming whichever timer fired it and not the line that failed. This
      * turns it into a log entry that says what went wrong.
      */
-    _refreshEventsSoon() {
-        this._refreshEvents().catch((e) => logError(e, "Big Calendar: refresh failed"));
+    _refreshEventsSoon(force = true) {
+        this._refreshEvents(force).catch((e) => logError(e, "Big Calendar: refresh failed"));
     }
 
     /** Start or stop the event fetch loop to match the current settings. */
@@ -1496,6 +1573,10 @@ class BigCalendarDesklet extends Desklet.Desklet {
         if (this.showEvents) return;
 
         this._stopEventTimer();
+        this._cancelTimer("_eventChangeTimer");
+        ++this._fetchToken;
+        this._refreshQueued = false;
+        this._refreshForce = false;
 
         // Dropping the reference is not enough: the feed holds a cancellable
         // and live client connections, and a query already in flight would
@@ -1507,6 +1588,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             this._feed = null;
         }
         this._eventIndex = {};
+        this._eventSignature = null;
     }
 
     /**
@@ -1542,6 +1624,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * survive for weeks.
      */
     _startDayTimer() {
+        if (this._destroyed || !this._utils) return;
         if (this._timerAlive("_dayTimer")) return;
 
         this._dayTimer = Mainloop.timeout_add_seconds(DAY_CHECK_SECONDS, () => {
@@ -1552,7 +1635,8 @@ class BigCalendarDesklet extends Desklet.Desklet {
             const now = new Date();
             if (!this._utils.sameDay(now, this._today)) {
                 this._today = now;
-                this._render();
+                if (this.startOnToday) this._goToToday();
+                else this._render();
             }
             return GLib.SOURCE_CONTINUE;
         });
@@ -1588,6 +1672,27 @@ class BigCalendarDesklet extends Desklet.Desklet {
     _rememberView() {
         if (!this.settings) return;
         this.settings.setValue(LAST_VIEW_KEY, this._view.year + "-" + this._view.month);
+    }
+
+    _onScroll(event) {
+        if (!this.mouseWheelNavigation) return Clutter.EVENT_PROPAGATE;
+        const direction = event.get_scroll_direction();
+        if (direction === Clutter.ScrollDirection.UP) this._shiftMonth(-1);
+        else if (direction === Clutter.ScrollDirection.DOWN) this._shiftMonth(1);
+        else if (direction === Clutter.ScrollDirection.SMOOTH) {
+            const [, dy] = event.get_scroll_delta();
+            if (!Number.isFinite(dy) || dy === 0) return Clutter.EVENT_PROPAGATE;
+            const now = GLib.get_monotonic_time();
+            if (!this._lastScroll || now - this._lastScroll > 500000 ||
+                Math.sign(dy) !== Math.sign(this._scrollDelta)) this._scrollDelta = 0;
+            this._lastScroll = now;
+            this._scrollDelta += dy;
+            if (Math.abs(this._scrollDelta) >= 1) {
+                this._shiftMonth(Math.sign(this._scrollDelta));
+                this._scrollDelta = 0;
+            }
+        } else return Clutter.EVENT_PROPAGATE;
+        return Clutter.EVENT_STOP;
     }
 
     _shiftMonth(delta) {
@@ -1678,6 +1783,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * watches for that rather than letting it lapse for half a second.
      */
     _trackMouse() {
+        if (this._destroyed) return;
         if (this._windowOverlaps()) return;
 
         if (Main.layoutManager.isTrackingChrome(this.actor)) return;
@@ -1688,8 +1794,9 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     /** Hold the input region exactly when nothing is on top of the desklet. */
     _syncInputRegion() {
-        if (this._windowOverlaps()) this._untrackMouse();
-        else this._trackMouse();
+        if (this._destroyed || this._windowOverlaps()) {
+            this._untrackMouse();
+        } else this._trackMouse();
     }
 
     /**
@@ -1859,6 +1966,9 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         this._stopDayTimer();
         this._stopEventTimer();
+        this._cancelTimer("_eventChangeTimer");
+        ++this._fetchToken;
+        this._refreshQueued = false;
         this._stopInputTimer();
 
         // The title's tooltip is Cinnamon's and lives for as long as the
@@ -1868,6 +1978,10 @@ class BigCalendarDesklet extends Desklet.Desklet {
         if (this._titleTip) {
             this._titleTip.destroy();
             this._titleTip = null;
+        }
+        if (this._refreshTip) {
+            this._refreshTip.destroy();
+            this._refreshTip = null;
         }
 
         if (this._dayTip) {
