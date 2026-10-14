@@ -392,13 +392,13 @@
     },
     "event-refresh": {
         "type": "spinbutton",
-        "default": 20,
+        "default": 5,
         "min": 5,
         "max": 240,
         "step": 5,
         "units": "minutes",
-        "description": "Recovery check interval",
-        "tooltip": "Changes normally appear automatically. This periodic local check recovers missed notifications. Use Refresh events to request an online update.",
+        "description": "Calendar refresh interval",
+        "tooltip": "Requests online synchronization and checks saved events at this interval. Changes also appear automatically when downloaded. Refresh events requests an earlier update.",
         "dependency": "show-events"
     }
 }

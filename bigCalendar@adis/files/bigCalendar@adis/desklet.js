@@ -676,7 +676,6 @@ class BigCalendarDesklet extends Desklet.Desklet {
         try {
             const status = await feed.refreshRemote();
             if (!this._destroyed && this._feed === feed && this.showEvents) {
-                this._refreshEventsSoon();
                 this._refreshTip.set_text(status && status.cooldown
                     ? _("Refresh already requested. Please wait a moment.")
                     : status && status.failed
@@ -691,6 +690,9 @@ class BigCalendarDesklet extends Desklet.Desklet {
         } finally {
             this._remoteRefreshPending = false;
             if (!this._destroyed) this._refreshButton.set_label("↻");
+            // Also recover the local cache if the online request failed.
+            if (!this._destroyed && this._feed === feed && this.showEvents)
+                this._refreshEventsSoon();
         }
     }
 
@@ -1601,13 +1603,15 @@ class BigCalendarDesklet extends Desklet.Desklet {
         if (this._timerAlive("_eventTimer")) return;
         if (!this._feed) return;
 
-        const minutes = Math.max(5, Number(this.eventRefresh) || 20);
+        const minutes = Math.max(5, Number(this.eventRefresh) || 5);
         this._eventTimer = Mainloop.timeout_add_seconds(minutes * 60, () => {
             if (this._destroyed) {
                 this._eventTimer = 0;
                 return GLib.SOURCE_REMOVE;
             }
-            this._refreshEventsSoon();
+            // The same bounded, coalesced online request as the manual button.
+            // Completion rereads the cache; revisions pick up later downloads.
+            this._requestRemoteRefresh();
             return GLib.SOURCE_CONTINUE;
         });
     }

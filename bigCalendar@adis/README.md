@@ -29,7 +29,9 @@ is nothing to log into and no password to give it.
 
 Changes appear after EDS downloads them and reports a cache revision. The **↻**
 button requests an online refresh; it does not promise that downloading is
-finished. The 20-minute interval is a local recovery check for missed notifications.
+finished. The desklet requests online synchronization every **five minutes** by
+default and also checks the local cache. The interval is configurable; requests
+are asynchronous, and unchanged events do not cause redraws.
 Failed calendars retain their last successful result for the displayed dates.
 
 ## Requirements
@@ -164,7 +166,7 @@ All of these are in the desklet's **Configure** dialog, sorted into four pages.
 
 | Setting | Key | Default |
 |---|---|---|
-| Recovery check interval | `event-refresh` | 20 min (5–240) |
+| Calendar refresh interval | `event-refresh` | 5 min (5–240) |
 
 ### Behaviour
 
