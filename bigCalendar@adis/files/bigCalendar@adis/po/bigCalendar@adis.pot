@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 07:35+0300\n"
+"POT-Creation-Date: 2026-10-15 07:46+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,23 +24,23 @@ msgstr ""
 msgid "Big Calendar"
 msgstr ""
 
-#: desklet.js:872
+#: desklet.js:884
 msgid "Today"
 msgstr ""
 
-#: desklet.js:878
+#: desklet.js:890
 msgid "Refresh events"
 msgstr ""
 
-#: desklet.js:966
+#: desklet.js:978
 msgid "Click to return to the current month"
 msgstr ""
 
-#: desklet.js:1310
+#: desklet.js:1322
 msgid "All day"
 msgstr ""
 
-#: desklet.js:1342
+#: desklet.js:1354
 msgid "more"
 msgstr ""
 
@@ -108,6 +108,10 @@ msgstr ""
 msgid "Behaviour"
 msgstr ""
 
+#: settings-schema.json:layout/sec_reset
+msgid "Defaults"
+msgstr ""
+
 #: settings-schema.json:font-scale
 msgid "%"
 msgstr ""
@@ -152,8 +156,18 @@ msgstr ""
 msgid "Border thickness"
 msgstr ""
 
+#: settings-schema.json:border-width
+msgid "Thickness of the outline outside the calendar. Set to zero to hide it."
+msgstr ""
+
 #: settings-schema.json:border-color
 msgid "Border colour"
+msgstr ""
+
+#: settings-schema.json:border-color
+msgid ""
+"Colour and transparency of the outline, independent of the background "
+"opacity."
 msgstr ""
 
 #: settings-schema.json:show-grid-lines
@@ -459,4 +473,15 @@ msgid ""
 "intervals use less network and battery. Downloaded changes appear "
 "automatically without waiting for this timer. Provider delays can still "
 "apply."
+msgstr ""
+
+#: settings-schema.json:reset-settings
+msgid "Reset all settings to defaults"
+msgstr ""
+
+#: settings-schema.json:reset-settings
+msgid ""
+"Restore Big Calendar’s appearance, layout, event and behaviour settings, "
+"including the five-minute refresh interval. Your calendar accounts and "
+"events are not changed."
 msgstr ""

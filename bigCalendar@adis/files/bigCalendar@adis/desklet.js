@@ -689,7 +689,19 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * -------------------------------------------------------------- */
 
     _bindSettings() {
-        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], this.instance_id);
+        // Cinnamon 6.6's schema upgrade rejects numeric endpoints (for example
+        // 100% opacity) even though its controls allow them. Preserve valid
+        // boundary values for this desklet without changing global settings.
+        class CalendarSettings extends Settings.DeskletSettings {
+            _checkSanity(value, setting) {
+                if (setting.type === "scale" || setting.type === "spinbutton") {
+                    return typeof value === "number" && Number.isFinite(value) &&
+                        value >= setting.min && value <= setting.max;
+                }
+                return super._checkSanity(value, setting);
+            }
+        }
+        this.settings = new CalendarSettings(this, this.metadata["uuid"], this.instance_id);
 
         const s = this.settings;
         const rerender = () => this._render();
@@ -1409,12 +1421,19 @@ class BigCalendarDesklet extends Desklet.Desklet {
         return "rgba(" + r + ", " + g + ", " + b + ", " + alpha.toFixed(2) + ")";
     }
 
+    highlight(active) {
+        // Cinnamon's default highlight paints red behind translucent content.
+        // The user's configurable outline already identifies our surface.
+        this.content.change_style_pseudo_class("highlight", false);
+    }
+
     _applyRootStyle() {
         let css = "background-color: " + this._withAlpha(this.bgColor, this.bgOpacity / 100) + ";";
         css += " border-radius: " + this.cornerRadius + "px;";
         css += " padding: " + this.outerPadding + "px;";
         if (this.borderWidth > 0) {
-            css += " border: " + this.borderWidth + "px solid " + this.borderColor + ";";
+            // An outside outline keeps the layout and translucent fill intact.
+            css += " box-shadow: 0 0 0 " + this.borderWidth + "px " + this.borderColor + ";";
         }
         // The base font size is set on the root so the text below scales with
         // the setting. Note this reaches the children's *glyphs* only: an em

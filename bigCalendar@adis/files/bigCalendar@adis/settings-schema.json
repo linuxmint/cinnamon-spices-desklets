@@ -11,29 +11,29 @@
         "sec_scale": {
             "type": "section",
             "title": "Size and spacing",
-            "keys": ["font-scale", "padding", "cell-radius"]
+            "keys": ["font-scale-control", "padding-control", "cell-radius-control"]
         },
         "sec_surface": {
             "type": "section",
             "title": "Background",
-            "keys": ["bg-color", "bg-opacity", "corner-radius", "border-width", "border-color",
+            "keys": ["bg-color", "bg-opacity-control", "corner-radius-control", "border-width-control", "border-color",
                      "show-grid-lines", "grid-line-color"]
         },
         "sec_text": {
             "type": "section",
             "title": "Text colours",
             "keys": ["text-color", "header-color", "weekday-color", "weekend-color",
-                     "other-month-color", "dim-other-months", "other-month-opacity"]
+                     "other-month-color", "dim-other-months", "other-month-opacity-control"]
         },
         "sec_today": {
             "type": "section",
             "title": "Today",
-            "keys": ["today-style", "today-bg-color", "today-text-color"]
+            "keys": ["today-style-control", "today-bg-color", "today-text-color"]
         },
         "sec_weekend": {
             "type": "section",
             "title": "Weekends",
-            "keys": ["tint-weekends", "weekend-tint-strength"]
+            "keys": ["tint-weekends", "weekend-tint-strength-control"]
         },
 
         "page_layout": {
@@ -44,12 +44,12 @@
         "sec_week": {
             "type": "section",
             "title": "Week",
-            "keys": ["week-start", "week-numbering", "show-week-numbers", "week-number-color"]
+            "keys": ["week-start-control", "week-numbering-control", "show-week-numbers", "week-number-color"]
         },
         "sec_grid": {
             "type": "section",
             "title": "Month grid",
-            "keys": ["rows", "month-format"]
+            "keys": ["rows-control", "month-format-control"]
         },
         "sec_header": {
             "type": "section",
@@ -70,18 +70,23 @@
         "sec_events_look": {
             "type": "section",
             "title": "Appearance",
-            "keys": ["event-style", "event-max", "event-time-format", "show-event-tooltips"]
+            "keys": ["event-style-control", "event-max-control", "event-time-format-control", "show-event-tooltips"]
         },
         "sec_events_sync": {
             "type": "section",
             "title": "Background refresh",
-            "keys": ["event-refresh"]
+            "keys": ["event-refresh-control"]
         },
 
         "page_behaviour": {
             "type": "page",
             "title": "Behaviour",
-            "sections": ["sec_behaviour"]
+            "sections": ["sec_behaviour", "sec_reset"]
+        },
+        "sec_reset": {
+            "type": "section",
+            "title": "Defaults",
+            "keys": ["reset-settings"]
         },
         "sec_behaviour": {
             "type": "section",
@@ -147,17 +152,19 @@
     },
     "border-width": {
         "type": "spinbutton",
-        "default": 0,
+        "default": 2,
         "min": 0,
         "max": 10,
         "step": 1,
         "units": "pixels",
-        "description": "Border thickness"
+        "description": "Border thickness",
+        "tooltip": "Thickness of the outline outside the calendar. Set to zero to hide it."
     },
     "border-color": {
         "type": "colorchooser",
-        "default": "#3c3c44",
+        "default": "rgba(255,255,255,0.55)",
         "description": "Border colour",
+        "tooltip": "Colour and transparency of the outline, independent of the background opacity.",
         "dependency": "border-width>0"
     },
     "show-grid-lines": {
@@ -407,5 +414,120 @@
         "description": "Background refresh interval",
         "tooltip": "How often to request online calendar updates. Five minutes balances timely updates and network activity. Shorter intervals make more requests; longer intervals use less network and battery. Downloaded changes appear automatically without waiting for this timer. Provider delays can still apply.",
         "dependency": "show-events"
+    },
+    "font-scale-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "font-scale"
+    },
+    "padding-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "padding"
+    },
+    "cell-radius-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "cell-radius"
+    },
+    "bg-opacity-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "bg-opacity"
+    },
+    "corner-radius-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "corner-radius"
+    },
+    "border-width-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "border-width"
+    },
+    "other-month-opacity-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "other-month-opacity",
+        "dependency": "dim-other-months"
+    },
+    "today-style-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "today-style"
+    },
+    "weekend-tint-strength-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "weekend-tint-strength",
+        "dependency": "tint-weekends"
+    },
+    "week-start-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "week-start"
+    },
+    "week-numbering-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "week-numbering"
+    },
+    "rows-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "rows"
+    },
+    "month-format-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "month-format"
+    },
+    "event-style-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "event-style",
+        "dependency": "show-events"
+    },
+    "event-max-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "event-max",
+        "dependency": "show-events"
+    },
+    "event-time-format-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "event-time-format",
+        "dependency": "show-events"
+    },
+    "event-refresh-control": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ScrollSafeControl",
+        "setting": "event-refresh",
+        "dependency": "show-events"
+    },
+    "reset-settings": {
+        "type": "custom",
+        "file": "settingsWidgets.py",
+        "widget": "ResetSettings",
+        "description": "Reset all settings to defaults",
+        "tooltip": "Restore Big Calendar’s appearance, layout, event and behaviour settings, including the five-minute refresh interval. Your calendar accounts and events are not changed."
     }
 }
