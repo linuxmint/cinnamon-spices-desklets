@@ -32,6 +32,9 @@ action requests an online refresh; it does not promise that downloading is
 finished. The desklet requests online synchronization every **five minutes** by
 default and also checks the local cache. The interval is configurable; requests
 are asynchronous, and unchanged events do not cause redraws.
+Under **Configure → Events → Background refresh**, choose **1, 5, 10, 15, 20
+or 30 minutes**, or **1, 2 or 4 hours**. Five minutes is recommended; shorter
+intervals make more requests, while longer intervals reduce network activity.
 Failed calendars retain their last successful result for the displayed dates.
 
 ## Requirements
@@ -166,7 +169,7 @@ All of these are in the desklet's **Configure** dialog, sorted into four pages.
 
 | Setting | Key | Default |
 |---|---|---|
-| Calendar refresh interval | `event-refresh` | 5 min (5–240) |
+| Background refresh interval | `event-refresh` | 5 min; presets from 1 min to 4 hours |
 
 ### Behaviour
 

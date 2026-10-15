@@ -74,7 +74,7 @@
         },
         "sec_events_sync": {
             "type": "section",
-            "title": "Refresh",
+            "title": "Background refresh",
             "keys": ["event-refresh"]
         },
 
@@ -391,14 +391,21 @@
         "dependency": "show-events"
     },
     "event-refresh": {
-        "type": "spinbutton",
+        "type": "combobox",
         "default": 5,
-        "min": 5,
-        "max": 240,
-        "step": 5,
-        "units": "minutes",
-        "description": "Calendar refresh interval",
-        "tooltip": "Requests online synchronization and checks saved events at this interval. Changes also appear automatically when downloaded. Use the right-click Refresh events action for an earlier update.",
+        "options": {
+            "1 minute (more frequent checks)": 1,
+            "5 minutes (recommended)": 5,
+            "10 minutes": 10,
+            "15 minutes": 15,
+            "20 minutes": 20,
+            "30 minutes": 30,
+            "1 hour": 60,
+            "2 hours": 120,
+            "4 hours": 240
+        },
+        "description": "Background refresh interval",
+        "tooltip": "How often to request online calendar updates. Five minutes balances timely updates and network activity. Shorter intervals make more requests; longer intervals use less network and battery. Downloaded changes appear automatically without waiting for this timer. Provider delays can still apply.",
         "dependency": "show-events"
     }
 }

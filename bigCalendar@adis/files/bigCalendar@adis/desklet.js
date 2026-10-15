@@ -1580,7 +1580,9 @@ class BigCalendarDesklet extends Desklet.Desklet {
         if (this._timerAlive("_eventTimer")) return;
         if (!this._feed) return;
 
-        const minutes = Math.max(5, Number(this.eventRefresh) || 5);
+        const configured = Number(this.eventRefresh);
+        const minutes = Number.isFinite(configured) && configured > 0
+            ? Math.min(240, Math.max(1, configured)) : 5;
         this._eventTimer = Mainloop.timeout_add_seconds(minutes * 60, () => {
             if (this._destroyed) {
                 this._eventTimer = 0;
