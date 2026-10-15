@@ -459,7 +459,7 @@ export function openRegistry(cancellable) {
 }
 
 /**
- * Every calendar EDS knows about, as plain `{uid, name, color}` records.
+ * Enabled, selected calendars, as plain `{uid, name, color}` records.
  *
  * This includes calendars that are not Google's -- local ones, birthdays and
  * subscribed holiday calendars all live here too, which is usually what
@@ -470,11 +470,19 @@ export function openRegistry(cancellable) {
  */
 export async function listCalendars(cancellable) {
     const registry = await openRegistry(cancellable);
-    return registry.list_sources(EDataServer.SOURCE_EXTENSION_CALENDAR).map((source) => ({
+    return activeCalendarSources(registry).map((source) => ({
         uid: source.get_uid(),
         name: source.get_display_name(),
         color: colorOf(source)
     }));
+}
+
+/** Follow the system's calendar visibility, including disabled parent accounts.
+ * Disabled sources can remain registered and keep serving cached events. */
+function activeCalendarSources(registry) {
+    return registry.list_sources(EDataServer.SOURCE_EXTENSION_CALENDAR).filter(source =>
+        registry.check_enabled(source) &&
+        source.get_extension(EDataServer.SOURCE_EXTENSION_CALENDAR).get_selected());
 }
 
 /** A calendar's colour, or a neutral default when it has none. */
@@ -594,7 +602,7 @@ export class CalendarFeed {
     }
 
     /**
-     * Connect to every calendar that is not connected already.
+     * Connect to every enabled, selected calendar that is not connected already.
      *
      * Safe to call at any time and cheap to call again: calendars that are open
      * are left alone, and only the ones that are missing are attempted. Calling
@@ -654,13 +662,14 @@ export class CalendarFeed {
             throw e;
         }
 
-        const sources = built.list_sources(EDataServer.SOURCE_EXTENSION_CALENDAR);
+        const sources = activeCalendarSources(built);
 
         if (this._destroyed) return;
 
         if (!registry && !this._registry) {
             this._registry = built;
-            this._registrySignals = ["source-added", "source-removed", "source-changed"].map(
+            this._registrySignals = ["source-added", "source-removed", "source-changed",
+                "source-enabled", "source-disabled"].map(
                 name => built.connect(name, () => {
                     for (const entry of this._entries) {
                         entry.version++;
@@ -672,9 +681,9 @@ export class CalendarFeed {
 
         const present = new Set(sources.map((source) => source.get_uid()));
 
-        // A calendar whose account was removed in Online Accounts is dropped
-        // here. Its entry would otherwise be queried forever: the query fails,
-        // the failure is caught per-calendar, and the desklet goes on asking.
+        // Removed, disabled and deselected calendars lose their connections
+        // and cached events. EDS may still list them and answer cached queries;
+        // this is an explicit visibility change, not a temporary outage.
         this._entries = this._entries.filter((entry) => {
             if (present.has(entry.uid)) return true;
             this._disconnectEntry(entry);

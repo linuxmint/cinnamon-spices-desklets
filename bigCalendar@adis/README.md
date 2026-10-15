@@ -10,7 +10,7 @@ is nothing to log into and no password to give it.
 
 - **Month view** with the day numbers, week numbers (ISO 8601 or North
   American), and weekends tinted in their own colour.
-- **Your events**, from every calendar in Online Accounts: Google, Nextcloud,
+- **Your events**, from enabled, selected calendars in Online Accounts: Google, Nextcloud,
   Microsoft, CalDAV, or a local one. Shown as coloured dots, coloured bars, or
   the event titles themselves — whichever fits your desktop.
 - **Hover tooltips** headed by the date, listing that day's events with their
@@ -181,9 +181,10 @@ All of these are in the desklet's **Configure** dialog, sorted into four pages.
   THISANDFUTURE overrides are not fully supported. Expansion is limited to
   5,000 steps, which can omit very old or high-frequency series.
 
-- **All calendars are shown, with no per-calendar filter.** There is no way yet
-  to hide, say, a birthday calendar while keeping your work one. The
-  `show-events` setting is all-or-nothing.
+- **Calendar visibility follows the system calendar settings.** Disabled or
+  deselected calendars, including calendars under disabled accounts, are hidden.
+  There is no separate per-calendar selection in the desklet; `show-events`
+  hides all events.
 - **A day shows fewer dots than `event-max` when they will not fit.** The dots
   scale with the text size and the cell is only so wide, so the desklet
   caps the row at what actually fits and counts the rest into the `+N` label.
