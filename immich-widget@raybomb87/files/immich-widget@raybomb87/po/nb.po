@@ -1,0 +1,224 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: immich-widget@raybomb87 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-10-16 22:51+0200\n"
+"PO-Revision-Date: 2026-10-16 23:00+0200\n"
+"Last-Translator: RayBomb87\n"
+"Language-Team: Norwegian Bokmål\n"
+"Language: nb\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:101
+msgid "Right-click and choose Configure to connect to your Immich server."
+msgstr "Høyreklikk og velg Konfigurer for å koble til Immich-serveren din."
+
+#: desklet.js:103
+msgid "Fetching photos…"
+msgstr "Henter bilder …"
+
+#: desklet.js:105
+msgid "No photos yet."
+msgstr "Ingen bilder ennå."
+
+#: desklet.js:232
+msgid "The server address is not valid."
+msgstr "Serveradressen er ikke gyldig."
+
+#: desklet.js:244
+msgid "Cannot reach Immich: %s"
+msgstr "Får ikke kontakt med Immich: %s"
+
+#: desklet.js:248
+msgid "Immich rejected the API key."
+msgstr "Immich godtok ikke API-nøkkelen."
+
+#: desklet.js:253
+msgid "Immich: %s"
+msgstr "Immich: %s"
+
+#: desklet.js:264
+msgid "Album not found: %s"
+msgstr "Fant ikke albumet: %s"
+
+#: desklet.js:269
+msgid "Person not found: %s"
+msgstr "Fant ikke personen: %s"
+
+#: desklet.js:389
+msgid "No photos found."
+msgstr "Fant ingen bilder."
+
+#: desklet.js:411
+msgid "No photos could be downloaded."
+msgstr "Ingen bilder kunne lastes ned."
+
+msgid "Immich Widget"
+msgstr "Immich Widget"
+
+msgid "A photo slideshow on your desktop with photos from your Immich server"
+msgstr ""
+"Lysbildefremvisning på skrivebordet med bilder fra Immich-serveren din"
+
+msgid "Connection"
+msgstr "Tilkobling"
+
+msgid "Photos"
+msgstr "Bilder"
+
+msgid "Appearance"
+msgstr "Utseende"
+
+msgid "Immich server"
+msgstr "Immich-server"
+
+msgid "Which photos"
+msgstr "Hvilke bilder"
+
+msgid "Updates"
+msgstr "Oppdatering"
+
+msgid "Size"
+msgstr "Størrelse"
+
+msgid "Style"
+msgstr "Stil"
+
+msgid "Caption"
+msgstr "Tekst"
+
+msgid "Server address"
+msgstr "Serveradresse"
+
+msgid "For example http://192.168.1.10:2283 or https://photos.example.com"
+msgstr ""
+"For eksempel http://192.168.1.10:2283 eller https://bilder.example.com"
+
+msgid "API key"
+msgstr "API-nøkkel"
+
+msgid "Immich → Account Settings → API Keys → New API Key"
+msgstr "Immich → Kontoinnstillinger → API-nøkler → Ny API-nøkkel"
+
+msgid ""
+"Create the API key in Immich with the permissions asset.read, asset.view and"
+" face.read (plus album.read or person.read if you pick an album or a "
+"person)."
+msgstr ""
+"Lag API-nøkkelen i Immich med tilgangene asset.read, asset.view og face.read"
+" (og album.read eller person.read hvis du velger et album eller en person)."
+
+msgid "Fetch new photos now"
+msgstr "Hent nye bilder nå"
+
+msgid "Show"
+msgstr "Vis"
+
+msgid "All photos"
+msgstr "Alle bilder"
+
+msgid "Favorites"
+msgstr "Favoritter"
+
+msgid "One album"
+msgstr "Ett album"
+
+msgid "One person"
+msgstr "Én person"
+
+msgid "Album or person name"
+msgstr "Navn på album eller person"
+
+msgid "Used when Show is set to one album or one person"
+msgstr "Brukes når Vis er satt til ett album eller én person"
+
+msgid "Include screenshots and saved images"
+msgstr "Ta med skjermbilder og lagrede bilder"
+
+msgid "Off: only photos taken with a camera"
+msgstr "Av: bare bilder tatt med kamera"
+
+msgid "Crop around faces"
+msgstr "Beskjær rundt ansikter"
+
+msgid "Uses Immich face detection so heads are not cut off."
+msgstr "Bruker ansiktsgjenkjenningen i Immich, så hodene ikke kuttes."
+
+msgid "photos"
+msgstr "bilder"
+
+msgid "Photos per batch"
+msgstr "Bilder per runde"
+
+msgid "hours"
+msgstr "timer"
+
+msgid "Fetch a new batch every"
+msgstr "Hent nye bilder hver"
+
+msgid "seconds"
+msgstr "sekunder"
+
+msgid "Time per photo"
+msgstr "Tid per bilde"
+
+msgid "px"
+msgstr "px"
+
+msgid "Width"
+msgstr "Bredde"
+
+msgid "Height"
+msgstr "Høyde"
+
+msgid "Corner radius"
+msgstr "Avrunding av hjørner"
+
+msgid "Drop shadow"
+msgstr "Skygge"
+
+msgid "ms"
+msgstr "ms"
+
+msgid "Fade duration"
+msgstr "Overgang"
+
+msgid "Date"
+msgstr "Dato"
+
+msgid "27 July 2023"
+msgstr "27 juli 2023"
+
+msgid "27. July 2023"
+msgstr "27. juli 2023"
+
+msgid "July 27, 2023"
+msgstr "juli 27, 2023"
+
+msgid "July 2023"
+msgstr "juli 2023"
+
+msgid "2023-07-27"
+msgstr "2023-07-27"
+
+msgid "Hidden"
+msgstr "Skjult"
+
+msgid "Place"
+msgstr "Sted"
+
+msgid "City"
+msgstr "By"
+
+msgid "City, country"
+msgstr "By, land"
+
+msgid "pt"
+msgstr "pt"
+
+msgid "Text size"
+msgstr "Tekststørrelse"

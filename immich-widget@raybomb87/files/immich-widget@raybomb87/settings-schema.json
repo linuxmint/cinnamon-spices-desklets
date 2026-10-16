@@ -1,0 +1,239 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "connection",
+      "photos",
+      "look"
+    ],
+    "connection": {
+      "type": "page",
+      "title": "Connection",
+      "sections": [
+        "conn"
+      ]
+    },
+    "photos": {
+      "type": "page",
+      "title": "Photos",
+      "sections": [
+        "src",
+        "sched"
+      ]
+    },
+    "look": {
+      "type": "page",
+      "title": "Appearance",
+      "sections": [
+        "size",
+        "style",
+        "text"
+      ]
+    },
+    "conn": {
+      "type": "section",
+      "title": "Immich server",
+      "keys": [
+        "server-url",
+        "api-key",
+        "conn-help",
+        "fetch-now"
+      ]
+    },
+    "src": {
+      "type": "section",
+      "title": "Which photos",
+      "keys": [
+        "source",
+        "source-name",
+        "include-screenshots",
+        "smart-crop"
+      ]
+    },
+    "sched": {
+      "type": "section",
+      "title": "Updates",
+      "keys": [
+        "count",
+        "refresh-hours",
+        "delay"
+      ]
+    },
+    "size": {
+      "type": "section",
+      "title": "Size",
+      "keys": [
+        "width",
+        "height"
+      ]
+    },
+    "style": {
+      "type": "section",
+      "title": "Style",
+      "keys": [
+        "radius",
+        "shadow",
+        "fade"
+      ]
+    },
+    "text": {
+      "type": "section",
+      "title": "Caption",
+      "keys": [
+        "date-format",
+        "place",
+        "caption-size"
+      ]
+    }
+  },
+  "server-url": {
+    "type": "entry",
+    "default": "",
+    "description": "Server address",
+    "tooltip": "For example http://192.168.1.10:2283 or https://photos.example.com"
+  },
+  "api-key": {
+    "type": "entry",
+    "default": "",
+    "description": "API key",
+    "tooltip": "Immich → Account Settings → API Keys → New API Key"
+  },
+  "conn-help": {
+    "type": "label",
+    "description": "Create the API key in Immich with the permissions asset.read, asset.view and face.read (plus album.read or person.read if you pick an album or a person)."
+  },
+  "fetch-now": {
+    "type": "button",
+    "description": "Fetch new photos now",
+    "callback": "on_fetch_now"
+  },
+  "source": {
+    "type": "combobox",
+    "default": "all",
+    "description": "Show",
+    "options": {
+      "All photos": "all",
+      "Favorites": "favorites",
+      "One album": "album",
+      "One person": "person"
+    }
+  },
+  "source-name": {
+    "type": "entry",
+    "default": "",
+    "description": "Album or person name",
+    "tooltip": "Used when Show is set to one album or one person"
+  },
+  "include-screenshots": {
+    "type": "switch",
+    "default": false,
+    "description": "Include screenshots and saved images",
+    "tooltip": "Off: only photos taken with a camera"
+  },
+  "smart-crop": {
+    "type": "switch",
+    "default": true,
+    "description": "Crop around faces",
+    "tooltip": "Uses Immich face detection so heads are not cut off."
+  },
+  "count": {
+    "type": "spinbutton",
+    "default": 40,
+    "min": 5,
+    "max": 500,
+    "step": 5,
+    "units": "photos",
+    "description": "Photos per batch"
+  },
+  "refresh-hours": {
+    "type": "spinbutton",
+    "default": 6,
+    "min": 1,
+    "max": 168,
+    "step": 1,
+    "units": "hours",
+    "description": "Fetch a new batch every"
+  },
+  "delay": {
+    "type": "spinbutton",
+    "default": 30,
+    "min": 5,
+    "max": 3600,
+    "step": 5,
+    "units": "seconds",
+    "description": "Time per photo"
+  },
+  "width": {
+    "type": "spinbutton",
+    "default": 400,
+    "min": 100,
+    "max": 2000,
+    "step": 10,
+    "units": "px",
+    "description": "Width"
+  },
+  "height": {
+    "type": "spinbutton",
+    "default": 240,
+    "min": 100,
+    "max": 2000,
+    "step": 10,
+    "units": "px",
+    "description": "Height"
+  },
+  "radius": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 0,
+    "max": 100,
+    "step": 2,
+    "units": "px",
+    "description": "Corner radius"
+  },
+  "shadow": {
+    "type": "switch",
+    "default": true,
+    "description": "Drop shadow"
+  },
+  "fade": {
+    "type": "spinbutton",
+    "default": 800,
+    "min": 0,
+    "max": 5000,
+    "step": 100,
+    "units": "ms",
+    "description": "Fade duration"
+  },
+  "date-format": {
+    "type": "combobox",
+    "default": "%-d %B %Y",
+    "description": "Date",
+    "options": {
+      "27 July 2023": "%-d %B %Y",
+      "27. July 2023": "%-d. %B %Y",
+      "July 27, 2023": "%B %-d, %Y",
+      "July 2023": "%B %Y",
+      "2023-07-27": "%Y-%m-%d",
+      "Hidden": ""
+    }
+  },
+  "place": {
+    "type": "combobox",
+    "default": "city",
+    "description": "Place",
+    "options": {
+      "City": "city",
+      "City, country": "city-country",
+      "Hidden": ""
+    }
+  },
+  "caption-size": {
+    "type": "spinbutton",
+    "default": 10.5,
+    "min": 6,
+    "max": 30,
+    "step": 0.5,
+    "units": "pt",
+    "description": "Text size"
+  }
+}

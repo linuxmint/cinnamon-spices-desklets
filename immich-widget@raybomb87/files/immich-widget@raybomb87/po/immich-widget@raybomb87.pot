@@ -1,0 +1,283 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: immich-widget@raybomb87 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-10-16 22:51+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:101
+msgid "Right-click and choose Configure to connect to your Immich server."
+msgstr ""
+
+#: desklet.js:103
+msgid "Fetching photos…"
+msgstr ""
+
+#: desklet.js:105
+msgid "No photos yet."
+msgstr ""
+
+#: desklet.js:232
+msgid "The server address is not valid."
+msgstr ""
+
+#: desklet.js:244
+#, javascript-format
+msgid "Cannot reach Immich: %s"
+msgstr ""
+
+#: desklet.js:248
+msgid "Immich rejected the API key."
+msgstr ""
+
+#: desklet.js:253
+#, javascript-format
+msgid "Immich: %s"
+msgstr ""
+
+#: desklet.js:264
+#, javascript-format
+msgid "Album not found: %s"
+msgstr ""
+
+#: desklet.js:269
+#, javascript-format
+msgid "Person not found: %s"
+msgstr ""
+
+#: desklet.js:389
+msgid "No photos found."
+msgstr ""
+
+#: desklet.js:411
+msgid "No photos could be downloaded."
+msgstr ""
+
+#. metadata.json->name
+msgid "Immich Widget"
+msgstr ""
+
+#. metadata.json->description
+msgid "A photo slideshow on your desktop with photos from your Immich server"
+msgstr ""
+
+#. settings-schema.json->connection->title
+msgid "Connection"
+msgstr ""
+
+#. settings-schema.json->photos->title
+msgid "Photos"
+msgstr ""
+
+#. settings-schema.json->look->title
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->conn->title
+msgid "Immich server"
+msgstr ""
+
+#. settings-schema.json->src->title
+msgid "Which photos"
+msgstr ""
+
+#. settings-schema.json->sched->title
+msgid "Updates"
+msgstr ""
+
+#. settings-schema.json->size->title
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->style->title
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->text->title
+msgid "Caption"
+msgstr ""
+
+#. settings-schema.json->server-url->description
+msgid "Server address"
+msgstr ""
+
+#. settings-schema.json->server-url->tooltip
+msgid "For example http://192.168.1.10:2283 or https://photos.example.com"
+msgstr ""
+
+#. settings-schema.json->api-key->description
+msgid "API key"
+msgstr ""
+
+#. settings-schema.json->api-key->tooltip
+msgid "Immich → Account Settings → API Keys → New API Key"
+msgstr ""
+
+#. settings-schema.json->conn-help->description
+msgid ""
+"Create the API key in Immich with the permissions asset.read, asset.view and "
+"face.read (plus album.read or person.read if you pick an album or a person)."
+msgstr ""
+
+#. settings-schema.json->fetch-now->description
+msgid "Fetch new photos now"
+msgstr ""
+
+#. settings-schema.json->source->description
+msgid "Show"
+msgstr ""
+
+#. settings-schema.json->source->options
+msgid "All photos"
+msgstr ""
+
+#. settings-schema.json->source->options
+msgid "Favorites"
+msgstr ""
+
+#. settings-schema.json->source->options
+msgid "One album"
+msgstr ""
+
+#. settings-schema.json->source->options
+msgid "One person"
+msgstr ""
+
+#. settings-schema.json->source-name->description
+msgid "Album or person name"
+msgstr ""
+
+#. settings-schema.json->source-name->tooltip
+msgid "Used when Show is set to one album or one person"
+msgstr ""
+
+#. settings-schema.json->include-screenshots->description
+msgid "Include screenshots and saved images"
+msgstr ""
+
+#. settings-schema.json->include-screenshots->tooltip
+msgid "Off: only photos taken with a camera"
+msgstr ""
+
+#. settings-schema.json->smart-crop->description
+msgid "Crop around faces"
+msgstr ""
+
+#. settings-schema.json->smart-crop->tooltip
+msgid "Uses Immich face detection so heads are not cut off."
+msgstr ""
+
+#. settings-schema.json->count->units
+msgid "photos"
+msgstr ""
+
+#. settings-schema.json->count->description
+msgid "Photos per batch"
+msgstr ""
+
+#. settings-schema.json->refresh-hours->units
+msgid "hours"
+msgstr ""
+
+#. settings-schema.json->refresh-hours->description
+msgid "Fetch a new batch every"
+msgstr ""
+
+#. settings-schema.json->delay->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->delay->description
+msgid "Time per photo"
+msgstr ""
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->radius->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr ""
+
+#. settings-schema.json->radius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->shadow->description
+msgid "Drop shadow"
+msgstr ""
+
+#. settings-schema.json->fade->units
+msgid "ms"
+msgstr ""
+
+#. settings-schema.json->fade->description
+msgid "Fade duration"
+msgstr ""
+
+#. settings-schema.json->date-format->description
+msgid "Date"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+msgid "27 July 2023"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+msgid "27. July 2023"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+msgid "July 27, 2023"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+msgid "July 2023"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+msgid "2023-07-27"
+msgstr ""
+
+#. settings-schema.json->date-format->options
+#. settings-schema.json->place->options
+msgid "Hidden"
+msgstr ""
+
+#. settings-schema.json->place->description
+msgid "Place"
+msgstr ""
+
+#. settings-schema.json->place->options
+msgid "City"
+msgstr ""
+
+#. settings-schema.json->place->options
+msgid "City, country"
+msgstr ""
+
+#. settings-schema.json->caption-size->units
+msgid "pt"
+msgstr ""
+
+#. settings-schema.json->caption-size->description
+msgid "Text size"
+msgstr ""
