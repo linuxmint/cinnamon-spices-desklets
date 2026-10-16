@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Big Calendar\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-15 07:46+0300\n"
+"POT-Creation-Date: 2026-10-16 17:52+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,31 +16,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:622
+#: desklet.js:648 desklet.js:663
 msgid "Big Calendar could not start."
 msgstr ""
 
-#: desklet.js:638
+#: desklet.js:671
 msgid "Big Calendar"
 msgstr ""
 
-#: desklet.js:884
+#: desklet.js:918
 msgid "Today"
 msgstr ""
 
-#: desklet.js:890
+#: desklet.js:924
 msgid "Refresh events"
 msgstr ""
 
-#: desklet.js:978
+#: desklet.js:1012
 msgid "Click to return to the current month"
 msgstr ""
 
-#: desklet.js:1322
+#: desklet.js:1356
 msgid "All day"
 msgstr ""
 
-#: desklet.js:1354
+#: desklet.js:1388
 msgid "more"
 msgstr ""
 

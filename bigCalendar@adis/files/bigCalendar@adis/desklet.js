@@ -259,6 +259,32 @@ async function loadModules(path) {
  * Colours
  * ---------------------------------------------------------------- */
 
+// Settings colours may come from hand-edited JSON. Accept only colour syntax,
+// preserving alpha (notably the default translucent outline).
+const COLOR_DEFAULTS = {
+    "bgColor": "#303036",
+    "borderColor": "rgba(255,255,255,0.55)",
+    "textColor": "#e1e1e1",
+    "headerColor": "#ffffff",
+    "weekdayColor": "#9a9a9a",
+    "weekendColor": "#1f9ede",
+    "otherMonthColor": "#6a6a72",
+    "todayBgColor": "#1f9ede",
+    "todayTextColor": "#ffffff",
+    "gridLineColor": "#3c3c44",
+    "weekNumberColor": "#6a6a72",
+    "navColor": "#c3c3c3"
+};
+function settingsColor(value, fallback = "#ffffff") {
+    const text = String(value ?? "").trim();
+    if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(text)) return text;
+    const rgb = text.match(/^rgb\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*\)$/i);
+    const rgba = text.match(/^rgba\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(0|1|0?\.\d+|1\.0+)\s*\)$/i);
+    const match = rgb || rgba;
+    if (match && match.slice(1, 4).every(c => Number(c) <= 255)) return text;
+    return fallback;
+}
+
 /**
  * A calendar colour as [r, g, b], or null for anything else.
  *
@@ -628,8 +654,15 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._index = modules.index;
         this._source = modules.source;
 
-        this._bindSettings();
-        this._restoreView();
+        try {
+            this._bindSettings();
+            if (!this.settings.isReady) throw new Error("Settings could not be initialized");
+            this._restoreView();
+        } catch (e) {
+            logError(e, "Big Calendar: could not initialize settings");
+            this.setContent(new St.Label({ text: _("Big Calendar could not start.") }));
+            return;
+        }
         this._buildUi();
         this._render();
         this._startDayTimer();
@@ -704,6 +737,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this.settings = new CalendarSettings(this, this.metadata["uuid"], this.instance_id);
 
         const s = this.settings;
+        if (!s.isReady) return;
         const rerender = () => this._render();
         // For settings that change which dates the grid covers: a redraw
         // alone would leave newly visible days empty until the next refresh,
@@ -938,7 +972,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         this._clearTable();
         this._applyRootStyle();
-        this._dayTip.setSurface(this.bgColor, this._basePoints());
+        this._dayTip.setSurface(this._color("bgColor"), this._basePoints());
         this._renderTitle();
         // The label widths memoised during the last render were measured
         // against the font size that has just been replaced.
@@ -963,7 +997,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         this._titleLabel.set_text(this._utils.formatMonthYear(
             this._view.year, this._view.month, this._systemLocale(), this.monthFormat
         ));
-        this._titleLabel.set_style("color: " + this.headerColor + ";");
+        this._titleLabel.set_style("color: " + this._color("headerColor") + ";");
 
         // On the current month there is nowhere to go, so the button reads as
         // the plain heading it used to be, and the "Today" button that would
@@ -971,7 +1005,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         const away = this._view.year !== this._today.getFullYear() ||
                      this._view.month !== this._today.getMonth();
         this._todayButton.visible = away;
-        this._todayButton.set_style("color: " + this.headerColor + ";");
+        this._todayButton.set_style("color: " + this._color("headerColor") + ";");
         if (away) {
             if (!this._titleButton.has_style_class_name("bigcal-title-away"))
                 this._titleButton.add_style_class_name("bigcal-title-away");
@@ -985,8 +1019,8 @@ class BigCalendarDesklet extends Desklet.Desklet {
         const navVisible = !!this.showNavigation;
         this._prevButton.visible = navVisible;
         this._nextButton.visible = navVisible;
-        this._prevButton.set_style("color: " + this.navColor + ";");
-        this._nextButton.set_style("color: " + this.navColor + ";");
+        this._prevButton.set_style("color: " + this._color("navColor") + ";");
+        this._nextButton.set_style("color: " + this._color("navColor") + ";");
     }
 
     _renderWeekdayHeader(firstDay, showWeekNumbers) {
@@ -995,7 +1029,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         if (showWeekNumbers) {
             const corner = new St.Label({ style_class: "bigcal-weeknum", text: "#" });
-            corner.set_style("color: " + this.weekNumberColor + ";");
+            corner.set_style("color: " + this._color("weekNumberColor") + ";");
             this._table.add(corner, { row: 0, col: 0, x_align: St.Align.MIDDLE });
             col = 1;
         }
@@ -1007,7 +1041,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             const isWeekend = (weekdayIndex === 0 || weekdayIndex === 6);
             const label = new St.Label({ style_class: "bigcal-weekday", text: names[i] });
             label.set_style("color: " + (isWeekend && this.tintWeekends
-                ? this.weekendColor : this.weekdayColor) + ";" + this._gridLineStyle());
+                ? this._color("weekendColor") : this._color("weekdayColor")) + ";" + this._gridLineStyle());
             this._table.add(label, { row: 0, col: col + i, x_align: St.Align.MIDDLE });
         }
     }
@@ -1022,7 +1056,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
                     style_class: "bigcal-weeknum",
                     text: String(weeks[r].week.week)
                 });
-                wn.set_style("color: " + this.weekNumberColor + ";");
+                wn.set_style("color: " + this._color("weekNumberColor") + ";");
                 wn.set_width(this._emToPx(WEEKNUM_WIDTH_EM));
                 this._table.add(wn, { row: row, col: 0, x_align: St.Align.MIDDLE });
                 col = 1;
@@ -1055,10 +1089,10 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // Outside days always take the outside colour -- switching fading off
         // is meant to leave them at full strength, still distinguishable by
         // colour, not to make them identical to the current month.
-        let color = this.textColor;
-        if (cell.isWeekend && this.tintWeekends) color = this.weekendColor;
-        if (outside) color = this.otherMonthColor;
-        if (isToday && !noHighlight) color = this.todayTextColor;
+        let color = this._color("textColor");
+        if (cell.isWeekend && this.tintWeekends) color = this._color("weekendColor");
+        if (outside) color = this._color("otherMonthColor");
+        if (isToday && !noHighlight) color = this._color("todayTextColor");
 
         // Fading is the opacity, applied to whichever colour was chosen.
         if (outside && this.dimOtherMonths) {
@@ -1069,17 +1103,17 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         // Today emphasis: filled pill, outline ring, or bold text only.
         if (isToday && this.todayStyle === "filled") {
-            numberCss += " background-color: " + this.todayBgColor + ";";
+            numberCss += " background-color: " + this._color("todayBgColor") + ";";
             numberCss += " border-radius: " + this.cellRadius + "px;";
         } else if (isToday && this.todayStyle === "ring") {
-            numberCss += " border: 2px solid " + this.todayBgColor + ";";
+            numberCss += " border: 2px solid " + this._color("todayBgColor") + ";";
             numberCss += " border-radius: " + this.cellRadius + "px;";
         } else if (isToday && this.todayStyle === "bold") {
             numberCss += " font-weight: bold;";
         } else if (cell.isWeekend && this.tintWeekends &&
                    this.weekendTintStrength > 0 && !isToday) {
             numberCss += " background-color: " +
-                this._withAlpha(this.weekendColor, this.weekendTintStrength / 100) + ";";
+                this._withAlpha(this._color("weekendColor"), this.weekendTintStrength / 100) + ";";
             numberCss += " border-radius: " + this.cellRadius + "px;";
         }
 
@@ -1401,24 +1435,14 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     // St's CSS supports rgba() but not colour arithmetic, so a colour has to
     // be converted before it can be given an alpha.
+    _color(property) {
+        return settingsColor(this[property], COLOR_DEFAULTS[property]);
+    }
+
     _withAlpha(color, alpha) {
-        let r = 255, g = 255, b = 255;
-        const value = String(color).trim();
-        if (/^#[0-9a-fA-F]{6}$/.test(value)) {
-            r = parseInt(value.substr(1, 2), 16);
-            g = parseInt(value.substr(3, 2), 16);
-            b = parseInt(value.substr(5, 2), 16);
-        } else if (/^#[0-9a-fA-F]{3}$/.test(value)) {
-            r = parseInt(value[1] + value[1], 16);
-            g = parseInt(value[2] + value[2], 16);
-            b = parseInt(value[3] + value[3], 16);
-        } else if (/^rgb/.test(value)) {
-            const m = value.match(/(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/);
-            if (m) { r = +m[1]; g = +m[2]; b = +m[3]; }
-        } else {
-            return value;
-        }
-        return "rgba(" + r + ", " + g + ", " + b + ", " + alpha.toFixed(2) + ")";
+        const [r, g, b] = parseColor(settingsColor(color));
+        const opacity = Number.isFinite(alpha) ? Math.max(0, Math.min(1, alpha)) : 1;
+        return "rgba(" + r + ", " + g + ", " + b + ", " + opacity.toFixed(2) + ")";
     }
 
     highlight(active) {
@@ -1428,12 +1452,12 @@ class BigCalendarDesklet extends Desklet.Desklet {
     }
 
     _applyRootStyle() {
-        let css = "background-color: " + this._withAlpha(this.bgColor, this.bgOpacity / 100) + ";";
+        let css = "background-color: " + this._withAlpha(this._color("bgColor"), this.bgOpacity / 100) + ";";
         css += " border-radius: " + this.cornerRadius + "px;";
         css += " padding: " + this.outerPadding + "px;";
         if (this.borderWidth > 0) {
             // An outside outline keeps the layout and translucent fill intact.
-            css += " box-shadow: 0 0 0 " + this.borderWidth + "px " + this.borderColor + ";";
+            css += " box-shadow: 0 0 0 " + this.borderWidth + "px " + this._color("borderColor") + ";";
         }
         // The base font size is set on the root so the text below scales with
         // the setting. Note this reaches the children's *glyphs* only: an em
@@ -1458,7 +1482,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     /** Optional 1px rule around every cell. */
     _gridLineStyle() {
-        return this.showGridLines ? " border: 1px solid " + this.gridLineColor + ";" : "";
+        return this.showGridLines ? " border: 1px solid " + this._color("gridLineColor") + ";" : "";
     }
 
     /* -------------------------------------------------------------- *
@@ -1658,7 +1682,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * something it does not do, since the constructor always starts on today.
      */
     _restoreView() {
-        if (this.startOnToday) return;
+        if (this.startOnToday || !this.settings?.isReady) return;
 
         const match = /^(\d{4})-(\d{1,2})$/.exec(String(this.settings.getValue(LAST_VIEW_KEY) || ""));
         if (!match) return;
@@ -1672,7 +1696,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     /** Remember the month being viewed, so it can be restored on next start. */
     _rememberView() {
-        if (!this.settings) return;
+        if (!this.settings?.isReady) return;
         this.settings.setValue(LAST_VIEW_KEY, this._view.year + "-" + this._view.month);
     }
 
