@@ -1,0 +1,568 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 2.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-21 09:05-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Trình đọc RSS Khác"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+msgid "Feed settings"
+msgstr "Cài đặt nguồn cấp"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Cài đặt hiển thị"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "Cài đặt AI"
+
+#. settings-schema.json->page4->title
+#. settings-schema.json->section3->title
+msgid "Debug settings"
+msgstr "Cài đặt gỡ lỗi"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Cài đặt hiển thị cho tính năng AI"
+
+#. settings-schema.json->feeds->description
+msgid "Feed settings (supports RSS and Atom)"
+msgstr "Cài đặt nguồn cấp (hỗ trợ RSS và Atom)"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Tên"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Hoạt động"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "URL nguồn cấp"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Màu nhãn (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Bộ lọc kênh (Regexp ví dụ: '.*')"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Màu nền"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Độ trong suốt nền"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Giá trị càng cao, nền desklet càng đặc."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Làm mờ các hàng xen kẽ"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr "Giá trị càng cao, nền các hàng xen kẽ càng mờ."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "giây"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Khoảng thời gian làm mới hiển thị"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr "Tăng hoặc giảm giá trị spinner này để thay đổi khoảng thời gian làm mới"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Chiều rộng"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "pixel"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Chiều rộng desklet tính bằng pixel."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Chiều cao"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Chiều cao desklet tính bằng pixel."
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Phông chữ"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Nhấp vào nút để chọn màu chữ mới"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Phông chữ cho văn bản giải thích"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Màu chữ của giải thích"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Số lượng bài viết hiển thị"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "Số lượng bài viết hiển thị trong cửa sổ danh sách."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Bộ lọc loại trừ cho bài viết"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Bộ lọc RegExp tin nhắn"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "Không khớp"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Bộ lọc (Regexp ví dụ: '.*')"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Khớp trong Tiêu đề"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Khớp trong Danh mục"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Khớp trong Mô tả"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"AI-powered article summarization using various language models. Configure "
+"your preferred AI service and summarization behavior."
+msgstr "Tóm tắt bài viết bằng AI sử dụng các mô hình ngôn ngữ khác nhau. Cấu hình dịch vụ AI ưa thích và hành vi tóm tắt của bạn."
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable AI article summarization"
+msgstr "Bật tóm tắt bài viết bằng AI"
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Include article description"
+msgstr "Bao gồm mô tả bài viết"
+
+#. settings-schema.json->ai_provider->description
+msgid "AI Service Provider"
+msgstr "Nhà cung cấp dịch vụ AI"
+
+#. settings-schema.json->ai_provider->options
+msgid "OpenAI (GPT models)"
+msgstr "OpenAI (mô hình GPT)"
+
+#. settings-schema.json->ai_provider->options
+msgid "DeepSeek (coding focus)"
+msgstr "DeepSeek (tập trung mã hóa)"
+
+#. settings-schema.json->ai_provider->options
+msgid "Anthropic (Claude models)"
+msgstr "Anthropic (mô hình Claude)"
+
+#. settings-schema.json->ai_provider->tooltip
+msgid ""
+"Select your AI service provider. Each provider has different model "
+"capabilities and pricing."
+msgstr "Chọn nhà cung cấp dịch vụ AI của bạn. Mỗi nhà cung cấp có khả năng mô hình và giá cả khác nhau."
+
+#. settings-schema.json->ai_use_custom_url->description
+msgid "Override default API endpoint"
+msgstr "Ghi đè điểm cuối API mặc định"
+
+#. settings-schema.json->ai_use_custom_url->tooltip
+msgid "Enable to use a custom API endpoint instead of the provider's default"
+msgstr "Bật để sử dụng điểm cuối API tùy chỉnh thay vì mặc định của nhà cung cấp"
+
+#. settings-schema.json->ai_url->description
+msgid "Custom API endpoint"
+msgstr "Điểm cuối API tùy chỉnh"
+
+#. settings-schema.json->ai_url->tooltip
+msgid ""
+"Enter the API endpoint URL to override the default provider endpoint (useful "
+"for local models, custom deployments, etc.)"
+msgstr "Nhập URL điểm cuối API để ghi đè điểm cuối mặc định của nhà cung cấp (hữu ích cho mô hình cục bộ, triển khai tùy chỉnh, v.v.)"
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Content extractor"
+msgstr "Trích xuất nội dung"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"Tool to extract article content from web pages. Install: apt install w3m (or "
+"lynx/links)"
+msgstr "Công cụ để trích xuất nội dung bài viết từ trang web. Cài đặt: apt install w3m (hoặc lynx/links)"
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Model selection"
+msgstr "Lựa chọn mô hình"
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Choose from predefined models or enter a custom model name"
+msgstr "Chọn từ các mô hình được xác định trước hoặc nhập tên mô hình tùy chỉnh"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Predefined models"
+msgstr "Mô hình xác định trước"
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Custom model"
+msgstr "Mô hình tùy chỉnh"
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Mô hình chuẩn để sử dụng"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-5"
+msgstr "gpt-5"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4-turbo"
+msgstr "gpt-4-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-chat"
+msgstr "deepseek-chat"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-math"
+msgstr "deepseek-math"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-sonnet"
+msgstr "claude-3-5-sonnet"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-haiku"
+msgstr "claude-3-5-haiku"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-opus"
+msgstr "claude-3-opus"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-sonnet"
+msgstr "claude-3-sonnet"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-haiku"
+msgstr "claude-3-haiku"
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"GPT-5 is the latest model (requires GPT-5 access).\n"
+"GPT-4o models offer best performance/value.\n"
+"DeepSeek models are great for coding.\n"
+"Claude models via compatible APIs.\n"
+"Select 'Custom' to use your own model name."
+msgstr "GPT-5 là mô hình mới nhất (yêu cầu quyền truy cập GPT-5).\nMô hình GPT-4o cung cấp hiệu suất/giá trị tốt nhất.\nMô hình DeepSeek rất tốt cho việc lập trình.\nMô hình Claude thông qua các API tương thích.\nChọn 'Tùy chỉnh' để sử dụng tên mô hình của riêng bạn."
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Custom model name"
+msgstr "Tên mô hình tùy chỉnh"
+
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "Enter the exact model name from your AI provider"
+msgstr "Nhập chính xác tên mô hình từ nhà cung cấp AI của bạn"
+
+#. settings-schema.json->ai_systemprompt->description
+msgid "AI instructions"
+msgstr "Hướng dẫn AI"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Instructions sent to the AI model before processing each article"
+msgstr "Hướng dẫn được gửi đến mô hình AI trước khi xử lý mỗi bài viết"
+
+#. settings-schema.json->ai_apikey->description
+msgid "Set API key"
+msgstr "Đặt khóa API"
+
+#. settings-schema.json->ai_example1->description
+msgid "Concise (4 sentences)"
+msgstr "Ngắn gọn (4 câu)"
+
+#. settings-schema.json->ai_example2->description
+msgid "Bullet points"
+msgstr "Điểm gạch đầu dòng"
+
+#. settings-schema.json->ai_example3->description
+msgid "Technical"
+msgstr "Kỹ thuật"
+
+#. settings-schema.json->ai_example4->description
+msgid "Creative"
+msgstr "Sáng tạo"
+
+#. settings-schema.json->ai_example5->description
+msgid "Professional"
+msgstr "Chuyên nghiệp"
+
+#. settings-schema.json->ai_example6->description
+msgid "Minimal"
+msgstr "Tối giản"
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Làm mới cài đặt"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+msgid "Press this button to reload settings and update display immediately"
+msgstr "Nhấn nút này để tải lại cài đặt và cập nhật hiển thị ngay lập tức"
+
+#. settings-schema.json->refreshFeedsButton->description
+msgid "Refresh RSS Feeds"
+msgstr "Làm mới nguồn cấp RSS"
+
+#. settings-schema.json->refreshFeedsButton->tooltip
+msgid ""
+"Press this button to immediately refresh all RSS feeds and download new "
+"articles"
+msgstr "Nhấn nút này để ngay lập tức làm mới tất cả nguồn cấp RSS và tải xuống bài viết mới"
+
+#. settings-schema.json->searchRssButton->description
+msgid "Search for RSS & Atom feeds"
+msgstr "Tìm kiếm nguồn cấp RSS & Atom"
+
+#. settings-schema.json->searchRssButton->tooltip
+msgid ""
+"Search for RSS and Atom feeds from a website URL. Automatically detects both "
+"feed formats."
+msgstr "Tìm kiếm nguồn cấp RSS và Atom từ URL trang web. Tự động phát hiện cả hai định dạng nguồn cấp."
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Bật nút Sao chép vào clipboard"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr "Nhiệt độ cho phản hồi AI"
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr "Điều khiển tính ngẫu nhiên của phản hồi AI. Giá trị cao hơn có nghĩa là ngẫu nhiên hơn."
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr "Ẩn nút nguồn cấp"
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr "Ẩn dấu thời gian"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Bật tính năng yêu thích"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Tải yêu thích khi khởi động"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Mật độ khoảng cách bài viết"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr "Điều chỉnh khoảng cách giữa các bài viết. Giá trị thấp hơn làm cho danh sách nhỏ gọn hơn, giá trị cao hơn thêm nhiều khoảng trống giữa các bài viết."
+
+#. settings-schema.json->showRefreshSeparators->description
+msgid "Show refresh separators between articles"
+msgstr "Hiển thị dấu phân cách làm mới giữa các bài viết"
+
+#. settings-schema.json->showRefreshSeparators->tooltip
+msgid ""
+"Shows separator lines with timestamps between articles from different "
+"refresh batches"
+msgstr "Hiển thị các đường phân cách với dấu thời gian giữa các bài viết từ các lô làm mới khác nhau"
+
+#. settings-schema.json->enableDebugLogs->description
+msgid "Enable debug logs"
+msgstr "Bật nhật ký gỡ lỗi"
+
+#. settings-schema.json->enableDebugLogs->tooltip
+msgid ""
+"When enabled, detailed debug information will be logged to the system logs. "
+"Only enable when troubleshooting issues."
+msgstr "Khi được bật, thông tin gỡ lỗi chi tiết sẽ được ghi vào nhật ký hệ thống. Chỉ bật khi khắc phục sự cố."
+
+#. settings-schema.json->debugVerbosity->description
+msgid "Debug verbosity level"
+msgstr "Mức độ chi tiết gỡ lỗi"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "minimal"
+msgstr "tối thiểu"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "basic"
+msgstr "cơ bản"
+
+#. settings-schema.json->debugVerbosity->options
+msgid "verbose"
+msgstr "chi tiết"
+
+#. settings-schema.json->debugVerbosity->tooltip
+msgid "Control how much debug information is logged"
+msgstr "Kiểm soát lượng thông tin gỡ lỗi được ghi lại"
+
+#. settings-schema.json->databasePath->description
+msgid "Database base directory"
+msgstr "Thư mục cơ sở cơ sở dữ liệu"
+
+#. settings-schema.json->databasePath->tooltip
+msgid ""
+"Base directory where separate Yarr databases are stored (yarr_favorites.db, "
+"yarr_read_status.db, etc.)"
+msgstr "Thư mục cơ sở nơi các cơ sở dữ liệu Yarr riêng biệt được lưu trữ (yarr_favorites.db, yarr_read_status.db, v.v.)"
+
+#. settings-schema.json->databaseInfo->description
+msgid ""
+"Yarr uses separate databases for different data types. Database names are "
+"fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
+msgstr "Yarr sử dụng các cơ sở dữ liệu riêng biệt cho các loại dữ liệu khác nhau. Tên cơ sở dữ liệu được cố định và không thể thay đổi: yarr_favorites.db, yarr_read_status.db, yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, yarr_readstatus.db"
+
+#. settings-schema.json->showReadStatusCheckbox->description
+msgid "Show read status checkbox"
+msgstr "Hiển thị hộp kiểm trạng thái đã đọc"
+
+#. settings-schema.json->dimReadTitles->description
+msgid "Dim read article titles"
+msgstr "Làm mờ tiêu đề bài viết đã đọc"
+
+#. settings-schema.json->dimReadTitles->tooltip
+msgid ""
+"When enabled, read titles are slightly dimmed for better visual distinction"
+msgstr "Khi được bật, các tiêu đề đã đọc được làm mờ nhẹ để phân biệt trực quan tốt hơn"
+
+#. settings-schema.json->readTitleColor->description
+msgid "Color for read article titles"
+msgstr "Màu cho tiêu đề bài viết đã đọc"
+
+#. settings-schema.json->readTitleColor->tooltip
+msgid "Choose a color applied to read titles"
+msgstr "Chọn một màu áp dụng cho các tiêu đề đã đọc"
+
+#. settings-schema.json->enableHeaderFeedButtons->description
+msgid "Enable header feed buttons"
+msgstr "Bật nút nguồn cấp tiêu đề"
+
+#. settings-schema.json->enableHeaderFeedButtons->tooltip
+msgid ""
+"Show toggleable feed buttons below the header to control which feeds are "
+"displayed in the article list"
+msgstr "Hiển thị các nút nguồn cấp có thể chuyển đổi bên dưới tiêu đề để kiểm soát nguồn cấp nào được hiển thị trong danh sách bài viết"
+
+#. settings-schema.json->openLookingGlass->description
+msgid "Open Looking Glass"
+msgstr "Mở Looking Glass"
+
+#. settings-schema.json->openLookingGlass->tooltip
+msgid ""
+"Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
+"context"
+msgstr "Mở trình gỡ lỗi Looking Glass của Cinnamon để kiểm tra ngữ cảnh JavaScript của desklet"
+
+#. settings-schema.json->restartDesklet->description
+msgid "Restart desklet"
+msgstr "Khởi động lại desklet"
+
+#. settings-schema.json->restartDesklet->tooltip
+msgid "Restarts the desklet to reload all code and settings"
+msgstr "Khởi động lại desklet để tải lại tất cả mã và cài đặt"

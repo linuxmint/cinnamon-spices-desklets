@@ -1,0 +1,215 @@
+# GITHUB CONTRIBUTION GRID
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: github-contribution-grid@KopfdesDaemons 2.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-02-27 18:12+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:32 helpers/ui.js:59 helpers/ui.js:99
+msgid "GitHub Contribution Grid"
+msgstr "GitHub-bidragsgitter"
+
+#. desklet.js:34 helpers/ui.js:32 helpers/ui.js:109
+msgid "Reload"
+msgstr "Genindlæs"
+
+#. helpers/ui.js:42
+msgid "Open GitHub profile"
+msgstr "Åbn GitHub-profil"
+
+#. helpers/ui.js:63
+msgid "Please configure username and token in settings."
+msgstr "Konfigurér brugernavn og token i indstillingerne."
+
+#. helpers/ui.js:68
+msgid "Create a GitHub token"
+msgstr "Opret et GitHub-token"
+
+#. helpers/ui.js:103
+msgid "Error:"
+msgstr "Fejl:"
+
+#. helpers/ui.js:155
+msgid "contributions"
+msgstr "bidrag"
+
+#. metadata.json->description
+msgid ""
+"Displays the daily contributions heatmap for a specified GitHub user profile."
+msgstr ""
+"Viser et “heatmap” over de daglige bidrag for en bestemt GitHub-brugerprofil."
+
+#. settings-schema.json->general-page->title
+msgid "General"
+msgstr "Generelt"
+
+#. settings-schema.json->style-page->title
+#. settings-schema.json->style-section->title
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->block-colors-page->title
+msgid "Block colors"
+msgstr "Blokfarver"
+
+#. settings-schema.json->api-section->title
+msgid "API Settings"
+msgstr "API-indstillinger"
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr "Farver"
+
+#. settings-schema.json->github-username->description
+msgid "GitHub username"
+msgstr "GitHub-brugernavn"
+
+#. settings-schema.json->github-token->description
+msgid "GitHub token"
+msgstr "GitHub-token"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval in minutes"
+msgstr "Opdateringsinterval i minutter"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Skalering"
+
+#. settings-schema.json->block-size->description
+msgid "Block size in pixels"
+msgstr "Blokstørrelse i pixel"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Baggrundsfarve"
+
+#. settings-schema.json->show-contribution-count->description
+msgid "Show contribution count"
+msgstr "Vis antal bidrag"
+
+#. settings-schema.json->show-reload-button->description
+msgid "Show reload button"
+msgstr "Vis genindlæsningsknap"
+
+#. settings-schema.json->show-username->description
+msgid "Show username"
+msgstr "Vis brugernavn"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skjul boks rundt om skrivebordsprogrammet"
+
+#. settings-schema.json->color-0->description
+msgid "0 Contributions"
+msgstr "0 bidrag"
+
+#. settings-schema.json->color-1->description
+msgid "1-3 Contributions"
+msgstr "1–3 bidrag"
+
+#. settings-schema.json->color-4->description
+msgid "4-5 Contributions"
+msgstr "4–5 bidrag"
+
+#. settings-schema.json->color-6->description
+msgid "6-8 Contributions"
+msgstr "6–8 bidrag"
+
+#. settings-schema.json->color-9->description
+msgid "9 Contributions"
+msgstr "9 bidrag"
+
+#. settings-schema.json->color-10->description
+msgid "10+ Contributions"
+msgstr "10+ bidrag"
+
+#. settings-schema.json->color-preset->options
+msgid "default"
+msgstr "standard"
+
+#. settings-schema.json->color-preset->options
+msgid "blue-dark"
+msgstr "mørkeblå"
+
+#. settings-schema.json->color-preset->options
+msgid "green-dark"
+msgstr "mørkegrøn"
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-dark"
+msgstr "mørkegul"
+
+#. settings-schema.json->color-preset->options
+msgid "orange-dark"
+msgstr "mørk orange"
+
+#. settings-schema.json->color-preset->options
+msgid "red-dark"
+msgstr "mørkerød"
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-dark"
+msgstr "mørk magenta"
+
+#. settings-schema.json->color-preset->options
+msgid "purple-dark"
+msgstr "mørkelilla"
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-dark"
+msgstr "mørk gruvbox"
+
+#. settings-schema.json->color-preset->options
+msgid "default-light"
+msgstr "standardlys"
+
+#. settings-schema.json->color-preset->options
+msgid "blue-light"
+msgstr "lyseblå"
+
+#. settings-schema.json->color-preset->options
+msgid "green-light"
+msgstr "lysegrøn"
+
+#. settings-schema.json->color-preset->options
+msgid "yellow-light"
+msgstr "lysegul"
+
+#. settings-schema.json->color-preset->options
+msgid "orange-light"
+msgstr "lys orange"
+
+#. settings-schema.json->color-preset->options
+msgid "red-light"
+msgstr "lyserød"
+
+#. settings-schema.json->color-preset->options
+msgid "magenta-light"
+msgstr "lys magenta"
+
+#. settings-schema.json->color-preset->options
+msgid "purple-light"
+msgstr "lyslilla"
+
+#. settings-schema.json->color-preset->options
+msgid "gruvbox-light"
+msgstr "Lys gruvbox"
+
+#. settings-schema.json->color-preset->description
+msgid "Color preset"
+msgstr "Farveforudindstilling"

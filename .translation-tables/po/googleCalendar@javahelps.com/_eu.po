@@ -1,0 +1,120 @@
+# GOOGLE CALENDAR
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# slgobinath, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: amaraun <amaraun@gmail.com>\n"
+"Language-Team: \n"
+"Language: eu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
+#. desklet.js:302
+msgid "No events found"
+msgstr ""
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr ""
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr ""
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr ""
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr ""
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr ""
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr ""
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr ""
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr ""
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr ""
+
+#. settings-schema.json->display_mode->description
+msgid "Display mode"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

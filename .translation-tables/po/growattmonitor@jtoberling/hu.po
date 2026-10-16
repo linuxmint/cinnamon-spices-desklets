@@ -1,0 +1,86 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: growattmonitor@jtoberling 0.0.4\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-06-29 08:00+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:76
+#, javascript-format
+msgid ""
+"'%s' settings..\n"
+"Please enter password:"
+msgstr ""
+"'%s' beállítások..\n"
+"Kérjük, adja meg a jelszót:"
+
+#. metadata.json->name
+#: desklet.js:92
+msgid "Growatt Monitor"
+msgstr "Growatt Monitor"
+
+#: desklet.js:306
+msgid "LOGIN_ERROR: Check credentials configuration!"
+msgstr "LOGIN_ERROR: Ellenőrizze a hitelesítő adatok konfigurációját!"
+
+#. metadata.json->description
+msgid "Growatt Solar Monitor"
+msgstr "Growatt napelemes monitor"
+
+#. settings-schema.json->starttime->description
+msgid "Start time of power display"
+msgstr "A teljesítménykijelzés kezdő időpontja"
+
+#. settings-schema.json->starttime->units
+#. settings-schema.json->endtime->units
+msgid "Hours"
+msgstr "Óra"
+
+#. settings-schema.json->endtime->description
+msgid "End time of power display"
+msgstr "A teljesítménykijelzés záró időpontja"
+
+#. settings-schema.json->delay->description
+msgid "Referesh interva"
+msgstr "Frissítési időköz"
+
+#. settings-schema.json->delay->units
+msgid "seconds"
+msgstr "másodperc"
+
+#. settings-schema.json->server->description
+msgid "Growatt server"
+msgstr "Growatt szerver"
+
+#. settings-schema.json->server->tooltip
+msgid "https://server.growatt.com"
+msgstr "https://server.growatt.com"
+
+#. settings-schema.json->plantId->description
+msgid "Plant Id (empty for default)"
+msgstr "Telep azonosító (üres alapértelmezés szerint)"
+
+#. settings-schema.json->account->description
+msgid "Growatt Account"
+msgstr "Growatt Fiók"
+
+#. settings-schema.json->account->tooltip
+msgid "Username"
+msgstr "Felhasználónév"
+
+#. settings-schema.json->savepassword->description
+msgid "Enter and save password ..."
+msgstr "Jelszó megadása és mentése ..."

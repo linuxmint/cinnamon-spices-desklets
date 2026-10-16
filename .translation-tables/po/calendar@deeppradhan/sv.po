@@ -1,0 +1,297 @@
+# Swedish translation for calendar@deeppradhan.
+# Copyright (c) 2018 Deep Pradhan
+# This file is distributed under the same license as the PACKAGE package.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Calendar Desklet - 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
+"PO-Revision-Date: 2020-01-02 10:43+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:29
+msgid "January"
+msgstr "Januari"
+
+#: desklet.js:29
+msgid "February"
+msgstr "Februari"
+
+#: desklet.js:29
+msgid "March"
+msgstr "Mars"
+
+#: desklet.js:29
+msgid "April"
+msgstr "April"
+
+#: desklet.js:29
+msgid "May"
+msgstr "Maj"
+
+#: desklet.js:30
+msgid "June"
+msgstr "Juni"
+
+#: desklet.js:30
+msgid "July"
+msgstr "Juli"
+
+#: desklet.js:30
+msgid "August"
+msgstr "Augusti"
+
+#: desklet.js:30
+msgid "September"
+msgstr "September"
+
+#: desklet.js:30
+msgid "October"
+msgstr "Oktober"
+
+#: desklet.js:30
+msgid "November"
+msgstr "November"
+
+#: desklet.js:31
+msgid "December"
+msgstr "December"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Sunday"
+msgstr "Söndag"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Monday"
+msgstr "Måndag"
+
+#: desklet.js:34
+msgid "Tuesday"
+msgstr "Tisdag"
+
+#: desklet.js:34
+msgid "Wednesday"
+msgstr "Onsdag"
+
+#: desklet.js:35
+msgid "Thursday"
+msgstr "Torsdag"
+
+#: desklet.js:35
+msgid "Friday"
+msgstr "Fredag"
+
+#: desklet.js:35
+msgid "Saturday"
+msgstr "Lördag"
+
+#: desklet.js:135
+msgid "Previous month..."
+msgstr "Föregående månad..."
+
+#: desklet.js:137
+msgid "Next month..."
+msgstr "Nästa månad..."
+
+#: desklet.js:152
+msgid "Calendar"
+msgstr "Kalender"
+
+#. metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Calendar Desklet är ett konfigurerbart skrivbordsprogram för att visa "
+"aktuellt datum och bläddringsbara månader. Det har ett antal möjliga "
+"anpassningar."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Konfigurerbar skrivbordskalender"
+
+#. metadata.json->name
+msgid "Calendar desklet"
+msgstr "Skrivbordskalender"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Kalenderkonfiguration"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Paneler att visa"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Både idag & månad"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Endast idag"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Endast månad"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Välj vilka paneler som visas i programmet"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Visa veckodag"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Nej"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Fullständig"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Kort"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"För veckodag: Visa fullständigt namn, kortnamn eller inaktivera visning"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Kort månadsnamn"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Visa kort månadsnamn"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Visa årtal"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"För år: Visa alla siffror, de två sista siffrorna eller inaktivera visning"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Visa tid"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Visa eller dölj tiden (timmar och minuter)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Använd 24-timmars klocka"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr ""
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr ""
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Första dagen i veckan"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Programstil"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Programlayout"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Horisontell"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Vertikal"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Ange övergripande layout till horisontell/vertikal för programmet"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr "Anpassat teckensnitt för text (lämnas tomt för standardinställning)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Ange ett anpassat teckensnitt för text (lämnas tomt för standardinställning)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Teckenstorlek (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Ange textstorlek i punkter"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Textfärg"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Ange textfärg för programmet"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Textfärg för söndagar"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Ange textfärg för söndagar"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Textfärg för lördagar"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Ange textfärg för lördagar"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Bakgrundsfärg"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Ange bakgrundsfärg för programmet"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Transparens (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Ange programtransparens i procent"

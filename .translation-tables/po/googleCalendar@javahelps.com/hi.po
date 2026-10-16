@@ -1,0 +1,462 @@
+# googleCalendar@javahelps.com desklet Hindi
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <mkbhru@gmail.com>, 2023.
+#
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: 2023-02-12 20:26-0500\n"
+"Last-Translator: Manish Kumar <mkbhru@gmail.com>\n"
+"Language-Team: \n"
+"Language: Hindi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "शामिल करने के लिए दिनों की संख्या"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#. desklet.js:126
+msgid "Google Calendar"
+msgstr "Google कैलेंडर"
+
+#. desklet.js:219
+#, fuzzy
+msgid "Open Google Calendar"
+msgstr "Google कैलेंडर"
+
+#. desklet.js:302
+msgid "No events found"
+msgstr ""
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#. desklet.js:469
+#, fuzzy
+msgid "gcalendar token expired"
+msgstr "gcalendar खाता आईडी"
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr "निष्पादित करें:"
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr "अज्ञात त्रुटि"
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr "इस डेस्कलेट का उपयोग करने के लिए gcalendar इंस्टॉल करें."
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr "देंखे:"
+
+#. desklet.js:529
+msgid "Unable to retrieve events..."
+msgstr "घटनाओं को पुनः प्राप्त करने में असमर्थ..."
+
+#. lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "AM"
+
+#. lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "PM"
+
+#. lib/xdate.js:346
+msgid "January"
+msgstr "जनवरी"
+
+#. lib/xdate.js:346
+msgid "February"
+msgstr "फरवरी"
+
+#. lib/xdate.js:346
+msgid "March"
+msgstr "मार्च"
+
+#. lib/xdate.js:346
+msgid "April"
+msgstr "अप्रैल"
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr "मई"
+
+#. lib/xdate.js:346
+msgid "June"
+msgstr "जून"
+
+#. lib/xdate.js:346
+msgid "July"
+msgstr "जुलाई"
+
+#. lib/xdate.js:346
+msgid "August"
+msgstr "अगस्त"
+
+#. lib/xdate.js:346
+msgid "September"
+msgstr "सितंबर"
+
+#. lib/xdate.js:346
+msgid "October"
+msgstr "अक्टूबर"
+
+#. lib/xdate.js:346
+msgid "November"
+msgstr "नवम्बर"
+
+#. lib/xdate.js:346
+msgid "December"
+msgstr "दिसंबर"
+
+#. lib/xdate.js:347
+msgid "Jan"
+msgstr "जनवरी"
+
+#. lib/xdate.js:347
+msgid "Feb"
+msgstr "फरवरी"
+
+#. lib/xdate.js:347
+msgid "Mar"
+msgstr "मार्च"
+
+#. lib/xdate.js:347
+msgid "Apr"
+msgstr "अप्रैल"
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr "मई"
+
+#. lib/xdate.js:347
+msgid "Jun"
+msgstr "जून"
+
+#. lib/xdate.js:347
+msgid "Jul"
+msgstr "जुलाई"
+
+#. lib/xdate.js:347
+msgid "Aug"
+msgstr "अगस्त"
+
+#. lib/xdate.js:347
+msgid "Sep"
+msgstr "सितंबर"
+
+#. lib/xdate.js:347
+msgid "Oct"
+msgstr "अक्टूबर"
+
+#. lib/xdate.js:347
+msgid "Nov"
+msgstr "नवम्बर"
+
+#. lib/xdate.js:347
+msgid "Dec"
+msgstr "दिसंबर"
+
+#. lib/xdate.js:348
+msgid "Sunday"
+msgstr "रविवार"
+
+#. lib/xdate.js:348
+msgid "Monday"
+msgstr "सोमवार"
+
+#. lib/xdate.js:348
+msgid "Tuesday"
+msgstr "मंगलवार"
+
+#. lib/xdate.js:348
+msgid "Wednesday"
+msgstr "बुधवार"
+
+#. lib/xdate.js:348
+msgid "Thursday"
+msgstr "गुरुवार"
+
+#. lib/xdate.js:348
+msgid "Friday"
+msgstr "शुक्रवार"
+
+#. lib/xdate.js:348
+msgid "Saturday"
+msgstr "शनिवार"
+
+#. lib/xdate.js:349
+msgid "Sun"
+msgstr "रविवार"
+
+#. lib/xdate.js:349
+msgid "Mon"
+msgstr "सोमवार"
+
+#. lib/xdate.js:349
+msgid "Tue"
+msgstr "मंगलवार"
+
+#. lib/xdate.js:349
+msgid "Wed"
+msgstr "बुधवार"
+
+#. lib/xdate.js:349
+msgid "Thu"
+msgstr "गुरुवार"
+
+#. lib/xdate.js:349
+msgid "Fri"
+msgstr "शुक्रवार"
+
+#. lib/xdate.js:349
+msgid "Sat"
+msgstr "शनिवार"
+
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "एक डेस्कलेट जो Google कैलेंडर पर आधारित आपकी कार्यसूची प्रदर्शित करता है"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "डेस्कलेट स्टाइल"
+
+#. settings-schema.json->display0->description
+msgid "Google Calendar authentication"
+msgstr "Google कैलेंडर प्रमाणीकरण"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "ग्राहक आईडी"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट आईडी दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ "
+"देंडिफ़ॉल्ट क्लाइंट आईडी।"
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "क्लाइंट सीक्रेट"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"अपना Google कैलेंडर प्रोजेक्ट क्लाइंट रहस्य दर्ज करें। उपयोग करने के लिए इसे खाली छोड़ "
+"देंडिफ़ॉल्ट ग्राहक रहस्य।"
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "कैलेंडर विन्यास"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr "gcalendar खाता आईडी"
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr "gcalendar --account id दर्ज करें"
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "नीचे सूची में मेरे सभी कैलेंडर के नाम भरें"
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"अपने सभी कैलेंडर के नामों के साथ नीचे दी गई सूची को भरने के लिए क्लिक करें। यह थोड़ा समय ले "
+"सकता है।"
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "ये कैलेंडर प्रदर्शित करें:"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+"यदि आप एक कैलेंडर प्रदर्शित करना चाहते हैं, इसे TRUE पर सेट करें (या इसके बॉक्स को चेक करें)।"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "कैलेंडर"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "इसे प्रदर्शित करें?"
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "इतने दिनों की कार्यसूची दिखाएँ"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "दिन"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "अपडेट करें हर:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "मिनट"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "तिथि प्रारूप"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "यहाँ तिथि प्रारूप दर्ज करें"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "आज का प्रारूप"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "आज का प्रारूप यहाँ दर्ज करें"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "कल का प्रारूप"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "कल का प्रारूप यहाँ दर्ज करें"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "24 घंटे की घड़ी का प्रयोग करें"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "24 घंटों में समय दिखाने के लिए चेक करें"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "समय"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "ज़ूम बाई"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "डेस्कलेट का आकार बदलें"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "पारदर्शिता"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "डेस्कलेट की पारदर्शिता सेट करें"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "टेक्स्ट का रंग"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "एक नया टेक्स्ट रंग चुनने के लिए बटन पर क्लिक करें"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr "पूरे दिन की घटना टेक्स्ट का रंग"
+
+#. settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr "नए पूरे दिन के ईवेंट टेक्स्ट रंग को चुनने के लिए बटन पर क्लिक करें"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "पृष्ठभूमि रंग"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "एक नया पृष्ठभूमि रंग चुनने के लिए बटन क्लिक करें"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr "कैलेंडर में अंतर करें"
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr "घटनाओं के सामने रंगीन बुलेट दिखाएँ"
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr "स्थान दिखाएँ"
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr "घटना स्थान प्रदर्शित करें यदि उपलब्ध हो"
+
+#. settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr "स्थान टेक्स्ट रंग"
+
+#. settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
+msgstr "एक नया स्थान टेक्स्ट रंग चुनने के लिए बटन क्लिक करें"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "पीएक्स"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "कॉर्नर त्रिज्या"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "डेस्कलेट के कोनों को घेरने की त्रिज्या"
+
+#. settings-schema.json->display_mode->description
+#, fuzzy
+msgid "Display mode"
+msgstr "इसे प्रदर्शित करें?"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

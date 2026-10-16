@@ -1,0 +1,61 @@
+# QUICK LINKS
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:127
+msgid "Sorry, this font is not supported, please select a different one."
+msgstr ""
+
+#. desklet.js:128
+msgid " Font: `"
+msgstr ""
+
+#. desklet.js:128
+msgid "` Error: "
+msgstr ""
+
+#. desklet.js:431 open_add_edit_dialog_gtk.py:132
+msgid "Add new link"
+msgstr ""
+
+#. open_add_edit_dialog_gtk.py:134
+msgid "Edit link"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Customizable quick links launcher panel. Allows you to create beautiful "
+"themed desktop shortcuts for your most used folders/commands."
+msgstr ""
+
+#. metadata.json->name
+msgid "Quick Links - Launcher"
+msgstr ""
+
+#. settings-schema.json->links-bottom-label->description
+msgid ""
+"Some tips:\n"
+"You can open folders using ex. `nemo <path>` command.\n"
+"You can break your links' names into multiple lines by typing \\n where you "
+"want a break.\n"
+"Set `Shell` to enabled if your command only outputs to the console ex. `ls` "
+"or `htop`.\n"
+"If you want multiple link categories/panels just create new instances of "
+"this desklet\n"
+" (click the `+` sign in system desklet manager)."
+msgstr ""
+
+#. settings-schema.json->links-list->columns->title
+msgid "Icon"
+msgstr ""
+
+#. settings-schema.json->font->description
+msgid "Link font"
+msgstr ""
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family (some fonts may be broken"
+msgstr ""

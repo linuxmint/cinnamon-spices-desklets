@@ -1,0 +1,581 @@
+# YET ANOTHER RSS READER
+# This file is put in the public domain.
+# jtoberling, 2023
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: yarr@jtoberling 1.2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-08-21 09:05-0400\n"
+"PO-Revision-Date: 2025-04-02 15:17+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+#. metadata.json->name
+msgid "Yet Another RSS Reader"
+msgstr "Yet Another RSS Reader"
+
+#. settings-schema.json->page1->title
+#. settings-schema.json->section0->title
+msgid "Feed settings"
+msgstr "Asetukset"
+
+#. settings-schema.json->page2->title
+#. settings-schema.json->section1->title
+msgid "Display settings"
+msgstr "Näkymä"
+
+#. settings-schema.json->page3->title
+#. settings-schema.json->section2->title
+msgid "AI settings"
+msgstr "Tekoäly"
+
+#. settings-schema.json->page4->title
+#. settings-schema.json->section3->title
+#, fuzzy
+msgid "Debug settings"
+msgstr "Asetukset"
+
+#. settings-schema.json->section1ai->title
+msgid "Display settings for AI feature"
+msgstr "Tekoälyn asetukset"
+
+#. settings-schema.json->feeds->description
+msgid "Feed settings (supports RSS and Atom)"
+msgstr ""
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Name"
+msgstr "Nimi"
+
+#. settings-schema.json->feeds->columns->title
+#. settings-schema.json->listfilter->columns->title
+msgid "Active"
+msgstr "Aktiivinen"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr "Syöte"
+
+#. settings-schema.json->feeds->columns->title
+msgid "Label Color (#rrggbb)"
+msgstr "Väri (#rrggbb)"
+
+#. settings-schema.json->feeds->columns->title
+msgid "ChannelFilter (Regexp eg: '.*')"
+msgstr "Suodatin (lause esim.: \".*\")"
+
+#. settings-schema.json->backgroundColor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->transparency->description
+msgid "Background transparency"
+msgstr "Taustan läpinäkyvyys"
+
+#. settings-schema.json->transparency->tooltip
+msgid "The higher the value, the more solid the desklet background."
+msgstr "Mitä suurempi arvo, sitä vähemmän läpinäkyvä."
+
+#. settings-schema.json->alternateRowTransparency->description
+msgid "Dim of every second rows"
+msgstr "Himmeä joka toinen rivi"
+
+#. settings-schema.json->alternateRowTransparency->tooltip
+msgid "The higher the value, more dim on alternate row backgrounds."
+msgstr "Mitä suurempi arvo, sitä himmeämpi joka toinen rivi."
+
+#. settings-schema.json->refreshInterval-spinner->units
+msgid "seconds"
+msgstr "sekuntia"
+
+#. settings-schema.json->refreshInterval-spinner->description
+msgid "Refresh Interval for Display"
+msgstr "Päivitysväli"
+
+#. settings-schema.json->refreshInterval-spinner->tooltip
+msgid "Increase or decrease this spinner value to change the refresh interval"
+msgstr "Suurenna tai pienennä arvoa muuttaaksesi päivitysväliä"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Leveys"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "pixels"
+msgstr "pikseliä"
+
+#. settings-schema.json->width->tooltip
+msgid "Desklet width in pixels."
+msgstr "Leveys työpöydällä pikseleinä."
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Korkeus"
+
+#. settings-schema.json->height->tooltip
+msgid "Desklet height in pixels."
+msgstr "Korkeus työpöydällä pikseleinä."
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Fontti"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstiväri"
+
+#. settings-schema.json->text-color->tooltip
+#. settings-schema.json->ai_text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. settings-schema.json->ai_font->description
+msgid "Font for explanation text"
+msgstr "Fontti selityksiä varten"
+
+#. settings-schema.json->ai_text-color->description
+msgid "Text color of explanation"
+msgstr "Tekstiväri selityksiä varten"
+
+#. settings-schema.json->numberofitems->description
+msgid "Number of displayed articles"
+msgstr "Artikkeleiden määrä"
+
+#. settings-schema.json->numberofitems->tooltip
+msgid "Number of displayed articles in the list window."
+msgstr "Ikkunassa näytettyjen artikkelien määrä."
+
+#. settings-schema.json->filterlabel->description
+msgid "Exclude filters for articles"
+msgstr "Pois sulkevat suodattimet"
+
+#. settings-schema.json->listfilter->description
+msgid "Message RegExp filters"
+msgstr "Viestin poissulkeva suodatin"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Unmatch"
+msgstr "Ei täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Filter (Regexp eg: '.*')"
+msgstr "Sulkeva (\".*\")"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Title"
+msgstr "Otsikko täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Category"
+msgstr "Ryhmä täsmää"
+
+#. settings-schema.json->listfilter->columns->title
+msgid "Match in Description"
+msgstr "Kuvaus täsmää"
+
+#. settings-schema.json->ai_label-info->description
+msgid ""
+"AI-powered article summarization using various language models. Configure "
+"your preferred AI service and summarization behavior."
+msgstr ""
+
+#. settings-schema.json->ai_enablesummary->description
+msgid "Enable AI article summarization"
+msgstr ""
+
+#. settings-schema.json->ai_add_description_to_summary->description
+msgid "Include article description"
+msgstr ""
+
+#. settings-schema.json->ai_provider->description
+msgid "AI Service Provider"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "OpenAI (GPT models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "DeepSeek (coding focus)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->options
+msgid "Anthropic (Claude models)"
+msgstr ""
+
+#. settings-schema.json->ai_provider->tooltip
+msgid ""
+"Select your AI service provider. Each provider has different model "
+"capabilities and pricing."
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->description
+msgid "Override default API endpoint"
+msgstr ""
+
+#. settings-schema.json->ai_use_custom_url->tooltip
+msgid "Enable to use a custom API endpoint instead of the provider's default"
+msgstr ""
+
+#. settings-schema.json->ai_url->description
+msgid "Custom API endpoint"
+msgstr ""
+
+#. settings-schema.json->ai_url->tooltip
+msgid ""
+"Enter the API endpoint URL to override the default provider endpoint (useful "
+"for local models, custom deployments, etc.)"
+msgstr ""
+
+#. settings-schema.json->ai_dumptool->description
+msgid "Content extractor"
+msgstr ""
+
+#. settings-schema.json->ai_dumptool->options
+msgid "w3m"
+msgstr "w3m"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "lynx"
+msgstr "lynx"
+
+#. settings-schema.json->ai_dumptool->options
+msgid "links"
+msgstr "links"
+
+#. settings-schema.json->ai_dumptool->tooltip
+msgid ""
+"Tool to extract article content from web pages. Install: apt install w3m (or "
+"lynx/links)"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->description
+msgid "Model selection"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->tooltip
+msgid "Choose from predefined models or enter a custom model name"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Predefined models"
+msgstr ""
+
+#. settings-schema.json->ai_use_standard_model->options
+msgid "Custom model"
+msgstr ""
+
+#. settings-schema.json->ai_model->description
+msgid "Standard model to use"
+msgstr "Käytettävä standardi"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-5"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o"
+msgstr "gpt-4o"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4o-mini"
+msgstr "gpt-4o-mini"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "gpt-4-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-4"
+msgstr "gpt-4"
+
+#. settings-schema.json->ai_model->options
+msgid "gpt-3.5-turbo"
+msgstr "gpt-3.5-turbo"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "deepseek-chat"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "deepseek-coder-v2:latest"
+msgstr "deepseek-coder-v2:latest"
+
+#. settings-schema.json->ai_model->options
+#, fuzzy
+msgid "deepseek-math"
+msgstr "deepseek-coder"
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-5-haiku"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-opus"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-sonnet"
+msgstr ""
+
+#. settings-schema.json->ai_model->options
+msgid "claude-3-haiku"
+msgstr ""
+
+#. settings-schema.json->ai_model->tooltip
+msgid ""
+"GPT-5 is the latest model (requires GPT-5 access).\n"
+"GPT-4o models offer best performance/value.\n"
+"DeepSeek models are great for coding.\n"
+"Claude models via compatible APIs.\n"
+"Select 'Custom' to use your own model name."
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->description
+msgid "Custom model name"
+msgstr ""
+
+#. settings-schema.json->ai_custom_model->tooltip
+msgid "Enter the exact model name from your AI provider"
+msgstr ""
+
+#. settings-schema.json->ai_systemprompt->description
+#, fuzzy
+msgid "AI instructions"
+msgstr "AI-tekoäly ja ohjeet"
+
+#. settings-schema.json->ai_systemprompt->tooltip
+msgid "Instructions sent to the AI model before processing each article"
+msgstr ""
+
+#. settings-schema.json->ai_apikey->description
+msgid "Set API key"
+msgstr ""
+
+#. settings-schema.json->ai_example1->description
+msgid "Concise (4 sentences)"
+msgstr ""
+
+#. settings-schema.json->ai_example2->description
+msgid "Bullet points"
+msgstr ""
+
+#. settings-schema.json->ai_example3->description
+msgid "Technical"
+msgstr ""
+
+#. settings-schema.json->ai_example4->description
+msgid "Creative"
+msgstr ""
+
+#. settings-schema.json->ai_example5->description
+msgid "Professional"
+msgstr ""
+
+#. settings-schema.json->ai_example6->description
+msgid "Minimal"
+msgstr ""
+
+#. settings-schema.json->refreshsettingsbutton->description
+msgid "Refresh settings"
+msgstr "Päivitä asetukset"
+
+#. settings-schema.json->refreshsettingsbutton->tooltip
+#, fuzzy
+msgid "Press this button to reload settings and update display immediately"
+msgstr "Paina painiketta ladataksesi asetukset uudelleen"
+
+#. settings-schema.json->refreshFeedsButton->description
+#, fuzzy
+msgid "Refresh RSS Feeds"
+msgstr "Päivitä asetukset"
+
+#. settings-schema.json->refreshFeedsButton->tooltip
+msgid ""
+"Press this button to immediately refresh all RSS feeds and download new "
+"articles"
+msgstr ""
+
+#. settings-schema.json->searchRssButton->description
+msgid "Search for RSS & Atom feeds"
+msgstr ""
+
+#. settings-schema.json->searchRssButton->tooltip
+msgid ""
+"Search for RSS and Atom feeds from a website URL. Automatically detects both "
+"feed formats."
+msgstr ""
+
+#. settings-schema.json->enablecopy->description
+msgid "Enable Copy to clipboard button"
+msgstr "Kopioi leikepöydälle - painike käyttöön"
+
+#. settings-schema.json->temperature->description
+msgid "Temperature for AI responses"
+msgstr "Lämpötila AI-vastauksille"
+
+#. settings-schema.json->temperature->tooltip
+msgid ""
+"Controls the randomness of the AI's responses. Higher values mean more "
+"randomness."
+msgstr ""
+"Ohjaa tekoälyn vastausten satunnaisuutta. Suuremmat arvot tarkoittavat "
+"enemmän satunnaisuutta."
+
+#. settings-schema.json->enableFeedButton->description
+msgid "Hide feed button"
+msgstr "Piilota syötepainike"
+
+#. settings-schema.json->enableTimestamp->description
+msgid "Hide timestamp"
+msgstr "Piilota aikaleima"
+
+#. settings-schema.json->enableFavoriteFeature->description
+msgid "Enable favorite feature"
+msgstr "Suosikit käyttöön"
+
+#. settings-schema.json->loadFavoritesOnStartup->description
+msgid "Load favorites on startup"
+msgstr "Lataa suosikit käynnistettäessä"
+
+#. settings-schema.json->articleSpacing->description
+msgid "Article spacing density"
+msgstr "Artikkelin tiheys"
+
+#. settings-schema.json->articleSpacing->tooltip
+msgid ""
+"Adjust the spacing between articles. Lower values make the list more "
+"compact, higher values add more space between articles."
+msgstr ""
+"Säädä artikkelien väliä. Pienemmät arvot tekevät luettelosta tiiviimmän, "
+"korkeammat arvot lisäävät väliin tilaa."
+
+#. settings-schema.json->showRefreshSeparators->description
+msgid "Show refresh separators between articles"
+msgstr ""
+
+#. settings-schema.json->showRefreshSeparators->tooltip
+msgid ""
+"Shows separator lines with timestamps between articles from different "
+"refresh batches"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->description
+msgid "Enable debug logs"
+msgstr ""
+
+#. settings-schema.json->enableDebugLogs->tooltip
+msgid ""
+"When enabled, detailed debug information will be logged to the system logs. "
+"Only enable when troubleshooting issues."
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->description
+msgid "Debug verbosity level"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "minimal"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "basic"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->options
+msgid "verbose"
+msgstr ""
+
+#. settings-schema.json->debugVerbosity->tooltip
+msgid "Control how much debug information is logged"
+msgstr ""
+
+#. settings-schema.json->databasePath->description
+msgid "Database base directory"
+msgstr ""
+
+#. settings-schema.json->databasePath->tooltip
+msgid ""
+"Base directory where separate Yarr databases are stored (yarr_favorites.db, "
+"yarr_read_status.db, etc.)"
+msgstr ""
+
+#. settings-schema.json->databaseInfo->description
+msgid ""
+"Yarr uses separate databases for different data types. Database names are "
+"fixed and cannot be changed: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
+msgstr ""
+
+#. settings-schema.json->showReadStatusCheckbox->description
+msgid "Show read status checkbox"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->description
+msgid "Dim read article titles"
+msgstr ""
+
+#. settings-schema.json->dimReadTitles->tooltip
+msgid ""
+"When enabled, read titles are slightly dimmed for better visual distinction"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->description
+msgid "Color for read article titles"
+msgstr ""
+
+#. settings-schema.json->readTitleColor->tooltip
+msgid "Choose a color applied to read titles"
+msgstr ""
+
+#. settings-schema.json->enableHeaderFeedButtons->description
+#, fuzzy
+msgid "Enable header feed buttons"
+msgstr "Piilota syötepainike"
+
+#. settings-schema.json->enableHeaderFeedButtons->tooltip
+msgid ""
+"Show toggleable feed buttons below the header to control which feeds are "
+"displayed in the article list"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->description
+msgid "Open Looking Glass"
+msgstr ""
+
+#. settings-schema.json->openLookingGlass->tooltip
+msgid ""
+"Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
+"context"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->description
+msgid "Restart desklet"
+msgstr ""
+
+#. settings-schema.json->restartDesklet->tooltip
+msgid "Restarts the desklet to reload all code and settings"
+msgstr ""
