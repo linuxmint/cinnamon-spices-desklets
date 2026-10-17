@@ -1,0 +1,22 @@
+{
+  "id": "dark-graphite",
+  "name": "Dark Graphite",
+  "mode": "dark",
+  "tokens": {
+    "link-bg-color": "#5a6268",
+    "document-bg-color": "#52796f",
+    "border-color": "#3a3f44",
+    "text-color": "#e8e8e8",
+    "shadow-color": "#00000060",
+    "folder-bg-color": "#484e54",
+    "folder-border-color": "#3a3f44",
+    "folder-icon-tint": "#c0c0c0",
+    "desklet-bg-color": "#363b40",
+    "title-color": "#e8e8e8",
+    "hover-bg-color": "#6a7278",
+    "pressed-bg-color": "#4a5258",
+    "disabled-opacity": 0.4,
+    "tooltip-bg-color": "#2a2e32",
+    "tooltip-text-color": "#e8e8e8"
+  }
+}
