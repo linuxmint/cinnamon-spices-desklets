@@ -1,0 +1,50 @@
+.avince-hw-container {
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    spacing: 1px;
+}
+
+.avince-hw-row {
+    spacing: 3px;
+}
+
+/* Breiten werden in desklet.js aus der Schriftgroesse berechnet.
+
+   Der Schatten haelt weisse Schrift und Warnfarben auch auf hellem
+   Hintergrund lesbar (AP18). Seit AP20 setzt desklet.js ihn selbst
+   aus SCHRIFTSCHATTEN in metrics.js, damit Applet und Desklet
+   denselben Wert verwenden und eine Aenderung keinen Cinnamon-
+   Neustart erfordert. Die Angabe hier bleibt als Vorgabe fuer den
+   Fall, dass noch kein Stil gesetzt ist - etwa beim ersten Zeichnen
+   vor dem ersten _applyStyle(); sie ist deshalb gleichlautend. */
+.avince-hw-name {
+    font-size: 14px;
+    color: white;
+    text-shadow: 0px 0px 8px rgba(0,0,0,1);
+    font-weight: 600;
+}
+
+.avince-hw-value {
+    font-size: 14px;
+    color: white;
+    text-shadow: 0px 0px 8px rgba(0,0,0,1);
+    font-weight: 600;
+    text-align: right;
+}
+
+.avince-hw-unit {
+    font-size: 14px;
+    color: white;
+    text-shadow: 0px 0px 8px rgba(0,0,0,1);
+    font-weight: 600;
+    text-align: left;
+}
+
+.avince-hwmonitor {
+    background: transparent;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
