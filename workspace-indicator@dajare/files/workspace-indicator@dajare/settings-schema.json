@@ -1,0 +1,61 @@
+{
+    "appearance-header": {
+        "type": "header",
+        "description": "Appearance"
+    },
+
+    "font": {
+        "type": "fontchooser",
+        "default": "Sans 48",
+        "description": "Font",
+        "tooltip": "Choose the font used for the workspace number."
+    },
+
+    "font-size": {
+        "type": "spinbutton",
+        "default": 48,
+        "min": 6,
+        "max": 200,
+        "step": 1,
+        "units": "pt",
+        "description": "Font size",
+        "tooltip": "Size of the main workspace number."
+    },
+
+    "foreground-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255,0.8)",
+        "description": "Foreground colour",
+        "tooltip": "Colour of the workspace number."
+    },
+
+    "foreground-opacity": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "units": "%",
+        "description": "Foreground opacity",
+        "tooltip": "Opacity of the foreground colour."
+    },
+
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.3)",
+        "description": "Background color",
+        "tooltip": "Set the desklet background."
+    },
+
+    "workspace-count-header": {
+        "type": "header",
+        "description": "Workspace count"
+    },
+
+    "show-total": {
+        "type": "switch",
+        "default": true,
+        "description": "Show total number of workspaces",
+        "tooltip": "Show the total number after the active workspace, for example 2/4."
+    }
+}
