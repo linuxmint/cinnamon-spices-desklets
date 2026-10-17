@@ -1,0 +1,140 @@
+# CPU & GPU MONITOR
+# This file is distributed under the same license as CPU & GPU Monitor.
+# Copyright (C) 2026 Alex Smolya
+# Alex Smolya, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: cpu-gpu-monitor@alexsmolya 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-08-08 21:30+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:248
+#, javascript-format
+msgid "%s: %s CPU | %s RAM | %s"
+msgstr ""
+
+#. desklet.js:296
+#, javascript-format
+msgid "%s: %s GPU | %s VRAM (%s MB) | %s"
+msgstr ""
+
+#. desklet.js:402
+msgid "GPU unavailable | last samples shown"
+msgstr ""
+
+#. desklet.js:402
+msgid "GPU unavailable"
+msgstr ""
+
+#. desklet.js:477
+#, javascript-format
+msgid "%s: loading..."
+msgstr ""
+
+#. desklet.js:502
+msgid "CPU Usage"
+msgstr ""
+
+#. desklet.js:508
+msgid "CPU Temperature"
+msgstr ""
+
+#. desklet.js:518
+msgid "RAM Usage"
+msgstr ""
+
+#. desklet.js:538
+msgid "NVIDIA GPU: loading..."
+msgstr ""
+
+#. desklet.js:563
+msgid "GPU Utilization"
+msgstr ""
+
+#. desklet.js:569
+msgid "GPU Temperature"
+msgstr ""
+
+#. desklet.js:579
+msgid "VRAM Usage"
+msgstr ""
+
+#. metadata.json->name
+msgid "CPU & GPU Monitor"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Monitor CPU, RAM, AMD CPU temperature, and NVIDIA GPU metrics with history "
+"graphs"
+msgstr ""
+
+#. settings-schema.json->page_settings->title
+msgid "CPU & GPU Monitor Settings"
+msgstr ""
+
+#. settings-schema.json->section_display->title
+msgid "Display and Scaling"
+msgstr ""
+
+#. settings-schema.json->section_cpu_colors->title
+msgid "CPU Monitor Colors"
+msgstr ""
+
+#. settings-schema.json->section_gpu_colors->title
+msgid "GPU Monitor Colors"
+msgstr ""
+
+#. settings-schema.json->update-interval->units
+msgid "sec"
+msgstr ""
+
+#. settings-schema.json->update-interval->description
+msgid "Update Interval"
+msgstr ""
+
+#. settings-schema.json->ui-scale->units
+msgid "x"
+msgstr ""
+
+#. settings-schema.json->ui-scale->description
+msgid "Scale Factor (0.5x - 2.0x)"
+msgstr ""
+
+#. settings-schema.json->show-legend->description
+msgid "Show Bottom Legend Panels"
+msgstr ""
+
+#. settings-schema.json->cpu-color->description
+msgid "CPU Line Color (Green)"
+msgstr ""
+
+#. settings-schema.json->cpu-ram-color->description
+msgid "RAM Line Color (Blue)"
+msgstr ""
+
+#. settings-schema.json->cpu-temp-color->description
+msgid "CPU Temp Line Color (Red)"
+msgstr ""
+
+#. settings-schema.json->gpu-compute-color->description
+msgid "GPU Compute Line Color (Green)"
+msgstr ""
+
+#. settings-schema.json->gpu-mem-color->description
+msgid "VRAM Line Color (Blue)"
+msgstr ""
+
+#. settings-schema.json->gpu-temp-color->description
+msgid "GPU Temp Line Color (Red)"
+msgstr ""

@@ -1,0 +1,79 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page_settings"],
+        "page_settings": {
+            "type": "page",
+            "title": "CPU & GPU Monitor Settings",
+            "sections": ["section_display", "section_cpu_colors", "section_gpu_colors"]
+        },
+        "section_display": {
+            "type": "section",
+            "title": "Display and Scaling",
+            "keys": ["update-interval", "ui-scale", "show-legend"]
+        },
+        "section_cpu_colors": {
+            "type": "section",
+            "title": "CPU Monitor Colors",
+            "keys": ["cpu-color", "cpu-ram-color", "cpu-temp-color"]
+        },
+        "section_gpu_colors": {
+            "type": "section",
+            "title": "GPU Monitor Colors",
+            "keys": ["gpu-compute-color", "gpu-mem-color", "gpu-temp-color"]
+        }
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 5.0,
+        "step": 0.5,
+        "units": "sec",
+        "description": "Update Interval"
+    },
+    "ui-scale": {
+        "type": "spinbutton",
+        "default": 1.0,
+        "min": 0.5,
+        "max": 2.0,
+        "step": 0.1,
+        "units": "x",
+        "description": "Scale Factor (0.5x - 2.0x)"
+    },
+    "show-legend": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Bottom Legend Panels"
+    },
+    "cpu-color": {
+        "type": "colorchooser",
+        "default": "rgba(34, 197, 94, 1.0)",
+        "description": "CPU Line Color (Green)"
+    },
+    "cpu-ram-color": {
+        "type": "colorchooser",
+        "default": "rgba(59, 130, 246, 1.0)",
+        "description": "RAM Line Color (Blue)"
+    },
+    "cpu-temp-color": {
+        "type": "colorchooser",
+        "default": "rgba(239, 68, 68, 1.0)",
+        "description": "CPU Temp Line Color (Red)"
+    },
+    "gpu-compute-color": {
+        "type": "colorchooser",
+        "default": "rgba(34, 197, 94, 1.0)",
+        "description": "GPU Compute Line Color (Green)"
+    },
+    "gpu-mem-color": {
+        "type": "colorchooser",
+        "default": "rgba(59, 130, 246, 1.0)",
+        "description": "VRAM Line Color (Blue)"
+    },
+    "gpu-temp-color": {
+        "type": "colorchooser",
+        "default": "rgba(239, 68, 68, 1.0)",
+        "description": "GPU Temp Line Color (Red)"
+    }
+}
