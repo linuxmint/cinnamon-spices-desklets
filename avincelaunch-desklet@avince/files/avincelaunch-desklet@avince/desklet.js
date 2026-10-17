@@ -80,6 +80,11 @@ const APPEARANCE_RESET_KEYS = [
 // Kontextmenue neben dem Mausklick: so weit rechts davon, oder - wenn rechts
 // kein Platz ist - ebenso weit links (etwa 1 cm).
 const MENU_POINTER_OFFSET = 40;
+// "Loading…" erst, wenn das Einlesen so lange dauert (lokal: nie sichtbar).
+const LOADING_HINT_DELAY_MS = 500;
+// So lange warten Einrichten und die Papierkorb-Rueckfrage hoechstens auf
+// einen Ordner, der nicht antwortet - dann wie bei "nicht lesbar".
+const IO_WAIT_MS = 3000;
 // Symbole im Verlauf: alle sieben aus icons/ im Desklet - so kommen sie mit
 // jeder Installation mit, unabhaengig vom Icon-Thema. Cinnamon nimmt den
 // Ordner selbst in den Suchpfad (extension.js:392).
@@ -103,7 +108,7 @@ const {
     watchBaseDirectory,
     unwatchBaseDirectory
 } = MeLib.config;
-const { scanDirectory } = MeLib.linkScanner;
+const { scanDirectoryAsync } = MeLib.linkScanner;
 const {
     getFolderClickMode,
     itemsToOrderList,
@@ -127,7 +132,7 @@ const {
     unregisterReadOnlyRoot,
     isNetworkPath
 } = MeLib.pathSource;
-const { scanPortalAsync, scanLinkDirectoryAsync, ScanGate } = MeLib.portalScanner;
+const { scanPortalAsync, ScanGate } = MeLib.portalScanner;
 const { watchDesktopFree, unwatchDesktopFree, publishFenceRect } = MeLib.desktopState;
 const {
     COLOR_TOKEN_KEYS,
@@ -351,8 +356,8 @@ TheLauncherDesklet.prototype = {
         this._portalIsNetwork = false;
         this._portalPollId = 0;
         this._portalSignature = null;
-        // Schritt 4, V4d: Link-Ordner auf einem Netzlaufwerk - asynchron, wie
-        // das Portal (siehe _applyNetworkLinkPath).
+        // Link-Ordner - lokal wie auf einem Netzlaufwerk asynchron, wie das
+        // Portal (siehe _refreshLink; V4d: Netzlaufwerk).
         this._linkGate = new ScanGate(
             (job, done) => this._startLinkScan(job, done),
             (job, result, superseded) => this._onLinkScanResult(job, result, superseded),
@@ -362,6 +367,21 @@ TheLauncherDesklet.prototype = {
         this._linkPollId = 0;
         this._linkSignature = null;
         this._linkOrderListPending = false;
+        this._loadingHintId = 0;
+        this._surfaceRebuildId = 0;
+        // Liste im Dialog "Inhalte": Ordner asynchron lesen, dann abgleichen
+        // (_withOrderScans) - hoechstens ein Durchgang, Anfragen in der
+        // Wartezeit ergeben genau einen Folgedurchgang.
+        this._orderGate = new ScanGate(
+            (job, done) => this._startOrderScans(job, done),
+            (job, result) => this._onOrderScansDone(job, result),
+            { timeoutResult: () => ({}) });
+        this._orderJob = null;
+        // Abbrechen beim Entfernen und beim Ordnerwechsel (Menue: Zaehlen).
+        this._ioCancellable = new Gio.Cancellable();
+        this._configureWaitId = 0;
+        this._configurePending = false;
+        this._busyItems = {};
         this._lastFolderSort = null;
         this._lastThemeState = null;
         this._lastPositionX = null;
@@ -669,7 +689,7 @@ TheLauncherDesklet.prototype = {
             // setValue() ruft die eigenen Rueckrufe nicht auf.
             this._lastLockPosition = this.lock_position;
             this._updateDragLock();
-            this._scheduleRefresh();
+            this._rebuildSurfaceSoon();
         }).bind(this));
         lockMenu.menu.addMenuItem(lockItem);
         this._lockMenuItem = lockItem;
@@ -682,7 +702,7 @@ TheLauncherDesklet.prototype = {
             this.settings.setValue("lock-size", state ? "locked" : "free");
             this._lastLockSize = this.lock_size;
             this._updateDragLock();
-            this._scheduleRefresh();
+            this._rebuildSurfaceSoon();
         }).bind(this));
         lockMenu.menu.addMenuItem(lockSizeItem);
         this._lockSizeItem = lockSizeItem;
@@ -1168,36 +1188,67 @@ TheLauncherDesklet.prototype = {
 
     _itemsChanged: function(paths) {
         notifyItemsChangedIn(paths);
-        // Der eigene Fence auch dann, wenn er in einem Unterordner steht.
-        if (!this._showsAnyPath(paths)) {
+        // Der eigene Fence auch dann, wenn er in einem Unterordner steht -
+        // ausser er ist inzwischen entfernt (Ergebnis kam spaeter an).
+        if (!this._isGone() && !this._showsAnyPath(paths)) {
             this._onItemsMovedHere();
         }
     },
 
+    // Fence entfernt (on_desklet_removed / destroy): spaete Rueckrufe aus
+    // dem Fence-Menue aendern dann nichts mehr an ihm.
+    _isGone: function() {
+        return !this.actor || this.actor.is_finalized() || this._ioCancellable.is_cancelled();
+    },
+
+    // Waehrend eine Aktion fuer einen Eintrag laeuft, keine zweite fuer ihn
+    // (Doppelklick im Menue). Liefert false, wenn er schon belegt ist.
+    _lockItem: function(directory, fileName) {
+        const key = directory + "/" + fileName;
+        if (this._busyItems[key]) {
+            return false;
+        }
+        this._busyItems[key] = true;
+        return true;
+    },
+
+    _unlockItem: function(directory, fileName) {
+        delete this._busyItems[directory + "/" + fileName];
+    },
+
     _moveItemTo: function(item, sourceDir, target) {
         const name = item.name || item.fileName;
-        const result = moveEntry(sourceDir, target.path, item.fileName, item.id);
-        if (result.ok) {
+        if (!this._lockItem(sourceDir, item.fileName)) {
+            return;
+        }
+        const sourceTitle = this._getFenceTitle();
+        moveEntry(sourceDir, target.path, item.fileName, item.id, result => {
+            this._unlockItem(sourceDir, item.fileName);
+            if (result.ok) {
+                this._itemsChanged([sourceDir, target.path]);
+                this._notifyMoved(result.record, name, target.title, sourceTitle);
+                return;
+            }
+            if (result.reason === "exists") {
+                if (this._isGone()) {
+                    return;
+                }
+                // Nichts ueberschreiben (Auftrag AP18-1). Angebot: nur hier weg.
+                const dialog = new ModalDialog.ConfirmDialog(
+                    _("“%s” is already in %s.").format(name, target.title) + "\n\n"
+                    + _("Remove it only from this fence? It goes to the trash."),
+                    (function() {
+                        this._removeItem(item, sourceDir);
+                    }).bind(this));
+                dialog.open();
+                return;
+            }
+            if (result.error) {
+                global.logError(result.error, "aVinceLaunch: move failed");
+            }
+            Main.notify(_("Could not move “%s”.").format(name));
             this._itemsChanged([sourceDir, target.path]);
-            this._notifyMoved(result.record, name, target.title, this._getFenceTitle());
-            return;
-        }
-        if (result.reason === "exists") {
-            // Nichts ueberschreiben (Auftrag AP18-1). Angebot: nur hier weg.
-            const dialog = new ModalDialog.ConfirmDialog(
-                _("“%s” is already in %s.").format(name, target.title) + "\n\n"
-                + _("Remove it only from this fence? It goes to the trash."),
-                (function() {
-                    this._removeItem(item, sourceDir);
-                }).bind(this));
-            dialog.open();
-            return;
-        }
-        if (result.error) {
-            global.logError(result.error, "aVinceLaunch: move failed");
-        }
-        Main.notify(_("Could not move “%s”.").format(name));
-        this._itemsChanged([sourceDir, target.path]);
+        });
     },
 
     // Meldung mit "Rueckgaengig" - gilt nur fuer genau die letzte
@@ -1240,39 +1291,75 @@ TheLauncherDesklet.prototype = {
             return;
         }
         _lastMoveRecord = null;
-        const result = undoMove(record);
-        notifyItemsChangedIn([record.sourceDir, record.targetDir]);
-        if (!result.ok) {
-            Main.notify(_("Could not move “%s” back.").format(record.name));
-        }
+        undoMove(record, result => {
+            notifyItemsChangedIn([record.sourceDir, record.targetDir]);
+            if (!result.ok) {
+                Main.notify(_("Could not move “%s” back.").format(record.name));
+            }
+        });
     },
 
     _confirmRemoveItem: function(item, directory) {
         const name = item.name || item.fileName;
-        let text;
-        if (item.type === "folder") {
-            const count = countEntries(GLib.build_filenamev([directory, item.fileName]));
-            text = _("Move the folder “%s” with %d entries to the trash and remove it from this fence?")
-                .format(name, Math.max(count, 0));
-        } else {
-            text = _("Move “%s” to the trash and remove it from this fence?").format(name);
+        const ask = text => {
+            text += "\n\n" + _("Only the link is removed – installed programs stay installed.");
+            const dialog = new ModalDialog.ConfirmDialog(text, (function() {
+                this._removeItem(item, directory);
+            }).bind(this));
+            dialog.open();
+        };
+        if (item.type !== "folder") {
+            ask(_("Move “%s” to the trash and remove it from this fence?").format(name));
+            return;
         }
-        text += "\n\n" + _("Only the link is removed – installed programs stay installed.");
-        const dialog = new ModalDialog.ConfirmDialog(text, (function() {
-            this._removeItem(item, directory);
-        }).bind(this));
-        dialog.open();
+        // Erst zaehlen (asynchron), dann fragen. Antwortet der Ordner nicht
+        // binnen IO_WAIT_MS, wie bei einem Lesefehler: 0 Eintraege.
+        if (!this._lockItem(directory, item.fileName)) {
+            return;
+        }
+        // Wechselt der Ordner des Fence in der Wartezeit, wird dieses
+        // Cancellable abgebrochen - dann keine Rueckfrage mehr.
+        const cancellable = this._ioCancellable;
+        let waitId = 0;
+        let answered = false;
+        const withCount = count => {
+            if (answered) {
+                return;
+            }
+            answered = true;
+            if (waitId) {
+                Mainloop.source_remove(waitId);
+                waitId = 0;
+            }
+            this._unlockItem(directory, item.fileName);
+            if (this._isGone() || cancellable.is_cancelled()) {
+                return;
+            }
+            ask(_("Move the folder “%s” with %d entries to the trash and remove it from this fence?")
+                .format(name, Math.max(count, 0)));
+        };
+        waitId = Mainloop.timeout_add(IO_WAIT_MS, () => {
+            waitId = 0;
+            withCount(-1);
+            return GLib.SOURCE_REMOVE;
+        });
+        countEntries(GLib.build_filenamev([directory, item.fileName]), cancellable, withCount);
     },
 
     _removeItem: function(item, directory) {
-        const result = trashEntry(directory, item.fileName, item.id);
-        if (!result.ok) {
-            if (result.error) {
-                global.logError(result.error, "aVinceLaunch: remove failed");
-            }
-            Main.notify(_("Could not remove “%s”.").format(item.name || item.fileName));
+        if (!this._lockItem(directory, item.fileName)) {
+            return;
         }
-        this._itemsChanged([directory]);
+        trashEntry(directory, item.fileName, item.id, result => {
+            this._unlockItem(directory, item.fileName);
+            if (!result.ok) {
+                if (result.error) {
+                    global.logError(result.error, "aVinceLaunch: remove failed");
+                }
+                Main.notify(_("Could not remove “%s”.").format(item.name || item.fileName));
+            }
+            this._itemsChanged([directory]);
+        });
     },
 
     _anchorMenuAtPointer: function(event) {
@@ -1304,11 +1391,14 @@ TheLauncherDesklet.prototype = {
         this._stopPortalPoll();
         this._cancelLinkScan();
         this._stopLinkPoll();
+        this._cancelOrderScans();
+        this._ioCancellable.cancel();
         this._stopFileMonitor();
         this._cancelScheduledRefresh();
         this._cancelPanelSizeSync();
         ["_dialogListSyncId", "_storageChangeTimeoutId", "_presetSettleId",
-         "_applyingPositionId", "_configurePanelTimerId", "_titleSyncId"].forEach(key => {
+         "_applyingPositionId", "_configurePanelTimerId", "_configureWaitId",
+         "_surfaceRebuildId", "_titleSyncId"].forEach(key => {
             if (this[key]) {
                 Mainloop.source_remove(this[key]);
                 this[key] = 0;
@@ -1716,11 +1806,13 @@ TheLauncherDesklet.prototype = {
         return String(this.instance_id != null ? this.instance_id : this._desklet_id);
     },
 
-    _scanDirectory: function(path, options) {
-        const scanOptions = options || {};
+    // Ordner asynchron einlesen (lib/linkScanner.js). Liefert ein
+    // Gio.Cancellable; nach cancel() kein Rueckruf.
+    _scanDirectoryAsync: function(path, options, callback) {
+        const scanOptions = Object.assign({}, options || {});
         scanOptions.folderSort = this.folder_sort || "mixed";
         scanOptions.sortMode = this.sort_mode || "manual";
-        return scanDirectory(path, scanOptions);
+        return scanDirectoryAsync(path, scanOptions, callback);
     },
 
     _beginDeskletDrag: function(event) {
@@ -2968,12 +3060,16 @@ TheLauncherDesklet.prototype = {
         } else if (folderSortChanged) {
             const rootPath = this._getOrderRootPath();
             if (rootPath) {
-                this._scanDirectory(rootPath, {
-                    persistOrder: true,
-                    ignoreSavedOrder: true
+                // Erst die neue Ordnung festschreiben (asynchron gelesen),
+                // dann Dialogliste und Anzeige nachziehen.
+                this._withOrderScans([{
+                    path: rootPath,
+                    options: { persistOrder: true, ignoreSavedOrder: true }
+                }], () => {
+                    this._syncOrderListFromDirectory();
+                    this._scheduleRefresh();
                 });
             }
-            this._syncOrderListFromDirectory();
             this._restartFileMonitor();
         } else {
             this._restartFileMonitor();
@@ -3300,13 +3396,16 @@ TheLauncherDesklet.prototype = {
     // --- Schritt 4, V4d: Link-Ordner auf einem Netzlaufwerk -----------------
     // Liegt der Basisordner auf einer Freigabe (Einhaengetabelle, wie beim
     // Portal), wird nichts synchron geprueft, angelegt oder eingelesen: Der
-    // Fence listet ueber lib/portalScanner.js scanLinkDirectoryAsync auf,
+    // Fence listet ueber lib/linkScanner.js scanDirectoryAsync auf,
     // hoechstens ein Durchgang zugleich, nach 2 min "nicht erreichbar" (ScanGate).
     // Aenderungen erkennt er durch Nachsehen (30 s, bei Fehler 60 s, nur
     // sichtbar) statt ueber einen Ordnerwaechter. Erst wenn die Freigabe
     // geantwortet hat, wird der eigene Ordner nach der N13-Regel angelegt und
-    // die Liste im Dialog gefuellt. Was ausdruecklich angeklickt wird
-    // (Einrichten, Eintrag-Menue, Sortierart im Dialog), bleibt synchron.
+    // die Liste im Dialog gefuellt. Seit dem Umbau auf asynchrones Lesen
+    // gilt dasselbe fuer alles, was ausdruecklich angeklickt wird
+    // (Einrichten, Eintrag-Menue, Sortierart im Dialog). Lokale Ordner
+    // lesen ueber denselben Weg (_refreshLink), behalten aber ihren
+    // Ordnerwaechter.
     _applyNetworkLinkPath: function(resolvedPath, createIfMissing) {
         this._linkIsNetwork = true;
         this._linkOwnFolderChecked = false;
@@ -3337,7 +3436,7 @@ TheLauncherDesklet.prototype = {
         return true;
     },
 
-    _refreshNetworkLink: function(fromPoll) {
+    _refreshLink: function(fromPoll) {
         const currentPath = this._getCurrentPath();
         if (!currentPath) {
             this._cancelLinkScan();
@@ -3359,30 +3458,56 @@ TheLauncherDesklet.prototype = {
 
     _startLinkScan: function(job, done) {
         // Bis das Ergebnis da ist, bleibt die bisherige Ansicht stehen - nur
-        // beim allerersten Einlesen ein Hinweis.
+        // beim allerersten Einlesen ein Hinweis, und erst, wenn es dauert.
         if (!this._linkHasContent && !job.fromPoll) {
-            this._resetSurfaceState();
-            this._buildMessage(_("Loading…"));
+            this._showLoadingHintLater(() => !this._isPortal() && !this._linkHasContent
+                && this._linkGate.busy);
         }
-        return scanLinkDirectoryAsync(job.path, {
+        return scanDirectoryAsync(job.path, {
             persistOrder: false,
             folderSort: job.folderSort,
             sortMode: job.sortMode
         }, done);
     },
 
+    // "Loading…" erst nach LOADING_HINT_DELAY_MS - ein lokaler Ordner ist bis
+    // dahin laengst gelesen, und nichts blitzt auf. stillEmpty() prueft beim
+    // Ablauf, ob der Hinweis noch passt.
+    _showLoadingHintLater: function(stillEmpty) {
+        this._cancelLoadingHint();
+        this._loadingHintId = Mainloop.timeout_add(LOADING_HINT_DELAY_MS, (function() {
+            this._loadingHintId = 0;
+            if (this.actor && !this.actor.is_finalized() && stillEmpty()) {
+                this._resetSurfaceState();
+                this._buildMessage(_("Loading…"));
+            }
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
+    },
+
+    _cancelLoadingHint: function() {
+        if (this._loadingHintId) {
+            Mainloop.source_remove(this._loadingHintId);
+            this._loadingHintId = 0;
+        }
+    },
+
     _onLinkScanResult: function(job, result, superseded) {
         if (superseded) {
             return;
         }
-        if (!this.actor || this.actor.is_finalized() || this._isPortal() || !this._linkIsNetwork) {
+        if (!this.actor || this.actor.is_finalized() || this._isPortal()) {
             return;
         }
         if (job.path !== this._getCurrentPath()) {
-            this._refreshNetworkLink(false);
+            this._refreshLink(false);
             return;
         }
-        if (job.path === this._rootPath && !this._linkOwnFolderChecked && result.error !== "timeout") {
+        if (!job.fromPoll && !result.error && (result.items || []).length === 0) {
+            global.log("aVinceLaunch: no items in " + job.path);
+        }
+        if (this._linkIsNetwork && job.path === this._rootPath && !this._linkOwnFolderChecked
+            && result.error !== "timeout") {
             // Die Freigabe hat geantwortet: jetzt darf der eigene Ordner
             // nach der N13-Regel angelegt werden (beim Start uebersprungen).
             this._linkOwnFolderChecked = true;
@@ -3406,6 +3531,7 @@ TheLauncherDesklet.prototype = {
         const signature = this._linkResultSignature(result);
         const unchanged = job.fromPoll && signature === this._linkSignature;
         this._linkSignature = signature;
+        this._cancelLoadingHint();
         if (!unchanged) {
             this._resetSurfaceState();
             this._linkHasContent = true;
@@ -3430,6 +3556,7 @@ TheLauncherDesklet.prototype = {
     },
 
     _cancelLinkScan: function() {
+        this._cancelLoadingHint();
         if (this._linkGate) {
             this._linkGate.cancel();
         }
@@ -3457,7 +3584,7 @@ TheLauncherDesklet.prototype = {
                 this._armLinkPoll(seconds);
                 return GLib.SOURCE_REMOVE;
             }
-            this._refreshNetworkLink(true);
+            this._refreshLink(true);
             return GLib.SOURCE_REMOVE;
         });
     },
@@ -3502,8 +3629,8 @@ TheLauncherDesklet.prototype = {
         // Bis das Ergebnis da ist, bleibt die bisherige Ansicht stehen - nur
         // beim allerersten Einlesen ein Hinweis.
         if (!this._portalHasContent && !job.fromPoll) {
-            this._resetSurfaceState();
-            this._buildMessage(_("Loading…"));
+            this._showLoadingHintLater(() => this._isPortal() && !this._portalHasContent
+                && this._portalGate.busy);
         }
         return scanPortalAsync(job.path, {
             showHidden: job.showHidden,
@@ -3521,6 +3648,7 @@ TheLauncherDesklet.prototype = {
         if (!this.actor || this.actor.is_finalized()) {
             return;
         }
+        this._cancelLoadingHint();
         if (job.path !== this._getCurrentPath()) {
             // Inzwischen anderer Ordner ohne eigene Anfrage: neu einlesen
             // (der Durchgang ist beendet, es laeuft also hoechstens dieser).
@@ -3587,10 +3715,16 @@ TheLauncherDesklet.prototype = {
         this._portalIsNetwork = false;
         this._cancelLinkScan();
         this._stopLinkPoll();
+        // Anderer Ordner: laufende Abfragen des alten gelten nicht mehr.
+        this._cancelOrderScans();
+        this._ioCancellable.cancel();
+        this._ioCancellable = new Gio.Cancellable();
         this._linkIsNetwork = false;
         this._linkHasContent = false;
         this._linkSignature = null;
         this._linkOrderListPending = false;
+        // Gehoert zum alten Ordner (Neuaufbau beim Sperren, Klickart).
+        this._lastScanResult = null;
         if (this._isPortal()) {
             return this._applyPortalPath();
         }
@@ -3678,7 +3812,7 @@ TheLauncherDesklet.prototype = {
 
     _reloadOrderSettingsFromPanel: function() {
         const configured = (this.settings.getValue("order-folder-path") || "").trim();
-        if (configured && this._isDirectoryPath(configured)) {
+        if (configured && this._isUsableOrderPath(configured)) {
             this.order_folder_path = configured;
         } else if (this._rootPath) {
             this.order_folder_path = this._rootPath;
@@ -3755,9 +3889,18 @@ TheLauncherDesklet.prototype = {
         return GLib.build_filenamev([browsePath, name]);
     },
 
+    // Netzlaufwerk: kein synchroner Statusaufruf auf der Freigabe - der Pfad
+    // genuegt; ob es den Ordner gibt, meldet das asynchrone Lesen.
+    _isUsableOrderPath: function(path) {
+        if (!path) {
+            return false;
+        }
+        return this._linkIsNetwork ? true : this._isDirectoryPath(path);
+    },
+
     _getOrderDirectoryPath: function() {
         const configured = (this.order_folder_path || "").trim();
-        if (configured && this._isDirectoryPath(configured)) {
+        if (configured && this._isUsableOrderPath(configured)) {
             if (this._rootPath
                 && configured !== this._rootPath
                 && configured.indexOf(this._rootPath + "/") !== 0) {
@@ -3782,11 +3925,115 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
-        const scanResult = this._scanDirectory(orderPath, { persistOrder: false });
-        if (scanResult.error) {
+        this._withOrderScans([{ path: orderPath }], results => {
+            const scanResult = this._orderScanResult(results, orderPath);
+            if (!scanResult || scanResult.error) {
+                return;
+            }
+            // Inzwischen zeigt der Dialog einen anderen Ordner - dessen
+            // Abgleich ist schon angefragt; dieses Ergebnis gilt nicht mehr.
+            if (this._isPortal() || this._getOrderDirectoryPath() !== orderPath) {
+                return;
+            }
+            this._applyOrderListScan(orderPath, scanResult);
+        });
+    },
+
+    // --- Ordner fuer die Dialogliste asynchron lesen -------------------------
+    // requests: [{ path, options }] (options wie scanDirectoryAsync, Vorgabe
+    // persistOrder: false). callback(results) - _orderScanResult(results,
+    // path) liefert das Ergebnis oder null (nicht rechtzeitig gelesen). Nach
+    // der Zeitgrenze des ScanGate kommt {}; beim Entfernen und beim
+    // Ordnerwechsel kein Rueckruf. Was waehrend eines Durchgangs angefragt
+    // wird, sammelt sich im naechsten (genau einer).
+    _withOrderScans: function(requests, callback) {
+        let job = this._orderJob;
+        const fresh = !job || job.started;
+        if (fresh) {
+            job = { requests: [], callbacks: [], started: false, delivered: false };
+            this._orderJob = job;
+        }
+        requests.forEach(request => {
+            const options = Object.assign({ persistOrder: false }, request.options || {});
+            const key = this._orderScanKey(request.path, options);
+            if (request.path && !job.requests.some(entry => entry.key === key)) {
+                job.requests.push({ key: key, path: request.path, options: options });
+            }
+        });
+        job.callbacks.push(callback);
+        if (fresh) {
+            this._orderGate.request(job);
+        }
+    },
+
+    _orderScanKey: function(path, options) {
+        return path + "\u0001" + (options.persistOrder ? "p" : "") + (options.ignoreSavedOrder ? "i" : "");
+    },
+
+    _orderScanResult: function(results, path) {
+        return (results || {})[this._orderScanKey(path, { persistOrder: false })] || null;
+    },
+
+    _startOrderScans: function(job, done) {
+        job.started = true;
+        if (this._orderJob === job) {
+            this._orderJob = null;
+        }
+        const results = {};
+        let current = null;
+        let cancelled = false;
+        let index = 0;
+        const next = () => {
+            if (cancelled) {
+                return;
+            }
+            if (index >= job.requests.length) {
+                done(results);
+                return;
+            }
+            const request = job.requests[index++];
+            current = this._scanDirectoryAsync(request.path, request.options, result => {
+                current = null;
+                results[request.key] = result;
+                next();
+            });
+        };
+        next();
+        // ScanGate.cancel() ruft nur cancel() auf.
+        return {
+            cancel: () => {
+                cancelled = true;
+                if (current) {
+                    current.cancel();
+                }
+            }
+        };
+    },
+
+    _onOrderScansDone: function(job, results) {
+        // Nach der Zeitgrenze kam schon {} - ein spaetes Ergebnis zaehlt
+        // nicht noch einmal.
+        if (job.delivered) {
             return;
         }
-        this._applyOrderListScan(orderPath, scanResult);
+        job.delivered = true;
+        if (!this.actor || this.actor.is_finalized()) {
+            return;
+        }
+        job.callbacks.forEach(callback => {
+            try {
+                callback(results || {});
+            } catch (e) {
+                global.logError(e, "aVinceLaunch: order list update failed");
+            }
+        });
+    },
+
+    _cancelOrderScans: function() {
+        this._orderJob = null;
+        if (this._orderGate) {
+            this._orderGate.cancel();
+        }
     },
 
     // Liste im Dialog (link-order-list-data) aus einem Einlese-Ergebnis des
@@ -3870,22 +4117,59 @@ TheLauncherDesklet.prototype = {
     },
 
     configureDesklet: function(tab) {
+        // Abgleich laeuft schon (Doppelklick): das Fenster kommt gleich.
+        if (this._configurePending) {
+            return;
+        }
         // B12: vor dem Dialog sichern - er loescht die Datei beim Speichern
         // kurz (Cinnamon), ein Abbruch genau dann setzte alles auf Vorgaben.
         this._backupSettingsFile();
         this._configurePanelOpen = true;
+        if (this._isPortal()) {
+            this._openConfigureWindow(tab, {});
+            return;
+        }
+        // Erst die Ordner lesen, die der Abgleich unten braucht (asynchron):
+        // Startordner, Ordner der gespeicherten Liste, Ordner im Dialog.
+        // Antwortet einer nicht binnen IO_WAIT_MS, oeffnet das Fenster
+        // trotzdem - wie bei einem nicht lesbaren Ordner.
+        this._configurePending = true;
+        let finished = false;
+        const proceed = results => {
+            if (finished) {
+                return;
+            }
+            finished = true;
+            this._configurePending = false;
+            if (this._configureWaitId) {
+                Mainloop.source_remove(this._configureWaitId);
+                this._configureWaitId = 0;
+            }
+            this._openConfigureWindow(tab, results);
+        };
+        this._configureWaitId = Mainloop.timeout_add(IO_WAIT_MS, (function() {
+            this._configureWaitId = 0;
+            proceed({});
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
+        this._withOrderScans([this._rootPath, this._storedOrderListPath(), this._getOrderDirectoryPath()]
+            .filter((path, index, all) => !!path && all.indexOf(path) === index)
+            .map(path => ({ path: path })), proceed);
+    },
+
+    _openConfigureWindow: function(tab, results) {
         // Pruefung Phase 3, N3: Gehoert die gespeicherte Liste zu einem
         // Unterordner und hat sie dort offene Aenderungen, bleibt der Dialog
         // in diesem Ordner. Das muss VOR dem Zuruecksetzen entschieden werden:
         // Die Zuweisung an order_folder_path schreibt die Einstellung sofort
         // mit (Cinnamons bindProperty beachtet BindingDirection nicht,
         // settings.js:375) - danach war der Unterordner vergessen.
-        if (this._rootPath && !this._keepDialogListInSubfolder()) {
+        if (this._rootPath && !this._keepDialogListInSubfolder(results)) {
             this.order_folder_path = this._rootPath;
             this.order_in_subfolder = false;
         }
         // AP18-1b: Liste vor dem Oeffnen auf den Stand des Ordners bringen.
-        this._syncDialogListIfClean();
+        this._syncDialogListWithScans(results);
         // P6: Hat die Liste offene Aenderungen (nicht neu geladen), gehoert sie
         // weiter zum gespeicherten Ordner - der Speicher folgt der Datei.
         this._reloadOrderSettingsFromPanel();
@@ -4414,6 +4698,8 @@ TheLauncherDesklet.prototype = {
     // Oeffnen von "Einrichten" zeigt order_folder_path schon auf den
     // Startordner, die gespeicherte Liste kann aber zu einem Unterordner
     // gehoeren - sie wird dann gegen ihren eigenen Ordner geprueft.
+    // Liest die beiden Ordner asynchron und gleicht dann ab
+    // (_syncDialogListWithScans).
     _syncDialogListIfClean: function() {
         if (this._isPortal() || this._syncingOrderList) {
             return;
@@ -4422,10 +4708,31 @@ TheLauncherDesklet.prototype = {
         if (!orderPath) {
             return;
         }
+        this._withOrderScans([{ path: this._storedOrderListPath() }, { path: orderPath }],
+            results => this._syncDialogListWithScans(results));
+    },
+
+    // Abgleich mit schon gelesenen Ordnern (results aus _withOrderScans).
+    // Fehlt ein Ordner darin (nicht rechtzeitig, inzwischen ein anderer),
+    // gilt er als nicht lesbar - planDialogListSync laesst dann alles, wie
+    // es ist.
+    _syncDialogListWithScans: function(results) {
+        if (this._isPortal() || this._syncingOrderList) {
+            return;
+        }
+        const orderPath = this._getOrderDirectoryPath();
+        if (!orderPath) {
+            return;
+        }
         const plan = MeLib.orderListSync.planDialogListSync(
-            this._storedOrderListPath(), orderPath, this._dialogListClassifier());
+            this._storedOrderListPath(), orderPath, this._dialogListClassifier(results));
         if (plan === "sync") {
-            this._syncOrderListFromDirectory();
+            // Wie bisher _syncOrderListFromDirectory - mit dem schon
+            // gelesenen Stand statt einem zweiten Lesen.
+            const scanResult = this._orderScanResult(results, orderPath);
+            if (scanResult && !scanResult.error) {
+                this._applyOrderListScan(orderPath, scanResult);
+            }
             this._setDialogListStale(false);
         } else if (plan === "same") {
             this._setDialogListStale(false);
@@ -4435,12 +4742,13 @@ TheLauncherDesklet.prototype = {
     },
 
     // Vergleich der gespeicherten Dialogliste mit dem Inhalt eines Ordners
-    // (lib/orderListSync.js classifyOrderList; null = nicht lesbar).
-    _dialogListClassifier: function() {
+    // (lib/orderListSync.js classifyOrderList; null = nicht lesbar oder
+    // nicht gelesen).
+    _dialogListClassifier: function(results) {
         const current = this.settings.getValue("link-order-list-data") || [];
         return path => {
-            const scanResult = this._scanDirectory(path, { persistOrder: false });
-            if (scanResult.error) {
+            const scanResult = this._orderScanResult(results, path);
+            if (!scanResult || scanResult.error) {
                 return null;
             }
             return MeLib.orderListSync.classifyOrderList(
@@ -4451,7 +4759,7 @@ TheLauncherDesklet.prototype = {
 
     // N3: true, wenn die gespeicherte Liste zu einem Unterordner gehoert und
     // dort offene Aenderungen hat - dann nicht auf den Startordner stellen.
-    _keepDialogListInSubfolder: function() {
+    _keepDialogListInSubfolder: function(results) {
         if (this._isPortal() || !this._rootPath) {
             return false;
         }
@@ -4460,14 +4768,14 @@ TheLauncherDesklet.prototype = {
             return false;
         }
         return MeLib.orderListSync.planDialogListSync(
-            listPath, this._rootPath, this._dialogListClassifier()) === "stale";
+            listPath, this._rootPath, this._dialogListClassifier(results)) === "stale";
     },
 
     // Ordner, zu dem die gespeicherte Dialogliste gehoert (order-folder-path,
     // nur innerhalb des eigenen Ordners), sonst "".
     _storedOrderListPath: function() {
         const stored = (this.settings.getValue("order-folder-path") || "").trim();
-        if (!stored || !this._rootPath || !this._isDirectoryPath(stored)) {
+        if (!stored || !this._rootPath || !this._isUsableOrderPath(stored)) {
             return "";
         }
         if (stored !== this._rootPath && stored.indexOf(this._rootPath + "/") !== 0) {
@@ -4501,14 +4809,10 @@ TheLauncherDesklet.prototype = {
         if (!currentPath) {
             return { folderClickMode: null };
         }
-        if (this._linkIsNetwork) {
-            // V4d: die Reihenfolge-Datei des zuletzt eingelesenen Stands -
-            // ein Klick soll die Freigabe nicht noch einmal synchron lesen.
-            const last = this._lastScanResult;
-            return last && last.sidecar ? last.sidecar : { folderClickMode: null };
-        }
-        const result = this._scanDirectory(currentPath, { persistOrder: false });
-        return result.sidecar;
+        // Die Reihenfolge-Datei des zuletzt eingelesenen Stands - ein Klick
+        // soll den Ordner nicht noch einmal lesen (V4d, jetzt fuer alle).
+        const last = this._lastScanResult;
+        return last && last.sidecar ? last.sidecar : { folderClickMode: null };
     },
 
     _refresh: function() {
@@ -4516,34 +4820,9 @@ TheLauncherDesklet.prototype = {
             this._refreshPortal();
             return;
         }
-        if (this._linkIsNetwork) {
-            this._refreshNetworkLink(false);
-            return;
-        }
-        this._cancelPanelSizeSync();
-        this._destroyItemTooltips();
-        this._panelBox = null;
-        this._titleRow = null;
-        this._titleMenuButton = null;
-        this._titleButtons = [];
-        this._titleLabel = null;
-        this._titleGrip = null;
-
-        const currentPath = this._getCurrentPath();
-        if (!currentPath) {
-            // N13: alter Text verwies auf einen Dialogweg, den es so nicht gibt.
-            this._buildMessage(
-                _("Link folder not reachable:\n%s\nIs the base folder (e.g. on a NAS) mounted? Another folder can be chosen under Configure → General → Link storage.")
-                    .format(getResolvedPath(this.subdirectory))
-            );
-            return;
-        }
-
-        const scanResult = this._scanDirectory(currentPath, { persistOrder: false });
-        if (!scanResult.error && scanResult.items.length === 0) {
-            global.log("aVinceLaunch: no items in " + currentPath);
-        }
-        this._buildUI(scanResult);
+        // Lokal wie auf einem Netzlaufwerk asynchron (_refreshLink); ohne
+        // Ordner dort derselbe Hinweis wie bisher (N13).
+        this._refreshLink(false);
     },
 
     _navigateToFolder: function(item) {
@@ -5346,6 +5625,25 @@ TheLauncherDesklet.prototype = {
         }
         this._searchText = text;
         this._scheduleSearchRebuild();
+    },
+
+    // Sperren aendert nur die Flaeche (Titelzeile, Griffe), nicht den
+    // Inhalt: mit dem zuletzt gelesenen Stand neu aufbauen, statt den Ordner
+    // neu zu lesen - so geht das auch, waehrend er nicht antwortet. Ohne
+    // gelesenen Stand wie bisher.
+    _rebuildSurfaceSoon: function() {
+        if (!this._lastScanResult) {
+            this._scheduleRefresh();
+            return;
+        }
+        if (this._surfaceRebuildId) {
+            return;
+        }
+        this._surfaceRebuildId = Mainloop.idle_add((function() {
+            this._surfaceRebuildId = 0;
+            this._rebuildFromLastScan();
+            return GLib.SOURCE_REMOVE;
+        }).bind(this));
     },
 
     _rebuildFromLastScan: function() {
@@ -6400,10 +6698,10 @@ TheLauncherDesklet.prototype = {
             box.add_child(navBar);
         }
 
-        // V4d: Link-Ordner im Netz melden "nicht erreichbar" wie das Portal.
-        if (scanResult.error === "missing"
-            || ((this._isPortal() || this._linkIsNetwork)
-                && (scanResult.error === "unreadable" || scanResult.error === "timeout"))) {
+        // V4d: Link-Ordner im Netz melden "nicht erreichbar" wie das Portal;
+        // keine Antwort (Zeitgrenze) meldet jeder Fence so.
+        if (scanResult.error === "missing" || scanResult.error === "timeout"
+            || ((this._isPortal() || this._linkIsNetwork) && scanResult.error === "unreadable")) {
             const empty = new St.Label({
                 text: !this._isPortal() && scanResult.error === "missing" ? _("Link directory not found.")
                     : scanResult.error !== "unreadable" ? _("Folder not reachable.")

@@ -8,21 +8,20 @@ const UUID = "avincelaunch-desklet@avince";
 const {
     makeItemId,
     parseFolderEntry,
-    parseDesktopEntry,
+    loadDesktopEntry,
     parseDocumentEntry,
     applyOrdering,
-    sortItems,
-    scanDirectoryFromInfos,
-    ENTRY_ATTRIBUTES
+    sortItems
 } = imports.desklets[UUID].lib.linkScanner;
 
 // AP10b-1 - Portal im Hintergrund einlesen.
 //
-// Der Einlesecode der Gruppen (linkScanner.scanDirectory) laeuft synchron im
-// Cinnamon-Hauptprozess und oeffnet jede Datei einzeln zur Pruefung. Auf der
-// NAS fror das den Schreibtisch ein (296 Eintraege: 2,6-2,8 s, Messung
-// 03.10.). Hier holt EIN asynchroner Durchgang Name, Art und "versteckt" aller
-// Eintraege stapelweise; nichts wird geoeffnet ausser .desktop-Dateien.
+// Der Einlesecode der Gruppen lief damals synchron im Cinnamon-Hauptprozess
+// und oeffnete jede Datei einzeln zur Pruefung. Auf der NAS fror das den
+// Schreibtisch ein (296 Eintraege: 2,6-2,8 s, Messung 03.10.). Hier holt EIN
+// asynchroner Durchgang Name, Art und "versteckt" aller Eintraege
+// stapelweise; danach werden nur .desktop-Dateien gelesen, ebenfalls
+// asynchron und nacheinander.
 //
 // Verweise (Symlinks) zeigen ihr Ziel, behalten aber ihren Pfad IM Portal -
 // so bleibt die Navigation im Portal und die Schutzschicht greift.
@@ -45,6 +44,7 @@ function scanPortalAsync(directoryPath, options, callback) {
     const sortMode = options && options.sortMode ? options.sortMode : "manual";
     const limit = options && options.limit > 0 ? options.limit : 0;
     const cancellable = new Gio.Cancellable();
+    const infos = [];
     const items = [];
 
     function finish(error) {
@@ -70,69 +70,91 @@ function scanPortalAsync(directoryPath, options, callback) {
         });
     }
 
-    function addEntry(info) {
-        const before = items.length;
-        addParsedEntry(info);
-        if (items.length > before) {
-            const item = items[items.length - 1];
-            item.mtime = info.get_attribute_uint64("time::modified");
-            item.ctime = info.get_attribute_uint64("time::changed");
-        }
+    function push(info, item) {
+        item.mtime = info.get_attribute_uint64("time::modified");
+        item.ctime = info.get_attribute_uint64("time::changed");
+        items.push(item);
     }
 
-    function addParsedEntry(info) {
+    // Liefert true, wenn eine .desktop-Datei asynchron gelesen wird - dann
+    // ruft der Rueckruf next().
+    function addEntry(info, next) {
         const name = info.get_name();
         if (!showHidden && (name.charAt(0) === "." || info.get_is_hidden())) {
-            return;
+            return false;
         }
 
         const path = GLib.build_filenamev([directoryPath, name]);
         const type = info.get_file_type();
 
         if (type === Gio.FileType.DIRECTORY) {
-            items.push(parseFolderEntry(path, name, EMPTY_SIDECAR));
-            return;
+            push(info, parseFolderEntry(path, name, EMPTY_SIDECAR));
+            return false;
         }
         if (type !== Gio.FileType.REGULAR) {
             // Defekte Verweise, Geraete, Sockets: nicht anzeigen.
-            return;
+            return false;
         }
         if (name.endsWith(".desktop")) {
-            const app = parseDesktopEntry(path, name);
-            if (app) {
-                items.push(app);
-            }
-            return;
+            loadDesktopEntry(path, name, cancellable, app => {
+                try {
+                    if (app) {
+                        push(info, app);
+                    }
+                } finally {
+                    next();
+                }
+            });
+            return true;
         }
         const doc = parseDocumentEntry(path);
         doc.id = makeItemId("document", name);
         doc.fileName = name;
-        items.push(doc);
+        push(info, doc);
+        return false;
+    }
+
+    // Nacheinander, hoechstens eine Datei zugleich; Reihenfolge wie aufgelistet.
+    function collect() {
+        let index = 0;
+        const next = () => {
+            while (index < infos.length) {
+                if (cancellable.is_cancelled()) {
+                    return;
+                }
+                let pending = false;
+                try {
+                    pending = addEntry(infos[index++], next);
+                } catch (e) {
+                    // Einzelner Eintrag unlesbar - die uebrigen trotzdem zeigen.
+                    pending = false;
+                }
+                if (pending) {
+                    return;
+                }
+            }
+            finish(null);
+        };
+        next();
     }
 
     function nextBatch(enumerator) {
         enumerator.next_files_async(BATCH_SIZE, GLib.PRIORITY_LOW, cancellable, (source, result) => {
-            let infos;
+            let batch;
             try {
-                infos = source.next_files_finish(result);
+                batch = source.next_files_finish(result);
             } catch (e) {
                 if (!cancellable.is_cancelled()) {
                     finish("unreadable");
                 }
                 return;
             }
-            if (!infos || infos.length === 0) {
+            if (!batch || batch.length === 0) {
                 enumerator.close_async(GLib.PRIORITY_LOW, null, () => {});
-                finish(null);
+                collect();
                 return;
             }
-            infos.forEach(info => {
-                try {
-                    addEntry(info);
-                } catch (e) {
-                    // Einzelner Eintrag unlesbar - die uebrigen trotzdem zeigen.
-                }
-            });
+            batch.forEach(info => infos.push(info));
             nextBatch(enumerator);
         });
     }
@@ -160,89 +182,6 @@ function scanPortalAsync(directoryPath, options, callback) {
                 }
                 const missing = e.matches && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND);
                 finish(missing ? "missing" : "unreadable");
-                return;
-            }
-            nextBatch(enumerator);
-        });
-
-    return cancellable;
-}
-
-// Schritt 4, V4d - Link-Ordner auf einem Netzlaufwerk.
-//
-// Liegt der Basisordner auf einer Freigabe, las jeder Fence seinen Ordner
-// synchron im Cinnamon-Hauptprozess (linkScanner.scanDirectory); hing die
-// Freigabe, stand der ganze Schreibtisch - bei jedem Fence einmal. Hier wird
-// zuerst asynchron und stapelweise aufgelistet. Erst wenn die Freigabe darauf
-// geantwortet hat, bereitet scanDirectoryFromInfos die Eintraege auf - mit
-// demselben Code wie bisher (Reihenfolge-Datei, Verweise, .desktop-Dateien,
-// Sortierarten, Angepinnte). Haengt die Freigabe, kommt kein Stapel an, und
-// die Zeitgrenze des ScanGate (unten) meldet "nicht erreichbar".
-//
-// options: wie scanDirectory (persistOrder, folderSort, sortMode)
-// callback(result): wie scanDirectory; error "missing" | "unreadable"
-// Rueckgabe: Gio.Cancellable - cancel() verwirft das Ergebnis.
-function scanLinkDirectoryAsync(directoryPath, options, callback) {
-    const cancellable = new Gio.Cancellable();
-    const infos = [];
-
-    function fail(error) {
-        if (!cancellable.is_cancelled()) {
-            callback({ items: [], manualItems: [], sidecar: EMPTY_SIDECAR, error: error });
-        }
-    }
-
-    function nextBatch(enumerator) {
-        enumerator.next_files_async(BATCH_SIZE, GLib.PRIORITY_LOW, cancellable, (source, result) => {
-            let batch;
-            try {
-                batch = source.next_files_finish(result);
-            } catch (e) {
-                fail("unreadable");
-                return;
-            }
-            if (!batch || batch.length === 0) {
-                enumerator.close_async(GLib.PRIORITY_LOW, null, () => {});
-                if (cancellable.is_cancelled()) {
-                    return;
-                }
-                let scan;
-                try {
-                    scan = scanDirectoryFromInfos(directoryPath, infos, options);
-                } catch (e) {
-                    fail("unreadable");
-                    return;
-                }
-                callback(scan);
-                return;
-            }
-            batch.forEach(info => infos.push(info));
-            nextBatch(enumerator);
-        });
-    }
-
-    let dir;
-    try {
-        dir = Gio.File.new_for_path(directoryPath);
-    } catch (e) {
-        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
-            fail("missing");
-            return GLib.SOURCE_REMOVE;
-        });
-        return cancellable;
-    }
-
-    // FileQueryInfoFlags.NONE wie scanDirectory: Verweise liefern die Art
-    // ihres Ziels.
-    dir.enumerate_children_async(ENTRY_ATTRIBUTES, Gio.FileQueryInfoFlags.NONE,
-        GLib.PRIORITY_LOW, cancellable, (source, result) => {
-            let enumerator;
-            try {
-                enumerator = source.enumerate_children_finish(result);
-            } catch (e) {
-                const missing = e.matches && (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)
-                    || e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_DIRECTORY));
-                fail(missing ? "missing" : "unreadable");
                 return;
             }
             nextBatch(enumerator);

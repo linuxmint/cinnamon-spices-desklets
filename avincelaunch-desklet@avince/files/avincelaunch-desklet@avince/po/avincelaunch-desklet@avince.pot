@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-14 16:49+0200\n"
+"POT-Creation-Date: 2026-10-17 17:33+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,11 +17,11 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:156
+#: desklet.js:161
 msgid "aVinceLaunch: damaged file"
 msgstr ""
 
-#: desklet.js:157
+#: desklet.js:162
 #, javascript-format
 msgid ""
 "%s could not be read. It stays as it is; a copy was saved as %s. Until the "
@@ -29,7 +29,7 @@ msgid ""
 "saved there. If you remove it, what was stored in it starts anew."
 msgstr ""
 
-#: desklet.js:158
+#: desklet.js:163
 #, javascript-format
 msgid ""
 "%s could not be read. It stays as it is. Until the file is repaired or "
@@ -37,324 +37,324 @@ msgid ""
 " starts anew."
 msgstr ""
 
-#: desklet.js:163
+#: desklet.js:168
 msgid "aVinceLaunch: folder portal is view only"
 msgstr ""
 
-#: desklet.js:164
+#: desklet.js:169
 #, javascript-format
 msgid ""
 "Nothing was saved in %s, because it is shown in a folder portal (view only)."
 msgstr ""
 
-#: desklet.js:615 desklet.js:983
+#: desklet.js:635 desklet.js:1003
 msgid "Collapse fence"
 msgstr ""
 
 #. settings-schema.json->expand-on-hover->description
-#: desklet.js:623
+#: desklet.js:643
 msgid "Expand on hover when collapsed"
 msgstr ""
 
-#: desklet.js:635 desklet.js:5387
+#: desklet.js:655 desklet.js:5685
 msgid "Search all fences…"
 msgstr ""
 
-#: desklet.js:640
+#: desklet.js:660
 msgid "Rename fence…"
 msgstr ""
 
-#: desklet.js:648
+#: desklet.js:668
 msgid "Duplicate fence"
 msgstr ""
 
 #. settings-schema.json->lock-section->title
-#: desklet.js:661
+#: desklet.js:681
 msgid "Lock"
 msgstr ""
 
 #. settings-schema.json->placement-section->title
-#: desklet.js:666
+#: desklet.js:686
 msgid "Position"
 msgstr ""
 
 #. settings-schema.json->resize-section->title
-#: desklet.js:680
+#: desklet.js:700
 msgid "Size"
 msgstr ""
 
-#: desklet.js:691 quickstart-dialog.py:36
+#: desklet.js:711 quickstart-dialog.py:36
 msgid "Content"
 msgstr ""
 
-#: desklet.js:700
+#: desklet.js:720
 msgid "Resize: drag an edge or the corner"
 msgstr ""
 
-#: desklet.js:709
+#: desklet.js:729
 msgid "Restore previous size"
 msgstr ""
 
-#: desklet.js:714
+#: desklet.js:734
 msgid "Restore original size"
 msgstr ""
 
-#: desklet.js:722
+#: desklet.js:742
 msgid "Restore arrangement"
 msgstr ""
 
-#: desklet.js:726
+#: desklet.js:746
 msgid "Align all fences"
 msgstr ""
 
-#: desklet.js:735 desklet.js:995
+#: desklet.js:755 desklet.js:1015
 msgid "Hide titles of all fences"
 msgstr ""
 
-#: desklet.js:742
+#: desklet.js:762
 msgid "Reset appearance…"
 msgstr ""
 
-#: desklet.js:769 desklet.js:979
+#: desklet.js:789 desklet.js:999
 msgid "Open link folder"
 msgstr ""
 
-#: desklet.js:788
+#: desklet.js:808
 msgid "Link folder not available"
 msgstr ""
 
-#: desklet.js:789
+#: desklet.js:809
 #, javascript-format
 msgid ""
 "The folder %s could not be opened or created. Is the base folder (e.g. on a "
 "NAS) mounted?"
 msgstr ""
 
-#: desklet.js:794
+#: desklet.js:814
 msgid "Quick start…"
 msgstr ""
 
-#: desklet.js:800 quickstart-dialog.py:94
+#: desklet.js:820 quickstart-dialog.py:94
 msgid "Starter layout…"
 msgstr ""
 
-#: desklet.js:803
+#: desklet.js:823
 msgid "Remove starter layout…"
 msgstr ""
 
-#: desklet.js:826
+#: desklet.js:846
 msgid "Remove this fence…"
 msgstr ""
 
-#: desklet.js:840
+#: desklet.js:860
 #, javascript-format
 msgid "Remove the fence “%s” from the desktop?"
 msgstr ""
 
-#: desklet.js:844
+#: desklet.js:864
 #, javascript-format
 msgid "The folder %s is not touched."
 msgstr ""
 
-#: desklet.js:849
+#: desklet.js:869
 #, javascript-format
 msgid "The icons stay in the folder %s."
 msgstr ""
 
-#: desklet.js:852
+#: desklet.js:872
 #, javascript-format
 msgid ""
 "Cinnamon deletes the settings of this fence; a copy stays in %s for at least"
 " 30 days."
 msgstr ""
 
-#: desklet.js:979
+#: desklet.js:999
 msgid "Open folder"
 msgstr ""
 
-#: desklet.js:983
+#: desklet.js:1003
 msgid "Expand fence"
 msgstr ""
 
-#: desklet.js:996
+#: desklet.js:1016
 msgid "Show titles of all fences"
 msgstr ""
 
-#: desklet.js:1028
+#: desklet.js:1048
 msgid "Move to"
 msgstr ""
 
-#: desklet.js:1030 desklet.js:1101
+#: desklet.js:1050 desklet.js:1121
 msgid "Pin to the front"
 msgstr ""
 
-#: desklet.js:1037
+#: desklet.js:1057
 msgid "Remove from fence…"
 msgstr ""
 
-#: desklet.js:1046
+#: desklet.js:1066
 msgid "Content locked (Lock ▸ Content)"
 msgstr ""
 
-#: desklet.js:1092
+#: desklet.js:1112
 #, javascript-format
 msgid "Undo: “%s” to %s"
 msgstr ""
 
-#: desklet.js:1101
+#: desklet.js:1121
 msgid "Unpin"
 msgstr ""
 
-#: desklet.js:1114
+#: desklet.js:1134
 msgid "No other group fence"
 msgstr ""
 
-#: desklet.js:1188
+#: desklet.js:1238
 #, javascript-format
 msgid "“%s” is already in %s."
 msgstr ""
 
-#: desklet.js:1189
+#: desklet.js:1239
 msgid "Remove it only from this fence? It goes to the trash."
 msgstr ""
 
-#: desklet.js:1199
+#: desklet.js:1249
 #, javascript-format
 msgid "Could not move “%s”."
 msgstr ""
 
-#: desklet.js:1213
+#: desklet.js:1264
 #, javascript-format
 msgid "“%s” moved to %s"
 msgstr ""
 
-#: desklet.js:1214
+#: desklet.js:1265
 #, javascript-format
 msgid "From %s. Undo is also in the context menu of any fence."
 msgstr ""
 
-#: desklet.js:1216
+#: desklet.js:1267
 msgid "Undo"
 msgstr ""
 
-#: desklet.js:1231
+#: desklet.js:1282
 #, javascript-format
 msgid "Could not change “%s”."
 msgstr ""
 
-#: desklet.js:1239
+#: desklet.js:1290
 msgid "Only the last move can be undone."
 msgstr ""
 
-#: desklet.js:1246
+#: desklet.js:1297
 #, javascript-format
 msgid "Could not move “%s” back."
 msgstr ""
 
-#: desklet.js:1255
+#: desklet.js:1305
+msgid "Only the link is removed – installed programs stay installed."
+msgstr ""
+
+#: desklet.js:1312
+#, javascript-format
+msgid "Move “%s” to the trash and remove it from this fence?"
+msgstr ""
+
+#: desklet.js:1338
 #, javascript-format
 msgid ""
 "Move the folder “%s” with %d entries to the trash and remove it from this "
 "fence?"
 msgstr ""
 
-#: desklet.js:1258
-#, javascript-format
-msgid "Move “%s” to the trash and remove it from this fence?"
-msgstr ""
-
-#: desklet.js:1260
-msgid "Only the link is removed – installed programs stay installed."
-msgstr ""
-
-#: desklet.js:1273
+#: desklet.js:1359
 #, javascript-format
 msgid "Could not remove “%s”."
 msgstr ""
 
-#: desklet.js:2167 desklet.js:2763
+#: desklet.js:2259 desklet.js:2855
 msgid "FREE (Ctrl)"
 msgstr ""
 
-#: desklet.js:2547 desklet.js:2579 desklet.js:2610 desklet.js:2620
+#: desklet.js:2639 desklet.js:2671 desklet.js:2702 desklet.js:2712
 msgid "Could not duplicate the fence."
 msgstr ""
 
-#: desklet.js:2580
+#: desklet.js:2672
 msgid "The new link folder could not be created."
 msgstr ""
 
-#: desklet.js:2585
+#: desklet.js:2677
 #, javascript-format
 msgid "%s (copy)"
 msgstr ""
 
-#: desklet.js:2611 desklet.js:4258
+#: desklet.js:2703 desklet.js:4542
 msgid "The new fence did not start. Details are in ~/.xsession-errors."
 msgstr ""
 
-#: desklet.js:2614
+#: desklet.js:2706
 #, javascript-format
 msgid "Fence duplicated: %s"
 msgstr ""
 
-#: desklet.js:2616
+#: desklet.js:2708
 msgid ""
 "There is no free space next to it, so the copy lies slightly offset over the"
 " original. It is unlocked – move it to its place."
 msgstr ""
 
-#: desklet.js:2617
+#: desklet.js:2709
 msgid "The copy is unlocked – move it to its place."
 msgstr ""
 
-#: desklet.js:2667
+#: desklet.js:2759
 msgid "moved"
 msgstr ""
 
-#: desklet.js:2668
+#: desklet.js:2760
 msgid "width changed"
 msgstr ""
 
-#: desklet.js:2669
+#: desklet.js:2761
 msgid "height changed"
 msgstr ""
 
-#: desklet.js:2670
+#: desklet.js:2762
 msgid "size changed"
 msgstr ""
 
-#: desklet.js:2671
+#: desklet.js:2763
 msgid "size reset"
 msgstr ""
 
-#: desklet.js:2672
+#: desklet.js:2764
 msgid "aligned"
 msgstr ""
 
-#: desklet.js:2673
+#: desklet.js:2765
 msgid "restored"
 msgstr ""
 
-#: desklet.js:2690
+#: desklet.js:2782
 msgid "Original arrangement"
 msgstr ""
 
-#: desklet.js:2768
+#: desklet.js:2860
 #, javascript-format
 msgid "%d columns"
 msgstr ""
 
-#: desklet.js:2873
+#: desklet.js:2965
 msgid ""
 "Reset colours, font and border of this fence to the aVinceLaunch template?"
 msgstr ""
 
-#: desklet.js:2874
+#: desklet.js:2966
 msgid "Folder, name, size and position stay unchanged."
 msgstr ""
 
-#: desklet.js:3347 desklet.js:4536
+#: desklet.js:3446
 #, javascript-format
 msgid ""
 "Link folder not reachable:\n"
@@ -362,67 +362,67 @@ msgid ""
 "Is the base folder (e.g. on a NAS) mounted? Another folder can be chosen under Configure → General → Link storage."
 msgstr ""
 
-#: desklet.js:3365 desklet.js:3506
+#: desklet.js:3482
 msgid "Loading…"
 msgstr ""
 
-#: desklet.js:3484
+#: desklet.js:3611
 #, javascript-format
 msgid ""
 "Folder not reachable:\n"
 "%s"
 msgstr ""
 
-#: desklet.js:3485
+#: desklet.js:3612
 msgid ""
 "No folder chosen yet. Choose one under Configure → General → Link storage."
 msgstr ""
 
-#: desklet.js:3551
+#: desklet.js:3679
 #, javascript-format
 msgid "%d more entries – open in file manager"
 msgstr ""
 
-#: desklet.js:3703 orderFolderEditor.py:154
+#: desklet.js:3837 orderFolderEditor.py:154
 msgid "Home"
 msgstr ""
 
-#: desklet.js:4084
+#: desklet.js:4368
 msgid "The starter layout is already being set up."
 msgstr ""
 
-#: desklet.js:4113 desklet.js:4135 desklet.js:4142
+#: desklet.js:4397 desklet.js:4419 desklet.js:4426
 msgid "Could not open the starter layout."
 msgstr ""
 
-#: desklet.js:4197
+#: desklet.js:4481
 #, javascript-format
 msgid "Starter layout created: %d fences"
 msgstr ""
 
-#: desklet.js:4198
+#: desklet.js:4482
 #, javascript-format
 msgid "%d fences did not fit on your screens."
 msgstr ""
 
-#: desklet.js:4242 desklet.js:4257
+#: desklet.js:4526 desklet.js:4541
 msgid "The starter layout stopped."
 msgstr ""
 
-#: desklet.js:4242
+#: desklet.js:4526
 msgid "Details are in ~/.xsession-errors."
 msgstr ""
 
-#: desklet.js:4275
+#: desklet.js:4559
 msgid "Remove the starter layout?"
 msgstr ""
 
-#: desklet.js:4276
+#: desklet.js:4560
 #, javascript-format
 msgid "Fences: %s"
 msgstr ""
 
-#: desklet.js:4277
+#: desklet.js:4561
 #, javascript-format
 msgid ""
 "Their folders with the launchers are moved to %s – nothing is deleted. "
@@ -430,40 +430,40 @@ msgid ""
 " at least 30 days."
 msgstr ""
 
-#: desklet.js:4329
+#: desklet.js:4613
 msgid "Starter layout removed"
 msgstr ""
 
-#: desklet.js:4329
+#: desklet.js:4613
 #, javascript-format
 msgid "The folders are in %s."
 msgstr ""
 
-#: desklet.js:6134
+#: desklet.js:6432
 msgid "Folder portal"
 msgstr ""
 
-#: desklet.js:6408 linkImport.py:329
+#: desklet.js:6706 linkImport.py:329
 msgid "Link directory not found."
 msgstr ""
 
-#: desklet.js:6409
+#: desklet.js:6707
 msgid "Folder not reachable."
 msgstr ""
 
-#: desklet.js:6410
+#: desklet.js:6708
 msgid "Folder cannot be read."
 msgstr ""
 
-#: desklet.js:6421
+#: desklet.js:6719
 msgid "No matches."
 msgstr ""
 
-#: desklet.js:6423
+#: desklet.js:6721
 msgid "This folder is empty."
 msgstr ""
 
-#: desklet.js:6424
+#: desklet.js:6722
 #, javascript-format
 msgid ""
 "No launchers yet. Add applications, documents, or folders to:\n"

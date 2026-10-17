@@ -14,16 +14,21 @@ const {
     getItemStyle
 } = imports.desklets[UUID].lib.sidecar;
 
-function newDesktopAppInfo(filePath) {
+// Aus dem schon (asynchron) gelesenen Inhalt - vom Dateinamen aus wuerde
+// GIO die Datei noch einmal synchron lesen. Gleiche Lesart wie dort
+// (GKeyFile ohne Flags).
+function newDesktopAppInfo(bytes) {
+    const keyFile = new GLib.KeyFile();
+    keyFile.load_from_bytes(new GLib.Bytes(bytes), GLib.KeyFileFlags.NONE);
     try {
         const GioUnix = imports.gi.GioUnix;
         if (GioUnix && GioUnix.DesktopAppInfo) {
-            return GioUnix.DesktopAppInfo.new_from_filename(filePath);
+            return GioUnix.DesktopAppInfo.new_from_keyfile(keyFile);
         }
     } catch (e) {
         // Fall back to Gio below.
     }
-    return Gio.DesktopAppInfo.new_from_filename(filePath);
+    return Gio.DesktopAppInfo.new_from_keyfile(keyFile);
 }
 
 // V5f / N28: Gio.AppInfo liefert das Feld "Comment" ueber get_description();
@@ -47,36 +52,25 @@ function makeItemId(type, name) {
     return type + ":" + name;
 }
 
-function desktopHasExecLine(filePath) {
-    try {
-        const [, contents] = GLib.file_get_contents(filePath);
-        const text = new TextDecoder().decode(contents);
-        return /^\s*Exec\s*=/m.test(text);
-    } catch (e) {
-        return false;
-    }
+function desktopHasExecLine(text) {
+    return /^\s*Exec\s*=/m.test(text);
 }
 
-function readDesktopName(filePath, fallback) {
-    try {
-        const [, contents] = GLib.file_get_contents(filePath);
-        const text = new TextDecoder().decode(contents);
-        const match = text.match(/^\s*Name\s*=\s*(.+)$/m);
-        if (match && match[1]) {
-            return match[1].trim();
-        }
-    } catch (e) {
-        // Fall through.
+function readDesktopName(text, fallback) {
+    const match = text.match(/^\s*Name\s*=\s*(.+)$/m);
+    if (match && match[1]) {
+        return match[1].trim();
     }
     return fallback;
 }
 
-function parseDesktopEntry(filePath, fileNameOverride) {
+// bytes = Inhalt der .desktop-Datei (Uint8Array). Liest nichts vom Ordner.
+function parseDesktopEntry(filePath, fileNameOverride, bytes) {
     const fileName = fileNameOverride || GLib.path_get_basename(filePath);
     let appInfo = null;
 
     try {
-        appInfo = newDesktopAppInfo(filePath);
+        appInfo = newDesktopAppInfo(bytes);
     } catch (e) {
         appInfo = null;
     }
@@ -100,10 +94,11 @@ function parseDesktopEntry(filePath, fileNameOverride) {
     }
 
     if (!showEntry) {
-        if (!desktopHasExecLine(filePath)) {
+        const text = new TextDecoder().decode(bytes);
+        if (!desktopHasExecLine(text)) {
             return null;
         }
-        name = readDesktopName(filePath, fileName.replace(/\.desktop$/, ""));
+        name = readDesktopName(text, fileName.replace(/\.desktop$/, ""));
         comment = name;
         if (appInfo) {
             try {
@@ -132,70 +127,66 @@ function parseDesktopEntry(filePath, fileNameOverride) {
     };
 }
 
-function pathExists(path) {
-    try {
-        const stream = Gio.File.new_for_path(path).read(null);
-        stream.close(null);
-        return true;
-    } catch (e) {
-        const message = String(e);
-        return message.indexOf("IS_DIRECTORY") !== -1
-            || message.indexOf("Is a directory") !== -1
-            || message.indexOf("is a directory") !== -1;
-    }
+// .desktop-Datei asynchron lesen und aufbereiten. callback(app | null) -
+// null, wenn sie nicht lesbar ist oder nichts zu zeigen hat. Nach cancel()
+// kommt kein Rueckruf.
+function loadDesktopEntry(filePath, fileName, cancellable, callback) {
+    Gio.File.new_for_path(filePath).load_contents_async(cancellable, (source, result) => {
+        let bytes = null;
+        try {
+            [, bytes] = source.load_contents_finish(result);
+        } catch (e) {
+            bytes = null;
+        }
+        if (cancellable && cancellable.is_cancelled()) {
+            return;
+        }
+        let app = null;
+        if (bytes) {
+            try {
+                app = parseDesktopEntry(filePath, fileName, bytes);
+            } catch (e) {
+                app = null;
+            }
+        }
+        callback(app);
+    });
 }
 
-function isDirectoryPath(path) {
-    if (!path) {
-        return false;
-    }
-
-    try {
-        const file = Gio.File.new_for_path(path);
-
-        if (!file.query_exists(null)) {
-            return false;
+// Laesst sich die Datei zum Lesen oeffnen? callback(true | false)
+function _probeReadable(filePath, cancellable, callback) {
+    Gio.File.new_for_path(filePath).read_async(GLib.PRIORITY_LOW, cancellable, (source, result) => {
+        let readable = false;
+        try {
+            const stream = source.read_finish(result);
+            readable = true;
+            stream.close_async(GLib.PRIORITY_LOW, null, () => {});
+        } catch (e) {
+            readable = false;
         }
-
-        return file.query_file_type(
-            Gio.FileQueryInfoFlags.NONE,
-            null
-        ) === Gio.FileType.DIRECTORY;
-    } catch (e) {
-        global.logError(e, "aVinceLaunch: scanner directory check failed for " + path);
-        return false;
-    }
+        if (cancellable && cancellable.is_cancelled()) {
+            return;
+        }
+        callback(readable);
+    });
 }
 
-function isRegularFilePath(path) {
-    try {
-        const stream = Gio.File.new_for_path(path).read(null);
-        stream.close(null);
-        return true;
-    } catch (e) {
-        return false;
+// Pfad eines Eintrags: bei einem Verweis sein Ziel (wie bisher eine Stufe,
+// relativ zum Ordner), sonst der Eintrag selbst. Ziel und Art kommen aus dem
+// Auflisten (standard::symlink-target) - kein eigener Zugriff.
+function _entryPath(directoryPath, info, name) {
+    const childPath = GLib.build_filenamev([directoryPath, name]);
+    if (!info.get_is_symlink()) {
+        return childPath;
     }
-}
-
-function resolveChildPath(directoryPath, name) {
-    let childPath = GLib.build_filenamev([directoryPath, name]);
-
-    try {
-        let target = GLib.file_read_link(childPath);
-        if (!target) {
-            return { path: childPath, fileName: name };
-        }
-        if (!GLib.path_is_absolute(target)) {
-            target = GLib.build_filenamev([directoryPath, target]);
-        }
-        if (pathExists(target)) {
-            return { path: target, fileName: name };
-        }
-    } catch (e) {
-        // Not a symlink or unreadable — use the child path as-is.
+    let target = info.get_symlink_target();
+    if (!target) {
+        return childPath;
     }
-
-    return { path: childPath, fileName: name };
+    if (!GLib.path_is_absolute(target)) {
+        target = GLib.build_filenamev([directoryPath, target]);
+    }
+    return target;
 }
 
 function parseFolderEntry(dirPath, dirName, sidecar) {
@@ -353,60 +344,102 @@ function _readTimes(info, item) {
     }
 }
 
-// Attribute je Eintrag - dieselben beim synchronen und beim asynchronen
-// Auflisten (Schritt 4, V4d).
-var ENTRY_ATTRIBUTES = "standard::name,standard::type,time::modified,time::changed";
+// Attribute je Eintrag. Verweise: Art des Ziels (FileQueryInfoFlags.NONE),
+// dazu Ziel und "ist Verweis" - so braucht kein Eintrag einen eigenen
+// Statusaufruf.
+var ENTRY_ATTRIBUTES = "standard::name,standard::type,standard::is-symlink,"
+    + "standard::symlink-target,time::modified,time::changed";
 
 // Einen aufgelisteten Eintrag (Gio.FileInfo) aufbereiten und an items
-// anhaengen. Liest bei Verweisen, .desktop-Dateien und Dokumenten einzeln
-// vom Ordner (Ziel, Lesbarkeit, Inhalt).
-function _collectEntry(directoryPath, info, sidecar, items) {
+// anhaengen. .desktop-Dateien werden asynchron gelesen, Dokumente asynchron
+// zur Probe geoeffnet (nur Lesbares wird gezeigt, wie bisher). Defekte
+// Verweise, Geraete und Sockets erscheinen nicht.
+// Liefert true, wenn ein asynchroner Schritt laeuft - dann ruft er next()
+// (ausser nach cancel()); sonst false.
+function _collectEntry(directoryPath, info, sidecar, items, cancellable, next) {
     const name = info.get_name();
     if (name.charAt(0) === ".") {
-        return;
+        return false;
     }
 
     const fileType = info.get_file_type();
-    const resolved = resolveChildPath(directoryPath, name);
-    const scanPath = resolved.path;
-    const entryName = resolved.fileName;
+    const scanPath = _entryPath(directoryPath, info, name);
 
-    if (fileType === Gio.FileType.DIRECTORY
-        || (fileType === Gio.FileType.SYMBOLIC_LINK
-            && isDirectoryPath(scanPath))) {
-        const folder = parseFolderEntry(scanPath, entryName, sidecar);
+    if (fileType === Gio.FileType.DIRECTORY) {
+        const folder = parseFolderEntry(scanPath, name, sidecar);
         folder.enabled = !isDisabled(sidecar, folder.id);
         folder.pinned = isPinned(sidecar, folder.id);
         _readTimes(info, folder);
         items.push(folder);
-        return;
+        return false;
     }
 
-    if (fileType === Gio.FileType.REGULAR
-        || fileType === Gio.FileType.SYMBOLIC_LINK) {
-        const baseName = entryName;
-        if (baseName.endsWith(".desktop")
-            && isRegularFilePath(scanPath)) {
-            const app = parseDesktopEntry(scanPath, baseName);
-            if (!app) {
-                return;
-            }
-            app.enabled = !isDisabled(sidecar, app.id);
-            app.pinned = isPinned(sidecar, app.id);
-            _readTimes(info, app);
-            items.push(app);
-        } else if (isRegularFilePath(scanPath)) {
-            const doc = parseDocumentEntry(scanPath);
-            doc.id = makeItemId("document", baseName);
-            doc.fileName = baseName;
-            doc.enabled = !isDisabled(sidecar, doc.id);
-            doc.pinned = isPinned(sidecar, doc.id);
-            _readTimes(info, doc);
-            items.push(doc);
-        }
+    if (fileType !== Gio.FileType.REGULAR) {
+        return false;
     }
+
+    if (name.endsWith(".desktop")) {
+        loadDesktopEntry(scanPath, name, cancellable, app => {
+            try {
+                if (app) {
+                    app.enabled = !isDisabled(sidecar, app.id);
+                    app.pinned = isPinned(sidecar, app.id);
+                    _readTimes(info, app);
+                    items.push(app);
+                }
+            } finally {
+                next();
+            }
+        });
+        return true;
+    }
+
+    _probeReadable(scanPath, cancellable, readable => {
+        try {
+            if (readable) {
+                const doc = parseDocumentEntry(scanPath);
+                doc.id = makeItemId("document", name);
+                doc.fileName = name;
+                doc.enabled = !isDisabled(sidecar, doc.id);
+                doc.pinned = isPinned(sidecar, doc.id);
+                _readTimes(info, doc);
+                items.push(doc);
+            }
+        } finally {
+            next();
+        }
+    });
+    return true;
 }
 
+// Eintraege nacheinander aufbereiten - hoechstens ein Zugriff zugleich, die
+// Reihenfolge bleibt die des Auflistens. done(items)
+function _collectEntries(directoryPath, infos, sidecar, cancellable, done) {
+    const items = [];
+    let index = 0;
+    const next = () => {
+        while (index < infos.length) {
+            if (cancellable.is_cancelled()) {
+                return;
+            }
+            const info = infos[index++];
+            let pending = false;
+            try {
+                pending = _collectEntry(directoryPath, info, sidecar, items, cancellable, next);
+            } catch (e) {
+                // Einzelner Eintrag unlesbar - die uebrigen trotzdem zeigen.
+                pending = false;
+            }
+            if (pending) {
+                return;
+            }
+        }
+        if (!cancellable.is_cancelled()) {
+            done(items);
+        }
+    };
+    next();
+}
 // Reihenfolge, gespeicherte Reihenfolge, Sortierart und Angepinnte - fuer
 // beide Wege gleich.
 function _finishScan(directoryPath, items, sidecar, options) {
@@ -434,64 +467,125 @@ function _finishScan(directoryPath, items, sidecar, options) {
     };
 }
 
-function scanDirectory(directoryPath, options) {
-    let sidecar = readSidecar(directoryPath);
-    const items = [];
-
-    if (!isDirectoryPath(directoryPath)) {
-        return { items: [], sidecar: sidecar, error: "missing" };
-    }
-
-    let dir;
-    try {
-        dir = Gio.File.new_for_path(directoryPath);
-    } catch (e) {
-        return { items: [], sidecar: sidecar, error: "unreadable" };
-    }
-
-    let enumerator;
-    try {
-        enumerator = dir.enumerate_children(
-            ENTRY_ATTRIBUTES,
-            Gio.FileQueryInfoFlags.NONE,
-            null
-        );
-    } catch (e) {
-        global.logError(e, "aVinceLaunch: failed to enumerate " + directoryPath);
-        return { items: [], sidecar: sidecar, error: "unreadable" };
-    }
-
-    let info;
-    try {
-        while ((info = enumerator.next_file(null)) !== null) {
-            _collectEntry(directoryPath, info, sidecar, items);
-        }
-    } finally {
-        // P58: Aufzaehler schliessen (gab den Ordner sonst erst spaeter frei).
-        try {
-            enumerator.close(null);
-        } catch (e) {
-            // Schon geschlossen.
-        }
-    }
-
-    return _finishScan(directoryPath, items, sidecar, options);
+function emptySidecar() {
+    return {
+        version: 1,
+        order: [],
+        disabled: [],
+        folderClickMode: null,
+        itemStyles: {},
+        pinned: [],
+        missingSince: {},
+        extra: {}
+    };
 }
 
-// Schritt 4, V4d: dasselbe Ergebnis wie scanDirectory, aber aus Eintraegen,
-// die schon (asynchron) aufgelistet wurden - lib/portalScanner.js
-// scanLinkDirectoryAsync. Ruft nur, wer weiss, dass der Ordner gerade
-// geantwortet hat: Reihenfolge-Datei und einzelne Eintraege werden hier
-// synchron gelesen, wie bisher.
-function scanDirectoryFromInfos(directoryPath, infos, options) {
-    const sidecar = readSidecar(directoryPath);
-    const items = [];
-    infos.forEach(info => {
-        try {
-            _collectEntry(directoryPath, info, sidecar, items);
-        } catch (e) {
-            // Einzelner Eintrag unlesbar - die uebrigen trotzdem zeigen.
+const BATCH_SIZE = 64;
+
+function _logError(e, text) {
+    if (typeof global !== "undefined" && global.logError) {
+        global.logError(e, text);
+    }
+}
+
+// Einen Fence-Ordner asynchron einlesen - lokal wie auf einem Netzlaufwerk.
+// Auflisten stapelweise, danach jeder Eintrag einzeln (_collectEntries); erst
+// dann Reihenfolge-Datei, Sortierart und Angepinnte wie bisher (_finishScan).
+// Die Reihenfolge-Datei wird synchron gelesen (und mit persistOrder
+// geschrieben): klein, und erst, nachdem der Ordner gerade geantwortet hat.
+// options: { persistOrder, folderSort, sortMode, ignoreSavedOrder }
+// callback(result): { items, manualItems, sidecar, error } - error null |
+// "missing" (Ordner fehlt oder ist keiner) | "unreadable"
+// Rueckgabe: Gio.Cancellable - nach cancel() kommt kein Rueckruf.
+function scanDirectoryAsync(directoryPath, options, callback) {
+    const cancellable = new Gio.Cancellable();
+    const infos = [];
+
+    function deliver(result) {
+        if (!cancellable.is_cancelled()) {
+            callback(result);
         }
-    });
-    return _finishScan(directoryPath, items, sidecar, options);
+    }
+
+    function fail(error) {
+        deliver({ items: [], manualItems: [], sidecar: emptySidecar(), error: error });
+    }
+
+    function finishListing() {
+        if (cancellable.is_cancelled()) {
+            return;
+        }
+        let sidecar;
+        try {
+            sidecar = readSidecar(directoryPath);
+        } catch (e) {
+            fail("unreadable");
+            return;
+        }
+        _collectEntries(directoryPath, infos, sidecar, cancellable, items => {
+            let scan;
+            try {
+                scan = _finishScan(directoryPath, items, sidecar, options);
+            } catch (e) {
+                _logError(e, "aVinceLaunch: failed to read " + directoryPath);
+                fail("unreadable");
+                return;
+            }
+            deliver(scan);
+        });
+    }
+
+    function nextBatch(enumerator) {
+        enumerator.next_files_async(BATCH_SIZE, GLib.PRIORITY_LOW, cancellable, (source, result) => {
+            let batch;
+            try {
+                batch = source.next_files_finish(result);
+            } catch (e) {
+                if (!cancellable.is_cancelled()) {
+                    _logError(e, "aVinceLaunch: failed to enumerate " + directoryPath);
+                }
+                enumerator.close_async(GLib.PRIORITY_LOW, null, () => {});
+                fail("unreadable");
+                return;
+            }
+            if (!batch || batch.length === 0) {
+                // P58: Aufzaehler schliessen (gab den Ordner sonst erst spaeter frei).
+                enumerator.close_async(GLib.PRIORITY_LOW, null, () => {});
+                finishListing();
+                return;
+            }
+            batch.forEach(info => infos.push(info));
+            nextBatch(enumerator);
+        });
+    }
+
+    if (!directoryPath) {
+        GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+            fail("missing");
+            return GLib.SOURCE_REMOVE;
+        });
+        return cancellable;
+    }
+
+    Gio.File.new_for_path(directoryPath).enumerate_children_async(ENTRY_ATTRIBUTES,
+        Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_LOW, cancellable, (source, result) => {
+            let enumerator;
+            try {
+                enumerator = source.enumerate_children_finish(result);
+            } catch (e) {
+                if (cancellable.is_cancelled()) {
+                    return;
+                }
+                const missing = e.matches && (e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)
+                    || e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_DIRECTORY));
+                if (!missing) {
+                    _logError(e, "aVinceLaunch: failed to enumerate " + directoryPath);
+                }
+                fail(missing ? "missing" : "unreadable");
+                return;
+            }
+            nextBatch(enumerator);
+        });
+
+    return cancellable;
 }

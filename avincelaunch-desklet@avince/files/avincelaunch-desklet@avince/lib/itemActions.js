@@ -19,14 +19,27 @@ function _entryFile(directoryPath, fileName) {
     return Gio.File.new_for_path(GLib.build_filenamev([directoryPath, fileName]));
 }
 
-// Ohne Verweisen zu folgen: auch ein Verweis mit verlorenem Ziel zaehlt.
-function _exists(file) {
-    try {
-        file.query_info("standard::type", Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-        return true;
-    } catch (e) {
-        return false;
+// Fehler eines Versuchs in den Grund uebersetzen - statt vorher zu pruefen,
+// ob Quelle oder Ziel da sind (das waere ein eigener, synchroner Zugriff).
+// Verschieben und Papierkorb arbeiten ohne Verweisen zu folgen: auch ein
+// Verweis mit verlorenem Ziel zaehlt als vorhanden.
+function _reasonOf(error) {
+    if (error && error.matches) {
+        if (error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND)) {
+            return "missing";
+        }
+        if (error.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.EXISTS)) {
+            return "exists";
+        }
     }
+    return "failed";
+}
+
+function _idle(fn) {
+    GLib.idle_add(GLib.PRIORITY_DEFAULT, () => {
+        fn();
+        return GLib.SOURCE_REMOVE;
+    });
 }
 
 function _removeFromList(list, id) {
@@ -82,94 +95,145 @@ function _putIntoSidecar(directoryPath, itemId, taken, index) {
     Sidecar.writeSidecar(directoryPath, sidecar);
 }
 
-// Liefert { ok: true, record } oder { ok: false, reason: "exists" |
-// "missing" | "same" | "failed", error }.
-function moveEntry(sourceDir, targetDir, fileName, itemId) {
+// Rueckruf callback({ ok: true, record }) oder { ok: false, reason:
+// "exists" | "missing" | "same" | "failed", error } - immer asynchron.
+// Ein laufendes Verschieben wird nicht abgebrochen (kein halb verschobener
+// Eintrag); wer das Ergebnis nicht mehr braucht, ignoriert den Rueckruf.
+function moveEntry(sourceDir, targetDir, fileName, itemId, callback) {
     if (!sourceDir || !targetDir || !fileName) {
-        return { ok: false, reason: "failed" };
+        _idle(() => callback({ ok: false, reason: "failed" }));
+        return;
     }
     if (GLib.canonicalize_filename(sourceDir, null)
         === GLib.canonicalize_filename(targetDir, null)) {
-        return { ok: false, reason: "same" };
+        _idle(() => callback({ ok: false, reason: "same" }));
+        return;
     }
     const source = _entryFile(sourceDir, fileName);
     const target = _entryFile(targetDir, fileName);
-    if (!_exists(source)) {
-        return { ok: false, reason: "missing" };
-    }
-    if (_exists(target)) {
-        return { ok: false, reason: "exists" };
-    }
-    try {
-        // Ohne OVERWRITE: ein gleichnamiger Eintrag im Ziel bleibt in jedem
-        // Fall unangetastet. Gleiches Dateisystem = Umbenennen.
-        source.move(target, Gio.FileCopyFlags.NOFOLLOW_SYMLINKS | Gio.FileCopyFlags.ALL_METADATA,
-            null, null);
-    } catch (e) {
-        return { ok: false, reason: "failed", error: e };
-    }
-    const taken = _takeOutOfSidecar(sourceDir, itemId);
-    _putIntoSidecar(targetDir, itemId, taken, -1);
-    return {
-        ok: true,
-        record: {
-            sourceDir: sourceDir,
-            targetDir: targetDir,
-            fileName: fileName,
-            itemId: itemId,
-            index: taken.index,
-            disabled: taken.disabled,
-            style: taken.style,
-            pinned: taken.pinned
-        }
-    };
+    // Ohne OVERWRITE: ein gleichnamiger Eintrag im Ziel bleibt in jedem Fall
+    // unangetastet (Fehler EXISTS). Fehlt die Quelle: NOT_FOUND. Gleiches
+    // Dateisystem = Umbenennen.
+    source.move_async(target, Gio.FileCopyFlags.NOFOLLOW_SYMLINKS | Gio.FileCopyFlags.ALL_METADATA,
+        GLib.PRIORITY_DEFAULT, null, null, (file, result) => {
+            try {
+                file.move_finish(result);
+            } catch (e) {
+                const reason = _reasonOf(e);
+                callback(reason === "failed" ? { ok: false, reason: reason, error: e }
+                    : { ok: false, reason: reason });
+                return;
+            }
+            let taken;
+            try {
+                taken = _takeOutOfSidecar(sourceDir, itemId);
+                _putIntoSidecar(targetDir, itemId, taken, -1);
+            } catch (e) {
+                taken = taken || { index: -1, disabled: false, style: null, pinned: false };
+            }
+            callback({
+                ok: true,
+                record: {
+                    sourceDir: sourceDir,
+                    targetDir: targetDir,
+                    fileName: fileName,
+                    itemId: itemId,
+                    index: taken.index,
+                    disabled: taken.disabled,
+                    style: taken.style,
+                    pinned: taken.pinned
+                }
+            });
+        });
 }
 
 // Genau eine Verschiebung zuruecknehmen; der Eintrag kommt an seinen alten
-// Platz in der Reihenfolge.
-function undoMove(record) {
+// Platz in der Reihenfolge. callback(result) wie moveEntry.
+function undoMove(record, callback) {
     if (!record) {
-        return { ok: false, reason: "failed" };
+        _idle(() => callback({ ok: false, reason: "failed" }));
+        return;
     }
-    const result = moveEntry(record.targetDir, record.sourceDir, record.fileName, record.itemId);
-    if (result.ok && record.index >= 0) {
-        _putIntoSidecar(record.sourceDir, record.itemId,
-            { disabled: record.disabled, style: record.style, pinned: record.pinned }, record.index);
-    }
-    return result;
+    moveEntry(record.targetDir, record.sourceDir, record.fileName, record.itemId, result => {
+        if (result.ok && record.index >= 0) {
+            try {
+                _putIntoSidecar(record.sourceDir, record.itemId,
+                    { disabled: record.disabled, style: record.style, pinned: record.pinned }, record.index);
+            } catch (e) {
+                // Eintrag ist zurueck; nur sein alter Platz fehlt.
+            }
+        }
+        callback(result);
+    });
 }
 
 // Eintrag in den Papierkorb (wie der Dialog, OrderListWidget.py).
-function trashEntry(directoryPath, fileName, itemId) {
+// callback({ ok: true }) oder { ok: false, reason: "missing" | "failed", error }
+function trashEntry(directoryPath, fileName, itemId, callback) {
     const file = _entryFile(directoryPath, fileName);
-    if (!_exists(file)) {
-        return { ok: false, reason: "missing" };
-    }
-    try {
-        file.trash(null);
-    } catch (e) {
-        return { ok: false, reason: "failed", error: e };
-    }
-    _takeOutOfSidecar(directoryPath, itemId);
-    return { ok: true };
+    file.trash_async(GLib.PRIORITY_DEFAULT, null, (source, result) => {
+        try {
+            source.trash_finish(result);
+        } catch (e) {
+            if (_reasonOf(e) === "missing") {
+                callback({ ok: false, reason: "missing" });
+            } else {
+                callback({ ok: false, reason: "failed", error: e });
+            }
+            return;
+        }
+        try {
+            _takeOutOfSidecar(directoryPath, itemId);
+        } catch (e) {
+            // Eintrag ist im Papierkorb; das Sidecar raeumt das naechste Einlesen auf.
+        }
+        callback({ ok: true });
+    });
 }
 
 // Anzahl der Eintraege in einem Unterordner (fuer die Rueckfrage); -1 bei
-// Fehler. Versteckte Dateien (Sidecar) zaehlen nicht.
-function countEntries(directoryPath) {
+// Fehler. Versteckte Dateien (Sidecar) zaehlen nicht. callback(count) -
+// nach cancellable.cancel() kein Rueckruf.
+function countEntries(directoryPath, cancellable, callback) {
     let count = 0;
-    try {
-        const enumerator = Gio.File.new_for_path(directoryPath).enumerate_children(
-            "standard::name,standard::is-hidden", Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-        let info;
-        while ((info = enumerator.next_file(null)) !== null) {
-            if (!info.get_is_hidden()) {
-                count++;
-            }
+    const done = value => {
+        if (!cancellable || !cancellable.is_cancelled()) {
+            callback(value);
         }
-        enumerator.close(null);
-    } catch (e) {
-        return -1;
-    }
-    return count;
+    };
+    const nextBatch = enumerator => {
+        enumerator.next_files_async(64, GLib.PRIORITY_DEFAULT, cancellable, (source, result) => {
+            let infos;
+            try {
+                infos = source.next_files_finish(result);
+            } catch (e) {
+                enumerator.close_async(GLib.PRIORITY_DEFAULT, null, () => {});
+                done(-1);
+                return;
+            }
+            if (!infos || infos.length === 0) {
+                enumerator.close_async(GLib.PRIORITY_DEFAULT, null, () => {});
+                done(count);
+                return;
+            }
+            infos.forEach(info => {
+                if (!info.get_is_hidden()) {
+                    count++;
+                }
+            });
+            nextBatch(enumerator);
+        });
+    };
+    Gio.File.new_for_path(directoryPath).enumerate_children_async(
+        "standard::name,standard::is-hidden", Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+        GLib.PRIORITY_DEFAULT, cancellable, (source, result) => {
+            let enumerator;
+            try {
+                enumerator = source.enumerate_children_finish(result);
+            } catch (e) {
+                done(-1);
+                return;
+            }
+            nextBatch(enumerator);
+        });
 }
