@@ -4,21 +4,32 @@
     "pages": [
       "connection",
       "photos",
+      "caption",
       "look"
     ],
     "connection": {
       "type": "page",
       "title": "Connection",
       "sections": [
-        "conn"
+        "conn",
+        "perm"
       ]
     },
     "photos": {
       "type": "page",
       "title": "Photos",
       "sections": [
-        "src",
+        "lists",
+        "filters",
         "sched"
+      ]
+    },
+    "caption": {
+      "type": "page",
+      "title": "Text",
+      "sections": [
+        "text-parts",
+        "text-look"
       ]
     },
     "look": {
@@ -27,7 +38,7 @@
       "sections": [
         "size",
         "style",
-        "text"
+        "trans"
       ]
     },
     "conn": {
@@ -36,18 +47,42 @@
       "keys": [
         "server-url",
         "api-key",
-        "conn-help",
         "fetch-now"
       ]
     },
-    "src": {
+    "perm": {
+      "type": "section",
+      "title": "API key permissions",
+      "keys": [
+        "perm-help",
+        "permissions",
+        "open-keys"
+      ]
+    },
+    "lists": {
+      "type": "section",
+      "title": "People, albums and tags",
+      "keys": [
+        "lists-help",
+        "fetch-lists",
+        "people",
+        "albums",
+        "tags"
+      ]
+    },
+    "filters": {
       "type": "section",
       "title": "Which photos",
       "keys": [
-        "source",
-        "source-name",
-        "include-screenshots",
-        "smart-crop"
+        "on-this-day",
+        "favorites",
+        "min-rating",
+        "period",
+        "year-from",
+        "year-to",
+        "places",
+        "query",
+        "include-screenshots"
       ]
     },
     "sched": {
@@ -57,6 +92,32 @@
         "count",
         "refresh-hours",
         "delay"
+      ]
+    },
+    "text-parts": {
+      "type": "section",
+      "title": "What to show",
+      "keys": [
+        "caption",
+        "show-date",
+        "date-format",
+        "show-years-ago",
+        "show-place",
+        "place",
+        "show-names",
+        "show-description"
+      ]
+    },
+    "text-look": {
+      "type": "section",
+      "title": "Look",
+      "keys": [
+        "caption-position",
+        "caption-size",
+        "caption-shadow",
+        "caption-bg",
+        "caption-bg-opacity",
+        "caption-bg-radius"
       ]
     },
     "size": {
@@ -72,17 +133,24 @@
       "title": "Style",
       "keys": [
         "radius",
-        "shadow",
-        "fade"
+        "smart-crop",
+        "ken-burns"
       ]
     },
-    "text": {
+    "trans": {
       "type": "section",
-      "title": "Caption",
+      "title": "Transitions",
       "keys": [
-        "date-format",
-        "place",
-        "caption-size"
+        "trans-help",
+        "t-fade",
+        "t-slide-left",
+        "t-slide-right",
+        "t-slide-up",
+        "t-slide-down",
+        "t-zoom",
+        "t-flip",
+        "trans-order",
+        "fade"
       ]
     }
   },
@@ -98,43 +166,141 @@
     "description": "API key",
     "tooltip": "Immich → Account Settings → API Keys → New API Key"
   },
-  "conn-help": {
-    "type": "label",
-    "description": "Create the API key in Immich with the permissions asset.read, asset.view and face.read (plus album.read or person.read if you pick an album or a person)."
-  },
   "fetch-now": {
     "type": "button",
     "description": "Fetch new photos now",
     "callback": "on_fetch_now"
   },
-  "source": {
+  "perm-help": {
+    "type": "label",
+    "description": "When you create the API key in Immich, tick exactly the permissions below. The list follows your choices in these settings."
+  },
+  "permissions": {
+    "type": "textview",
+    "height": 120,
+    "default": "asset.read, asset.view, face.read",
+    "description": "Permissions the key needs",
+    "tooltip": "Filled in automatically from your choices"
+  },
+  "open-keys": {
+    "type": "button",
+    "description": "Open API keys in Immich",
+    "callback": "on_open_keys"
+  },
+  "lists-help": {
+    "type": "label",
+    "description": "Tick the people, albums and tags to show. Nothing ticked means all. Fetching the lists needs person.read, album.read and tag.read, and asset.statistics to count the photos of each person and tag."
+  },
+  "fetch-lists": {
+    "type": "button",
+    "description": "Fetch people, albums and tags from Immich",
+    "callback": "on_fetch_lists"
+  },
+  "people": {
+    "type": "list",
+    "default": [],
+    "description": "People",
+    "show-buttons": false,
+    "height": 160,
+    "columns": [
+      { "id": "use", "title": "Show", "type": "boolean" },
+      { "id": "name", "title": "Person", "type": "string" },
+      { "id": "count", "title": "Photos", "type": "string", "align": 1.0 }
+    ]
+  },
+  "albums": {
+    "type": "list",
+    "default": [],
+    "description": "Albums",
+    "show-buttons": false,
+    "height": 120,
+    "columns": [
+      { "id": "use", "title": "Show", "type": "boolean" },
+      { "id": "name", "title": "Album", "type": "string" },
+      { "id": "count", "title": "Photos", "type": "string", "align": 1.0 }
+    ]
+  },
+  "tags": {
+    "type": "list",
+    "default": [],
+    "description": "Tags",
+    "show-buttons": false,
+    "height": 100,
+    "columns": [
+      { "id": "use", "title": "Show", "type": "boolean" },
+      { "id": "name", "title": "Tag", "type": "string" },
+      { "id": "count", "title": "Photos", "type": "string", "align": 1.0 }
+    ]
+  },
+  "on-this-day": {
+    "type": "switch",
+    "default": false,
+    "description": "On this day",
+    "tooltip": "Photos taken on today's date in earlier years. Falls back to the other choices when there are none."
+  },
+  "favorites": {
+    "type": "switch",
+    "default": false,
+    "description": "Favorites only"
+  },
+  "min-rating": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 5,
+    "step": 1,
+    "units": "stars",
+    "description": "At least",
+    "tooltip": "0 means any rating"
+  },
+  "period": {
     "type": "combobox",
     "default": "all",
-    "description": "Show",
+    "description": "Taken",
     "options": {
-      "All photos": "all",
-      "Favorites": "favorites",
-      "One album": "album",
-      "One person": "person"
+      "Any time": "all",
+      "In the last 12 months": "last-year",
+      "In the last 5 years": "last-5-years",
+      "Between the years below": "years"
     }
   },
-  "source-name": {
+  "year-from": {
+    "type": "spinbutton",
+    "default": 2015,
+    "min": 1900,
+    "max": 2100,
+    "step": 1,
+    "units": "",
+    "description": "From year",
+    "dependency": "period=years"
+  },
+  "year-to": {
+    "type": "spinbutton",
+    "default": 2025,
+    "min": 1900,
+    "max": 2100,
+    "step": 1,
+    "units": "",
+    "description": "To year",
+    "dependency": "period=years"
+  },
+  "places": {
     "type": "entry",
     "default": "",
-    "description": "Album or person name",
-    "tooltip": "Used when Show is set to one album or one person"
+    "description": "Places",
+    "tooltip": "Cities or countries as Immich names them, separated by commas, for example Bergen, Spain"
+  },
+  "query": {
+    "type": "entry",
+    "default": "",
+    "description": "Search for",
+    "tooltip": "Uses Immich smart search, for example beach, snow or sunset"
   },
   "include-screenshots": {
     "type": "switch",
     "default": false,
     "description": "Include screenshots and saved images",
     "tooltip": "Off: only photos taken with a camera"
-  },
-  "smart-crop": {
-    "type": "switch",
-    "default": true,
-    "description": "Crop around faces",
-    "tooltip": "Uses Immich face detection so heads are not cut off."
   },
   "count": {
     "type": "spinbutton",
@@ -163,6 +329,122 @@
     "units": "seconds",
     "description": "Time per photo"
   },
+  "caption": {
+    "type": "switch",
+    "default": true,
+    "description": "Show text on the photo"
+  },
+  "show-date": {
+    "type": "switch",
+    "default": true,
+    "description": "Date",
+    "dependency": "caption"
+  },
+  "date-format": {
+    "type": "combobox",
+    "default": "%-d %B %Y",
+    "description": "Date format",
+    "dependency": "show-date",
+    "options": {
+      "27 July 2023": "%-d %B %Y",
+      "27. July 2023": "%-d. %B %Y",
+      "July 27, 2023": "%B %-d, %Y",
+      "July 2023": "%B %Y",
+      "2023": "%Y",
+      "2023-07-27": "%Y-%m-%d"
+    }
+  },
+  "show-years-ago": {
+    "type": "switch",
+    "default": false,
+    "description": "How long ago (5 years ago)",
+    "dependency": "caption"
+  },
+  "show-place": {
+    "type": "switch",
+    "default": true,
+    "description": "Place",
+    "dependency": "caption"
+  },
+  "place": {
+    "type": "combobox",
+    "default": "city",
+    "description": "Place format",
+    "dependency": "show-place",
+    "options": {
+      "City": "city",
+      "City, country": "city-country",
+      "Country": "country"
+    }
+  },
+  "show-names": {
+    "type": "switch",
+    "default": false,
+    "description": "Names of the people in the photo",
+    "dependency": "caption"
+  },
+  "show-description": {
+    "type": "switch",
+    "default": false,
+    "description": "Description from Immich",
+    "dependency": "caption"
+  },
+  "caption-position": {
+    "type": "combobox",
+    "default": "bottom-left",
+    "description": "Position",
+    "dependency": "caption",
+    "options": {
+      "Bottom left": "bottom-left",
+      "Bottom centre": "bottom-center",
+      "Bottom right": "bottom-right",
+      "Top left": "top-left",
+      "Top centre": "top-center",
+      "Top right": "top-right"
+    }
+  },
+  "caption-size": {
+    "type": "spinbutton",
+    "default": 10.5,
+    "min": 6,
+    "max": 30,
+    "step": 0.5,
+    "units": "pt",
+    "description": "Text size",
+    "dependency": "caption"
+  },
+  "caption-shadow": {
+    "type": "switch",
+    "default": true,
+    "description": "Text shadow",
+    "dependency": "caption"
+  },
+  "caption-bg": {
+    "type": "switch",
+    "default": false,
+    "description": "Background behind the text",
+    "dependency": "caption"
+  },
+  "caption-bg-opacity": {
+    "type": "spinbutton",
+    "default": 45,
+    "min": 5,
+    "max": 100,
+    "step": 5,
+    "units": "%",
+    "description": "Background opacity",
+    "dependency": "caption-bg"
+  },
+  "caption-bg-radius": {
+    "type": "spinbutton",
+    "default": 8,
+    "min": 0,
+    "max": 40,
+    "step": 1,
+    "units": "px",
+    "description": "Background corner radius",
+    "dependency": "caption-bg"
+  },
   "width": {
     "type": "spinbutton",
     "default": 400,
@@ -190,10 +472,65 @@
     "units": "px",
     "description": "Corner radius"
   },
-  "shadow": {
+  "smart-crop": {
     "type": "switch",
     "default": true,
-    "description": "Drop shadow"
+    "description": "Crop around faces",
+    "tooltip": "Uses Immich face detection so heads are not cut off."
+  },
+  "ken-burns": {
+    "type": "switch",
+    "default": false,
+    "description": "Slow zoom (Ken Burns)",
+    "tooltip": "Zooms slowly towards the people while a photo is shown"
+  },
+  "trans-help": {
+    "type": "label",
+    "description": "Tick the transitions to use. With several ticked, the widget changes between them."
+  },
+  "t-fade": {
+    "type": "switch",
+    "default": true,
+    "description": "Fade"
+  },
+  "t-slide-left": {
+    "type": "switch",
+    "default": false,
+    "description": "Slide to the left"
+  },
+  "t-slide-right": {
+    "type": "switch",
+    "default": false,
+    "description": "Slide to the right"
+  },
+  "t-slide-up": {
+    "type": "switch",
+    "default": false,
+    "description": "Slide up"
+  },
+  "t-slide-down": {
+    "type": "switch",
+    "default": false,
+    "description": "Slide down"
+  },
+  "t-zoom": {
+    "type": "switch",
+    "default": false,
+    "description": "Zoom"
+  },
+  "t-flip": {
+    "type": "switch",
+    "default": false,
+    "description": "Flip"
+  },
+  "trans-order": {
+    "type": "combobox",
+    "default": "random",
+    "description": "Order",
+    "options": {
+      "Random": "random",
+      "In turn": "in-turn"
+    }
   },
   "fade": {
     "type": "spinbutton",
@@ -202,38 +539,10 @@
     "max": 5000,
     "step": 100,
     "units": "ms",
-    "description": "Fade duration"
+    "description": "Transition duration"
   },
-  "date-format": {
-    "type": "combobox",
-    "default": "%-d %B %Y",
-    "description": "Date",
-    "options": {
-      "27 July 2023": "%-d %B %Y",
-      "27. July 2023": "%-d. %B %Y",
-      "July 27, 2023": "%B %-d, %Y",
-      "July 2023": "%B %Y",
-      "2023-07-27": "%Y-%m-%d",
-      "Hidden": ""
-    }
-  },
-  "place": {
-    "type": "combobox",
-    "default": "city",
-    "description": "Place",
-    "options": {
-      "City": "city",
-      "City, country": "city-country",
-      "Hidden": ""
-    }
-  },
-  "caption-size": {
-    "type": "spinbutton",
-    "default": 10.5,
-    "min": 6,
-    "max": 30,
-    "step": 0.5,
-    "units": "pt",
-    "description": "Text size"
+  "hidden-photos": {
+    "type": "generic",
+    "default": []
   }
 }

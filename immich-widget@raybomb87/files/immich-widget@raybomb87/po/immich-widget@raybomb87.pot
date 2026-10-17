@@ -5,10 +5,9 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: immich-widget@raybomb87 1.0.0\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
-"issues\n"
-"POT-Creation-Date: 2026-10-16 22:51+0200\n"
+"Project-Id-Version: immich-widget@raybomb87 1.1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-10-17 17:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,267 +16,434 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:101
+#: desklet.js:191
 msgid "Right-click and choose Configure to connect to your Immich server."
 msgstr ""
 
-#: desklet.js:103
+#: desklet.js:193
 msgid "Fetching photos…"
 msgstr ""
 
-#: desklet.js:105
+#: desklet.js:195
 msgid "No photos yet."
 msgstr ""
 
-#: desklet.js:232
+#: desklet.js:204 desklet.js:216
+msgid "Mark as favorite"
+msgstr ""
+
+#: desklet.js:206
+msgid "Don't show this photo again"
+msgstr ""
+
+#: desklet.js:216
+msgid "Remove from favorites"
+msgstr ""
+
+#: desklet.js:229 desklet.js:617
+msgid "Immich Widget"
+msgstr ""
+
+#: desklet.js:390
+#, javascript-format
+msgid "%d year ago"
+msgid_plural "%d years ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:466
 msgid "The server address is not valid."
 msgstr ""
 
-#: desklet.js:244
+#: desklet.js:478
 #, javascript-format
 msgid "Cannot reach Immich: %s"
 msgstr ""
 
-#: desklet.js:248
+#: desklet.js:482
 msgid "Immich rejected the API key."
 msgstr ""
 
-#: desklet.js:253
+#: desklet.js:489
+#, javascript-format
+msgid "The API key is missing the permission %s."
+msgstr ""
+
+#: desklet.js:491
 #, javascript-format
 msgid "Immich: %s"
 msgstr ""
 
-#: desklet.js:264
+#: desklet.js:512
 #, javascript-format
-msgid "Album not found: %s"
+msgid "Not found in Immich: %s"
 msgstr ""
 
-#: desklet.js:269
-#, javascript-format
-msgid "Person not found: %s"
+#: desklet.js:518
+msgid "people"
 msgstr ""
 
-#: desklet.js:389
+#: desklet.js:520
+msgid "albums"
+msgstr ""
+
+#: desklet.js:522
+msgid "tags"
+msgstr ""
+
+#: desklet.js:604
+#, javascript-format
+msgid "%d people"
+msgstr ""
+
+#: desklet.js:605
+#, javascript-format
+msgid "%d albums"
+msgstr ""
+
+#: desklet.js:606
+#, javascript-format
+msgid "%d tags"
+msgstr ""
+
+#: desklet.js:617
+#, javascript-format
+msgid "Fetched %s."
+msgstr ""
+
+#: desklet.js:741
 msgid "No photos found."
 msgstr ""
 
-#: desklet.js:411
+#: desklet.js:767
 msgid "No photos could be downloaded."
 msgstr ""
 
-#. metadata.json->name
-msgid "Immich Widget"
-msgstr ""
-
-#. metadata.json->description
 msgid "A photo slideshow on your desktop with photos from your Immich server"
 msgstr ""
 
-#. settings-schema.json->connection->title
 msgid "Connection"
 msgstr ""
 
-#. settings-schema.json->photos->title
 msgid "Photos"
 msgstr ""
 
-#. settings-schema.json->look->title
+msgid "Text"
+msgstr ""
+
 msgid "Appearance"
 msgstr ""
 
-#. settings-schema.json->conn->title
 msgid "Immich server"
 msgstr ""
 
-#. settings-schema.json->src->title
+msgid "API key permissions"
+msgstr ""
+
+msgid "People, albums and tags"
+msgstr ""
+
 msgid "Which photos"
 msgstr ""
 
-#. settings-schema.json->sched->title
 msgid "Updates"
 msgstr ""
 
-#. settings-schema.json->size->title
+msgid "What to show"
+msgstr ""
+
+msgid "Look"
+msgstr ""
+
 msgid "Size"
 msgstr ""
 
-#. settings-schema.json->style->title
 msgid "Style"
 msgstr ""
 
-#. settings-schema.json->text->title
-msgid "Caption"
+msgid "Transitions"
 msgstr ""
 
-#. settings-schema.json->server-url->description
 msgid "Server address"
 msgstr ""
 
-#. settings-schema.json->server-url->tooltip
 msgid "For example http://192.168.1.10:2283 or https://photos.example.com"
 msgstr ""
 
-#. settings-schema.json->api-key->description
 msgid "API key"
 msgstr ""
 
-#. settings-schema.json->api-key->tooltip
 msgid "Immich → Account Settings → API Keys → New API Key"
 msgstr ""
 
-#. settings-schema.json->conn-help->description
-msgid ""
-"Create the API key in Immich with the permissions asset.read, asset.view and "
-"face.read (plus album.read or person.read if you pick an album or a person)."
-msgstr ""
-
-#. settings-schema.json->fetch-now->description
 msgid "Fetch new photos now"
 msgstr ""
 
-#. settings-schema.json->source->description
+msgid ""
+"When you create the API key in Immich, tick exactly the permissions below. "
+"The list follows your choices in these settings."
+msgstr ""
+
+msgid "Permissions the key needs"
+msgstr ""
+
+msgid "Filled in automatically from your choices"
+msgstr ""
+
+msgid "Open API keys in Immich"
+msgstr ""
+
+msgid ""
+"Tick the people, albums and tags to show. Nothing ticked means all. Fetching"
+" the lists needs person.read, album.read and tag.read, and asset.statistics "
+"to count the photos of each person and tag."
+msgstr ""
+
+msgid "Fetch people, albums and tags from Immich"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
 msgid "Show"
 msgstr ""
 
-#. settings-schema.json->source->options
-msgid "All photos"
+msgid "Person"
 msgstr ""
 
-#. settings-schema.json->source->options
-msgid "Favorites"
+msgid "Albums"
 msgstr ""
 
-#. settings-schema.json->source->options
-msgid "One album"
+msgid "Album"
 msgstr ""
 
-#. settings-schema.json->source->options
-msgid "One person"
+msgid "Tags"
 msgstr ""
 
-#. settings-schema.json->source-name->description
-msgid "Album or person name"
+msgid "Tag"
 msgstr ""
 
-#. settings-schema.json->source-name->tooltip
-msgid "Used when Show is set to one album or one person"
+msgid "On this day"
 msgstr ""
 
-#. settings-schema.json->include-screenshots->description
+msgid ""
+"Photos taken on today's date in earlier years. Falls back to the other "
+"choices when there are none."
+msgstr ""
+
+msgid "Favorites only"
+msgstr ""
+
+msgid "At least"
+msgstr ""
+
+msgid "0 means any rating"
+msgstr ""
+
+msgid "Taken"
+msgstr ""
+
+msgid "Any time"
+msgstr ""
+
+msgid "In the last 12 months"
+msgstr ""
+
+msgid "In the last 5 years"
+msgstr ""
+
+msgid "Between the years below"
+msgstr ""
+
+msgid "From year"
+msgstr ""
+
+msgid "To year"
+msgstr ""
+
+msgid "Places"
+msgstr ""
+
+msgid ""
+"Cities or countries as Immich names them, separated by commas, for example "
+"Bergen, Spain"
+msgstr ""
+
+msgid "Search for"
+msgstr ""
+
+msgid "Uses Immich smart search, for example beach, snow or sunset"
+msgstr ""
+
 msgid "Include screenshots and saved images"
 msgstr ""
 
-#. settings-schema.json->include-screenshots->tooltip
 msgid "Off: only photos taken with a camera"
 msgstr ""
 
-#. settings-schema.json->smart-crop->description
-msgid "Crop around faces"
-msgstr ""
-
-#. settings-schema.json->smart-crop->tooltip
-msgid "Uses Immich face detection so heads are not cut off."
-msgstr ""
-
-#. settings-schema.json->count->units
-msgid "photos"
-msgstr ""
-
-#. settings-schema.json->count->description
 msgid "Photos per batch"
 msgstr ""
 
-#. settings-schema.json->refresh-hours->units
-msgid "hours"
-msgstr ""
-
-#. settings-schema.json->refresh-hours->description
 msgid "Fetch a new batch every"
 msgstr ""
 
-#. settings-schema.json->delay->units
-msgid "seconds"
-msgstr ""
-
-#. settings-schema.json->delay->description
 msgid "Time per photo"
 msgstr ""
 
-#. settings-schema.json->width->units
-#. settings-schema.json->height->units
-#. settings-schema.json->radius->units
-msgid "px"
+msgid "Show text on the photo"
 msgstr ""
 
-#. settings-schema.json->width->description
-msgid "Width"
-msgstr ""
-
-#. settings-schema.json->height->description
-msgid "Height"
-msgstr ""
-
-#. settings-schema.json->radius->description
-msgid "Corner radius"
-msgstr ""
-
-#. settings-schema.json->shadow->description
-msgid "Drop shadow"
-msgstr ""
-
-#. settings-schema.json->fade->units
-msgid "ms"
-msgstr ""
-
-#. settings-schema.json->fade->description
-msgid "Fade duration"
-msgstr ""
-
-#. settings-schema.json->date-format->description
 msgid "Date"
 msgstr ""
 
-#. settings-schema.json->date-format->options
+msgid "Date format"
+msgstr ""
+
 msgid "27 July 2023"
 msgstr ""
 
-#. settings-schema.json->date-format->options
 msgid "27. July 2023"
 msgstr ""
 
-#. settings-schema.json->date-format->options
 msgid "July 27, 2023"
 msgstr ""
 
-#. settings-schema.json->date-format->options
 msgid "July 2023"
 msgstr ""
 
-#. settings-schema.json->date-format->options
+msgid "2023"
+msgstr ""
+
 msgid "2023-07-27"
 msgstr ""
 
-#. settings-schema.json->date-format->options
-#. settings-schema.json->place->options
-msgid "Hidden"
+msgid "How long ago (5 years ago)"
 msgstr ""
 
-#. settings-schema.json->place->description
 msgid "Place"
 msgstr ""
 
-#. settings-schema.json->place->options
+msgid "Place format"
+msgstr ""
+
 msgid "City"
 msgstr ""
 
-#. settings-schema.json->place->options
 msgid "City, country"
 msgstr ""
 
-#. settings-schema.json->caption-size->units
-msgid "pt"
+msgid "Country"
 msgstr ""
 
-#. settings-schema.json->caption-size->description
+msgid "Names of the people in the photo"
+msgstr ""
+
+msgid "Description from Immich"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Bottom left"
+msgstr ""
+
+msgid "Bottom centre"
+msgstr ""
+
+msgid "Bottom right"
+msgstr ""
+
+msgid "Top left"
+msgstr ""
+
+msgid "Top centre"
+msgstr ""
+
+msgid "Top right"
+msgstr ""
+
 msgid "Text size"
+msgstr ""
+
+msgid "Text shadow"
+msgstr ""
+
+msgid "Background behind the text"
+msgstr ""
+
+msgid "Background opacity"
+msgstr ""
+
+msgid "Background corner radius"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Corner radius"
+msgstr ""
+
+msgid "Crop around faces"
+msgstr ""
+
+msgid "Uses Immich face detection so heads are not cut off."
+msgstr ""
+
+msgid "Slow zoom (Ken Burns)"
+msgstr ""
+
+msgid "Zooms slowly towards the people while a photo is shown"
+msgstr ""
+
+msgid ""
+"Tick the transitions to use. With several ticked, the widget changes between"
+" them."
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "Slide to the left"
+msgstr ""
+
+msgid "Slide to the right"
+msgstr ""
+
+msgid "Slide up"
+msgstr ""
+
+msgid "Slide down"
+msgstr ""
+
+msgid "Zoom"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "In turn"
+msgstr ""
+
+msgid "Transition duration"
+msgstr ""
+
+msgid "stars"
+msgstr ""
+
+msgid "photos"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "seconds"
 msgstr ""
