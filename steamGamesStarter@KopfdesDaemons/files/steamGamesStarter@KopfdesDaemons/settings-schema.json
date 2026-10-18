@@ -1,7 +1,42 @@
 {
-  "head0": {
-    "type": "header",
-    "description": "General"
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["steam-install-section", "size-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section", "labels-section", "buttons-section"]
+    },
+    "size-section": {
+      "type": "section",
+      "title": "Size",
+      "keys": ["scale-size", "max-desklet-height", "desklet-width", "number-of-games"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Style",
+      "keys": ["background-color", "hide-decorations", "show-game-header-image", "game-header-image-size"]
+    },
+    "labels-section": {
+      "type": "section",
+      "title": "Labels",
+      "keys": ["game-label-font-size", "show-last-played-label", "last-played-label-font-size"]
+    },
+    "buttons-section": {
+      "type": "section",
+      "title": "Buttons",
+      "keys": ["show-game-start-button", "show-game-shop-button"]
+    },
+    "steam-install-section": {
+      "type": "section",
+      "title": "Steam installation",
+      "keys": ["steam-install-type", "custom-install-path", "custom-cmd"]
+    }
   },
   "steam-install-type": {
     "type": "combobox",
@@ -9,8 +44,23 @@
     "description": "Steam installation type",
     "options": {
       "System package": "system package",
-      "Flatpak": "flatpak"
+      "Flatpak": "flatpak",
+      "Custom": "custom install"
     }
+  },
+  "custom-install-path": {
+    "type": "filechooser",
+    "default": "~/.steam/steam/steamapps/libraryfolders.vdf",
+    "dependency": "steam-install-type=custom install",
+    "description": "Select libraryfolders.vdf",
+    "allow-none": false,
+    "select-dir": false
+  },
+  "custom-cmd": {
+    "type": "entry",
+    "default": "/usr/games/steam",
+    "dependency": "steam-install-type=custom install",
+    "description": "CMD to launch Steam"
   },
   "number-of-games": {
     "type": "spinbutton",
@@ -20,21 +70,84 @@
     "step": 1,
     "description": "Maximum number of games"
   },
-  "head1": {
-    "type": "header",
-    "description": "Style"
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.05,
+    "description": "Desklet scale size"
   },
   "max-desklet-height": {
     "type": "scale",
-    "default": 400,
-    "min": 80,
-    "max": 1000,
+    "default": 32,
+    "min": 10,
+    "max": 100,
     "step": 1,
     "description": "Maximum height of the desklet"
+  },
+  "desklet-width": {
+    "type": "scale",
+    "default": 32,
+    "min": 25,
+    "max": 100,
+    "step": 1,
+    "description": "Width of the desklet"
   },
   "background-color": {
     "type": "colorchooser",
     "default": "rgba(58, 64, 74, 0.5)",
     "description": "Background color"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
+  },
+  "show-game-header-image": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show game header image"
+  },
+  "game-header-image-size": {
+    "type": "scale",
+    "default": 0.4,
+    "min": 0.1,
+    "max": 1,
+    "step": 0.05,
+    "dependency": "show-game-header-image",
+    "description": "Game header image size"
+  },
+  "game-label-font-size": {
+    "type": "spinbutton",
+    "default": 18,
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "description": "Game label font size"
+  },
+  "show-last-played-label": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show \"last played\" label"
+  },
+  "last-played-label-font-size": {
+    "type": "spinbutton",
+    "default": 16,
+    "min": 5,
+    "max": 50,
+    "step": 1,
+    "dependency": "show-last-played-label",
+    "description": "\"Last played\" label font size"
+  },
+  "show-game-start-button": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show game start button"
+  },
+  "show-game-shop-button": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show game shop button"
   }
 }
