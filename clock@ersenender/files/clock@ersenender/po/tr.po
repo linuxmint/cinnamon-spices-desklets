@@ -1,0 +1,266 @@
+# Turkish translation of the desklet clock@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: clock@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: 2026-10-10 01:14+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:53
+#, javascript-format
+msgid "Calendar week %d"
+msgstr "%d. takvim haftası"
+
+#: desklet.js:54
+#, javascript-format
+msgid "Week %d"
+msgstr "%d. hafta"
+
+#: desklet.js:55
+#, javascript-format
+msgid "Timer %s"
+msgstr "Zamanlayıcı %s"
+
+#: desklet.js:56
+msgid "Timer finished"
+msgstr "Süre doldu"
+
+#: desklet.js:57
+#, javascript-format
+msgid "Alarm %s"
+msgstr "Alarm %s"
+
+#: desklet.js:58
+#, javascript-format
+msgid "Timer: %d minutes"
+msgstr "Zamanlayıcı: %d dakika"
+
+#: desklet.js:59
+msgid "Stop timer"
+msgstr "Zamanlayıcıyı durdur"
+
+#: desklet.js:60
+msgid "Click: dismiss"
+msgstr "Tıkla: kapat"
+
+#: desklet.js:61
+msgid "Right-click the desklet: stop timer"
+msgstr "Desklete sağ tık: zamanlayıcıyı durdur"
+
+#: desklet.js:93
+msgid "%-d %B %Y"
+msgstr "%-d %B %Y"
+
+#: desklet.js:93
+msgid "%-d %B"
+msgstr "%-d %B"
+
+#: desklet.js:102
+msgid "%A, %-d %B %Y"
+msgstr "%-d %B %Y, %A"
+
+#: desklet.js:102
+msgid "%A, %-d %B"
+msgstr "%-d %B, %A"
+
+#. metadata.json->name
+#. settings-schema.json->kopf-uhr->description
+msgid "Clock"
+msgstr "Saat"
+
+#. metadata.json->description
+msgid "Clock with date, analog or digital - with alarm and timer."
+msgstr "Tarihli saat, analog veya dijital - alarm ve zamanlayıcı ile."
+
+#. settings-schema.json->art->description
+msgid "Display"
+msgstr "Görünüm"
+
+#. settings-schema.json->art->options
+msgid "Analog (hands)"
+msgstr "Analog"
+
+#. settings-schema.json->art->options
+msgid "Digital (digits)"
+msgstr "Dijital"
+
+#. settings-schema.json->zifferblatt->description
+msgid "Dial"
+msgstr "Kadran"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Arabic numerals (1, 2, 3 …)"
+msgstr "Arap rakamları (1, 2, 3 …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Eastern Arabic numerals (١, ٢, ٣ …)"
+msgstr "Doğu Arap rakamları (١, ٢, ٣ …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Roman numerals (I, II, III …)"
+msgstr "Roma rakamları (I, II, III …)"
+
+#. settings-schema.json->zifferblatt->options
+msgid "Marks"
+msgstr "Çizgiler"
+
+#. settings-schema.json->uhr-groesse->description
+msgid "Clock diameter"
+msgstr "Saat çapı"
+
+#. settings-schema.json->sekunden->description
+msgid "Show seconds"
+msgstr "Saniyeyi göster"
+
+#. settings-schema.json->zeige-datum->description
+msgid "Date below the clock"
+msgstr "Saatin altında tarih"
+
+#. settings-schema.json->format12->description
+msgid "12-hour digital display (AM/PM)"
+msgstr "Dijital saatte 12 saat gösterimi (AM/PM)"
+
+#. settings-schema.json->zeige-kw->description
+msgid "Calendar week after the date"
+msgstr "Tarihten sonra takvim haftası"
+
+#. settings-schema.json->kopf-wecker->description
+msgid "Alarm and timer"
+msgstr "Alarm ve zamanlayıcı"
+
+#. settings-schema.json->wecker->description
+msgid "Alarm"
+msgstr "Alarm"
+
+#. settings-schema.json->wecker-std->units
+msgid "h"
+msgstr "h"
+
+#. settings-schema.json->wecker-std->description
+msgid "Alarm time: hour"
+msgstr "Alarm saati: saat"
+
+#. settings-schema.json->wecker-min->units
+#. settings-schema.json->timer-eigen->units
+msgid "min"
+msgstr "min"
+
+#. settings-schema.json->wecker-min->description
+msgid "Alarm time: minute"
+msgstr "Alarm saati: dakika"
+
+#. settings-schema.json->wecker-tage->description
+msgid "Ring on"
+msgstr "Çalma günleri"
+
+#. settings-schema.json->wecker-tage->options
+msgid "Every day"
+msgstr "Her gün"
+
+#. settings-schema.json->wecker-tage->options
+msgid "Monday to Friday"
+msgstr "Pazartesi - Cuma"
+
+#. settings-schema.json->timer-eigen->description
+msgid "Custom timer length in the right-click menu"
+msgstr "Sağ tık menüsündeki özel süre"
+
+#. settings-schema.json->timer-eigen->tooltip
+msgid ""
+"Start the timer with a right-click on the desklet: 5, 10, 15, 30, 60 minutes"
+" or this length."
+msgstr ""
+"Zamanlayıcı desklete sağ tıklanarak başlatılır: 5, 10, 15, 30, 60 dakika "
+"veya bu süre."
+
+#. settings-schema.json->ton->description
+msgid "Play a sound"
+msgstr "Ses çal"
+
+#. settings-schema.json->melden->description
+msgid "Also show a notification"
+msgstr "Ayrıca bildirim göster"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Appearance"
+msgstr "Görünüm"
+
+#. settings-schema.json->groesse->description
+msgid "Font size (digital clock too)"
+msgstr "Yazı boyutu"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Arka plan opaklığı"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Renkler"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Vurgu rengi"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Sarı"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Kırmızı"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Turuncu"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Yeşil"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Turkuaz"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Mavi"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Mor"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Kendi renginiz"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Kendi vurgu renginiz"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Kart rengi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Koyu gri"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Koyu turkuaz"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Koyu mavi"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Siyah"
