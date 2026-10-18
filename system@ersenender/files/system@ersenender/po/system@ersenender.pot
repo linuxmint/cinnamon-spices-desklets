@@ -1,0 +1,289 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#: desklet.js:47
+msgid "System"
+msgstr ""
+
+#: desklet.js:48
+msgid "CPU load"
+msgstr ""
+
+#: desklet.js:49
+msgid "System disk free"
+msgstr ""
+
+#: desklet.js:50
+#, javascript-format
+msgid "⚠ Less than %s GB free"
+msgstr ""
+
+#: desklet.js:51
+msgid "System disk almost full"
+msgstr ""
+
+#: desklet.js:52
+#, javascript-format
+msgid "Only %s GB left."
+msgstr ""
+
+#: desklet.js:53
+msgid "CPU temperature"
+msgstr ""
+
+#: desklet.js:54
+msgid "GPU temperature"
+msgstr ""
+
+#: desklet.js:55
+msgid "RAM free"
+msgstr ""
+
+#: desklet.js:56
+msgid "in the processor"
+msgstr ""
+
+#: desklet.js:57
+#, javascript-format
+msgid "%s of %s GB used"
+msgstr ""
+
+#: desklet.js:58
+#, javascript-format
+msgid "%d cores"
+msgstr ""
+
+#: desklet.js:59
+#, javascript-format
+msgid "%s GB free of %s GB"
+msgstr ""
+
+#: desklet.js:60
+#, javascript-format
+msgid "%s GB used (%s)"
+msgstr ""
+
+#: desklet.js:61
+#, javascript-format
+msgid "Warning from %s °C"
+msgstr ""
+
+#: desklet.js:62
+#, javascript-format
+msgid "Warning below %s GB"
+msgstr ""
+
+#: desklet.js:63
+msgid "Top consumers"
+msgstr ""
+
+#: desklet.js:64
+msgid "Fan"
+msgstr ""
+
+#: desklet.js:65
+#, javascript-format
+msgid "%s rpm"
+msgstr ""
+
+#: desklet.js:66
+#, javascript-format
+msgid "Up for %s"
+msgstr ""
+
+#: desklet.js:67
+#, javascript-format
+msgid "Load (1, 5, 15 min): %s"
+msgstr ""
+
+#: desklet.js:68
+#, javascript-format
+msgid "Swap: %s of %s GB used"
+msgstr ""
+
+#: desklet.js:69
+#, javascript-format
+msgid "%d d"
+msgstr ""
+
+#: desklet.js:70
+#, javascript-format
+msgid "%s h"
+msgstr ""
+
+#: desklet.js:71
+#, javascript-format
+msgid "%s (process %s)"
+msgstr ""
+
+#: desklet.js:72
+#, javascript-format
+msgid "Share of all %d cores"
+msgstr ""
+
+#: desklet.js:73
+#, javascript-format
+msgid "History of the last %d seconds"
+msgstr ""
+
+#: desklet.js:169
+#, javascript-format
+msgid "%s%%"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"CPU load with history, temperatures, fan, free disk space and memory, top "
+"consumers."
+msgstr ""
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->takt->units
+msgid "s"
+msgstr ""
+
+#. settings-schema.json->takt->description
+msgid "Refresh every"
+msgstr ""
+
+#. settings-schema.json->warn-ab->units
+msgid "°C"
+msgstr ""
+
+#. settings-schema.json->warn-ab->description
+msgid "Temperature red from"
+msgstr ""
+
+#. settings-schema.json->zeige-modell->description
+msgid "Show processor name"
+msgstr ""
+
+#. settings-schema.json->zeige-verlauf->description
+msgid "CPU load as a history curve instead of a bar"
+msgstr ""
+
+#. settings-schema.json->zeige-platte->description
+msgid "Show free space on the system disk"
+msgstr ""
+
+#. settings-schema.json->platte-warn-ab->units
+msgid "GB"
+msgstr ""
+
+#. settings-schema.json->platte-warn-ab->description
+msgid "Warn when the system disk has less free space than"
+msgstr ""
+
+#. settings-schema.json->platte-warn-ab->tooltip
+msgid ""
+"Number and bar turn red, a note appears below and the card border turns red."
+" 0 = never warn."
+msgstr ""
+
+#. settings-schema.json->platte-melden->description
+msgid "Also show a notification once"
+msgstr ""
+
+#. settings-schema.json->zeige-luefter->description
+msgid "Show fan speed (if the computer reports it)"
+msgstr ""
+
+#. settings-schema.json->zeige-prozesse->description
+msgid "Show the top consumers of CPU time and memory"
+msgstr ""
+
+#. settings-schema.json->zeige-prozesse->tooltip
+msgid "For this the program top is started briefly every few seconds."
+msgstr ""
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr ""
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr ""
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr ""
