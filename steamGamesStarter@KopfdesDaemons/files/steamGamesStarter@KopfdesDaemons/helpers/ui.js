@@ -46,7 +46,7 @@ var UiHelper = class UiHelper {
     return headerContainer;
   }
 
-  static createGameItem(gameData) {
+  static async createGameItem(gameData) {
     const {
       game,
       steamInstallType,
@@ -69,7 +69,7 @@ var UiHelper = class UiHelper {
     });
 
     if (showGameHeaderImage) {
-      const image = SteamHelper.getGameHeaderImage(game.appid, gameHeaderImageSize, scaleSize);
+      const image = await SteamHelper.getGameHeaderImage(game.appid, gameHeaderImageSize, scaleSize);
       const button = new St.Button({ child: image });
       button.connect("clicked", () => SteamHelper.runGame(game.appid, steamInstallType, customCMD));
       gameContainer.add_child(button);

@@ -124,14 +124,14 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
     this.games = games;
     this.error = error;
-    this._updateContent();
+    await this._updateContent(currentLoadId);
   }
 
   _showLoading() {
     this._updateScrollViewContent(UiHelper.createLoadingView(this.scaleSize));
   }
 
-  _updateContent() {
+  async _updateContent(loadId = this.loadId) {
     const gamesToDisplay = this.games.slice(0, this.numberOfGames);
     let contentBox;
 
@@ -139,25 +139,34 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
       contentBox = UiHelper.createErrorView(this.error, gamesToDisplay.length > 0, this.metadata.path, this.scaleSize);
     } else {
       contentBox = new St.BoxLayout({ vertical: true, style_class: "games-container" });
-      gamesToDisplay.forEach(game => {
-        const gameItemData = {
-          game: game,
-          steamInstallType: this.steamInstallType,
-          customCMD: this.customCMD,
-          metadataPath: this.metadata.path,
-          scaleSize: this.scaleSize,
-          showGameHeaderImage: this.showGameHeaderImage,
-          gameHeaderImageSize: this.gameHeaderImageSize,
-          gameLabelFontSize: this.gameLabelFontSize,
-          showLastPlayedLabel: this.showLastPlayedLabel,
-          lastPlayedLabelFontSize: this.lastPlayedLabelFontSize,
-          showGameStartButton: this.showGameStartButton,
-          showGameShopButton: this.showGameShopButton,
-        };
-        const gameItem = UiHelper.createGameItem(gameItemData);
+      const gameItems = await Promise.all(
+        gamesToDisplay.map(game => {
+          const gameItemData = {
+            game: game,
+            steamInstallType: this.steamInstallType,
+            customCMD: this.customCMD,
+            metadataPath: this.metadata.path,
+            scaleSize: this.scaleSize,
+            showGameHeaderImage: this.showGameHeaderImage,
+            gameHeaderImageSize: this.gameHeaderImageSize,
+            gameLabelFontSize: this.gameLabelFontSize,
+            showLastPlayedLabel: this.showLastPlayedLabel,
+            lastPlayedLabelFontSize: this.lastPlayedLabelFontSize,
+            showGameStartButton: this.showGameStartButton,
+            showGameShopButton: this.showGameShopButton,
+          };
+          return UiHelper.createGameItem(gameItemData);
+        }),
+      );
+      if (this.loadId !== loadId) return;
+      gameItems.forEach(gameItem => {
         contentBox.add_child(gameItem);
       });
     }
+
+    // Cancel the update if a new load has started since this one began
+    if (this.loadId !== loadId) return;
+
     this._updateScrollViewContent(contentBox);
   }
 
@@ -181,7 +190,8 @@ class SteamGamesStarterDesklet extends Desklet.Desklet {
 
   _onScaleSizeChanged() {
     this._initUI();
-    this._updateContent();
+    const currentLoadId = ++this.loadId;
+    this._updateContent(currentLoadId);
   }
 }
 

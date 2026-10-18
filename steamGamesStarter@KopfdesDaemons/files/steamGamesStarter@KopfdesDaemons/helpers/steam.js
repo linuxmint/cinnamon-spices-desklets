@@ -134,12 +134,28 @@ var SteamHelper = class SteamHelper {
   }
 
   // Helper to find the first readable file among a list of candidate paths
-  static findFirstExistingFile(paths) {
+  static async findFirstExistingFile(paths) {
     for (const filePath of paths) {
       const file = Gio.File.new_for_path(filePath);
       try {
-        const stream = file.read(null);
-        stream.close(null);
+        const stream = await new Promise((resolve, reject) => {
+          file.read_async(GLib.PRIORITY_DEFAULT, null, (obj, res) => {
+            try {
+              resolve(obj.read_finish(res));
+            } catch (e) {
+              reject(e);
+            }
+          });
+        });
+        await new Promise((resolve, reject) => {
+          stream.close_async(GLib.PRIORITY_DEFAULT, null, (obj, res) => {
+            try {
+              resolve(obj.close_finish(res));
+            } catch (e) {
+              reject(e);
+            }
+          });
+        });
         return filePath;
       } catch (e) {
         if (!e.matches || !e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
@@ -151,34 +167,69 @@ var SteamHelper = class SteamHelper {
   }
 
   // Helper to load a game's header image from the Steam appcache
-  static getGameHeaderImage(appid, size, scaleSize) {
+  static async getGameHeaderImage(appid, size, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
     const appDir = GLib.build_filenamev([appCachePath, String(appid)]);
 
     const directPaths = commonImageNames.map(name => GLib.build_filenamev([appDir, name]));
-    let imagePath = this.findFirstExistingFile(directPaths);
+    let imagePath = await this.findFirstExistingFile(directPaths);
 
     // If no image is found in the appDir, search subdirectories
     if (!imagePath) {
       const appDirFile = Gio.File.new_for_path(appDir);
       try {
-        const enumerator = appDirFile.enumerate_children(
-          "standard::name,standard::type",
-          Gio.FileQueryInfoFlags.NONE,
-          null,
-        );
+        const enumerator = await new Promise((resolve, reject) => {
+          appDirFile.enumerate_children_async(
+            "standard::name,standard::type",
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            null,
+            (obj, res) => {
+              try {
+                resolve(obj.enumerate_children_finish(res));
+              } catch (e) {
+                reject(e);
+              }
+            },
+          );
+        });
+
         const subDirs = [];
-        let fileInfo;
-        while ((fileInfo = enumerator.next_file(null)) !== null) {
-          if (fileInfo.get_file_type() === Gio.FileType.DIRECTORY) {
-            const entryName = fileInfo.get_name();
-            if (!entryName.startsWith(".")) {
-              subDirs.push(GLib.build_filenamev([appDir, entryName]));
+        try {
+          while (true) {
+            const files = await new Promise((resolve, reject) => {
+              enumerator.next_files_async(100, GLib.PRIORITY_DEFAULT, null, (obj, res) => {
+                try {
+                  resolve(obj.next_files_finish(res));
+                } catch (e) {
+                  reject(e);
+                }
+              });
+            });
+            if (!files || files.length === 0) break;
+            for (const fileInfo of files) {
+              if (fileInfo.get_file_type() === Gio.FileType.DIRECTORY) {
+                const entryName = fileInfo.get_name();
+                if (!entryName.startsWith(".")) {
+                  subDirs.push(GLib.build_filenamev([appDir, entryName]));
+                }
+              }
             }
           }
+        } finally {
+          try {
+            await new Promise((resolve, reject) => {
+              enumerator.close_async(GLib.PRIORITY_DEFAULT, null, (obj, res) => {
+                try {
+                  resolve(obj.close_finish(res));
+                } catch (e) {
+                  reject(e);
+                }
+              });
+            });
+          } catch (e) {}
         }
-        enumerator.close(null);
         subDirs.sort();
 
         const subDirPaths = [];
@@ -187,7 +238,7 @@ var SteamHelper = class SteamHelper {
             subDirPaths.push(GLib.build_filenamev([subDir, name]));
           }
         }
-        imagePath = this.findFirstExistingFile(subDirPaths);
+        imagePath = await this.findFirstExistingFile(subDirPaths);
       } catch (e) {
         if (!e.matches || !e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
           global.logError(`${UUID}: Error searching subdirectories for appid ${appid}: ${e}`);
