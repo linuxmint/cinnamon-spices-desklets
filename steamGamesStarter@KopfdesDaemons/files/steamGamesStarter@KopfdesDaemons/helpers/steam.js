@@ -32,7 +32,24 @@ var SteamHelper = class SteamHelper {
   // Helper to extract game info from an appmanifest file
   static async extractGameInfo(filePath) {
     const file = Gio.file_new_for_path(filePath);
-    const [, contentBytes] = await new Promise(resolve => file.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))));
+    let contentBytes;
+    try {
+      [, contentBytes] = await new Promise((resolve, reject) => {
+        file.load_contents_async(null, (obj, res) => {
+          try {
+            resolve(obj.load_contents_finish(res));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      });
+    } catch (e) {
+      if (e.matches && e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
+        return null;
+      }
+      global.logError(`${UUID}: Error loading appmanifest file ${filePath}: ${e}`);
+      return null;
+    }
     const content = new TextDecoder("utf-8").decode(contentBytes);
 
     const nameMatch = /"name"\s*"(.*?)"/.exec(content);
@@ -64,11 +81,24 @@ var SteamHelper = class SteamHelper {
     }
 
     const libraryfoldersFile = Gio.file_new_for_path(libraryfoldersFilePath);
-    if (!libraryfoldersFile.query_exists(null)) {
-      throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
+    let libraryfoldersFileContentBytes;
+    try {
+      [, libraryfoldersFileContentBytes] = await new Promise((resolve, reject) => {
+        libraryfoldersFile.load_contents_async(null, (obj, res) => {
+          try {
+            resolve(obj.load_contents_finish(res));
+          } catch (e) {
+            reject(e);
+          }
+        });
+      });
+    } catch (e) {
+      if (e.matches && e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
+        throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
+      }
+      throw e;
     }
 
-    const [, libraryfoldersFileContentBytes] = await new Promise(resolve => libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))));
     const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
     const libraryPaths = this.extractLibraryPaths(libraryfoldersFileContent);
 
@@ -103,49 +133,65 @@ var SteamHelper = class SteamHelper {
     return sortedGames;
   }
 
+  // Helper to find the first readable file among a list of candidate paths
+  static findFirstExistingFile(paths) {
+    for (const filePath of paths) {
+      const file = Gio.File.new_for_path(filePath);
+      try {
+        const stream = file.read(null);
+        stream.close(null);
+        return filePath;
+      } catch (e) {
+        if (!e.matches || !e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
+          global.logError(`${UUID}: Error accessing file ${filePath}: ${e}`);
+        }
+      }
+    }
+    return null;
+  }
+
   // Helper to load a game's header image from the Steam appcache
   static getGameHeaderImage(appid, size, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
     const appDir = GLib.build_filenamev([appCachePath, String(appid)]);
 
-    let imagePath = null;
-    for (const name of commonImageNames) {
-      const potentialPath = GLib.build_filenamev([appDir, name]);
-      if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
-        imagePath = potentialPath;
-        break;
-      }
-    }
+    const directPaths = commonImageNames.map(name => GLib.build_filenamev([appDir, name]));
+    let imagePath = this.findFirstExistingFile(directPaths);
 
     // If no image is found in the appDir, search subdirectories
-    if (!imagePath && GLib.file_test(appDir, GLib.FileTest.IS_DIR)) {
+    if (!imagePath) {
+      const appDirFile = Gio.File.new_for_path(appDir);
       try {
-        const dir = GLib.Dir.open(appDir, 0);
-        let entry;
+        const enumerator = appDirFile.enumerate_children(
+          "standard::name,standard::type",
+          Gio.FileQueryInfoFlags.NONE,
+          null,
+        );
         const subDirs = [];
-        while ((entry = dir.read_name()) !== null) {
-          if (entry.startsWith(".")) continue;
-          const subDirPath = GLib.build_filenamev([appDir, entry]);
-          if (GLib.file_test(subDirPath, GLib.FileTest.IS_DIR)) {
-            subDirs.push(subDirPath);
-          }
-        }
-        dir.close();
-        subDirs.sort();
-
-        for (const name of commonImageNames) {
-          for (const subDir of subDirs) {
-            const potentialPath = GLib.build_filenamev([subDir, name]);
-            if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
-              imagePath = potentialPath;
-              break;
+        let fileInfo;
+        while ((fileInfo = enumerator.next_file(null)) !== null) {
+          if (fileInfo.get_file_type() === Gio.FileType.DIRECTORY) {
+            const entryName = fileInfo.get_name();
+            if (!entryName.startsWith(".")) {
+              subDirs.push(GLib.build_filenamev([appDir, entryName]));
             }
           }
-          if (imagePath) break;
         }
+        enumerator.close(null);
+        subDirs.sort();
+
+        const subDirPaths = [];
+        for (const name of commonImageNames) {
+          for (const subDir of subDirs) {
+            subDirPaths.push(GLib.build_filenamev([subDir, name]));
+          }
+        }
+        imagePath = this.findFirstExistingFile(subDirPaths);
       } catch (e) {
-        global.logError(`${UUID}: Error searching subdirectories for appid ${appid}: ${e}`);
+        if (!e.matches || !e.matches(Gio.io_error_quark(), Gio.IOErrorEnum.NOT_FOUND)) {
+          global.logError(`${UUID}: Error searching subdirectories for appid ${appid}: ${e}`);
+        }
       }
     }
 
@@ -181,19 +227,28 @@ var SteamHelper = class SteamHelper {
   }
 
   static getSteamCommand(steamInstallType, customCMD) {
-    if (steamInstallType === "custom install") return customCMD;
-    if (steamInstallType === "system package") return "/usr/games/steam";
-    if (steamInstallType === "flatpak") return "flatpak run com.valvesoftware.Steam";
-    return "";
+    if (steamInstallType === "custom install") {
+      try {
+        const [, parsed] = GLib.shell_parse_argv(customCMD || "");
+        if (parsed && parsed.length > 0) return parsed;
+      } catch (e) {
+        if (customCMD) return [customCMD];
+      }
+      return ["/usr/games/steam"];
+    }
+    if (steamInstallType === "flatpak") {
+      return ["flatpak", "run", "com.valvesoftware.Steam"];
+    }
+    return ["/usr/games/steam"];
   }
 
   static runGame(appid, steamInstallType, customCMD) {
     const cmd = this.getSteamCommand(steamInstallType, customCMD);
-    GLib.spawn_command_line_async(`${cmd} steam://rungameid/${appid}`);
+    Util.spawn([...cmd, `steam://rungameid/${appid}`]);
   }
 
   static openStorePage(appid, steamInstallType, customCMD) {
     const cmd = this.getSteamCommand(steamInstallType, customCMD);
-    GLib.spawn_command_line_async(`${cmd} steam://store/${appid}`);
+    Util.spawn([...cmd, `steam://store/${appid}`]);
   }
 };
