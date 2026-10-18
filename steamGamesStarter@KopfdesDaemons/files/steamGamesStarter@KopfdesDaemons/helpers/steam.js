@@ -68,9 +68,7 @@ var SteamHelper = class SteamHelper {
       throw new Error(`Steam library file not found at: ${libraryfoldersFilePath}`);
     }
 
-    const [, libraryfoldersFileContentBytes] = await new Promise(resolve =>
-      libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))),
-    );
+    const [, libraryfoldersFileContentBytes] = await new Promise(resolve => libraryfoldersFile.load_contents_async(null, (obj, res) => resolve(obj.load_contents_finish(res))));
     const libraryfoldersFileContent = new TextDecoder("utf-8").decode(libraryfoldersFileContentBytes);
     const libraryPaths = this.extractLibraryPaths(libraryfoldersFileContent);
 
@@ -109,13 +107,45 @@ var SteamHelper = class SteamHelper {
   static getGameHeaderImage(appid, size, scaleSize) {
     const appCachePath = GLib.get_home_dir() + "/.steam/steam/appcache/librarycache/";
     const commonImageNames = ["header.jpg", "library_header.jpg", "library_hero.jpg"];
+    const appDir = GLib.build_filenamev([appCachePath, String(appid)]);
 
     let imagePath = null;
     for (const name of commonImageNames) {
-      const potentialPath = GLib.build_filenamev([appCachePath, appid, name]);
+      const potentialPath = GLib.build_filenamev([appDir, name]);
       if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
         imagePath = potentialPath;
         break;
+      }
+    }
+
+    // If no image is found in the appDir, search subdirectories
+    if (!imagePath && GLib.file_test(appDir, GLib.FileTest.IS_DIR)) {
+      try {
+        const dir = GLib.Dir.open(appDir, 0);
+        let entry;
+        const subDirs = [];
+        while ((entry = dir.read_name()) !== null) {
+          if (entry.startsWith(".")) continue;
+          const subDirPath = GLib.build_filenamev([appDir, entry]);
+          if (GLib.file_test(subDirPath, GLib.FileTest.IS_DIR)) {
+            subDirs.push(subDirPath);
+          }
+        }
+        dir.close();
+        subDirs.sort();
+
+        for (const name of commonImageNames) {
+          for (const subDir of subDirs) {
+            const potentialPath = GLib.build_filenamev([subDir, name]);
+            if (GLib.file_test(potentialPath, GLib.FileTest.EXISTS)) {
+              imagePath = potentialPath;
+              break;
+            }
+          }
+          if (imagePath) break;
+        }
+      } catch (e) {
+        global.logError(`${UUID}: Error searching subdirectories for appid ${appid}: ${e}`);
       }
     }
 

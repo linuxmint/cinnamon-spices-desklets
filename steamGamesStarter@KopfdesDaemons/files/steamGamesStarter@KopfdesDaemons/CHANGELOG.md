@@ -12,6 +12,7 @@
   - Added hide game header image setting
   - Added hide "last played" label setting
   - Added game header image scale setting
+  - Support for header images in subfolders
 - Refactoring:
   - Added fallback to `deskletManager` for imports
   - Removed clutter
