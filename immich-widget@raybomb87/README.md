@@ -36,6 +36,7 @@ The screenshots are from a Norwegian desktop, so dates and country names are in 
 
 If you later turn on something that needs another permission, the widget says which one is missing.
 The Immich server must be reachable from the computer, at home or over a VPN.
+Immich's machine learning must be on (it is by default) for face cropping, names and smart search.
 
 ## Privacy
 
