@@ -134,7 +134,9 @@
       "keys": [
         "radius",
         "smart-crop",
-        "ken-burns"
+        "ken-burns",
+        "ken-burns-faces-only",
+        "ken-burns-speed"
       ]
     },
     "trans": {
@@ -483,6 +485,24 @@
     "default": false,
     "description": "Slow zoom (Ken Burns)",
     "tooltip": "Zooms slowly towards the people while a photo is shown"
+  },
+  "ken-burns-faces-only": {
+    "type": "switch",
+    "default": false,
+    "description": "Only photos with faces",
+    "tooltip": "Photos without people are shown without zoom",
+    "dependency": "ken-burns"
+  },
+  "ken-burns-speed": {
+    "type": "spinbutton",
+    "default": 12,
+    "min": 2,
+    "max": 40,
+    "step": 2,
+    "units": "% per 10 s",
+    "description": "Zoom speed",
+    "tooltip": "How much the photo zooms in every 10 seconds. It stops at 50 %.",
+    "dependency": "ken-burns"
   },
   "trans-help": {
     "type": "label",

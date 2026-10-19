@@ -31,7 +31,7 @@ const CAPTION_KEYS = ["caption", "show-date", "date-format", "show-years-ago", "
 const LOOK_KEYS = ["delay", "radius"];
 const SIZE_KEYS = ["width", "height"];
 const TRANSITIONS = ["fade", "slide-left", "slide-right", "slide-up", "slide-down", "zoom", "flip"];
-const OTHER_KEYS = ["ken-burns", "trans-order", "fade", "hidden-photos",
+const OTHER_KEYS = ["ken-burns", "ken-burns-faces-only", "ken-burns-speed", "trans-order", "fade", "hidden-photos",
     ...TRANSITIONS.map(t => "t-" + t)];
 
 // English country names Immich may use that differ from ICU's.
@@ -370,13 +370,17 @@ class ImmichWidget extends Desklet.Desklet {
         }
     }
 
-    // Slowly zooms towards the faces (or a random point) until the next photo.
+    // Slowly zooms towards the faces (or a random point) until the next photo, at most to 1.5×.
     _kenBurns(layer, c) {
         if (!this.ken_burns || this._layers[this._active] !== layer) return;
-        let fx = c.fx !== undefined ? c.fx : 0.3 + Math.random() * 0.4;
-        let fy = c.fy !== undefined ? c.fy : 0.3 + Math.random() * 0.4;
+        let hasFaces = c.fx !== undefined;
+        if (this.ken_burns_faces_only && !hasFaces) return;
+        let fx = hasFaces ? c.fx : 0.3 + Math.random() * 0.4;
+        let fy = hasFaces ? c.fy : 0.3 + Math.random() * 0.4;
+        let perMs = this.ken_burns_speed / 100 / 10000;
+        let scale = Math.min(1.5, 1 + perMs * (this.delay + 2) * 1000);
         layer.set_pivot_point(fx, fy);
-        layer.ease({ scale_x: 1.15, scale_y: 1.15, duration: (this.delay + 2) * 1000, mode: Clutter.AnimationMode.LINEAR });
+        layer.ease({ scale_x: scale, scale_y: scale, duration: (scale - 1) / perMs, mode: Clutter.AnimationMode.LINEAR });
     }
 
     _updateCaption() {

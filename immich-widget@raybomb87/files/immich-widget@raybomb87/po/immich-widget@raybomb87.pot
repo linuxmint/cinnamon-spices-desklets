@@ -5,7 +5,7 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: immich-widget@raybomb87 1.1.0\n"
+"Project-Id-Version: immich-widget@raybomb87 1.1.2\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
 "POT-Creation-Date: 2026-10-17 17:00+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
@@ -446,4 +446,19 @@ msgid "hours"
 msgstr ""
 
 msgid "seconds"
+msgstr ""
+
+msgid "Only photos with faces"
+msgstr ""
+
+msgid "Photos without people are shown without zoom"
+msgstr ""
+
+msgid "Zoom speed"
+msgstr ""
+
+msgid "% per 10 s"
+msgstr ""
+
+msgid "How much the photo zooms in every 10 seconds. It stops at 50 %."
 msgstr ""

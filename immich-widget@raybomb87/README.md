@@ -5,7 +5,7 @@ A desktop photo slideshow with photos from your own [Immich](https://immich.app)
 - **Smart cropping.** Uses Immich face detection to crop each photo to the widget's shape around the people in it, so heads are not cut off.
 - **Your photos, your choice.** Tick the people, albums and tags to show (with the number of photos of each), or use *On this day*, favorites, a star rating, a time span, places or Immich smart search ("beach", "snow").
 - **Camera photos only.** Screenshots and saved images are skipped (optional).
-- **Transitions.** Fade, slide in four directions, zoom and flip – tick several and the widget changes between them. Optional slow Ken Burns zoom towards the faces.
+- **Transitions.** Fade, slide in four directions, zoom and flip – tick several and the widget changes between them. Optional slow Ken Burns zoom towards the faces, with adjustable speed, for all photos or only those with people.
 - **Caption you control.** Date, "5 years ago", place, the names of the people and the Immich description, each on or off, in any corner, with an optional rounded background. Country names in your own language.
 - **Works offline.** Photos are cached, and a new batch is fetched on a schedule you choose.
 - Several widgets can run side by side, each with its own settings.

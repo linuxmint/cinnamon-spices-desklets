@@ -2,7 +2,7 @@
  "uuid": "immich-widget@raybomb87",
  "name": "Immich Widget",
  "description": "A photo slideshow on your desktop with photos from your Immich server",
- "version": "1.1.0",
+ "version": "1.1.2",
  "max-instances": "10",
  "prevent-decorations": true
 }
