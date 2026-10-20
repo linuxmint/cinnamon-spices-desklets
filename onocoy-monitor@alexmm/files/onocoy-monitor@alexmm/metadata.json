@@ -1,0 +1,11 @@
+{
+    "uuid": "onocoy-monitor@alexmm",
+    "name": "Onocoy Monitor",
+    "description": "Monitor your onocoy GNSS reference stations and the ONO token price directly from your Cinnamon desktop.",
+    "author": "airtkey",
+    "website": "https://github.com/airtkey/cinnamon-spices-desklets",
+    "version": "1.0.0",
+    "max-instances": "1",
+    "prevent-decorations": false,
+    "cinnamon-version": ["6.0", "6.2", "6.4", "6.6"]
+}
