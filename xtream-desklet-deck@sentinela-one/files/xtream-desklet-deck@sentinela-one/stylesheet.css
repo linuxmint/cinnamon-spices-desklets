@@ -1,0 +1,31 @@
+.xtream-deck-entry {
+    background-color: #ffffff;
+    color: #1a1a1a;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 19px;
+    border: 1px solid rgba(0,0,0,0.15);
+    width: 420px;
+    selection-background-color: #2D6DD9;
+    selected-color: #ffffff;
+}
+
+.xtream-deck-entry:focus {
+    border: 1px solid #2D6DD9;
+}
+
+.xtream-deck-dialog {
+    padding: 14px;
+    spacing: 14px;
+}
+
+.xtream-deck-field-label {
+    color: #dddddd;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.xtream-deck-hint {
+    color: #999999;
+    font-size: 13px;
+}
