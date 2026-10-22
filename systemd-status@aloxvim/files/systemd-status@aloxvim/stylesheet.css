@@ -1,0 +1,19 @@
+.sysd-box {
+    padding: 10px 14px;
+    min-width: 160px;
+}
+
+.sysd-row {
+    padding: 3px 4px;
+    border-radius: 4px;
+}
+
+.sysd-row:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+
+.sysd-empty {
+    font-style: italic;
+    color: rgba(255, 255, 255, 0.7);
+}
