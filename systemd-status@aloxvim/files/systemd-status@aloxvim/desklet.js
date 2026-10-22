@@ -14,7 +14,7 @@ const GLib = imports.gi.GLib;
 const Clutter = imports.gi.Clutter;
 
 const UUID = 'systemd-status@aloxvim';
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + '/.local/share/locale');
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + '/locale');
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
