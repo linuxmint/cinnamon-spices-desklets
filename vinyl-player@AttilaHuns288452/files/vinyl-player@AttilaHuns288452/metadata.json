@@ -1,0 +1,68 @@
+{
+  "uuid": "vinyl-player@AttilaHuns288452",
+  "name": "Vinyl Record Player",
+  "version": "1.0.0",
+  "description": "A vinyl record player desklet that spins a record on your desktop. Change font color, disk colors, and switch between light/dark color schemes.",
+  "maxInstances": 1,
+  "cinnamonVersion": "5.0",
+  "appletVersion": "1.0",
+  "author": "AttilaHuns288452",
+  "settings": [
+    {
+      "key": "scheme",
+      "type": "string",
+      "default": "dark",
+      "title": "Color Scheme",
+      "description": "Choose a pre-made color scheme (Dark, Light, or Custom)",
+      "options": [
+        { "value": "dark", "label": "Dark (Retro)" },
+        { "value": "light", "label": "Light (Vintage)" },
+        { "value": "custom", "label": "Custom" }
+      ]
+    },
+    {
+      "key": "fontColor",
+      "type": "color",
+      "default": "#b4afa5",
+      "title": "Font Color",
+      "description": "Color of the title text"
+    },
+    {
+      "key": "playerColor",
+      "type": "color",
+      "default": "#5a4a3a",
+      "title": "Platter Color",
+      "description": "Base color of the turntable platter ring"
+    },
+    {
+      "key": "recordColor",
+      "type": "color",
+      "default": "#111111",
+      "title": "Record Color",
+      "description": "Color of the vinyl record"
+    },
+    {
+      "key": "labelColor",
+      "type": "color",
+      "default": "#c4b089",
+      "title": "Label Color",
+      "description": "Color of the record center label"
+    },
+    {
+      "key": "playing",
+      "type": "boolean",
+      "default": true,
+      "title": "Playing",
+      "description": "Whether the record is spinning"
+    },
+    {
+      "key": "speed",
+      "type": "integer",
+      "default": 33,
+      "title": "Speed",
+      "description": "RPM speed (33 or 45)",
+      "min": 33,
+      "max": 45
+    }
+  ]
+}
