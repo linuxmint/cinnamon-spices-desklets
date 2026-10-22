@@ -1,0 +1,374 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: devTools@scollins 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2025-10-19 04:33+0700\n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Không tiêu đề"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Công cụ"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Mở rộng"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Thu gọn"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Mở Cài đặt Cinnamon"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Bắt đầu Sandbox"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Chạy dòng lệnh"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Kiểm tra"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Mở Looking Glass"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Tải lại Chủ đề"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Khởi động lại Cinnamon"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "Nhật ký X-Session"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Ẩn lỗi cũ"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Xóa"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Nhật ký Cinnamon"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Hiển thị Thời gian"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Thông tin"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Cảnh báo"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Lỗi"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Dấu vết"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Sao chép"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Vô hạn"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Tải lại"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Xóa"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Thể hiện"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "tối đa"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Làm nổi bật"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Cấu hình"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Tiện ích mở rộng"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "không thể tạo mục tiện ích cho uuid"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Không có tiện ích mở rộng nào của loại này được bật"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(Nhấn Pause hoặc Control để tắt chuyển tiếp sự kiện)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(Nhấn Pause hoặc Control để bật chuyển tiếp sự kiện)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Độ dài"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Cha mẹ"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Con cái"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Chiều cao"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Chiều rộng"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Hiển thị"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "Lớp Kiểu"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Không có"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Tiêu đề"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Lớp"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Không gian làm việc"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "Màn hình"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Kích thước"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Vị trí"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Giá trị"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Chỉ mục"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr "Phần tử Bản đồ"
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Khóa"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Thuộc tính"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Tên"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Loại"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Giá trị"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Mở"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Lưu"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Lưu thành"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Đánh giá"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Kiểu"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Tải biểu định kiểu hiện tại"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Không phát hiện lỗi"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Đóng Thẻ"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Lệnh"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Trạng thái"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Đang chạy"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Kết thúc Quá trình"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Đầu ra"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Đã dừng"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Chạy"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "tất cả"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Chuyển sang"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Đóng"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Cửa sổ"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr "Một desklet để khắc phục sự cố và phát triển trong giao diện người dùng Cinnamon"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Tác giả"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr "Desklet này cung cấp các công cụ để giúp khắc phục sự cố, xem và kiểm soát các thành phần Cinnamon nhất định và thông tin trạng thái, và thậm chí thử nghiệm mã mới mà không cần khởi động lại Cinnamon."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Công cụ Nhà phát triển"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Khi khởi động"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Ghi nhớ Trạng thái Trước"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Hiển thị"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Đã thu gọn"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Phím tắt đưa lên trên cùng"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Căn giữa desklet trên màn hình ở chế độ nâng lên"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Tiêu đề Sandbox"

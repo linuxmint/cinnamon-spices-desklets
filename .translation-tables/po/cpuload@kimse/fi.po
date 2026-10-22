@@ -1,0 +1,162 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2024-11-07 19:34+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Core %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Näyttää suorittimen kuormituksen"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "CPU Load"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Asetukset CPU Load cpuload@kimse"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Yleinen"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Näytä prosessorin ytimet erikseen"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr ""
+"Näytä kunkin prosessori-ytimen käyttöaste erikseen prosessorin "
+"kokonaiskuorman sijaan."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "sekuntia"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Päivitysväli"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Lisää tai vähennä päivitysväliä."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Asettelu"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Ulkoasu"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Ohut"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Tiivis"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Paksu"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Ympyrä"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Mittari"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Ympyrä"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaalauskerroin"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Sovelman koko"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Suurenna tai pienennä sovelman kokoa."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "sarakkeet"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Sarakkeiden määrä"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Suurenna tai pienennä sarakkeiden määrää."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Värit"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Fontin väri"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Väriteema"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Satunnainen"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Pysyvä"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Vaihtuva"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Pysyvä väri"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Taustakuva"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Näytä mittari"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Piilota reunukset"

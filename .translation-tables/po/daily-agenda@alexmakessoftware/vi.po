@@ -1,0 +1,181 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-07 21:15+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: loccun <huynhloc.contact@gmail.com>\n"
+"Language-Team: \n"
+"Language: vi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:60
+msgid "Daily Agenda"
+msgstr "Lịch trình hàng ngày"
+
+#. desklet.js:219
+msgid "ICS Today: Unknown source type: "
+msgstr "ICS Hôm nay: Loại nguồn không xác định: "
+
+#. desklet.js:246
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Hôm nay: Lỗi đọc tập tin lịch, kết quả = "
+
+#. desklet.js:250
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Hôm nay: Không thể đọc tập tin: "
+
+#. desklet.js:267
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr "ICS Hôm nay: Không thể tải lịch từ URL: "
+
+#. desklet.js:277
+msgid "Last checked"
+msgstr "Kiểm tra lần cuối"
+
+#. desklet.js:282
+msgid "Next"
+msgstr "Tiếp theo"
+
+#. desklet.js:302
+msgid "All day"
+msgstr "Cả ngày"
+
+#. desklet.js:305
+msgid "Today's Events:"
+msgstr "Sự kiện hôm nay:"
+
+#. desklet.js:309
+msgid "No events today."
+msgstr "Không có sự kiện hôm nay."
+
+#. metadata.json->description
+msgid "Displays today's events from your calendar"
+msgstr "Hiển thị sự kiện hôm nay từ lịch của bạn"
+
+#. settings-schema.json->head0->description
+msgid "Calendar Source"
+msgstr "Nguồn lịch"
+
+#. settings-schema.json->sourceType->description
+msgid "Calendar source"
+msgstr "Nguồn lịch"
+
+#. settings-schema.json->sourceType->options
+msgid "From URL"
+msgstr "Từ URL"
+
+#. settings-schema.json->sourceType->options
+msgid "From local file"
+msgstr "Từ tập tin cục bộ"
+
+#. settings-schema.json->icsUrl->description
+msgid "Calendar URL"
+msgstr "URL lịch"
+
+#. settings-schema.json->icsUrl->tooltip
+msgid ""
+"Only used if source is set to 'From URL'. Paste a public .ics (calendar "
+"share) link from Proton, Google, etc."
+msgstr "Chỉ được sử dụng nếu nguồn được đặt thành 'Từ URL'. Dán liên kết .ics công khai (chia sẻ lịch) từ Proton, Google, v.v."
+
+#. settings-schema.json->icsFilePath->description
+msgid "Path to local .ics file"
+msgstr "Đường dẫn đến tập tin .ics cục bộ"
+
+#. settings-schema.json->icsFilePath->tooltip
+msgid "Only used if source is set to 'From local file', point to an ICS file."
+msgstr "Chỉ được sử dụng nếu nguồn được đặt thành 'Từ tập tin cục bộ', trỏ đến một tập tin ICS."
+
+#. settings-schema.json->head1->description
+msgid "Widget Dimensions"
+msgstr "Kích thước Widget"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->width->description
+msgid "Widget width"
+msgstr "Chiều rộng widget"
+
+#. settings-schema.json->height->description
+msgid "Widget height"
+msgstr "Chiều cao widget"
+
+#. settings-schema.json->head2->description
+msgid "Custom Styles"
+msgstr "Kiểu tùy chỉnh"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Ghi đè chủ đề desktop (bật các cài đặt bên dưới)"
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr "Chọn mục này để ghi đè chủ đề desktop và cấu hình giao diện theo cách thủ công"
+
+#. settings-schema.json->font->description
+msgid "Font family"
+msgstr "Họ phông chữ"
+
+#. settings-schema.json->font->tooltip
+msgid "Example: Sans, Monospace, Serif"
+msgstr "Ví dụ: Sans, Monospace, Serif"
+
+#. settings-schema.json->fontSize->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Cỡ chữ"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Màu chữ"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Nhấp vào nút để chọn màu chữ mới"
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr "Tùy chọn chân trang"
+
+#. settings-schema.json->showLastChecked->description
+msgid "Show 'last checked' line"
+msgstr "Hiển thị dòng 'kiểm tra lần cuối'"
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr "Hiển thị nút 'làm mới ngay'"
+
+#. settings-schema.json->head3->description
+msgid "Update Schedule"
+msgstr "Lịch cập nhật"
+
+#. settings-schema.json->checkInterval->units
+msgid "minutes"
+msgstr "phút"
+
+#. settings-schema.json->checkInterval->description
+msgid "Check interval"
+msgstr "Khoảng thời gian kiểm tra"
+
+#. settings-schema.json->checkInterval->tooltip
+msgid "How often to check the calendar file for updates"
+msgstr "Tần suất kiểm tra tập tin lịch để cập nhật"

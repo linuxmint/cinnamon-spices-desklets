@@ -1,0 +1,801 @@
+# MOONLIGHT CLOCK
+# This file is put in the public domain.
+# torchipeppo, 2025
+#
+#
+# Please read TRANSLATORS.md for context guidance.
+#
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: moonlight-clock@torchipeppo 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-03-08 19:15+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. 3.4/constants.js:43 5.4/constants.js:43
+msgid "Next"
+msgstr "Következő"
+
+#. 3.4/constants.js:100 5.4/constants.js:100
+msgid "New Moon"
+msgstr "Újhold"
+
+#. 3.4/constants.js:101 5.4/constants.js:101
+msgid "Waxing Crescent"
+msgstr "Növekvő sarló"
+
+#. 3.4/constants.js:102 5.4/constants.js:102
+msgid "First Quarter"
+msgstr "Első negyed"
+
+#. 3.4/constants.js:103 5.4/constants.js:103
+msgid "Waxing Gibbous"
+msgstr "Növekvő domború"
+
+#. 3.4/constants.js:104 5.4/constants.js:104
+msgid "Full Moon"
+msgstr "Telihold"
+
+#. 3.4/constants.js:105 5.4/constants.js:105
+msgid "Waning Gibbous"
+msgstr "Csökkenő domború"
+
+#. 3.4/constants.js:106 5.4/constants.js:106
+msgid "Last Quarter"
+msgstr "Utolsó negyed"
+
+#. 3.4/constants.js:107 5.4/constants.js:107
+msgid "Waning Crescent"
+msgstr "Csökkenő sarló"
+
+#. 3.4/constants.js:111 5.4/constants.js:111
+msgid "New"
+msgstr "Új"
+
+#. 3.4/constants.js:112 3.4/constants.js:114 5.4/constants.js:112
+#. 5.4/constants.js:114
+msgid "Half"
+msgstr "Fél"
+
+#. 3.4/constants.js:113 5.4/constants.js:113
+msgid "Full"
+msgstr "Teli"
+
+#. 3.4/constants.js:170 5.4/constants.js:170
+msgid "Clear"
+msgstr "Tiszta"
+
+#. 3.4/constants.js:171 3.4/constants.js:172 5.4/constants.js:171
+#. 5.4/constants.js:172
+msgid "Cloudy"
+msgstr "Felhős"
+
+#. 3.4/constants.js:173 5.4/constants.js:173
+msgid "Fog"
+msgstr "Köd"
+
+#. 3.4/constants.js:174 3.4/constants.js:175 3.4/weatherapi_source.js:154
+#. 5.4/constants.js:174 5.4/constants.js:175 5.4/weatherapi_source.js:154
+msgid "Rain"
+msgstr "Eső"
+
+#. 3.4/constants.js:176 5.4/constants.js:176
+msgid "Storm"
+msgstr "Vihar"
+
+#. 3.4/constants.js:177 5.4/constants.js:177
+msgid ""
+"Cold\n"
+"precip."
+msgstr ""
+"Hideg\n"
+"csapadék."
+
+#. 3.4/desklet.js:149 5.4/desklet.js:149
+msgid "Date and Time Settings"
+msgstr "Dátum és idő beállítások"
+
+#. 3.4/desklet.js:408 3.4/desklet.js:439 5.4/desklet.js:408 5.4/desklet.js:439
+msgid "Limit"
+msgstr "Korlát"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+#. 3.4/desklet.js:412 5.4/desklet.js:412
+msgid "None"
+msgstr "Semmi"
+
+#. 3.4/desklet.js:454 5.4/desklet.js:454
+msgid ""
+"Right-click\n"
+"to configure!"
+msgstr ""
+"Kattintson a jobb gombbal\n"
+"a konfiguráláshoz!"
+
+#. metadata.json->name
+#. 3.4/desklet.js:507 5.4/desklet.js:507
+msgid "Moonlight Clock"
+msgstr "Holdfény Óra"
+
+#. 3.4/wallclock_source.js:13 5.4/wallclock_source.js:13
+msgid "Late Night"
+msgstr "Késő este"
+
+#. 3.4/wallclock_source.js:16 5.4/wallclock_source.js:16
+msgid "Early Morning"
+msgstr "Kora reggel"
+
+#. 3.4/wallclock_source.js:19 5.4/wallclock_source.js:19
+msgid "Morning"
+msgstr "Reggel"
+
+#. 3.4/wallclock_source.js:22 5.4/wallclock_source.js:22
+msgid "Daytime"
+msgstr "Nappal"
+
+#. 3.4/wallclock_source.js:25 5.4/wallclock_source.js:25
+msgid "Afternoon"
+msgstr "Délután"
+
+#. 3.4/wallclock_source.js:28 5.4/wallclock_source.js:28
+msgid "Evening"
+msgstr "Este"
+
+#. 3.4/wallclock_source.js:125 5.4/wallclock_source.js:125
+msgid "Today"
+msgstr "Ma"
+
+#. 3.4/weatherapi_source.js:102 5.4/weatherapi_source.js:102
+msgid ""
+"No network,\n"
+"retrying..."
+msgstr ""
+"Nincs hálózat,\n"
+"újrapróbálás..."
+
+#. 3.4/weatherapi_source.js:105 5.4/weatherapi_source.js:105
+msgid ""
+"Error: see log\n"
+"Super + L"
+msgstr ""
+"Hiba: lásd a naplófájlt\n"
+"Szuper + L"
+
+#. 3.4/weatherapi_source.js:157 5.4/weatherapi_source.js:157
+msgid "Temp"
+msgstr "Hőm"
+
+#. 3.4/loadDialog.py:27 3.4/saveDialog.py:30 5.4/loadDialog.py:27
+#. 5.4/saveDialog.py:30
+msgid "JSON files"
+msgstr "JSON fájlok"
+
+#. 3.4/loadDialog.py:30 5.4/loadDialog.py:30
+msgid "Load"
+msgstr "Betöltés"
+
+#. 3.4/saveDialog.py:33 5.4/saveDialog.py:33
+msgid "Save"
+msgstr "mentés"
+
+#. 3.4/settingsWidgets.py:129 5.4/settingsWidgets.py:129
+msgid "Enabled"
+msgstr "Bekapcsolva"
+
+#. 3.4/settingsWidgets.py:130 5.4/settingsWidgets.py:130
+msgid "Persistent"
+msgstr "Kitartó"
+
+#. 3.4/settingsWidgets.py:131 5.4/settingsWidgets.py:131
+msgid "Date"
+msgstr "Dátum"
+
+#. 3.4/settingsWidgets.py:132 5.4/settingsWidgets.py:132
+msgid "Name"
+msgstr "Név"
+
+#. 3.4/settingsWidgets.py:233 3.4/settingsWidgets.py:329
+#. 5.4/settingsWidgets.py:233 5.4/settingsWidgets.py:329
+msgid "Add new entry"
+msgstr "Új bejegyzés hozzáadása"
+
+#. 3.4/settingsWidgets.py:237 5.4/settingsWidgets.py:237
+msgid "Remove selected entry"
+msgstr "A kiválasztott bejegyzés eltávolítása"
+
+#. 3.4/settingsWidgets.py:242 5.4/settingsWidgets.py:242
+msgid "Edit selected entry"
+msgstr "A kiválasztott bejegyzés szerkesztése"
+
+#. 3.4/settingsWidgets.py:247 5.4/settingsWidgets.py:247
+msgid "Move selected entry up"
+msgstr "A kiválasztott bejegyzés mozgatása felfelé"
+
+#. 3.4/settingsWidgets.py:252 5.4/settingsWidgets.py:252
+msgid "Move selected entry down"
+msgstr "A kiválasztott bejegyzés mozgatása lefelé"
+
+#. 3.4/settingsWidgets.py:331 5.4/settingsWidgets.py:331
+msgid "Edit entry"
+msgstr "Bejegyzés szerkesztése"
+
+#. metadata.json->description
+msgid ""
+"An aesthetic and customizable desklet that can function as clock, weather "
+"display, and/or tracker of important dates. Based on Persona 3."
+msgstr ""
+"Egy esztétikus és testreszabható asztalkalmazás, amely óraként, időjárás-"
+"kijelzőként és/vagy fontos dátumok nyomkövetőjeként is funkcionálhat. A "
+"Persona 3 alapján."
+
+#. metadata.json->comments
+msgid ""
+"Best placed in the top right corner on the screen. Use the \"offset\" "
+"configuration for precise alignment."
+msgstr ""
+"Legjobb a képernyő jobb felső sarkában elhelyezni. Használja az \"eltolás\" "
+"konfigurációt a pontos igazításhoz."
+
+#. 3.4->settings-schema.json->global-page->title
+#. 5.4->settings-schema.json->global-page->title
+msgid "Global"
+msgstr "Globális"
+
+#. 3.4->settings-schema.json->top-page->title
+#. 5.4->settings-schema.json->top-page->title
+msgid "Top row"
+msgstr "Felső sor"
+
+#. 3.4->settings-schema.json->middle-page->title
+#. 5.4->settings-schema.json->middle-page->title
+msgid "Middle row"
+msgstr "Középső sor"
+
+#. 3.4->settings-schema.json->bottom-page->title
+#. 5.4->settings-schema.json->bottom-page->title
+msgid "Bottom row"
+msgstr "Alsó sor"
+
+#. 3.4->settings-schema.json->data-page->title
+#. 5.4->settings-schema.json->data-page->title
+msgid "Data"
+msgstr "Adat"
+
+#. 3.4->settings-schema.json->save-load-page->title
+#. 5.4->settings-schema.json->save-load-page->title
+msgid "Save/Load"
+msgstr "Mentés/Betöltés"
+
+#. 3.4->settings-schema.json->global-positioning-section->title
+#. 5.4->settings-schema.json->global-positioning-section->title
+msgid "Positioning"
+msgstr "Elhelyezés"
+
+#. 3.4->settings-schema.json->global-scale-section->title
+#. 3.4->settings-schema.json->bottom-emoji-size->description
+#. 5.4->settings-schema.json->global-scale-section->title
+#. 5.4->settings-schema.json->bottom-emoji-size->description
+msgid "Size"
+msgstr "Méret"
+
+#. 3.4->settings-schema.json->global-color-section->title
+#. 5.4->settings-schema.json->global-color-section->title
+msgid "Color"
+msgstr "Szín"
+
+#. 3.4->settings-schema.json->top-format-section->title
+#. 3.4->settings-schema.json->middle-format-section->title
+#. 5.4->settings-schema.json->top-format-section->title
+#. 5.4->settings-schema.json->middle-format-section->title
+msgid "Time format"
+msgstr "Időformátum"
+
+#. 3.4->settings-schema.json->top-appearance-section->title
+#. 3.4->settings-schema.json->middle-appearance-section->title
+#. 5.4->settings-schema.json->top-appearance-section->title
+#. 5.4->settings-schema.json->middle-appearance-section->title
+msgid "Appearance"
+msgstr "Megjelenés"
+
+#. 3.4->settings-schema.json->bottom-requirements-section->title
+#. 5.4->settings-schema.json->bottom-requirements-section->title
+msgid "Requirements"
+msgstr "Szükségletek"
+
+#. 3.4->settings-schema.json->bottom-emoji-section->title
+#. 5.4->settings-schema.json->bottom-emoji-section->title
+msgid "Emoji settings"
+msgstr "Emoji beállítások"
+
+#. 3.4->settings-schema.json->bottom-label-section->title
+#. 5.4->settings-schema.json->bottom-label-section->title
+msgid "Caption settings"
+msgstr "Feliratbeállítások"
+
+#. 3.4->settings-schema.json->data-weatherapi-section->title
+#. 5.4->settings-schema.json->data-weatherapi-section->title
+msgid "WeatherAPI settings"
+msgstr "WeatherAPI beállítások"
+
+#. 3.4->settings-schema.json->data-countdown-section->title
+#. 5.4->settings-schema.json->data-countdown-section->title
+msgid "Custom countdown dates"
+msgstr "Egyedi visszaszámlálási dátumok"
+
+#. 3.4->settings-schema.json->save-section->title
+#. 5.4->settings-schema.json->save-section->title
+msgid "Save configuration"
+msgstr "Beállítás mentése"
+
+#. 3.4->settings-schema.json->load-section->title
+#. 5.4->settings-schema.json->load-section->title
+msgid "Load configuration"
+msgstr "Beállítás betöltése"
+
+#. 3.4->settings-schema.json->global-positioning-help->description
+#. 5.4->settings-schema.json->global-positioning-help->description
+msgid ""
+"Set these offsets with respect to your desklet grid so that this fits "
+"precisely into your top right corner."
+msgstr ""
+"Állítsa be ezeket az eltolásokat az asztalkalmazás rácshoz képest, hogy az "
+"pontosan illeszkedjen a jobb felső sarokhoz."
+
+#. 3.4->settings-schema.json->global-h-offset->description
+#. 5.4->settings-schema.json->global-h-offset->description
+msgid "Horizontal offset"
+msgstr "Vízszintes eltolás"
+
+#. 3.4->settings-schema.json->global-v-offset->description
+#. 3.4->settings-schema.json->top-v-offset->description
+#. 3.4->settings-schema.json->middle-v-offset->description
+#. 3.4->settings-schema.json->bottom-caption-v-offset->description
+#. 5.4->settings-schema.json->global-v-offset->description
+#. 5.4->settings-schema.json->top-v-offset->description
+#. 5.4->settings-schema.json->middle-v-offset->description
+#. 5.4->settings-schema.json->bottom-caption-v-offset->description
+msgid "Vertical offset"
+msgstr "Függőleges eltolás"
+
+#. 3.4->settings-schema.json->global-scale->description
+#. 5.4->settings-schema.json->global-scale->description
+msgid "Global scale"
+msgstr "Globális mérték"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Blue"
+msgstr "Kék"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Pink"
+msgstr "Rózsaszín"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Green"
+msgstr "Zöld"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Yellow"
+msgstr "Sárga"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Red"
+msgstr "Piros"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Light Green"
+msgstr "Világoszöld"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Purple"
+msgstr "Lila"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Dark Blue"
+msgstr "Sötétkék"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Grey"
+msgstr "Szürke"
+
+#. 3.4->settings-schema.json->global-color-scheme->options
+#. 5.4->settings-schema.json->global-color-scheme->options
+msgid "Custom"
+msgstr "Egyéni"
+
+#. 3.4->settings-schema.json->global-color-scheme->description
+#. 5.4->settings-schema.json->global-color-scheme->description
+msgid "Color scheme"
+msgstr "Színséma"
+
+#. 3.4->settings-schema.json->global-custom-corner1->description
+#. 5.4->settings-schema.json->global-custom-corner1->description
+msgid "Main color 1"
+msgstr "Fő szín 1"
+
+#. 3.4->settings-schema.json->global-custom-corner2->description
+#. 5.4->settings-schema.json->global-custom-corner2->description
+msgid "Main color 2"
+msgstr "Fő szín 2"
+
+#. 3.4->settings-schema.json->global-custom-time->description
+#. 5.4->settings-schema.json->global-custom-time->description
+msgid "Middle row text"
+msgstr "Középső sor szöveg"
+
+#. 3.4->settings-schema.json->global-custom-shadow->description
+#. 5.4->settings-schema.json->global-custom-shadow->description
+msgid "Text drop shadow"
+msgstr "Szöveg vetett árnyék"
+
+#. 3.4->settings-schema.json->global-custom-date->description
+#. 5.4->settings-schema.json->global-custom-date->description
+msgid "Top row text"
+msgstr "Felső sor szöveg"
+
+#. 3.4->settings-schema.json->global-custom-bottom->description
+#. 5.4->settings-schema.json->global-custom-bottom->description
+msgid "Bottom row text"
+msgstr "Alsó sor szöveg"
+
+#. 3.4->settings-schema.json->global-custom-highlight->description
+#. 5.4->settings-schema.json->global-custom-highlight->description
+msgid "Highlight color"
+msgstr "Kiemelés színe"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->description
+#. 5.4->settings-schema.json->global-color-invert-bottom->description
+msgid "Invert bottom colors"
+msgstr "Az alsó színek megfordítása"
+
+#. 3.4->settings-schema.json->global-color-invert-bottom->tooltip
+#. 5.4->settings-schema.json->global-color-invert-bottom->tooltip
+msgid ""
+"May be useful if the bottom caption doesn't stand out against your background"
+msgstr "Hasznos lehet, ha az alsó felirat nem tűnik ki a háttérből"
+
+#. 3.4->settings-schema.json->global-color-use-highlight->description
+#. 5.4->settings-schema.json->global-color-use-highlight->description
+msgid "Highlight bottom number display"
+msgstr "Jelölje ki az alsó számkijelzőt"
+
+#. 3.4->settings-schema.json->global-color-use-highlight->tooltip
+#. 5.4->settings-schema.json->global-color-use-highlight->tooltip
+msgid "Affects: rain chance display, temperature display, countdown displays"
+msgstr ""
+"Befolyásolja: eső esély kijelzés, hőmérséklet kijelzés, visszaszámláló "
+"kijelzők"
+
+#. 3.4->settings-schema.json->top-format->description
+#. 3.4->settings-schema.json->middle-format->description
+#. 5.4->settings-schema.json->top-format->description
+#. 5.4->settings-schema.json->middle-format->description
+msgid "Format specification"
+msgstr "Formátum specifikáció"
+
+#. 3.4->settings-schema.json->top-format-help->description
+#. 5.4->settings-schema.json->top-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default date according to your locale and settings."
+msgstr ""
+"Ez szabványos strftime-t használ, hozzáadva a %! specifier a nap "
+"hozzávetőleges szakaszának megjelenítéséhez (pl. Reggel, Délután, "
+"Este, ...). Hagyja üresen, ha az alapértelmezett dátumot szeretné "
+"megjeleníteni a területi beállításoknak megfelelően."
+
+#. 3.4->settings-schema.json->top-font->description
+#. 3.4->settings-schema.json->middle-font->description
+#. 3.4->settings-schema.json->bottom-caption-font->description
+#. 5.4->settings-schema.json->top-font->description
+#. 5.4->settings-schema.json->middle-font->description
+#. 5.4->settings-schema.json->bottom-caption-font->description
+msgid "Font"
+msgstr "Betű"
+
+#. 3.4->settings-schema.json->top-v-offset->tooltip
+#. 3.4->settings-schema.json->middle-v-offset->tooltip
+#. 3.4->settings-schema.json->bottom-caption-v-offset->tooltip
+#. 5.4->settings-schema.json->top-v-offset->tooltip
+#. 5.4->settings-schema.json->middle-v-offset->tooltip
+#. 5.4->settings-schema.json->bottom-caption-v-offset->tooltip
+msgid ""
+"Can help conpensate for the varying vertical alignment of different fonts."
+msgstr ""
+"Segíthet kompenzálni a különböző betűtípusok eltérő függőleges igazítását."
+
+#. 3.4->settings-schema.json->top-weekday->description
+#. 5.4->settings-schema.json->top-weekday->description
+msgid "Show separate weekday (fixed size)"
+msgstr "Külön hétköznap megjelenítése (fix méret)"
+
+#. 3.4->settings-schema.json->middle-format-help->description
+#. 5.4->settings-schema.json->middle-format-help->description
+msgid ""
+"This uses standard strftime, with the addition of the %! specifier to show "
+"an approximate phase of the day (e.g. Morning, Afternoon, Evening, ...). "
+"Leave empty to show a default clock according to your locale and settings."
+msgstr ""
+"Ez szabványos strftime-t használ, hozzáadva a %! specifier a nap "
+"hozzávetőleges szakaszának megjelenítéséhez (pl. Reggel, Délután, "
+"Este, ...). Hagyja üresen az alapértelmezett óra megjelenítéséhez a területi "
+"beállításoknak megfelelően."
+
+#. 3.4->settings-schema.json->middle-shadow->description
+#. 3.4->settings-schema.json->bottom-caption-shadow->description
+#. 5.4->settings-schema.json->middle-shadow->description
+#. 5.4->settings-schema.json->bottom-caption-shadow->description
+msgid "Drop shadow"
+msgstr "Vetett árnyék"
+
+#. 3.4->settings-schema.json->middle-shadow-offset->description
+#. 3.4->settings-schema.json->bottom-caption-shadow-offset->description
+#. 5.4->settings-schema.json->middle-shadow-offset->description
+#. 5.4->settings-schema.json->bottom-caption-shadow-offset->description
+msgid "Drop shadow offset"
+msgstr "Vetett árnyék eltolás"
+
+#. 3.4->settings-schema.json->bottom-requirements-help->description
+#. 5.4->settings-schema.json->bottom-requirements-help->description
+msgid ""
+"(W) - A valid WeatherAPI key is required. Go to the \"Data\" page to enable "
+"it.\n"
+"(C?) - OPTIONAL: precision can be improved by generating a local lunar "
+"calendar. See https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation for instructions.\n"
+"(D) - You must provide one or more important dates to count down to in the "
+"\"Data\" page."
+msgstr ""
+"(W) – Érvényes WeatherAPI-kulcs szükséges. Az engedélyezéséhez lépjen az "
+"\"Adatok\" oldalra.\n"
+"(C?) - OPCIONÁLIS: a pontosság javítható egy helyi holdnaptár generálásával. "
+"Útmutatásért lásd: https://github.com/torchipeppo/p3-clock-for-cinnamon/tree/"
+"master/lunar_calendar_generation.\n"
+"(D) – Meg kell adnia egy vagy több fontos dátumot a visszaszámláláshoz az "
+"„Adatok” oldalon."
+
+#. 3.4->settings-schema.json->wapi-help->description
+#. 5.4->settings-schema.json->wapi-help->description
+msgid ""
+"To access weather data from WeatherAPI, an API key is required. Sign up on "
+"weatherapi.com to get one. Be mindful of your request budget when setting "
+"the update frequency or manually requesting updates."
+msgstr ""
+"Az időjárási adatok WeatherAPI-ból való eléréséhez API-kulcs szükséges. "
+"Regisztráljon a weatherapi.com oldalon, hogy szerezzen egyet. Ügyeljen a "
+"kérések költségkeretére, amikor beállítja a frissítési gyakoriságot vagy "
+"manuálisan kéri a frissítéseket."
+
+#. 3.4->settings-schema.json->wapi-enable->description
+#. 5.4->settings-schema.json->wapi-enable->description
+msgid "Enable WeatherAPI for weather display"
+msgstr "Engedélyezze a WeatherAPI-t az időjárás megjelenítéséhez"
+
+#. 3.4->settings-schema.json->wapi-key->description
+#. 5.4->settings-schema.json->wapi-key->description
+msgid "WeatherAPI key"
+msgstr "WeatherAPI kulcs"
+
+#. 3.4->settings-schema.json->wapi-key->tooltip
+#. 5.4->settings-schema.json->wapi-key->tooltip
+msgid "Your API key for WeatherAPI. Leave empty to disable weather display."
+msgstr ""
+"Az API-kulcs a WeatherAPI-hoz. Hagyja üresen az időjárás-kijelzés "
+"kikapcsolásához."
+
+#. 3.4->settings-schema.json->wapi-query->description
+#. 5.4->settings-schema.json->wapi-query->description
+msgid "Weather location"
+msgstr "Időjárási helyszín"
+
+#. 3.4->settings-schema.json->wapi-query->tooltip
+#. 5.4->settings-schema.json->wapi-query->tooltip
+msgid ""
+"Enter your location name (e.g. \"Tokyo\"), your coordinates (e.g. "
+"\"123.45,98.765\"), or \"auto:ip\" for automatic lookup based on your IP "
+"address."
+msgstr ""
+"Adja meg a hely nevét (pl. \"Tokió\"), a koordinátáit (pl. "
+"\"123.45,98.765\") vagy az \"auto:ip\"-t az IP-címe alapján történő "
+"automatikus kereséshez."
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->options
+#. 5.4->settings-schema.json->wapi-update-period-minutes->options
+msgid "60 minutes"
+msgstr "60 perc"
+
+#. 3.4->settings-schema.json->wapi-update-period-minutes->description
+#. 5.4->settings-schema.json->wapi-update-period-minutes->description
+msgid "Update frequency"
+msgstr "Frissítési időköz"
+
+#. 3.4->settings-schema.json->wapi-update-button->description
+#. 5.4->settings-schema.json->wapi-update-button->description
+msgid "Refresh WeatherAPI"
+msgstr "WeatherAPI frissítése"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Weather (W)"
+msgstr "Időjárás (W)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->options
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-emoji-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Moon phase (C?)"
+msgstr "Holdfázis (C?)"
+
+#. 3.4->settings-schema.json->bottom-emoji-type->description
+#. 5.4->settings-schema.json->bottom-emoji-type->description
+msgid "Emoji display"
+msgstr "Emoji megjelenítése"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Chance of rain (W)"
+msgstr "Eső valószínűsége (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °C (W)"
+msgstr "Hőmérséklet °C (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Temperature °F (W)"
+msgstr "Hőmérséklet °F (W)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+#, fuzzy
+msgid "Moon countdown (C?)"
+msgstr "Telihold visszaszámlálás (C?)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->options
+#. 5.4->settings-schema.json->bottom-caption-type->options
+msgid "Custom countdown (D)"
+msgstr "Egyéni visszaszámlálás (D)"
+
+#. 3.4->settings-schema.json->bottom-caption-type->description
+#. 5.4->settings-schema.json->bottom-caption-type->description
+msgid "Caption display"
+msgstr "Felirat megjelenítése"
+
+#. 3.4->settings-schema.json->bottom-show-secondary-countdowns->description
+#. 5.4->settings-schema.json->bottom-show-secondary-countdowns->description
+msgid "Show more countdowns in secondary text (D)"
+msgstr "További visszaszámlálás megjelenítése a másodlagos szövegben (D)"
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "Select moon phases"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌑"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌓"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌕"
+msgstr ""
+
+#. 3.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+#. 5.4->settings-schema.json->bottom-moon-countdown-selection->columns->title
+msgid "🌗"
+msgstr ""
+
+#. 3.4->settings-schema.json->custom-countdown-list-label->description
+#. 5.4->settings-schema.json->custom-countdown-list-label->description
+msgid ""
+"Enter one or more dates to count down to when selecting \"Custom "
+"countdown\" (1 date) and/or \"Show more countdowns in secondary text\" (up "
+"to 2 additional dates).\n"
+"The order of the list represents the priority order for the dates.\n"
+"Disable dates to skip them.\n"
+"Dates set in the past are also skipped unless they are \"persistent\".\n"
+"\n"
+msgstr ""
+"Adjon meg egy vagy több dátumot a visszaszámláláshoz, amikor kiválasztja az "
+"„Egyéni visszaszámlálás” (1 dátum) és/vagy a „További visszaszámlálások "
+"megjelenítése másodlagos szövegben” (legfeljebb 2 további dátum) "
+"lehetőséget.\n"
+"A lista sorrendje a dátumok prioritási sorrendjét jelenti.\n"
+"Az átugráshoz tiltsa le a dátumokat.\n"
+"A múltban beállított dátumok is kimaradnak, hacsak nem „tartósak”.\n"
+"\n"
+
+#. 3.4->settings-schema.json->save-help->description
+#. 5.4->settings-schema.json->save-help->description
+msgid ""
+"Click the button below to save the following settings to a JSON file:\n"
+"- color scheme,\n"
+"- text style (including font selection, shadow offset, and emoji size),\n"
+"- content (including date-time format strings and bottom row selections),\n"
+"- countdown dates.\n"
+"Does NOT correspond to a full export of the configuration."
+msgstr ""
+"Kattintson az alábbi gombra a következő beállítások JSON-fájlba mentéséhez:\n"
+"- színséma,\n"
+"- szövegstílus (beleértve a betűtípus kiválasztását, az árnyékeltolást és a "
+"hangulatjel méretét),\n"
+"- tartalom (beleértve a dátum-idő formátum karakterláncait és az alsó sor "
+"kijelöléseit),\n"
+"- visszaszámlálási dátumok.\n"
+"NEM felel meg a konfiguráció teljes exportálásának."
+
+#. 3.4->settings-schema.json->save-button->description
+#. 5.4->settings-schema.json->save-button->description
+msgid "Save customization"
+msgstr "Mentse el a testreszabást"
+
+#. 3.4->settings-schema.json->load-help->description
+#. 5.4->settings-schema.json->load-help->description
+msgid ""
+"Choose which options to load from a previous save, then click the button "
+"below to select a file to load.\n"
+"WARNING: the selected settings will be overwritten, and their original "
+"values will be lost! Unselected settings will be left untouched."
+msgstr ""
+"Válassza ki, hogy mely beállításokat szeretné betölteni egy korábbi "
+"mentésből, majd kattintson az alábbi gombra a betöltendő fájl "
+"kiválasztásához.\n"
+"FIGYELMEZTETÉS: a kiválasztott beállítások felülíródnak, és az eredeti "
+"értékeik elvesznek! A nem kiválasztott beállítások érintetlenül maradnak."
+
+#. 3.4->settings-schema.json->load-colors->description
+#. 5.4->settings-schema.json->load-colors->description
+msgid "Load color scheme"
+msgstr "Színséma betöltése"
+
+#. 3.4->settings-schema.json->load-style->description
+#. 5.4->settings-schema.json->load-style->description
+msgid "Load text style"
+msgstr "Szövegstílus betöltése"
+
+#. 3.4->settings-schema.json->load-content->description
+#. 5.4->settings-schema.json->load-content->description
+msgid "Load content"
+msgstr "Tartalom betöltése"
+
+#. 3.4->settings-schema.json->load-countdown-list->description
+#. 5.4->settings-schema.json->load-countdown-list->description
+msgid "Load countdown dates"
+msgstr "Visszaszámlálási dátumok betöltése"
+
+#. 3.4->settings-schema.json->load-button->description
+#. 5.4->settings-schema.json->load-button->description
+msgid "Load selected options"
+msgstr "Kiválasztott opciók betöltése"

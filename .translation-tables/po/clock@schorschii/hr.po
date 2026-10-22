@@ -1,0 +1,234 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# gogo <trebelnik2@gmail.com>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clock@schorschii\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2017-05-08 14:35+0200\n"
+"Last-Translator: gogo <trebelnik2@gmail.com>\n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Sat"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Prilagodljivi desklet analognog sata s glatkim kazaljkama i slobodnim "
+"odabirom slika."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analogni kronometar"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Postavke za clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Izgled"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Izgled sata"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Svjetli"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Tamni"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr ""
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Prilagođen"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Odaberite grafiku pozadinu koju želite koristiti."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Prikaži kazaljku sekundi"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Prikaži ili sakrij kazaljku sekundi."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Glatko pomicanje kazaljke sekunde"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Koristi glatku animaciju za kazaljku sekundi umjesto osvježavanja svake "
+"sekunde."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Glatko pomicanje kazaljke minuta"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Koristi glatku animaciju za kazaljku minuta umjesto osvježavanja svake "
+"sekunde."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Prikaži ukrase"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pikseli"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Veličina deskleta"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Povećajte ili smanjite veličinu sata."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Prilagođeni naslov deskleta (samo je vidljiv ako su ukrasi omogućeni)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Koristi prilagođeni naslov deskleta"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ovaj odabir omogućuje vam postavljanje prilagođenog naslova u polju ispod."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Prilagođeni naslov deskleta"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Postavite svoj prilagođeni naslov ovdje, npr. za višestruke vremenske zone. "
+"Ovo polje je nedostupno osim ako je odabrana mogućnost iznad."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Vremenska zona"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Koristi prilagođenu vremensku zonu"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Ovaj odabir omogućuje vam postavljanje prilagođene vremenske zone u polju "
+"ispod."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Prilagođena vremenska zona"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Upišite ovdje vašu prilagođenu vremensku zonu."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Prilagođene slike (dostupno ako je izgled sata postavljen na 'Prilagođen')"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Pozadina"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Odaberite svoju vlastitu pozadinsku sliku."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Kazaljka sekundi"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Odaberite svoju vlastitu sliku za kazaljku sekundi. Trebala bi biti velika "
+"kao pozadinska slika."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Kazaljka minuta"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Odaberite svoju vlastitu sliku za kazaljku minuta. Trebala bi biti velika "
+"kao pozadinska slika."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Kazaljka sata"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Odaberite svoju vlastitu sliku za kazaljku sata. Trebala bi biti velika kao "
+"pozadinska slika."
+
+#~ msgid "Custom images"
+#~ msgstr "Prilagođena slika"
+
+#~ msgid "Smooth hands"
+#~ msgstr "Glatke kazaljke"
+
+#~ msgid ""
+#~ "Use smooth animation for hour, minute and seconds hand instead of "
+#~ "refreshing it only every second."
+#~ msgstr ""
+#~ "Koristi glatku animaciju za kazaljke sata, minuta i sekundi umjesto "
+#~ "osvježavanja svake sekunde."

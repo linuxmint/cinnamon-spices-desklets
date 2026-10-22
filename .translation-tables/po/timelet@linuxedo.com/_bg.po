@@ -1,0 +1,26 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+
+#: themes/theme.js:143
+msgid "AM"
+msgstr ""
+
+#: themes/theme.js:145
+msgid "Noon"
+msgstr ""
+
+#: themes/theme.js:147
+msgid "PM"
+msgstr ""
+
+#. settings-schema.json->themeName->description
+msgid "Theme"
+msgstr ""
+
+#. settings-schema.json->scale->description
+msgid "Scale"
+msgstr ""

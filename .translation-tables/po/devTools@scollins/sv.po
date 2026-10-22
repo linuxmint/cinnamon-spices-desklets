@@ -1,0 +1,411 @@
+# Swedish translation for devTools@scollins.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR Åke Engelbrektson <eson@svenskasprakfiler.se>, 2019.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: devTools@scollins\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2019-03-14 16:19+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Namnlös"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Verktyg"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Expandera"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Komprimera"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Öppna systeminställningar"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Starta sandlåda"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Kör kommandorad"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Inspektera"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Öppna Looking Glass"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Läs in temat igen"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Starta om Cinnamon"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "X-Session Logg"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Dölj äldre fel"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Rensa"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Cinnamon Logg"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Visa tidsstämpel"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Info"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Varningar"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Fel"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Spårning"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Kopiera"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Oändlig"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Uppdatera"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Ta bort"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Instanser"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "maximalt av"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Markera"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Konfigurera"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Tillägg"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "kunde inte skapa tilläggsobjekt för uuid"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Inga tillägg av den här typen är aktiverade"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(Tryck Pause eller Ctrl för att inaktivera händelseöverföring)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(Tryck Pause eller Ctrl för att aktivera händelseöverföring)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Längd"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Överordnat"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Underordnat"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Höjd"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Bredd"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Synlig"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "Stilklass"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Ingen"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Titel"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Klass"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Arbetsyta"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr ""
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Storlek"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Position"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Värden"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Index"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Tangent"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Egenskaper"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Namn"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Typ"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Värde"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Öppna"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Spara"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Spara som"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandlåda"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Utvärdera"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Stil"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Läs in aktuell stilmall"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Inga fel identifierade"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Stäng flik"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Kommando"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Status"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Kör"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Avsluta process"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Utdata"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Stoppad"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Kör"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "alla"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Växla till"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Stäng"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Fönster"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr "Ett skrivbordsprogram för att felsöka och utveckla i Cinnamon UI"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Utvecklare"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"Detta skrivbordsprogram tillhandahåller verktyg som hjälp att felsöka, visa "
+"och kontrollera vissa Cinnamon-komponenter och även testa ny kod utan att "
+"starta om Cinnamon."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Utvecklarverktyg"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Vid uppstart"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Kom ihåg föregående läge"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Visa"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Komprimerad"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Kortkommando för visa överst"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Centrera skrivbordsprogrammet på skärmen, i expanderat läge."
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Sandlådehuvud"
+
+#~ msgid "Applet Settings"
+#~ msgstr "Inställningar för panelprogram"
+
+#~ msgid "Desklet Settings"
+#~ msgstr "Inställningar för skrivbordsprogram"
+
+#~ msgid "Extension Settings"
+#~ msgstr "Inställningar för tillägg"
+
+#~ msgid "General Settings"
+#~ msgstr "Allmänna inställningar"
+
+#~ msgid "Panel Settings"
+#~ msgstr "Panelinställningar"
+
+#~ msgid "Regional Settings"
+#~ msgstr "Regionala inställningar"
+
+#~ msgid "Theme Settings"
+#~ msgstr "Temainställningar"
+
+#~ msgid "Window Settings"
+#~ msgstr "Fönsterinställningar"
+
+#~ msgid "Workspace Settings"
+#~ msgstr "Inställningar för arbetsytor"
+
+#~ msgid "Cinnamon Settings"
+#~ msgstr "Systeminställningar"
+
+#~ msgid "All Settings"
+#~ msgstr "Alla inställningar"

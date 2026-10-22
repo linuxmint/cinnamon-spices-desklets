@@ -1,0 +1,292 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-07-20 11:58-0400\n"
+"PO-Revision-Date: 2022-06-03 13:10+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: 4.6/desklet.js:316 5.4/desklet.js:316 2.8/desklet.js:316
+msgid "Launch Player"
+msgstr "Avvia Player"
+
+#: 4.6/soundbox.js:627 4.6/soundbox.js:754 5.4/soundbox.js:627
+#: 5.4/soundbox.js:754 2.8/soundbox.js:627 2.8/soundbox.js:754
+msgid "Unmute"
+msgstr "Smuta"
+
+#: 4.6/soundbox.js:635 4.6/soundbox.js:760 5.4/soundbox.js:635
+#: 5.4/soundbox.js:760 2.8/soundbox.js:635 2.8/soundbox.js:760
+msgid "Mute"
+msgstr "Muta"
+
+#: 4.6/soundbox.js:1022 5.4/soundbox.js:1022 2.8/soundbox.js:1022
+msgid "Show player"
+msgstr "Mostra player"
+
+#: 4.6/soundbox.js:1035 5.4/soundbox.js:1035 2.8/soundbox.js:1035
+msgid "Close player"
+msgstr "Chiudi player"
+
+#: 4.6/soundbox.js:1149 4.6/soundbox.js:1324 5.4/soundbox.js:1149
+#: 5.4/soundbox.js:1324 2.8/soundbox.js:1149 2.8/soundbox.js:1324
+msgid "Unknown Title"
+msgstr "Titolo Sconosciuto"
+
+#: 4.6/soundbox.js:1151 4.6/soundbox.js:1322 5.4/soundbox.js:1151
+#: 5.4/soundbox.js:1322 2.8/soundbox.js:1151 2.8/soundbox.js:1322
+msgid "Unknown Album"
+msgstr "Album Sconosciuto"
+
+#: 4.6/soundbox.js:1153 4.6/soundbox.js:1320 5.4/soundbox.js:1153
+#: 5.4/soundbox.js:1320 2.8/soundbox.js:1153 2.8/soundbox.js:1320
+msgid "Unknown Artist"
+msgstr "Artista Sconosciuto"
+
+#: 4.6/soundbox.js:1192 5.4/soundbox.js:1192 2.8/soundbox.js:1192
+msgid "Previous"
+msgstr "Precedente"
+
+#: 4.6/soundbox.js:1198 4.6/soundbox.js:1373 4.6/soundbox.js:1378
+#: 5.4/soundbox.js:1198 5.4/soundbox.js:1373 5.4/soundbox.js:1378
+#: 2.8/soundbox.js:1198 2.8/soundbox.js:1373 2.8/soundbox.js:1378
+msgid "Play"
+msgstr "Riproduci"
+
+#: 4.6/soundbox.js:1203 5.4/soundbox.js:1203 2.8/soundbox.js:1203
+msgid "Stop"
+msgstr "Ferma"
+
+#: 4.6/soundbox.js:1208 5.4/soundbox.js:1208 2.8/soundbox.js:1208
+msgid "Next"
+msgstr "Successivo"
+
+#: 4.6/soundbox.js:1215 5.4/soundbox.js:1215 2.8/soundbox.js:1215
+msgid "Repeat"
+msgstr "Ripeti"
+
+#: 4.6/soundbox.js:1224 5.4/soundbox.js:1224 2.8/soundbox.js:1224
+msgid "Shuffle"
+msgstr "Mescola"
+
+#: 4.6/soundbox.js:1266 5.4/soundbox.js:1266 2.8/soundbox.js:1266
+msgid "Repeat: Off"
+msgstr "Ripeti: Off"
+
+#: 4.6/soundbox.js:1270 5.4/soundbox.js:1270 2.8/soundbox.js:1270
+msgid "Repeat: Track"
+msgstr "Ripeti: Brano"
+
+#: 4.6/soundbox.js:1274 5.4/soundbox.js:1274 2.8/soundbox.js:1274
+msgid "Repeat: All"
+msgstr "Ripeti: Tutto"
+
+#: 4.6/soundbox.js:1282 5.4/soundbox.js:1282 2.8/soundbox.js:1282
+msgid "Shuffle: On"
+msgstr "Mescola: On"
+
+#: 4.6/soundbox.js:1286 5.4/soundbox.js:1286 2.8/soundbox.js:1286
+msgid "Shuffle: Off"
+msgstr "Mescola: Off"
+
+#: 4.6/soundbox.js:1368 5.4/soundbox.js:1368 2.8/soundbox.js:1368
+msgid "Pause"
+msgstr "Pausa"
+
+#: 4.6/soundbox.js:1516 5.4/soundbox.js:1516 2.8/soundbox.js:1516
+msgid "Output Devices"
+msgstr "Dispositivi di Uscita"
+
+#: 4.6/soundbox.js:1526 5.4/soundbox.js:1526 2.8/soundbox.js:1526
+msgid "Input Devices"
+msgstr "Dispositivi di Ingresso"
+
+#: 4.6/soundbox.js:1534 5.4/soundbox.js:1534 2.8/soundbox.js:1534
+msgid "Sound Settings"
+msgstr "Impostazioni del Suono"
+
+#: 4.6/soundbox.js:1542 5.4/soundbox.js:1542 2.8/soundbox.js:1542
+msgid "Volume:"
+msgstr "Volume:"
+
+#: 4.6/soundbox.js:1571 5.4/soundbox.js:1571 2.8/soundbox.js:1571
+msgid "Previous Player"
+msgstr "Player Precedente"
+
+#: 4.6/soundbox.js:1580 5.4/soundbox.js:1580 2.8/soundbox.js:1580
+msgid "Next Player"
+msgstr "Player Successivo"
+
+#. metadata.json->name
+msgid "Soundbox"
+msgstr "Soundbox"
+
+#. metadata.json->description
+msgid "A desklet to view sound settings and manage media controls"
+msgstr ""
+"Un desklet per visualizzare le impostazioni audio e gestire i controlli "
+"multimediali"
+
+#. metadata.json->comments
+msgid ""
+"Soundbox is an attractive and easy-to-use Desklet designed to control your "
+"volume and media players. It was originally forked from the Cinnamon sound "
+"applet, but has grown and evolved over time. Feel free to contribute by "
+"submitting pull requests, bug reports and feature requests to my github repo."
+msgstr ""
+"Soundbox è un Desklet accattivante e facile da usare progettato per "
+"controllare il volume e i lettori multimediali. È stato originariamente "
+"biforcato dall'applet del suono Cinnamon, ma è cresciuto e si è evoluto nel "
+"tempo. Sentiti libero di contribuire inviando richieste pull, segnalazioni "
+"di bug e richieste di funzionalità al mio repository github."
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - Autore"
+
+#. metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr "Bernard(zagortenay333) - Tema Mint-x"
+
+#. metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr "Corbin(RavetcoFX) - Bugfix"
+
+#. 4.6->settings-schema.json->hideSystray->description
+#. 5.4->settings-schema.json->hideSystray->description
+#. 2.8->settings-schema.json->hideSystray->description
+msgid "Hide system tray icons for compatible players"
+msgstr "Nascondi icone nella tray di sistema per i player compatibili"
+
+#. 4.6->settings-schema.json->showInput->description
+#. 5.4->settings-schema.json->showInput->description
+#. 2.8->settings-schema.json->showInput->description
+msgid "Show input volume controls"
+msgstr "Mostra controlli volume di ingresso"
+
+#. 4.6->settings-schema.json->showApps->description
+#. 5.4->settings-schema.json->showApps->description
+#. 2.8->settings-schema.json->showApps->description
+msgid "Show application volume controls"
+msgstr "Mostra controlli volume dell'applicazione"
+
+#. 4.6->settings-schema.json->exceedNormVolume->description
+#. 5.4->settings-schema.json->exceedNormVolume->description
+#. 2.8->settings-schema.json->exceedNormVolume->description
+msgid "Allow volume control to exceed 100% volume"
+msgstr "Permetti al volume di superare il 100%"
+
+#. 4.6->settings-schema.json->exceedNormVolume->tooltip
+#. 5.4->settings-schema.json->exceedNormVolume->tooltip
+#. 2.8->settings-schema.json->exceedNormVolume->tooltip
+msgid "Note: some applications don't sound good over 100% volume"
+msgstr "Nota: alcune applicazioni non suonano bene oltre il 100% del volume"
+
+#. 4.6->settings-schema.json->countUp->description
+#. 5.4->settings-schema.json->countUp->description
+#. 2.8->settings-schema.json->countUp->description
+msgid "Timer counts up"
+msgstr "Il timer conta"
+
+#. 4.6->settings-schema.json->raiseKey->description
+#. 5.4->settings-schema.json->raiseKey->description
+#. 2.8->settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Porta in primo piano - tasto di scelta rapida"
+
+#. 4.6->settings-schema.json->appearance->description
+#. 5.4->settings-schema.json->appearance->description
+#. 2.8->settings-schema.json->appearance->description
+msgid "Appearance"
+msgstr "Aspetto"
+
+#. 4.6->settings-schema.json->centerRaised->description
+#. 5.4->settings-schema.json->centerRaised->description
+#. 2.8->settings-schema.json->centerRaised->description
+msgid "Center Soundbox on the screen in raised mode"
+msgstr "Centra la Soundbox sullo schermo in modalità sollevata"
+
+#. 4.6->settings-schema.json->theme->description
+#. 5.4->settings-schema.json->theme->description
+#. 2.8->settings-schema.json->theme->description
+msgid "Theme"
+msgstr "Tema"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Mint"
+msgstr "Mint"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr "Mint-X"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Clean"
+msgstr "Pulito"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr "Fantasma"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Ice"
+msgstr "Ghiaccio"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Forest"
+msgstr "Bosco"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr "Hot Rod"
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr "Mimetico (cerca di fondersi)"
+
+#. 4.6->settings-schema.json->compact->description
+#. 5.4->settings-schema.json->compact->description
+#. 2.8->settings-schema.json->compact->description
+msgid "Use compact layout"
+msgstr "Usa layout compatto"
+
+#. 4.6->settings-schema.json->showArt->description
+#. 5.4->settings-schema.json->showArt->description
+#. 2.8->settings-schema.json->showArt->description
+msgid "Show album artwork"
+msgstr "Mostra copertina album"
+
+#. 4.6->settings-schema.json->artSize->description
+#. 5.4->settings-schema.json->artSize->description
+#. 2.8->settings-schema.json->artSize->description
+msgid "Artwork size"
+msgstr "Dimensione copertina"

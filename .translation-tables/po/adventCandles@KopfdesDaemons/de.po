@@ -1,0 +1,104 @@
+# ADVENT CANDLES
+# This file is put in the public domain.
+# KopfdesDaemons, 2017
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: adventCandles@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-12-14 00:04+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:24
+msgid "Advent Candles"
+msgstr "Adventskerzen"
+
+#. metadata.json->description
+msgid "Advent candles with animations on your desktop."
+msgstr "Adventskerzen mit Animationen auf Ihrem Desktop."
+
+#. settings-schema.json->header0->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->desklet-scale->description
+msgid "Scale factor for desklet size"
+msgstr "Skalierungsfaktor für Deskletgröße"
+
+#. settings-schema.json->animation-enabled->description
+msgid "Animate the candle flames"
+msgstr "Kerzenflammen animieren"
+
+#. settings-schema.json->animation-speed->description
+msgid "Speed of candle animation in milliseconds"
+msgstr "Geschwindigkeit der Kerzenanimation in Millisekunden"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "automatic"
+msgstr "automatisch"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "0"
+msgstr "0"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "1"
+msgstr "1"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "2"
+msgstr "2"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "3"
+msgstr "3"
+
+#. settings-schema.json->number-of-lit-candles->options
+msgid "4"
+msgstr "4"
+
+#. settings-schema.json->number-of-lit-candles->description
+msgid "Number of lit candles"
+msgstr "Anzahl der brennenden Kerzen"
+
+#. settings-schema.json->header1->description
+msgid "Colors"
+msgstr "Farben"
+
+#. settings-schema.json->color-preset->options
+msgid "traditional"
+msgstr "traditionell"
+
+#. settings-schema.json->color-preset->options
+msgid "red"
+msgstr "rot"
+
+#. settings-schema.json->color-preset->description
+msgid "Color preset"
+msgstr "Farbvoreinstellung"
+
+#. settings-schema.json->candle-1-color->description
+msgid "Color of the 1st candle"
+msgstr "Farbe der 1. Kerze"
+
+#. settings-schema.json->candle-2-color->description
+msgid "Color of the 2nd candle"
+msgstr "Farbe der 2. Kerze"
+
+#. settings-schema.json->candle-3-color->description
+msgid "Color of the 3rd candle"
+msgstr "Farbe der 3. Kerze"
+
+#. settings-schema.json->candle-4-color->description
+msgid "Color of the 4th candle"
+msgstr "Farbe der 4. Kerze"
