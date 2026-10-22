@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-09-09 15:26+0200\n"
+"POT-Creation-Date: 2026-09-18 14:49-0400\n"
 "PO-Revision-Date: 2018-02-18 22:48+0500\n"
 "Last-Translator: Ilis <ilis@inbox.ru>\n"
 "Language-Team: \n"
@@ -21,57 +21,74 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
 #. settings-schema.json->interval->description
-#. desklet.js:66 desklet.js:74
+#. desklet.js:69 desklet.js:77
 msgid "Number of days to include"
 msgstr "Число дней для повестки дня"
 
-#. desklet.js:66 desklet.js:74
+#. desklet.js:69 desklet.js:77
 msgid ": "
 msgstr ": "
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
-#. desklet.js:126
+#. desklet.js:137
 msgid "Google Calendar"
 msgstr "Календарь Google"
 
-#. desklet.js:219
+#. desklet.js:232
 #, fuzzy
 msgid "Open Google Calendar"
 msgstr "Календарь Google"
 
-#. desklet.js:302
+#. settings-schema.json->authorizeButton->description
+#. desklet.js:238
+msgid "Authorize Google account"
+msgstr ""
+
+#. desklet.js:324
 #, fuzzy
 msgid "No events found"
 msgstr "События не найдены..."
 
-#. desklet.js:467
+#. desklet.js:493
 msgid "gcalendar is not authorized"
 msgstr "gcalendar не авторизован"
 
-#. desklet.js:469
+#. desklet.js:495
 msgid "gcalendar token expired"
 msgstr "gcalendar истек токен"
 
-#. desklet.js:474
-msgid "Execute: "
-msgstr "Выполнить: "
+#. desklet.js:500
+msgid "Click here to authorize access to your Google Calendar."
+msgstr ""
 
-#. desklet.js:487
+#. desklet.js:510
 msgid "Unknown Error"
 msgstr "Неизвестная ошибка"
 
-#. desklet.js:490
-msgid "Install gcalendar to use this desklet."
-msgstr "Установить gcalendar для использования этого десклета."
-
-#. desklet.js:491
-msgid "Visit: "
-msgstr "Посетить: "
-
-#. desklet.js:529
+#. desklet.js:548
 msgid "Unable to retrieve events..."
 msgstr "Невозможно получить события..."
+
+#. desklet.js:591
+msgid "Some required components are missing."
+msgstr ""
+
+#. desklet.js:592
+msgid "Click here to install them."
+msgstr ""
+
+#. desklet.js:595
+msgid "Python 3 is required but was not found."
+msgstr ""
+
+#. desklet.js:614
+msgid "This desklet needs the following packages from your distribution: "
+msgstr ""
+
+#. desklet.js:665
+msgid "Waiting for authorization in your web browser…"
+msgstr ""
 
 #. lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
@@ -255,7 +272,9 @@ msgstr "Client Id"
 msgid ""
 "Enter your Google calendar project client id. Leave it empty to use the "
 "default client id."
-msgstr "Укажите Client Id профиля Календаря Google. Оставьте пустым, чтобы использовать значение по умолчанию"
+msgstr ""
+"Укажите Client Id профиля Календаря Google. Оставьте пустым, чтобы "
+"использовать значение по умолчанию"
 
 #. settings-schema.json->clientSecret->description
 msgid "Client secret"
@@ -265,7 +284,15 @@ msgstr "Client secret"
 msgid ""
 "Enter your Google calendar project client secret. Leave it empty to use the "
 "default client secret."
-msgstr "Укажите Сlient secret профиля Календаря Google. Оставьте пустым, чтобы использовать значение по умолчанию"
+msgstr ""
+"Укажите Сlient secret профиля Календаря Google. Оставьте пустым, чтобы "
+"использовать значение по умолчанию"
+
+#. settings-schema.json->authorizeButton->tooltip
+msgid ""
+"Opens your web browser so you can grant this desklet read-only access to "
+"your Google Calendar."
+msgstr ""
 
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
@@ -276,8 +303,8 @@ msgid "gcalendar Account ID"
 msgstr "gcalendar Account ID"
 
 #. settings-schema.json->gcalendarAccount->tooltip
-msgid "Enter gcalendar --account id"
-msgstr "Введите: gcalendar --account id"
+msgid "Choose which authorized Google account to show events from."
+msgstr ""
 
 #. settings-schema.json->gcalendarAccount->options
 msgid "default"
@@ -291,7 +318,8 @@ msgstr "Заполнить список ниже всеми доступными
 msgid ""
 "Click to fill in the list bellow with the names of all your calendars. It "
 "may take a little while."
-msgstr "Нажмите, чтобы заполнить список ниже названиями всех ваших календарей. Это "
+msgstr ""
+"Нажмите, чтобы заполнить список ниже названиями всех ваших календарей. Это "
 "может занять некоторое время."
 
 #. settings-schema.json->calendarNames->description
@@ -300,7 +328,9 @@ msgstr "Показывать эти календари:"
 
 #. settings-schema.json->calendarNames->tooltip
 msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
-msgstr "Если вы хотите отобразить календарь, установите для него значение TRUE (или установите флажок)."
+msgstr ""
+"Если вы хотите отобразить календарь, установите для него значение TRUE (или "
+"установите флажок)."
 
 #. settings-schema.json->calendarNames->columns->title
 msgid "Calendar"

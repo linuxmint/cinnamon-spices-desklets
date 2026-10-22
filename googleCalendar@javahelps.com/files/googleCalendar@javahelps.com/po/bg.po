@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"POT-Creation-Date: 2026-09-18 14:49-0400\n"
 "PO-Revision-Date: 2017-11-22 13:32+0200\n"
 "Last-Translator: Peyu Yovev <spacy00001@gmail.com>\n"
 "Language-Team: \n"
@@ -20,57 +20,74 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #. settings-schema.json->interval->description
-#. desklet.js:66 desklet.js:74
+#. desklet.js:69 desklet.js:77
 msgid "Number of days to include"
 msgstr "Брой на включени дни"
 
-#. desklet.js:66 desklet.js:74
+#. desklet.js:69 desklet.js:77
 msgid ": "
 msgstr ""
 
 #. metadata.json->name
 #. settings-schema.json->page_gcalendar->title
-#. desklet.js:126
+#. desklet.js:137
 msgid "Google Calendar"
 msgstr "Google календар"
 
-#. desklet.js:219
+#. desklet.js:232
 #, fuzzy
 msgid "Open Google Calendar"
 msgstr "Google календар"
 
-#. desklet.js:302
+#. settings-schema.json->authorizeButton->description
+#. desklet.js:238
+msgid "Authorize Google account"
+msgstr ""
+
+#. desklet.js:324
 #, fuzzy
 msgid "No events found"
 msgstr "Няма събития..."
 
-#. desklet.js:467
+#. desklet.js:493
 msgid "gcalendar is not authorized"
 msgstr ""
 
-#. desklet.js:469
+#. desklet.js:495
 msgid "gcalendar token expired"
 msgstr ""
 
-#. desklet.js:474
-msgid "Execute: "
+#. desklet.js:500
+msgid "Click here to authorize access to your Google Calendar."
 msgstr ""
 
-#. desklet.js:487
+#. desklet.js:510
 msgid "Unknown Error"
 msgstr ""
 
-#. desklet.js:490
-msgid "Install gcalendar to use this desklet."
-msgstr ""
-
-#. desklet.js:491
-msgid "Visit: "
-msgstr ""
-
-#. desklet.js:529
+#. desklet.js:548
 msgid "Unable to retrieve events..."
 msgstr "Не могат да се получат събитията..."
+
+#. desklet.js:591
+msgid "Some required components are missing."
+msgstr ""
+
+#. desklet.js:592
+msgid "Click here to install them."
+msgstr ""
+
+#. desklet.js:595
+msgid "Python 3 is required but was not found."
+msgstr ""
+
+#. desklet.js:614
+msgid "This desklet needs the following packages from your distribution: "
+msgstr ""
+
+#. desklet.js:665
+msgid "Waiting for authorization in your web browser…"
+msgstr ""
 
 #. lib/utility.js:158 lib/xdate.js:350
 msgid "AM"
@@ -268,6 +285,12 @@ msgid ""
 "default client secret."
 msgstr ""
 
+#. settings-schema.json->authorizeButton->tooltip
+msgid ""
+"Opens your web browser so you can grant this desklet read-only access to "
+"your Google Calendar."
+msgstr ""
+
 #. settings-schema.json->display1->description
 msgid "Calendar configuration"
 msgstr "Конфигурация на календара"
@@ -277,7 +300,7 @@ msgid "gcalendar Account ID"
 msgstr ""
 
 #. settings-schema.json->gcalendarAccount->tooltip
-msgid "Enter gcalendar --account id"
+msgid "Choose which authorized Google account to show events from."
 msgstr ""
 
 #. settings-schema.json->gcalendarAccount->options
