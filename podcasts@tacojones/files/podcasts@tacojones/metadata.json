@@ -1,0 +1,8 @@
+{
+    "uuid": "podcasts@tacojones",
+    "name": "Podcasts",
+    "description": "Follows podcast feeds and plays their latest episodes.",
+    "version": "0.2",
+    "max-instances": "1",
+    "prevent-decorations": false
+}

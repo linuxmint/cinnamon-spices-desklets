@@ -1,0 +1,78 @@
+{
+    "feeds": {
+        "type": "list",
+        "description": "Podcast feeds",
+        "columns": [
+            {"id": "name", "title": "Name (optional)", "type": "string"},
+            {"id": "url", "title": "Feed URL", "type": "string"}
+        ],
+        "default": [
+            {"name": "", "url": "https://podcasts.files.bbci.co.uk/p02nq0gn.rss"},
+            {"name": "", "url": "https://feeds.simplecast.com/BqbsxVfO"},
+            {"name": "", "url": "https://podcasts.files.bbci.co.uk/b006qykl.rss"},
+            {"name": "", "url": "https://feeds.simplecast.com/EmVW7VGp"},
+            {"name": "", "url": "https://www.nasa.gov/feeds/podcasts/houston-we-have-a-podcast"},
+            {"name": "", "url": "https://feeds.jupiterbroadcasting.com/lup"}
+        ]
+    },
+    "episodes-per-feed": {
+        "type": "spinbutton",
+        "description": "Episodes shown per feed",
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "units": "episodes",
+        "default": 2
+    },
+    "refresh-minutes": {
+        "type": "spinbutton",
+        "description": "Check feeds every",
+        "min": 5,
+        "max": 1440,
+        "step": 5,
+        "units": "minutes",
+        "default": 60
+    },
+    "width": {
+        "type": "spinbutton",
+        "description": "Width",
+        "min": 200,
+        "max": 1200,
+        "step": 10,
+        "units": "pixels",
+        "default": 380
+    },
+    "height": {
+        "type": "spinbutton",
+        "description": "List height",
+        "min": 100,
+        "max": 1200,
+        "step": 10,
+        "units": "pixels",
+        "default": 420
+    },
+    "background-opacity": {
+        "type": "scale",
+        "description": "Background opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "digits": 0,
+        "units": "%",
+        "default": 90
+    },
+    "corner-radius": {
+        "type": "spinbutton",
+        "description": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "default": 4
+    },
+    "show-covers": {
+        "type": "switch",
+        "description": "Show cover art",
+        "default": true
+    }
+}
