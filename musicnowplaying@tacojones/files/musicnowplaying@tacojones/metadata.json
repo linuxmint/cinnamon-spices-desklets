@@ -1,0 +1,8 @@
+{
+    "uuid": "musicnowplaying@tacojones",
+    "name": "Music Now Playing",
+    "description": "Shows what your music player is playing, with its album art, and controls it.",
+    "version": "0.1",
+    "max-instances": "1",
+    "prevent-decorations": false
+}

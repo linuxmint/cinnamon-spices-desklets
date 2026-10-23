@@ -1,0 +1,64 @@
+.podcasts-box {
+    padding: 8px;
+    spacing: 6px;
+}
+
+/* In the theme's text colour, faded in desklet.js, as are the lines and highlights below */
+.podcasts-status {
+    font-size: 0.85em;
+}
+
+.podcasts-feed-header {
+    padding-top: 6px;
+    spacing: 8px;
+}
+
+.podcasts-cover {
+    width: 32px;
+    height: 32px;
+    border-radius: 4px;
+    background-size: cover;
+}
+
+.podcasts-feed {
+    font-weight: bold;
+}
+
+.podcasts-episode {
+    padding: 3px 6px;
+    border-radius: 4px;
+}
+
+.podcasts-episode-date {
+    font-size: 0.8em;
+}
+
+.podcasts-error {
+    font-size: 0.85em;
+    color: #e8806f;
+}
+
+.podcasts-player {
+    spacing: 6px;
+    padding-top: 6px;
+    border-top-width: 1px;
+}
+
+.podcasts-icon-button {
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.podcasts-icon {
+    icon-size: 16px;
+}
+
+/* The theme's slider, with its trough set in desklet.js to show on the theme's background */
+.slider.podcasts-progress {
+    -slider-border-color: transparent;
+    -slider-active-border-color: transparent;
+    -slider-border-width: 0;
+    min-width: 0;
+    border-width: 0;
+    margin: 0 6px;
+}
