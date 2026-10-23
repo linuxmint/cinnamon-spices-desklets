@@ -62,7 +62,17 @@ class PodcastDesklet extends Desklet.Desklet {
         this._settings.bind("corner-radius", "cornerRadius", () => this._applyBackground());
         this._settings.bind("show-covers", "showCovers", () => this._render());
         this._decorationsId = global.settings.connect("changed::desklet-decorations", () => this._applyBackground());
-        this._themeId = St.ThemeContext.get_for_stage(global.stage).connect("changed", () => this._applyBackground());
+        // Wait until St has restyled everything for the new theme: read now, the colours come from
+        // widgets still styled by the old one, and setting their style keeps them on it
+        this._themeIdleId = 0;
+        this._themeId = St.ThemeContext.get_for_stage(global.stage).connect("changed", () => {
+            if (!this._themeIdleId)
+                this._themeIdleId = GLib.idle_add(GLib.PRIORITY_DEFAULT_IDLE, () => {
+                    this._themeIdleId = 0;
+                    this._applyBackground();
+                    return GLib.SOURCE_REMOVE;
+                });
+        });
 
         this._session = new Soup.Session({ user_agent: USER_AGENT, timeout: 30 });
         this._cancellable = new Gio.Cancellable(); // the current refresh's fetches
@@ -85,6 +95,7 @@ class PodcastDesklet extends Desklet.Desklet {
         this._positions = {}; // episode guid -> { position, duration, saved } in seconds and ms
         this._savePositionsId = 0;
         this._accent = null; // the theme's accent colour, as CSS, for podcast titles
+        this._text = null; // the theme's text colour, a Clutter.Color, for lines and highlights
         this._loadPositions();
 
         this._statusItem = new PopupMenu.PopupMenuItem("", { reactive: false });
@@ -102,7 +113,9 @@ class PodcastDesklet extends Desklet.Desklet {
 
         this._list = new St.BoxLayout({ vertical: true });
         this._scroll = new St.ScrollView({ x_fill: true, style_class: "podcasts-scroll" });
-        this._scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
+        // No scrollbar, only the mouse wheel: St asserts if its scrollbar is pressed while it
+        // still thinks it's being dragged (its release went elsewhere), which aborts Cinnamon
+        this._scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.NEVER);
         this._scroll.add_actor(this._list);
         this._box.add_child(this._scroll);
 
@@ -128,7 +141,7 @@ class PodcastDesklet extends Desklet.Desklet {
         controls.add(this._stopButton.button);
         this._skipButtons = [controls.get_child_at_index(0), controls.get_child_at_index(2)];
         controls.add(this._progress.actor, { expand: true, y_fill: false });
-        this._time = new St.Label({ style_class: "podcasts-status" });
+        this._time = new St.Label({ style_class: "podcasts-status", opacity: 150 });
         controls.add(this._time, { y_fill: false });
         this._playerBar.add_child(controls);
         this._playerBar.hide();
@@ -157,13 +170,40 @@ class PodcastDesklet extends Desklet.Desklet {
         this._fade(this._header, `${radius}px ${radius}px 0 0`);
         // Themes often pad the bottom more than the sides, which leaves a gap under the player
         this._fade(this.content, this._header.visible ? `0 0 ${radius}px ${radius}px` : `${radius}px`, true);
+        this._text = this.content.get_theme_node().get_foreground_color();
+        this._playerBar.style = `border-top-color: ${this._tint(0.15)};`;
+        // The theme's trough is often its background colour, which wouldn't show on it
+        this._progress.actor.style = `-slider-background-color: ${this._tint(0.15)};`;
         this._readAccent();
     }
 
+    // The theme's text colour, faint, as CSS.
+    _tint(alpha) {
+        const color = this._text;
+        return color ? `rgba(${color.red}, ${color.green}, ${color.blue}, ${alpha})` : "transparent";
+    }
+
+    // St's CSS can't fade the theme's text colour into a hover background, so set it here.
+    _hoverTint(button, alpha) {
+        button.connect("notify::hover", () => {
+            button.style = button.hover ? `background-color: ${this._tint(alpha)};` : null;
+        });
+    }
+
+    // The theme's style for a widget of this class, read from a new one: St doesn't restyle hidden
+    // widgets when the theme changes, so the progress bar, say, may still have the old theme's.
+    _themeNode(styleClass) {
+        const probe = new St.Widget({ style_class: styleClass, visible: false });
+        this._box.add_child(probe);
+        const node = probe.get_theme_node();
+        probe.destroy();
+        return node;
+    }
+
     // Themes don't name an accent colour, but every one fills the active part of a slider with
-    // it, so take it from the progress bar's.
+    // it, so take it from a slider's.
     _readAccent() {
-        const [found, color] = this._progress.actor.get_theme_node().lookup_color("-slider-active-background-color", false);
+        const [found, color] = this._themeNode("slider").lookup_color("-slider-active-background-color", false);
         const accent = found && color.alpha > 0 ? `rgb(${color.red}, ${color.green}, ${color.blue})` : null;
         if (accent !== this._accent) {
             this._accent = accent;
@@ -180,10 +220,15 @@ class PodcastDesklet extends Desklet.Desklet {
         const node = actor.get_theme_node();
         if (highlighted)
             actor.add_style_pseudo_class("highlight");
+        // Some themes (Dracula, for one) draw desklets with an image and give them no colour,
+        // which leaves nothing to fade; their menus always have one
+        const image = node.get_background_color().alpha === 0 && node.get_border_image();
+        const colors = image ? this._themeNode("menu") : node;
         const opacity = Math.max(0, Math.min(100, this.backgroundOpacity)) / 100;
         const rgba = color => `rgba(${color.red}, ${color.green}, ${color.blue}, ${(color.alpha / 255 * opacity).toFixed(3)})`;
-        actor.style = `background-color: ${rgba(node.get_background_color())}; `
-            + `border-color: ${rgba(node.get_border_color(St.Side.TOP))}; border-radius: ${radius};`
+        actor.style = `background-color: ${rgba(colors.get_background_color())}; `
+            + `border-color: ${rgba(colors.get_border_color(St.Side.TOP))}; border-radius: ${radius};`
+            + (image ? " border-image: none;" : "")
             + (evenBottom ? ` padding-bottom: ${node.get_padding(St.Side.LEFT)}px;` : "");
     }
 
@@ -192,6 +237,7 @@ class PodcastDesklet extends Desklet.Desklet {
         const icon = new St.Icon({ icon_name: iconName, icon_type: St.IconType.SYMBOLIC, style_class: "podcasts-icon" });
         const button = new St.Button({ child: icon, style_class: "podcasts-icon-button", reactive: true, accessible_name: text });
         button.connect("clicked", onClick);
+        this._hoverTint(button, 0.15);
         return { button, icon, tooltip: new Tooltips.Tooltip(button, text) };
     }
 
@@ -208,6 +254,8 @@ class PodcastDesklet extends Desklet.Desklet {
 
     _wrapped(text, styleClass) {
         const label = new St.Label({ text, style_class: styleClass });
+        if (styleClass === "podcasts-status")
+            label.opacity = 150; // the theme's text colour, faded, as for episode dates
         label.clutter_text.line_wrap = true;
         label.clutter_text.line_wrap_mode = Pango.WrapMode.WORD_CHAR;
         label.clutter_text.ellipsize = Pango.EllipsizeMode.NONE;
@@ -510,6 +558,7 @@ class PodcastDesklet extends Desklet.Desklet {
             box.add_child(new St.Label({ text: details.join(" · "), style_class: "podcasts-episode-date", opacity: 150 }));
         const row = new St.Button({ child: box, style_class: "podcasts-episode", x_fill: true, reactive: true });
         row.connect("clicked", () => this._play(show, episode));
+        this._hoverTint(row, 0.1);
         return row;
     }
 
@@ -781,6 +830,8 @@ class PodcastDesklet extends Desklet.Desklet {
         this._session.abort();
         global.settings.disconnect(this._decorationsId);
         St.ThemeContext.get_for_stage(global.stage).disconnect(this._themeId);
+        if (this._themeIdleId)
+            GLib.source_remove(this._themeIdleId);
         // Done as destroy() starts, before a reloaded or re-added desklet registers its settings
         // under the same id (the UUID, as there is one instance): any later, and this would
         // unregister those, leaving the Configure dialog failing on every change.

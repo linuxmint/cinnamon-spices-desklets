@@ -3,9 +3,9 @@
     spacing: 6px;
 }
 
+/* In the theme's text colour, faded in desklet.js, as are the lines and highlights below */
 .podcasts-status {
     font-size: 0.85em;
-    color: #9aa4b1;
 }
 
 .podcasts-feed-header {
@@ -29,11 +29,6 @@
     border-radius: 4px;
 }
 
-.podcasts-episode:hover {
-    background-color: rgba(255, 255, 255, 0.1);
-}
-
-/* In the theme's text colour, faded in desklet.js (St's CSS has no opacity) */
 .podcasts-episode-date {
     font-size: 0.8em;
 }
@@ -46,7 +41,7 @@
 .podcasts-player {
     spacing: 6px;
     padding-top: 6px;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    border-top-width: 1px;
 }
 
 .podcasts-icon-button {
@@ -54,26 +49,16 @@
     border-radius: 4px;
 }
 
-.podcasts-icon-button:hover {
-    background-color: rgba(255, 255, 255, 0.15);
-}
-
 .podcasts-icon {
     icon-size: 16px;
 }
 
-/* The theme's slider, but with a trough that shows on the theme's own background */
+/* The theme's slider, with its trough set in desklet.js to show on the theme's background */
 .slider.podcasts-progress {
-    -slider-background-color: rgba(255, 255, 255, 0.15);
     -slider-border-color: transparent;
     -slider-active-border-color: transparent;
     -slider-border-width: 0;
     min-width: 0;
     border-width: 0;
     margin: 0 6px;
-}
-
-.podcasts-scroll StScrollBar StBin#trough,
-.podcasts-scroll StScrollBar StButton#vhandle {
-    border-radius: 4px;
 }

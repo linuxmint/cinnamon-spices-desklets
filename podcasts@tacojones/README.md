@@ -2,6 +2,8 @@
 
 Follows podcast feeds and plays their latest episodes, right on the desktop.
 
+![The desklet, listing episodes of three podcasts, one of them playing](screenshot.png)
+
 ## Use
 
 1. Add the desklet: System Settings → Desklets → Podcasts → Add.
