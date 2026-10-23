@@ -1,0 +1,10 @@
+{
+    "uuid": "powerpulse@vicman.app",
+    "name": "PowerPulse",
+    "description": "Compact wireless battery monitor using UPower and HeadsetControl.",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "author": "VicMan",
+    "version": "1.3.0",
+    "license": "GPL-3.0"
+}
