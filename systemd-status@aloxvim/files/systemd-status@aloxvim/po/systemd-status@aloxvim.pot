@@ -1,0 +1,161 @@
+# SYSTEMD SERVICE STATUS
+# This file is put in the public domain.
+# aloxvim, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: systemd-status@aloxvim 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-10-22 13:44+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:56
+msgid "Refresh now"
+msgstr ""
+
+#. desklet.js:113
+msgid ""
+"Right-click → Configure\n"
+"to add services"
+msgstr ""
+
+#. desklet.js:166
+msgid "user"
+msgstr ""
+
+#. desklet.js:168
+#, javascript-format
+msgid "State: %s"
+msgstr ""
+
+#. desklet.js:169
+msgid "Click: show systemctl status"
+msgstr ""
+
+#. desklet.js:201
+msgid "invalid name"
+msgstr ""
+
+#. desklet.js:243 desklet.js:279
+msgid "error"
+msgstr ""
+
+#. desklet.js:268
+msgid "no response"
+msgstr ""
+
+#. desklet.js:271
+msgid "not found"
+msgstr ""
+
+#. desklet.js:289
+msgid "Press any key to close..."
+msgstr ""
+
+#. metadata.json->name
+msgid "Systemd Service Status"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Shows the status of one or more systemd services with a colored indicator "
+"(green active, grey stopped, red failed)."
+msgstr ""
+
+#. settings-schema.json->head-services->description
+msgid "Services to monitor"
+msgstr ""
+
+#. settings-schema.json->services->description
+msgid ""
+"Add one row per unit. The name may include '.service' or not ('.timer', '."
+"socket', '.mount'... also work)."
+msgstr ""
+
+#. settings-schema.json->services->columns->title
+msgid "Unit (e.g. nginx.service)"
+msgstr ""
+
+#. settings-schema.json->services->columns->title
+msgid "Label (optional)"
+msgstr ""
+
+#. settings-schema.json->services->columns->title
+msgid "User unit (--user)"
+msgstr ""
+
+#. settings-schema.json->head-general->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->title->description
+msgid "Title (leave empty to hide it)"
+msgstr ""
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->interval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->show-substate->description
+msgid "Show the sub-state (running, exited, dead...) next to the name"
+msgstr ""
+
+#. settings-schema.json->font-size->units
+msgid "pt"
+msgstr ""
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr ""
+
+#. settings-schema.json->dot-size->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->dot-size->description
+msgid "Dot size"
+msgstr ""
+
+#. settings-schema.json->terminal->description
+msgid "Terminal opened when clicking a service (shows systemctl status)"
+msgstr ""
+
+#. settings-schema.json->head-colors->description
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->color-active->description
+msgid "Active (running)"
+msgstr ""
+
+#. settings-schema.json->color-inactive->description
+msgid "Inactive (stopped)"
+msgstr ""
+
+#. settings-schema.json->color-failed->description
+msgid "Failed"
+msgstr ""
+
+#. settings-schema.json->color-transition->description
+msgid "Starting / stopping / reloading"
+msgstr ""
+
+#. settings-schema.json->color-unknown->description
+msgid "Not found / unknown"
+msgstr ""
+
+#. settings-schema.json->color-text->description
+msgid "Text"
+msgstr ""
