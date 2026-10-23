@@ -1,4 +1,6 @@
 var SETTING_DEFAULTS = {
+    "screen-anchor": "off",
+    "screen-anchor-padding": 0,
     "subdirectory": "default",
     "launch-mode": "single-click",
     "folder-click-mode": "navigate",
@@ -21,6 +23,7 @@ var SETTING_DEFAULTS = {
 };
 
 const COMBOBOX_KEYS = {
+    "screen-anchor": ["off", "top-left", "top-center", "top-right", "center-left", "center", "center-right", "bottom-left", "bottom-center", "bottom-right"],
     "launch-mode": ["single-click", "double-click"],
     "folder-click-mode": ["navigate", "open-file-manager"],
     "folder-sort": ["mixed", "folders-first", "folders-last"],
@@ -104,4 +107,3 @@ function ensureSettingsDefaults(settings) {
         }
     });
 }
-

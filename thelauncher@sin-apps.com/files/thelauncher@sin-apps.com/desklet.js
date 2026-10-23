@@ -4,16 +4,19 @@ const Settings = imports.ui.settings;
 const Clutter = imports.gi.Clutter;
 const St = imports.gi.St;
 const Pango = imports.gi.Pango;
+const Meta = imports.gi.Meta;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
 const Mainloop = imports.mainloop;
 const Tooltips = imports.ui.tooltips;
 const Util = imports.misc.util;
 const PopupMenu = imports.ui.popupMenu;
+const Main = imports.ui.main;
 
 const UUID = "thelauncher@sin-apps.com";
 const BASE_TILE_WIDTH = 120;
 const DEFAULT_POSITION = 50;
+const HOVER_CHECK_MS = 50;
 
 // Native CJS importer (Cinnamon 6.8+): top-level function/var exports via imports.desklets.
 const MeLib = imports.desklets[UUID].lib;
@@ -52,7 +55,15 @@ const {
     isDragLocked,
     LOCK_DESKLETS_KEY
 } = MeLib.placement;
+const {
+    isScreenAnchored,
+    monitorForPosition,
+    positionInWorkArea,
+    viewportSize
+} = MeLib.screenPlacement;
+const Hover = MeLib.hover;
 const { ensureSettingsDefaults } = MeLib.settingsDefaults;
+const { finalizeSettings } = MeLib.settingsLifecycle;
 
 function TheLauncherDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id);
@@ -90,6 +101,17 @@ TheLauncherDesklet.prototype = {
         this._cachedPanelWidth = 0;
         this._sizeSyncId = 0;
         this._suppressDirectoryRefresh = false;
+        this._placementMonitor = null;
+        this._scrollView = null;
+        this._contentRoot = null;
+        this._monitorChangedId = 0;
+        this._workareasChangedId = 0;
+        this._hoverChangedId = 0;
+        this._hoverTrackingId = 0;
+        this._hoverLeaveId = 0;
+        this._menuStateId = 0;
+        this.screen_anchor = "off";
+        this.screen_anchor_padding = 0;
 
         this.content.x_align = St.Align.START;
         this.content.y_align = St.Align.START;
@@ -184,6 +206,8 @@ TheLauncherDesklet.prototype = {
         ];
 
         this._placementKeys = [
+            "screen-anchor",
+            "screen-anchor-padding",
             "position-x",
             "position-y",
             "snap-to-grid",
@@ -283,13 +307,16 @@ TheLauncherDesklet.prototype = {
         this._lastThemeState = null;
         this._initializePlacementSettings();
 
-        this._applyStoragePath(false);
+        // First launch / new install: create ~/.local/share/thelauncher/<subdirectory>
+        // (default: .../default) so Configure → Browse is not required to get started.
+        this._applyStoragePath(true);
         this._setupPlacement();
         this.setHeader(_("TheLauncher"));
         this._onSettingsChanged();
     },
 
     on_desklet_added_to_desktop: function(userEnabled) {
+        this._selectPlacementMonitor();
         this._setupPlacement();
         this._updateDragLock();
         this._syncPositionFromActor();
@@ -313,6 +340,7 @@ TheLauncherDesklet.prototype = {
         this._teardownPlacement();
         this._stopFileMonitor();
         this._cancelScheduledRefresh();
+        this._cancelPanelSizeSync();
         if (this._storageChangeTimeoutId) {
             Mainloop.source_remove(this._storageChangeTimeoutId);
             this._storageChangeTimeoutId = 0;
@@ -321,9 +349,74 @@ TheLauncherDesklet.prototype = {
             Mainloop.source_remove(this._applyingPositionId);
             this._applyingPositionId = 0;
         }
-        if (this.settings && !this._isReloading) {
-            this.settings.finalize();
+        finalizeSettings(this.settings, Main.settingsManager);
+    },
+
+    _getLayoutHeight: function(actor) {
+        if (!this._isLiveActor(actor)) {
+            return 0;
         }
+
+        try {
+            const width = this._getLayoutWidth(actor);
+            const forWidth = width > 0 ? width : -1;
+            const [, naturalHeight] = actor.get_preferred_height(forWidth);
+            return Math.max(0, Math.round(naturalHeight));
+        } catch (e) {
+            return 0;
+        }
+    },
+
+    _computeGridHeight: function(gridContainer, usedColumns) {
+        if (!gridContainer) {
+            return 0;
+        }
+
+        const children = gridContainer.get_children() || [];
+        if (children.length === 0) {
+            return 0;
+        }
+
+        const columns = Math.max(1, usedColumns || this._lastUsedColumns || 1);
+        const spacing = Math.round(this.row_spacing);
+        let height = 0;
+        const rows = Math.ceil(children.length / columns);
+
+        for (let row = 0; row < rows; row++) {
+            let rowHeight = 0;
+            const rowStart = row * columns;
+            const rowEnd = Math.min(rowStart + columns, children.length);
+            for (let i = rowStart; i < rowEnd; i++) {
+                rowHeight = Math.max(rowHeight, this._getLayoutHeight(children[i]));
+            }
+            height += rowHeight;
+        }
+
+        if (rows > 1) {
+            height += (rows - 1) * spacing;
+        }
+
+        return height;
+    },
+
+    _computePanelBoxHeight: function(panelBox, usedColumns) {
+        if (!panelBox) {
+            return 0;
+        }
+
+        let height = this._getDeskletPadding();
+        const grid = this._findGridContainer(panelBox);
+
+        panelBox.get_children().forEach(child => {
+            if (child === grid) {
+                const gridHeight = this._computeGridHeight(grid, usedColumns);
+                height += gridHeight > 0 ? gridHeight : this._getLayoutHeight(child);
+                return;
+            }
+            height += this._getLayoutHeight(child);
+        });
+
+        return height;
     },
 
     _getPreferredWidth: function(actor) {
@@ -335,7 +428,7 @@ TheLauncherDesklet.prototype = {
     },
 
     _getLayoutWidth: function(actor) {
-        if (!actor || actor.is_finalized()) {
+        if (!this._isLiveActor(actor)) {
             return 0;
         }
 
@@ -347,15 +440,24 @@ TheLauncherDesklet.prototype = {
         }
     },
 
+    _getTileTextWidth: function() {
+        const iconWidth = this.icon_size > 0 ? this.icon_size : 0;
+        const padding = Math.max(0, Math.round(this.text_width_padding || 0));
+        if (iconWidth > 0) {
+            return iconWidth + padding;
+        }
+
+        return Math.max(padding, Math.round(BASE_TILE_WIDTH * 0.85));
+    },
+
     _getItemMinWidth: function() {
         if (this._isListLayout()) {
             return 0;
         }
 
-        const buttonPadding = 16;
         const iconWidth = this.icon_size > 0 ? this.icon_size : 0;
         const textWidth = this.show_text ? this._getTileTextWidth() : 0;
-        return Math.max(iconWidth, textWidth, Math.round(this._getTileWidth() * 0.75)) + buttonPadding;
+        return Math.max(iconWidth, textWidth) + 16;
     },
 
     _getItemLayoutWidth: function(itemActor) {
@@ -509,7 +611,7 @@ TheLauncherDesklet.prototype = {
 
     _getShrinkPanelWidth: function(panelBox, usedColumns) {
         if (this._isFixedContentFit() && this.max_width > 0) {
-            return this.max_width;
+            return this._getPanelWidthLimit();
         }
 
         let width = 0;
@@ -524,9 +626,7 @@ TheLauncherDesklet.prototype = {
             width = this._getNaturalPanelWidth(usedColumns);
         }
 
-        if (width > 0 && this.max_width > 0) {
-            width = Math.min(width, this.max_width);
-        }
+        width = Math.min(width, this._getPanelWidthLimit());
 
         return width > 0 ? Math.round(width) : 0;
     },
@@ -570,10 +670,7 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
-        let width = this._measureLivePanelWidth(this._panelBox, this._lastUsedColumns);
-        if (width <= 0) {
-            width = this._getShrinkPanelWidth(this._panelBox, this._lastUsedColumns);
-        }
+        const width = this._getShrinkPanelWidth(this._panelBox, this._lastUsedColumns);
         if (width <= 0) {
             return;
         }
@@ -581,13 +678,13 @@ TheLauncherDesklet.prototype = {
         this._cachedPanelWidth = width;
         this._applyPanelAllocation(this._panelBox, this._lastUsedColumns, width);
         this._applyContainerStyle(this._panelBox, this._lastUsedColumns, width);
-        this.actor.set_width(width);
-
-        if (this._isFixedContentFit() && this.max_height > 0) {
-            this.actor.set_height(this.max_height);
-        } else {
-            this.actor.set_height(-1);
-        }
+        const chrome = this._getDeskletChrome();
+        const area = this._getWorkArea();
+        const size = viewportSize(width, this._getLayoutHeight(this._contentRoot),
+            area, chrome, this.max_width, this.max_height, this._isFixedContentFit());
+        this._scrollView.set_size(size.width, size.height);
+        this.actor.set_size(size.width + chrome.width, size.height + chrome.height);
+        this._containOnMonitor();
     },
 
     _schedulePanelSizeSync: function() {
@@ -618,14 +715,6 @@ TheLauncherDesklet.prototype = {
         panelBox.y_expand = false;
         panelBox.x_align = St.Align.START;
 
-        if (this._isFixedContentFit() && this.max_width > 0) {
-            panelBox.set_width(this.max_width);
-            if (this.max_height > 0) {
-                panelBox.set_height(this.max_height);
-            }
-            return;
-        }
-
         const width = widthOverride > 0
             ? widthOverride
             : this._getShrinkPanelWidth(panelBox, usedColumns);
@@ -634,7 +723,13 @@ TheLauncherDesklet.prototype = {
         } else {
             panelBox.set_width(-1);
         }
-        panelBox.set_height(-1);
+
+        const height = this._computePanelBoxHeight(panelBox, usedColumns);
+        if (height > 0) {
+            panelBox.set_height(height);
+        } else {
+            panelBox.set_height(-1);
+        }
     },
 
     on_desklet_reloaded: function() {
@@ -652,7 +747,7 @@ TheLauncherDesklet.prototype = {
     },
 
     _beginDeskletDrag: function(event) {
-        if (isDragLocked(this.lock_position) || !this._draggable) {
+        if (this._isPositionLocked() || !this._draggable) {
             return;
         }
 
@@ -684,7 +779,7 @@ TheLauncherDesklet.prototype = {
     },
 
     _wrapWithDragHandle: function(contentActor) {
-        if (isDragLocked(this.lock_position)) {
+        if (this._isPositionLocked()) {
             return contentActor;
         }
 
@@ -730,9 +825,33 @@ TheLauncherDesklet.prototype = {
         this._lastMaxHeight = this.max_height;
         this._lastContentFit = this.content_fit;
         this._lastLockPosition = this.lock_position;
+        this._lastScreenAnchor = this.screen_anchor;
+        this._lastAnchorPadding = this.screen_anchor_padding;
     },
 
     _setupPlacement: function() {
+        if (!this._monitorChangedId) {
+            this._monitorChangedId = Main.layoutManager.connect("monitors-changed", () => {
+                // Reuse the same physical rectangle when monitor indices change.
+                const old = this._placementMonitor;
+                this._placementMonitor = Main.layoutManager.monitors.find(m => old
+                    && m.x === old.x && m.y === old.y && m.width === old.width
+                    && m.height === old.height) || null;
+                this._scheduleRefresh();
+            });
+            this._workareasChangedId = global.display.connect("workareas-changed",
+                () => this._scheduleRefresh());
+            this._hoverChangedId = this.actor.connect("notify::hover",
+                () => this._onHoverChanged());
+            this._menuStateId = this._menu.connect("open-state-changed",
+                () => this._onHoverChanged());
+            // Cinnamon's global desklet input tracking runs every 500 ms. Check
+            // this actor sooner so entering from an application window feels immediate.
+            this._hoverTrackingId = Mainloop.timeout_add(HOVER_CHECK_MS, () => {
+                this._refreshHoverTracking();
+                return GLib.SOURCE_CONTINUE;
+            });
+        }
         if (this._draggable && !this._dragEndHandlerId) {
             this._dragEndHandlerId = this._draggable.connect(
                 "drag-end",
@@ -763,6 +882,27 @@ TheLauncherDesklet.prototype = {
     },
 
     _teardownPlacement: function() {
+        if (this._hoverTrackingId) {
+            Mainloop.source_remove(this._hoverTrackingId);
+            this._hoverTrackingId = 0;
+        }
+        if (this._monitorChangedId) {
+            Main.layoutManager.disconnect(this._monitorChangedId);
+            global.display.disconnect(this._workareasChangedId);
+            this.actor.disconnect(this._hoverChangedId);
+            if (this._menu) {
+                this._menu.disconnect(this._menuStateId);
+            }
+            this._monitorChangedId = 0;
+            this._workareasChangedId = 0;
+            this._hoverChangedId = 0;
+            this._menuStateId = 0;
+        }
+        if (this._hoverLeaveId) {
+            Mainloop.source_remove(this._hoverLeaveId);
+            this._hoverLeaveId = 0;
+        }
+        Hover.lower(this);
         if (this._dragEndHandlerId && this._draggable) {
             this._draggable.disconnect(this._dragEndHandlerId);
             this._dragEndHandlerId = 0;
@@ -782,16 +922,15 @@ TheLauncherDesklet.prototype = {
     },
 
     _onPlacementSettingsChanged: function() {
-        if (this._applyingPosition) {
-            return;
-        }
-
-        const positionChanged = this._lastPositionX !== this.position_x
-            || this._lastPositionY !== this.position_y;
+        const positionChanged = !this._applyingPosition
+            && (this._lastPositionX !== this.position_x
+                || this._lastPositionY !== this.position_y);
         const layoutChanged = this._lastMaxWidth !== this.max_width
             || this._lastMaxHeight !== this.max_height
-            || this._lastContentFit !== this.content_fit;
-        const lockChanged = this._lastLockPosition !== this.lock_position;
+            || this._lastContentFit !== this.content_fit
+            || this._lastAnchorPadding !== this.screen_anchor_padding;
+        const lockChanged = this._lastLockPosition !== this.lock_position
+            || this._lastScreenAnchor !== this.screen_anchor;
 
         this._updateDragLock();
 
@@ -803,16 +942,22 @@ TheLauncherDesklet.prototype = {
         this._lastPositionX = this.position_x;
         this._lastPositionY = this.position_y;
         this._lastLockPosition = this.lock_position;
+        this._lastScreenAnchor = this.screen_anchor;
 
         if (layoutChanged || lockChanged) {
             this._lastMaxWidth = this.max_width;
             this._lastMaxHeight = this.max_height;
             this._lastContentFit = this.content_fit;
+            this._lastAnchorPadding = this.screen_anchor_padding;
             this._scheduleRefresh();
         }
     },
 
     _applyPositionFromSettings: function() {
+        if (isScreenAnchored(this.screen_anchor)) {
+            this._containOnMonitor();
+            return;
+        }
         this._applyingPosition = true;
         const x = this.settings.getValue("position-x");
         const y = this.settings.getValue("position-y");
@@ -825,6 +970,8 @@ TheLauncherDesklet.prototype = {
         );
 
         this.actor.set_position(snapped.x, snapped.y);
+        this._selectPlacementMonitor();
+        this._scheduleRefresh();
         if (snapped.x !== x || snapped.y !== y) {
             this.settings.setValue("position-x", snapped.x);
             this.settings.setValue("position-y", snapped.y);
@@ -844,18 +991,10 @@ TheLauncherDesklet.prototype = {
         this._lastPositionX = x;
         this._lastPositionY = y;
         this._clearApplyingPositionLater();
-
-        writeGSettingsPosition(
-            UUID,
-            this._getInstanceId(),
-            x,
-            y,
-            this.snap_to_grid
-        );
     },
 
     _onDeskletDragEnd: function(draggable, eventTime, success) {
-        if (!success || isDragLocked(this.lock_position)) {
+        if (!success || this._isPositionLocked()) {
             return;
         }
 
@@ -875,11 +1014,120 @@ TheLauncherDesklet.prototype = {
         this._lastPositionX = snapped.x;
         this._lastPositionY = snapped.y;
         this._clearApplyingPositionLater();
+        this._selectPlacementMonitor();
+        this._scheduleRefresh();
     },
 
     _updateDragLock: function() {
         if (this._draggable) {
-            this._draggable.inhibit = isDragLocked(this.lock_position);
+            this._draggable.inhibit = this._isPositionLocked();
+        }
+    },
+
+    _isPositionLocked: function() {
+        return isScreenAnchored(this.screen_anchor) || isDragLocked(this.lock_position);
+    },
+
+    _selectPlacementMonitor: function() {
+        this._placementMonitor = monitorForPosition(Main.layoutManager.monitors,
+            this.actor.get_x(), this.actor.get_y());
+    },
+
+    _getWorkArea: function() {
+        if (!this._placementMonitor) {
+            this._placementMonitor = monitorForPosition(Main.layoutManager.monitors,
+                this.position_x, this.position_y);
+        }
+        const monitor = this._placementMonitor || Main.layoutManager.primaryMonitor;
+        const workspace = global.workspace_manager.get_active_workspace();
+        const area = workspace.get_work_area_for_monitor(monitor.index);
+        const requestedPadding = isScreenAnchored(this.screen_anchor)
+            ? Math.max(0, Math.round(Number(this.screen_anchor_padding) || 0)) : 0;
+        // Inset the sizing AND positioning area so an oversized folder cannot
+        // consume the selected gap. Keep center anchors centered symmetrically.
+        const padding = Math.min(requestedPadding,
+            Math.max(0, Math.floor((Math.min(area.width, area.height) - 1) / 2)));
+        return {
+            x: area.x + padding,
+            y: area.y + padding,
+            width: area.width - 2 * padding,
+            height: area.height - 2 * padding
+        };
+    },
+
+    _getDeskletChrome: function() {
+        let width = 0;
+        let height = 0;
+        [this.actor, this.content].forEach(actor => {
+            if (!this._isLiveActor(actor)) {
+                return;
+            }
+            const node = actor.get_theme_node();
+            width += node.adjust_preferred_width(0, 0)[1];
+            height += node.adjust_preferred_height(0, 0)[1];
+        });
+        if (this._header.visible) {
+            height += this._getLayoutHeight(this._header);
+        }
+        return { width: Math.ceil(width), height: Math.ceil(height) };
+    },
+
+    _getPanelWidthLimit: function() {
+        const available = Math.max(1, this._getWorkArea().width - this._getDeskletChrome().width);
+        return this.max_width > 0 ? Math.min(this.max_width, available) : available;
+    },
+
+    _containOnMonitor: function() {
+        if (!this._isLiveActor(this.actor) || this._dragging) {
+            return;
+        }
+        const position = positionInWorkArea(this._getWorkArea(), this.actor.width,
+            this.actor.height, this.screen_anchor, this.actor.x, this.actor.y);
+        this.actor.set_position(position.x, position.y);
+        // Automatic layout must not write settings: Cinnamon saves the entire
+        // settings document and could overwrite a Configure edit awaiting its
+        // D-Bus notification. Keep manual coordinates separate from this derived
+        // position, and reapply the anchor after every content-size change.
+    },
+
+    _refreshHoverTracking: function() {
+        if (!this._isLiveActor(this.actor) || !this.actor.mapped || this.actor.hover
+            || (this._draggable && this._draggable._dragInProgress)) {
+            return;
+        }
+        const [x, y] = global.get_pointer();
+        const [left, top] = this.actor.get_transformed_position();
+        const [width, height] = this.actor.get_transformed_size();
+        if (x < left || y < top || x >= left + width || y >= top + height) {
+            return;
+        }
+        // Only react to the exposed launcher, never to an application covering it.
+        const window = global.display.get_pointer_window(null);
+        if (window && window.window_type !== Meta.WindowType.DESKTOP
+            && !Main.deskletContainer.isModal) {
+            return;
+        }
+        const target = global.stage.get_actor_at_pos(Clutter.PickMode.REACTIVE, x, y);
+        if (target && (target === this.actor || this.actor.contains(target))) {
+            this._trackMouse();
+            this.actor.sync_hover();
+        }
+    },
+
+    _onHoverChanged: function() {
+        if (this._hoverLeaveId) {
+            Mainloop.source_remove(this._hoverLeaveId);
+            this._hoverLeaveId = 0;
+        }
+        if (this.actor.hover || (this._menu && this._menu.isOpen)) {
+            Hover.raise(this);
+        } else {
+            // Give transitions between child actors / the context menu time to settle.
+            this._hoverLeaveId = Mainloop.timeout_add(150, () => {
+                this._hoverLeaveId = 0;
+                Hover.lower(this);
+                return GLib.SOURCE_REMOVE;
+            });
         }
     },
 
@@ -1653,22 +1901,12 @@ TheLauncherDesklet.prototype = {
         return style;
     },
 
-    _getTileTextWidth: function() {
-        const iconWidth = this.icon_size > 0 ? this.icon_size : 0;
-        const padding = Math.max(0, Math.round(this.text_width_padding || 0));
-        if (iconWidth > 0) {
-            return iconWidth + padding;
-        }
-
-        return Math.max(padding, Math.round(BASE_TILE_WIDTH * 0.85));
-    },
-
     _configureItemLabel: function(label) {
-        label.clutter_text.set_line_wrap(true);
-        label.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
         label.clutter_text.set_ellipsize(Pango.EllipsizeMode.END);
 
         if (this._isListLayout()) {
+            label.clutter_text.set_line_wrap(true);
+            label.clutter_text.set_line_wrap_mode(Pango.WrapMode.WORD_CHAR);
             label.x_expand = true;
             label.y_expand = false;
             label.set_x_align(Clutter.ActorAlign.FILL);
@@ -1679,6 +1917,10 @@ TheLauncherDesklet.prototype = {
             return;
         }
 
+        // Tile labels must stay single-line. Wrapping at the label width
+        // inflates Clutter's preferred height and leaves empty panel space
+        // below the visible (ellipsized) tiles.
+        label.clutter_text.set_line_wrap(false);
         label.set_width(this._getTileTextWidth());
         label.x_align = this._getTextAlign();
     },
@@ -1885,24 +2127,11 @@ TheLauncherDesklet.prototype = {
         let columns = Math.max(1, Math.round(this.columns));
         columns = Math.min(columns, itemCount);
 
-        if (this.max_width > 0) {
-            const tileWidth = this._getTileWidth();
-            const spacing = Math.round(this.col_spacing);
-            const padding = 16;
-            const maxInner = Math.max(tileWidth, this.max_width - padding);
-            let fitColumns = 1;
-
-            for (let c = 1; c <= columns; c++) {
-                const rowWidth = (c * tileWidth) + ((c - 1) * spacing);
-                if (rowWidth <= maxInner) {
-                    fitColumns = c;
-                } else {
-                    break;
-                }
-            }
-
-            columns = fitColumns;
-        }
+        const tileWidth = this._getItemMinWidth() + Math.max(0, this.border_width) * 2;
+        const spacing = Math.round(this.col_spacing);
+        const innerWidth = Math.max(1, this._getPanelWidthLimit() - this._getDeskletPadding());
+        const fitColumns = Math.max(1, Math.floor((innerWidth + spacing) / (tileWidth + spacing)));
+        columns = Math.min(columns, fitColumns);
 
         return Math.max(1, columns);
     },
@@ -2060,36 +2289,17 @@ TheLauncherDesklet.prototype = {
         if (!actor || actor.is_finalized()) {
             return;
         }
-
         let style = "";
-
         if (!this.transparent_background) {
             style += "background-color: %s; ".format(this.desklet_bg_color);
         }
-
-        if (this._isFixedContentFit() && this.max_width > 0) {
-            style += "width: %spx; min-width: %spx; max-width: %spx;".format(
-                this.max_width,
-                this.max_width,
-                this.max_width
-            );
-        } else {
-            const shrinkWidth = widthOverride > 0
-                ? widthOverride
-                : this._getShrinkPanelWidth(actor, usedColumns);
-            if (this.max_width > 0) {
-                style += "max-width: %spx;".format(this.max_width);
-            }
-            if (shrinkWidth > 0) {
-                style += "width: %spx; min-width: %spx;".format(shrinkWidth, shrinkWidth);
-            }
-        }
-
+        // Explicit actor allocation includes padding; a CSS width is content-box
+        // width and would add padding a second time inside the scroll viewport.
         actor.set_style(style);
     },
 
     _wrapWithLockIndicator: function(contentActor) {
-        if (!this.show_lock_indicator || !isDragLocked(this.lock_position)) {
+        if (!this.show_lock_indicator || !this._isPositionLocked()) {
             return contentActor;
         }
 
@@ -2128,32 +2338,17 @@ TheLauncherDesklet.prototype = {
 
         const root = this._wrapWithDragHandle(this._wrapWithLockIndicator(contentActor));
 
-        if (this.max_height > 0 && this._isFixedContentFit()) {
-            const scroll = new St.ScrollView({
-                style_class: "thelauncher-scroll",
-                x_scroll_policy: St.ScrollPolicy.NEVER,
-                y_scroll_policy: St.ScrollPolicy.AUTOMATIC,
-                x_expand: false,
-                y_expand: false
-            });
-            scroll.set_policy(St.ScrollPolicy.NEVER, St.ScrollPolicy.AUTOMATIC);
-            scroll.add_child(root);
-            scroll.set_style("max-height: %spx;".format(this.max_height));
-            this.setContent(scroll);
-        } else {
-            this.setContent(root);
-        }
-
-        const initialWidth = this._getShrinkPanelWidth(
-            contentActor,
-            usedColumns || this._lastUsedColumns
-        );
-        if (initialWidth > 0) {
-            this._cachedPanelWidth = initialWidth;
-            this._applyPanelAllocation(contentActor, usedColumns || this._lastUsedColumns, initialWidth);
-            this._applyContainerStyle(contentActor, usedColumns || this._lastUsedColumns, initialWidth);
-            this.actor.set_width(initialWidth);
-        }
+        this._contentRoot = root;
+        this._scrollView = new St.ScrollView({
+            style_class: "thelauncher-scroll",
+            hscrollbar_policy: St.PolicyType.AUTOMATIC,
+            vscrollbar_policy: St.PolicyType.AUTOMATIC,
+            overlay_scrollbars: true,
+            x_expand: false,
+            y_expand: false
+        });
+        this._scrollView.add_actor(root);
+        this.setContent(this._scrollView);
 
         this._schedulePanelSizeSync();
     },

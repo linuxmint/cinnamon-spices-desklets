@@ -42,6 +42,8 @@
       "type": "section",
       "title": "Behavior",
       "keys": [
+        "screen-anchor",
+        "screen-anchor-padding",
         "launch-mode",
         "folder-click-mode",
         "folder-sort"
@@ -190,6 +192,35 @@
     "widget": "SubdirectoryChooser",
     "description": "Link subdirectory",
     "tooltip": "Folder under the shared base directory for this desklet instance. Use Browse to select or create one."
+  },
+  "screen-anchor": {
+    "type": "combobox",
+    "default": "off",
+    "description": "Lock to position",
+    "tooltip": "Keep the launcher at this position on its current monitor as folders grow or shrink. Large folders scroll within the screen. Choose Off to move it freely.",
+    "options": {
+      "Off": "off",
+      "Top left": "top-left",
+      "Top center": "top-center",
+      "Top right": "top-right",
+      "Center left": "center-left",
+      "Center": "center",
+      "Center right": "center-right",
+      "Bottom left": "bottom-left",
+      "Bottom center": "bottom-center",
+      "Bottom right": "bottom-right"
+    }
+  },
+  "screen-anchor-padding": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 200,
+    "step": 1,
+    "units": "px",
+    "description": "Padding",
+    "dependency": "screen-anchor!=off",
+    "tooltip": "Space between the locked launcher and the screen edges. The gap stays the same as folders grow or shrink; large folders scroll inside it."
   },
   "launch-mode": {
     "type": "combobox",
@@ -500,7 +531,7 @@
     "step": 10,
     "units": "px",
     "description": "Max height",
-    "tooltip": "0 = auto. Overflow scrolls when content-fit is fixed."
+    "tooltip": "0 = fit the current screen. Larger contents scroll; a positive value limits the height further."
   },
   "content-fit": {
     "type": "combobox",
@@ -521,7 +552,6 @@
     "type": "switch",
     "default": true,
     "description": "Show lock indicator",
-    "dependency": "lock-position",
     "tooltip": "Display a small lock icon when position is locked."
   },
   "order-help-label": {
