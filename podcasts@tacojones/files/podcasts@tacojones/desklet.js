@@ -29,7 +29,7 @@ const SKIP_SECONDS = 10;
 const RESUME_BACK_SECONDS = 3; // resume a little before where you stopped, to pick up the thread
 const FINISHED_SECONDS = 30; // stopping this close to the end counts as finishing
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]));
 
 function _(text) {
     return Gettext.dgettext(UUID, text);
