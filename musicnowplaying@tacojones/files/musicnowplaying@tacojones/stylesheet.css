@@ -1,0 +1,63 @@
+.nowplaying-box {
+    padding: 8px;
+    spacing: 6px;
+}
+
+/* Its size is set in desklet.js, from the width setting */
+.nowplaying-art {
+    background-size: cover;
+}
+
+.nowplaying-placeholder-icon {
+    icon-size: 64px;
+}
+
+.nowplaying-title {
+    font-size: 1.4em;
+    font-weight: bold;
+    padding-top: 8px;
+}
+
+/* In the theme's text colour, faded in desklet.js */
+.nowplaying-details {
+    font-size: 1.05em;
+}
+
+.nowplaying-time {
+    font-size: 0.85em;
+}
+
+/* The theme's slider, with its trough set in desklet.js to show on the theme's background */
+.slider.nowplaying-progress {
+    -slider-border-color: transparent;
+    -slider-active-border-color: transparent;
+    -slider-border-width: 0;
+    min-width: 0;
+    border-width: 0;
+    margin-top: 6px;
+}
+
+.nowplaying-controls {
+    spacing: 14px;
+    padding-top: 2px;
+}
+
+.nowplaying-icon-button {
+    padding: 6px;
+    border-radius: 4px;
+}
+
+.nowplaying-icon {
+    icon-size: 18px;
+}
+
+/* The play / pause button: a circle in the theme's accent colour, set in desklet.js */
+.nowplaying-play {
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+}
+
+.nowplaying-play-icon {
+    icon-size: 22px;
+}

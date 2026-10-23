@@ -1,0 +1,36 @@
+{
+    "player": {
+        "type": "entry",
+        "description": "Player",
+        "tooltip": "The player to show, by its MPRIS name: audacious, rhythmbox, spotify, vlc, strawberry… While another player is playing and this one isn't, that one is shown.",
+        "default": "audacious"
+    },
+    "width": {
+        "type": "spinbutton",
+        "description": "Width",
+        "min": 160,
+        "max": 600,
+        "step": 10,
+        "units": "pixels",
+        "default": 300
+    },
+    "background-opacity": {
+        "type": "scale",
+        "description": "Background opacity",
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "digits": 0,
+        "units": "%",
+        "default": 90
+    },
+    "corner-radius": {
+        "type": "spinbutton",
+        "description": "Corner radius",
+        "min": 0,
+        "max": 40,
+        "step": 1,
+        "units": "pixels",
+        "default": 12
+    }
+}
