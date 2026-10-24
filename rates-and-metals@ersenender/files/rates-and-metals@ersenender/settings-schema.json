@@ -1,0 +1,314 @@
+{
+    "kopf-basis": {
+        "type": "header",
+        "description": "Basis"
+    },
+    "basis": {
+        "type": "combobox",
+        "default": "EUR",
+        "description": "Base currency",
+        "options": {
+            "Euro (EUR)": "EUR",
+            "US dollar (USD)": "USD",
+            "Turkish lira (TRY)": "TRY",
+            "Pound sterling (GBP)": "GBP",
+            "Swiss franc (CHF)": "CHF"
+        }
+    },
+    "richtung": {
+        "type": "combobox",
+        "default": "basis",
+        "description": "Show exchange rate as",
+        "options": {
+            "1 base = … foreign (1 € = 1,12 $)": "basis",
+            "1 foreign = … base (1 $ = 0,89 €)": "fremd"
+        }
+    },
+    "betrag": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 1,
+        "max": 1000000,
+        "step": 1,
+        "units": "",
+        "description": "Amount to convert",
+        "tooltip": "The currency rows show the value of this amount (e.g. 100 € = 117.77 $)."
+    },
+    "kopf-waehrungen": {
+        "type": "header",
+        "description": "Currencies"
+    },
+    "waehrungen": {
+        "type": "list",
+        "height": 330,
+        "description": "Tick = show, arrows change the order",
+        "tooltip": "The base currency itself is not listed.",
+        "columns": [
+            {
+                "id": "an",
+                "title": "Show",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "code",
+                "title": "Currency",
+                "type": "string",
+                "default": "USD",
+                "options": {
+                    "Euro (EUR)": "EUR",
+                    "US dollar (USD)": "USD",
+                    "Turkish lira (TRY)": "TRY",
+                    "Pound sterling (GBP)": "GBP",
+                    "Swiss franc (CHF)": "CHF",
+                    "Japanese yen (JPY)": "JPY",
+                    "Canadian dollar (CAD)": "CAD",
+                    "Australian dollar (AUD)": "AUD",
+                    "Swedish krona (SEK)": "SEK",
+                    "Norwegian krone (NOK)": "NOK",
+                    "Danish krone (DKK)": "DKK",
+                    "Polish złoty (PLN)": "PLN",
+                    "Czech koruna (CZK)": "CZK",
+                    "Hungarian forint (HUF)": "HUF",
+                    "Romanian leu (RON)": "RON",
+                    "Chinese yuan (CNY)": "CNY",
+                    "Indian rupee (INR)": "INR",
+                    "Indonesian rupiah (IDR)": "IDR",
+                    "Malaysian ringgit (MYR)": "MYR"
+                }
+            }
+        ],
+        "default": [
+            {
+                "an": true,
+                "code": "EUR"
+            },
+            {
+                "an": true,
+                "code": "USD"
+            },
+            {
+                "an": true,
+                "code": "TRY"
+            },
+            {
+                "an": true,
+                "code": "GBP"
+            },
+            {
+                "an": true,
+                "code": "CHF"
+            },
+            {
+                "an": false,
+                "code": "JPY"
+            },
+            {
+                "an": false,
+                "code": "CAD"
+            },
+            {
+                "an": false,
+                "code": "AUD"
+            },
+            {
+                "an": false,
+                "code": "SEK"
+            },
+            {
+                "an": false,
+                "code": "NOK"
+            },
+            {
+                "an": false,
+                "code": "DKK"
+            },
+            {
+                "an": false,
+                "code": "PLN"
+            },
+            {
+                "an": false,
+                "code": "CZK"
+            },
+            {
+                "an": false,
+                "code": "HUF"
+            },
+            {
+                "an": false,
+                "code": "RON"
+            },
+            {
+                "an": false,
+                "code": "CNY"
+            },
+            {
+                "an": false,
+                "code": "INR"
+            },
+            {
+                "an": false,
+                "code": "IDR"
+            },
+            {
+                "an": false,
+                "code": "MYR"
+            }
+        ]
+    },
+    "kopf-metalle": {
+        "type": "header",
+        "description": "Precious metals"
+    },
+    "metalle": {
+        "type": "list",
+        "height": 170,
+        "description": "Tick = show, arrows change the order",
+        "columns": [
+            {
+                "id": "an",
+                "title": "Show",
+                "type": "boolean",
+                "default": true
+            },
+            {
+                "id": "code",
+                "title": "Metal",
+                "type": "string",
+                "default": "XAU",
+                "options": {
+                    "Gold": "XAU",
+                    "Silver": "XAG",
+                    "Platinum": "XPT",
+                    "Palladium": "XPD"
+                }
+            }
+        ],
+        "default": [
+            {
+                "an": true,
+                "code": "XAU"
+            },
+            {
+                "an": true,
+                "code": "XAG"
+            },
+            {
+                "an": false,
+                "code": "XPT"
+            },
+            {
+                "an": false,
+                "code": "XPD"
+            }
+        ]
+    },
+    "einheit": {
+        "type": "combobox",
+        "default": "g",
+        "description": "Metal price per",
+        "options": {
+            "Gram": "g",
+            "Troy ounce": "oz",
+            "Kilogram": "kg"
+        }
+    },
+    "zeige-nisab": {
+        "type": "switch",
+        "default": false,
+        "description": "Show the nisab value (80.18 g of gold, Diyanet)"
+    },
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "zeige-aenderung": {
+        "type": "switch",
+        "default": true,
+        "description": "Change in percent"
+    },
+    "zeitraum": {
+        "type": "combobox",
+        "default": "tag",
+        "dependency": "zeige-aenderung",
+        "description": "Change compared with",
+        "options": {
+            "Previous day": "tag",
+            "7 days ago": "woche",
+            "30 days ago": "monat"
+        }
+    },
+    "zeige-verlauf": {
+        "type": "switch",
+        "default": true,
+        "description": "History line of the last 30 days per row",
+        "tooltip": "Currencies: daily ECB rates. Metals: the line grows with every day the desklet was running - the source has no history."
+    },
+    "zeige-kuerzel": {
+        "type": "switch",
+        "default": false,
+        "description": "Codes instead of names (USD)"
+    },
+    "abruf-alle": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 10,
+        "max": 240,
+        "step": 5,
+        "units": "min",
+        "description": "Refresh every"
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}

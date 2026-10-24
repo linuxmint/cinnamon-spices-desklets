@@ -1,0 +1,29 @@
+/* Kurse-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten. */
+.ku-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+    min-width: 17em;
+}
+.ku-kopf { font-size: 1.25em; font-weight: bold; color: #ffcb08; }
+.ku-unter { font-size: 0.86em; color: #a39e94; padding-top: 0.15em; }
+.ku-rubrik {
+    font-size: 0.82em;
+    font-weight: bold;
+    color: #a39e94;
+    margin-top: 0.8em;
+    padding-top: 0.7em;
+    padding-bottom: 0.2em;
+    border-top: 1px solid rgba(242, 239, 230, 0.14);
+}
+.ku-zeile { padding: 0.28em 0.6em; border-radius: 7px; spacing: 0.6em; }
+.ku-zeile-name { font-size: 1em; }
+.ku-zeile-aenderung { font-size: 0.8em; color: #a39e94; width: 4.4em; text-align: right; }
+.ku-zeile-wert { font-size: 1em; font-weight: bold; min-width: 4.6em; text-align: right; }
+.ku-plus { color: #7ee787; }
+.ku-minus { color: #ff7b72; }
+.ku-status { font-size: 0.8em; color: #a39e94; padding-top: 0.6em; text-align: center; }
+.ku-fehler { color: #ff7b72; }
+/* Verlaufslinie je Zeile (zeichnet desklet.js, Farben dort in FARBEN); die Größe setzt desklet.js */
+.ku-zeile-verlauf { margin-right: 0.2em; }

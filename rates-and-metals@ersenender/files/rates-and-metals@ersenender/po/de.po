@@ -1,0 +1,452 @@
+# German translation of the desklet rates-and-metals@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: rates-and-metals@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 00:39+0200\n"
+"PO-Revision-Date: 2026-10-10 00:39+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:49
+msgid "per gram"
+msgstr "je Gramm"
+
+#: desklet.js:50
+msgid "per troy ounce"
+msgstr "je Feinunze"
+
+#: desklet.js:51
+msgid "per kilogram"
+msgstr "je Kilogramm"
+
+#: desklet.js:57
+msgid "Euro"
+msgstr "Euro"
+
+#: desklet.js:58
+msgid "US dollar"
+msgstr "US-Dollar"
+
+#: desklet.js:59
+msgid "Turkish lira"
+msgstr "Türkische Lira"
+
+#: desklet.js:60
+msgid "Pound sterling"
+msgstr "Britisches Pfund"
+
+#: desklet.js:61
+msgid "Swiss franc"
+msgstr "Schweizer Franken"
+
+#: desklet.js:62
+msgid "Japanese yen"
+msgstr "Japanischer Yen"
+
+#: desklet.js:63
+msgid "Canadian dollar"
+msgstr "Kanadischer Dollar"
+
+#: desklet.js:64
+msgid "Australian dollar"
+msgstr "Australischer Dollar"
+
+#: desklet.js:65
+msgid "Swedish krona"
+msgstr "Schwedische Krone"
+
+#: desklet.js:66
+msgid "Norwegian krone"
+msgstr "Norwegische Krone"
+
+#: desklet.js:67
+msgid "Danish krone"
+msgstr "Dänische Krone"
+
+#: desklet.js:68
+msgid "Polish złoty"
+msgstr "Polnischer Złoty"
+
+#: desklet.js:69
+msgid "Czech koruna"
+msgstr "Tschechische Krone"
+
+#: desklet.js:70
+msgid "Hungarian forint"
+msgstr "Ungarischer Forint"
+
+#: desklet.js:71
+msgid "Romanian leu"
+msgstr "Rumänischer Leu"
+
+#: desklet.js:72
+msgid "Chinese yuan"
+msgstr "Chinesischer Yuan"
+
+#: desklet.js:73
+msgid "Indian rupee"
+msgstr "Indische Rupie"
+
+#: desklet.js:74
+msgid "Indonesian rupiah"
+msgstr "Indonesische Rupiah"
+
+#: desklet.js:75
+msgid "Malaysian ringgit"
+msgstr "Malaysischer Ringgit"
+
+#: desklet.js:78
+msgid "Gold"
+msgstr "Gold"
+
+#: desklet.js:79
+msgid "Silver"
+msgstr "Silber"
+
+#: desklet.js:80
+msgid "Platinum"
+msgstr "Platin"
+
+#: desklet.js:81
+msgid "Palladium"
+msgstr "Palladium"
+
+#: desklet.js:86
+msgid "Rates"
+msgstr "Kurse"
+
+#: desklet.js:87
+msgid "CURRENCIES"
+msgstr "WÄHRUNGEN"
+
+#: desklet.js:88
+msgid "PRECIOUS METALS"
+msgstr "EDELMETALLE"
+
+#: desklet.js:89
+#, javascript-format
+msgid "%s %s ="
+msgstr "%s %s ="
+
+#: desklet.js:90
+#, javascript-format
+msgid "Price in %s"
+msgstr "Preis in %s"
+
+#: desklet.js:91
+#, javascript-format
+msgid "Price of %s units in %s"
+msgstr "Preis von %s Einheiten in %s"
+
+#: desklet.js:92
+msgid "Nisab (80.18 g gold)"
+msgstr "Nisab (80,18 g Gold)"
+
+#: desklet.js:93
+msgid "Nisab for zakat according to Diyanet: value of 80.18 g of gold"
+msgstr "Nisab für die Zakat nach Diyanet: Wert von 80,18 g Gold"
+
+#: desklet.js:94
+#, javascript-format
+msgid "Change from the previous day: %s"
+msgstr "Veränderung zum Vortag: %s"
+
+#: desklet.js:95
+#, javascript-format
+msgid "Change in 7 days: %s"
+msgstr "Veränderung in 7 Tagen: %s"
+
+#: desklet.js:96
+#, javascript-format
+msgid "Change in 30 days: %s"
+msgstr "Veränderung in 30 Tagen: %s"
+
+#: desklet.js:97
+#, javascript-format
+msgid "30 days: low %s · high %s"
+msgstr "30 Tage: tiefst %s · höchst %s"
+
+#: desklet.js:98
+msgid "Loading rates …"
+msgstr "Kurse werden geladen …"
+
+#: desklet.js:99
+msgid "No connection – will retry"
+msgstr "Keine Verbindung – neuer Versuch folgt"
+
+#: desklet.js:100
+#, javascript-format
+msgid "No connection – as of %s"
+msgstr "Keine Verbindung – Stand %s"
+
+#: desklet.js:101
+#, javascript-format
+msgid "ECB rate of %s · metals %s"
+msgstr "EZB-Kurs vom %s · Metalle %s"
+
+#: desklet.js:102
+#, javascript-format
+msgid "ECB rate of %s"
+msgstr "EZB-Kurs vom %s"
+
+#: desklet.js:103
+#, javascript-format
+msgid "Metals as of %s"
+msgstr "Metalle Stand %s"
+
+#: desklet.js:104
+msgid "Nothing is selected in the settings."
+msgstr "In den Einstellungen ist nichts ausgewählt."
+
+#: desklet.js:105
+msgid "Refresh now"
+msgstr "Jetzt aktualisieren"
+
+#: desklet.js:106
+#, javascript-format
+msgid "Previous day: %s"
+msgstr "Vortag: %s"
+
+#: desklet.js:155
+#, javascript-format
+msgid "%s%%"
+msgstr "%s %%"
+
+#. metadata.json->name
+msgid "Rates and Metals"
+msgstr "Kurse und Edelmetalle"
+
+#. metadata.json->description
+msgid ""
+"Exchange rates (ECB) and precious metal prices as a list - choose in the "
+"settings what is shown."
+msgstr ""
+"Wechselkurse (EZB) und Edelmetallpreise als Liste – in den Einstellungen "
+"wählbar, was angezeigt wird."
+
+#. settings-schema.json->kopf-basis->description
+msgid "Basis"
+msgstr "Grundlage"
+
+#. settings-schema.json->basis->description
+msgid "Base currency"
+msgstr "Basiswährung"
+
+#. settings-schema.json->basis->options
+msgid "Euro (EUR)"
+msgstr "Euro (EUR)"
+
+#. settings-schema.json->basis->options
+msgid "US dollar (USD)"
+msgstr "US-Dollar (USD)"
+
+#. settings-schema.json->basis->options
+msgid "Turkish lira (TRY)"
+msgstr "Türkische Lira (TRY)"
+
+#. settings-schema.json->basis->options
+msgid "Pound sterling (GBP)"
+msgstr "Britisches Pfund (GBP)"
+
+#. settings-schema.json->basis->options
+msgid "Swiss franc (CHF)"
+msgstr "Schweizer Franken (CHF)"
+
+#. settings-schema.json->richtung->description
+msgid "Show exchange rate as"
+msgstr "Wechselkurs zeigen als"
+
+#. settings-schema.json->richtung->options
+msgid "1 base = … foreign (1 € = 1,12 $)"
+msgstr "1 Basiswährung = … fremde Währung (1 € = 1,12 $)"
+
+#. settings-schema.json->richtung->options
+msgid "1 foreign = … base (1 $ = 0,89 €)"
+msgstr "1 fremde Währung = … Basiswährung (1 $ = 0,89 €)"
+
+#. settings-schema.json->betrag->description
+msgid "Amount to convert"
+msgstr "Betrag zum Umrechnen"
+
+#. settings-schema.json->betrag->tooltip
+msgid ""
+"The currency rows show the value of this amount (e.g. 100 € = 117.77 $)."
+msgstr ""
+"Die Währungszeilen zeigen den Wert dieses Betrags (z. B. 100 € = 117,77 $)."
+
+#. settings-schema.json->kopf-waehrungen->description
+msgid "Currencies"
+msgstr "Währungen"
+
+#. settings-schema.json->waehrungen->description
+#. settings-schema.json->metalle->description
+msgid "Tick = show, arrows change the order"
+msgstr "Haken = anzeigen, mit den Pfeilen die Reihenfolge ändern"
+
+#. settings-schema.json->waehrungen->tooltip
+msgid "The base currency itself is not listed."
+msgstr "Die Basiswährung selbst erscheint nicht in der Anzeige."
+
+#. settings-schema.json->waehrungen->columns->title
+#. settings-schema.json->metalle->columns->title
+msgid "Show"
+msgstr "Anzeigen"
+
+#. settings-schema.json->waehrungen->columns->title
+msgid "Currency"
+msgstr "Währung"
+
+#. settings-schema.json->kopf-metalle->description
+msgid "Precious metals"
+msgstr "Edelmetalle"
+
+#. settings-schema.json->metalle->columns->title
+msgid "Metal"
+msgstr "Edelmetall"
+
+#. settings-schema.json->einheit->description
+msgid "Metal price per"
+msgstr "Edelmetallpreis je"
+
+#. settings-schema.json->einheit->options
+msgid "Gram"
+msgstr "Gramm"
+
+#. settings-schema.json->einheit->options
+msgid "Troy ounce"
+msgstr "Feinunze (31,1 g)"
+
+#. settings-schema.json->einheit->options
+msgid "Kilogram"
+msgstr "Kilogramm"
+
+#. settings-schema.json->zeige-nisab->description
+msgid "Show the nisab value (80.18 g of gold, Diyanet)"
+msgstr "Nisab-Wert anzeigen (80,18 g Gold nach Diyanet)"
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->zeige-aenderung->description
+msgid "Change in percent"
+msgstr "Veränderung in Prozent"
+
+#. settings-schema.json->zeitraum->description
+msgid "Change compared with"
+msgstr "Veränderung gegenüber"
+
+#. settings-schema.json->zeitraum->options
+msgid "Previous day"
+msgstr "Vortag"
+
+#. settings-schema.json->zeitraum->options
+msgid "7 days ago"
+msgstr "vor 7 Tagen"
+
+#. settings-schema.json->zeitraum->options
+msgid "30 days ago"
+msgstr "vor 30 Tagen"
+
+#. settings-schema.json->zeige-verlauf->description
+msgid "History line of the last 30 days per row"
+msgstr "Verlaufslinie der letzten 30 Tage je Zeile"
+
+#. settings-schema.json->zeige-verlauf->tooltip
+msgid ""
+"Currencies: daily ECB rates. Metals: the line grows with every day the "
+"desklet was running - the source has no history."
+msgstr ""
+"Währungen: Tageskurse der EZB. Edelmetalle: Die Linie wächst mit jedem Tag, "
+"an dem das Desklet lief – die Quelle liefert keinen Verlauf."
+
+#. settings-schema.json->zeige-kuerzel->description
+msgid "Codes instead of names (USD)"
+msgstr "Kürzel statt Namen (USD statt US-Dollar)"
+
+#. settings-schema.json->abruf-alle->units
+msgid "min"
+msgstr "min"
+
+#. settings-schema.json->abruf-alle->description
+msgid "Refresh every"
+msgstr "Aktualisieren alle"
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"
