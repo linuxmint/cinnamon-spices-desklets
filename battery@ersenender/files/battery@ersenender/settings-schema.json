@@ -1,0 +1,131 @@
+{
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "art": {
+        "type": "combobox",
+        "default": "beides",
+        "description": "Show battery level as",
+        "options": {
+            "Percent and graphic": "beides",
+            "Percent only": "prozent",
+            "Graphic only": "grafik"
+        }
+    },
+    "zeige-kopf": {
+        "type": "switch",
+        "default": true,
+        "description": "Heading"
+    },
+    "zeige-status": {
+        "type": "switch",
+        "default": true,
+        "description": "Status and time remaining"
+    },
+    "zeige-details": {
+        "type": "switch",
+        "default": true,
+        "description": "Battery details (manufacturer, model, health, cycles)"
+    },
+    "kopf-warnung": {
+        "type": "header",
+        "description": "Warning and battery care"
+    },
+    "warn-ab": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "units": "%",
+        "description": "Warn when on battery below"
+    },
+    "pflege": {
+        "type": "switch",
+        "default": false,
+        "description": "Battery care: remind to unplug and plug in the charger",
+        "tooltip": "Lithium batteries last longer when they are not kept fully charged on the charger all the time and are not deeply discharged. The desklet only reminds you - it cannot limit charging itself."
+    },
+    "pflege-oben": {
+        "type": "spinbutton",
+        "default": 80,
+        "min": 50,
+        "max": 100,
+        "step": 5,
+        "units": "%",
+        "dependency": "pflege",
+        "description": "On the charger: unplug at"
+    },
+    "pflege-unten": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 10,
+        "max": 60,
+        "step": 5,
+        "units": "%",
+        "dependency": "pflege",
+        "description": "On battery: charge at"
+    },
+    "melden": {
+        "type": "switch",
+        "default": true,
+        "description": "Also show a notification"
+    },
+    "kopf-aussehen": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 2.5,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}

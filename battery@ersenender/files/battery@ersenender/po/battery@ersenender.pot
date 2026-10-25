@@ -1,0 +1,271 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 01:14+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#: desklet.js:47
+msgid "Battery"
+msgstr ""
+
+#: desklet.js:48
+msgid "Charging"
+msgstr ""
+
+#: desklet.js:49
+msgid "On battery"
+msgstr ""
+
+#: desklet.js:50
+msgid "Fully charged · plugged in"
+msgstr ""
+
+#: desklet.js:51
+msgid "Plugged in · not charging"
+msgstr ""
+
+#: desklet.js:52
+#, javascript-format
+msgid "%s h left"
+msgstr ""
+
+#: desklet.js:53
+#, javascript-format
+msgid "full in %s h"
+msgstr ""
+
+#: desklet.js:54
+msgid "No battery installed"
+msgstr ""
+
+#: desklet.js:55
+#, javascript-format
+msgid "Battery level %s"
+msgstr ""
+
+#: desklet.js:56
+#, javascript-format
+msgid "Charge %s of %s Wh"
+msgstr ""
+
+#: desklet.js:57
+#, javascript-format
+msgid "Power %s W"
+msgstr ""
+
+#: desklet.js:58
+#, javascript-format
+msgid "Capacity %s of design capacity"
+msgstr ""
+
+#: desklet.js:59
+#, javascript-format
+msgid "Charge cycles: %s"
+msgstr ""
+
+#: desklet.js:60
+#, javascript-format
+msgid "Health %s"
+msgstr ""
+
+#: desklet.js:61
+#, javascript-format
+msgid "%s cycles"
+msgstr ""
+
+#: desklet.js:62
+#, javascript-format
+msgid "Charge limit %s"
+msgstr ""
+
+#: desklet.js:63
+msgid "Battery low"
+msgstr ""
+
+#: desklet.js:64
+msgid "Plug in the charger"
+msgstr ""
+
+#: desklet.js:65
+msgid "Battery care"
+msgstr ""
+
+#: desklet.js:66
+#, javascript-format
+msgid "%s reached – unplug the charger"
+msgstr ""
+
+#: desklet.js:67
+#, javascript-format
+msgid "below %s – charge now"
+msgstr ""
+
+#: desklet.js:124
+#, javascript-format
+msgid "%s%%"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Battery level with manufacturer, model and health of the battery, a warning "
+"threshold and battery care."
+msgstr ""
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->art->description
+msgid "Show battery level as"
+msgstr ""
+
+#. settings-schema.json->art->options
+msgid "Percent and graphic"
+msgstr ""
+
+#. settings-schema.json->art->options
+msgid "Percent only"
+msgstr ""
+
+#. settings-schema.json->art->options
+msgid "Graphic only"
+msgstr ""
+
+#. settings-schema.json->zeige-kopf->description
+msgid "Heading"
+msgstr ""
+
+#. settings-schema.json->zeige-status->description
+msgid "Status and time remaining"
+msgstr ""
+
+#. settings-schema.json->zeige-details->description
+msgid "Battery details (manufacturer, model, health, cycles)"
+msgstr ""
+
+#. settings-schema.json->kopf-warnung->description
+msgid "Warning and battery care"
+msgstr ""
+
+#. settings-schema.json->warn-ab->units
+#. settings-schema.json->pflege-oben->units
+#. settings-schema.json->pflege-unten->units
+msgid "%"
+msgstr ""
+
+#. settings-schema.json->warn-ab->description
+msgid "Warn when on battery below"
+msgstr ""
+
+#. settings-schema.json->pflege->description
+msgid "Battery care: remind to unplug and plug in the charger"
+msgstr ""
+
+#. settings-schema.json->pflege->tooltip
+msgid ""
+"Lithium batteries last longer when they are not kept fully charged on the "
+"charger all the time and are not deeply discharged. The desklet only reminds"
+" you - it cannot limit charging itself."
+msgstr ""
+
+#. settings-schema.json->pflege-oben->description
+msgid "On the charger: unplug at"
+msgstr ""
+
+#. settings-schema.json->pflege-unten->description
+msgid "On battery: charge at"
+msgstr ""
+
+#. settings-schema.json->melden->description
+msgid "Also show a notification"
+msgstr ""
+
+#. settings-schema.json->kopf-aussehen->description
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr ""
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr ""
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr ""
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr ""
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr ""
