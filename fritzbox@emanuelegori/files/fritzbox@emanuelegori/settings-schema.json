@@ -1,0 +1,162 @@
+{
+    "connection-header": {
+        "type": "header",
+        "description": "Connessione FRITZ!Box"
+    },
+    "host": {
+        "type": "entry",
+        "default": "fritz.box",
+        "description": "Indirizzo (host o IP)",
+        "tooltip": "Hostname o IP del FRITZ!Box in LAN. Default: fritz.box"
+    },
+    "port": {
+        "type": "spinbutton",
+        "default": 49000,
+        "min": 1,
+        "max": 65535,
+        "step": 1,
+        "units": "",
+        "description": "Porta TR-064 / IGD"
+    },
+    "delay": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 2,
+        "max": 3600,
+        "step": 1,
+        "units": "secondi",
+        "description": "Intervallo di aggiornamento"
+    },
+    "timeout": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "secondi",
+        "description": "Timeout richiesta"
+    },
+
+    "params-separator": { "type": "separator" },
+    "params-header": {
+        "type": "header",
+        "description": "Parametri da mostrare"
+    },
+    "show-model": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Modello FRITZ!Box",
+        "tooltip": "Letto da /tr64desc.xml"
+    },
+    "show-firmware": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Firmware FRITZ!OS"
+    },
+    "show-wan-status": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Stato link fisico WAN"
+    },
+    "show-wan-type": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Tipo accesso WAN (DSL/LTE/Cable/Ethernet)"
+    },
+    "show-max-rates": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Velocità max down/up negoziate"
+    },
+    "show-conn-status": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Stato connessione Internet"
+    },
+    "show-conn-error": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Ultimo errore di connessione"
+    },
+    "show-uptime": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Uptime connessione",
+        "tooltip": "Tempo dall'ultima negoziazione della connessione Internet (non dall'accensione del router). Nella UI FRITZ!Box: Internet → Panoramica → \"Connesso dal …\"."
+    },
+    "show-public-ip": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Indirizzo IP pubblico"
+    },
+    "show-bytes-total": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Byte totali inviati / ricevuti",
+        "tooltip": "Contatore cumulativo dell'interfaccia WAN (contatore a 64 bit). Si azzera solo al riavvio del router o al reset manuale del contatore. NON corrisponde ai \"Contatori online\" giornalieri della UI FRITZ!Box, che non sono esposti via TR-064."
+    },
+    "show-throughput": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Throughput istantaneo (↓ / ↑)",
+        "tooltip": "Velocità istantanea in bit/s, fornita direttamente dal router. La UI FRITZ!Box aggiorna circa ogni 5 s: per allinearsi, impostare lo stesso intervallo di polling."
+    },
+    "show-update-available": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Aggiornamento firmware disponibile"
+    },
+
+    "style-separator": { "type": "separator" },
+    "style-header": {
+        "type": "header",
+        "description": "Stile"
+    },
+    "show-header": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Mostra intestazione desklet"
+    },
+    "font": {
+        "type": "fontchooser",
+        "default": "Monospace Regular 15",
+        "description": "Font"
+    },
+    "font-color": {
+        "type": "colorchooser",
+        "default": "rgb(238,238,236)",
+        "description": "Colore testo"
+    },
+    "label-color": {
+        "type": "colorchooser",
+        "default": "rgb(186,189,182)",
+        "description": "Colore etichette"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgb(46,52,54)",
+        "description": "Colore sfondo"
+    },
+    "background-transparency": {
+        "type": "scale",
+        "default": 0.25,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Trasparenza sfondo"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "rgb(85,87,83)",
+        "description": "Colore bordo"
+    },
+    "border-width": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "units": "px",
+        "description": "Spessore bordo"
+    }
+}
