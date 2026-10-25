@@ -1,0 +1,464 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: immich-widget@raybomb87 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-10-17 17:00+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:191
+msgid "Right-click and choose Configure to connect to your Immich server."
+msgstr ""
+
+#: desklet.js:193
+msgid "Fetching photos…"
+msgstr ""
+
+#: desklet.js:195
+msgid "No photos yet."
+msgstr ""
+
+#: desklet.js:204 desklet.js:216
+msgid "Mark as favorite"
+msgstr ""
+
+#: desklet.js:206
+msgid "Don't show this photo again"
+msgstr ""
+
+#: desklet.js:216
+msgid "Remove from favorites"
+msgstr ""
+
+#: desklet.js:229 desklet.js:617
+msgid "Immich Widget"
+msgstr ""
+
+#: desklet.js:390
+#, javascript-format
+msgid "%d year ago"
+msgid_plural "%d years ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:466
+msgid "The server address is not valid."
+msgstr ""
+
+#: desklet.js:478
+#, javascript-format
+msgid "Cannot reach Immich: %s"
+msgstr ""
+
+#: desklet.js:482
+msgid "Immich rejected the API key."
+msgstr ""
+
+#: desklet.js:489
+#, javascript-format
+msgid "The API key is missing the permission %s."
+msgstr ""
+
+#: desklet.js:491
+#, javascript-format
+msgid "Immich: %s"
+msgstr ""
+
+#: desklet.js:512
+#, javascript-format
+msgid "Not found in Immich: %s"
+msgstr ""
+
+#: desklet.js:518
+msgid "people"
+msgstr ""
+
+#: desklet.js:520
+msgid "albums"
+msgstr ""
+
+#: desklet.js:522
+msgid "tags"
+msgstr ""
+
+#: desklet.js:604
+#, javascript-format
+msgid "%d people"
+msgstr ""
+
+#: desklet.js:605
+#, javascript-format
+msgid "%d albums"
+msgstr ""
+
+#: desklet.js:606
+#, javascript-format
+msgid "%d tags"
+msgstr ""
+
+#: desklet.js:617
+#, javascript-format
+msgid "Fetched %s."
+msgstr ""
+
+#: desklet.js:741
+msgid "No photos found."
+msgstr ""
+
+#: desklet.js:767
+msgid "No photos could be downloaded."
+msgstr ""
+
+msgid "A photo slideshow on your desktop with photos from your Immich server"
+msgstr ""
+
+msgid "Connection"
+msgstr ""
+
+msgid "Photos"
+msgstr ""
+
+msgid "Text"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Immich server"
+msgstr ""
+
+msgid "API key permissions"
+msgstr ""
+
+msgid "People, albums and tags"
+msgstr ""
+
+msgid "Which photos"
+msgstr ""
+
+msgid "Updates"
+msgstr ""
+
+msgid "What to show"
+msgstr ""
+
+msgid "Look"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Style"
+msgstr ""
+
+msgid "Transitions"
+msgstr ""
+
+msgid "Server address"
+msgstr ""
+
+msgid "For example http://192.168.1.10:2283 or https://photos.example.com"
+msgstr ""
+
+msgid "API key"
+msgstr ""
+
+msgid "Immich → Account Settings → API Keys → New API Key"
+msgstr ""
+
+msgid "Fetch new photos now"
+msgstr ""
+
+msgid ""
+"When you create the API key in Immich, tick exactly the permissions below. "
+"The list follows your choices in these settings."
+msgstr ""
+
+msgid "Permissions the key needs"
+msgstr ""
+
+msgid "Filled in automatically from your choices"
+msgstr ""
+
+msgid "Open API keys in Immich"
+msgstr ""
+
+msgid ""
+"Tick the people, albums and tags to show. Nothing ticked means all. Fetching"
+" the lists needs person.read, album.read and tag.read, and asset.statistics "
+"to count the photos of each person and tag."
+msgstr ""
+
+msgid "Fetch people, albums and tags from Immich"
+msgstr ""
+
+msgid "People"
+msgstr ""
+
+msgid "Show"
+msgstr ""
+
+msgid "Person"
+msgstr ""
+
+msgid "Albums"
+msgstr ""
+
+msgid "Album"
+msgstr ""
+
+msgid "Tags"
+msgstr ""
+
+msgid "Tag"
+msgstr ""
+
+msgid "On this day"
+msgstr ""
+
+msgid ""
+"Photos taken on today's date in earlier years. Falls back to the other "
+"choices when there are none."
+msgstr ""
+
+msgid "Favorites only"
+msgstr ""
+
+msgid "At least"
+msgstr ""
+
+msgid "0 means any rating"
+msgstr ""
+
+msgid "Taken"
+msgstr ""
+
+msgid "Any time"
+msgstr ""
+
+msgid "In the last 12 months"
+msgstr ""
+
+msgid "In the last 5 years"
+msgstr ""
+
+msgid "Between the years below"
+msgstr ""
+
+msgid "From year"
+msgstr ""
+
+msgid "To year"
+msgstr ""
+
+msgid "Places"
+msgstr ""
+
+msgid ""
+"Cities or countries as Immich names them, separated by commas, for example "
+"Bergen, Spain"
+msgstr ""
+
+msgid "Search for"
+msgstr ""
+
+msgid "Uses Immich smart search, for example beach, snow or sunset"
+msgstr ""
+
+msgid "Include screenshots and saved images"
+msgstr ""
+
+msgid "Off: only photos taken with a camera"
+msgstr ""
+
+msgid "Photos per batch"
+msgstr ""
+
+msgid "Fetch a new batch every"
+msgstr ""
+
+msgid "Time per photo"
+msgstr ""
+
+msgid "Show text on the photo"
+msgstr ""
+
+msgid "Date"
+msgstr ""
+
+msgid "Date format"
+msgstr ""
+
+msgid "27 July 2023"
+msgstr ""
+
+msgid "27. July 2023"
+msgstr ""
+
+msgid "July 27, 2023"
+msgstr ""
+
+msgid "July 2023"
+msgstr ""
+
+msgid "2023"
+msgstr ""
+
+msgid "2023-07-27"
+msgstr ""
+
+msgid "How long ago (5 years ago)"
+msgstr ""
+
+msgid "Place"
+msgstr ""
+
+msgid "Place format"
+msgstr ""
+
+msgid "City"
+msgstr ""
+
+msgid "City, country"
+msgstr ""
+
+msgid "Country"
+msgstr ""
+
+msgid "Names of the people in the photo"
+msgstr ""
+
+msgid "Description from Immich"
+msgstr ""
+
+msgid "Position"
+msgstr ""
+
+msgid "Bottom left"
+msgstr ""
+
+msgid "Bottom centre"
+msgstr ""
+
+msgid "Bottom right"
+msgstr ""
+
+msgid "Top left"
+msgstr ""
+
+msgid "Top centre"
+msgstr ""
+
+msgid "Top right"
+msgstr ""
+
+msgid "Text size"
+msgstr ""
+
+msgid "Text shadow"
+msgstr ""
+
+msgid "Background behind the text"
+msgstr ""
+
+msgid "Background opacity"
+msgstr ""
+
+msgid "Background corner radius"
+msgstr ""
+
+msgid "Width"
+msgstr ""
+
+msgid "Height"
+msgstr ""
+
+msgid "Corner radius"
+msgstr ""
+
+msgid "Crop around faces"
+msgstr ""
+
+msgid "Uses Immich face detection so heads are not cut off."
+msgstr ""
+
+msgid "Slow zoom (Ken Burns)"
+msgstr ""
+
+msgid "Zooms slowly towards the people while a photo is shown"
+msgstr ""
+
+msgid ""
+"Tick the transitions to use. With several ticked, the widget changes between"
+" them."
+msgstr ""
+
+msgid "Fade"
+msgstr ""
+
+msgid "Slide to the left"
+msgstr ""
+
+msgid "Slide to the right"
+msgstr ""
+
+msgid "Slide up"
+msgstr ""
+
+msgid "Slide down"
+msgstr ""
+
+msgid "Zoom"
+msgstr ""
+
+msgid "Flip"
+msgstr ""
+
+msgid "Order"
+msgstr ""
+
+msgid "Random"
+msgstr ""
+
+msgid "In turn"
+msgstr ""
+
+msgid "Transition duration"
+msgstr ""
+
+msgid "stars"
+msgstr ""
+
+msgid "photos"
+msgstr ""
+
+msgid "hours"
+msgstr ""
+
+msgid "seconds"
+msgstr ""
+
+msgid "Only photos with faces"
+msgstr ""
+
+msgid "Photos without people are shown without zoom"
+msgstr ""
+
+msgid "Zoom speed"
+msgstr ""
+
+msgid "% per 10 s"
+msgstr ""
+
+msgid "How much the photo zooms in every 10 seconds. It stops at 50 %."
+msgstr ""
