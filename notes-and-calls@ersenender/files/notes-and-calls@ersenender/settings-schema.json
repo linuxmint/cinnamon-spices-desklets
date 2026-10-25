@@ -1,0 +1,94 @@
+{
+    "kopf-liste": {
+        "type": "header",
+        "description": "List"
+    },
+    "ueberschrift": {
+        "type": "entry",
+        "default": "",
+        "description": "Heading (empty = default)"
+    },
+    "liste-zeilen": {
+        "type": "spinbutton",
+        "default": 14,
+        "min": 4,
+        "max": 40,
+        "step": 1,
+        "units": "",
+        "description": "Maximum list height in text lines, scroll for more (satır)"
+    },
+    "zeilen-je-zettel": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 1,
+        "max": 12,
+        "step": 1,
+        "units": "",
+        "description": "Text lines per note in the overview"
+    },
+    "erledigte-tage": {
+        "type": "spinbutton",
+        "default": 14,
+        "min": 0,
+        "max": 365,
+        "step": 1,
+        "units": "days",
+        "description": "Remove completed call notes after (0 = never)"
+    },
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}
