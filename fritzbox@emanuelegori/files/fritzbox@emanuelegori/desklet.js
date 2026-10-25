@@ -2,7 +2,6 @@
 const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
-const Lang = imports.lang;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
@@ -10,7 +9,7 @@ const Util = imports.misc.util;
 
 const UUID = "fritzbox@emanuelegori";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 function _(str) { return Gettext.dgettext(UUID, str); }
 
 // SOAP endpoints TR-064 / IGD UPnP (porta 49000, no auth).
@@ -95,7 +94,7 @@ MyDesklet.prototype = {
             ];
             for (let key of bindList) {
                 const prop = key.replace(/-([a-z])/g, (_m, c) => c.toUpperCase());
-                this.settings.bind(key, prop, Lang.bind(this, this._onSettingsChanged));
+                this.settings.bind(key, prop, () => this._onSettingsChanged());
             }
         } catch (e) {
             global.logError("[fritzbox] settings error: " + e);
@@ -177,7 +176,7 @@ MyDesklet.prototype = {
 
     _schedule(sec) {
         if (this._removed) return;
-        this.updateId = Mainloop.timeout_add_seconds(sec, Lang.bind(this, this._tick));
+        this.updateId = Mainloop.timeout_add_seconds(sec, () => this._tick());
     },
 
     _tick() {
@@ -195,7 +194,7 @@ MyDesklet.prototype = {
     _fetchStaticInfo() {
         const url = "http://" + this.host + ":" + this.port + "/tr64desc.xml";
         const cmd = ["curl", "-s", "--max-time", String(this.timeout || 5), url];
-        Util.spawn_async(cmd, Lang.bind(this, (out) => {
+        Util.spawn_async(cmd, (out) => {
             if (this._removed || !out) return;
             const model = this._extract(out, "modelName");
             const display = this._extract(out, "Display");
@@ -205,7 +204,7 @@ MyDesklet.prototype = {
                 this.state.firmware = m ? ("FRITZ!OS " + m[1]) : display;
             }
             this._render();
-        }));
+        });
     },
 
     _poll() {
@@ -232,7 +231,7 @@ MyDesklet.prototype = {
                 "--data", body,
                 url
             ];
-            Util.spawn_async(cmd, Lang.bind(this, this._onReply, key));
+            Util.spawn_async(cmd, (out) => this._onReply(out, key));
         }
     },
 
