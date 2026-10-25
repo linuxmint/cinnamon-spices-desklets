@@ -1,0 +1,9 @@
+{
+    "uuid": "weather-forecast@ersenender",
+    "name": "Weather",
+    "description": "Current weather and forecast for the next days (Open-Meteo) with place search.",
+    "prevent-decorations": true,
+    "max-instances": "5",
+    "version": "1.0",
+    "author": "ersenender"
+}

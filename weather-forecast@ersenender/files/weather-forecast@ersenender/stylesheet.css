@@ -1,0 +1,38 @@
+/* Wetter-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten. */
+.wt-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+    min-width: 17em;
+}
+.wt-ort {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: #ffcb08;
+}
+.wt-lage { font-size: 0.92em; color: #d8d4c8; padding-top: 0.15em; }
+.wt-sonne { font-size: 0.86em; color: #a39e94; }
+.wt-jetzt-box {
+    margin-top: 0.8em;
+    padding: 0.55em 0;
+    border-top: 1px solid rgba(242, 239, 230, 0.14);
+    border-bottom: 1px solid rgba(242, 239, 230, 0.14);
+}
+.wt-jetzt { spacing: 0.7em; }
+.wt-jetzt-symbol { color: #ffcb08; }
+.wt-temp { font-size: 2.1em; font-weight: bold; }
+.wt-details { font-size: 0.86em; color: #a39e94; text-align: center; }
+.wt-zeilen { margin-top: 0.55em; }
+.wt-zeile { padding: 0.28em 0.6em; border-radius: 7px; spacing: 0.5em; }
+.wt-zeile-tag { font-size: 1em; }
+.wt-zeile-regen { font-size: 0.86em; color: #a39e94; width: 2.9em; text-align: right; }
+.wt-zeile-min { font-size: 1em; color: #a39e94; width: 2.3em; text-align: right; }
+.wt-zeile-max { font-size: 1em; font-weight: bold; width: 2.3em; text-align: right; }
+.wt-aktiv { background-color: #ffcb08; color: #231f20; }
+.wt-aktiv .wt-zeile-regen, .wt-aktiv .wt-zeile-min { color: rgba(35, 31, 32, 0.72); }
+.wt-status { font-size: 0.8em; color: #a39e94; padding-top: 0.6em; text-align: center; }
+.wt-fehler { color: #ff7b72; }
+.wt-hinweis { font-size: 0.86em; font-weight: bold; color: #ffcb08; text-align: center; padding-top: 0.25em; }
+/* Stundenverlauf (zeichnet desklet.js, Farben dort in FARBEN); die Höhe setzt desklet.js */
+.wt-stunden { margin-top: 0.4em; }

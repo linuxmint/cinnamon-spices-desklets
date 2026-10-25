@@ -1,0 +1,438 @@
+# German translation of the desklet weather-forecast@ersenender
+# This file is distributed under the same license as the desklet (GPL-3.0-or-later).
+msgid ""
+msgstr ""
+"Project-Id-Version: weather-forecast@ersenender 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-10 00:39+0200\n"
+"PO-Revision-Date: 2026-10-10 00:39+0200\n"
+"Last-Translator: ersenender\n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:55
+msgid "Clear"
+msgstr "Klar"
+
+#: desklet.js:56
+msgid "Mostly clear"
+msgstr "Überwiegend klar"
+
+#: desklet.js:57
+msgid "Partly cloudy"
+msgstr "Teils bewölkt"
+
+#: desklet.js:58
+msgid "Overcast"
+msgstr "Bedeckt"
+
+#: desklet.js:59
+msgid "Fog"
+msgstr "Nebel"
+
+#: desklet.js:60
+msgid "Drizzle"
+msgstr "Nieselregen"
+
+#: desklet.js:61
+msgid "Freezing rain"
+msgstr "Gefrierender Regen"
+
+#: desklet.js:62
+msgid "Light rain"
+msgstr "Leichter Regen"
+
+#: desklet.js:63
+msgid "Rain"
+msgstr "Regen"
+
+#: desklet.js:64
+msgid "Heavy rain"
+msgstr "Starker Regen"
+
+#: desklet.js:65
+msgid "Snow"
+msgstr "Schnee"
+
+#: desklet.js:66
+msgid "Rain showers"
+msgstr "Regenschauer"
+
+#: desklet.js:67
+msgid "Heavy showers"
+msgstr "Starke Schauer"
+
+#: desklet.js:68
+msgid "Snow showers"
+msgstr "Schneeschauer"
+
+#: desklet.js:69
+msgid "Thunderstorm"
+msgstr "Gewitter"
+
+#: desklet.js:73
+msgid "Today"
+msgstr "Heute"
+
+#: desklet.js:74
+msgid "Tomorrow"
+msgstr "Morgen"
+
+#: desklet.js:75
+#, javascript-format
+msgid "feels like %s"
+msgstr "gefühlt %s"
+
+#: desklet.js:76
+#, javascript-format
+msgid "wind %s"
+msgstr "Wind %s"
+
+#: desklet.js:77
+#, javascript-format
+msgid "%d%% humidity"
+msgstr "%d %% Feuchte"
+
+#: desklet.js:78
+msgid "km/h"
+msgstr "km/h"
+
+#: desklet.js:79
+msgid "N,NE,E,SE,S,SW,W,NW"
+msgstr "N,NO,O,SO,S,SW,W,NW"
+
+#: desklet.js:80
+#, javascript-format
+msgid "gusts up to %s"
+msgstr "Böen bis %s"
+
+#: desklet.js:81
+#, javascript-format
+msgid "Precipitation from %s"
+msgstr "Niederschlag ab %s"
+
+#: desklet.js:82
+#, javascript-format
+msgid "Precipitation until %s"
+msgstr "Niederschlag bis %s"
+
+#: desklet.js:83
+msgid "Precipitation all day"
+msgstr "Niederschlag den ganzen Tag"
+
+#: desklet.js:84
+msgid "Dry for 24 hours"
+msgstr "24 Stunden trocken"
+
+#: desklet.js:85
+#, javascript-format
+msgid "UV up to %s (%s)"
+msgstr "UV bis %s (%s)"
+
+#: desklet.js:86
+msgid "low"
+msgstr "niedrig"
+
+#: desklet.js:87 desklet.js:94
+msgid "moderate"
+msgstr "mäßig"
+
+#: desklet.js:88
+msgid "high"
+msgstr "hoch"
+
+#: desklet.js:89
+msgid "very high"
+msgstr "sehr hoch"
+
+#: desklet.js:90
+msgid "extreme"
+msgstr "extrem"
+
+#: desklet.js:91
+#, javascript-format
+msgid "Air %s (AQI %d)"
+msgstr "Luft %s (AQI %d)"
+
+#: desklet.js:92
+msgid "good"
+msgstr "gut"
+
+#: desklet.js:93
+msgid "fair"
+msgstr "ordentlich"
+
+#: desklet.js:95
+msgid "poor"
+msgstr "schlecht"
+
+#: desklet.js:96
+msgid "very poor"
+msgstr "sehr schlecht"
+
+#: desklet.js:97
+msgid "extremely poor"
+msgstr "extrem schlecht"
+
+#: desklet.js:98
+#, javascript-format
+msgid "Particulates PM2.5: %s · PM10: %s µg/m³"
+msgstr "Feinstaub PM2,5: %s · PM10: %s µg/m³"
+
+#: desklet.js:99
+#, javascript-format
+msgid ""
+"The next %d hours:\n"
+"curve = temperature, bars = chance of rain"
+msgstr ""
+"Die nächsten %d Stunden:\n"
+"Kurve = Temperatur, Balken = Regenwahrscheinlichkeit"
+
+#: desklet.js:100
+#, javascript-format
+msgid "Sun %s – %s"
+msgstr "Sonne %s – %s"
+
+#: desklet.js:101
+msgid "Loading weather …"
+msgstr "Wetter wird geladen …"
+
+#: desklet.js:102
+msgid "No connection – will retry"
+msgstr "Keine Verbindung – neuer Versuch folgt"
+
+#: desklet.js:103
+#, javascript-format
+msgid "No connection – as of %s"
+msgstr "Keine Verbindung – Stand %s"
+
+#: desklet.js:104
+#, javascript-format
+msgid "Source: Open-Meteo · as of %s"
+msgstr "Quelle: Open-Meteo · Stand %s"
+
+#. settings-schema.json->ort-knopf->description
+#: desklet.js:105
+msgid "Search place …"
+msgstr "Ort suchen …"
+
+#: desklet.js:106
+msgid "Refresh now"
+msgstr "Jetzt aktualisieren"
+
+#: desklet.js:107
+msgid ""
+"No place chosen yet.\n"
+"Right-click → „Search place …“"
+msgstr ""
+"Noch kein Ort gewählt.\n"
+"Rechtsklick → „Ort suchen …“"
+
+#: desklet.js:108
+#, javascript-format
+msgid "Low %s · High %s"
+msgstr "Tiefst %s · Höchst %s"
+
+#: desklet.js:109
+#, javascript-format
+msgid "Chance of rain %s"
+msgstr "Regenwahrscheinlichkeit %s"
+
+#: desklet.js:110
+#, javascript-format
+msgid "Precipitation %s"
+msgstr "Niederschlag %s"
+
+#: desklet.js:111
+#, javascript-format
+msgid "Wind up to %s"
+msgstr "Wind bis %s"
+
+#: desklet.js:112
+#, javascript-format
+msgid "As of %s"
+msgstr "Stand %s"
+
+#: desklet.js:191
+#, javascript-format
+msgid "%s%%"
+msgstr "%s %%"
+
+#: helper.py:87
+msgid "Choose the place for the weather"
+msgstr "Ort für das Wetter wählen"
+
+#: helper.py:88
+msgid "Place or postal code …"
+msgstr "Ort oder Postleitzahl …"
+
+#: helper.py:89
+msgid "Apply"
+msgstr "Übernehmen"
+
+#: helper.py:90
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: helper.py:91
+msgid "searching …"
+msgstr "wird gesucht …"
+
+#: helper.py:92
+msgid "No place found"
+msgstr "Kein Ort gefunden"
+
+#: helper.py:93
+msgid "Search not possible (no connection?)"
+msgstr "Suche nicht möglich (keine Verbindung?)"
+
+#: helper.py:94
+msgid "Type a place name – the matches appear as you type."
+msgstr "Ortsnamen eintippen – die Treffer erscheinen beim Schreiben."
+
+#. metadata.json->name
+msgid "Weather"
+msgstr "Wetter"
+
+#. metadata.json->description
+msgid ""
+"Current weather and forecast for the next days (Open-Meteo) with place "
+"search."
+msgstr ""
+"Aktuelles Wetter und Vorhersage für die nächsten Tage (Open-Meteo) mit "
+"Ortssuche."
+
+#. settings-schema.json->kopf-ort->description
+msgid "Place"
+msgstr "Ort"
+
+#. settings-schema.json->ort-knopf->tooltip
+msgid ""
+"Opens the place search. The chosen place is then shown at the top of the "
+"desklet."
+msgstr "Öffnet die Ortssuche. Der gewählte Ort steht danach oben im Desklet."
+
+#. settings-schema.json->kopf-anzeige->description
+msgid "Display"
+msgstr "Anzeige"
+
+#. settings-schema.json->einheit->description
+msgid "Units"
+msgstr "Einheiten"
+
+#. settings-schema.json->einheit->options
+msgid "°C, km/h, mm"
+msgstr "°C, km/h, mm"
+
+#. settings-schema.json->einheit->options
+msgid "°F, mph, inch"
+msgstr "°F, mph, inch"
+
+#. settings-schema.json->tage->description
+msgid "Days in the forecast"
+msgstr "Tage in der Vorhersage"
+
+#. settings-schema.json->zeige-details->description
+msgid "Feels-like temperature, wind and humidity"
+msgstr "Gefühlte Temperatur, Wind und Luftfeuchte"
+
+#. settings-schema.json->zeige-sonne->description
+msgid "Sunrise and sunset"
+msgstr "Sonnenaufgang und -untergang"
+
+#. settings-schema.json->zeige-stunden->description
+msgid "Next 24 hours as a chart (temperature and chance of rain)"
+msgstr ""
+"Verlauf der nächsten 24 Stunden (Temperatur und Regenwahrscheinlichkeit)"
+
+#. settings-schema.json->zeige-hinweis->description
+msgid "Note from when or until when it rains"
+msgstr "Hinweis, ab wann oder bis wann es regnet"
+
+#. settings-schema.json->zeige-luft->description
+msgid "UV index and air quality"
+msgstr "UV-Index und Luftqualität"
+
+#. settings-schema.json->zeige-luft->tooltip
+msgid ""
+"Air quality comes from a second request to Open-Meteo (air quality service)."
+" When switched off it is not sent."
+msgstr ""
+"Die Luftqualität kommt aus einer zweiten Abfrage bei Open-Meteo "
+"(Luftqualitätsdienst). Ausgeschaltet entfällt sie."
+
+#. settings-schema.json->groesse->description
+msgid "Size"
+msgstr "Größe"
+
+#. settings-schema.json->deckkraft->description
+msgid "Background opacity"
+msgstr "Deckkraft des Hintergrunds"
+
+#. settings-schema.json->kopf-farben->description
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->akzent->description
+msgid "Accent colour"
+msgstr "Akzentfarbe"
+
+#. settings-schema.json->akzent->options
+msgid "Yellow"
+msgstr "Gelb"
+
+#. settings-schema.json->akzent->options
+msgid "Red"
+msgstr "Rot"
+
+#. settings-schema.json->akzent->options
+msgid "Orange"
+msgstr "Orange"
+
+#. settings-schema.json->akzent->options
+msgid "Green"
+msgstr "Grün"
+
+#. settings-schema.json->akzent->options
+msgid "Teal"
+msgstr "Türkis"
+
+#. settings-schema.json->akzent->options
+msgid "Blue"
+msgstr "Blau"
+
+#. settings-schema.json->akzent->options
+msgid "Purple"
+msgstr "Violett"
+
+#. settings-schema.json->akzent->options
+msgid "Own colour"
+msgstr "Eigene Farbe"
+
+#. settings-schema.json->akzent-eigen->description
+msgid "Own accent colour"
+msgstr "Eigene Akzentfarbe"
+
+#. settings-schema.json->hintergrund->description
+msgid "Card colour"
+msgstr "Farbe der Karte"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark grey"
+msgstr "Dunkelgrau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark teal"
+msgstr "Dunkles Türkis"
+
+#. settings-schema.json->hintergrund->options
+msgid "Dark blue"
+msgstr "Dunkelblau"
+
+#. settings-schema.json->hintergrund->options
+msgid "Black"
+msgstr "Schwarz"
