@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-25 12:56+0100\n"
+"POT-Creation-Date: 2026-10-25 13:23+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -65,28 +65,27 @@ msgstr ""
 msgid "Firmware update:"
 msgstr ""
 
-#: desklet.js:105 desklet.js:112
-msgid "FRITZ!Box"
-msgstr ""
-
-#: desklet.js:280
+#: desklet.js:284
 msgid "Yes"
 msgstr ""
 
-#: desklet.js:280
+#: desklet.js:284
 msgid "No"
 msgstr ""
 
-#: desklet.js:332
-msgid "d"
+#: desklet.js:343
+#, javascript-format
+msgid "%dd %dh %dm"
 msgstr ""
 
-#: desklet.js:332 desklet.js:333
-msgid "h"
+#: desklet.js:344
+#, javascript-format
+msgid "%dh %dm"
 msgstr ""
 
-#: desklet.js:332 desklet.js:333 desklet.js:334
-msgid "m"
+#: desklet.js:345
+#, javascript-format
+msgid "%dm"
 msgstr ""
 
 #. metadata.json->name
@@ -206,10 +205,6 @@ msgstr ""
 
 #. settings-schema.json->style-header->description
 msgid "Style"
-msgstr ""
-
-#. settings-schema.json->show-header->description
-msgid "Show desklet header"
 msgstr ""
 
 #. settings-schema.json->font->description

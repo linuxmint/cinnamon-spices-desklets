@@ -89,7 +89,6 @@ MyDesklet.prototype = {
                 "show-max-rates", "show-conn-status", "show-conn-error", "show-uptime",
                 "show-public-ip", "show-bytes-total", "show-throughput",
                 "show-update-available",
-                "show-header",
                 "font", "font-color", "label-color",
                 "background-color", "background-transparency",
                 "border-color", "border-width"
@@ -102,14 +101,12 @@ MyDesklet.prototype = {
             global.logError("[fritzbox] settings error: " + e);
         }
 
-        if (this.showHeader) this.setHeader(_("FRITZ!Box"));
         this._buildUI();
         this._fetchStaticInfo();
         this._schedule(1);
     },
 
     _onSettingsChanged() {
-        if (this.showHeader) this.setHeader(_("FRITZ!Box"));
         this._buildUI();
         this._render();
         if (this.updateId > 0) {
@@ -171,6 +168,7 @@ MyDesklet.prototype = {
     },
 
     on_desklet_removed() {
+        this._removed = true;
         if (this.updateId > 0) {
             Mainloop.source_remove(this.updateId);
             this.updateId = 0;
@@ -178,22 +176,27 @@ MyDesklet.prototype = {
     },
 
     _schedule(sec) {
+        if (this._removed) return;
         this.updateId = Mainloop.timeout_add_seconds(sec, Lang.bind(this, this._tick));
     },
 
     _tick() {
         this.updateId = 0;
+        if (this._removed) return GLib.SOURCE_REMOVE;
         this._poll();
         this._schedule(this.delay || 10);
-        return false;
+        return GLib.SOURCE_REMOVE;
     },
 
     // Legge info statiche (modello/firmware) da /tr64desc.xml una tantum.
+    // Nota: usiamo curl via Util.spawn_async (array argv, shell-safe) perché il
+    // supporto Soup varia tra Cinnamon 5.0 (libsoup2) e 6.4 (libsoup3) e un
+    // ramo unico fallirebbe su un lato.
     _fetchStaticInfo() {
         const url = "http://" + this.host + ":" + this.port + "/tr64desc.xml";
         const cmd = ["curl", "-s", "--max-time", String(this.timeout || 5), url];
         Util.spawn_async(cmd, Lang.bind(this, (out) => {
-            if (!out) return;
+            if (this._removed || !out) return;
             const model = this._extract(out, "modelName");
             const display = this._extract(out, "Display");
             if (model) this.state.model = model;
@@ -206,6 +209,7 @@ MyDesklet.prototype = {
     },
 
     _poll() {
+        if (this._removed) return;
         const host = this.host || "fritz.box";
         const port = this.port || 49000;
         const timeout = this.timeout || 5;
@@ -243,7 +247,7 @@ MyDesklet.prototype = {
     },
 
     _onReply(output, callKey) {
-        if (!output || typeof output !== "string") return;
+        if (this._removed || !output || typeof output !== "string") return;
         const c = CALLS[callKey];
         const parsed = {};
         for (let f of c.fields) parsed[f] = this._extract(output, f);
@@ -293,9 +297,16 @@ MyDesklet.prototype = {
     },
 
     _extract(xml, tag) {
-        const re = new RegExp("<" + tag + ">([^<]*)</" + tag + ">");
+        const re = new RegExp("<" + tag + "(?:\\s[^>]*)?>([\\s\\S]*?)</" + tag + ">");
         const m = xml.match(re);
-        return m ? m[1].trim() : null;
+        if (!m) return null;
+        return m[1]
+            .replace(/&lt;/g, "<")
+            .replace(/&gt;/g, ">")
+            .replace(/&quot;/g, '"')
+            .replace(/&apos;/g, "'")
+            .replace(/&amp;/g, "&")
+            .trim();
     },
 
     _prettyAccessType(t) {
@@ -329,9 +340,9 @@ MyDesklet.prototype = {
         const d = Math.floor(sec / 86400);
         const h = Math.floor((sec % 86400) / 3600);
         const m = Math.floor((sec % 3600) / 60);
-        if (d > 0) return d + _("d") + " " + h + _("h") + " " + m + _("m");
-        if (h > 0) return h + _("h") + " " + m + _("m");
-        return m + _("m");
+        if (d > 0) return _("%dd %dh %dm").format(d, h, m);
+        if (h > 0) return _("%dh %dm").format(h, m);
+        return _("%dm").format(m);
     }
 };
 

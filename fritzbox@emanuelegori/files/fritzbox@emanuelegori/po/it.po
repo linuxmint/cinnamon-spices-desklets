@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fritzbox@emanuelegori\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-10-25 12:56+0100\n"
+"POT-Creation-Date: 2026-10-25 13:23+0100\n"
 "PO-Revision-Date: 2026-10-25 12:56+0100\n"
 "Last-Translator: Emanuele Gori\n"
 "Language-Team: Italian\n"
@@ -64,29 +64,28 @@ msgstr "Velocità ↓/↑:"
 msgid "Firmware update:"
 msgstr "Aggiornamento FW:"
 
-#: desklet.js:105 desklet.js:112
-msgid "FRITZ!Box"
-msgstr "FRITZ!Box"
-
-#: desklet.js:280
+#: desklet.js:284
 msgid "Yes"
 msgstr "Sì"
 
-#: desklet.js:280
+#: desklet.js:284
 msgid "No"
 msgstr "No"
 
-#: desklet.js:332
-msgid "d"
-msgstr "g"
+#: desklet.js:343
+#, javascript-format
+msgid "%dd %dh %dm"
+msgstr "%dg %dh %dm"
 
-#: desklet.js:332 desklet.js:333
-msgid "h"
-msgstr "h"
+#: desklet.js:344
+#, javascript-format
+msgid "%dh %dm"
+msgstr "%dh %dm"
 
-#: desklet.js:332 desklet.js:333 desklet.js:334
-msgid "m"
-msgstr "m"
+#: desklet.js:345
+#, javascript-format
+msgid "%dm"
+msgstr "%dm"
 
 #. metadata.json->name
 msgid "FRITZ!Box Status"
@@ -94,8 +93,8 @@ msgstr "Stato FRITZ!Box"
 
 #. metadata.json->description
 msgid ""
-"Shows FRITZ!Box operational parameters via unauthenticated TR-064 / IGD UPnP"
-" LAN endpoints. Each parameter can be toggled individually."
+"Shows FRITZ!Box operational parameters via unauthenticated TR-064 / IGD UPnP "
+"LAN endpoints. Each parameter can be toggled individually."
 msgstr ""
 "Mostra parametri di funzionamento del FRITZ!Box via TR-064 / IGD UPnP "
 "(endpoint LAN non autenticati). Parametri attivabili singolarmente."
@@ -194,9 +193,9 @@ msgid ""
 "the FRITZ!Box UI, which is not exposed via TR-064."
 msgstr ""
 "Contatore cumulativo dell'interfaccia WAN (contatore a 64 bit). Si azzera "
-"solo al riavvio del router o al reset manuale del contatore. NON "
-"corrisponde ai \"Contatori online\" giornalieri della UI FRITZ!Box, che non "
-"sono esposti via TR-064."
+"solo al riavvio del router o al reset manuale del contatore. NON corrisponde "
+"ai \"Contatori online\" giornalieri della UI FRITZ!Box, che non sono esposti "
+"via TR-064."
 
 #. settings-schema.json->show-throughput->description
 msgid "Instantaneous throughput (↓ / ↑)"
@@ -204,12 +203,12 @@ msgstr "Throughput istantaneo (↓ / ↑)"
 
 #. settings-schema.json->show-throughput->tooltip
 msgid ""
-"Instantaneous rate in bit/s, as reported by the router itself. The FRITZ!Box"
-" UI refreshes about every 5 s: set the same polling interval here to match."
+"Instantaneous rate in bit/s, as reported by the router itself. The FRITZ!Box "
+"UI refreshes about every 5 s: set the same polling interval here to match."
 msgstr ""
-"Velocità istantanea in bit/s, fornita direttamente dal router. La UI "
-"FRITZ!Box aggiorna circa ogni 5 s: per allinearsi, impostare lo stesso "
-"intervallo di polling."
+"Velocità istantanea in bit/s, fornita direttamente dal router. La UI FRITZ!"
+"Box aggiorna circa ogni 5 s: per allinearsi, impostare lo stesso intervallo "
+"di polling."
 
 #. settings-schema.json->show-update-available->description
 msgid "Firmware update available"
@@ -218,10 +217,6 @@ msgstr "Aggiornamento firmware disponibile"
 #. settings-schema.json->style-header->description
 msgid "Style"
 msgstr "Stile"
-
-#. settings-schema.json->show-header->description
-msgid "Show desklet header"
-msgstr "Mostra intestazione desklet"
 
 #. settings-schema.json->font->description
 msgid "Font"
