@@ -1,0 +1,11 @@
+{
+  "uuid": "bri3fing@ar3ac",
+  "name": "Bri3fing",
+  "description": "A Cinnamon desklet for your daily schedule briefing and fast event creation synced with Google Calendar via GNOME Online Accounts / EDS",
+  "version": "1.0.0",
+  "website": "https://github.com/ar3ac/bri3fing",
+  "prevent-decorations": true,
+  "author": "ar3ac",
+  "cinnamon-version": ["5.4", "5.6", "5.8", "6.0", "6.2", "6.4"],
+  "max-instances": "5"
+}
