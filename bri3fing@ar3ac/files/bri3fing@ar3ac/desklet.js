@@ -2,7 +2,6 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
-const Gtk = imports.gi.Gtk;
 const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const PopupMenu = imports.ui.popupMenu;
@@ -18,7 +17,7 @@ const Gettext = imports.gettext;
 const UUID = "bri3fing@ar3ac";
 
 // Setup gettext domain binding
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]));
 function _(str) {
     let customTranslation = Gettext.dgettext(UUID, str);
     if (customTranslation !== str) return customTranslation;
@@ -281,10 +280,10 @@ Bri3fingDesklet.prototype = {
 
     _openCalendarApp: function() {
         try {
-            Util.spawnCommandLine("gnome-calendar");
+            Util.trySpawn(["gnome-calendar"]);
         } catch (e) {
             try {
-                Util.spawnCommandLine("evolution -c calendar");
+                Util.trySpawn(["evolution", "-c", "calendar"]);
             } catch (e2) {
                 Main.notifyError(_("Bri3fing"), _("Could not launch calendar application"));
             }
@@ -553,19 +552,10 @@ Bri3fingDesklet.prototype = {
     },
 
     _findHelperPath: function() {
-        let candidates = [
-            (this.metadata["path"] ? this.metadata["path"] + "/eds_helper.py" : null),
-            GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + this.metadata["uuid"] + "/eds_helper.py",
-            "/home/ar3ac/projects/bri3fing/desklet/bri3fing@ar3ac/eds_helper.py"
-        ];
-
-        for (let candidate of candidates) {
-            if (candidate && GLib.file_test(candidate, GLib.FileTest.IS_EXECUTABLE)) {
-                return candidate;
-            }
+        if (this.metadata && this.metadata["path"]) {
+            return GLib.build_filenamev([this.metadata["path"], "eds_helper.py"]);
         }
-
-        return GLib.get_home_dir() + "/.local/share/cinnamon/desklets/" + this.metadata["uuid"] + "/eds_helper.py";
+        return GLib.build_filenamev([GLib.get_user_data_dir(), "cinnamon", "desklets", this.metadata["uuid"], "eds_helper.py"]);
     },
 
     _executeHelper: function(args, callback) {
@@ -946,7 +936,7 @@ Bri3fingDesklet.prototype = {
             joinBtn.set_child(joinBox);
             new Tooltips.Tooltip(joinBtn, _("Join Video Call (%s)").replace("%s", meetingUrl));
             joinBtn.connect("clicked", () => {
-                Util.spawnCommandLine(`xdg-open ${GLib.shell_quote(meetingUrl)}`);
+                Util.spawn(["xdg-open", meetingUrl]);
                 return Clutter.EVENT_STOP;
             });
             row.add_actor(joinBtn);
@@ -1047,7 +1037,7 @@ Bri3fingDesklet.prototype = {
                 reactive: true
             });
             joinBtn.connect("clicked", () => {
-                Util.spawnCommandLine(`xdg-open ${GLib.shell_quote(meetingUrl)}`);
+                Util.spawn(["xdg-open", meetingUrl]);
                 dlg.close();
             });
             detailsBox.add_actor(joinBtn);
@@ -1373,8 +1363,8 @@ Bri3fingDesklet.prototype = {
             let optionsScroll = new St.ScrollView({
                 style_class: "bri3fing-dropdown-options-scroll",
                 visible: false,
-                hscrollbar_policy: Gtk.PolicyType.NEVER,
-                vscrollbar_policy: Gtk.PolicyType.AUTOMATIC
+                hscrollbar_policy: St.PolicyType.NEVER,
+                vscrollbar_policy: St.PolicyType.AUTOMATIC
             });
             optionsScroll.set_width(420);
             optionsScroll.set_height(Math.min(writableCalendars.length * 34, 140));
@@ -1677,7 +1667,7 @@ Bri3fingDesklet.prototype = {
 
     _openOnlineAccounts: function() {
         try {
-            GLib.spawn_command_line_async("cinnamon-settings online-accounts");
+            Util.spawn(["cinnamon-settings", "online-accounts"]);
             this._startOnlineAccountsWatcher();
         } catch (e) {
             global.logError("[bri3fing] Failed to open Online Accounts: " + e.message);
