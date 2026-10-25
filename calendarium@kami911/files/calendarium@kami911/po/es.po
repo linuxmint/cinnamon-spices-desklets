@@ -892,6 +892,22 @@ msgstr "Opacidad del fondo"
 msgid "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr "0 = totalmente transparente (se ve el fondo de pantalla), 1 = fondo negro liso"
 
+#. settings-schema.json->monochrome-mode->description
+msgid "Monochrome mode"
+msgstr "Modo monocromo"
+
+#. settings-schema.json->monochrome-mode->tooltip
+msgid "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+msgstr "Muestra todo el texto en tonos de un solo color en lugar del multicolor predeterminado. Los emojis se vuelven grises."
+
+#. settings-schema.json->monochrome-color->description
+msgid "Monochrome base colour"
+msgstr "Color base monocromo"
+
+#. settings-schema.json->monochrome-color->tooltip
+msgid "Most important lines use this colour at full strength; less important lines are progressively dimmer."
+msgstr "Las líneas más importantes usan este color a plena intensidad; las menos importantes se atenúan progresivamente."
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Mostrar fecha del calendario juliano"

@@ -28,6 +28,25 @@ const Mainloop = imports.mainloop;
 const St       = imports.gi.St;
 const Clutter  = imports.gi.Clutter;
 const GLib     = imports.gi.GLib;
+
+// Monochrome mode: importance tier per style class (0 = most prominent) and the
+// brightness each tier gets relative to the chosen base colour.
+const MONO_SHADE = [1.0, 0.78, 0.6, 0.45];
+const MONO_TIER = {
+    "calendarium-date": 0, "calendarium-time": 0, "calendarium-nameday": 0,
+    "calendarium-city-time": 0, "calendarium-holiday-public": 0,
+    "calendarium-newyear": 0, "calendarium-wiki-featured": 0,
+    "calendarium-progress": 1, "calendarium-sun": 1, "calendarium-moon": 1,
+    "calendarium-moontime": 1, "calendarium-zodiac-western": 1,
+    "calendarium-zodiac-chinese": 1, "calendarium-city-name": 1,
+    "calendarium-city": 1, "calendarium-period": 1, "calendarium-solstice": 1,
+    "calendarium-altcal": 1, "calendarium-wiki": 1,
+    "calendarium-traditional": 2, "calendarium-folkday": 2,
+    "calendarium-moon-age": 2, "calendarium-holiday": 2,
+    "calendarium-holiday-upcoming": 2, "calendarium-period-upcoming": 2,
+    "calendarium-nameday-sub": 2,
+    "calendarium-wiki-header": 3, "calendarium-city-tz": 3
+};
 const Gio      = imports.gi.Gio;
 const Gettext  = imports.gettext;
 
@@ -245,6 +264,8 @@ CalendariumDesklet.prototype = {
         s.bind("border-width",     "border_width",     cb);
         s.bind("border-color",     "border_color",     cb);
         s.bind("border-radius",    "border_radius",    cb);
+        s.bind("monochrome-mode",  "monochrome_mode",  cb);
+        s.bind("monochrome-color", "monochrome_color", cb);
     },
 
     /**
@@ -927,6 +948,8 @@ CalendariumDesklet.prototype = {
         try { this._updateAltCal(now);      } catch(e) { global.logError("Calendarium _updateAltCal: "      + e); }
         this._wikiRotateStep++;
         try { this._scheduleWikipedia(now); } catch(e) { global.logError("Calendarium _scheduleWikipedia: " + e); }
+        // After all updaters: some switch style_class (e.g. holiday), so tiers must be re-resolved.
+        try { this._applyMonochrome();      } catch(e) { global.logError("Calendarium _applyMonochrome: "   + e); }
 
         // Schedule next full refresh in 60 s
         this._timeout = Mainloop.timeout_add_seconds(
@@ -1019,10 +1042,10 @@ CalendariumDesklet.prototype = {
         // Icon / symbol size for moon and zodiac symbols
         let px = this._getIconPx();
         this._labelMoonIcon.set_style(
-            "font-size: " + px + "px; color: #ccccff; padding-right: 5px;"
+            "font-size: " + px + "px;" + (this.monochrome_mode ? "" : " color: #ccccff;") + " padding-right: 5px;"
         );
         this._labelZodiacWesternIcon.set_style(
-            "font-size: " + px + "px; color: #88ffcc; padding-right: 5px;"
+            "font-size: " + px + "px;" + (this.monochrome_mode ? "" : " color: #88ffcc;") + " padding-right: 5px;"
         );
         this._labelZodiacChineseIcon.set_style(
             "font-size: " + px + "px; padding-right: 5px;"
@@ -1033,6 +1056,61 @@ CalendariumDesklet.prototype = {
         this.metadata["prevent-decorations"] = true;
         this._updateDecoration();
         this._container.set_style(containerStyle);
+    },
+
+    // ── Monochrome mode ───────────────────────────────────────────────────
+
+    /**
+     * Parse a Cinnamon colorchooser value ("rgb(r,g,b)", "rgba(r,g,b,a)" or "#rrggbb").
+     * @returns {number[]} [r, g, b] in 0..255; white on unparseable input
+     */
+    _parseColor: function(str) {
+        let m = /^rgba?\(\s*(\d{1,3})\s*,\s*(\d{1,3})\s*,\s*(\d{1,3})/.exec(str || "");
+        if (m) return [m[1], m[2], m[3]].map((v) => Math.min(255, parseInt(v, 10)));
+        m = /^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i.exec(str || "");
+        if (m) return [m[1], m[2], m[3]].map((v) => parseInt(v, 16));
+        return [255, 255, 255];
+    },
+
+    /** Base colour scaled towards black: factor 1.0 = full strength. */
+    _shade: function(rgb, factor) {
+        return "rgb(" + rgb.map((v) => Math.round(v * factor)).join(",") + ")";
+    },
+
+    /** Walk the actor tree below `actor`, calling fn on every node. */
+    _walkActors: function(actor, fn) {
+        fn(actor);
+        if (!actor.get_children) return;
+        for (let child of actor.get_children()) this._walkActors(child, fn);
+    },
+
+    /**
+     * Monochrome mode: colour each label by its importance tier, as shades of
+     * one base colour. Inline styles are owned by this method and cleared when
+     * the mode is switched off, so the stylesheet colours return unchanged.
+     */
+    _applyMonochrome: function() {
+        // Undo previous pass (also covers actors whose class changed since).
+        for (let a of (this._monoActors || [])) a.set_style(null);
+        this._monoActors = [];
+
+        let icons = [this._labelMoonIcon, this._labelZodiacWesternIcon, this._labelZodiacChineseIcon];
+        for (let ic of icons) {
+            if (ic.get_effect("calendarium-mono")) ic.remove_effect_by_name("calendarium-mono");
+        }
+        if (!this.monochrome_mode) return;
+
+        let rgb = this._parseColor(this.monochrome_color);
+        this._walkActors(this._container, (a) => {
+            let tier = MONO_TIER[a.style_class];
+            if (tier === undefined || icons.indexOf(a) >= 0) return;
+            a.set_style("color: " + this._shade(rgb, MONO_SHADE[tier]) + ";");
+            this._monoActors.push(a);
+        });
+        // Icons keep their size style; only the glyph colour is flattened.
+        for (let ic of icons) {
+            ic.add_effect_with_name("calendarium-mono", new Clutter.DesaturateEffect({ factor: 1.0 }));
+        }
     },
 
     // ── Section updaters ──────────────────────────────────────────────────

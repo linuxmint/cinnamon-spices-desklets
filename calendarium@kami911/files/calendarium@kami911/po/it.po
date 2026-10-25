@@ -937,6 +937,22 @@ msgid ""
 msgstr ""
 "0 = completamente trasparente (lo sfondo è visibile), 1 = sfondo nero solido"
 
+#. settings-schema.json->monochrome-mode->description
+msgid "Monochrome mode"
+msgstr "Modalità monocromatica"
+
+#. settings-schema.json->monochrome-mode->tooltip
+msgid "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+msgstr "Mostra tutto il testo in sfumature di un solo colore invece del multicolore predefinito. Le emoji diventano grigie."
+
+#. settings-schema.json->monochrome-color->description
+msgid "Monochrome base colour"
+msgstr "Colore base monocromatico"
+
+#. settings-schema.json->monochrome-color->tooltip
+msgid "Most important lines use this colour at full strength; less important lines are progressively dimmer."
+msgstr "Le righe più importanti usano questo colore a piena intensità; quelle meno importanti sono progressivamente attenuate."
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Mostra la data nel calendario giuliano"

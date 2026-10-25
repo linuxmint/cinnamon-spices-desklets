@@ -937,6 +937,22 @@ msgstr ""
 "0 = helt gennemsigtig (baggrundstapet ses igennem), 1 = ensfarvet sort "
 "baggrund"
 
+#. settings-schema.json->monochrome-mode->description
+msgid "Monochrome mode"
+msgstr "Monokrom tilstand"
+
+#. settings-schema.json->monochrome-mode->tooltip
+msgid "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+msgstr "Vis al tekst i nuancer af én farve i stedet for standardens flere farver. Emoji-symboler bliver grå."
+
+#. settings-schema.json->monochrome-color->description
+msgid "Monochrome base colour"
+msgstr "Monokrom grundfarve"
+
+#. settings-schema.json->monochrome-color->tooltip
+msgid "Most important lines use this colour at full strength; less important lines are progressively dimmer."
+msgstr "De vigtigste linjer bruger denne farve i fuld styrke; mindre vigtige linjer bliver gradvist svagere."
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Vis juliansk kalenderdato"

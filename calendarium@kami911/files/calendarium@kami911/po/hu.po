@@ -1001,6 +1001,22 @@ msgstr "Sarkok lekerekítése"
 msgid "0 = square corners"
 msgstr "0 = szögletes sarkok"
 
+#. settings-schema.json->monochrome-mode->description
+msgid "Monochrome mode"
+msgstr "Monokróm mód"
+
+#. settings-schema.json->monochrome-mode->tooltip
+msgid "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+msgstr "Minden szöveg egyetlen szín árnyalataiban jelenik meg a színes alapértelmezett helyett. Az emoji szimbólumok szürkék lesznek."
+
+#. settings-schema.json->monochrome-color->description
+msgid "Monochrome base colour"
+msgstr "Monokróm alapszín"
+
+#. settings-schema.json->monochrome-color->tooltip
+msgid "Most important lines use this colour at full strength; less important lines are progressively dimmer."
+msgstr "A legfontosabb sorok ezzel a színnel jelennek meg teljes erővel, a kevésbé fontosak fokozatosan halványabbak."
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Julián naptár dátumának megjelenítése"

@@ -141,7 +141,8 @@
             "type": "section",
             "title": "Appearance",
             "keys": ["icon-size", "text-scale", "bg-opacity",
-                     "show-border", "border-width", "border-color", "border-radius"]
+                     "show-border", "border-width", "border-color", "border-radius",
+                     "monochrome-mode", "monochrome-color"]
         }
     },
 
@@ -723,6 +724,20 @@
         "tooltip": "0 = square corners",
         "dependency": "show-border",
         "indent": true
+    },
+
+    "monochrome-mode": {
+        "type": "switch",
+        "default": false,
+        "description": "Monochrome mode",
+        "tooltip": "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+    },
+    "monochrome-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Monochrome base colour",
+        "tooltip": "Most important lines use this colour at full strength; less important lines are progressively dimmer.",
+        "dependency": "monochrome-mode"
     },
 
     "show-julian": {
