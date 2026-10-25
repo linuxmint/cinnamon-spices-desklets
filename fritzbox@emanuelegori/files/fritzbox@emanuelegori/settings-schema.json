@@ -1,13 +1,13 @@
 {
     "connection-header": {
         "type": "header",
-        "description": "Connessione FRITZ!Box"
+        "description": "FRITZ!Box connection"
     },
     "host": {
         "type": "entry",
         "default": "fritz.box",
-        "description": "Indirizzo (host o IP)",
-        "tooltip": "Hostname o IP del FRITZ!Box in LAN. Default: fritz.box"
+        "description": "Address (host or IP)",
+        "tooltip": "Hostname or IP of the FRITZ!Box on the LAN. Default: fritz.box"
     },
     "port": {
         "type": "spinbutton",
@@ -16,7 +16,7 @@
         "max": 65535,
         "step": 1,
         "units": "",
-        "description": "Porta TR-064 / IGD"
+        "description": "TR-064 / IGD port"
     },
     "delay": {
         "type": "spinbutton",
@@ -24,8 +24,8 @@
         "min": 2,
         "max": 3600,
         "step": 1,
-        "units": "secondi",
-        "description": "Intervallo di aggiornamento"
+        "units": "seconds",
+        "description": "Refresh interval"
     },
     "timeout": {
         "type": "spinbutton",
@@ -33,89 +33,89 @@
         "min": 1,
         "max": 60,
         "step": 1,
-        "units": "secondi",
-        "description": "Timeout richiesta"
+        "units": "seconds",
+        "description": "Request timeout"
     },
 
     "params-separator": { "type": "separator" },
     "params-header": {
         "type": "header",
-        "description": "Parametri da mostrare"
+        "description": "Parameters to display"
     },
     "show-model": {
         "type": "checkbox",
         "default": true,
-        "description": "Modello FRITZ!Box",
-        "tooltip": "Letto da /tr64desc.xml"
+        "description": "FRITZ!Box model",
+        "tooltip": "Read from /tr64desc.xml"
     },
     "show-firmware": {
         "type": "checkbox",
         "default": true,
-        "description": "Firmware FRITZ!OS"
+        "description": "FRITZ!OS firmware"
     },
     "show-wan-status": {
         "type": "checkbox",
         "default": true,
-        "description": "Stato link fisico WAN"
+        "description": "WAN physical link status"
     },
     "show-wan-type": {
         "type": "checkbox",
         "default": true,
-        "description": "Tipo accesso WAN (DSL/LTE/Cable/Ethernet)"
+        "description": "WAN access type (DSL/LTE/Cable/Ethernet)"
     },
     "show-max-rates": {
         "type": "checkbox",
         "default": true,
-        "description": "Velocità max down/up negoziate"
+        "description": "Negotiated max down/up rates"
     },
     "show-conn-status": {
         "type": "checkbox",
         "default": true,
-        "description": "Stato connessione Internet"
+        "description": "Internet connection status"
     },
     "show-conn-error": {
         "type": "checkbox",
         "default": false,
-        "description": "Ultimo errore di connessione"
+        "description": "Last connection error"
     },
     "show-uptime": {
         "type": "checkbox",
         "default": true,
-        "description": "Uptime connessione",
-        "tooltip": "Tempo dall'ultima negoziazione della connessione Internet (non dall'accensione del router). Nella UI FRITZ!Box: Internet → Panoramica → \"Connesso dal …\"."
+        "description": "Connection uptime",
+        "tooltip": "Time since the last Internet connection renegotiation (not since the router was powered on). In the FRITZ!Box UI: Internet → Overview → \"Connected since …\"."
     },
     "show-public-ip": {
         "type": "checkbox",
         "default": true,
-        "description": "Indirizzo IP pubblico"
+        "description": "Public IP address"
     },
     "show-bytes-total": {
         "type": "checkbox",
         "default": true,
-        "description": "Byte totali inviati / ricevuti",
-        "tooltip": "Contatore cumulativo dell'interfaccia WAN (contatore a 64 bit). Si azzera solo al riavvio del router o al reset manuale del contatore. NON corrisponde ai \"Contatori online\" giornalieri della UI FRITZ!Box, che non sono esposti via TR-064."
+        "description": "Total bytes sent / received",
+        "tooltip": "Cumulative WAN interface counter (64-bit). Resets only on router reboot or manual counter reset. Does NOT match the daily \"online counters\" page of the FRITZ!Box UI, which is not exposed via TR-064."
     },
     "show-throughput": {
         "type": "checkbox",
         "default": true,
-        "description": "Throughput istantaneo (↓ / ↑)",
-        "tooltip": "Velocità istantanea in bit/s, fornita direttamente dal router. La UI FRITZ!Box aggiorna circa ogni 5 s: per allinearsi, impostare lo stesso intervallo di polling."
+        "description": "Instantaneous throughput (↓ / ↑)",
+        "tooltip": "Instantaneous rate in bit/s, as reported by the router itself. The FRITZ!Box UI refreshes about every 5 s: set the same polling interval here to match."
     },
     "show-update-available": {
         "type": "checkbox",
         "default": true,
-        "description": "Aggiornamento firmware disponibile"
+        "description": "Firmware update available"
     },
 
     "style-separator": { "type": "separator" },
     "style-header": {
         "type": "header",
-        "description": "Stile"
+        "description": "Style"
     },
     "show-header": {
         "type": "checkbox",
         "default": true,
-        "description": "Mostra intestazione desklet"
+        "description": "Show desklet header"
     },
     "font": {
         "type": "fontchooser",
@@ -125,17 +125,17 @@
     "font-color": {
         "type": "colorchooser",
         "default": "rgb(238,238,236)",
-        "description": "Colore testo"
+        "description": "Text color"
     },
     "label-color": {
         "type": "colorchooser",
         "default": "rgb(186,189,182)",
-        "description": "Colore etichette"
+        "description": "Label color"
     },
     "background-color": {
         "type": "colorchooser",
         "default": "rgb(46,52,54)",
-        "description": "Colore sfondo"
+        "description": "Background color"
     },
     "background-transparency": {
         "type": "scale",
@@ -143,12 +143,12 @@
         "min": 0.0,
         "max": 1.0,
         "step": 0.05,
-        "description": "Trasparenza sfondo"
+        "description": "Background transparency"
     },
     "border-color": {
         "type": "colorchooser",
         "default": "rgb(85,87,83)",
-        "description": "Colore bordo"
+        "description": "Border color"
     },
     "border-width": {
         "type": "spinbutton",
@@ -157,6 +157,6 @@
         "max": 20,
         "step": 1,
         "units": "px",
-        "description": "Spessore bordo"
+        "description": "Border width"
     }
 }

@@ -53,18 +53,18 @@ const CALLS = {
 
 // Ordine di rendering delle righe nel desklet.
 const ROWS = [
-    { key: "model",             label: _("Modello:"),         setting: "show-model" },
-    { key: "firmware",          label: _("Firmware:"),        setting: "show-firmware" },
-    { key: "wanStatus",         label: _("Link WAN:"),        setting: "show-wan-status" },
-    { key: "wanType",           label: _("Tipo WAN:"),        setting: "show-wan-type" },
-    { key: "maxRates",          label: _("Max ↓/↑:"),         setting: "show-max-rates" },
-    { key: "connStatus",        label: _("Connessione:"),     setting: "show-conn-status" },
-    { key: "connError",         label: _("Ultimo errore:"),   setting: "show-conn-error" },
-    { key: "uptime",            label: _("Uptime:"),          setting: "show-uptime" },
-    { key: "publicIp",          label: _("IP pubblico:"),     setting: "show-public-ip" },
-    { key: "bytesTotal",        label: _("Totale ↓/↑:"),      setting: "show-bytes-total" },
-    { key: "throughput",        label: _("Velocità ↓/↑:"),    setting: "show-throughput" },
-    { key: "updateAvailable",   label: _("Aggiornamento FW:"),setting: "show-update-available" }
+    { key: "model",             label: _("Model:"),            setting: "show-model" },
+    { key: "firmware",          label: _("Firmware:"),         setting: "show-firmware" },
+    { key: "wanStatus",         label: _("WAN link:"),         setting: "show-wan-status" },
+    { key: "wanType",           label: _("WAN type:"),         setting: "show-wan-type" },
+    { key: "maxRates",          label: _("Max ↓/↑:"),          setting: "show-max-rates" },
+    { key: "connStatus",        label: _("Connection:"),       setting: "show-conn-status" },
+    { key: "connError",         label: _("Last error:"),       setting: "show-conn-error" },
+    { key: "uptime",            label: _("Uptime:"),           setting: "show-uptime" },
+    { key: "publicIp",          label: _("Public IP:"),        setting: "show-public-ip" },
+    { key: "bytesTotal",        label: _("Total ↓/↑:"),        setting: "show-bytes-total" },
+    { key: "throughput",        label: _("Rate ↓/↑:"),         setting: "show-throughput" },
+    { key: "updateAvailable",   label: _("Firmware update:"),  setting: "show-update-available" }
 ];
 
 function MyDesklet(metadata, deskletId) {
@@ -277,7 +277,7 @@ MyDesklet.prototype = {
                 this.state.publicIp = parsed.NewExternalIPAddress || "-";
                 break;
             case "uiInfo":
-                this.state.updateAvailable = parsed.NewUpgradeAvailable === "1" ? _("Sì") : _("No");
+                this.state.updateAvailable = parsed.NewUpgradeAvailable === "1" ? _("Yes") : _("No");
                 break;
         }
         this._render();
@@ -329,9 +329,9 @@ MyDesklet.prototype = {
         const d = Math.floor(sec / 86400);
         const h = Math.floor((sec % 86400) / 3600);
         const m = Math.floor((sec % 3600) / 60);
-        if (d > 0) return d + "g " + h + "h " + m + "m";
-        if (h > 0) return h + "h " + m + "m";
-        return m + "m";
+        if (d > 0) return d + _("d") + " " + h + _("h") + " " + m + _("m");
+        if (h > 0) return h + _("h") + " " + m + _("m");
+        return m + _("m");
     }
 };
 
