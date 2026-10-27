@@ -40,3 +40,4 @@ If you want to help translate this desklet, you can use the `cinnamon-spices-mak
 ## License
 
 This project is licensed under the GPL-3.0 License.
+
