@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: top@ryannerd 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-11-29 23:54+0100\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:270
+msgid "TASKS"
+msgstr "TASKS"
+
+#: desklet.js:271 desklet.js:357 desklet.js:392
+msgid "Total:"
+msgstr "Gesamt:"
+
+#: desklet.js:272
+msgid "Running:"
+msgstr "Laufend:"
+
+#: desklet.js:273
+msgid "Sleeping:"
+msgstr "Schlafend:"
+
+#: desklet.js:274
+msgid "Stopped:"
+msgstr "Gestoppt:"
+
+#: desklet.js:275
+msgid "Zombie:"
+msgstr "Zombie:"
+
+#: desklet.js:309
+msgid "CPU%"
+msgstr "CPU%"
+
+#: desklet.js:310
+msgid "User:"
+msgstr "Benutzer:"
+
+#: desklet.js:311
+msgid "System:"
+msgstr "System:"
+
+#: desklet.js:312
+msgid "Nice:"
+msgstr "Nice:"
+
+#: desklet.js:313
+msgid "Idle:"
+msgstr "Idle:"
+
+#: desklet.js:314
+msgid "H/I:"
+msgstr "H/I:"
+
+#: desklet.js:315
+msgid "S/I:"
+msgstr "S/I:"
+
+#: desklet.js:316
+msgid "St:"
+msgstr "St:"
+
+#: desklet.js:356
+msgid "RAM"
+msgstr "RAM"
+
+#: desklet.js:358
+msgid "Free:"
+msgstr "Frei:"
+
+#: desklet.js:359 desklet.js:394
+msgid "Used:"
+msgstr "Verwendet:"
+
+#: desklet.js:360
+msgid "Cache:"
+msgstr "Cache:"
+
+#: desklet.js:391
+msgid "SWAP"
+msgstr "SWAP"
+
+#: desklet.js:393
+msgid "Free"
+msgstr "Frei"
+
+#: desklet.js:395
+msgid "Available:"
+msgstr "Verfügbar:"
+
+#: desklet.js:424
+msgid "PID"
+msgstr "PID"
+
+#: desklet.js:425
+msgid "USER"
+msgstr "BENUTZER"
+
+#: desklet.js:426
+msgid "PR"
+msgstr "PR"
+
+#: desklet.js:427
+msgid "NI"
+msgstr "NI"
+
+#: desklet.js:428
+msgid "VIRT"
+msgstr "VIRT"
+
+#: desklet.js:429
+msgid "RES"
+msgstr "RES"
+
+#: desklet.js:430
+msgid "SHR"
+msgstr "SHR"
+
+#: desklet.js:431
+msgid "S"
+msgstr "S"
+
+#: desklet.js:432
+msgid "CPU"
+msgstr "CPU"
+
+#: desklet.js:433
+msgid "MEM"
+msgstr "MEM"
+
+#: desklet.js:434
+msgid "TIME"
+msgstr "ZEIT"
+
+#: desklet.js:435
+msgid "CMD"
+msgstr "CMD"
+
+#: desklet.js:454
+msgid "Top Desklet - Open Configuration for display options"
+msgstr "Top Desklet - Konfiguration öffnen für Anzeigeeinstellungen"
+
+#. metadata.json->description
+msgid "A desklet that displays top process info"
+msgstr "Ein Desklet, welches \"top\"-Prozessinformationen anzeigt"
+
+#. metadata.json->name
+msgid "Top"
+msgstr "Top"
+
+#. settings-schema.json->head0->description
+msgid "Desklet Settings for top@ryannerd"
+msgstr "Desklet-Einstellungen für top@ryannerd"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visuell"
+
+#. settings-schema.json->pid-lines->description
+msgid "Number of processes to list"
+msgstr "Anzahl der aufzulistenden Prozesse"
+
+#. settings-schema.json->pid-lines->tooltip
+msgid "Set how many processes you want to display"
+msgstr "Einstellen, wie viele Prozesse angezeigt werden sollen"
+
+#. settings-schema.json->show-tasks->description
+msgid "Show Tasks"
+msgstr "Zeige Tasks"
+
+#. settings-schema.json->show-tasks->tooltip
+msgid "show the TASKS information"
+msgstr "zeige die TASKS-Informationen"
+
+#. settings-schema.json->show-cpu->description
+msgid "Show CPU"
+msgstr "Zeige CPU"
+
+#. settings-schema.json->show-cpu->tooltip
+msgid "show the CPU information"
+msgstr "zeige die CPU-Informationen"
+
+#. settings-schema.json->show-ram->description
+msgid "Show RAM"
+msgstr "Zeige RAM"
+
+#. settings-schema.json->show-ram->tooltip
+msgid "show the RAM information"
+msgstr "zeige die RAM-Informationen"
+
+#. settings-schema.json->show-swap->description
+msgid "Show SWAP"
+msgstr "Zeige SWAP"
+
+#. settings-schema.json->show-swap->tooltip
+#. settings-schema.json->show-processes->tooltip
+msgid "show the SWAP information"
+msgstr "zeige die SWAP-Informationen"
+
+#. settings-schema.json->show-processes->description
+msgid "Show Processes"
+msgstr "Zeige Prozesse"
+
+#. settings-schema.json->title-color->description
+msgid "Title text color"
+msgstr "Titeltextfarbe"
+
+#. settings-schema.json->title-color->tooltip
+msgid "The color for the titles"
+msgstr "Die Farbe für die Titel"
+
+#. settings-schema.json->label-color->description
+msgid "Label text color"
+msgstr "Labelschriftfarbe"
+
+#. settings-schema.json->label-color->tooltip
+msgid "The color for the labels"
+msgstr "Die Farbe für die Labels"
+
+#. settings-schema.json->value-color->description
+msgid "Value text color"
+msgstr "Werttextfarbe"
+
+#. settings-schema.json->value-color->tooltip
+msgid "The color for the values"
+msgstr "Die Farbe für die Werte"
+
+#. settings-schema.json->head2->description
+msgid "Top Process Settings"
+msgstr "Top Prozess Einstellungen"
+
+#. settings-schema.json->refresh-rate->description
+msgid "Number of seconds to wait before refresh"
+msgstr "Anzahl der Sekunden, die vor der Aktualisierung gewartet werden soll"
+
+#. settings-schema.json->refresh-rate->tooltip
+msgid "Increase or decrease the how often the display updates."
+msgstr "Erhöhen oder verringern der Häufigkeit der Anzeigeaktualisierung."
+
+#. settings-schema.json->use-custom-command->description
+msgid "Use a custom `top` command?"
+msgstr "Benutzerdefinierten \"top\"-Befehl verwenden?"
+
+#. settings-schema.json->top-command->description
+msgid "The `top` command that is executed every refresh"
+msgstr "Der \"top\"-Befehl, der bei jeder Aktualisierung ausgeführt wird"
+
+#. settings-schema.json->top-command->tooltip
+msgid "The command MUST return output in the standard `top -b` format."
+msgstr "Der Befehl MUSS die Ausgabe im Standardformat „top -b“ zurückgeben."
+
+#. settings-schema.json->enable-custom-command->description
+msgid "When set to true the custom command is used"
+msgstr "Wenn auf „true“ gesetzt, wird der benutzerdefinierte Befehl verwendet"
+
+#. settings-schema.json->enable-custom-command->tooltip
+msgid ""
+"WARNING: The command is executed synchronously and can cause potential hangs "
+"if the command is long running!"
+msgstr ""
+"WARNUNG: Der Befehl wird synchron ausgeführt und kann zu potenziellen "
+"Hängern führen, wenn die Ausführung des Befehls lange dauert!"

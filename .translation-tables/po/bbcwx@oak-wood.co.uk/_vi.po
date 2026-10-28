@@ -1,0 +1,10 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+
+#: 5.4/drivers/wxbase.js:242 3.0/desklet.js:1506
+msgid "E"
+msgstr ""

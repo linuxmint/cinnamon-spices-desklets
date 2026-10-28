@@ -1,0 +1,11 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr ""

@@ -1,0 +1,423 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2021-04-10 19:50+0200\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#. metadata.json->name
+#: desklet.js:136
+msgid "Seven Segment Digital Clock"
+msgstr "Hét szegmensű digitális óra"
+
+#: desklet.js:520
+msgid "Time is an illusion"
+msgstr "Az idő csak illúzió"
+
+#: desklet.js:520
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr "Testreszabható hét szegmenses digitális óra dátummal és Unix idővel"
+
+#. settings-schema.json->general->title
+msgid "General"
+msgstr "Általános"
+
+#. settings-schema.json->digit->title
+msgid "Digits"
+msgstr "Számjegy"
+
+#. settings-schema.json->clock->title
+msgid "Clock"
+msgstr "Óra"
+
+#. settings-schema.json->date-unix->title
+msgid "Date and Unix time"
+msgstr "Dátum és Unix idő"
+
+#. settings-schema.json->general-layout->title
+msgid "Main layout"
+msgstr "Fő elrendezés"
+
+#. settings-schema.json->background->title
+msgid "Background"
+msgstr "Háttér"
+
+#. settings-schema.json->digit-appearance->title
+msgid "Digit appearance"
+msgstr "Számlap"
+
+#. settings-schema.json->digit-darksegments->title
+msgid "Dark segments"
+msgstr "Sötét szegmensek"
+
+#. settings-schema.json->digit-stroke->title
+msgid "Stroke"
+msgstr "Szegély"
+
+#. settings-schema.json->clock-appearance->title
+msgid "Clock appearance"
+msgstr "Óra megjelenése"
+
+#. settings-schema.json->date-appearance->title
+msgid "Date appearance"
+msgstr "Dátum megjelenés"
+
+#. settings-schema.json->unix-appearance->title
+msgid "Unix time appearance"
+msgstr "Unix idő megjelenés"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Date - Unix"
+msgstr "Óra - Dátum - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Unix - Date"
+msgstr "Óra - Unix - Dátum"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Clock - Unix"
+msgstr "Dátum - Óra - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Unix - Clock"
+msgstr "Dátum - Unix - Óra"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Clock - Date"
+msgstr "Unix - Óra - Dátum"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Date - Clock"
+msgstr "Unix - Dátum - Óra"
+
+#. settings-schema.json->main-layout->description
+msgid "Vertical order of main elements"
+msgstr "A fő elemek függőleges sorrendje"
+
+#. settings-schema.json->layout-gap->units
+#. settings-schema.json->stroke-width->units
+#. settings-schema.json->clock-height->units
+#. settings-schema.json->date-height->units
+#. settings-schema.json->unix-height->units
+msgid "pixel"
+msgstr "képpont"
+
+#. settings-schema.json->layout-gap->description
+msgid "Space between main elements"
+msgstr "A fő elemek közötti tér"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Háttér megjelenítése"
+
+#. settings-schema.json->background-color->description
+#. settings-schema.json->digit-color->description
+#. settings-schema.json->dark-color->description
+#. settings-schema.json->stroke-color->description
+msgid "Color"
+msgstr "Szín"
+
+#. settings-schema.json->background-opacity->units
+#. settings-schema.json->digit-opacity->units
+#. settings-schema.json->digit-margin->units
+#. settings-schema.json->dark-opacity->units
+#. settings-schema.json->stroke-opacity->units
+msgid "percent"
+msgstr "százalék"
+
+#. settings-schema.json->background-opacity->description
+#. settings-schema.json->digit-opacity->description
+#. settings-schema.json->dark-opacity->description
+#. settings-schema.json->stroke-opacity->description
+msgid "Opacity"
+msgstr "Átlátszatlanság"
+
+#. settings-schema.json->round-corners->description
+msgid "Round corners"
+msgstr "Sarkok lekerekítése"
+
+#. settings-schema.json->background-shadow->description
+msgid "Shadow"
+msgstr "Árnyék"
+
+#. settings-schema.json->digit-skew->units
+msgid "degrees"
+msgstr "fok"
+
+#. settings-schema.json->digit-skew->description
+msgid "Skew"
+msgstr "Dőlés"
+
+#. settings-schema.json->digit-margin->description
+msgid "Relative space between digits"
+msgstr "Számjegyek közötti relatív tér"
+
+#. settings-schema.json->digit-margin->tooltip
+msgid "This value will be increasingly reduced by the digit skew."
+msgstr "Ezt az értéket a számjegyek dőlése egyre inkább csökkenti."
+
+#. settings-schema.json->digit-alt69->description
+msgid "Alternative 6 and 9"
+msgstr "Alternatív 6 és 9"
+
+#. settings-schema.json->digit-alt7->description
+msgid "Alternative 7"
+msgstr "Alternatív 7"
+
+#. settings-schema.json->dark-enabled->description
+msgid "Show dark segments of the digits"
+msgstr "Számjegyek sötét szegmenseinek megjelenítése"
+
+#. settings-schema.json->dark-color->options
+msgid "Black"
+msgstr "Fekete"
+
+#. settings-schema.json->dark-color->options
+msgid "White"
+msgstr "Fehér"
+
+#. settings-schema.json->dark-color->options
+msgid "same as illuminated"
+msgstr "ugyanaz mint a megvilágított"
+
+#. settings-schema.json->stroke-enabled->description
+msgid "Add stroke"
+msgstr "Szegély hozzáadása"
+
+#. settings-schema.json->stroke-width->description
+msgid "Width"
+msgstr "Szélesség"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Óra megjelenítése"
+
+#. settings-schema.json->clock-height->description
+#. settings-schema.json->date-height->description
+#. settings-schema.json->unix-height->description
+msgid "Digit height"
+msgstr "Számjegy magassága"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Másodperc megjelenítése"
+
+#. settings-schema.json->small-seconds->description
+msgid "Smaller seconds"
+msgstr "Kisebb másodperc"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "none"
+msgstr "nincs"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "half space"
+msgstr "fél méret"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "full space"
+msgstr "teljes méret"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "decimal point"
+msgstr "tizedesvessző"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "colon"
+msgstr "kettőspont"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "dash"
+msgstr "kötőjel"
+
+#. settings-schema.json->clock-divider->description
+#. settings-schema.json->date-divider->description
+#. settings-schema.json->unix-divider->description
+msgid "Divider type"
+msgstr "Elválasztó típusa"
+
+#. settings-schema.json->clock-blink->description
+msgid "Blinking divider (only decimal point and colon)"
+msgstr "Villogó elválasztó (csak tizedesvessző vagy kettőspont)"
+
+#. settings-schema.json->leading-zero->options
+msgid "on"
+msgstr "be"
+
+#. settings-schema.json->leading-zero->options
+msgid "off"
+msgstr "ki"
+
+#. settings-schema.json->leading-zero->options
+#. settings-schema.json->clock-ampm->options
+msgid "hide"
+msgstr "elrejtés"
+
+#. settings-schema.json->leading-zero->options
+msgid "remove"
+msgstr "eltávolítás"
+
+#. settings-schema.json->leading-zero->description
+msgid "Leading zero in hours"
+msgstr "Órák alatt nulla vezet"
+
+#. settings-schema.json->clock-12h->description
+msgid "12h instead of 24h"
+msgstr "12 órás 24 órás helyett"
+
+#. settings-schema.json->clock-ampm->options
+msgid "only A and P"
+msgstr "csak A és P"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 1"
+msgstr "AM/PM megjelenítése, 1. variáns"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 2"
+msgstr "AM/PM megjelenítése, 2. variáns"
+
+#. settings-schema.json->clock-ampm->description
+msgid "AM/PM indicator"
+msgstr "AM/PM indikátor"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Dátum megjelenítése"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Month - Day"
+msgstr "Év - Hónap - Nap"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Day - Month"
+msgstr "Év - Nap - Hónap"
+
+#. settings-schema.json->date-format->options
+msgid "Day - Month - Year"
+msgstr "Nap - Hónap - Év"
+
+#. settings-schema.json->date-format->options
+msgid "Month - Day - Year"
+msgstr "Hónap - Nap - Év"
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Dátumformátum"
+
+#. settings-schema.json->show-unix->description
+msgid "Show Unix time"
+msgstr "Unix idő megjelenés"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by OpenClipart"
+msgstr "OpenClipart stílus"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by alex8664"
+msgstr "Alex8664 stílus"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by Cfaerber"
+msgstr "Cfaerber stílus"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by h2g2bob"
+msgstr "H2g2bob stílus"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Light"
+msgstr "Keshikan's DSEG Klasszik Könnyű"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Regular"
+msgstr "Keshikan's DSEG Klasszikus"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Bold"
+msgstr "Keshikan's DSEG Klasszikus Félkövér"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Light"
+msgstr "Keshikan's DSEG Klasszikus Mini Könnyű"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Regular"
+msgstr "Keshikan's DSEG Klasszikus Mini"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Bold"
+msgstr "Keshikan's DSEG Klasszikus Mini Félkövér"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Light"
+msgstr "Keshikan's DSEG Modern Könnyű"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Regular"
+msgstr "Keshikan's DSEG Modern"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Bold"
+msgstr "Keshikan's DSEG Modern Félkövér"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Light"
+msgstr "Keshikan's DSEG Modern Mini Könyű"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Regular"
+msgstr "Keshikan's DSEG Modern Mini"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Bold"
+msgstr "Keshikan's DSEG Modern Mini Félkövér"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 1"
+msgstr "Egyszerű 1"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 2"
+msgstr "Egyszerű 2"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 3"
+msgstr "Egyszerű 3"
+
+#. settings-schema.json->digit-style->options
+msgid "Curved"
+msgstr "Íves"
+
+#. settings-schema.json->digit-style->description
+msgid "Digit style"
+msgstr "Számlap stílusa"
