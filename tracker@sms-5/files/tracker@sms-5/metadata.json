@@ -1,0 +1,8 @@
+{
+    "uuid": "tracker@sms-5",
+    "name": "Tracker",
+    "description": "A desklet for tracking tasks.",
+    "version": "1.0",
+    "author": "sms-5",
+    "prevent-decorations": true
+}

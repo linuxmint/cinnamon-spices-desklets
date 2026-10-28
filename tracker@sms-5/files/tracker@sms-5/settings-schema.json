@@ -1,0 +1,266 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["main", "appearance"],
+
+        "main": {
+            "type": "page",
+            "title": "Tasks",
+            "sections": [
+                "sec_tasks",
+                "sec_display",
+                "sec_sorting",
+                "sec_behavior",
+                "sec_language"
+            ]
+        },
+
+        "appearance": {
+            "type": "page",
+            "title": "Appearance",
+            "sections": ["sec_theme", "sec_typography", "sec_layout", "sec_texts"]
+        },
+
+        "sec_tasks": {
+            "type": "section",
+            "title": "Task list",
+            "keys": ["task-list"]
+        },
+
+        "sec_display": {
+            "type": "section",
+            "title": "Display",
+            "keys": ["hide-completed", "hide-checkbox"]
+        },
+
+        "sec_sorting": {
+            "type": "section",
+            "title": "Sorting",
+            "keys": ["sort-order"]
+        },
+
+        "sec_behavior": {
+            "type": "section",
+            "title": "Behavior",
+            "keys": ["confirm-delete", "show-tooltips"]
+        },
+
+        "sec_language": {
+            "type": "section",
+            "title": "Language",
+            "keys": ["language"]
+        },
+
+        "sec_theme": {
+            "type": "section",
+            "title": "Terminal theme",
+            "keys": [
+                "color-preset",
+                "background-color",
+                "text-color",
+                "border-color",
+                "overdue-color",
+                "done-opacity",
+                "show-border"
+            ]
+        },
+
+        "sec_typography": {
+            "type": "section",
+            "title": "Typography",
+            "keys": ["font-family", "font-size"]
+        },
+
+        "sec_layout": {
+            "type": "section",
+            "title": "Layout",
+            "keys": ["show-title", "show-decoration"]
+        },
+
+        "sec_texts": {
+            "type": "section",
+            "title": "Texts",
+            "keys": ["title-text", "task-prefix"]
+        }
+    },
+
+    "sort-order": {
+        "type": "combobox",
+        "description": "Sort tasks by",
+        "default": "none",
+        "options": {
+            "None": "none",
+            "Due date (soonest first)": "due-asc",
+            "Due date (latest first)": "due-desc"
+        }
+    },
+
+    "hide-completed": {
+        "type": "switch",
+        "description": "Hide completed tasks",
+        "default": false
+    },
+
+    "hide-checkbox": {
+        "type": "switch",
+        "description": "Hide checkbox outside edit mode",
+        "default": true
+    },
+
+    "confirm-delete": {
+        "type": "switch",
+        "description": "Ask before deleting a task",
+        "default": true
+    },
+
+    "show-tooltips": {
+        "type": "switch",
+        "description": "Show button tooltips",
+        "default": true
+    },
+
+    "language": {
+        "type": "combobox",
+        "description": "Language",
+        "default": "system",
+        "options": {
+            "System language": "system",
+            "English": "en",
+            "Español": "es"
+        }
+    },
+
+    "color-preset": {
+        "type": "combobox",
+        "description": "Color theme",
+        "default": "manual",
+        "options": {
+            "Custom (colors below)": "manual",
+            "Phosphor green": "green",
+            "Amber terminal": "amber",
+            "Ice blue": "ice"
+        },
+        "tooltip": "Pick a ready-made terminal palette, or Custom to use the colors below."
+    },
+
+    "background-color": {
+        "type": "colorchooser",
+        "description": "Background",
+        "default": "rgba(0,0,0,0.7)",
+        "dependency": "color-preset=manual",
+        "tooltip": "Background color; alpha controls transparency."
+    },
+
+    "text-color": {
+        "type": "colorchooser",
+        "description": "Text",
+        "default": "#dddddd",
+        "dependency": "color-preset=manual"
+    },
+
+    "border-color": {
+        "type": "colorchooser",
+        "description": "Borders and separators",
+        "default": "#ffffff",
+        "dependency": "color-preset=manual"
+    },
+
+    "overdue-color": {
+        "type": "colorchooser",
+        "description": "Overdue tasks",
+        "default": "#ff6b6b",
+        "dependency": "color-preset=manual"
+    },
+
+    "done-opacity": {
+        "type": "scale",
+        "description": "Done task opacity",
+        "default": 0.55,
+        "min": 0.1,
+        "max": 1.0,
+        "step": 0.05,
+        "digits": 2
+    },
+
+    "show-border": {
+        "type": "switch",
+        "description": "Show outer border",
+        "default": true
+    },
+
+    "font-family": {
+        "type": "entry",
+        "description": "Font family (CSS)",
+        "default": "\"Fira Code\", monospace",
+        "tooltip": "Any CSS font-family. Keep a monospace font for the CLI look, e.g. \"JetBrains Mono\", monospace."
+    },
+
+    "font-size": {
+        "type": "spinbutton",
+        "description": "Font size (px)",
+        "default": 13,
+        "min": 8,
+        "max": 32,
+        "step": 1
+    },
+
+    "show-title": {
+        "type": "switch",
+        "description": "Show title",
+        "default": true
+    },
+
+    "show-decoration": {
+        "type": "switch",
+        "description": "Show decorative separator",
+        "default": true
+    },
+
+    "title-text": {
+        "type": "entry",
+        "description": "Title text",
+        "default": ""
+    },
+
+    "task-prefix": {
+        "type": "entry",
+        "description": "Task prefix",
+        "default": "--->",
+        "tooltip": "Text placed before each task, e.g. ---> or $."
+    },
+
+    "task-list": {
+        "type": "list",
+        "description": "Task list",
+        "columns": [
+            {
+                "id": "course",
+                "title": "Title",
+                "type": "string"
+            },
+            {
+                "id": "task",
+                "title": "Task",
+                "type": "string"
+            },
+            {
+                "id": "date",
+                "title": "Due date (MM-DD or YYYY-MM-DD)",
+                "type": "string"
+            },
+            {
+                "id": "done",
+                "title": "Done",
+                "type": "boolean"
+            }
+        ],
+        "default": [
+            {
+                "course": "Welcome!",
+                "task": "start by adding new tasks (and deleting this one!)",
+                "date": "",
+                "done": false
+            }
+        ]
+    }
+}

@@ -1,0 +1,348 @@
+# Tracker desklet translations.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: tracker@sms-5 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: es\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "No date"
+msgstr "Sin fecha"
+
+msgid "Invalid date"
+msgstr "Fecha inválida"
+
+msgid "Jan"
+msgstr "Ene"
+
+msgid "Feb"
+msgstr "Feb"
+
+msgid "Mar"
+msgstr "Mar"
+
+msgid "Apr"
+msgstr "Abr"
+
+#. Abbreviation used in short dates (e.g. "May 5"); keep it short.
+msgid "May"
+msgstr "May"
+
+msgid "Jun"
+msgstr "Jun"
+
+msgid "Jul"
+msgstr "Jul"
+
+msgid "Aug"
+msgstr "Ago"
+
+msgid "Sep"
+msgstr "Sep"
+
+msgid "Oct"
+msgstr "Oct"
+
+msgid "Nov"
+msgstr "Nov"
+
+msgid "Dec"
+msgstr "Dic"
+
+msgid "January"
+msgstr "Enero"
+
+msgid "February"
+msgstr "Febrero"
+
+msgid "March"
+msgstr "Marzo"
+
+msgid "April"
+msgstr "Abril"
+
+msgid "June"
+msgstr "Junio"
+
+msgid "July"
+msgstr "Julio"
+
+msgid "August"
+msgstr "Agosto"
+
+msgid "September"
+msgstr "Septiembre"
+
+msgid "October"
+msgstr "Octubre"
+
+msgid "November"
+msgstr "Noviembre"
+
+msgid "December"
+msgstr "Diciembre"
+
+msgid "Sun"
+msgstr "Dom"
+
+msgid "Mon"
+msgstr "Lun"
+
+msgid "Tue"
+msgstr "Mar"
+
+msgid "Wed"
+msgstr "Mié"
+
+msgid "Thu"
+msgstr "Jue"
+
+msgid "Fri"
+msgstr "Vie"
+
+msgid "Sat"
+msgstr "Sáb"
+
+msgid "Today"
+msgstr "Hoy"
+
+msgid "Tomorrow"
+msgstr "Mañana"
+
+msgid "1 day overdue"
+msgstr "Vencida hace 1 día"
+
+msgid "%d days overdue"
+msgstr "Vencida hace %d días"
+
+msgid "In %d days"
+msgstr "En %d días"
+
+msgid "Uncategorized"
+msgstr "Sin categoría"
+
+msgid "(untitled)"
+msgstr "(sin título)"
+
+msgid "Double-click to open settings"
+msgstr "Doble clic para abrir la configuración"
+
+msgid "Tasks"
+msgstr "Tareas"
+
+msgid "No tasks yet."
+msgstr "Aún no hay tareas."
+
+msgid "No pending tasks."
+msgstr "No hay tareas pendientes."
+
+msgid "Mark as pending"
+msgstr "Marcar como pendiente"
+
+msgid "Mark as done"
+msgstr "Marcar como hecha"
+
+msgid "Edit"
+msgstr "Editar"
+
+msgid "Edit task"
+msgstr "Editar tarea"
+
+msgid "Delete"
+msgstr "Eliminar"
+
+msgid "Delete task"
+msgstr "Eliminar tarea"
+
+msgid "+ Add task"
+msgstr "+ Agregar tarea"
+
+msgid "Add a new task"
+msgstr "Agregar una tarea nueva"
+
+msgid "Close"
+msgstr "Cerrar"
+
+msgid "Hide per-task actions"
+msgstr "Ocultar acciones por tarea"
+
+msgid "Show per-task actions"
+msgstr "Mostrar acciones por tarea"
+
+msgid "Add task"
+msgstr "Agregar tarea"
+
+msgid "Title"
+msgstr "Título"
+
+msgid "Task"
+msgstr "Tarea"
+
+msgid "Pick an existing title"
+msgstr "Elegir un título existente"
+
+msgid "Select due date"
+msgstr "Elegir fecha de entrega"
+
+msgid "Pick a due date"
+msgstr "Elegir una fecha de entrega"
+
+msgid "Save"
+msgstr "Guardar"
+
+msgid "Cancel"
+msgstr "Cancelar"
+
+msgid "Title is required."
+msgstr "El título es obligatorio."
+
+msgid "Task is required."
+msgstr "La tarea es obligatoria."
+
+msgid "Select a due date."
+msgstr "Selecciona una fecha de entrega."
+
+msgid "Delete this task?"
+msgstr "¿Eliminar esta tarea?"
+
+msgid "Appearance"
+msgstr "Apariencia"
+
+msgid "Task list"
+msgstr "Lista de tareas"
+
+msgid "Display"
+msgstr "Visualización"
+
+msgid "Sorting"
+msgstr "Orden"
+
+msgid "Behavior"
+msgstr "Comportamiento"
+
+msgid "Terminal theme"
+msgstr "Tema de terminal"
+
+msgid "Typography"
+msgstr "Tipografía"
+
+msgid "Layout"
+msgstr "Disposición"
+
+msgid "Texts"
+msgstr "Textos"
+
+msgid "Sort tasks by"
+msgstr "Ordenar tareas por"
+
+msgid "None"
+msgstr "Ninguno"
+
+msgid "Due date (soonest first)"
+msgstr "Fecha de entrega (más próxima primero)"
+
+msgid "Due date (latest first)"
+msgstr "Fecha de entrega (más tardía primero)"
+
+msgid "Hide completed tasks"
+msgstr "Ocultar tareas completadas"
+
+msgid "Hide checkbox outside edit mode"
+msgstr "Ocultar la casilla fuera del modo edición"
+
+msgid "Ask before deleting a task"
+msgstr "Preguntar antes de eliminar una tarea"
+
+msgid "Show button tooltips"
+msgstr "Mostrar descripciones emergentes de los botones"
+
+msgid "Color theme"
+msgstr "Tema de color"
+
+msgid "Custom (colors below)"
+msgstr "Personalizado (colores de abajo)"
+
+msgid "Phosphor green"
+msgstr "Verde fósforo"
+
+msgid "Amber terminal"
+msgstr "Terminal ámbar"
+
+msgid "Ice blue"
+msgstr "Azul hielo"
+
+msgid "Pick a ready-made terminal palette, or Custom to use the colors below."
+msgstr "Elige una paleta de terminal predefinida, o Personalizado para usar los colores de abajo."
+
+msgid "Background"
+msgstr "Fondo"
+
+msgid "Background color; alpha controls transparency."
+msgstr "Color de fondo; el alfa controla la transparencia."
+
+msgid "Text"
+msgstr "Texto"
+
+msgid "Borders and separators"
+msgstr "Bordes y separadores"
+
+msgid "Overdue tasks"
+msgstr "Tareas vencidas"
+
+msgid "Done task opacity"
+msgstr "Opacidad de tareas completadas"
+
+msgid "Show outer border"
+msgstr "Mostrar borde exterior"
+
+msgid "Font family (CSS)"
+msgstr "Familia tipográfica (CSS)"
+
+msgid "Any CSS font-family. Keep a monospace font for the CLI look, e.g. \"JetBrains Mono\", monospace."
+msgstr "Cualquier familia tipográfica CSS. Mantén una fuente monoespaciada para el aspecto de consola; p. ej. \"JetBrains Mono\", monospace."
+
+msgid "Font size (px)"
+msgstr "Tamaño de fuente (px)"
+
+msgid "Show title"
+msgstr "Mostrar título"
+
+msgid "Show decorative separator"
+msgstr "Mostrar separador decorativo"
+
+msgid "Title text"
+msgstr "Texto del título"
+
+msgid "Task prefix"
+msgstr "Prefijo de tarea"
+
+msgid "Text placed before each task, e.g. ---> or $."
+msgstr "Texto que se coloca antes de cada tarea; p. ej. ---> o $."
+
+msgid "Due date (MM-DD or YYYY-MM-DD)"
+msgstr "Fecha de entrega (MM-DD o AAAA-MM-DD)"
+
+msgid "Done"
+msgstr "Hecha"
+
+msgid "A desklet for tracking tasks."
+msgstr "Un desklet para seguir tareas."
+
+msgid "Language"
+msgstr "Idioma"
+
+msgid "System language"
+msgstr "Idioma del sistema"
+
+msgid "English"
+msgstr "Inglés"
+
+msgid "Español"
+msgstr "Español"
