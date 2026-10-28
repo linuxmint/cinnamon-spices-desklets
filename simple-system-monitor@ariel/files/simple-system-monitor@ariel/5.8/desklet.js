@@ -24,7 +24,88 @@ const ST_ALIGNMENT = {
     "right": St.Align.END
 };
 
+// Used when the refresh interval setting is missing or out of range.
+const DEFAULT_REFRESH_INTERVAL_MS = 1000;
+const MIN_REFRESH_INTERVAL_MS = 200;
+const MAX_REFRESH_INTERVAL_MS = 30000;
+// The GPU is read through nvidia-smi, which costs a subprocess, so it is polled
+// no more often than this regardless of the refresh interval. Temperature has
+// enough thermal inertia that nothing visible is lost.
+const GPU_MIN_REFRESH_MS = 2000;
+
 let missingDependencies = false;
+
+function readTextFile(path) {
+    try {
+        let [ok, contents] = GLib.file_get_contents(path);
+        if (!ok)
+            return null;
+        return ByteArray.toString(contents);
+    } catch (e) {
+        return null;
+    }
+}
+
+// Locate a sysfs hwmon input by driver name, optionally matching a sensor label.
+// hwmon numbering is not stable across boots, so it must be resolved by name.
+function findHwmonInput(driverName, sensorLabel) {
+    for (let i = 0; i < 32; i++) {
+        let base = `/sys/class/hwmon/hwmon${i}`;
+        let name = readTextFile(base + "/name");
+        if (name === null || name.trim() !== driverName)
+            continue;
+        for (let j = 1; j <= 16; j++) {
+            let input = `${base}/temp${j}_input`;
+            if (!GLib.file_test(input, GLib.FileTest.EXISTS))
+                continue;
+            if (!sensorLabel)
+                return input;
+            let label = readTextFile(`${base}/temp${j}_label`);
+            if (label !== null && label.trim() === sensorLabel)
+                return input;
+        }
+    }
+    return null;
+}
+
+// Locate a thermal zone by its reported type, e.g. "x86_pkg_temp".
+function findThermalZone(zoneType) {
+    for (let i = 0; i < 32; i++) {
+        let base = `/sys/class/thermal/thermal_zone${i}`;
+        let type = readTextFile(base + "/type");
+        if (type !== null && type.trim() === zoneType)
+            return base + "/temp";
+    }
+    return null;
+}
+
+// Earlier versions wrote this path into the saved settings as a default for both
+// the CPU and the GPU, so almost every existing install has it stored even though
+// the user never picked it. It is the motherboard sensor, and it is certainly not
+// a GPU, so it is treated as "detect automatically" rather than as a choice.
+const LEGACY_SENSOR_PATH = "/sys/class/thermal/thermal_zone0";
+
+// Turn a user-chosen directory into a readable temperature file. Accepts both
+// thermal zone directories (temp) and hwmon directories (temp1_input).
+function tempFileInDirectory(path) {
+    if (!path || path == LEGACY_SENSOR_PATH)
+        return null;
+    let dir = path.substring(path.lastIndexOf("//") + 1);
+    if (!GLib.file_test(dir, GLib.FileTest.IS_DIR))
+        return null;
+    for (let candidate of [dir + "/temp", dir + "/temp1_input"]) {
+        if (GLib.file_test(candidate, GLib.FileTest.EXISTS))
+            return candidate;
+    }
+    return null;
+}
+
+function formatTemperature(milliDegrees, units) {
+    let degrees = milliDegrees / 1000;
+    if (units == "fahrenheit")
+        return ((degrees * 1.8) + 32).toFixed(1) + "°F";
+    return degrees.toFixed(1) + "°C";
+}
 
 try {
     const NM = imports.gi.NM;
@@ -54,24 +135,27 @@ const CPU = function () {
 CPU.prototype = {
     _init: function () {
         this.gtop = new GTop.glibtop_cpu();
+        GTop.glibtop_get_cpu(this.gtop);
         this.total = this.gtop.total;
-        this.user = this.gtop.user;
-        this.sys = this.gtop.sys;
+        this.idle = this.gtop.idle;
         this.iowait = this.gtop.iowait;
+        this.used = "0.00";
     },
 
     refresh: function () {
         GTop.glibtop_get_cpu(this.gtop);
 
+        // Busy time is everything that is not idle and not waiting on I/O. Adding
+        // up user + sys instead would silently drop nice, irq and softirq time,
+        // and counting iowait as busy would report a stalled disk as a busy CPU.
         let total = this.gtop.total - this.total;
-        let user = this.gtop.user - this.user;
-        let sys = this.gtop.sys - this.sys;
-        let iowait = this.gtop.iowait - this.iowait;
+        let idle = (this.gtop.idle - this.idle) + (this.gtop.iowait - this.iowait);
 
-        this.used = ((user + sys + iowait) * 100 / total).toFixed(2);
+        if (total > 0)
+            this.used = Math.max(0, Math.min(100, (total - idle) * 100 / total)).toFixed(2);
+
         this.total = this.gtop.total;
-        this.user = this.gtop.user;
-        this.sys = this.gtop.sys;
+        this.idle = this.gtop.idle;
         this.iowait = this.gtop.iowait;
     }
 }
@@ -97,39 +181,25 @@ const Thermal = function () {
 
 Thermal.prototype = {
     _init: function (cpuPath, cpuUnits) {
-        this.cpuPath = cpuPath.substring(cpuPath.lastIndexOf('//') + 1);
         this.tempUnits = cpuUnits;
-        this.cpuDegrees = 0;
         this.info = "N/A";
-        if (GLib.file_test(this.cpuPath, GLib.FileTest.EXISTS)
-            && GLib.file_test(this.cpuPath, GLib.FileTest.IS_DIR)) {
-            if (GLib.file_test(this.cpuPath + '/temp', GLib.FileTest.EXISTS))
-                this.cpuFile = this.cpuPath + '/temp';
-            else {
-                global.log(_("No temp file detected at CPU path. Resetting to default."));
-                this.cpuFile = '/sys/class/thermal/thermal_zone0/temp';
-            }
-        } else {
-            global.log(_("Invalid CPU path detected. Resetting to default."));
-            this.cpuFile = '/sys/class/thermal/thermal_zone0/temp';
+        this.cpuFile = tempFileInDirectory(cpuPath);
+
+        // With no usable choice from the user, prefer the sensor on the CPU die
+        // itself. thermal_zone0 is normally acpitz, a chassis sensor that lags
+        // the processor and is only a last resort.
+        if (!this.cpuFile) {
+            this.cpuFile = findHwmonInput("coretemp", "Package id 0")
+                || findHwmonInput("k10temp", "Tctl")
+                || findThermalZone("x86_pkg_temp")
+                || "/sys/class/thermal/thermal_zone0/temp";
         }
     },
 
     refresh: function () {
-        try {
-            let tempValue = GLib.file_get_contents(this.cpuFile)[1];
-            let tempString = ByteArray.toString(tempValue);
-            this.cpuDegrees = parseInt(tempString) / 1000;
-            this.temp_string = "\u00b0C";
-            if (this.tempUnits == "fahrenheit") {
-                this.temp_string = "\u00b0F";
-                this.cpuDegrees = (this.cpuDegrees * 1.8) + 32;
-            }
-            this.info = (this.cpuDegrees).toFixed(1) + this.temp_string;
-        } catch (e) {
-            this.info = "Error";
-        }
-
+        let contents = readTextFile(this.cpuFile);
+        let value = contents === null ? NaN : parseInt(contents);
+        this.info = isNaN(value) ? "N/A" : formatTemperature(value, this.tempUnits);
     }
 }
 
@@ -139,37 +209,60 @@ const ThermalGPU = function () {
 
 ThermalGPU.prototype = {
     _init: function (gpuPath, gpuUnits) {
-        this.gpuPath = gpuPath.substring(gpuPath.lastIndexOf('//') + 1);
         this.tempUnits = gpuUnits;
-        this.gpuDegrees = 0;
         this.info = "N/A";
-        if (GLib.file_test(this.gpuPath, GLib.FileTest.EXISTS)
-            && GLib.file_test(this.gpuPath, GLib.FileTest.IS_DIR)) {
-            if (GLib.file_test(this.gpuPath + '/temp', GLib.FileTest.EXISTS))
-                this.gpuFile = this.gpuPath + '/temp';
-            else {
-                global.log(_("No temp file detected at GPU path. Resetting to default."));
-                this.gpuFile = '/sys/class/thermal/thermal_zone0/temp';
+        this.nvidiaSmi = null;
+        this.pending = false;
+
+        // A path chosen by the user wins, but only if it actually reads as a
+        // temperature. The old default pointed at thermal_zone0, which is the
+        // motherboard sensor, so the GPU row simply repeated the CPU row.
+        this.gpuFile = tempFileInDirectory(gpuPath);
+
+        if (!this.gpuFile) {
+            // Discrete NVIDIA cards publish no hwmon entry under the proprietary
+            // driver, so nvidia-smi is the only way to read them.
+            this.nvidiaSmi = GLib.find_program_in_path("nvidia-smi");
+            if (!this.nvidiaSmi) {
+                this.gpuFile = findHwmonInput("amdgpu", null)
+                    || findHwmonInput("nouveau", null)
+                    || findHwmonInput("i915", null);
             }
-        } else {
-            global.log(_("Invalid GPU path detected. Resetting to default."));
-            this.gpuFile = '/sys/class/thermal/thermal_zone0/temp';
         }
     },
 
     refresh: function () {
+        if (this.gpuFile) {
+            let contents = readTextFile(this.gpuFile);
+            let value = contents === null ? NaN : parseInt(contents);
+            this.info = isNaN(value) ? "N/A" : formatTemperature(value, this.tempUnits);
+            return;
+        }
+
+        if (!this.nvidiaSmi || this.pending)
+            return;
+
+        // Asynchronous on purpose: a blocking subprocess on the refresh tick
+        // would stall the whole Cinnamon shell.
+        this.pending = true;
         try {
-            let tempValue = GLib.file_get_contents(this.gpuFile)[1];
-            let tempString = ByteArray.toString(tempValue);
-            this.gpuDegrees = parseInt(tempString) / 1000;
-            this.temp_string = "\u00b0C";
-            if (this.tempUnits == "fahrenheit") {
-                this.temp_string = "\u00b0F";
-                this.gpuDegrees = (this.gpuDegrees * 1.8) + 32;
-            }
-            this.info = (this.gpuDegrees).toFixed(1) + this.temp_string;
+            let subprocess = Gio.Subprocess.new(
+                [this.nvidiaSmi, "--query-gpu=temperature.gpu", "--format=csv,noheader,nounits"],
+                Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_SILENCE);
+            subprocess.communicate_utf8_async(null, null, (proc, result) => {
+                try {
+                    let [, stdout] = proc.communicate_utf8_finish(result);
+                    let value = parseInt(stdout);
+                    this.info = isNaN(value) ? "N/A" : formatTemperature(value * 1000, this.tempUnits);
+                } catch (e) {
+                    this.info = "N/A";
+                } finally {
+                    this.pending = false;
+                }
+            });
         } catch (e) {
-            this.info = "Error";
+            this.pending = false;
+            this.info = "N/A";
         }
     }
 }
@@ -187,17 +280,19 @@ Net.prototype = {
         this.update_connections();
 
         if (!this.connections.length) {
+            let found = [];
             let net_file = GLib.file_get_contents('/proc/net/dev')[1];
             let net_lines = ByteArray.toString(net_file).split("\n");
             for (let i = 3; i < net_lines.length - 1; i++) {
                 let connection = net_lines[i].replace(/^\s+/g, '').split(":")[0];
-                let operstate = GLib.file_get_contents(`/sys/class/net/${connection}/operstate`)[1];
-                if (ByteArray.toString(operstate).replace(/\s/g, "") == "up" &&
-                    connection.indexOf("br") < 0 &&
-                    connection.indexOf("lo") < 0) {
-                    this.connections.push(connection);
+                let operstate = readTextFile(`/sys/class/net/${connection}/operstate`);
+                if (operstate !== null &&
+                    operstate.replace(/\s/g, "") == "up" &&
+                    connection.indexOf("br") < 0) {
+                    found.push(connection);
                 }
             }
+            this.connections = this.filterPhysical(found);
         }
 
         this.gtop = new GTop.glibtop_netload();
@@ -220,16 +315,28 @@ Net.prototype = {
 
     update_connections: function () {
         try {
-            this.connections = [];
+            let found = [];
             let connection_list = this.client.get_devices();
             for (let j = 0; j < connection_list.length; j++) {
                 if (connection_list[j].state == NM.DeviceState.ACTIVATED)
-                    this.connections.push(connection_list[j].get_ip_iface());
+                    found.push(connection_list[j].get_ip_iface());
             }
+            this.connections = this.filterPhysical(found);
         }
         catch (e) {
             global.logError(_("Please install missing dependencies."));
         }
+    },
+
+    // Only real network hardware is counted. Loopback is not network traffic at
+    // all, and a VPN or Tailscale interface carries the same bytes a second time
+    // on its way to the physical card, so including them doubles the figures.
+    // Virtual interfaces have no "device" entry in sysfs; physical ones do.
+    filterPhysical: function (interfaces) {
+        let physical = interfaces.filter(name =>
+            name && name != "lo" && GLib.file_test(`/sys/class/net/${name}/device`, GLib.FileTest.EXISTS));
+        // Rather than show nothing on an unusual setup, fall back to the full list.
+        return physical.length ? physical : interfaces.filter(name => name && name != "lo");
     },
 
     refresh: function () {
@@ -243,20 +350,34 @@ Net.prototype = {
         }
 
         let time = GLib.get_monotonic_time() / 1000;
-        let delta = time - this.lastRefresh;
+        let elapsedSeconds = (time - this.lastRefresh) / 1000;
 
-        this.downloadSpeed = delta > 0 ? Math.round((totalDownloaded - this.totalDownloaded) / delta) : 0;
-        this.uploadSpeed = delta > 0 ? Math.round((totalUploaded - this.totalUploaded) / delta) : 0;
+        // The old maths divided bytes by milliseconds and labelled the answer
+        // "KB", which is a 2.4 % overstatement, and dropped the "per second" so
+        // a rate read as a total. Convert to bytes per second, then scale once.
+        let downloadRate = 0;
+        let uploadRate = 0;
+        if (this.lastRefresh > 0 && elapsedSeconds > 0) {
+            // Counters reset when an interface goes down, so a negative delta is
+            // a restarted counter rather than negative traffic.
+            downloadRate = Math.max(0, totalDownloaded - this.totalDownloaded) / elapsedSeconds;
+            uploadRate = Math.max(0, totalUploaded - this.totalUploaded) / elapsedSeconds;
+        }
 
-        this.downloadSpeed = this.downloadSpeed < 1024 ? this.downloadSpeed + " KB" :
-            (Math.round(this.downloadSpeed / 1024 * 100) / 100).toFixed(1) + " MB";
-
-        this.uploadSpeed = this.uploadSpeed < 1024 ? this.uploadSpeed + " KB" :
-            (Math.round(this.uploadSpeed / 1024 * 100) / 100).toFixed(1) + " MB";
+        this.downloadSpeed = this.formatRate(downloadRate);
+        this.uploadSpeed = this.formatRate(uploadRate);
 
         this.totalDownloaded = totalDownloaded;
         this.totalUploaded = totalUploaded;
         this.lastRefresh = time;
+    },
+
+    formatRate: function (bytesPerSecond) {
+        if (bytesPerSecond < 1024)
+            return Math.round(bytesPerSecond) + " B/s";
+        if (bytesPerSecond < 1024 * 1024)
+            return (bytesPerSecond / 1024).toFixed(1) + " KB/s";
+        return (bytesPerSecond / 1024 / 1024).toFixed(2) + " MB/s";
     }
 }
 
@@ -275,7 +396,18 @@ MyDesklet.prototype = {
     },
 
     setupUI: function () {
+        // Every one of these bindings calls setupUI again when it fires, so the
+        // settings object is built once. Rebuilding it here left the previous
+        // set of bindings live, doubling the work on each settings change.
+        if (!this.settings)
+            this._bindSettings();
+
+        this._buildContent();
+    },
+
+    _bindSettings: function () {
         this.settings = new Settings.DeskletSettings(this, UUID, this.desklet_id);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "refresh_interval", "refresh_interval", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "title_align", "title_align", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "value_align", "value_align", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "temp_units", "temp_units", this.setupUI);
@@ -288,9 +420,14 @@ MyDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "customCPUPath", "customCPUPath", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "display_gpu", "display_gpu", this.setupUI);
         this.settings.bindProperty(Settings.BindingDirection.IN, "customGPUPath", "customGPUPath", this.setupUI);
-        // refresh style on change of global desklet setting for decorations
-        global.settings.connect('changed::desklet-decorations', Lang.bind(this, this.setupUI));
+        // refresh style on change of global desklet setting for decorations.
+        // setupUI runs again on every settings change, so this connects once or
+        // the handlers stack up and each change costs another rebuild.
+        this._decorationsSignalId = global.settings.connect(
+            'changed::desklet-decorations', Lang.bind(this, this.setupUI));
+    },
 
+    _buildContent: function () {
         this.metadata['prevent-decorations'] = !this.show_decorations;
         this.mainContainer = new St.BoxLayout({ style_class: "mainContainer" });
 
@@ -352,11 +489,9 @@ MyDesklet.prototype = {
         this.mainContainer.style = `width: ${this.width}px; ${this.mainContainer.style}`;
         this.setContent(this.mainContainer);
 
-        if (!this.customCPUPath)
-            this.customCPUPath = '/sys/class/thermal/thermal_zone0';
-        if (!this.customGPUPath)
-            this.customGPUPath = '/sys/class/thermal/thermal_zone0';
-
+        // Left blank, each sensor is detected from the hardware. Hardcoding
+        // thermal_zone0 here was what made the GPU row echo the CPU row.
+        this._gpuTick = 0;
         this.cpu = new CPU();
         this.memory = new Memory();
         this.net = new Net();
@@ -371,6 +506,10 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._timeoutId);
             this._timeoutId = null;
         }
+        if (this._decorationsSignalId) {
+            global.settings.disconnect(this._decorationsSignalId);
+            this._decorationsSignalId = null;
+        }
     },
 
     _updateWidget: function () {
@@ -380,7 +519,14 @@ MyDesklet.prototype = {
             Mainloop.source_remove(this._timeoutId);
         }
 
-        this._timeoutId = Mainloop.timeout_add_seconds(1, () => this._updateWidget());
+        this._timeoutId = Mainloop.timeout_add(this._refreshIntervalMs(), () => this._updateWidget());
+    },
+
+    _refreshIntervalMs: function () {
+        let interval = Math.round(this.refresh_interval * 1000);
+        if (!isFinite(interval))
+            return DEFAULT_REFRESH_INTERVAL_MS;
+        return Math.max(MIN_REFRESH_INTERVAL_MS, Math.min(MAX_REFRESH_INTERVAL_MS, interval));
     },
 
     _updateValues: function () {
@@ -389,7 +535,11 @@ MyDesklet.prototype = {
         this.thermal.refresh();
         this.net.refresh();
         if (this.display_gpu) {
-            this.thermalGPU.refresh();
+            if (this._gpuTick <= 0) {
+                this.thermalGPU.refresh();
+                this._gpuTick = Math.max(1, Math.round(GPU_MIN_REFRESH_MS / this._refreshIntervalMs()));
+            }
+            this._gpuTick--;
             this.valueTemperatureGPU.text = this.thermalGPU.info;
         }
         this.valueCPU.text = `${this.cpu.used}%`;
