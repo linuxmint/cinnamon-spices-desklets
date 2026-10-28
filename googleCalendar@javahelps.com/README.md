@@ -1,73 +1,36 @@
 # Google Calendar Desklet
 
-View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `gcalendar` to pull events from Google Calendar. You can configure every aspect of the desklet using the configure dialog.
+View your upcoming calendar events on your Cinnamon Desktop. You can configure every aspect of the desklet using the configure dialog.
+
+Everything the desklet needs to talk to Google Calendar ships with it — there is nothing to download or install from outside the Spices repository.
 
 ## Requirements
 
 - Cinnamon 3.4, 3.6, 3.8, 4.0, 4.2, 4.4, or 4.6
-- `gcalendar`
+- Python 3, which is already installed on Linux Mint
+- Four Python libraries from your distribution's own repositories: `python3-googleapi`, `python3-oauth2client`, `python3-httplib2` and `python3-dateutil`
 
-## Installation
+The desklet checks for those libraries when it starts and offers to install any that are missing, using your system's package manager. You will be asked for your password, as with any other software installation.
 
-1. Install `gcalendar`:
+**Supported releases:** Linux Mint 21 and 22, LMDE 6, and other distributions that still package `python3-oauth2client`.
 
-    [gcalendar](https://github.com/slgobinath/gcalendar) is a Free and Open Source Software developed by the same developer to read Google Calendar events from the terminal.
+`python3-oauth2client` was removed from Debian in 2024 and is not available on LMDE 7 or on releases based on Ubuntu 26.04 and later, so the desklet cannot work there yet. This is a limitation of `gcalendar`, which the desklet bundles; it will be fixed when `gcalendar` moves to the `google-auth` libraries.
 
-    **Linux Mint:**
+## Setup
 
-    ```bash
-    sudo add-apt-repository ppa:slgobinath/gcalendar
-    sudo apt update
-    sudo apt install gcalendar
-    ```
+1. Add the desklet to your desktop.
 
-    **Arch:**
+2. If the desklet reports that components are missing, click it and confirm the installation.
 
-    ```bash
-    yay -S gcalendar
-    ```
+3. Right-click the desklet and choose **Authorize Google account** (there is also a button in the configuration dialog). Your browser opens Google's sign-in page.
 
-    OR
+4. Grant read-only access to your calendars. Google will warn that the application is not verified — this is expected for desktop applications distributed as source, and you can continue. Once you approve, the desklet fills in by itself.
 
-    ```bash
-    packer -S gcalendar
-    ```
+5. Optionally, open the configuration dialog and press **Fill in the list bellow with the names of all my calendars**, then tick the calendars you want to see.
 
-    **Disclaimer:** [ppa:slgobinath/gcalendar](https://launchpad.net/~slgobinath/+archive/ubuntu/gcalendar) and [AUR gcalendar](https://aur.archlinux.org/packages/gcalendar) are my (the developer of this desklet) own repositories that are not monitored by the Linux Mint team, and user installs it at their own discretion.
+## Multiple Google accounts
 
-    I am providing the PPA and AUR to make the installation process simple. However, if you have any concerns with adding a PPA or installing from AUR, you can also install `gcalendar` from [PyPi](https://pypi.org/project/gcalendar/) or from the source code.
-
-    **Install From PyPi:**
-
-    ```bash
-    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi
-    pip3 install gcalendar
-    ```
-
-    **Install From Source:**
-
-    ```bash
-    sudo apt install python3-pip python3-setuptools python3-dateutil python3-oauth2client python3-googleapi git
-    git clone https://github.com/slgobinath/gcalendar.git
-    cd gcalendar
-    pip3 install -e .
-    ```
-
-    For more information, please visit the `gcalendar` [GitHub Repository](https://github.com/slgobinath/gcalendar).
-
-2. Authorize `gcalendar` to read your calendar.
-
-    Just run `gcalendar` from the terminal. It will open Google Calendar OAuth page in your default browser.
-
-    ```bash
-    gcalendar
-    ```
-
-    For more details, see this YouTube video: [gcalendar Authorization](https://www.youtube.com/watch?v=mwU8AQmzIPE&feature). After authorizing gcalendar, you should see your calendar events printed in the terminal.
-
-3. Download and add this desklet.
-
-4. If there is a warning sign in the "Desklets" dialog, try to remove and add the desklet again. If it doesn't work, a system restart may help the desklet to detect `gcalendar`.
+Authorize each account in turn, then use the **gcalendar Account ID** setting to choose which one the desklet displays. No terminal is needed.
 
 ## Features
 
@@ -76,7 +39,23 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 - Customize update frequency
 - Manually update the agenda by clicking on the desklet
 - Customize the look and feel
-- Multiple account support (Using `gcalendar --account`)
+- Multiple account support
+
+## Privacy
+
+**None of your data is collected, stored, processed or shared with the developer or any third parties.**
+
+- The desklet talks to Google and to nobody else.
+- It asks for read-only access to your calendars. It cannot create, change or delete anything.
+- Your authorization is stored on your own computer, under `~/.config/gcalendar/`, and is sent only to Google.
+- There is no telemetry of any kind.
+- To withdraw access at any time, visit [Google account permissions](https://myaccount.google.com/permissions).
+
+## Upgrading from an older version
+
+Earlier versions of this desklet required a separate `gcalendar` program to be installed on your system. That is no longer the case — everything the desklet needs is now included, and your existing authorization continues to work without any action from you.
+
+If you installed `gcalendar` previously, this desklet no longer uses it. Whether to keep or remove it, and any software repository you added for it, is entirely up to you.
 
 ## FAQ
 
@@ -91,20 +70,22 @@ View your upcoming calendar events on your Cinnamon Desktop. This desklet uses `
 
 3. **What does "Unable to retrieve events..." mean?**
 
-    It means the desklet could not retrieve any events and there is a possible error. Please report the bug with the output of `gcalendar` command at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
+    It means the desklet could not retrieve any events and there is a possible error. Look in Looking Glass (<kbd>Alt</kbd>+<kbd>F2</kbd>, then `lg`) or `~/.xsession-errors` for details, and please report the bug.
 
 4. **How to report bugs?**
 
-    Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues) if the desklet doesn't work as expected. Any gcalendar specific bugs must be reported at [gcalendar issues](https://github.com/slgobinath/gcalendar/issues).
+    Please open a GitHub issue at [linuxmint/cinnamon-spices-desklets](https://github.com/linuxmint/cinnamon-spices-desklets/issues) if the desklet doesn't work as expected.
 
 5. **Can I use my own client id and client secrets?**
 
-    You can use your own credentials but use them with `gcalendar --client-id xxx --client-secret yyy` to authorize before using them in the desklet.
+    Yes. Enter them in the **Client Id** and **Client secret** fields in the configuration dialog, then authorize again — an authorization belongs to the credentials that created it.
 
-6. **I love this desklet/gcalendar and want to appreciate it. How can I express it?**
+6. **I love this desklet and want to appreciate it. How can I express it?**
 
     It is a great pleasure to see someone likes your work. Though I am the [core developer](https://github.com/slgobinath), there are other contributors contributing to this desklet by fixing bugs and translating it into other languages. If you like the desklet, please show it to the world by login to the [CINNAMON spices](https://cinnamon-spices.linuxmint.com/) website and clicking the <kbd>Like it</kbd> button. I also appreciate it, if you can [buy me a coffee](https://paypal.me/slgobinath)!
 
-## Privacy Policy
+## Credits and license
 
-**None of your data is collected, stored, processed or shared with the developer or any third-parties.** For more information, please check the detailed [privacy policy](https://www.javahelps.com/p/gcalendar.html#privacy-policy).
+This desklet is free software released under the GNU General Public License, version 3 or later.
+
+The `gcalendar` directory is an unmodified copy of [gcalendar](https://github.com/slgobinath/gcalendar) at commit `9986389`, by Gobinath Loganathan, also released under the GPL version 3 or later. Its license is included alongside it.
