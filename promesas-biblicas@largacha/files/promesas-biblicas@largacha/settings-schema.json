@@ -1,249 +1,98 @@
 {
     "layout": {
         "type": "layout",
-        "pages": ["page-theme", "page-colors", "page-typography", "page-shape", "page-content", "page-refresh"],
-        "page-theme": {
-            "type": "page",
-            "title": "Tema",
-            "sections": ["section-theme-mode"]
-        },
-        "page-colors": {
-            "type": "page",
-            "title": "Colores",
-            "sections": ["section-colors"]
-        },
-        "page-typography": {
-            "type": "page",
-            "title": "Tipografía",
-            "sections": ["section-typography"]
-        },
-        "page-shape": {
-            "type": "page",
-            "title": "Forma",
-            "sections": ["section-shape"]
-        },
-        "page-content": {
-            "type": "page",
-            "title": "Contenido",
-            "sections": ["section-content"]
-        },
-        "page-refresh": {
-            "type": "page",
-            "title": "Refresco",
-            "sections": ["section-refresh"]
-        },
-        "section-theme-mode": {
-            "type": "section",
-            "title": "Modo y tema base",
-            "keys": ["theme-mode", "base-theme", "bg-opacity", "corner-radius"]
-        },
-        "section-colors": {
-            "type": "section",
-            "title": "Colores personalizados",
-            "keys": ["color-bg", "color-text", "color-accent", "color-border", "color-divider"]
-        },
-        "section-typography": {
-            "type": "section",
-            "title": "Tipografía",
-            "keys": ["font-quote", "font-size-quote", "font-italic-quote", "font-author", "font-size-author"]
-        },
-        "section-shape": {
-            "type": "section",
-            "title": "Bordes, sombra y decoración",
-            "keys": ["border-width", "shadow-enabled", "show-ornament", "show-divider", "text-align"]
-        },
-        "section-content": {
-            "type": "section",
-            "title": "Contenido visible",
-            "keys": ["desklet-width", "show-source", "show-refresh-button"]
-        },
-        "section-refresh": {
-            "type": "section",
-            "title": "Actualización",
-            "keys": ["refresh-frequency"]
-        }
+        "pages": ["page_theme", "page_typography", "page_layout", "page_refresh"],
+        "page_theme": { "type": "page", "title": "Tema", "sections": ["section_mode", "section_bg", "section_colors"] },
+        "page_typography": { "type": "page", "title": "Tipografía", "sections": ["section_font", "section_style"] },
+        "page_layout": { "type": "page", "title": "Diseño", "sections": ["section_dimensions", "section_corners", "section_ornaments"] },
+        "page_refresh": { "type": "page", "title": "Refresco", "sections": ["section_refresh"] },
+        
+        "section_mode": { "type": "section", "title": "Modo de color", "keys": ["themeMode"] },
+        "section_bg": { "type": "section", "title": "Fondo", "keys": ["themeName", "bgOpacity"] },
+        "section_colors": { "type": "section", "title": "Colores de los temas", "keys": ["colorThemeInfo"] },
+        "section_font": { "type": "section", "title": "Fuente", "keys": ["fontFamily", "fontSizeQuote", "fontSizeAuthor"] },
+        "section_style": { "type": "section", "title": "Estilo del texto", "keys": ["fontItalic", "textAlign"] },
+        "section_dimensions": { "type": "section", "title": "Dimensiones", "keys": ["deskletWidth", "scale"] },
+        "section_corners": { "type": "section", "title": "Esquinas y sombras", "keys": ["cornerRadius", "shadowEnabled"] },
+        "section_ornaments": { "type": "section", "title": "Adornos", "keys": ["showOrnament", "showDivider", "showRefreshButton"] },
+        "section_refresh": { "type": "section", "title": "Actualización", "keys": ["refreshFrequency"] }
     },
-
-    "theme-mode": {
+    
+    "themeMode": {
         "type": "combobox",
-        "default": "auto",
-        "description": "Modo de tema",
+        "default": "custom",
         "options": {
-            "Claro": "light",
-            "Oscuro": "dark",
-            "Auto (según el escritorio)": "auto"
-        }
+            "Personalizado (según tema base)": "custom",
+            "Automático (según escritorio)": "auto",
+            "Claro (texto oscuro)": "light",
+            "Oscuro (texto claro)": "dark"
+        },
+        "description": "Modo de color"
     },
-
-    "base-theme": {
+    "themeName": {
         "type": "combobox",
         "default": "stained-glass",
-        "description": "Tema base",
         "options": {
-            "Personalizado (usa los colores de abajo)": "custom",
-            "Pergamino antiguo": "parchment",
-            "Vitral gótico": "stained-glass",
-            "Moderno minimalista": "modern"
-        }
+            "Vitral Gótico": "stained-glass",
+            "Clásico": "classic",
+            "Atardecer": "sunset",
+            "Neón": "neon"
+        },
+        "description": "Tema base"
     },
-
-    "bg-opacity": {
+    "bgOpacity": {
         "type": "scale",
-        "default": 92,
+        "default": 0,
         "min": 0,
         "max": 100,
         "step": 5,
-        "units": "%",
-        "description": "Opacidad del fondo"
+        "description": "Opacidad del fondo (%)"
     },
-
-    "corner-radius": {
-        "type": "scale",
-        "default": 10,
-        "min": 0,
-        "max": 30,
-        "step": 2,
-        "units": "px",
-        "description": "Radio de las esquinas"
+    "colorThemeInfo": {
+        "type": "label",
+        "description": "Los colores se ajustan automáticamente según el tema base y el modo de color."
     },
-
-    "color-bg": {
-        "type": "colorchooser",
-        "default": "rgba(30, 26, 20, 0.92)",
-        "description": "Color de fondo"
-    },
-
-    "color-text": {
-        "type": "colorchooser",
-        "default": "rgba(240, 232, 216, 1.0)",
-        "description": "Color del texto de la cita"
-    },
-
-    "color-accent": {
-        "type": "colorchooser",
-        "default": "rgba(212, 175, 90, 1.0)",
-        "description": "Color de acento (autor, referencia)"
-    },
-
-    "color-border": {
-        "type": "colorchooser",
-        "default": "rgba(120, 95, 50, 0.45)",
-        "description": "Color del borde"
-    },
-
-    "color-divider": {
-        "type": "colorchooser",
-        "default": "rgba(212, 175, 90, 0.6)",
-        "description": "Color del divisor"
-    },
-
-    "font-quote": {
-        "type": "fontchooser",
-        "default": "DejaVu Serif 13",
-        "description": "Fuente de la cita"
-    },
-
-    "font-size-quote": {
-        "type": "scale",
-        "default": 13,
-        "min": 10,
-        "max": 22,
-        "step": 1,
-        "units": "pt",
-        "description": "Tamaño de la cita"
-    },
-
-    "font-italic-quote": {
-        "type": "switch",
-        "default": true,
-        "description": "Cita en cursiva"
-    },
-
-    "font-author": {
-        "type": "fontchooser",
-        "default": "DejaVu Serif 10",
-        "description": "Fuente del autor"
-    },
-
-    "font-size-author": {
-        "type": "scale",
-        "default": 10,
-        "min": 8,
-        "max": 16,
-        "step": 1,
-        "units": "pt",
-        "description": "Tamaño del autor"
-    },
-
-    "border-width": {
-        "type": "scale",
-        "default": 1,
-        "min": 0,
-        "max": 6,
-        "step": 1,
-        "units": "px",
-        "description": "Grosor del borde"
-    },
-
-    "shadow-enabled": {
-        "type": "switch",
-        "default": true,
-        "description": "Mostrar sombra"
-    },
-
-    "show-ornament": {
-        "type": "switch",
-        "default": true,
-        "description": "Mostrar adorno decorativo (✦)"
-    },
-
-    "show-divider": {
-        "type": "switch",
-        "default": true,
-        "description": "Mostrar línea divisoria"
-    },
-
-    "text-align": {
+    
+    "fontFamily": {
         "type": "combobox",
-        "default": "left",
-        "description": "Alineación del texto",
+        "default": "DejaVu Serif",
         "options": {
-            "Izquierda": "left",
-            "Centro": "center",
-            "Justificado": "justify"
-        }
+            "DejaVu Serif (Elegante)": "DejaVu Serif",
+            "Georgia (Clásica)": "Georgia",
+            "Cantarell (Moderna)": "Cantarell",
+            "Ubuntu (Linux)": "Ubuntu",
+            "Fira Sans (Sans-Serif)": "Fira Sans",
+            "FreeSerif (Gótica)": "FreeSerif"
+        },
+        "description": "Fuente"
     },
-
-    "desklet-width": {
-        "type": "scale",
-        "default": 380,
-        "min": 300,
-        "max": 600,
-        "step": 10,
-        "units": "px",
-        "description": "Ancho del desklet"
+    "fontSizeQuote": { "type": "spinbutton", "default": 14, "min": 8, "max": 30, "step": 1, "description": "Tamaño de la cita" },
+    "fontSizeAuthor": { "type": "spinbutton", "default": 11, "min": 8, "max": 20, "step": 1, "description": "Tamaño del autor" },
+    "fontItalic": { "type": "checkbox", "default": true, "description": "Cita en cursiva" },
+    "textAlign": {
+        "type": "combobox",
+        "default": "center",
+        "options": { "Izquierda": "left", "Centro": "center", "Derecha": "right", "Justificado": "justify" },
+        "description": "Alineación del texto"
     },
-
-    "show-source": {
-        "type": "switch",
-        "default": true,
-        "description": "Mostrar la sección (Antiguo/Nuevo Testamento)"
-    },
-
-    "show-refresh-button": {
-        "type": "switch",
-        "default": true,
-        "description": "Mostrar botón de refresco"
-    },
-
-    "refresh-frequency": {
+    
+    "deskletWidth": { "type": "scale", "default": 400, "min": 200, "max": 800, "step": 10, "description": "Ancho (px)" },
+    "scale": { "type": "scale", "default": 1.0, "min": 0.5, "max": 2.0, "step": 0.1, "description": "Escala general" },
+    "cornerRadius": { "type": "scale", "default": 20, "min": 0, "max": 50, "step": 2, "description": "Radio de esquinas" },
+    "shadowEnabled": { "type": "checkbox", "default": true, "description": "Mostrar sombra" },
+    
+    "showOrnament": { "type": "checkbox", "default": true, "description": "Mostrar adorno (✦)" },
+    "showDivider": { "type": "checkbox", "default": true, "description": "Mostrar línea divisoria" },
+    "showRefreshButton": { "type": "checkbox", "default": true, "description": "Mostrar botón de refrescar" },
+    
+    "refreshFrequency": {
         "type": "combobox",
         "default": "daily",
-        "description": "Frecuencia de refresco",
         "options": {
-            "Diario (a medianoche)": "daily",
+            "Diario (medianoche)": "daily",
             "Cada hora": "hourly",
             "Solo manual": "manual"
-        }
+        },
+        "description": "Frecuencia de refresco"
     }
 }
