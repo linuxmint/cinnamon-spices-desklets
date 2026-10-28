@@ -5,10 +5,10 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: steamGamesStarter@KopfdesDaemons 1.0\n"
+"Project-Id-Version: steamGamesStarter@KopfdesDaemons 2.0.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2025-10-11 14:57+0200\n"
+"POT-Creation-Date: 2026-02-20 23:29+0100\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,28 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. metadata.json->name
-#. desklet.js:40 desklet.js:211
+#. desklet.js:30 helpers/ui.js:29
 msgid "Steam Games Starter"
 msgstr ""
 
-#. desklet.js:148
+#. helpers/steam.js:146
+msgid "Could not load image"
+msgstr ""
+
+#. helpers/ui.js:97
+msgid "Unknown"
+msgstr ""
+
+#. helpers/ui.js:99
 msgid "Last played:"
 msgstr ""
 
-#. desklet.js:175
-msgid "No installed games found"
+#. helpers/ui.js:145
+msgid "Loading..."
 msgstr ""
 
-#. desklet.js:223
-msgid "Loading..."
+#. helpers/ui.js:176
+msgid "No installed games found"
 msgstr ""
 
 #. metadata.json->description
 msgid "Start Steam games from your desktop."
 msgstr ""
 
-#. settings-schema.json->head0->description
+#. settings-schema.json->general-page->title
 msgid "General"
+msgstr ""
+
+#. settings-schema.json->style-page->title
+#. settings-schema.json->style-section->title
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->size-section->title
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->labels-section->title
+msgid "Labels"
+msgstr ""
+
+#. settings-schema.json->buttons-section->title
+msgid "Buttons"
+msgstr ""
+
+#. settings-schema.json->steam-install-section->title
+msgid "Steam installation"
 msgstr ""
 
 #. settings-schema.json->steam-install-type->description
@@ -54,18 +83,66 @@ msgstr ""
 msgid "Flatpak"
 msgstr ""
 
+#. settings-schema.json->steam-install-type->options
+msgid "Custom"
+msgstr ""
+
+#. settings-schema.json->custom-install-path->description
+msgid "Select libraryfolders.vdf"
+msgstr ""
+
+#. settings-schema.json->custom-cmd->description
+msgid "CMD to launch Steam"
+msgstr ""
+
 #. settings-schema.json->number-of-games->description
 msgid "Maximum number of games"
 msgstr ""
 
-#. settings-schema.json->head1->description
-msgid "Style"
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
 msgstr ""
 
 #. settings-schema.json->max-desklet-height->description
 msgid "Maximum height of the desklet"
 msgstr ""
 
+#. settings-schema.json->desklet-width->description
+msgid "Width of the desklet"
+msgstr ""
+
 #. settings-schema.json->background-color->description
 msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->show-game-header-image->description
+msgid "Show game header image"
+msgstr ""
+
+#. settings-schema.json->game-header-image-size->description
+msgid "Game header image size"
+msgstr ""
+
+#. settings-schema.json->game-label-font-size->description
+msgid "Game label font size"
+msgstr ""
+
+#. settings-schema.json->show-last-played-label->description
+msgid "Show \"last played\" label"
+msgstr ""
+
+#. settings-schema.json->last-played-label-font-size->description
+msgid "\"Last played\" label font size"
+msgstr ""
+
+#. settings-schema.json->show-game-start-button->description
+msgid "Show game start button"
+msgstr ""
+
+#. settings-schema.json->show-game-shop-button->description
+msgid "Show game shop button"
 msgstr ""
