@@ -1,0 +1,16 @@
+.fritzbox-label-left {
+    text-align: left;
+    padding-right: 10px;
+}
+
+.fritzbox-label-right {
+    text-align: right;
+}
+
+.fritzbox-value-ok {
+    color: #8ae234;
+}
+
+.fritzbox-value-err {
+    color: #ef2929;
+}
