@@ -42,7 +42,7 @@ const LIST_INTERVAL_MS = 180000;
 const FETCH_WATCHDOG_MS = 120000;
 const MIN_REFRESH_SECONDS = 30;
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
