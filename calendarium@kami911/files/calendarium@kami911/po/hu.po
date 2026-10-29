@@ -7,7 +7,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-07-23 16:36+0200\n"
-"PO-Revision-Date: 2026-03-26 08:14+0100\n"
+"PO-Revision-Date: 2026-04-03 14:09+0200\n"
 "Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
 "Language-Team: Hungarian <hu@li.org>\n"
 "Language: hu\n"
@@ -330,6 +330,10 @@ msgstr "Iszlám dátum"
 msgid "Persian date"
 msgstr "Perzsa dátum"
 
+#. desklet.js:1295
+msgid "French Republican date"
+msgstr "Francia köztársasági dátum"
+
 #. metadata.json->name
 msgid "Calendarium"
 msgstr "Kalendárium"
@@ -397,6 +401,7 @@ msgstr "Névnapok"
 msgid "Wikipedia (Internet Required)"
 msgstr "Wikipédia (Internet szükséges)"
 
+#. settings-schema.json->page-appearance->title
 #. settings-schema.json->section-appearance->title
 msgid "Appearance"
 msgstr "Megjelenés"
@@ -663,8 +668,17 @@ msgid "Show equinox and solstice"
 msgstr "Napéjegyenlőség és napforduló megjelenítése"
 
 #. settings-schema.json->use-manual-location->description
-msgid "Use manual location (default: Budapest, Hungary)"
-msgstr "Manuális helyszín megadása (alap: Budapest, Magyarország)"
+msgid "Use manual location"
+msgstr "Manuális helyszín megadása"
+
+#. settings-schema.json->use-manual-location->tooltip
+msgid ""
+"When off, the location is detected automatically from the computer's system "
+"timezone (falling back to Budapest, Hungary if it cannot be determined)."
+msgstr ""
+"Kikapcsolva a helyszín automatikusan a számítógép rendszeridőzónája alapján "
+"kerül meghatározásra (ha ez nem sikerül, Budapest, Magyarország az "
+"alapértelmezés)."
 
 #. settings-schema.json->location-search->description
 msgid "Search city to auto-fill coordinates"
@@ -695,6 +709,34 @@ msgstr "Szélességi fok (pozitív = Észak)"
 #. settings-schema.json->longitude->description
 msgid "Longitude (positive = East)"
 msgstr "Hosszúsági fok (pozitív = Kelet)"
+
+#. settings-schema.json->primary-tz->description
+msgid "Primary location timezone (IANA, e.g. Europe/Budapest)"
+msgstr "Elsődleges helyszín időzónája (IANA, pl. Europe/Budapest)"
+
+#. settings-schema.json->primary-tz->tooltip
+msgid ""
+"Timezone used for the primary location's sunrise/sunset and moonrise/moonset "
+"times. Filled automatically when using city search. Leave empty to use the "
+"computer's system timezone."
+msgstr ""
+"Az elsődleges helyszín nap- és holdkelte/-nyugta időpontjaihoz használt "
+"időzóna. A városkereső használatakor automatikusan kitöltődik. Üresen hagyva a "
+"számítógép rendszeridőzónája lesz érvényes."
+
+#. settings-schema.json->use-primary-tz-for-clock->description
+msgid "Show the clock and date in the primary location's timezone"
+msgstr "Az óra és a dátum az elsődleges helyszín időzónája szerint"
+
+#. settings-schema.json->use-primary-tz-for-clock->tooltip
+msgid ""
+"When off, the clock, date and calendar follow the computer's own time. When "
+"on, they use the primary location's timezone (from the field above, or the "
+"auto-detected system timezone)."
+msgstr ""
+"Kikapcsolva az óra, a dátum és a naptár a számítógép saját idejét követi. "
+"Bekapcsolva az elsődleges helyszín időzónáját használják (a fenti mezőből, "
+"vagy az automatikusan felismert rendszeridőzónából)."
 
 #. settings-schema.json->city1-name->description
 msgid "City 1 name (leave empty to disable)"
@@ -862,8 +904,8 @@ msgid ""
 "How many births, deaths, and events to display at a time. The list rotates "
 "periodically, cycling through all available entries from the cache."
 msgstr ""
-"Hány születést, halálozást és eseményt mutasson egyszerre. A lista "
-"időközönként rotál, végigpörög az összes gyorsítótárban lévő bejegyzésen."
+"Egyszerre hány születés, halálozás és esemény jelenjen meg. A lista időnként "
+"lapoz, végigpörög az összes gyorsítótárazott bejegyzésen."
 
 #. settings-schema.json->wikipedia-rotate-minutes->units
 msgid "minutes"
@@ -878,7 +920,8 @@ msgid ""
 "How often to advance to the next set of items. Set to 1 to rotate every "
 "minute."
 msgstr ""
-"Milyen gyakran lépjen a következő elemekre. 1-re állítva percenként rotál."
+"Milyen gyakran lépjen a következő elemcsoportra. Az 1-es érték percenkénti "
+"váltást jelent."
 
 #. settings-schema.json->wikipedia-cache-hours->units
 msgid "hours"
@@ -893,11 +936,9 @@ msgid ""
 "How long to keep Wikipedia data in the local cache before fetching fresh "
 "data. Lower values fetch more often; higher values reduce network usage."
 msgstr ""
-"Mennyi ideig tárolja a Wikipédia adatokat a helyi gyorsítótárban, mielőtt "
-"újat tölt le. Alacsonyabb értéknél sűrűbben frissít; magasabb értéknél "
-"csökkenti a hálózathasználatot.Mennyi ideig tárolja a Wikipédia adatokat a "
-"helyi gyorsítótárban, mielőtt újat tölt le. Alacsonyabb értéknél sűrűbben "
-"frissít; magasabb értéknél csökkenti a hálózathasználatot."
+"Mennyi ideig tárolja a Wikipédia adatait a helyi gyorsítótárban. Kisebb "
+"érték gyakoribb letöltést jelent, nagyobb érték csökkenti a hálózati "
+"forgalmat."
 
 #. settings-schema.json->icon-size->description
 msgid "Icon and symbol size"
@@ -940,6 +981,26 @@ msgid ""
 "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr "0 = teljesen átlátszó (áttűnik a háttérkép), 1 = tömör fekete háttér"
 
+#. settings-schema.json->show-border->description
+msgid "Draw a border around the desklet"
+msgstr "Keret rajzolása a desklet köré"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Keret vastagsága"
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Keret színe"
+
+#. settings-schema.json->border-radius->description
+msgid "Corner radius"
+msgstr "Sarkok lekerekítése"
+
+#. settings-schema.json->border-radius->tooltip
+msgid "0 = square corners"
+msgstr "0 = szögletes sarkok"
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Julián naptár dátumának megjelenítése"
@@ -955,3 +1016,11 @@ msgstr "Iszlám naptár dátumának megjelenítése"
 #. settings-schema.json->show-persian->description
 msgid "Show Persian calendar date"
 msgstr "Perzsa naptár dátumának megjelenítése"
+
+#. settings-schema.json->show-french-republican->description
+msgid "Show French Republican calendar date"
+msgstr "Francia köztársasági naptár dátumának megjelenítése"
+
+#. settings-schema.json->show-french-republican->tooltip
+msgid "Equinox-based (the historically accurate rule): each Republican year begins at the true autumnal equinox, so 5 or 6 intercalary days fall out naturally rather than from a fixed leap-year formula."
+msgstr "Napéjegyenlőség-alapú (a történelmileg pontos szabály): minden köztársasági év a valódi őszi napéjegyenlőséggel kezdődik, így az 5 vagy 6 pótnap természetesen adódik, nem egy rögzített szökőév-képletből."

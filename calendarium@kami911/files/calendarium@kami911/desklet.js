@@ -87,7 +87,9 @@ const Calendars    = imports.calendars.Calendars;
 
 Geocoder.init(DESKLET_DIR);
 
-// ── Default location: Budapest, Hungary ───────────────────────────────────
+// ── Default location ─────────────────────────────────────────────────────
+// Used only as a last-resort fallback when the computer's system timezone
+// cannot be resolved to coordinates (see _systemLocation). Budapest, Hungary.
 const DEFAULT_LAT  = 47.4979;
 const DEFAULT_LON  = 19.0402;
 const FOLKDAY_DIR  = DESKLET_DIR + "/data/folkdays";
@@ -128,6 +130,8 @@ CalendariumDesklet.prototype = {
             global.logError("Calendarium: _setupUI crash [" + e.message + "] stack:\n" + (e.stack || "(no stack)"));
             throw e;
         }
+        // Detect the computer's location from its system timezone (async).
+        this._resolveSystemLocationAsync();
         // Load locale data files asynchronously; refresh again when done.
         this._loadNamedayData(() => this._refresh());
     },
@@ -171,6 +175,8 @@ CalendariumDesklet.prototype = {
             () => this._onLocationSearchChanged());
         s.bind("latitude",             "latitude",            cb);
         s.bind("longitude",            "longitude",           cb);
+        s.bind("primary-tz",           "primary_tz",          cb);
+        s.bind("use-primary-tz-for-clock", "use_primary_tz_for_clock", cb);
         s.bind("city1-name", "city1_name",
             () => this._onCityNameChanged(1));
         s.bind("city1-lat",  "city1_lat",  cb);
@@ -229,11 +235,16 @@ CalendariumDesklet.prototype = {
         s.bind("show-hebrew",  "show_hebrew",  cb);
         s.bind("show-islamic", "show_islamic", cb);
         s.bind("show-persian", "show_persian", cb);
+        s.bind("show-french-republican", "show_french_republican", cb);
 
         // Appearance
         s.bind("icon-size",        "icon_size",        cb);
         s.bind("text-scale",       "text_scale",       cb);
         s.bind("bg-opacity",       "bg_opacity",       cb);
+        s.bind("show-border",      "show_border",      cb);
+        s.bind("border-width",     "border_width",     cb);
+        s.bind("border-color",     "border_color",     cb);
+        s.bind("border-radius",    "border_radius",    cb);
     },
 
     /**
@@ -280,6 +291,7 @@ CalendariumDesklet.prototype = {
             let r = results[0];
             self.settings.setValue("latitude",  r.lat);
             self.settings.setValue("longitude", r.lon);
+            self.settings.setValue("primary-tz", r.tz || "");
             self.settings.setValue("use-manual-location", true);
             return false;
         });
@@ -290,6 +302,11 @@ CalendariumDesklet.prototype = {
         let results = name.trim() ? Geocoder.search(name) : [];
         if (results.length > 0) {
             let r = results[0];
+            // Replace whatever the user typed with the geocoder's canonical,
+            // correctly-capitalized name (e.g. "london" -> "London") so the
+            // displayed label always matches how the city is normally
+            // written, not the user's original casing/spelling variant.
+            this.settings.setValue("city" + n + "-name", r.name);
             this.settings.setValue("city" + n + "-lat", r.lat);
             this.settings.setValue("city" + n + "-lon", r.lon);
             this.settings.setValue("city" + n + "-tz",  r.tz || "");
@@ -312,6 +329,179 @@ CalendariumDesklet.prototype = {
         } catch(e) {
             return null;
         }
+    },
+
+    /**
+     * UTC offset in hours to use for the primary location's Sun/Moon times.
+     * Uses the explicitly configured IANA timezone when set; otherwise returns
+     * null so the calculations fall back to the computer's system timezone
+     * (the default behaviour).
+     */
+    _getPrimaryUtcOffsetHours: function() {
+        return this._getCityUtcOffsetHours(this.primary_tz);
+    },
+
+    /**
+     * IANA timezone name of the primary location: the explicit primary-tz
+     * setting, else the auto-detected system timezone, else null.
+     */
+    _primaryTimezoneName: function() {
+        if (this.primary_tz && this.primary_tz.trim()) return this.primary_tz.trim();
+        if (this._sysLoc && this._sysLoc.tz) return this._sysLoc.tz;
+        return null;
+    },
+
+    /**
+     * "Now" as a JS Date whose local calendar fields (year/month/date/hours…)
+     * represent the wall-clock time to display. Normally the computer's own
+     * time; when "use primary tz for clock" is enabled it is the primary
+     * location's wall-clock time instead.
+     */
+    _displayNow: function() {
+        let base = new Date();
+        if (!this.use_primary_tz_for_clock) return base;
+        let name = this._primaryTimezoneName();
+        if (!name) return base;
+        try {
+            let g = GLib.DateTime.new_now(GLib.TimeZone.new(name));
+            return new Date(g.get_year(), g.get_month() - 1, g.get_day_of_month(),
+                            g.get_hour(), g.get_minute(), g.get_second());
+        } catch (e) {
+            return base;
+        }
+    },
+
+    /**
+     * GLib.DateTime carrying the calendar fields of a JS Date, for strftime
+     * formatting (%A, %B, %H…). Only the field values are used, not the zone.
+     */
+    _glibFromDate: function(d) {
+        return GLib.DateTime.new_local(
+            d.getFullYear(), d.getMonth() + 1, d.getDate(),
+            d.getHours(), d.getMinutes(), d.getSeconds()
+        );
+    },
+
+    /**
+     * Read a text file asynchronously; cb(text) with the contents as a string,
+     * or cb(null) on any failure. Never blocks the main loop.
+     */
+    _readTextFileAsync: function(path, cb) {
+        let f = Gio.File.new_for_path(path);
+        f.load_contents_async(null, function(obj, res) {
+            try {
+                let [ok, contents] = f.load_contents_finish(res);
+                if (!ok) { cb(null); return; }
+                cb((contents instanceof Uint8Array)
+                    ? new TextDecoder().decode(contents)
+                    : imports.byteArray.toString(contents));
+            } catch (e) {
+                cb(null);
+            }
+        });
+    },
+
+    /**
+     * Resolve the computer's approximate location from its system IANA
+     * timezone, fully asynchronously, and cache it in this._sysLoc as
+     * { lat, lon, tz }. Triggers a redraw when done if the primary location
+     * is auto-detected. Falls back to DEFAULT_LAT/DEFAULT_LON (Budapest).
+     */
+    _resolveSystemLocationAsync: function() {
+        if (this._sysLoc) return;
+        let self = this;
+
+        let finish = function(tzName) {
+            let loc = { lat: DEFAULT_LAT, lon: DEFAULT_LON, tz: tzName || null };
+            let apply = function(coords) {
+                if (coords) { loc.lat = coords.lat; loc.lon = coords.lon; }
+                self._sysLoc = loc;
+                if (!self._isDestroyed && !self.use_manual_location) {
+                    self._onSettingChanged();
+                }
+            };
+            if (tzName) self._tzTabCoordsAsync(tzName, apply);
+            else apply(null);
+        };
+
+        // 1. GLib.TimeZone (no blocking file read).
+        try {
+            let id = GLib.TimeZone.new_local().get_identifier();
+            if (id && id.indexOf("/") !== -1) { finish(id); return; }
+        } catch (e) {}
+
+        // 2. /etc/timezone (Debian/Ubuntu/Mint).
+        this._readTextFileAsync("/etc/timezone", function(text) {
+            let s = text && text.trim();
+            if (s && s.indexOf("/") !== -1) { finish(s); return; }
+
+            // 3. /etc/localtime symlink target.
+            let f = Gio.File.new_for_path("/etc/localtime");
+            f.query_info_async("standard::symlink-target",
+                Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS,
+                GLib.PRIORITY_DEFAULT, null, function(obj, res) {
+                    let tzName = null;
+                    try {
+                        let target = f.query_info_finish(res).get_symlink_target();
+                        let m = target && target.match(/zoneinfo\/(.+)$/);
+                        if (m) tzName = m[1];
+                    } catch (e) {}
+                    finish(tzName);
+                });
+        });
+    },
+
+    /**
+     * Look up approximate coordinates for an IANA timezone name in the tzdata
+     * zone1970.tab / zone.tab table, asynchronously. cb({lat, lon}) or cb(null).
+     */
+    _tzTabCoordsAsync: function(tzName, cb) {
+        let self = this;
+        let paths = ["/usr/share/zoneinfo/zone1970.tab",
+                     "/usr/share/zoneinfo/zone.tab"];
+        let tryPath = function(idx) {
+            if (idx >= paths.length) { cb(null); return; }
+            self._readTextFileAsync(paths[idx], function(text) {
+                if (!text) { tryPath(idx + 1); return; }
+                let lines = text.split("\n");
+                for (let i = 0; i < lines.length; i++) {
+                    if (!lines[i] || lines[i][0] === "#") continue;
+                    let cols = lines[i].split("\t");
+                    if (cols.length < 3) continue;
+                    if (cols[2].trim() !== tzName) continue;
+                    cb(self._parseIso6709(cols[1].trim()));
+                    return;
+                }
+                tryPath(idx + 1);
+            });
+        };
+        tryPath(0);
+    },
+
+    /**
+     * Parse an ISO 6709 "±DDMM[SS]±DDDMM[SS]" string (as used in tzdata's
+     * zone1970.tab) to { lat, lon } decimal degrees, or null.
+     */
+    _parseIso6709: function(s) {
+        let m = s.match(/^([+-]\d{2})(\d{2})(\d{2})?([+-]\d{3})(\d{2})(\d{2})?$/);
+        if (!m) return null;
+        let latSign = m[1][0] === "-" ? -1 : 1;
+        let lonSign = m[4][0] === "-" ? -1 : 1;
+        let lat = parseInt(m[1], 10)
+            + latSign * (parseInt(m[2], 10) + (m[3] ? parseInt(m[3], 10) : 0) / 60) / 60;
+        let lon = parseInt(m[4], 10)
+            + lonSign * (parseInt(m[5], 10) + (m[6] ? parseInt(m[6], 10) : 0) / 60) / 60;
+        return { lat: Math.round(lat * 10000) / 10000,
+                 lon: Math.round(lon * 10000) / 10000 };
+    },
+
+    /**
+     * Approximate location of the computer, derived from its system IANA
+     * timezone by _resolveSystemLocationAsync(). Returns the cached
+     * { lat, lon, tz }, or the Budapest default until resolution completes.
+     */
+    _systemLocation: function() {
+        return this._sysLoc || { lat: DEFAULT_LAT, lon: DEFAULT_LON, tz: null };
     },
 
     /**
@@ -720,7 +910,7 @@ CalendariumDesklet.prototype = {
             this._timeout = null;
         }
 
-        let now = new Date();
+        let now = this._displayNow();
         try { this._applyAppearance();      } catch(e) { global.logError("Calendarium _applyAppearance: "  + e); }
         try { this._updateDate(now);        } catch(e) { global.logError("Calendarium _updateDate: "        + e); }
         try { this._updateTime(now);        } catch(e) { global.logError("Calendarium _updateTime: "        + e); }
@@ -758,7 +948,7 @@ CalendariumDesklet.prototype = {
     /** Fast-path refresh for the time label only (1-second cadence). */
     _refreshClock: function() {
         if (this._isDestroyed) return false;
-        this._updateTime(new Date());
+        this._updateTime(this._displayNow());
         this._updateCityTimes();
         this._clockTimeout = Mainloop.timeout_add(
             1000, () => this._refreshClock()
@@ -817,6 +1007,15 @@ CalendariumDesklet.prototype = {
             "font-size: " + basePx + "px;" +
             "background-color: rgba(0, 0, 0, " + op.toFixed(2) + ");";
 
+        if (this.show_border) {
+            let bw = Math.max(1, Math.min(10, Math.round(this.border_width || 1)));
+            let bc = this.border_color || "rgba(255,255,255,0.35)";
+            let br = Math.max(0, Math.min(40, Math.round(this.border_radius || 0)));
+            containerStyle +=
+                "border: " + bw + "px solid " + bc + ";" +
+                "border-radius: " + br + "px;";
+        }
+
         // Icon / symbol size for moon and zodiac symbols
         let px = this._getIconPx();
         this._labelMoonIcon.set_style(
@@ -842,7 +1041,7 @@ CalendariumDesklet.prototype = {
         this._labelDate.visible = this.show_date;
         if (!this.show_date) return;
         try {
-            let dt  = GLib.DateTime.new_now_local();
+            let dt  = this._glibFromDate(now);
             // All real format strings contain at least one '%'.
             // The sentinel "custom" (and any label text a Cinnamon version might
             // store instead of the value) does not — so this check is resilient
@@ -862,7 +1061,7 @@ CalendariumDesklet.prototype = {
         this._labelTime.visible = this.show_time;
         if (!this.show_time) return;
         try {
-            let dt  = GLib.DateTime.new_now_local();
+            let dt  = this._glibFromDate(now);
             let fmt;
             if (this.time_format === "12h") {
                 fmt = this.show_seconds ? "%I:%M:%S %p" : "%I:%M %p";
@@ -912,7 +1111,7 @@ CalendariumDesklet.prototype = {
         if (this.show_month_progress) {
             let dayOfMonth  = now.getDate();
             let daysInMonth = new Date(y, now.getMonth() + 1, 0).getDate();
-            let monthName   = (GLib.DateTime.new_now_local().format("%B")) || "";
+            let monthName   = (this._glibFromDate(now).format("%B")) || "";
             let sep = (this.progress_separator || "\u00b7").charAt(0);
             let mpPrefix = this.show_week_number ? " " + sep + " " : "";
             let text = mpPrefix + monthName + " " + sep + " " +
@@ -1097,9 +1296,10 @@ CalendariumDesklet.prototype = {
         if (!this.show_sun) return;
 
         // Primary location
-        let lat = this.use_manual_location ? this.latitude  : DEFAULT_LAT;
-        let lon = this.use_manual_location ? this.longitude : DEFAULT_LON;
-        let sun = Sun.getSunTimes(now, lat, lon);
+        let sysLoc = this._systemLocation();
+        let lat = this.use_manual_location ? this.latitude  : sysLoc.lat;
+        let lon = this.use_manual_location ? this.longitude : sysLoc.lon;
+        let sun = Sun.getSunTimes(now, lat, lon, this._getPrimaryUtcOffsetHours());
 
         let sunriseStr = this._sunStr(sun, "sunrise");
         let sunsetStr  = this._sunStr(sun, "sunset");
@@ -1242,9 +1442,10 @@ CalendariumDesklet.prototype = {
         this._moonRiseRow.visible = this.show_moonrise;
         if (!this.show_moonrise) return;
 
-        let lat = this.use_manual_location ? this.latitude  : DEFAULT_LAT;
-        let lon = this.use_manual_location ? this.longitude : DEFAULT_LON;
-        let mt  = Sun.getMoonTimes(now, lat, lon);
+        let sysLoc = this._systemLocation();
+        let lat = this.use_manual_location ? this.latitude  : sysLoc.lat;
+        let lon = this.use_manual_location ? this.longitude : sysLoc.lon;
+        let mt  = Sun.getMoonTimes(now, lat, lon, this._getPrimaryUtcOffsetHours());
 
         let riseStr = mt.moonrise || _("No data");
         let setStr  = mt.moonset  || _("No data");
@@ -1273,7 +1474,7 @@ CalendariumDesklet.prototype = {
     },
 
     _updateAltCal: function(now) {
-        let anyEnabled = this.show_julian || this.show_hebrew || this.show_islamic || this.show_persian;
+        let anyEnabled = this.show_julian || this.show_hebrew || this.show_islamic || this.show_persian || this.show_french_republican;
         this._labelAltCal.visible = anyEnabled;
         if (!anyEnabled) return;
 
@@ -1286,6 +1487,7 @@ CalendariumDesklet.prototype = {
         if (this.show_hebrew)  lines.push(_("Hebrew date")  + ": " + Calendars.formatHebrew(y, m, d));
         if (this.show_islamic) lines.push(_("Islamic date") + ": " + Calendars.formatIslamic(y, m, d));
         if (this.show_persian) lines.push(_("Persian date") + ": " + Calendars.formatPersian(y, m, d));
+        if (this.show_french_republican) lines.push(_("French Republican date") + ": " + Calendars.formatFrenchRepublican(y, m, d));
 
         this._labelAltCal.set_text(lines.join("\n"));
     },

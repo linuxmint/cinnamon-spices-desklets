@@ -11,6 +11,28 @@
  * This module exports a single `Zodiac` object.
  */
 
+// Local identity function so xgettext can extract these strings.
+// Actual translation is done by the caller (desklet.js) via its own _().
+function _(s) { return s; }
+
+// Return the globe emoji for the Earth element based on the system locale.
+//   🌍 U+1F30D — Europe / Africa  (default)
+//   🌎 U+1F30E — Americas
+//   🌏 U+1F30F — Asia / Pacific
+function _getGlobeEmoji() {
+    let lang = "";
+    try {
+        let langs = imports.gi.GLib.get_language_names();
+        if (langs && langs.length > 0) lang = langs[0].toLowerCase();
+    } catch(e) {}
+
+    if (/^(en_us|en_ca|es_mx|es_us|es_co|es_ar|es_cl|es_pe|es_ve|pt_br|fr_ca)/.test(lang))
+        return "\uD83C\uDF0E";  // 🌎 Americas
+    if (/^(zh|ja|ko|hi|th|vi|id|ms|fil|bn|ta|te|mr|ur|fa|my|km|lo|si)/.test(lang))
+        return "\uD83C\uDF0F";  // 🌏 Asia-Pacific
+    return "\uD83C\uDF0D";      // 🌍 Europe-Africa (default)
+}
+
 var Zodiac = {
 
     // ── Western zodiac ──────────────────────────────────────────────────
@@ -85,11 +107,12 @@ var Zodiac = {
 
     // One emoji per element (index matches ELEMENTS above).
     // BMP chars use \uXXXX; SMP chars use surrogate pairs.
+    // Earth globe is locale-aware: Europe-Africa / Americas / Asia-Pacific.
     ELEMENT_SYMBOLS: [
         "\uD83C\uDF33",  // 🌳 Wood  U+1F333 deciduous tree
         "\uD83D\uDD25",  // 🔥 Fire  U+1F525
-        "\u26F0",        // ⛰  Earth U+26F0  mountain
-        "\u2699",        // ⚙  Metal U+2699  gear
+        _getGlobeEmoji(),// 🌍/🌎/🌏 Earth — locale-dependent
+        "\uD83D\uDEE1",  // 🛡  Metal U+1F6E1 shield
         "\uD83D\uDCA7"   // 💧 Water U+1F4A7 droplet
     ],
 
