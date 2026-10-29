@@ -1,0 +1,98 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page_theme", "page_typography", "page_layout", "page_refresh"],
+        "page_theme": { "type": "page", "title": "Tema", "sections": ["section_mode", "section_bg", "section_colors"] },
+        "page_typography": { "type": "page", "title": "Tipografía", "sections": ["section_font", "section_style"] },
+        "page_layout": { "type": "page", "title": "Diseño", "sections": ["section_dimensions", "section_corners", "section_ornaments"] },
+        "page_refresh": { "type": "page", "title": "Refresco", "sections": ["section_refresh"] },
+        
+        "section_mode": { "type": "section", "title": "Modo de color", "keys": ["themeMode"] },
+        "section_bg": { "type": "section", "title": "Fondo", "keys": ["themeName", "bgOpacity"] },
+        "section_colors": { "type": "section", "title": "Colores de los temas", "keys": ["colorThemeInfo"] },
+        "section_font": { "type": "section", "title": "Fuente", "keys": ["fontFamily", "fontSizeQuote", "fontSizeAuthor"] },
+        "section_style": { "type": "section", "title": "Estilo del texto", "keys": ["fontItalic", "textAlign"] },
+        "section_dimensions": { "type": "section", "title": "Dimensiones", "keys": ["deskletWidth", "scale"] },
+        "section_corners": { "type": "section", "title": "Esquinas y sombras", "keys": ["cornerRadius", "shadowEnabled"] },
+        "section_ornaments": { "type": "section", "title": "Adornos", "keys": ["showOrnament", "showDivider", "showRefreshButton"] },
+        "section_refresh": { "type": "section", "title": "Actualización", "keys": ["refreshFrequency"] }
+    },
+    
+    "themeMode": {
+        "type": "combobox",
+        "default": "custom",
+        "options": {
+            "Personalizado (según tema base)": "custom",
+            "Automático (según escritorio)": "auto",
+            "Claro (texto oscuro)": "light",
+            "Oscuro (texto claro)": "dark"
+        },
+        "description": "Modo de color"
+    },
+    "themeName": {
+        "type": "combobox",
+        "default": "stained-glass",
+        "options": {
+            "Vitral Gótico": "stained-glass",
+            "Clásico": "classic",
+            "Atardecer": "sunset",
+            "Neón": "neon"
+        },
+        "description": "Tema base"
+    },
+    "bgOpacity": {
+        "type": "scale",
+        "default": 0,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "description": "Opacidad del fondo (%)"
+    },
+    "colorThemeInfo": {
+        "type": "label",
+        "description": "Los colores se ajustan automáticamente según el tema base y el modo de color."
+    },
+    
+    "fontFamily": {
+        "type": "combobox",
+        "default": "DejaVu Serif",
+        "options": {
+            "DejaVu Serif (Elegante)": "DejaVu Serif",
+            "Georgia (Clásica)": "Georgia",
+            "Cantarell (Moderna)": "Cantarell",
+            "Ubuntu (Linux)": "Ubuntu",
+            "Fira Sans (Sans-Serif)": "Fira Sans",
+            "FreeSerif (Gótica)": "FreeSerif"
+        },
+        "description": "Fuente"
+    },
+    "fontSizeQuote": { "type": "spinbutton", "default": 14, "min": 8, "max": 30, "step": 1, "description": "Tamaño de la cita" },
+    "fontSizeAuthor": { "type": "spinbutton", "default": 11, "min": 8, "max": 20, "step": 1, "description": "Tamaño del autor" },
+    "fontItalic": { "type": "checkbox", "default": true, "description": "Cita en cursiva" },
+    "textAlign": {
+        "type": "combobox",
+        "default": "center",
+        "options": { "Izquierda": "left", "Centro": "center", "Derecha": "right", "Justificado": "justify" },
+        "description": "Alineación del texto"
+    },
+    
+    "deskletWidth": { "type": "scale", "default": 400, "min": 200, "max": 800, "step": 10, "description": "Ancho (px)" },
+    "scale": { "type": "scale", "default": 1.0, "min": 0.5, "max": 2.0, "step": 0.1, "description": "Escala general" },
+    "cornerRadius": { "type": "scale", "default": 20, "min": 0, "max": 50, "step": 2, "description": "Radio de esquinas" },
+    "shadowEnabled": { "type": "checkbox", "default": true, "description": "Mostrar sombra" },
+    
+    "showOrnament": { "type": "checkbox", "default": true, "description": "Mostrar adorno (✦)" },
+    "showDivider": { "type": "checkbox", "default": true, "description": "Mostrar línea divisoria" },
+    "showRefreshButton": { "type": "checkbox", "default": true, "description": "Mostrar botón de refrescar" },
+    
+    "refreshFrequency": {
+        "type": "combobox",
+        "default": "daily",
+        "options": {
+            "Diario (medianoche)": "daily",
+            "Cada hora": "hourly",
+            "Solo manual": "manual"
+        },
+        "description": "Frecuencia de refresco"
+    }
+}

@@ -1,0 +1,53 @@
+.promesas-card {
+    background-color: transparent !important;
+    background-image: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transition-duration: 300ms;
+    transition-property: background-color, border-color, box-shadow;
+}
+
+.promesas-quote-text {
+    line-height: 1.6;
+    text-shadow: 
+        0px 2px 4px rgba(0, 0, 0, 0.9),
+        0px 0px 10px rgba(0, 0, 0, 0.7),
+        0px 0px 20px rgba(0, 0, 0, 0.5);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.promesas-ornament {
+    text-shadow: 0px 0px 15px rgba(255, 215, 110, 0.9), 
+                 0px 0px 30px rgba(255, 215, 110, 0.5);
+    font-size: 20pt !important;
+    margin-bottom: 15px !important;
+}
+
+.promesas-divider {
+    background-image: linear-gradient(to right, transparent, rgba(255, 215, 110, 0.8), transparent) !important;
+    background-color: transparent !important;
+    height: 2px !important;
+    margin: 20px 0 15px 0 !important;
+    box-shadow: 0px 0px 8px rgba(255, 215, 110, 0.4);
+}
+
+.promesas-refresh-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.9);
+    padding: 0px 2px 4px 6px;
+    min-width: 38px;
+    min-height: 38px;
+    font-size: 20pt;
+    transition-duration: 250ms;
+    transition-property: background-color, box-shadow, transform, color;
+}
+
+.promesas-refresh-button:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 215, 110, 1);
+    box-shadow: 0px 0px 15px rgba(255, 215, 110, 0.6);
+    transform: scale(1.1) rotate(15deg);
+}
