@@ -17,104 +17,108 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: desklet.js:160
+msgid "TBD"
+msgstr ""
+
 #, javascript-format
 msgid "Set %d"
 msgstr ""
 
-#: desklet.js:305 desklet.js:1071 desklet.js:1428
-msgid "TBD"
-msgstr ""
-
-#. metadata.json->name
-#: desklet.js:428 desklet.js:743
 msgid "TennisToday"
 msgstr ""
 
-#: desklet.js:484
 msgid "Refresh now"
 msgstr ""
 
-#: desklet.js:488
 msgid "Open ESPN scoreboard"
 msgstr ""
 
-#: desklet.js:695 desklet.js:853
 msgid "LIVE"
 msgstr ""
 
-#: desklet.js:703 desklet.js:855
 msgid "Upcoming"
 msgstr ""
 
-#: desklet.js:711
 msgid "Recently finished"
 msgstr ""
 
-#: desklet.js:717
 msgid "No matches to show"
 msgstr ""
 
-#: desklet.js:745
 msgid "Updating…"
 msgstr ""
 
-#: desklet.js:746
 #, javascript-format
 msgid "Updated %s"
 msgstr ""
 
-#: desklet.js:746
 msgid "Waiting for scores"
 msgstr ""
 
-#: desklet.js:791
 msgid "Grand Slam"
 msgstr ""
 
-#: desklet.js:849
+#, javascript-format
+msgid "Finished · %s"
+msgstr ""
+
 msgid "Finished"
 msgstr ""
 
-#: desklet.js:853
 #, javascript-format
 msgid "LIVE · %s"
 msgstr ""
 
-#: desklet.js:1043 desklet.js:1410
-msgid "Tournament"
+#, javascript-format
+msgid "Tomorrow · %s"
 msgstr ""
 
-#: desklet.js:1616 desklet.js:1748
+msgid "Retired"
+msgstr ""
+
+msgid "Walkover"
+msgstr ""
+
+msgid "Women's"
+msgstr ""
+
+msgid "Men's"
+msgstr ""
+
+msgid "Doubles"
+msgstr ""
+
+msgid "Singles"
+msgstr ""
+
 msgid "Invalid score data"
 msgstr ""
 
-#: desklet.js:1738
 msgid "Could not fetch scores"
 msgstr ""
 
-#. metadata.json->description
-msgid "ATP and WTA tennis scores on the Cinnamon desktop."
-msgstr ""
-
-#. settings-schema.json->page-tours->title
-#. settings-schema.json->section-tours->title
+#. settings-schema.json->layout->page-tours->title
+#. settings-schema.json->layout->section-tours->title
 msgid "Tours"
 msgstr ""
 
-#. settings-schema.json->page-display->title
+#. settings-schema.json->layout->page-display->title
 msgid "Display"
 msgstr ""
 
-#. settings-schema.json->section-refresh->title
+#. settings-schema.json->layout->section-levels->title
+msgid "Tournament level"
+msgstr ""
+
+#. settings-schema.json->layout->section-refresh->title
 msgid "Updates"
 msgstr ""
 
-#. settings-schema.json->section-matches->title
+#. settings-schema.json->layout->section-matches->title
 msgid "Matches"
 msgstr ""
 
-#. settings-schema.json->section-layout->title
+#. settings-schema.json->layout->section-layout->title
 msgid "Layout"
 msgstr ""
 
@@ -134,8 +138,20 @@ msgstr ""
 msgid "Show doubles"
 msgstr ""
 
-#. settings-schema.json->refresh-seconds->units
-msgid "seconds"
+#. settings-schema.json->show-tier-1000->description
+msgid "Show 1000 and Finals"
+msgstr ""
+
+#. settings-schema.json->show-tier-500->description
+msgid "Show 500"
+msgstr ""
+
+#. settings-schema.json->show-tier-250->description
+msgid "Show 250"
+msgstr ""
+
+#. settings-schema.json->show-tier-other->description
+msgid "Show 125 and other events"
 msgstr ""
 
 #. settings-schema.json->refresh-seconds->description
@@ -147,24 +163,19 @@ msgid "Show recently finished matches"
 msgstr ""
 
 #. settings-schema.json->max-completed->description
-msgid "Max finished matches"
+msgid "Max finished matches (last 24 hours)"
 msgstr ""
 
 #. settings-schema.json->show-upcoming->description
-msgid "Show upcoming matches today"
+msgid "Show upcoming matches (next 24 hours)"
 msgstr ""
 
 #. settings-schema.json->max-upcoming->description
-msgid "Max upcoming matches today"
+msgid "Max upcoming matches"
 msgstr ""
 
 #. settings-schema.json->max-live->description
 msgid "Max live matches"
-msgstr ""
-
-#. settings-schema.json->desklet-width->units
-#. settings-schema.json->max-height->units
-msgid "px"
 msgstr ""
 
 #. settings-schema.json->desklet-width->description

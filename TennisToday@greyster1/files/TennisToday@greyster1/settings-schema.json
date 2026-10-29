@@ -10,6 +10,7 @@
             "title": "Tours",
             "sections": [
                 "section-tours",
+                "section-levels",
                 "section-refresh"
             ]
         },
@@ -29,6 +30,16 @@
                 "enable-wta",
                 "enable-grand-slam",
                 "show-doubles"
+            ]
+        },
+        "section-levels": {
+            "type": "section",
+            "title": "Tournament level",
+            "keys": [
+                "show-tier-1000",
+                "show-tier-500",
+                "show-tier-250",
+                "show-tier-other"
             ]
         },
         "section-refresh": {
@@ -78,6 +89,26 @@
         "default": true,
         "description": "Show doubles"
     },
+    "show-tier-1000": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 1000 and Finals"
+    },
+    "show-tier-500": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 500"
+    },
+    "show-tier-250": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 250"
+    },
+    "show-tier-other": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 125 and other events"
+    },
     "refresh-seconds": {
         "type": "spinbutton",
         "default": 60,
@@ -94,37 +125,37 @@
     },
     "max-completed": {
         "type": "spinbutton",
-        "default": 4,
+        "default": 40,
         "min": 0,
-        "max": 20,
+        "max": 100,
         "step": 1,
-        "description": "Max finished matches",
+        "description": "Max finished matches (last 24 hours)",
         "dependency": "show-completed"
     },
     "show-upcoming": {
         "type": "switch",
         "default": true,
-        "description": "Show upcoming matches today"
+        "description": "Show upcoming matches (next 24 hours)"
     },
     "max-upcoming": {
         "type": "spinbutton",
-        "default": 12,
+        "default": 40,
         "min": 0,
-        "max": 20,
+        "max": 100,
         "step": 1,
-        "description": "Max upcoming matches today",
+        "description": "Max upcoming matches",
         "dependency": "show-upcoming"
     },
     "max-live": {
         "type": "spinbutton",
-        "default": 12,
+        "default": 40,
         "min": 1,
-        "max": 40,
+        "max": 100,
         "step": 1,
         "description": "Max live matches"
     },
     "desklet-width": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 420,
         "min": 280,
         "max": 800,
@@ -133,7 +164,7 @@
         "description": "Minimum width (grows to fit scores)"
     },
     "max-height": {
-        "type": "scale",
+        "type": "spinbutton",
         "default": 720,
         "min": 240,
         "max": 1000,

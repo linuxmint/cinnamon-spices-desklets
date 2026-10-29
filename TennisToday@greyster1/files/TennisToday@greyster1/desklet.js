@@ -5,6 +5,7 @@
 // SPDX-License-Identifier: GPL-3.0-or-later
 
 const Desklet = imports.ui.desklet;
+const Main = imports.ui.main;
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const Soup = imports.gi.Soup;
@@ -19,18 +20,26 @@ const Gettext = imports.gettext;
 
 const UUID = "TennisToday@greyster1";
 const ESPN_URL = "https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=tennis";
-const ESPN_CORE = "https://sports.core.api.espn.com/v2/sports/tennis/leagues";
 const ESPN_PAGE = "https://www.espn.com/tennis/scoreboard";
+// ESPN carries no tournament level or game points; LiveScore's public feed does.
+const LIVESCORE_URL = "https://prod-public-api.livescore.com/v1/api/app";
 const USER_AGENT = "TennisToday-desklet (Cinnamon; +https://github.com/greyster1/TennisToday)";
 const IS_SOUP_2 = Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2;
 const SET_COL_PX = 28;
 const POINTS_COL_PX = 36;
+const POINTS_GAP_PX = 6;
+const RENDER_DEBOUNCE_MS = 250;
 const SERVE_COL_PX = 22;
 const SCORE_FIT_BASE_PX = 400;
 const CHROME_PX = 36;
 const SCORE_GUTTER_PX = 16;
-const MAX_BOARD_FINISHED = 16;
+// Header, desklet padding and frame above and below the scroll area.
+const DESKLET_CHROME_V_PX = 96;
+const MIN_SCROLL_PX = 160;
+const RECENT_FINISHED_MS = 24 * 3600 * 1000;
+const UPCOMING_WINDOW_MS = 24 * 3600 * 1000;
 const LIST_INTERVAL_MS = 180000;
+const FETCH_WATCHDOG_MS = 120000;
 const MIN_REFRESH_SECONDS = 30;
 
 Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
@@ -39,17 +48,22 @@ function _(str) {
     return Gettext.dgettext(UUID, str);
 }
 
+let _etFormatter;
+
 function _etYmd(ms) {
     if (ms === undefined || ms === null || isNaN(ms)) {
         return "";
     }
     try {
-        let parts = new Intl.DateTimeFormat("en-US", {
-            timeZone: "America/New_York",
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit"
-        }).formatToParts(new Date(ms));
+        if (!_etFormatter) {
+            _etFormatter = new Intl.DateTimeFormat("en-US", {
+                timeZone: "America/New_York",
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit"
+            });
+        }
+        let parts = _etFormatter.formatToParts(new Date(ms));
         let y = "", mo = "", d = "";
         for (let i = 0; i < parts.length; i++) {
             if (parts[i].type === "year") {
@@ -67,8 +81,22 @@ function _etYmd(ms) {
     }
 }
 
-function _etCompact(ms) {
-    return _etYmd(ms).replace(/-/g, "");
+function _localYmd(ms) {
+    if (ms === undefined || ms === null || isNaN(ms)) {
+        return "";
+    }
+    let dt = new Date(ms);
+    return dt.getFullYear() + "-" + String(dt.getMonth() + 1).padStart(2, "0") + "-" + String(dt.getDate()).padStart(2, "0");
+}
+
+function _recentlyFinished(startMs, now) {
+    return isNaN(startMs) || now - startMs <= RECENT_FINISHED_MS;
+}
+
+// ESPN's slate flips at ET midnight, which is mid-evening further west, so
+// upcoming is a rolling window rather than a calendar day.
+function _upcomingSoon(startMs, now) {
+    return isNaN(startMs) || Math.abs(startMs - now) <= UPCOMING_WINDOW_MS;
 }
 
 function _formatMatchTime(ms) {
@@ -90,23 +118,9 @@ function _formatMatchTime(ms) {
     }
 }
 
-function _httpsRef(ref) {
-    return String(ref || "").replace(/^http:\/\//, "https://");
-}
-
 function _safeLink(url) {
     let s = String(url || "");
     return /^https?:\/\//i.test(s) ? s : "";
-}
-
-function _eventIdFromRef(ref) {
-    let m = String(ref || "").match(/\/events\/([^/?]+)/);
-    return m ? m[1] : "";
-}
-
-function _athleteIdFromRef(ref) {
-    let m = String(ref || "").match(/\/athletes\/([^/?]+)/);
-    return m ? m[1] : "";
 }
 
 function _formatPoints(raw) {
@@ -136,13 +150,77 @@ function _formatPoints(raw) {
 }
 
 function _matchKey(m) {
+    if (m.compId) {
+        return "compId::" + m.compId;
+    }
     let names = (m.teams || []).map(function (t) { return t.name || ""; });
     names.sort();
     return (m.tournament || "") + "::" + names.join("|");
 }
 
 function _nameKey(name) {
-    return String(name || "").toLowerCase().replace(/[^a-z0-9]+/g, "");
+    let n = String(name || "");
+    try {
+        n = n.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    } catch (e) {
+    }
+    return n.toLowerCase().replace(/[^a-z0-9]+/g, "");
+}
+
+// LiveScore names a tournament's level ("ATP 500", "WTA Finals"); reduce it to
+// the short code shown in the tag and used by the level filters.
+function _tierFromLevel(level) {
+    let l = String(level || "").trim();
+    // WTA's own name for its 125 tier is "Challenger".
+    if (/^wta.*challenger/i.test(l)) {
+        return "125";
+    }
+    if (/challenger/i.test(l)) {
+        return "CH";
+    }
+    if (/finals/i.test(l)) {
+        return "Finals";
+    }
+    let m = l.match(/\b(1000|500|250|125)\b/);
+    if (m) {
+        return m[1];
+    }
+    // LiveScore files WTA 125 events under a bare "WTA".
+    if (/^wta$/i.test(l)) {
+        return "125";
+    }
+    return "";
+}
+
+function _tierGroup(tier) {
+    if (tier === "1000" || tier === "Finals") {
+        return "1000";
+    }
+    if (tier === "500" || tier === "250") {
+        return tier;
+    }
+    return "other";
+}
+
+function _utcCompact(ms) {
+    let dt = new Date(ms);
+    return dt.getUTCFullYear() + String(dt.getUTCMonth() + 1).padStart(2, "0") + String(dt.getUTCDate()).padStart(2, "0");
+}
+
+// ESPN fills draws it has not published yet with "Bye" vs "Bye" (athlete
+// id 0) and "TBD" vs "TBD" slots; nobody will play those as listed.
+function _isPlaceholderMatch(players) {
+    let known = 0;
+    for (let i = 0; i < (players || []).length; i++) {
+        let name = String(players[i].name || "").trim();
+        if (/^bye$/i.test(name) || String(players[i].id) === "0") {
+            return true;
+        }
+        if (name && !/^tbd$/i.test(name) && name !== _("TBD")) {
+            known += 1;
+        }
+    }
+    return known === 0;
 }
 
 function _pairKeyFromNames(names) {
@@ -239,37 +317,6 @@ function _markSetWinners(teams) {
     }
 }
 
-function _noteParts(c) {
-    let notes = (c && c.notes) || [];
-    let typeText = (notes[0] && notes[0].type) || "";
-    let dash = typeText.indexOf(" - ");
-    if (dash >= 0) {
-        return {
-            roundName: typeText.substring(0, dash),
-            courtName: typeText.substring(dash + 3)
-        };
-    }
-    return { roundName: typeText, courtName: "" };
-}
-
-function _courtFromComp(c) {
-    let court = (c && c.court) || {};
-    let name = court.description || court.name || court.displayName || "";
-    if (name) {
-        return name;
-    }
-    return _noteParts(c).courtName;
-}
-
-function _roundFromComp(c) {
-    let round = (c && c.round) || {};
-    let name = round.displayName || round.description || "";
-    if (name) {
-        return name;
-    }
-    return _noteParts(c).roundName;
-}
-
 function _parseEvent(event, tour) {
     let notes = event.notes || [];
     let roundName = "";
@@ -339,6 +386,7 @@ function _parseEvent(event, tour) {
     let slam = _isGrandSlam(tournamentName);
     return {
         id: String(event.id || event.competitionId || event.uid || ""),
+        compId: String(event.competitionId || event.id || ""),
         tour: tourCode,
         isGrandSlam: slam,
         badge: slam ? "Grand Slam" : tourCode,
@@ -378,6 +426,102 @@ function parseEspnHeader(json) {
     return matches;
 }
 
+function _lsTime(esd) {
+    let m = String(esd || "").match(/^(\d{4})(\d{2})(\d{2})(\d{2})(\d{2})(\d{2})$/);
+    if (!m) {
+        return NaN;
+    }
+    return Date.UTC(+m[1], +m[2] - 1, +m[3], +m[4], +m[5], +m[6]);
+}
+
+function _slug(name) {
+    let n = String(name || "");
+    try {
+        n = n.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+    } catch (e) {
+    }
+    return n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+}
+
+function _surnameKey(name) {
+    let parts = String(name || "").trim().split(/\s+/);
+    return _nameKey(parts[parts.length - 1]);
+}
+
+// Doubles teams read "A / B" on ESPN and are two players on LiveScore; both
+// reduce to the sorted player keys, a lone player being a team of one.
+function _teamKey(names) {
+    return (names || []).map(_nameKey).sort().join("+");
+}
+
+function _pairKey(teamKeys) {
+    return teamKeys.slice().sort().join("|");
+}
+
+const LS_SLAM_RE = /^(wimbledon|australian open|us open|french open|roland garros)$/i;
+const LS_KEEP_EVENT_KEY_RE = /^(Eid|Eps|Esd|Esrv|Ewt|Tr[12]G|Tr[12]S\d+T?)$/;
+const LS_SKIP_STAGE_RE = /qualif|junior|wheelchair|legends/i;
+// LiveScore marks games in progress "S1".."S5"; "ToFi" is a suspended match.
+const LS_LIVE_RE = /^(S\d|ToFi)$/;
+const LS_DONE_RE = /^(FT|Ret\.|W\.O\.)$/;
+const LS_STALE_UPCOMING_MS = 6 * 3600 * 1000;
+
+// Which tour a LiveScore stage belongs to, or null when the desklet does not
+// show it (Challengers, ITF, qualifying, juniors, team events, unknown tours).
+function _lsStageInfo(stage) {
+    let level = String(stage.Cnm || "");
+    let stageName = String(stage.Snm || "");
+    if (LS_SKIP_STAGE_RE.test(stageName)) {
+        return null;
+    }
+    if (LS_SLAM_RE.test(level)) {
+        return {
+            slam: true,
+            tour: /^women/i.test(stageName) ? "WTA" : (/^men/i.test(stageName) ? "ATP" : "")
+        };
+    }
+    if (/^ATP/i.test(level) && !/challenger/i.test(level)) {
+        return { slam: false, tour: "ATP" };
+    }
+    if (/^WTA/i.test(level)) {
+        return { slam: false, tour: "WTA" };
+    }
+    return null;
+}
+
+// A day feed is ~60 KB of mostly Challenger and ITF matches plus media and
+// betting ids. Keep only what is shown so the cached feeds stay small.
+function _slimLivescore(json) {
+    let stages = [];
+    let src = (json && json.Stages) || [];
+    for (let s = 0; s < src.length; s++) {
+        if (!_lsStageInfo(src[s])) {
+            continue;
+        }
+        let events = [];
+        let evs = src[s].Events || [];
+        for (let e = 0; e < evs.length; e++) {
+            let ev = {};
+            for (let k in evs[e]) {
+                if (LS_KEEP_EVENT_KEY_RE.test(k)) {
+                    ev[k] = evs[e][k];
+                }
+            }
+            for (let side = 1; side <= 2; side++) {
+                ev["T" + side] = (evs[e]["T" + side] || []).map(function (pl) {
+                    return { Nm: pl.Nm, ID: pl.ID };
+                });
+            }
+            events.push(ev);
+        }
+        stages.push({
+            Sid: src[s].Sid, Snm: src[s].Snm, Scd: src[s].Scd,
+            Cnm: src[s].Cnm, Ccd: src[s].Ccd, Events: events
+        });
+    }
+    return { Stages: stages };
+}
+
 function TennisTodayDesklet(metadata, deskletId) {
     this._init(metadata, deskletId);
 }
@@ -393,12 +537,16 @@ TennisTodayDesklet.prototype = {
         this.enableWta = true;
         this.enableGrandSlam = true;
         this.showDoubles = true;
+        this.showTier1000 = true;
+        this.showTier500 = true;
+        this.showTier250 = true;
+        this.showTierOther = true;
         this.refreshSeconds = 60;
         this.showCompleted = true;
-        this.maxCompleted = 4;
+        this.maxCompleted = 40;
         this.showUpcoming = true;
-        this.maxUpcoming = 12;
-        this.maxLive = 12;
+        this.maxUpcoming = 40;
+        this.maxLive = 40;
         this.deskletWidth = 420;
         this.maxHeight = 720;
 
@@ -411,22 +559,41 @@ TennisTodayDesklet.prototype = {
         this._destroyed = false;
         this._serveGicon = undefined;
         this._fetching = false;
-        this._boardCache = [];
-        this._lastBoardAt = 0;
+        this._fetchStartedAt = 0;
         this._lastSnapshot = "";
-        this._stubCache = [];
-        this._stubLoc = {};
-        this._stubEvents = {};
-        this._lastListAt = 0;
-        this._finishedById = {};
-        this._countryById = {};
-        this._countryPending = {};
+        this._lsDays = {};
+        this._lsDayAt = {};
+        this._lsLive = null;
+        this._lsLiveKey = null;
+        this._enrichByEid = {};
+        this._tourInfo = {};
+        this._seedByKey = {};
+        this._playerCountry = {};
+        this._scrollHeight = 0;
+        this._scrollView = null;
+        this._scrollRestoreId = 0;
+        this._actorSignals = [];
+        this._moveTimer = null;
+        this._renderTimer = null;
+        this._dragging = false;
+        this._dragSignals = [];
+        this._matchActors = {};
+        this._matchUsed = {};
+        this._headerCache = [];
+        this._headerAt = 0;
+        this._pointsSeen = false;
+        this._showPoints = false;
 
         this._initHttp();
         this._bindSettings(deskletId);
         this._buildChrome();
         this.setHeader(_("TennisToday"));
         this._populateContextMenu();
+        if (this.actor) {
+            this._actorSignals.push(this.actor.connect("notify::y", () => this._onMoved()));
+            this._actorSignals.push(this.actor.connect("notify::mapped", () => this._onMoved()));
+        }
+        this._watchDrag();
         this._render();
         this._fetch();
         this._schedule();
@@ -437,6 +604,11 @@ TennisTodayDesklet.prototype = {
         if (IS_SOUP_2) {
             this._httpSession = new Soup.SessionAsync();
             Soup.Session.prototype.add_feature.call(this._httpSession, new Soup.ProxyResolverDefault());
+            try {
+                Soup.Session.prototype.add_feature.call(this._httpSession, new Soup.ContentDecoder());
+            } catch (e) {
+                global.logWarning(UUID + " gzip unavailable: " + e);
+            }
         } else {
             this._httpSession = new Soup.Session();
         }
@@ -446,12 +618,16 @@ TennisTodayDesklet.prototype = {
 
     _bindSettings: function (deskletId) {
         this.settings = new Settings.DeskletSettings(this, UUID, deskletId);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-atp", "enableAtp", this._onToursChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-wta", "enableWta", this._onToursChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-grand-slam", "enableGrandSlam", this._onToursChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-doubles", "showDoubles", this._onToursChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-atp", "enableAtp", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-wta", "enableWta", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-grand-slam", "enableGrandSlam", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-doubles", "showDoubles", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-1000", "showTier1000", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-500", "showTier500", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-250", "showTier250", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-other", "showTierOther", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-seconds", "refreshSeconds", this._onRefreshSettingChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-completed", "showCompleted", this._onToursChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-completed", "showCompleted", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "max-completed", "maxCompleted", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-upcoming", "showUpcoming", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "max-upcoming", "maxUpcoming", this._onSettingsChanged, null);
@@ -460,20 +636,73 @@ TennisTodayDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "max-height", "maxHeight", this._onSettingsChanged, null);
     },
 
-    _onSettingsChanged: function () {
-        this._render();
+    // Rebuilding the list while the desklet is being dragged destroys the actor
+    // under the pointer, the drop is lost and the desklet keeps following the
+    // mouse. Hold renders until the drag ends, then redraw (and re-measure the
+    // room left on screen at the new position).
+    _watchDrag: function () {
+        let drag = this._draggable;
+        if (!drag || !drag.connect) {
+            return;
+        }
+        let begin = () => {
+            this._dragging = true;
+        };
+        let end = () => {
+            this._dragging = false;
+            this._onSettingsChanged();
+        };
+        this._dragSignals.push(drag.connect("drag-begin", begin));
+        this._dragSignals.push(drag.connect("drag-end", end));
+        this._dragSignals.push(drag.connect("drag-cancelled", end));
     },
 
-    _onToursChanged: function () {
-        this._lastSnapshot = "";
-        this._boardCache = [];
-        this._stubCache = [];
-        this._stubLoc = {};
-        this._stubEvents = {};
-        this._lastListAt = 0;
-        this._finishedById = {};
-        this._render();
-        this._fetch(true);
+    // A slider or spin button fires on every step; rebuilding the whole list
+    // each time made the desklet flicker while its settings were open.
+    _onSettingsChanged: function () {
+        if (this._renderTimer) {
+            Mainloop.source_remove(this._renderTimer);
+        }
+        this._renderTimer = Mainloop.timeout_add(RENDER_DEBOUNCE_MS, () => {
+            this._renderTimer = null;
+            this._render();
+            return GLib.SOURCE_REMOVE;
+        });
+    },
+
+    _onMoved: function () {
+        if (this._dragging) {
+            return;
+        }
+        if (this._moveTimer) {
+            Mainloop.source_remove(this._moveTimer);
+        }
+        this._moveTimer = Mainloop.timeout_add(300, () => {
+            this._moveTimer = null;
+            if (this._availableHeight() !== this._scrollHeight) {
+                this._render();
+            }
+            return GLib.SOURCE_REMOVE;
+        });
+    },
+
+    // Keep the list on screen: a desklet placed low on the monitor would
+    // otherwise push the bottom of the scroll area past the screen edge.
+    _availableHeight: function () {
+        let maxH = this.maxHeight || 720;
+        if (!this.actor || !this.actor.mapped) {
+            return maxH;
+        }
+        try {
+            let monitor = Main.layoutManager.findMonitorForActor(this.actor);
+            let [, y] = this.actor.get_transformed_position();
+            if (monitor && y >= monitor.y) {
+                let room = monitor.y + monitor.height - y - DESKLET_CHROME_V_PX;
+                maxH = Math.min(maxH, Math.max(MIN_SCROLL_PX, Math.floor(room)));
+            }
+        } catch (e) {
+        }
+        return maxH;
     },
 
     _onRefreshSettingChanged: function () {
@@ -577,19 +806,19 @@ TennisTodayDesklet.prototype = {
             if (m.isDoubles && !this.showDoubles) {
                 continue;
             }
+            if (!m.isGrandSlam && !this._tierEnabled(m.tier)) {
+                continue;
+            }
             let now = Date.now();
             let startMs = m.startMs;
-            let started = !isNaN(startMs) && startMs <= now;
-            let startDayEt = _etYmd(startMs);
-            let todayEt = _etYmd(now);
-            let yesterdayEt = _etYmd(now - 24 * 3600 * 1000);
-            let overnight = started && startDayEt === yesterdayEt && startDayEt !== todayEt;
 
             if (m.status === "Finished") {
-                finished.push(m);
-            } else if (m.status === "Live" || overnight) {
+                if (_recentlyFinished(startMs, now)) {
+                    finished.push(m);
+                }
+            } else if (m.status === "Live") {
                 live.push(m);
-            } else if (m.status === "Upcoming" && (isNaN(startMs) || startDayEt === todayEt)) {
+            } else if (m.status === "Upcoming" && _upcomingSoon(startMs, now)) {
                 upcoming.push(m);
             }
         }
@@ -624,18 +853,32 @@ TennisTodayDesklet.prototype = {
             return am - bm;
         });
 
-        live = live.slice(0, this.maxLive || 12);
+        live = live.slice(0, this.maxLive || 40);
         if (this.showCompleted) {
             finished = finished.slice(0, this.maxCompleted || 0);
         } else {
             finished = [];
         }
         if (this.showUpcoming) {
-            upcoming = upcoming.slice(0, this.maxUpcoming || 12);
+            upcoming = upcoming.slice(0, this.maxUpcoming || 40);
         } else {
             upcoming = [];
         }
         return { live: live, finished: finished, upcoming: upcoming };
+    },
+
+    _tierEnabled: function (tier) {
+        let group = _tierGroup(tier);
+        if (group === "1000") {
+            return !!this.showTier1000;
+        }
+        if (group === "500") {
+            return !!this.showTier500;
+        }
+        if (group === "250") {
+            return !!this.showTier250;
+        }
+        return !!this.showTierOther;
     },
 
     _maxSetColumns: function (matches) {
@@ -652,20 +895,36 @@ TennisTodayDesklet.prototype = {
         return n;
     },
 
-    _fittedWidth: function (setCols) {
-        let needed = SCORE_FIT_BASE_PX + Math.max(setCols, 1) * SET_COL_PX + CHROME_PX;
+    _fittedWidth: function (setCols, withPoints) {
+        let needed = SCORE_FIT_BASE_PX + Math.max(setCols, 1) * SET_COL_PX + CHROME_PX
+            + (withPoints ? POINTS_COL_PX + POINTS_GAP_PX : 0);
         return Math.max(this.deskletWidth || 420, needed);
     },
 
     _render: function () {
-        if (this._destroyed || !this._root) {
+        if (this._destroyed || !this._root || this._dragging) {
             return;
         }
+        // Every score change rebuilds the list; keep the reader's place in it.
+        let keepScroll = this._scrollView ? this._scrollView.vscroll.adjustment.value : 0;
+        this._dropScrollRestore();
+        this._scrollView = null;
+        // Match rows are reused when nothing about them changed. Detach them so
+        // clearing the list does not destroy them: tearing down thousands of
+        // actors on every refresh stalled Cinnamon for seconds at a time.
+        this._detachMatchActors();
         this._root.destroy_all_children();
 
         let groups = this._selectedMatches();
         let visible = groups.live.concat(groups.upcoming, groups.finished);
-        let widthPx = this._fittedWidth(this._maxSetColumns(visible));
+        let liveRows = visible.filter(function (m) { return m.status === "Live"; });
+        if (liveRows.some(function (m) { return m.teams.some(function (t) { return !!t.points; }); })) {
+            this._pointsSeen = true;
+        }
+        // Reserve the column for every live match once points have been seen,
+        // so the list does not widen and narrow between games.
+        this._showPoints = this._pointsSeen && liveRows.length > 0;
+        let widthPx = this._fittedWidth(this._maxSetColumns(visible), this._showPoints);
         this._root.style = "min-width: " + widthPx + "px; width: " + widthPx + "px;";
         this._root.clip_to_allocation = false;
 
@@ -673,16 +932,20 @@ TennisTodayDesklet.prototype = {
 
         if (this._error && this._matches.length === 0) {
             this._root.add_child(this._label(this._error, "lt-error", true));
+            this._pruneMatchActors();
             return;
         }
 
+        this._scrollHeight = this._availableHeight();
         let scroll = new St.ScrollView({
-            style: "max-height: " + (this.maxHeight || 720) + "px;",
+            style: "max-height: " + this._scrollHeight + "px;",
             x_expand: true
         });
         scroll.set_policy(St.PolicyType.NEVER, St.PolicyType.AUTOMATIC);
         scroll.overlay_scrollbars = true;
-        scroll.clip_to_allocation = false;
+        // Unclipped, rows scrolled above the list stay clickable over the
+        // header, so the refresh button opened a match on ESPN instead.
+        scroll.clip_to_allocation = true;
 
         let inner = new St.BoxLayout({
             vertical: true,
@@ -723,6 +986,31 @@ TennisTodayDesklet.prototype = {
             scroll.add_child(inner);
         }
         this._root.add_child(scroll);
+        this._scrollView = scroll;
+        this._pruneMatchActors();
+        this._restoreScroll(scroll, keepScroll);
+    },
+
+    _restoreScroll: function (scroll, value) {
+        if (!(value > 0)) {
+            return;
+        }
+        let adj = scroll.vscroll.adjustment;
+        // The adjustment's range is only known once the new list is laid out.
+        this._scrollRestoreId = adj.connect("changed", () => {
+            if (adj.upper <= adj.page_size) {
+                return;
+            }
+            this._dropScrollRestore();
+            adj.value = Math.min(value, adj.upper - adj.page_size);
+        });
+    },
+
+    _dropScrollRestore: function () {
+        if (this._scrollRestoreId && this._scrollView) {
+            this._scrollView.vscroll.adjustment.disconnect(this._scrollRestoreId);
+        }
+        this._scrollRestoreId = 0;
     },
 
     _sectionRule: function () {
@@ -765,6 +1053,56 @@ TennisTodayDesklet.prototype = {
         return header;
     },
 
+    _matchSignature: function (m) {
+        let parts = [m.id, m.status, m.summary || "", m.endNote || "", m.link || "", m.eventType || "",
+            m.roundName || "", m.courtName || "", m.status === "Live" && this._showPoints ? "p" : ""];
+        if (m.status === "Upcoming") {
+            // The time reads "Tomorrow · ..." depending on today's date.
+            parts.push(String(m.startMs), _localYmd(Date.now()));
+        }
+        for (let t = 0; t < (m.teams || []).length; t++) {
+            let tm = m.teams[t];
+            parts.push(tm.name || "", String(tm.seed || ""), tm.country || "", tm.serving ? "1" : "0",
+                tm.winner ? "1" : "0", tm.points || "", tm.score || "");
+            let lines = tm.linescores || [];
+            for (let k = 0; k < lines.length; k++) {
+                parts.push(String(lines[k].value), String(lines[k].tiebreak || ""));
+            }
+        }
+        return parts.join("\t");
+    },
+
+    _matchActor: function (m) {
+        let sig = this._matchSignature(m);
+        let actor = this._matchActors[sig];
+        if (!actor) {
+            actor = this._buildMatch(m);
+            this._matchActors[sig] = actor;
+        }
+        this._matchUsed[sig] = true;
+        return actor;
+    },
+
+    _detachMatchActors: function () {
+        this._matchUsed = {};
+        for (let sig in this._matchActors) {
+            let actor = this._matchActors[sig];
+            let parent = actor.get_parent();
+            if (parent) {
+                parent.remove_child(actor);
+            }
+        }
+    },
+
+    _pruneMatchActors: function () {
+        for (let sig in this._matchActors) {
+            if (!this._matchUsed[sig]) {
+                this._matchActors[sig].destroy();
+                delete this._matchActors[sig];
+            }
+        }
+    },
+
     _appendGroupedMatches: function (parent, matches) {
         let lastKey = null;
         for (let i = 0; i < matches.length; i++) {
@@ -774,7 +1112,7 @@ TennisTodayDesklet.prototype = {
                 parent.add_child(this._buildTournamentHeader(m));
                 lastKey = key;
             }
-            parent.add_child(this._buildMatch(m));
+            parent.add_child(this._matchActor(m));
         }
     },
 
@@ -793,6 +1131,10 @@ TennisTodayDesklet.prototype = {
             tourClass = "lt-tour-atp";
         } else if (match.tour === "WTA") {
             tourClass = "lt-tour-wta";
+        }
+        if (match.tier && badge !== "Grand Slam") {
+            // "ATP500" rather than "ATP 500": the tag is the cheapest place for the level.
+            badgeText = match.tour + (/^\d+$/.test(match.tier) ? "" : " ") + match.tier;
         }
         row.add_child(this._label(badgeText, "lt-tour-badge " + tourClass));
         let name = match.tournament;
@@ -833,9 +1175,7 @@ TennisTodayDesklet.prototype = {
         }
 
         let live = match.status === "Live";
-        let showPoints = live && match.teams.some(function (t) {
-            return !!t.points;
-        });
+        let showPoints = live && this._showPoints;
         for (let i = 0; i < match.teams.length; i++) {
             box.add_child(this._buildTeamRow(match.teams[i], maxSets, live, showPoints));
         }
@@ -846,13 +1186,20 @@ TennisTodayDesklet.prototype = {
         } else if (match.status === "Finished") {
             statusClass = "lt-status-finished";
         }
-        let statusText = _("Finished");
+        let statusText = match.endNote
+            // Translators: %s is how the match ended, e.g. "Finished · Retired".
+            ? _("Finished · %s").format(match.endNote)
+            : _("Finished");
         if (match.status === "Live") {
             let liveBit = _liveSummary(match.summary, maxSets);
             // Translators: %s is the current set, e.g. "LIVE · Set 3".
             statusText = liveBit ? _("LIVE · %s").format(liveBit) : _("LIVE");
         } else if (match.status === "Upcoming") {
             statusText = _formatMatchTime(match.startMs) || match.summary || _("Upcoming");
+            if (!isNaN(match.startMs) && _localYmd(match.startMs) !== _localYmd(Date.now()) && match.startMs > Date.now()) {
+                // Translators: %s is a start time, e.g. "Tomorrow · 6:30 AM EDT".
+                statusText = _("Tomorrow · %s").format(statusText);
+            }
         }
         box.add_child(this._label(statusText, statusClass));
 
@@ -975,33 +1322,19 @@ TennisTodayDesklet.prototype = {
         }
         let seconds = Math.max(MIN_REFRESH_SECONDS, parseInt(this.refreshSeconds, 10) || 60);
         this._timer = Mainloop.timeout_add_seconds(seconds, () => {
+            if (this._fetching && this._fetchStartedAt && (Date.now() - this._fetchStartedAt > FETCH_WATCHDOG_MS)) {
+                global.logError(UUID + " fetch stuck for " + Math.round((Date.now() - this._fetchStartedAt) / 1000) + "s, resetting");
+                this._fetching = false;
+            }
             this._fetch();
             return GLib.SOURCE_CONTINUE;
         });
     },
 
-    _toggledLeagues: function () {
-        let leagues = [];
-        if (this.enableAtp || this.enableGrandSlam) {
-            leagues.push("atp");
-        }
-        if (this.enableWta || this.enableGrandSlam) {
-            leagues.push("wta");
-        }
-        return leagues;
-    },
-
     _headerUrls: function () {
-        // ESPN header API returns WTA or ATP separately; need both URLs to get both tours.
-        // WTA header is ~64KB, ATP header is ~14KB. Grand Slam upcoming comes from dated core.
-        let urls = [];
-        if (this.enableWta) {
-            urls.push(ESPN_URL);
-        }
-        if (this.enableAtp || this.enableGrandSlam) {
-            urls.push(ESPN_URL + "&league=atp");
-        }
-        return urls;
+        // ESPN's header feed is only used to enrich LiveScore matches with
+        // seeds, rounds, courts and countries, so both tours are always read.
+        return [ESPN_URL, ESPN_URL + "&league=atp"];
     },
 
     _fetchHeaders: function (done) {
@@ -1025,85 +1358,6 @@ TennisTodayDesklet.prototype = {
         }
     },
 
-    _compLink: function (c) {
-        let links = (c && c.links) || [];
-        for (let i = 0; i < links.length; i++) {
-            let rel = links[i].rel || [];
-            let href = links[i].href || "";
-            if (rel.indexOf("desktop") !== -1 && _safeLink(href)) {
-                return href;
-            }
-        }
-        return _safeLink(links[0] && links[0].href);
-    },
-
-    _matchFromStub: function (stub, locToName, eventNames, status, summary) {
-        let c = stub.comp;
-        let location = (c.venue && c.venue.address && c.venue.address.summary) || "";
-        let tournament = eventNames[stub.eventId] || locToName[location] || location || _("Tournament");
-        if (!this._matchTourEnabled(stub.league, tournament)) {
-            return null;
-        }
-        let slug = (c.type && c.type.slug) || "";
-        let eventType = (c.type && c.type.text) || "";
-        let competitors = (c.competitors || []).slice();
-        competitors.sort(function (a, b) {
-            return (a.order || 0) - (b.order || 0);
-        });
-        let slam = _isGrandSlam(tournament);
-        let countryById = this._countryById;
-        return {
-            id: String(c.id || ""),
-            tour: stub.league === "wta" ? "WTA" : "ATP",
-            isGrandSlam: slam,
-            badge: slam ? "Grand Slam" : (stub.league === "wta" ? "WTA" : "ATP"),
-            tournament: tournament,
-            location: location,
-            roundName: _roundFromComp(c),
-            courtName: _courtFromComp(c),
-            eventType: eventType,
-            status: status,
-            statusCode: status === "Upcoming" ? "pre" : "",
-            summary: summary || "",
-            leadText: "",
-            teams: competitors.map(function (p) {
-                return {
-                    name: p.name || _("TBD"),
-                    seed: p.tournamentSeed || null,
-                    athleteId: String(p.id || ""),
-                    athleteRef: p.athlete && p.athlete.$ref ? p.athlete.$ref : "",
-                    country: (p.id && countryById[p.id]) || "",
-                    score: "",
-                    points: "",
-                    linescores: [],
-                    serving: false,
-                    winner: !!p.winner,
-                    isDoubles: p.type === "team" || /doubles/i.test(slug)
-                };
-            }),
-            isDoubles: /doubles/i.test(slug) || /doubles/i.test(eventType),
-            recent: false,
-            link: this._compLink(c),
-            start: c.date || "",
-            startMs: c.date ? Date.parse(c.date) : NaN,
-            isToday: _etYmd(c.date ? Date.parse(c.date) : NaN) === _etYmd(Date.now())
-        };
-    },
-
-    _eventWanted: function (league, eventId, eventNames) {
-        let name = eventNames[eventId] || "";
-        if (league === "atp" && this.enableAtp) {
-            return true;
-        }
-        if (league === "wta" && this.enableWta) {
-            return true;
-        }
-        if (this.enableGrandSlam && (!name || _isGrandSlam(name))) {
-            return true;
-        }
-        return false;
-    },
-
     _matchTourEnabled: function (league, tournament) {
         if (_isGrandSlam(tournament) && this.enableGrandSlam) {
             return true;
@@ -1114,386 +1368,387 @@ TennisTodayDesklet.prototype = {
         return !!this.enableAtp;
     },
 
-    _etDateList: function () {
-        let today = _etCompact(Date.now());
-        let yest = _etCompact(Date.now() - 24 * 3600 * 1000);
-        if (yest && yest !== today) {
-            return [yest, today];
-        }
-        return [today];
-    },
-
-    _mapsFromHeader: function (headerMatches) {
-        let locToName = Object.assign({}, this._stubLoc);
-        let eventNames = Object.assign({}, this._stubEvents);
-        for (let i = 0; i < (headerMatches || []).length; i++) {
-            let m = headerMatches[i];
-            if (m.location && m.tournament) {
-                locToName[m.location] = m.tournament;
-            }
-            if (m.id && m.tournament) {
-                eventNames[m.id] = m.tournament;
+    _fetchLivescore: function (force, done) {
+        let now = Date.now();
+        let todayKey = _utcCompact(now);
+        let days = [-1, 0, 1].map(function (d) {
+            return _utcCompact(now + d * 24 * 3600 * 1000);
+        });
+        for (let k in this._lsDays) {
+            if (days.indexOf(k) === -1) {
+                delete this._lsDays[k];
+                delete this._lsDayAt[k];
             }
         }
-        return { locToName: locToName, eventNames: eventNames };
-    },
-
-    _fetchDatedBoard: function (headerMatches, done, force) {
-        let maps = this._mapsFromHeader(headerMatches);
-        let locToName = maps.locToName;
-        let eventNames = maps.eventNames;
-        let listsFresh = !force && this._stubCache.length
-            && (Date.now() - this._lastListAt < LIST_INTERVAL_MS);
-        if (listsFresh) {
-            this._hydrateStubs(this._stubCache, locToName, eventNames, headerMatches, done);
-            return;
-        }
-        let leagues = this._toggledLeagues();
-        if (!leagues.length) {
-            done([]);
-            return;
-        }
-        let dates = this._etDateList();
-        let listsLeft = leagues.length * dates.length;
-        let stubs = [];
-        let finishLists = () => {
-            listsLeft -= 1;
-            if (listsLeft > 0) {
-                return;
-            }
-            this._stubCache = stubs;
-            this._stubLoc = locToName;
-            this._stubEvents = eventNames;
-            this._lastListAt = Date.now();
-            this._hydrateStubs(stubs, locToName, eventNames, headerMatches, done);
-        };
-        for (let l = 0; l < leagues.length; l++) {
-            for (let d = 0; d < dates.length; d++) {
-                let league = leagues[l];
-                let day = dates[d];
-                // Dated event lists are a few hundred bytes. Do not GET /events/{id}:
-                // that resource inlines the whole tournament (~1MB).
-                this._fetchJson(ESPN_CORE + "/" + league + "/events?dates=" + day + "&limit=20", (json) => {
-                    let items = (json && json.items) || [];
-                    let ids = [];
-                    let seen = {};
-                    for (let n = 0; n < items.length; n++) {
-                        let id = _eventIdFromRef(items[n].$ref || items[n]);
-                        if (!id || seen[id] || !this._eventWanted(league, id, eventNames)) {
-                            continue;
-                        }
-                        seen[id] = true;
-                        ids.push(id);
-                    }
-                    if (!ids.length) {
-                        finishLists();
-                        return;
-                    }
-                    listsLeft += ids.length;
-                    finishLists();
-                    for (let x = 0; x < ids.length; x++) {
-                        this._fetchJson(
-                            ESPN_CORE + "/" + league + "/events/" + ids[x] + "/competitions?dates=" + day + "&limit=50",
-                            (cjson) => {
-                                let comps = (cjson && cjson.items) || [];
-                                for (let c = 0; c < comps.length; c++) {
-                                    stubs.push({ league: league, eventId: ids[x], comp: comps[c] });
-                                }
-                                finishLists();
-                            }
-                        );
-                    }
+        // The live feed is tiny and carries every score and point, so it is read
+        // each refresh. The ~60 KB day feeds only matter when a match starts or
+        // finishes (the live set changes) or a schedule shifts (they age).
+        this._fetchJson(LIVESCORE_URL + "/live/tennis/0?MD=1", (json) => {
+            let ok = !!(json && json.Stages);
+            this._lsLive = ok ? _slimLivescore(json) : null;
+            let key = "";
+            if (ok) {
+                this._lsLive.Stages.forEach(function (st) {
+                    st.Events.forEach(function (ev) {
+                        key += ev.Eid + ",";
+                    });
                 });
             }
-        }
-    },
-
-    _hydrateStubs: function (stubs, locToName, eventNames, headerMatches, done) {
-        let now = Date.now();
-        let todayEt = _etYmd(now);
-        let headerByPair = {};
-        for (let h = 0; h < (headerMatches || []).length; h++) {
-            let m = headerMatches[h];
-            let names = (m.teams || []).map(function (t) { return t.name || ""; });
-            headerByPair[_pairKeyFromNames(names)] = m;
-        }
-        let wanted = [];
-        let upcoming = [];
-        let reused = [];
-        for (let i = 0; i < stubs.length; i++) {
-            let stub = stubs[i];
-            let c = stub.comp;
-            let slug = ((c.type && c.type.slug) || "") + " " + ((c.type && c.type.text) || "");
-            if (!this.showDoubles && /doubles/i.test(slug)) {
-                continue;
-            }
-            let tName = eventNames[stub.eventId] || "";
-            if (tName && !this._matchTourEnabled(stub.league, tName)) {
-                continue;
-            }
-            let startMs = c.date ? Date.parse(c.date) : NaN;
-            let names = (c.competitors || []).map(function (p) { return p.name || ""; });
-            let headerHit = headerByPair[_pairKeyFromNames(names)];
-            if (headerHit) {
-                if (headerHit.status === "Finished") {
-                    continue;
-                }
-                if (headerHit.status === "Upcoming" && (isNaN(startMs) || startMs > now)) {
-                    continue;
+            let liveChanged = !ok || key !== this._lsLiveKey;
+            this._lsLiveKey = key;
+            let jobs = [];
+            for (let i = 0; i < days.length; i++) {
+                let day = days[i];
+                let aged = !this._lsDays[day] || now - this._lsDayAt[day] > LIST_INTERVAL_MS;
+                if (force || aged || (liveChanged && day === todayKey)) {
+                    jobs.push(day);
                 }
             }
-            let cid = String(c.id || "");
-            if (cid && this._finishedById[cid]) {
-                reused.push(this._finishedById[cid]);
-                continue;
-            }
-            if (!isNaN(startMs) && startMs > now) {
-                if (_etYmd(startMs) === todayEt) {
-                    let up = this._matchFromStub(stub, locToName, eventNames, "Upcoming", "");
-                    if (up) {
-                        upcoming.push(up);
-                    }
-                }
-                continue;
-            }
-            wanted.push(stub);
-        }
-        let finishAll = (scored) => {
-            done((scored || []).concat(reused).concat(upcoming));
-        };
-        if (!wanted.length) {
-            finishAll([]);
-            return;
-        }
-        let left = wanted.length;
-        let stated = [];
-        let finishStatus = () => {
-            left -= 1;
-            if (left > 0) {
+            if (!jobs.length) {
+                done();
                 return;
             }
-            let live = [];
-            let finished = [];
-            let stillUpcoming = [];
-            for (let s = 0; s < stated.length; s++) {
-                if (stated[s].state === "in") {
-                    live.push(stated[s]);
-                } else if (stated[s].state === "post") {
-                    finished.push(stated[s]);
-                } else if (stated[s].state === "pre") {
-                    let up = this._matchFromStub(stated[s].stub, locToName, eventNames, "Upcoming", "");
-                    if (up) {
-                        let names = (up.teams || []).map(function (t) { return t.name || ""; });
-                        let headerHit = headerByPair[_pairKeyFromNames(names)];
-                        if (headerHit && headerHit.startMs) {
-                            up.startMs = headerHit.startMs;
-                            up.start = headerHit.start || up.start;
+            let left = jobs.length;
+            for (let j = 0; j < jobs.length; j++) {
+                let day = jobs[j];
+                this._fetchJson(LIVESCORE_URL + "/date/tennis/" + day + "/0?MD=1", (dayJson) => {
+                    if (dayJson && dayJson.Stages) {
+                        this._lsDays[day] = _slimLivescore(dayJson);
+                        this._lsDayAt[day] = Date.now();
+                    }
+                    left -= 1;
+                    if (left <= 0) {
+                        done();
+                    }
+                }, true);
+            }
+        }, true);
+    },
+
+    _lsLink: function (stage, ev) {
+        let base = "https://www.livescore.com/en/tennis/" + stage.Ccd + "/" + stage.Scd + "/";
+        let t1 = ev.T1 || [];
+        let t2 = ev.T2 || [];
+        if (t1.length !== 1 || t2.length !== 1) {
+            return base;
+        }
+        return base + _slug(t1[0].Nm) + "-vs-" + _slug(t2[0].Nm) + "/" + ev.Eid + "/";
+    },
+
+    _lsTeams: function (ev, status) {
+        let sets = 0;
+        while (ev["Tr1S" + (sets + 1)] !== undefined && ev["Tr2S" + (sets + 1)] !== undefined) {
+            sets += 1;
+        }
+        let serverSide = parseInt(ev.Esrv, 10) || 0;
+        let winSide = parseInt(ev.Ewt, 10) || 0;
+        let teams = [];
+        for (let side = 1; side <= 2; side++) {
+            let players = ev["T" + side] || [];
+            let lines = [];
+            for (let n = 1; n <= sets; n++) {
+                lines.push({
+                    value: Number(ev["Tr" + side + "S" + n]),
+                    tiebreak: ev["Tr" + side + "S" + n + "T"] || null,
+                    winner: false
+                });
+            }
+            teams.push({
+                name: players.map(function (pl) { return pl.Nm; }).join(" / ") || _("TBD"),
+                names: players.map(function (pl) { return pl.Nm; }),
+                seed: null,
+                athleteId: players.map(function (pl) { return pl.ID; }).join("|"),
+                country: "",
+                score: "",
+                points: status === "Live" ? _formatPoints(ev["Tr" + side + "G"]) : "",
+                linescores: lines,
+                serving: status === "Live" && serverSide === side,
+                winner: status === "Finished" && winSide === side,
+                isDoubles: players.length > 1
+            });
+        }
+        return teams;
+    },
+
+    _lsMatch: function (stage, ev, now) {
+        let level = String(stage.Cnm || "");
+        let stageName = String(stage.Snm || "");
+        let info = _lsStageInfo(stage);
+        if (!info) {
+            return null;
+        }
+        let slam = info.slam;
+        let tour = info.tour;
+
+        let eps = String(ev.Eps || "");
+        let status;
+        if (LS_LIVE_RE.test(eps)) {
+            status = "Live";
+        } else if (LS_DONE_RE.test(eps)) {
+            status = "Finished";
+        } else if (eps === "NS") {
+            status = "Upcoming";
+        } else {
+            return null;
+        }
+        let startMs = _lsTime(ev.Esd);
+        if (status === "Upcoming" && !isNaN(startMs) && now - startMs > LS_STALE_UPCOMING_MS) {
+            return null;
+        }
+        let t1 = ev.T1 || [];
+        let t2 = ev.T2 || [];
+        if (!t1.length || !t2.length) {
+            return null;
+        }
+        let teams = this._lsTeams(ev, status);
+        let isDoubles = t1.length > 1;
+        let name = slam ? level : stageName;
+        let sets = teams[0].linescores.length;
+        let period = /^S\d$/.test(eps) ? parseInt(eps.substring(1), 10) : sets;
+        let endNote = "";
+        if (eps === "Ret.") {
+            endNote = _("Retired");
+        } else if (eps === "W.O.") {
+            endNote = _("Walkover");
+        }
+        let eventType = slam
+            ? stageName
+            : ((tour === "WTA" ? _("Women's") : _("Men's")) + " " + (isDoubles ? _("Doubles") : _("Singles")));
+        return {
+            id: "ls" + ev.Eid,
+            compId: "ls" + ev.Eid,
+            sid: String(stage.Sid || ""),
+            tour: tour,
+            tier: slam ? "" : _tierFromLevel(level),
+            isGrandSlam: slam,
+            badge: slam ? "Grand Slam" : tour,
+            tournament: name,
+            location: "",
+            roundName: "",
+            courtName: "",
+            eventType: eventType,
+            status: status,
+            statusCode: status === "Live" ? "in" : (status === "Finished" ? "post" : "pre"),
+            summary: status === "Live" && eps !== "ToFi" ? _liveSummary("", period) : "",
+            endNote: endNote,
+            leadText: "",
+            teams: teams,
+            isDoubles: isDoubles,
+            recent: status !== "Upcoming",
+            link: this._lsLink(stage, ev),
+            start: isNaN(startMs) ? "" : new Date(startMs).toISOString(),
+            startMs: startMs,
+            isToday: _etYmd(startMs) === _etYmd(now)
+        };
+    },
+
+    _lsMatches: function (now) {
+        let byEid = {};
+        let order = [];
+        let feeds = Object.keys(this._lsDays).sort().map((k) => this._lsDays[k]);
+        // The live feed goes last so its fresher rows replace the day feeds'.
+        if (this._lsLive) {
+            feeds.push(this._lsLive);
+        }
+        for (let f = 0; f < feeds.length; f++) {
+            let stages = feeds[f].Stages || [];
+            for (let s = 0; s < stages.length; s++) {
+                let events = stages[s].Events || [];
+                for (let e = 0; e < events.length; e++) {
+                    let m = this._lsMatch(stages[s], events[e], now);
+                    let eid = events[e].Eid;
+                    if (m) {
+                        if (!byEid[eid]) {
+                            order.push(eid);
                         }
-                        stillUpcoming.push(up);
+                        byEid[eid] = m;
+                    } else if (byEid[eid]) {
+                        delete byEid[eid];
                     }
                 }
             }
-            finished.sort(function (a, b) {
-                let am = a.stub.comp.date ? Date.parse(a.stub.comp.date) : 0;
-                let bm = b.stub.comp.date ? Date.parse(b.stub.comp.date) : 0;
-                return bm - am;
-            });
-            if (!this.showCompleted) {
-                finished = [];
-            } else if (finished.length > MAX_BOARD_FINISHED) {
-                finished = finished.slice(0, MAX_BOARD_FINISHED);
+        }
+        return order.filter(function (eid) { return !!byEid[eid]; }).map(function (eid) {
+            return byEid[eid];
+        });
+    },
+
+    // ESPN knows the seeds, rounds, courts and countries LiveScore lacks. Read
+    // them from its header feed, remembering what each match once had because
+    // ESPN drops finished matches from the feed sooner than we stop showing them.
+    _enrich: function (matches, header) {
+        let byPair = {};
+        let bySurnames = {};
+        for (let i = 0; i < (header || []).length; i++) {
+            let h = header[i];
+            if (_isPlaceholderMatch((h.teams || []).map(function (t) { return { name: t.name, id: t.athleteId }; }))) {
+                continue;
             }
-            let keep = live.concat(finished);
-            if (!keep.length) {
-                finishAll(stillUpcoming);
-                return;
-            }
-            this._hydrateScores(keep, locToName, eventNames, (scored) => {
-                finishAll((scored || []).concat(stillUpcoming));
-            });
-        };
-        for (let w = 0; w < wanted.length; w++) {
-            this._readStatus(wanted[w], (row) => {
-                if (row) {
-                    stated.push(row);
+            let teams = h.teams || [];
+            let info = {
+                tournament: h.tournament,
+                location: h.location,
+                roundName: h.roundName,
+                courtName: h.courtName,
+                players: []
+            };
+            if (!h.isDoubles) {
+                for (let t = 0; t < teams.length; t++) {
+                    info.players.push({
+                        key: _nameKey(teams[t].name),
+                        sur: _surnameKey(teams[t].name),
+                        seed: teams[t].seed,
+                        country: teams[t].country
+                    });
                 }
-                finishStatus();
-            });
+            }
+            let keys = teams.map(function (t) { return _teamKey(String(t.name || "").split("/")); });
+            byPair[_pairKey(keys)] = info;
+            if (!h.isDoubles) {
+                bySurnames[_pairKey(teams.map(function (t) { return _surnameKey(t.name); }))] = info;
+            }
+        }
+
+        let seen = {};
+        for (let i = 0; i < matches.length; i++) {
+            let m = matches[i];
+            seen[m.id] = true;
+            let keys = m.teams.map(function (t) { return _teamKey(t.names); });
+            let info = byPair[_pairKey(keys)];
+            if (!info && !m.isDoubles) {
+                info = bySurnames[_pairKey(m.teams.map(function (t) { return _surnameKey(t.names[0]); }))];
+            }
+            if (info) {
+                this._enrichByEid[m.id] = info;
+                if (info.tournament) {
+                    this._tourInfo[m.sid] = { name: info.tournament, location: info.location };
+                }
+                for (let p = 0; p < info.players.length; p++) {
+                    let pl = info.players[p];
+                    if (pl.country) {
+                        this._playerCountry[pl.key] = pl.country;
+                    }
+                    if (pl.seed) {
+                        this._seedByKey[m.sid + "|" + pl.key] = pl.seed;
+                    }
+                }
+            } else {
+                info = this._enrichByEid[m.id];
+            }
+            if (info) {
+                m.roundName = info.roundName || "";
+                m.courtName = info.courtName || "";
+            }
+        }
+        for (let eid in this._enrichByEid) {
+            if (!seen[eid]) {
+                delete this._enrichByEid[eid];
+            }
+        }
+        // Forget tournaments no longer on screen; keep the country cache bounded.
+        let sids = {};
+        matches.forEach(function (m) { sids[m.sid] = true; });
+        for (let k in this._seedByKey) {
+            if (!sids[k.substring(0, k.indexOf("|"))]) {
+                delete this._seedByKey[k];
+            }
+        }
+        for (let sid in this._tourInfo) {
+            if (!sids[sid]) {
+                delete this._tourInfo[sid];
+            }
+        }
+        if (Object.keys(this._playerCountry).length > 2000) {
+            this._playerCountry = {};
+        }
+        for (let i = 0; i < matches.length; i++) {
+            let m = matches[i];
+            let tour = this._tourInfo[m.sid];
+            if (tour) {
+                m.tournament = tour.name;
+                m.location = tour.location || "";
+            }
+            if (m.isDoubles) {
+                continue;
+            }
+            for (let t = 0; t < m.teams.length; t++) {
+                let key = _nameKey(m.teams[t].name);
+                m.teams[t].seed = this._seedByKey[m.sid + "|" + key] || null;
+                m.teams[t].country = this._playerCountry[key] || "";
+            }
         }
     },
 
-    _readStatus: function (stub, done) {
-        let c = stub.comp;
-        let statusRef = c.status && c.status.$ref ? _httpsRef(c.status.$ref) : "";
-        let apply = (statusObj) => {
-            let st = (statusObj && statusObj.type) || {};
-            let state = st.state || "";
-            if (!state) {
-                let winner = (c.competitors || []).some(function (p) { return p.winner; });
-                if (winner) {
-                    state = "post";
-                } else {
-                    state = "pre";
-                }
+    // Without LiveScore, fall back to what ESPN's header alone can show.
+    _fromHeader: function (header) {
+        let kept = (header || []).filter((m) => {
+            let league = m.tour === "WTA" ? "wta" : "atp";
+            if (!this._matchTourEnabled(league, m.tournament)) {
+                return false;
             }
-            if (state === "post" && st.completed === false) {
-                state = "in";
+            let players = (m.teams || []).map(function (t) {
+                return { name: t.name, id: t.athleteId };
+            });
+            return !_isPlaceholderMatch(players);
+        });
+        let seen = {};
+        let out = [];
+        for (let i = 0; i < kept.length; i++) {
+            let key = _matchKey(kept[i]);
+            if (!seen[key]) {
+                seen[key] = true;
+                out.push(kept[i]);
             }
-            if (state === "pre") {
-                done({ stub: stub, statusObj: statusObj, state: "pre" });
-                return;
-            }
-            if (state !== "in" && state !== "post") {
-                done(null);
-                return;
-            }
-            done({ stub: stub, statusObj: statusObj, state: state });
-        };
-        if (!statusRef) {
-            apply(null);
+        }
+        return out;
+    },
+
+    _fetch: function (force) {
+        if (this._fetching || !this._httpSession) {
             return;
         }
-        this._fetchJson(statusRef, apply, true);
-    },
+        this._fetching = true;
+        this._fetchStartedAt = Date.now();
 
-    _hydrateScores: function (rows, locToName, eventNames, done) {
-        let left = rows.length;
-        let out = [];
-        let finishOne = () => {
+        let left = 2;
+        let tick = () => {
             left -= 1;
             if (left <= 0) {
-                done(out);
+                this._finishFetch(this._headerCache);
             }
         };
-        for (let i = 0; i < rows.length; i++) {
-            let row = rows[i];
-            let cid = String((row.stub && row.stub.comp && row.stub.comp.id) || "");
-            if (row.state === "post" && cid && this._finishedById[cid]) {
-                out.push(this._finishedById[cid]);
-                finishOne();
-                continue;
-            }
-            this._hydrateOne(row, locToName, eventNames, (m) => {
-                if (m) {
-                    out.push(m);
-                    if (m.status === "Finished" && m.id) {
-                        this._finishedById[m.id] = m;
-                    } else if (m.status === "Live" && m.id && this._finishedById[m.id]) {
-                        delete this._finishedById[m.id];
-                    }
+        this._fetchLivescore(force, tick);
+        // Seeds, rounds and courts barely change, so ESPN's ~80 KB header is
+        // read every few minutes while scores refresh every interval.
+        if (!force && this._headerAt && Date.now() - this._headerAt < LIST_INTERVAL_MS) {
+            tick();
+        } else {
+            this._fetchHeaders((matches) => {
+                if (matches && matches.length) {
+                    this._headerCache = matches;
+                    this._headerAt = Date.now();
                 }
-                finishOne();
+                tick();
             });
         }
     },
 
-    _hydrateOne: function (row, locToName, eventNames, done) {
-        let stub = row.stub;
-        let c = stub.comp;
-        let statusObj = row.statusObj;
-        let state = row.state;
-        let competitors = (c.competitors || []).slice();
-        competitors.sort(function (a, b) {
-            return (a.order || 0) - (b.order || 0);
-        });
-        let live = state === "in";
-        let pending = Math.max(1, competitors.length) + (live ? 1 : 0);
-        let linesById = {};
-        let serverId = "";
-        let finish = () => {
-            pending -= 1;
-            if (pending > 0) {
-                return;
+    _finishFetch: function (header) {
+        this._fetching = false;
+        try {
+            let next = this._lsMatches(Date.now());
+            if (next.length) {
+                this._enrich(next, header);
+            } else {
+                next = this._fromHeader(header);
             }
-            let st = (statusObj && statusObj.type) || {};
-            let location = (c.venue && c.venue.address && c.venue.address.summary) || "";
-            let tournament = eventNames[stub.eventId] || locToName[location] || location || _("Tournament");
-            if (!this._matchTourEnabled(stub.league, tournament)) {
-                done(null);
-                return;
-            }
-            let slug = (c.type && c.type.slug) || "";
-            let eventType = (c.type && c.type.text) || "";
-            let countryById = this._countryById;
-            let teams = competitors.map(function (p) {
-                let items = (linesById[p.id] && linesById[p.id].items) || [];
-                let lines = items.map(function (ls) {
-                    return {
-                        value: ls.value,
-                        tiebreak: ls.tiebreak || ls.tieBreakScore || null,
-                        winner: false
-                    };
-                });
-                return {
-                    name: p.name || _("TBD"),
-                    seed: p.tournamentSeed || null,
-                    athleteId: String(p.id || ""),
-                    athleteRef: p.athlete && p.athlete.$ref ? p.athlete.$ref : "",
-                    country: (p.id && countryById[p.id]) || "",
-                    score: "",
-                    points: "",
-                    linescores: lines,
-                    serving: String(p.id) === String(serverId),
-                    winner: !!p.winner,
-                    isDoubles: p.type === "team" || /doubles/i.test(slug)
-                };
-            });
-            let slam = _isGrandSlam(tournament);
-            let period = (statusObj && statusObj.period) || 0;
-            for (let t = 0; t < teams.length; t++) {
-                let nlines = (teams[t].linescores || []).length;
-                if (nlines > period) {
-                    period = nlines;
-                }
-            }
-            done({
-                id: String(c.id || ""),
-                tour: stub.league === "wta" ? "WTA" : "ATP",
-                isGrandSlam: slam,
-                badge: slam ? "Grand Slam" : (stub.league === "wta" ? "WTA" : "ATP"),
-                tournament: tournament,
-                location: location,
-                roundName: _roundFromComp(c),
-                courtName: _courtFromComp(c),
-                eventType: eventType,
-                status: state === "in" ? "Live" : "Finished",
-                statusCode: state,
-                summary: _liveSummary(st.detail || st.shortDetail || st.description, period),
-                leadText: "",
-                teams: teams,
-                isDoubles: /doubles/i.test(slug) || /doubles/i.test(eventType),
-                recent: true,
-                link: this._compLink(c),
-                start: c.date || "",
-                startMs: c.date ? Date.parse(c.date) : NaN,
-                isToday: true
-            });
-        };
-        if (live) {
-            let sitRef = c.situation && c.situation.$ref
-                ? _httpsRef(c.situation.$ref)
-                : ESPN_CORE + "/" + stub.league + "/events/" + stub.eventId + "/competitions/" + c.id + "/situation";
-            this._fetchJson(sitRef, (json) => {
-                serverId = _athleteIdFromRef(json && json.server && json.server.$ref);
-                finish();
-            }, true);
-        }
-        if (!competitors.length) {
-            finish();
+            this._applyMatches(next);
             return;
+        } catch (e) {
+            this._error = _("Invalid score data");
+            global.logError(UUID + " merge error: " + e);
         }
-        for (let i = 0; i < competitors.length; i++) {
-            let p = competitors[i];
-            let lsRef = p.linescores && p.linescores.$ref ? _httpsRef(p.linescores.$ref) : "";
-            if (!lsRef) {
-                finish();
-                continue;
-            }
-            this._fetchJson(lsRef, (json) => {
-                linesById[p.id] = json;
-                finish();
-            }, live);
-        }
+        this._render();
     },
 
     _fetchJson: function (url, callback, live) {
@@ -1546,11 +1801,11 @@ TennisTodayDesklet.prototype = {
         let parts = [];
         for (let i = 0; i < matches.length; i++) {
             let m = matches[i];
-            parts.push(m.status, m.summary || "", m.tournament || "", m.roundName || "");
+            parts.push(m.status, m.summary || "", m.tournament || "", m.roundName || "", m.tier || "", m.courtName || "", m.link || "", m.endNote || "");
             let teams = m.teams || [];
             for (let t = 0; t < teams.length; t++) {
                 let tm = teams[t];
-                parts.push(tm.name || "", tm.serving ? "1" : "0", tm.winner ? "1" : "0", tm.score || "", tm.points || "", tm.country || "");
+                parts.push(tm.name || "", tm.seed || "", tm.serving ? "1" : "0", tm.winner ? "1" : "0", tm.score || "", tm.points || "", tm.country || "");
                 let lines = tm.linescores || [];
                 for (let k = 0; k < lines.length; k++) {
                     parts.push(String(lines[k].value), String(lines[k].tiebreak || ""));
@@ -1558,179 +1813,6 @@ TennisTodayDesklet.prototype = {
             }
         }
         return parts.join("\t");
-    },
-
-    _fetch: function (force) {
-        if (this._fetching || !this._httpSession) {
-            return;
-        }
-        this._fetching = true;
-
-        this._fetchHeaders((headerMatches) => {
-            this._fetchDatedBoard(headerMatches, (board) => {
-                this._boardCache = board || [];
-                this._lastBoardAt = Date.now();
-                this._finishFetch(headerMatches, this._boardCache);
-            }, force);
-        });
-    },
-
-    _finishFetch: function (header, board) {
-        this._fetching = false;
-        try {
-            header = header || [];
-            board = board || [];
-            header = header.filter((m) => {
-                let league = m.tour === "WTA" ? "wta" : "atp";
-                if (!this._matchTourEnabled(league, m.tournament)) {
-                    return false;
-                }
-                if (m.isDoubles && !this.showDoubles) {
-                    return false;
-                }
-                return true;
-            });
-            let fromBoard = [];
-            let seen = {};
-            for (let i = 0; i < board.length; i++) {
-                let key = _matchKey(board[i]);
-                if (!seen[key]) {
-                    seen[key] = true;
-                    fromBoard.push(board[i]);
-                }
-            }
-            let rest = [];
-            for (let j = 0; j < header.length; j++) {
-                if (!seen[_matchKey(header[j])]) {
-                    rest.push(header[j]);
-                }
-            }
-            let next = fromBoard.concat(rest);
-            this._applyHeaderServe(header, next);
-            this._seedCountries(header.concat(fromBoard));
-            this._fillCountries(next, (filled) => {
-                this._applyMatches(filled);
-            });
-            return;
-        } catch (e) {
-            this._error = _("Invalid score data");
-            global.logError(UUID + " merge error: " + e);
-        }
-        this._render();
-    },
-
-    _applyHeaderServe: function (header, matches) {
-        let byPair = {};
-        for (let i = 0; i < (header || []).length; i++) {
-            let m = header[i];
-            if (m.status !== "Live") {
-                continue;
-            }
-            let names = (m.teams || []).map(function (t) { return t.name || ""; });
-            byPair[_pairKeyFromNames(names)] = m;
-        }
-        for (let i = 0; i < (matches || []).length; i++) {
-            let m = matches[i];
-            if (m.status !== "Live") {
-                continue;
-            }
-            let teams = m.teams || [];
-            let hasServe = teams.some(function (t) { return t.serving; });
-            if (hasServe) {
-                continue;
-            }
-            let names = teams.map(function (t) { return t.name || ""; });
-            let h = byPair[_pairKeyFromNames(names)];
-            if (!h) {
-                continue;
-            }
-            let hTeams = h.teams || [];
-            for (let t = 0; t < teams.length; t++) {
-                let key = _nameKey(teams[t].name);
-                for (let n = 0; n < hTeams.length; n++) {
-                    if (hTeams[n].serving && _nameKey(hTeams[n].name) === key) {
-                        teams[t].serving = true;
-                    }
-                }
-            }
-        }
-    },
-
-    _seedCountries: function (matches) {
-        for (let i = 0; i < (matches || []).length; i++) {
-            let teams = matches[i].teams || [];
-            for (let t = 0; t < teams.length; t++) {
-                let tm = teams[t];
-                if (tm.athleteId && tm.country) {
-                    this._countryById[tm.athleteId] = tm.country;
-                }
-            }
-        }
-    },
-
-    _countryFromAthlete: function (json) {
-        if (!json) {
-            return "";
-        }
-        let abbr = json.citizenshipCountry && json.citizenshipCountry.abbreviation;
-        if (abbr) {
-            return String(abbr).toUpperCase();
-        }
-        return _countryFromLogo(json.flag && json.flag.href);
-    },
-
-    _fetchAthleteCountry: function (id, ref, done) {
-        if (!id) {
-            done("");
-            return;
-        }
-        if (this._countryById[id] !== undefined) {
-            done(this._countryById[id]);
-            return;
-        }
-        if (!this._countryPending[id]) {
-            this._countryPending[id] = [];
-            let url = ref || ("https://sports.core.api.espn.com/v2/sports/tennis/athletes/" + id);
-            this._fetchJson(_httpsRef(url), (json) => {
-                let cc = this._countryFromAthlete(json);
-                this._countryById[id] = cc;
-                let wait = this._countryPending[id] || [];
-                delete this._countryPending[id];
-                for (let i = 0; i < wait.length; i++) {
-                    wait[i](cc);
-                }
-            });
-        }
-        this._countryPending[id].push(done);
-    },
-
-    _fillCountries: function (matches, done) {
-        let left = 1;
-        let tick = () => {
-            left -= 1;
-            if (left <= 0) {
-                done(matches);
-            }
-        };
-        for (let i = 0; i < (matches || []).length; i++) {
-            let teams = matches[i].teams || [];
-            for (let t = 0; t < teams.length; t++) {
-                let tm = teams[t];
-                if (tm.country || tm.isDoubles || !tm.athleteId) {
-                    continue;
-                }
-                if (this._countryById[tm.athleteId] !== undefined) {
-                    tm.country = this._countryById[tm.athleteId];
-                    continue;
-                }
-                left += 1;
-                this._fetchAthleteCountry(tm.athleteId, tm.athleteRef, (cc) => {
-                    tm.country = cc;
-                    tick();
-                });
-            }
-        }
-        tick();
     },
 
     _applyMatches: function (next) {
@@ -1753,6 +1835,27 @@ TennisTodayDesklet.prototype = {
 
     on_desklet_removed: function () {
         this._destroyed = true;
+        this._dropScrollRestore();
+        if (this.actor) {
+            for (let i = 0; i < this._actorSignals.length; i++) {
+                this.actor.disconnect(this._actorSignals[i]);
+            }
+        }
+        this._actorSignals = [];
+        if (this._draggable) {
+            for (let i = 0; i < this._dragSignals.length; i++) {
+                this._draggable.disconnect(this._dragSignals[i]);
+            }
+        }
+        this._dragSignals = [];
+        if (this._moveTimer) {
+            Mainloop.source_remove(this._moveTimer);
+            this._moveTimer = null;
+        }
+        if (this._renderTimer) {
+            Mainloop.source_remove(this._renderTimer);
+            this._renderTimer = null;
+        }
         if (this._timer) {
             Mainloop.source_remove(this._timer);
             this._timer = null;
@@ -1772,6 +1875,7 @@ TennisTodayDesklet.prototype = {
             this.settings.finalize();
             this.settings = null;
         }
+        this._matchActors = {};
         this._root = null;
     }
 };

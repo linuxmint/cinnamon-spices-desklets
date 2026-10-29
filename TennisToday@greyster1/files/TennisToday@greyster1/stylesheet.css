@@ -169,17 +169,15 @@
 .lt-points-cell {
     width: 36px;
     min-width: 36px;
-    margin-left: 8px;
+    margin-left: 6px;
     padding: 1px 4px;
-    border-radius: 4px;
-    background-color: rgba(201, 227, 138, 0.16);
-    border: 1px solid rgba(201, 227, 138, 0.45);
+    border-radius: 3px;
+    background-color: rgba(201, 227, 138, 0.07);
 }
 
 .lt-points {
-    color: #eaffb0;
-    font-size: 11pt;
-    font-weight: bold;
+    color: #b9cf8a;
+    font-size: 10pt;
 }
 
 .lt-score-box {

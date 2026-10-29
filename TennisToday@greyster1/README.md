@@ -5,7 +5,11 @@ matches on the Cinnamon desktop.
 
 ![TennisToday](screenshot.png)
 
-Scores come from ESPN's public tennis scoreboard.
+Matches, scores, tournament level, live game points and the server come from
+LiveScore's public feed. ESPN's public scoreboard adds seeds, rounds, courts,
+countries and the full tournament name, matched to LiveScore by player names.
+If ESPN is unreachable those details are simply missing; if LiveScore is
+unreachable the desklet falls back to ESPN alone, without levels or points.
 
 ## Features
 
@@ -13,9 +17,10 @@ Scores come from ESPN's public tennis scoreboard.
   marker showing who is serving
 - Today's upcoming matches with start times in your local timezone
 - Recently completed matches, with the winner of each set highlighted
+- Tournament level in the tag (ATP500, WTA250, WTA125, ...)
 - Matches grouped by tournament, with round and court name where ESPN provides
   them
-- Click a match to open it on ESPN
+- Click a match to open it on LiveScore
 
 ## Settings
 
@@ -24,6 +29,9 @@ Scores come from ESPN's public tennis scoreboard.
 - *Show ATP* / *Show WTA* / *Show Grand Slam* — pick which tours to display
 - *Show doubles* — include doubles matches
 - *Refresh interval* — how often to poll for new scores
+
+**Tournament level** — show or hide 1000 (and Finals), 500, 250, and
+125 and other events. Grand Slams are controlled by *Show Grand Slam*.
 
 **Display**
 
