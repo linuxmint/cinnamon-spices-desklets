@@ -1,0 +1,175 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "page-tours",
+            "page-display"
+        ],
+        "page-tours": {
+            "type": "page",
+            "title": "Tours",
+            "sections": [
+                "section-tours",
+                "section-levels",
+                "section-refresh"
+            ]
+        },
+        "page-display": {
+            "type": "page",
+            "title": "Display",
+            "sections": [
+                "section-matches",
+                "section-layout"
+            ]
+        },
+        "section-tours": {
+            "type": "section",
+            "title": "Tours",
+            "keys": [
+                "enable-atp",
+                "enable-wta",
+                "enable-grand-slam",
+                "show-doubles"
+            ]
+        },
+        "section-levels": {
+            "type": "section",
+            "title": "Tournament level",
+            "keys": [
+                "show-tier-1000",
+                "show-tier-500",
+                "show-tier-250",
+                "show-tier-other"
+            ]
+        },
+        "section-refresh": {
+            "type": "section",
+            "title": "Updates",
+            "keys": [
+                "refresh-seconds"
+            ]
+        },
+        "section-matches": {
+            "type": "section",
+            "title": "Matches",
+            "keys": [
+                "max-live",
+                "show-upcoming",
+                "max-upcoming",
+                "show-completed",
+                "max-completed"
+            ]
+        },
+        "section-layout": {
+            "type": "section",
+            "title": "Layout",
+            "keys": [
+                "desklet-width",
+                "max-height"
+            ]
+        }
+    },
+    "enable-atp": {
+        "type": "switch",
+        "default": true,
+        "description": "Show ATP matches"
+    },
+    "enable-wta": {
+        "type": "switch",
+        "default": true,
+        "description": "Show WTA matches"
+    },
+    "enable-grand-slam": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Grand Slam"
+    },
+    "show-doubles": {
+        "type": "switch",
+        "default": true,
+        "description": "Show doubles"
+    },
+    "show-tier-1000": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 1000 and Finals"
+    },
+    "show-tier-500": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 500"
+    },
+    "show-tier-250": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 250"
+    },
+    "show-tier-other": {
+        "type": "switch",
+        "default": true,
+        "description": "Show 125 and other events"
+    },
+    "refresh-seconds": {
+        "type": "spinbutton",
+        "default": 60,
+        "min": 30,
+        "max": 600,
+        "step": 5,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "show-completed": {
+        "type": "switch",
+        "default": true,
+        "description": "Show recently finished matches"
+    },
+    "max-completed": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "description": "Max finished matches (last 24 hours)",
+        "dependency": "show-completed"
+    },
+    "show-upcoming": {
+        "type": "switch",
+        "default": true,
+        "description": "Show upcoming matches (next 24 hours)"
+    },
+    "max-upcoming": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "description": "Max upcoming matches",
+        "dependency": "show-upcoming"
+    },
+    "max-live": {
+        "type": "spinbutton",
+        "default": 40,
+        "min": 1,
+        "max": 100,
+        "step": 1,
+        "description": "Max live matches"
+    },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 420,
+        "min": 280,
+        "max": 800,
+        "step": 10,
+        "units": "px",
+        "description": "Minimum width (grows to fit scores)"
+    },
+    "max-height": {
+        "type": "spinbutton",
+        "default": 720,
+        "min": 240,
+        "max": 1000,
+        "step": 20,
+        "units": "px",
+        "description": "Max height"
+    }
+}

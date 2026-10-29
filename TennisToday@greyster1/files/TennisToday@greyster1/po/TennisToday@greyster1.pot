@@ -1,0 +1,187 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-09-21 23:36-0600\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "TBD"
+msgstr ""
+
+#, javascript-format
+msgid "Set %d"
+msgstr ""
+
+msgid "TennisToday"
+msgstr ""
+
+msgid "Refresh now"
+msgstr ""
+
+msgid "Open ESPN scoreboard"
+msgstr ""
+
+msgid "LIVE"
+msgstr ""
+
+msgid "Upcoming"
+msgstr ""
+
+msgid "Recently finished"
+msgstr ""
+
+msgid "No matches to show"
+msgstr ""
+
+msgid "Updating…"
+msgstr ""
+
+#, javascript-format
+msgid "Updated %s"
+msgstr ""
+
+msgid "Waiting for scores"
+msgstr ""
+
+msgid "Grand Slam"
+msgstr ""
+
+#, javascript-format
+msgid "Finished · %s"
+msgstr ""
+
+msgid "Finished"
+msgstr ""
+
+#, javascript-format
+msgid "LIVE · %s"
+msgstr ""
+
+#, javascript-format
+msgid "Tomorrow · %s"
+msgstr ""
+
+msgid "Retired"
+msgstr ""
+
+msgid "Walkover"
+msgstr ""
+
+msgid "Women's"
+msgstr ""
+
+msgid "Men's"
+msgstr ""
+
+msgid "Doubles"
+msgstr ""
+
+msgid "Singles"
+msgstr ""
+
+msgid "Invalid score data"
+msgstr ""
+
+msgid "Could not fetch scores"
+msgstr ""
+
+#. settings-schema.json->layout->page-tours->title
+#. settings-schema.json->layout->section-tours->title
+msgid "Tours"
+msgstr ""
+
+#. settings-schema.json->layout->page-display->title
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->layout->section-levels->title
+msgid "Tournament level"
+msgstr ""
+
+#. settings-schema.json->layout->section-refresh->title
+msgid "Updates"
+msgstr ""
+
+#. settings-schema.json->layout->section-matches->title
+msgid "Matches"
+msgstr ""
+
+#. settings-schema.json->layout->section-layout->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->enable-atp->description
+msgid "Show ATP matches"
+msgstr ""
+
+#. settings-schema.json->enable-wta->description
+msgid "Show WTA matches"
+msgstr ""
+
+#. settings-schema.json->enable-grand-slam->description
+msgid "Show Grand Slam"
+msgstr ""
+
+#. settings-schema.json->show-doubles->description
+msgid "Show doubles"
+msgstr ""
+
+#. settings-schema.json->show-tier-1000->description
+msgid "Show 1000 and Finals"
+msgstr ""
+
+#. settings-schema.json->show-tier-500->description
+msgid "Show 500"
+msgstr ""
+
+#. settings-schema.json->show-tier-250->description
+msgid "Show 250"
+msgstr ""
+
+#. settings-schema.json->show-tier-other->description
+msgid "Show 125 and other events"
+msgstr ""
+
+#. settings-schema.json->refresh-seconds->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->show-completed->description
+msgid "Show recently finished matches"
+msgstr ""
+
+#. settings-schema.json->max-completed->description
+msgid "Max finished matches (last 24 hours)"
+msgstr ""
+
+#. settings-schema.json->show-upcoming->description
+msgid "Show upcoming matches (next 24 hours)"
+msgstr ""
+
+#. settings-schema.json->max-upcoming->description
+msgid "Max upcoming matches"
+msgstr ""
+
+#. settings-schema.json->max-live->description
+msgid "Max live matches"
+msgstr ""
+
+#. settings-schema.json->desklet-width->description
+msgid "Minimum width (grows to fit scores)"
+msgstr ""
+
+#. settings-schema.json->max-height->description
+msgid "Max height"
+msgstr ""
