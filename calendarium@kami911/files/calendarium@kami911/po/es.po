@@ -329,6 +329,10 @@ msgstr "Fecha islámica"
 msgid "Persian date"
 msgstr "Fecha persa"
 
+#. desklet.js:1295
+msgid "French Republican date"
+msgstr "Fecha republicana francesa"
+
 #. metadata.json->name
 msgid "Calendarium"
 msgstr "Calendarium"
@@ -888,6 +892,22 @@ msgstr "Opacidad del fondo"
 msgid "0 = fully transparent (wallpaper shows through), 1 = solid black background"
 msgstr "0 = totalmente transparente (se ve el fondo de pantalla), 1 = fondo negro liso"
 
+#. settings-schema.json->monochrome-mode->description
+msgid "Monochrome mode"
+msgstr "Modo monocromo"
+
+#. settings-schema.json->monochrome-mode->tooltip
+msgid "Show all text in shades of a single colour instead of the multicoloured default. Emoji symbols turn grey."
+msgstr "Muestra todo el texto en tonos de un solo color en lugar del multicolor predeterminado. Los emojis se vuelven grises."
+
+#. settings-schema.json->monochrome-color->description
+msgid "Monochrome base colour"
+msgstr "Color base monocromo"
+
+#. settings-schema.json->monochrome-color->tooltip
+msgid "Most important lines use this colour at full strength; less important lines are progressively dimmer."
+msgstr "Las líneas más importantes usan este color a plena intensidad; las menos importantes se atenúan progresivamente."
+
 #. settings-schema.json->show-julian->description
 msgid "Show Julian calendar date"
 msgstr "Mostrar fecha del calendario juliano"
@@ -903,3 +923,11 @@ msgstr "Mostrar fecha del calendario islámico"
 #. settings-schema.json->show-persian->description
 msgid "Show Persian calendar date"
 msgstr "Mostrar fecha del calendario persa"
+
+#. settings-schema.json->show-french-republican->description
+msgid "Show French Republican calendar date"
+msgstr "Mostrar fecha del calendario republicano francés"
+
+#. settings-schema.json->show-french-republican->tooltip
+msgid "Equinox-based (the historically accurate rule): each Republican year begins at the true autumnal equinox, so 5 or 6 intercalary days fall out naturally rather than from a fixed leap-year formula."
+msgstr "Basado en el equinoccio (la regla históricamente precisa): cada año republicano comienza en el equinoccio de otoño real, por lo que los 5 o 6 días adicionales surgen de forma natural, no de una fórmula fija de año bisiesto."
