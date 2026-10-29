@@ -1,0 +1,136 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: calculator@scollins 2.1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: 2026-10-21 16:14+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Takaisin"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Tyhjennä"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Tyhjennä kenttä"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Leikepöydälle"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Liitä leikepöydältä"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Käänteinen"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Vaihda merkkiä"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Tieteellinen merkintätapa"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Vaihda paikkaa"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Käänteisluku"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Astetta"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Radiaanit"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr "RPN"
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "Peruslaskin"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Tieteellinen"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Kopioi"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Liitä"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Pöytälaskin"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Laskin työpöydälle"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Tyyli"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Vaalea"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Tumma"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Kulman mitta"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Käytä RPN Hewlett-Packard funktiolaskinta"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "Peruslaskin"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Desimaalit"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "numeroa"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Tuo etualalle"

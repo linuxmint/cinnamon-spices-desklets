@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2025-08-21 09:05-0400\n"
-"PO-Revision-Date: 2025-04-02 15:17+0300\n"
+"PO-Revision-Date: 2026-10-22 20:33+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -40,9 +40,8 @@ msgstr "Tekoäly"
 
 #. settings-schema.json->page4->title
 #. settings-schema.json->section3->title
-#, fuzzy
 msgid "Debug settings"
-msgstr "Asetukset"
+msgstr "Asetusten testaus"
 
 #. settings-schema.json->section1ai->title
 msgid "Display settings for AI feature"
@@ -50,7 +49,7 @@ msgstr "Tekoälyn asetukset"
 
 #. settings-schema.json->feeds->description
 msgid "Feed settings (supports RSS and Atom)"
-msgstr ""
+msgstr "Syöte-määritykset (tukee RSS/Atom)"
 
 #. settings-schema.json->feeds->columns->title
 #. settings-schema.json->listfilter->columns->title
@@ -80,7 +79,7 @@ msgstr "Taustaväri"
 
 #. settings-schema.json->transparency->description
 msgid "Background transparency"
-msgstr "Taustan läpinäkyvyys"
+msgstr "Taustan peittävyys"
 
 #. settings-schema.json->transparency->tooltip
 msgid "The higher the value, the more solid the desklet background."
@@ -189,58 +188,66 @@ msgid ""
 "AI-powered article summarization using various language models. Configure "
 "your preferred AI service and summarization behavior."
 msgstr ""
+"Tekoälyllä toimiva artikkelin tiivistäminen eri kielimalleilla. Määritä "
+"tekoälypalvelu ja tiivistämisen toimintatapa."
 
 #. settings-schema.json->ai_enablesummary->description
 msgid "Enable AI article summarization"
-msgstr ""
+msgstr "Käytä artikkelin AI-tiivistämistä"
 
 #. settings-schema.json->ai_add_description_to_summary->description
 msgid "Include article description"
-msgstr ""
+msgstr "Sisällytä artikkelin kuvaus"
 
 #. settings-schema.json->ai_provider->description
 msgid "AI Service Provider"
-msgstr ""
+msgstr "Tekoälypalvelu"
 
 #. settings-schema.json->ai_provider->options
 msgid "OpenAI (GPT models)"
-msgstr ""
+msgstr "OpenAI (GPT models)"
 
 #. settings-schema.json->ai_provider->options
 msgid "DeepSeek (coding focus)"
-msgstr ""
+msgstr "DeepSeek (coding focus)"
 
 #. settings-schema.json->ai_provider->options
 msgid "Anthropic (Claude models)"
-msgstr ""
+msgstr "Anthropic (Claude models)"
 
 #. settings-schema.json->ai_provider->tooltip
 msgid ""
 "Select your AI service provider. Each provider has different model "
 "capabilities and pricing."
 msgstr ""
+"Valitse tekoälypalvelu. Eri tarjoajilla on erilaisia ​​ominaisuuksia ja "
+"hinnoittelumalleja."
 
 #. settings-schema.json->ai_use_custom_url->description
 msgid "Override default API endpoint"
-msgstr ""
+msgstr "Määritä oma API-osoite"
 
 #. settings-schema.json->ai_use_custom_url->tooltip
 msgid "Enable to use a custom API endpoint instead of the provider's default"
 msgstr ""
+"Käytä mukautettua api-osoitetta palveluntarjoajan oletusosoitteen sijaan"
 
 #. settings-schema.json->ai_url->description
 msgid "Custom API endpoint"
-msgstr ""
+msgstr "Mukautettu API-osoite"
 
 #. settings-schema.json->ai_url->tooltip
 msgid ""
 "Enter the API endpoint URL to override the default provider endpoint (useful "
 "for local models, custom deployments, etc.)"
 msgstr ""
+"Anna osoite joka korvaa palveluntarjoajan endpointin \"osoitteen ohjelmien "
+"väliseen viestintään\" (hyödyllinen paikallisille malleille, räätälöidyille "
+"käyttöönotoille jne.)"
 
 #. settings-schema.json->ai_dumptool->description
 msgid "Content extractor"
-msgstr ""
+msgstr "Sisällön poimija"
 
 #. settings-schema.json->ai_dumptool->options
 msgid "w3m"
@@ -259,31 +266,32 @@ msgid ""
 "Tool to extract article content from web pages. Install: apt install w3m (or "
 "lynx/links)"
 msgstr ""
+"Työkalu jota käytetään artikkelien sisällön poimimiseen verkkosivulta. "
+"Asennus tarvitaan: apt install w3m (tai lynx tai links)"
 
 #. settings-schema.json->ai_use_standard_model->description
 msgid "Model selection"
-msgstr ""
+msgstr "Mallin valinta"
 
 #. settings-schema.json->ai_use_standard_model->tooltip
 msgid "Choose from predefined models or enter a custom model name"
-msgstr ""
+msgstr "Valitse valmiista malleista tai anna oman mallin nimi"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Predefined models"
-msgstr ""
+msgstr "Valmiista malleista"
 
 #. settings-schema.json->ai_use_standard_model->options
 msgid "Custom model"
-msgstr ""
+msgstr "Oma malli"
 
 #. settings-schema.json->ai_model->description
 msgid "Standard model to use"
 msgstr "Käytettävä standardi"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-5"
-msgstr "gpt-4"
+msgstr "gpt-5"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4o"
@@ -294,9 +302,8 @@ msgid "gpt-4o-mini"
 msgstr "gpt-4o-mini"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "gpt-4-turbo"
-msgstr "gpt-3.5-turbo"
+msgstr "gpt-4-turbo"
 
 #. settings-schema.json->ai_model->options
 msgid "gpt-4"
@@ -307,9 +314,8 @@ msgid "gpt-3.5-turbo"
 msgstr "gpt-3.5-turbo"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-chat"
-msgstr "deepseek-coder"
+msgstr "deepseek-chat"
 
 #. settings-schema.json->ai_model->options
 msgid "deepseek-coder"
@@ -320,29 +326,28 @@ msgid "deepseek-coder-v2:latest"
 msgstr "deepseek-coder-v2:latest"
 
 #. settings-schema.json->ai_model->options
-#, fuzzy
 msgid "deepseek-math"
-msgstr "deepseek-coder"
+msgstr "deepseek-math"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-sonnet"
-msgstr ""
+msgstr "claude-3-5-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-5-haiku"
-msgstr ""
+msgstr "claude-3-5-haiku"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-opus"
-msgstr ""
+msgstr "claude-3-opus"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-sonnet"
-msgstr ""
+msgstr "claude-3-sonnet"
 
 #. settings-schema.json->ai_model->options
 msgid "claude-3-haiku"
-msgstr ""
+msgstr "claude-3-haiku"
 
 #. settings-schema.json->ai_model->tooltip
 msgid ""
@@ -352,81 +357,89 @@ msgid ""
 "Claude models via compatible APIs.\n"
 "Select 'Custom' to use your own model name."
 msgstr ""
+"GPT-5 on uusin malli (edellyttää pääsyä GPT-5:een).\n"
+"GPT-4o-mallit tarjoaa parhaan hinta/suorituskyvyn.\n"
+"DeepSeek-mallit sopivat erinomaisesti ohjelmointiin.\n"
+"Claude-mallit yhteensopivien rajapintojen (API) kautta.\n"
+"Valitse ”Oma malli”, jos haluat käyttää omaa mallia."
 
 #. settings-schema.json->ai_custom_model->description
 msgid "Custom model name"
-msgstr ""
+msgstr "Oman mallin nimi"
 
 #. settings-schema.json->ai_custom_model->tooltip
 msgid "Enter the exact model name from your AI provider"
-msgstr ""
+msgstr "Anna AI-palveluntarjoajasi ilmoittama tarkka mallin nimi"
 
 #. settings-schema.json->ai_systemprompt->description
-#, fuzzy
 msgid "AI instructions"
-msgstr "AI-tekoäly ja ohjeet"
+msgstr "AI-ohjeet"
 
 #. settings-schema.json->ai_systemprompt->tooltip
 msgid "Instructions sent to the AI model before processing each article"
-msgstr ""
+msgstr "Tekoälymallille lähetettävät ohjeet ennen kunkin artikkelin käsittelyä"
 
 #. settings-schema.json->ai_apikey->description
 msgid "Set API key"
-msgstr ""
+msgstr "Aseta APIAVAIN"
 
 #. settings-schema.json->ai_example1->description
 msgid "Concise (4 sentences)"
-msgstr ""
+msgstr "Ytimekäs (4 lausetta)"
 
 #. settings-schema.json->ai_example2->description
 msgid "Bullet points"
-msgstr ""
+msgstr "Ranskalaiset viivat"
 
 #. settings-schema.json->ai_example3->description
 msgid "Technical"
-msgstr ""
+msgstr "Tekninen"
 
 #. settings-schema.json->ai_example4->description
 msgid "Creative"
-msgstr ""
+msgstr "Luova"
 
 #. settings-schema.json->ai_example5->description
 msgid "Professional"
-msgstr ""
+msgstr "Ammattimainen"
 
 #. settings-schema.json->ai_example6->description
 msgid "Minimal"
-msgstr ""
+msgstr "Minimaalinen"
 
 #. settings-schema.json->refreshsettingsbutton->description
 msgid "Refresh settings"
 msgstr "Päivitä asetukset"
 
 #. settings-schema.json->refreshsettingsbutton->tooltip
-#, fuzzy
 msgid "Press this button to reload settings and update display immediately"
-msgstr "Paina painiketta ladataksesi asetukset uudelleen"
+msgstr ""
+"Paina painiketta ladataksesi asetukset uudelleen ja päivittääksesi näytön "
+"välittömästi"
 
 #. settings-schema.json->refreshFeedsButton->description
-#, fuzzy
 msgid "Refresh RSS Feeds"
-msgstr "Päivitä asetukset"
+msgstr "Päivitä syötteet"
 
 #. settings-schema.json->refreshFeedsButton->tooltip
 msgid ""
 "Press this button to immediately refresh all RSS feeds and download new "
 "articles"
 msgstr ""
+"Painamalla painiketta päivität välittömästi kaikki RSS-syötteet ja uudet "
+"artikkelit ladataan"
 
 #. settings-schema.json->searchRssButton->description
 msgid "Search for RSS & Atom feeds"
-msgstr ""
+msgstr "Hae uutissyötteitä"
 
 #. settings-schema.json->searchRssButton->tooltip
 msgid ""
 "Search for RSS and Atom feeds from a website URL. Automatically detects both "
 "feed formats."
 msgstr ""
+"Etsi RSS- ja Atom-syötteitä verkkosivun osoitteen perusteella. Tunnistaa "
+"automaattisesti molemmat syötemuodot."
 
 #. settings-schema.json->enablecopy->description
 msgid "Enable Copy to clipboard button"
@@ -474,53 +487,59 @@ msgstr ""
 
 #. settings-schema.json->showRefreshSeparators->description
 msgid "Show refresh separators between articles"
-msgstr ""
+msgstr "Näytä virkistä-erottimet artikkelien välissä"
 
 #. settings-schema.json->showRefreshSeparators->tooltip
 msgid ""
 "Shows separator lines with timestamps between articles from different "
 "refresh batches"
 msgstr ""
+"Näyttää erotinviivat ja aikaleimat eri päivityseristä peräisin olevien "
+"artikkeleiden välissä"
 
 #. settings-schema.json->enableDebugLogs->description
 msgid "Enable debug logs"
-msgstr ""
+msgstr "Tallenna vianmäärityslokit"
 
 #. settings-schema.json->enableDebugLogs->tooltip
 msgid ""
 "When enabled, detailed debug information will be logged to the system logs. "
 "Only enable when troubleshooting issues."
 msgstr ""
+"Lokeihin tallennetaan yksityiskohtaisia ​​vianmääritystietoja. Ota käyttöön "
+"vain ongelmien selvittämisen yhteydessä."
 
 #. settings-schema.json->debugVerbosity->description
 msgid "Debug verbosity level"
-msgstr ""
+msgstr "Lokin tarkkuustaso"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "minimal"
-msgstr ""
+msgstr "minimaalinen"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "basic"
-msgstr ""
+msgstr "perus"
 
 #. settings-schema.json->debugVerbosity->options
 msgid "verbose"
-msgstr ""
+msgstr "täysi"
 
 #. settings-schema.json->debugVerbosity->tooltip
 msgid "Control how much debug information is logged"
-msgstr ""
+msgstr "Määritä, kuinka paljon vianmääritystietoja kirjataan"
 
 #. settings-schema.json->databasePath->description
 msgid "Database base directory"
-msgstr ""
+msgstr "Tietokannan hakemisto"
 
 #. settings-schema.json->databasePath->tooltip
 msgid ""
 "Base directory where separate Yarr databases are stored (yarr_favorites.db, "
 "yarr_read_status.db, etc.)"
 msgstr ""
+"Hakemisto, johon erilliset Yarr-tietokannat tallennetaan (yarr_favorites.db, "
+"yarr_read_status.db jne.)"
 
 #. settings-schema.json->databaseInfo->description
 msgid ""
@@ -529,53 +548,63 @@ msgid ""
 "yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
 "yarr_readstatus.db"
 msgstr ""
+"Yarr käyttää eri tietotyypeille eri tietokantoja. Nimet ovat kiinteitä, eikä "
+"niitä voi muuttaa: yarr_favorites.db, yarr_read_status.db, "
+"yarr_article_cache.db, yarr_feed_button_states.db, yarr_refresh.db, "
+"yarr_readstatus.db"
 
 #. settings-schema.json->showReadStatusCheckbox->description
 msgid "Show read status checkbox"
-msgstr ""
+msgstr "Näytä luettu-valintaruutu"
 
 #. settings-schema.json->dimReadTitles->description
 msgid "Dim read article titles"
-msgstr ""
+msgstr "Himmennä luetut otsikot"
 
 #. settings-schema.json->dimReadTitles->tooltip
 msgid ""
 "When enabled, read titles are slightly dimmed for better visual distinction"
 msgstr ""
+"Luetut otsikot näkyvät hieman himmeämpinä, mikä parantaa niiden erottuvuutta"
 
 #. settings-schema.json->readTitleColor->description
 msgid "Color for read article titles"
-msgstr ""
+msgstr "Luettujen artikkelien väri"
 
 #. settings-schema.json->readTitleColor->tooltip
 msgid "Choose a color applied to read titles"
-msgstr ""
+msgstr "Valitse väri, jota käytetään luettujen otsikoihin"
 
 #. settings-schema.json->enableHeaderFeedButtons->description
-#, fuzzy
 msgid "Enable header feed buttons"
-msgstr "Piilota syötepainike"
+msgstr "Näytä palkin syötepainikkeet"
 
 #. settings-schema.json->enableHeaderFeedButtons->tooltip
 msgid ""
 "Show toggleable feed buttons below the header to control which feeds are "
 "displayed in the article list"
 msgstr ""
+"Näytä otsikon alapuolella kytkettävät syötepainikkeet. Niillä voi hallita "
+"mitkä syötteet näkyvät luettelossa"
 
 #. settings-schema.json->openLookingGlass->description
 msgid "Open Looking Glass"
-msgstr ""
+msgstr "Avaa Looking Glass"
 
 #. settings-schema.json->openLookingGlass->tooltip
 msgid ""
 "Opens Cinnamon's Looking Glass debugger to inspect the desklet's JavaScript "
 "context"
 msgstr ""
+"Avaa Cinnamonin Looking Glass -virheenjäljittimen deskletin JavaScript-"
+"kontekstin tarkastelua varten"
 
 #. settings-schema.json->restartDesklet->description
 msgid "Restart desklet"
-msgstr ""
+msgstr "Palauta oletuksiin"
 
 #. settings-schema.json->restartDesklet->tooltip
 msgid "Restarts the desklet to reload all code and settings"
 msgstr ""
+"Käynnistää sovelluksen uudelleen kaiken koodin ja asetusten lataamiseksi "
+"uudelleen"
