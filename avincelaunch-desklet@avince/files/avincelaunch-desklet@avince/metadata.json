@@ -1,0 +1,13 @@
+{
+    "uuid": "avincelaunch-desklet@avince",
+    "name": "aVinceLaunch",
+    "description": "Organize, access, launch: a lightweight desktop organizer with fences and launcher groups for Linux Mint Cinnamon.",
+    "comments": "aVinceLaunch turns ordinary folders of .desktop files, documents and subfolders into tidy groups on your desktop.\n\nOrganize links the way you already think about them - work, utilities, graphics, or any structure you choose. Each instance points at its own folder, with in-place folder navigation, custom order and pinning, snapping, collapsing and search, locks for position, size and content, automatic sizing and group titles that stay readable on any wallpaper.\n\n- Natural, configurable organization - build a launcher layout from real directories instead of burying shortcuts in menus.\n- A cleaner desktop - keep clutter off the wallpaper and put your apps in one place you control.\n- Everything at your fingertips - launch what you need instantly instead of searching through application lists.\n\nCopy files into your link folder or manage items from the Configure dialog. The filesystem is the source of truth; aVinceLaunch keeps the display in sync.\n\naVinceLaunch is licensed under GPL-3.0-only. It is a fork of TheLauncher 1.0.3 by MHK924, whose inherited parts remain under the MIT licence; TheLauncher in turn started from Quick Links - Launcher by NotSirius-A. Many thanks to MHK924 for TheLauncher and for kindly allowing it to be built upon. See LICENSE and THIRD-PARTY-NOTICES.md in the desklet folder.",
+    "version": "0.1.0",
+    "cinnamon-version": [
+        "6.6"
+    ],
+    "max-instances": "50",
+    "prevent-decorations": true,
+    "author": "Angelo Vincenti - aVince Industrietechnik"
+}
