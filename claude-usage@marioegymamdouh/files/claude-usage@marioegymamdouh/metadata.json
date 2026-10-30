@@ -1,0 +1,10 @@
+{
+    "uuid": "claude-usage@marioegymamdouh",
+    "name": "Claude Usage",
+    "description": "Unofficial desklet showing your Claude plan usage (session, weekly and per-model limits). Reads the login stored by Claude Code on this machine.",
+    "version": "1.0.0",
+    "max-instances": "1",
+    "prevent-decorations": true,
+    "website": "https://github.com/marioegymamdouh/cinnamon-spices-desklets/tree/master/claude-usage@marioegymamdouh",
+    "cinnamon-version": ["5.4", "5.6", "5.8", "6.0", "6.2", "6.4", "6.6"]
+}
