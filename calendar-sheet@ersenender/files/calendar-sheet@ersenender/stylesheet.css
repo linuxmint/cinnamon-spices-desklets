@@ -1,0 +1,33 @@
+/* Kalenderblatt-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten. */
+.kb-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+}
+.kb-monate { spacing: 1.6em; }
+.kb-monate-hoch { spacing: 1em; }
+.kb-kopf { spacing: 0.3em; padding-bottom: 0.5em; }
+.kb-titel { font-size: 1.15em; font-weight: bold; color: #ffcb08; }
+.kb-titel-neben { font-size: 1.05em; font-weight: bold; color: #d8d4c8; }
+.kb-pfeil { padding: 0.25em; border-radius: 99px; color: #a39e94; }
+.kb-pfeil:hover { color: #f2efe6; background-color: rgba(255, 203, 8, 0.24); }
+.kb-spalte { width: 2em; }
+.kb-zelle { padding: 0.22em 0; text-align: center; font-size: 0.95em; border-radius: 99px; }
+.kb-wt { font-size: 0.8em; font-weight: bold; color: #a39e94; padding-bottom: 0.35em; }
+.kb-kw { font-size: 0.74em; color: #8d8880; padding-top: 0.42em; }
+.kb-fremd { color: #5f5b56; }
+.kb-we { color: #a39e94; }
+.kb-feiertag { color: #ff7b72; font-weight: bold; }
+.kb-eigen { color: #ffcb08; font-weight: bold; }
+.kb-heute { background-color: #ffcb08; color: #231f20; font-weight: bold; }
+.kb-liste { margin-top: 0.7em; padding-top: 0.55em; border-top: 1px solid rgba(242, 239, 230, 0.14); }
+.kb-eintrag { padding: 0.12em 0; spacing: 0.7em; }
+.kb-eintrag-datum { font-size: 0.86em; font-weight: bold; width: 6.2em; }
+.kb-eintrag-name { font-size: 0.86em; color: #d8d4c8; }
+.kb-vorbei { color: #8d8880; }
+.kb-status { font-size: 0.8em; color: #ff7b72; padding-top: 0.5em; text-align: center; }
+/* Mondphasen: Vollmond als heller Ring, Neumond als dunkler */
+.kb-vollmond { border: 1px solid rgba(242, 239, 230, 0.75); }
+.kb-neumond { border: 1px solid rgba(242, 239, 230, 0.25); }
+.kb-eintrag-abstand { font-size: 0.8em; color: #a39e94; }
