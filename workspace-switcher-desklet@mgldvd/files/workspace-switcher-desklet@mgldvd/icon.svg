@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256" viewBox="0 0 256 256">
+  <defs>
+    <!-- pastel mesh: soft color blobs over a near-white base -->
+    <radialGradient id="lavender" cx="0.15" cy="0.1" r="0.75">
+      <stop offset="0" stop-color="#c7b6ff"/>
+      <stop offset="1" stop-color="#c7b6ff" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="pink" cx="0.95" cy="0.2" r="0.6">
+      <stop offset="0" stop-color="#ffc3df"/>
+      <stop offset="1" stop-color="#ffc3df" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="peach" cx="0.9" cy="0.95" r="0.6">
+      <stop offset="0" stop-color="#ffd8b5"/>
+      <stop offset="1" stop-color="#ffd8b5" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="mint" cx="0.1" cy="0.95" r="0.65">
+      <stop offset="0" stop-color="#b5eed8"/>
+      <stop offset="1" stop-color="#b5eed8" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="sky" cx="0.5" cy="0.55" r="0.5">
+      <stop offset="0" stop-color="#bcdcff" stop-opacity="0.8"/>
+      <stop offset="1" stop-color="#bcdcff" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8b7bff"/>
+      <stop offset="1" stop-color="#5aa9ff"/>
+    </linearGradient>
+    <clipPath id="tile">
+      <rect x="8" y="8" width="240" height="240" rx="54"/>
+    </clipPath>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="4"/>
+      <feOffset dy="3" result="blur"/>
+      <feFlood flood-color="#3a3470" flood-opacity="0.25"/>
+      <feComposite in2="blur" operator="in" result="shade"/>
+      <feMerge>
+        <feMergeNode in="shade"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- tile -->
+  <g clip-path="url(#tile)">
+    <rect x="0" y="0" width="256" height="256" fill="#f7f5ff"/>
+    <rect x="0" y="0" width="256" height="256" fill="url(#lavender)"/>
+    <rect x="0" y="0" width="256" height="256" fill="url(#pink)"/>
+    <rect x="0" y="0" width="256" height="256" fill="url(#peach)"/>
+    <rect x="0" y="0" width="256" height="256" fill="url(#mint)"/>
+    <rect x="0" y="0" width="256" height="256" fill="url(#sky)"/>
+  </g>
+  <rect x="9" y="9" width="238" height="238" rx="53" fill="none" stroke="#ffffff" stroke-opacity="0.7" stroke-width="2"/>
+
+  <!-- workspaces -->
+  <g stroke="#4a4d8c" stroke-opacity="0.55" stroke-width="5" stroke-linejoin="round">
+    <rect x="40" y="64" width="80" height="56" rx="9" fill="#ffffff" fill-opacity="0.55"/>
+    <rect x="136" y="64" width="80" height="56" rx="9" fill="#ffffff" fill-opacity="0.55"/>
+    <rect x="136" y="136" width="80" height="56" rx="9" fill="#ffffff" fill-opacity="0.55"/>
+  </g>
+  <!-- active -->
+  <rect x="40" y="136" width="80" height="56" rx="9" fill="url(#accent)" filter="url(#shadow)"/>
+
+  <!-- pointer -->
+  <path transform="translate(98 164) scale(1.35)"
+        d="M0 0 L0 34 L9 26 L15 39 L21 36 L15 24 L27 24 Z"
+        fill="#ffffff" stroke="#2a2d5a" stroke-width="2.6" stroke-linejoin="round"
+        filter="url(#shadow)"/>
+</svg>
