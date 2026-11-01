@@ -1,0 +1,8 @@
+{
+  "uuid": "desktop-clock@burnt1983",
+  "name": "Desktop Clock",
+  "description": "Frameless analog clock with a custom face image, seconds, and digital time.",
+  "prevent-decorations": true,
+  "max-instances": "4",
+  "version": "1.0.0"
+}
