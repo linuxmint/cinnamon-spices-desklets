@@ -44,25 +44,40 @@ const EINSTELLUNGS_ORDNER = [
     GLib.get_home_dir() + '/.cinnamon/configs/' + UUID,
 ];
 
+const ATTR_FLAGS = Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS;
+
+function istNichtGefunden(e) {
+    return e instanceof GLib.Error && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.NOT_FOUND);
+}
+
+// Asynchron (Spices-Hinweis: kein blockierender Dateizugriff im Hauptloop).
+// Ein fehlender Ordner ist normal und wird übergangen.
 function schuetzeEinstellungen() {
     for (let pfad of EINSTELLUNGS_ORDNER) {
-        try {
-            let dir = Gio.File.new_for_path(pfad);
-            if (!dir.query_exists(null)) continue;
-            dir.set_attribute_uint32('unix::mode', 0o700, Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-            let liste = dir.enumerate_children('standard::name,standard::type',
-                Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-            let info;
-            while ((info = liste.next_file(null)) !== null) {
-                if (info.get_file_type() !== Gio.FileType.REGULAR) continue;
-                if (!info.get_name().endsWith('.json') && !info.get_name().endsWith('.pem')) continue;
-                dir.get_child(info.get_name()).set_attribute_uint32('unix::mode', 0o600,
-                    Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-            }
-            liste.close(null);
-        } catch (e) {
-            global.logWarning('[' + UUID + '] Rechte der Einstellungen: ' + e.message);
-        }
+        let dir = Gio.File.new_for_path(pfad);
+        dir.enumerate_children_async('standard::name,standard::type', ATTR_FLAGS,
+            GLib.PRIORITY_LOW, null, (d, res) => {
+                let liste;
+                try {
+                    liste = d.enumerate_children_finish(res);
+                    d.set_attribute_uint32('unix::mode', 0o700, ATTR_FLAGS, null);
+                } catch (e) {
+                    if (!istNichtGefunden(e)) global.logWarning('[' + UUID + '] Rechte der Einstellungen: ' + e.message);
+                    return;
+                }
+                liste.next_files_async(200, GLib.PRIORITY_LOW, null, (l, r) => {
+                    try {
+                        for (let info of l.next_files_finish(r)) {
+                            if (info.get_file_type() !== Gio.FileType.REGULAR) continue;
+                            if (!info.get_name().endsWith('.json') && !info.get_name().endsWith('.pem')) continue;
+                            d.get_child(info.get_name()).set_attribute_uint32('unix::mode', 0o600, ATTR_FLAGS, null);
+                        }
+                    } catch (e) {
+                        global.logWarning('[' + UUID + '] Rechte der Einstellungen: ' + e.message);
+                    }
+                    l.close_async(GLib.PRIORITY_LOW, null, null);
+                });
+            });
     }
 }
 
@@ -117,36 +132,54 @@ function pruefeCaAntwort(text) {
     return { pem: String(daten.pem).trim() + '\n', fp };
 }
 
-/** Ordner für die CA-Datei: der vorhandene Einstellungsordner, sonst der neue (0700). */
-function caPfad(deskletId, ordnerListe) {
-    let liste = ordnerListe || EINSTELLUNGS_ORDNER;
-    let ordner = liste.find(p => GLib.file_test(p, GLib.FileTest.IS_DIR)) || liste[0];
-    return ordner + '/ca-' + deskletId + '.pem';
+/**
+ * Ordner für die CA-Datei: der Ordner der Einstellungsdatei, die Cinnamon für dieses
+ * Desklet führt (kein Dateisystem-Test nötig); ohne sie der neue Ort (0700).
+ */
+function caPfad(deskletId, einstellungsDatei) {
+    let ordner = einstellungsDatei && einstellungsDatei.get_parent && einstellungsDatei.get_parent();
+    let pfad = (ordner && ordner.get_path()) || EINSTELLUNGS_ORDNER[0];
+    return pfad + '/ca-' + deskletId + '.pem';
 }
 
-/** CA-Datei schreiben: Ordner 0700, Datei 0600 (PRIVATE legt sie gleich so an). */
-function speichereCa(pfad, pem) {
+/** CA-Datei asynchron schreiben: Ordner 0700, Datei 0600; fertig(fehler|null). */
+function speichereCa(pfad, pem, fertig) {
     let datei = Gio.File.new_for_path(pfad);
     let ordner = datei.get_parent();
-    if (!ordner.query_exists(null)) ordner.make_directory_with_parents(null);
-    ordner.set_attribute_uint32('unix::mode', 0o700, Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
-    datei.replace_contents(new TextEncoder().encode(pem), null, false,
-        Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION, null);
-    datei.set_attribute_uint32('unix::mode', 0o600, Gio.FileQueryInfoFlags.NOFOLLOW_SYMLINKS, null);
+    try {
+        ordner.make_directory_with_parents(null);
+    } catch (e) {
+        if (!(e instanceof GLib.Error && e.matches(Gio.IOErrorEnum, Gio.IOErrorEnum.EXISTS))) return fertig(e);
+    }
+    datei.replace_contents_bytes_async(new GLib.Bytes(new TextEncoder().encode(pem)), null, false,
+        Gio.FileCreateFlags.PRIVATE | Gio.FileCreateFlags.REPLACE_DESTINATION, null, (f, res) => {
+            try {
+                f.replace_contents_finish(res);
+                ordner.set_attribute_uint32('unix::mode', 0o700, ATTR_FLAGS, null);
+                f.set_attribute_uint32('unix::mode', 0o600, ATTR_FLAGS, null);
+                fertig(null);
+            } catch (e) {
+                fertig(e);
+            }
+        });
 }
 
-/** Gespeicherte CA lesen → {pem, fp} oder null (fehlt/unlesbar). */
-function ladeCa(pfad) {
-    try {
-        if (!GLib.file_test(pfad, GLib.FileTest.EXISTS)) return null;
-        let [ok, inhalt] = GLib.file_get_contents(pfad);
-        if (!ok) return null;
-        let pem = new TextDecoder().decode(inhalt);
-        let der = pemZuDer(pem);
-        return der ? { pem, fp: fingerabdruck(der) } : null;
-    } catch (e) {
-        return null;
-    }
+/** Gespeicherte CA asynchron lesen → fertig({pem, fp} | null) (fehlt/unlesbar = null). */
+function ladeCa(pfad, fertig) {
+    Gio.File.new_for_path(pfad).load_contents_async(null, (f, res) => {
+        let ergebnis = null;
+        try {
+            let [ok, inhalt] = f.load_contents_finish(res);
+            if (ok) {
+                let pem = new TextDecoder().decode(inhalt);
+                let der = pemZuDer(pem);
+                if (der) ergebnis = { pem, fp: fingerabdruck(der) };
+            }
+        } catch (e) {
+            if (!istNichtGefunden(e)) global.logWarning('[' + UUID + '] CA-Datei: ' + e.message);
+        }
+        fertig(ergebnis);
+    });
 }
 
 /** Soup-Session; mit [caDatei] vertraut sie NUR dieser CA. */
@@ -378,11 +411,12 @@ class TradingPositionsDesklet extends Desklet.Desklet {
 
         schuetzeEinstellungen();
         this._initSoup();
-        this._ladeKopplung();
         this._buildUI();
         this._applyStyle();
-        this._startPolling();
-        this._startAlarme();
+        this._ladeKopplung(() => {
+            this._startPolling();
+            this._startAlarme();
+        });
         this._startChart();
     }
 
@@ -439,18 +473,26 @@ class TradingPositionsDesklet extends Desklet.Desklet {
 
     // ------------------------------------------------------------------ HTTPS-Kopplung
 
-    get _caDatei() { return caPfad(this._deskletId); }
+    get _caDatei() { return caPfad(this._deskletId, this._settings && this._settings.file); }
 
-    /** Gespeicherte CA laden und die HTTPS-Session darauf bauen (sonst keine). */
-    _ladeKopplung() {
-        let ca = ladeCa(this._caDatei);
-        this._tlsSession = null;
-        if (ca) {
-            try { this._tlsSession = neueSession(this._caDatei); }
-            catch (e) { global.logWarning('[' + UUID + '] CA-Datei: ' + e.message); }
-        }
-        let anzeige = (ca && this._tlsSession) ? ca.fp : '';
-        if (this.caPaired !== anzeige) this.caPaired = anzeige;
+    /**
+     * Gespeicherte CA asynchron laden und die HTTPS-Session darauf bauen (sonst keine),
+     * danach weiter(). Ein später gestarteter Ladevorgang macht einen älteren ungültig.
+     */
+    _ladeKopplung(weiter) {
+        let nr = this._kopplungNr = (this._kopplungNr || 0) + 1;
+        let pfad = this._caDatei;
+        ladeCa(pfad, (ca) => {
+            if (nr !== this._kopplungNr || this._entfernt) return;
+            this._tlsSession = null;
+            if (ca) {
+                try { this._tlsSession = neueSession(pfad); }
+                catch (e) { global.logWarning('[' + UUID + '] CA-Datei: ' + e.message); }
+            }
+            let anzeige = (ca && this._tlsSession) ? ca.fp : '';
+            if (this.caPaired !== anzeige) this.caPaired = anzeige;
+            if (weiter) weiter();
+        });
     }
 
     /** Knopf „Fetch server certificate": CA über HTTP holen, Fingerabdruck zum Vergleich zeigen. */
@@ -489,17 +531,19 @@ class TradingPositionsDesklet extends Desklet.Desklet {
             this.caPending = _("Host changed — fetch the certificate again");
             return;
         }
-        try {
-            speichereCa(this._caDatei, offen.pem);
-        } catch (e) {
-            this.caPending = _("Could not save the certificate:") + ' ' + e.message;
-            return;
-        }
-        this._caOffen = null;
-        this.caPending = '';
-        this._ladeKopplung();
-        this._startPolling();
-        this._startAlarme();
+        speichereCa(this._caDatei, offen.pem, (fehler) => {
+            if (this._entfernt) return;
+            if (fehler) {
+                this.caPending = _("Could not save the certificate:") + ' ' + fehler.message;
+                return;
+            }
+            this._caOffen = null;
+            this.caPending = '';
+            this._ladeKopplung(() => {
+                this._startPolling();
+                this._startAlarme();
+            });
+        });
     }
 
     // ------------------------------------------------------------------ Style
@@ -1336,12 +1380,14 @@ class TradingPositionsDesklet extends Desklet.Desklet {
         schuetzeEinstellungen();   // falls Cinnamon die Datei neu angelegt hat
         this._cookieAcquired = false;
         this._appVersion     = null;  // server change → fetch version again
-        this._ladeKopplung();
-        this._startPolling();
-        this._startAlarme();
+        this._ladeKopplung(() => {
+            this._startPolling();
+            this._startAlarme();
+        });
     }
 
     on_desklet_removed() {
+        this._entfernt = true;
         this._stopPolling();
         this._stopAlarme();
         this._stopChart();
