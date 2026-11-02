@@ -1,0 +1,9 @@
+{
+    "uuid": "clima-pro@largacha",
+    "name": "Clima Pro",
+    "description": "Pronóstico del tiempo espectacular: clima actual, curva de temperatura por horas y pronóstico de varios días con fondo que cambia según el clima. Datos de Open-Meteo (sin API key).",
+    "version": "1.1",
+    "author": "largacha",
+    "max-instances": "3",
+    "prevent-decorations": true
+}
