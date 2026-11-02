@@ -1,7 +1,0 @@
-/* Clima Pro
- * Casi todo el estilo se aplica en línea desde desklet.js porque cambia con
- * el tema, la opacidad, la escala y el clima actual. Aquí solo quedan reglas base. */
-
-.clima-root {
-    font-family: "Noto Sans", "Cantarell", "Ubuntu", sans-serif;
-}
