@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-08-08 22:04-0400\n"
-"PO-Revision-Date: 2026-07-30 14:12+0200\n"
+"PO-Revision-Date: 2026-10-16 13:34+0200\n"
 "Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
 "Language-Team: \n"
 "Language: da\n"
@@ -195,9 +195,8 @@ msgid "Temperature"
 msgstr "Temperatur"
 
 #. settings-schema.json->cpu-variable->options
-#, fuzzy
 msgid "Fan"
-msgstr "CPU-ventilator"
+msgstr "Ventilator"
 
 #. settings-schema.json->temperature-units-cpu->options
 #. settings-schema.json->temperature-units-gpu->options
@@ -281,15 +280,16 @@ msgstr ""
 "eth0, wlan0, enp0s3"
 
 #. settings-schema.json->network-label->description
-#, fuzzy
 msgid "Network label"
-msgstr "Netværk"
+msgstr "Netværksmærkat"
 
 #. settings-schema.json->network-label->tooltip
 msgid ""
 "Empty uses the network interface name or 'Network' if monitoring all "
 "interfaces."
 msgstr ""
+"Hvis tom bruges navnet på netværksgrænsefladen eller “Netværk”, hvis alle "
+"grænseflader overvåges."
 
 #. settings-schema.json->battery-name->description
 msgid "Name of battery name to monitor"

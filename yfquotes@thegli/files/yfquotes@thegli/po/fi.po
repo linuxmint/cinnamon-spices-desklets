@@ -8,7 +8,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-03-05 21:41+0100\n"
-"PO-Revision-Date: 2025-04-02 14:13+0300\n"
+"PO-Revision-Date: 2026-10-21 19:47+0300\n"
 "Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: \n"
 "Language: fi\n"
@@ -20,7 +20,7 @@ msgstr ""
 
 #. desklet.js:99
 msgid "N/A"
-msgstr ""
+msgstr "-"
 
 #. desklet.js:748
 msgid "Empty quotes list. Open settings and add some symbols."
@@ -38,7 +38,7 @@ msgstr "Yahoo Finance palvelu ei ole saatavilla! Tila: %s"
 #. desklet.js:804
 #, javascript-format
 msgid "Something went wrong retrieving Yahoo Finance data. %s"
-msgstr ""
+msgstr "Jokin meni vikaan Yahoo Finance %s"
 
 #. desklet.js:1269
 msgid "No quotes data to display"
@@ -110,7 +110,7 @@ msgstr "Asettelu"
 
 #. settings-schema.json->networkPage->title
 msgid "Network"
-msgstr ""
+msgstr "Verkko"
 
 #. settings-schema.json->dataUpdateSection->title
 msgid "Data Updates"
@@ -138,7 +138,7 @@ msgstr "Päiväys ja aika"
 
 #. settings-schema.json->detailsPrePostMarketSection->title
 msgid "Pre-/Post-Market Data"
-msgstr ""
+msgstr "Aukiolon ulkopuolinen data"
 
 #. settings-schema.json->presentationFormattingSection->title
 msgid "Number Format"
@@ -170,7 +170,7 @@ msgstr "Tehosteet"
 
 #. settings-schema.json->networkSessionSection->title
 msgid "HTTP Session"
-msgstr ""
+msgstr "HTTP-istunto"
 
 #. settings-schema.json->width->description
 msgid "Width"
@@ -506,23 +506,24 @@ msgstr "Väritä prosentuaalisen muutoksen suunta"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Never"
-msgstr ""
+msgstr "Ei koskaan"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Prefer to regular data"
-msgstr ""
+msgstr "Suosi tavallista dataa"
 
 #. settings-schema.json->includePrePostMarketDataOption->options
 msgid "Show in extra columns"
-msgstr ""
+msgstr "Näytä lisäsarakkeissa"
 
 #. settings-schema.json->includePrePostMarketDataOption->description
 msgid "Include pre-/post-market data"
-msgstr ""
+msgstr "Sisällytä pörssin aukiolon ulkopuolinen data"
 
 #. settings-schema.json->includePrePostMarketDataOption->tooltip
 msgid "If and how extended-hours trading data is displayed"
 msgstr ""
+"Näytetäänkö kaupankäyntitietoja aukiolon ulkopuolelta ja miten ne näytetään"
 
 #. settings-schema.json->showTradeTime->description
 msgid "Show trading time"
@@ -562,27 +563,30 @@ msgstr "Suurenna/pienennä fonttikokoa"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Normal"
-msgstr ""
+msgstr "Normaali"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Italic"
-msgstr ""
+msgstr "Kursivoitu"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold"
-msgstr ""
+msgstr "Vahvennettu"
 
 #. settings-schema.json->fontStylePrePostMarketData->options
 msgid "Bold italic"
-msgstr ""
+msgstr "Vahvennettu kursiivi"
 
 #. settings-schema.json->fontStylePrePostMarketData->description
 msgid "Font style of pre-/post-market data"
 msgstr ""
+"Ennen pörssin avaamista ja sulkeutumisen jälkeen saatavien tietojen "
+"fonttityyli"
 
 #. settings-schema.json->fontStylePrePostMarketData->tooltip
 msgid "Accentuate extended-hours trading data (price, change, time)"
 msgstr ""
+"Korosta kaupankäyntiajan ulkopuolista kaupankäyntidataa (hinta, muutos, aika)"
 
 #. settings-schema.json->uptrendChangeColor->description
 msgid "Uptrend change color"
@@ -610,11 +614,11 @@ msgstr "Muuttumattoman trendin väri"
 
 #. settings-schema.json->cacheAuthorizationParameters->description
 msgid "Cache authorization parameters"
-msgstr ""
+msgstr "Välimuistin valtuutusparametrit"
 
 #. settings-schema.json->cacheAuthorizationParameters->tooltip
 msgid "Remember fetched authorization parameters for desklet instance"
-msgstr ""
+msgstr "Muista desklet-instanssia varten haetut valtuutusparametrit"
 
 #. settings-schema.json->sendCustomUserAgent->description
 msgid "Send custom User-Agent header"
@@ -636,24 +640,24 @@ msgstr "Kaikkien API-pyyntöjen yhteydessä lähetettävä arvo"
 
 #. settings-schema.json->enableCurl->description
 msgid "Use external tool curl"
-msgstr ""
+msgstr "Käytä työkalua curl"
 
 #. settings-schema.json->enableCurl->tooltip
 msgid "Requires separate installation of curl."
-msgstr ""
+msgstr "Vaatii erillisen curl-asennuksen."
 
 #. settings-schema.json->curlCommand->description
 msgid "Path of curl executable"
-msgstr ""
+msgstr "Polku curl-suoritustiedostoon"
 
 #. settings-schema.json->curlCommand->tooltip
 msgid "Provide absolute path of curl program file"
-msgstr ""
+msgstr "Anna curl absoluuttinen polku"
 
 #. settings-schema.json->applyNetworkSettingsButton->description
 msgid "Apply network settings"
-msgstr ""
+msgstr "Käytä verkkoasetuksia"
 
 #. settings-schema.json->applyNetworkSettingsButton->tooltip
 msgid "Fetches new authorization parameters and refreshes quotes data"
-msgstr ""
+msgstr "Hakee uudet valtuutusparametrit ja päivittää datan"
