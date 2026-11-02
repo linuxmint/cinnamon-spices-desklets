@@ -28,6 +28,8 @@ class MyDesklet extends Desklet.Desklet {
 
     // Default settings
     this.imagePath = "";
+    this.wallpaperTintEnabled = false;
+    this.wallpaperTintStrength = 15;
     this.shape = "wave";
     this.size = 250;
     this.showBorder = true;
@@ -43,6 +45,8 @@ class MyDesklet extends Desklet.Desklet {
     // Setup settings and bind them to properties
     this.settings = new Settings.DeskletSettings(this, metadata["uuid"], deskletId);
     this.settings.bindProperty(Settings.BindingDirection.IN, "image-path", "imagePath", this._initUI.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "wallpaper-tint-enabled", "wallpaperTintEnabled", this._onWallpaperChanged.bind(this));
+    this.settings.bindProperty(Settings.BindingDirection.IN, "wallpaper-tint-strength", "wallpaperTintStrength", this._updateTint.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "shape", "shape", this._initUI.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "size", "size", this._initUI.bind(this));
     this.settings.bindProperty(Settings.BindingDirection.IN, "show-border", "showBorder", this._initUI.bind(this));
@@ -57,10 +61,20 @@ class MyDesklet extends Desklet.Desklet {
   }
 
   on_desklet_added_to_desktop() {
+    this._wallpaperSettings = new Gio.Settings({ schema_id: "org.cinnamon.desktop.background" });
+    this._wallpaperChangedSignalId = this._wallpaperSettings.connect("changed::picture-uri", () =>
+      this._onWallpaperChanged()
+    );
+    this._onWallpaperChanged();
     this._initUI();
   }
 
   on_desklet_removed() {
+    this._imageCanvas = null;
+    if (this._wallpaperSettings) {
+      this._wallpaperSettings.disconnect(this._wallpaperChangedSignalId);
+      this._wallpaperSettings = null;
+    }
     if (this._animationTimeoutId) {
       GLib.source_remove(this._animationTimeoutId);
       this._animationTimeoutId = null;
@@ -92,6 +106,54 @@ class MyDesklet extends Desklet.Desklet {
 
     mainContainer.add_child(imageActor);
     this.setContent(mainContainer);
+  }
+
+  _onWallpaperChanged() {
+    if (!this.wallpaperTintEnabled) {
+      this._updateTint();
+      return;
+    }
+
+    if (!this._wallpaperSettings) return;
+
+    const uri = this._wallpaperSettings.get_string("picture-uri");
+
+    if (!uri) {
+      this._clearWallpaperTint();
+      return;
+    }
+
+    Gio.File.new_for_uri(uri).read_async(GLib.PRIORITY_DEFAULT, null, (source, res) => {
+      let stream;
+      try {
+        stream = source.read_finish(res);
+      } catch (e) {
+        global.logError(`${UUID}: Error reading wallpaper ${uri}: ${e}`);
+        this._clearWallpaperTint();
+        return;
+      }
+
+      GdkPixbuf.Pixbuf.new_from_stream_at_scale_async(stream, 1, 1, false, null, (src, pixbufRes) => {
+        try {
+          const pixbuf = GdkPixbuf.Pixbuf.new_from_stream_finish(pixbufRes);
+          const [red, green, blue] = pixbuf.get_pixels();
+          this._wallpaperColor = [red / 255, green / 255, blue / 255];
+        } catch (e) {
+          global.logError(`${UUID}: Error decoding wallpaper ${uri}: ${e}`);
+          this._wallpaperColor = null;
+        }
+        this._updateTint();
+      });
+    });
+  }
+
+  _clearWallpaperTint() {
+    this._wallpaperColor = null;
+    this._updateTint();
+  }
+
+  _updateTint() {
+    if (this._imageCanvas) this._imageCanvas.invalidate();
   }
 
   _drawShapePath(cr, shape, centerX, centerY, radius) {
@@ -173,6 +235,7 @@ class MyDesklet extends Desklet.Desklet {
   _createShapedImageActor(imagePath, size, loadId) {
     const container = new St.Bin({ width: size, height: size });
     const canvas = new Clutter.Canvas();
+    this._imageCanvas = canvas;
     canvas.set_size(size, size);
     const actor = new Clutter.Actor({ width: size, height: size, content: canvas });
     container.set_child(actor);
@@ -281,6 +344,15 @@ class MyDesklet extends Desklet.Desklet {
       Gdk.cairo_set_source_pixbuf(cr, pixbuf, 0, 0);
       cr.paint();
       cr.restore();
+      
+      if (this.wallpaperTintEnabled && this._wallpaperColor) {
+        const [red, green, blue] = this._wallpaperColor;
+        cr.save();
+        cr.setOperator(Cairo.Operator.ATOP);
+        cr.setSourceRGBA(red, green, blue, this.wallpaperTintStrength / 100);
+        cr.paint();
+        cr.restore();
+      }
 
       if (this.showBorder) {
         const borderWidth = this.borderWidth;

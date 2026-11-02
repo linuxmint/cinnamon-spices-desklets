@@ -15,7 +15,7 @@
     "image-general-section": {
       "type": "section",
       "title": "General",
-      "keys": ["image-path", "size"]
+      "keys": ["image-path", "size", "wallpaper-tint-enabled", "wallpaper-tint-strength"]
     },
     "image-alignment-section": {
       "type": "section",
@@ -48,6 +48,20 @@
     "max": 800,
     "step": 1,
     "description": "Size"
+  },
+  "wallpaper-tint-enabled": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Tint with wallpaper color"
+  },
+  "wallpaper-tint-strength": {
+    "type": "scale",
+    "default": 15,
+    "min": 0,
+    "max": 100,
+    "step": 1,
+    "description": "Tint strength (%)",
+    "dependency": "wallpaper-tint-enabled"
   },
   "align-x": {
     "type": "scale",
