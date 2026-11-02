@@ -1,7 +1,7 @@
 {
   "info-header": {
     "type": "label",
-    "description": "This desklet requires a running Crypto Trading Journal.\ngithub.com/Mouses007/Crypto-Trading-Journal"
+    "description": "This desklet requires a running AutarkTrade."
   },
   "server-host": {
     "type": "entry",
@@ -17,13 +17,57 @@
     "step": 1,
     "units": "",
     "description": "Server port",
-    "tooltip": "Default: 8080"
+    "tooltip": "Default: 8080 (HTTP). With HTTPS on it is only used to fetch the certificate when pairing."
   },
   "api-key": {
     "type": "entry",
     "default": "",
     "description": "ESP32 API key",
-    "tooltip": "From Journal → Settings → ESP32 Display → Generate key. Works even with the password gate enabled."
+    "tooltip": "From AutarkTrade → Settings → ESP32 Display → Generate key. Works even with the password gate enabled."
+  },
+  "use-https": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Encrypted (HTTPS, port 8443)",
+    "tooltip": "Talks to AutarkTrade over HTTPS and trusts only the server certificate you paired below. Without it the API key and your account data travel unencrypted. The port above (8080) is still used to fetch the certificate when pairing."
+  },
+  "https-port": {
+    "type": "spinbutton",
+    "default": 8443,
+    "min": 1024,
+    "max": 65535,
+    "step": 1,
+    "units": "",
+    "description": "HTTPS port",
+    "dependency": "use-https"
+  },
+  "ca-fetch": {
+    "type": "button",
+    "description": "1. Fetch server certificate",
+    "callback": "onCaHolen",
+    "tooltip": "Fetches the AutarkTrade CA over http://host:port/api/esp32/ca and shows its SHA-256 fingerprint below.",
+    "dependency": "use-https"
+  },
+  "ca-pending": {
+    "type": "entry",
+    "default": "",
+    "description": "Fingerprint to compare",
+    "tooltip": "Must match Settings › General › HTTPS in the AutarkTrade web app. Only then confirm.",
+    "dependency": "use-https"
+  },
+  "ca-confirm": {
+    "type": "button",
+    "description": "2. Fingerprint matches — pair",
+    "callback": "onCaBestaetigen",
+    "tooltip": "Stores the certificate (0600) next to the desklet settings. From then on only this certificate is trusted.",
+    "dependency": "use-https"
+  },
+  "ca-paired": {
+    "type": "entry",
+    "default": "",
+    "description": "Paired certificate (SHA-256)",
+    "tooltip": "Empty = not paired. If the server certificate changes, pair again with the two buttons above.",
+    "dependency": "use-https"
   },
   "refresh-interval": {
     "type": "spinbutton",
@@ -50,16 +94,35 @@
     "description": "Show realized PnL",
     "tooltip": "Shows the already realized PnL of the open position (e.g. funding fees)"
   },
+  "pnl-prozent": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Show PnL in percent",
+    "tooltip": "Profit/loss relative to the margin (like the exchange's ROE). Also switchable with the % button in the desklet header."
+  },
   "show-bots": {
     "type": "checkbox",
     "default": true,
     "description": "Show Pionex bots",
     "tooltip": "Shows running Pionex bots in a dedicated section (PnL/margin in the respective coin, e.g. SOL for Coin-M)"
   },
+  "bot-usdt": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Bot values in USDT",
+    "tooltip": "Coin-margined bots (e.g. SOL) report profit in the coin. On: converted to USDT at the current price.",
+    "dependency": "show-bots"
+  },
   "show-github-link": {
     "type": "checkbox",
     "default": true,
-    "description": "Show GitHub link in footer"
+    "description": "Show app name in footer"
+  },
+  "bitunix-link": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Bitunix shortcut (BX) next to the coin",
+    "tooltip": "Clicking the coin opens it in the AutarkTrade chart; BX opens the coin's trading page on Bitunix (only for Bitunix positions)."
   },
   "font-size": {
     "type": "spinbutton",
@@ -96,5 +159,171 @@
     "step": 20,
     "units": "px",
     "description": "Width"
+  },
+  "chart-header": {
+    "type": "label",
+    "description": "Price chart"
+  },
+  "chart-an": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show price chart",
+    "tooltip": "Line chart from Binance futures, fetched directly (public, no key)."
+  },
+  "chart-symbol": {
+    "type": "entry",
+    "default": "BTCUSDT",
+    "description": "Symbol",
+    "tooltip": "e.g. BTC, ETH, SOLUSDT — USDT is added when missing.",
+    "dependency": "chart-an"
+  },
+  "chart-spanne": {
+    "type": "combobox",
+    "default": "24h",
+    "description": "Time span",
+    "options": {
+      "1 hour": "1h",
+      "24 hours": "24h",
+      "7 days": "7d",
+      "30 days": "30d"
+    },
+    "dependency": "chart-an"
+  },
+  "chart-art": {
+    "type": "combobox",
+    "default": "linie",
+    "description": "Display",
+    "options": {
+      "Line": "linie",
+      "Candles": "kerzen"
+    },
+    "dependency": "chart-an"
+  },
+  "chart-hoehe": {
+    "type": "spinbutton",
+    "default": 110,
+    "min": 60,
+    "max": 300,
+    "step": 10,
+    "units": "px",
+    "description": "Chart height",
+    "dependency": "chart-an"
+  },
+  "alarm-header": {
+    "type": "label",
+    "description": "Chart alarms"
+  },
+  "alarme-an": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show chart alarms on the desktop",
+    "tooltip": "Fetches alarm triggers with the main key (the display key is not enough) and shows them as a notification and in the desklet."
+  },
+  "alarm-intervall": {
+    "type": "spinbutton",
+    "default": 15,
+    "min": 5,
+    "max": 300,
+    "step": 5,
+    "units": "seconds",
+    "description": "Check for alarms every",
+    "dependency": "alarme-an"
+  },
+  "alarm-preis": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Price alarms",
+    "dependency": "alarme-an"
+  },
+  "alarm-linie": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Line alarms",
+    "dependency": "alarme-an"
+  },
+  "alarm-zone": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Zone alarms",
+    "dependency": "alarme-an"
+  },
+  "alarm-momentum": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Momentum alarms",
+    "dependency": "alarme-an"
+  },
+  "alarm-lsob": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Liquidity sweep / order block alarms",
+    "dependency": "alarme-an"
+  },
+  "alarm-ton": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Play a sound",
+    "dependency": "alarme-an"
+  },
+  "sprache-an": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Read alarms aloud",
+    "tooltip": "Uses the Piper voice when installed (install.sh --stimme), otherwise spd-say.",
+    "dependency": "alarme-an"
+  },
+  "sprache-ab": {
+    "type": "combobox",
+    "default": "warnung",
+    "options": {
+      "All alarms (info and up)": "info",
+      "Warnings and trade entries": "warnung",
+      "Only trade entries": "einstieg"
+    },
+    "description": "Read aloud from level",
+    "dependency": "sprache-an"
+  },
+  "stimme": {
+    "type": "combobox",
+    "default": "thorsten",
+    "options": {
+      "Thorsten (German, male)": "thorsten",
+      "Jenny (Dioco) (English, female)": "jenny"
+    },
+    "description": "Voice",
+    "tooltip": "Piper voices, offline. Jenny reads the German alarm texts with the common words translated.",
+    "dependency": "sprache-an"
+  },
+  "ruhe-an": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Quiet hours (notification only, no sound or speech)",
+    "dependency": "alarme-an"
+  },
+  "ruhe-von": {
+    "type": "spinbutton",
+    "default": 22,
+    "min": 0,
+    "max": 23,
+    "step": 1,
+    "units": "h",
+    "description": "Quiet from",
+    "dependency": "ruhe-an"
+  },
+  "ruhe-bis": {
+    "type": "spinbutton",
+    "default": 7,
+    "min": 0,
+    "max": 23,
+    "step": 1,
+    "units": "h",
+    "description": "Quiet until",
+    "dependency": "ruhe-an"
+  },
+  "alarm-test": {
+    "type": "button",
+    "description": "Test alarm",
+    "callback": "onAlarmTest",
+    "tooltip": "Shows, plays and reads a sample alarm — also during quiet hours."
   }
 }
