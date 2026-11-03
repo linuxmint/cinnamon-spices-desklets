@@ -185,3 +185,31 @@ msgstr ""
 #. settings-schema.json->max-height->description
 msgid "Max height"
 msgstr ""
+
+#. settings-schema.json->layout->section-appearance->title
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->background-opacity->description
+msgid "Background opacity (%)"
+msgstr ""
+
+#. settings-schema.json->show-border->description
+msgid "Show border"
+msgstr ""
+
+#. settings-schema.json->text-style->description
+msgid "Text"
+msgstr ""
+
+#. settings-schema.json->text-style->options
+msgid "Light (for dark backgrounds)"
+msgstr ""
+
+#. settings-schema.json->text-style->options
+msgid "Dark (for light backgrounds)"
+msgstr ""

@@ -215,3 +215,36 @@
 .lt-error {
     color: #e08080;
 }
+
+/* "Dark text" setting, for light backgrounds. */
+.lt-text-dark {
+    color: #1c2420;
+}
+
+.lt-text-dark .lt-title { color: #2d5a14; }
+.lt-text-dark .lt-updated { color: rgba(30, 40, 30, 0.6); }
+.lt-text-dark .lt-refresh-button,
+.lt-text-dark .lt-header-icon { color: #3d6a1c; }
+.lt-text-dark .lt-refresh-button:hover,
+.lt-text-dark .lt-refresh-button:hover .lt-header-icon { color: #1c3a08; }
+.lt-text-dark .lt-refresh-button:hover { background-color: rgba(61, 106, 28, 0.16); }
+.lt-text-dark .lt-section-rule { background-color: rgba(61, 106, 28, 0.7); }
+.lt-text-dark .lt-section-label { color: rgba(45, 90, 20, 0.85); }
+.lt-text-dark .lt-tournament-name { color: #141a14; }
+.lt-text-dark .lt-match { border-bottom: 1px solid rgba(0, 0, 0, 0.12); }
+.lt-text-dark .lt-match-meta { color: rgba(30, 40, 30, 0.7); }
+.lt-text-dark .lt-status-live { color: #1a7a0c; }
+.lt-text-dark .lt-status-finished { color: #0d6666; }
+.lt-text-dark .lt-status-upcoming { color: #7a2f94; }
+.lt-text-dark .lt-player-name { color: #141a14; }
+.lt-text-dark .lt-player-winner { color: #000000; }
+.lt-text-dark .lt-player-seed,
+.lt-text-dark .lt-country { color: rgba(30, 40, 30, 0.6); }
+.lt-text-dark .lt-serve { color: #3d6a1c; }
+.lt-text-dark .lt-points-cell { background-color: rgba(61, 106, 28, 0.12); }
+.lt-text-dark .lt-points { color: #3d5a14; }
+.lt-text-dark .lt-set,
+.lt-text-dark .lt-score-line { color: #1c2420; }
+.lt-text-dark .lt-set-win { color: #2d5a14; }
+.lt-text-dark .lt-empty { color: rgba(30, 40, 30, 0.75); }
+.lt-text-dark .lt-error { color: #a02020; }

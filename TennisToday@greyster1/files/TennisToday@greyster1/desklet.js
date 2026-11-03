@@ -25,6 +25,8 @@ const ESPN_PAGE = "https://www.espn.com/tennis/scoreboard";
 const LIVESCORE_URL = "https://prod-public-api.livescore.com/v1/api/app";
 const USER_AGENT = "TennisToday-desklet (Cinnamon; +https://github.com/greyster1/TennisToday)";
 const IS_SOUP_2 = Soup.MAJOR_VERSION === undefined || Soup.MAJOR_VERSION === 2;
+const DEFAULT_BACKGROUND_RGB = [18, 22, 20];
+const DEFAULT_BACKGROUND_OPACITY = 92;
 const SET_COL_PX = 28;
 const POINTS_COL_PX = 36;
 const POINTS_GAP_PX = 6;
@@ -630,6 +632,52 @@ TennisTodayDesklet.prototype = {
             this.settings.bindProperty(Settings.BindingDirection.IN, pair[0], pair[1], onChange, null);
         });
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-seconds", "refreshSeconds", this._onRefreshSettingChanged, null);
+        // Appearance only restyles the existing actors, so skip the rebuild.
+        let onAppearance = this._applyAppearance;
+        [
+            ["background-color", "backgroundColor"], ["background-opacity", "backgroundOpacity"],
+            ["show-border", "showBorder"], ["text-style", "textStyle"]
+        ].forEach((pair) => {
+            this.settings.bindProperty(Settings.BindingDirection.IN, pair[0], pair[1], onAppearance, null);
+        });
+    },
+
+    // "rgb(r,g,b)", "rgba(...)" or "#rrggbb" from the color chooser; falls back
+    // to the stock dark green if the value cannot be read.
+    _parseColor: function (value) {
+        let m = /^\s*rgba?\(\s*(\d+)\s*,\s*(\d+)\s*,\s*(\d+)/i.exec(String(value));
+        if (m) {
+            return [m[1], m[2], m[3]].map(function (n) { return Math.min(255, parseInt(n, 10)); });
+        }
+        m = /^\s*#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})/i.exec(String(value));
+        if (m) {
+            return [m[1], m[2], m[3]].map(function (h) { return parseInt(h, 16); });
+        }
+        return DEFAULT_BACKGROUND_RGB;
+    },
+
+    _appearanceStyle: function () {
+        let rgb = this._parseColor(this.backgroundColor);
+        let pct = Number(this.backgroundOpacity);
+        let alpha = (isNaN(pct) ? DEFAULT_BACKGROUND_OPACITY : Math.min(100, Math.max(0, pct))) / 100;
+        let css = "background-color: rgba(" + rgb.join(", ") + ", " + alpha + ");";
+        if (this.showBorder === false) {
+            // Transparent, not removed, so the layout does not shift.
+            css += " border-color: transparent;";
+        }
+        return css;
+    },
+
+    _applyAppearance: function () {
+        if (this._destroyed || !this._root) {
+            return;
+        }
+        this._root.style = this._appearanceStyle() + " " + (this._sizeStyle || "");
+        if (this.textStyle === "dark") {
+            this._root.add_style_class_name("lt-text-dark");
+        } else {
+            this._root.remove_style_class_name("lt-text-dark");
+        }
     },
 
     // Rebuilding the list while the desklet is being dragged destroys the actor
@@ -902,7 +950,8 @@ TennisTodayDesklet.prototype = {
         // so the list does not widen and narrow between games.
         this._showPoints = this._pointsSeen && liveRows.length > 0;
         let widthPx = this._fittedWidth(this._maxSetColumns(visible), this._showPoints);
-        this._root.style = "min-width: " + widthPx + "px; width: " + widthPx + "px;";
+        this._sizeStyle = "min-width: " + widthPx + "px; width: " + widthPx + "px;";
+        this._applyAppearance();
         this._root.clip_to_allocation = false;
 
         this._root.add_child(this._buildHeader());

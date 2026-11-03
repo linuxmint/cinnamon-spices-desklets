@@ -39,6 +39,12 @@ unreachable the desklet falls back to ESPN alone, without levels or points.
 - *Minimum width* — the desklet grows beyond this to fit long score lines
 - *Max height* — the match list scrolls past this height
 
+**Appearance** (defaults match the original look)
+
+- *Background color* and *Background opacity* — from solid to fully transparent
+- *Show border* — hide the thin green outline
+- *Text* — switch to dark text when using a light background
+
 Right-click the desklet for **Refresh now** and **Open ESPN scoreboard**.
 
 ## Installation

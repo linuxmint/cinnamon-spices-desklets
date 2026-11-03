@@ -19,7 +19,8 @@
             "title": "Display",
             "sections": [
                 "section-matches",
-                "section-layout"
+                "section-layout",
+                "section-appearance"
             ]
         },
         "section-tours": {
@@ -66,6 +67,16 @@
             "keys": [
                 "desklet-width",
                 "max-height"
+            ]
+        },
+        "section-appearance": {
+            "type": "section",
+            "title": "Appearance",
+            "keys": [
+                "background-color",
+                "background-opacity",
+                "show-border",
+                "text-style"
             ]
         }
     },
@@ -171,5 +182,33 @@
         "step": 20,
         "units": "px",
         "description": "Max height"
+    },
+    "background-color": {
+        "type": "colorchooser",
+        "default": "rgb(18,22,20)",
+        "description": "Background color"
+    },
+    "background-opacity": {
+        "type": "scale",
+        "default": 92,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "show-value": true,
+        "description": "Background opacity (%)"
+    },
+    "show-border": {
+        "type": "switch",
+        "default": true,
+        "description": "Show border"
+    },
+    "text-style": {
+        "type": "combobox",
+        "default": "light",
+        "description": "Text",
+        "options": {
+            "Light (for dark backgrounds)": "light",
+            "Dark (for light backgrounds)": "dark"
+        }
     }
 }
