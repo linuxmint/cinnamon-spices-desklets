@@ -41,44 +41,17 @@ const UPCOMING_WINDOW_MS = 24 * 3600 * 1000;
 const LIST_INTERVAL_MS = 180000;
 const FETCH_WATCHDOG_MS = 120000;
 const MIN_REFRESH_SECONDS = 30;
+// With nothing live or about to start, scores cannot change.
+const IDLE_REFRESH_MS = 5 * 60 * 1000;
+const IDLE_LEAD_MS = 20 * 60 * 1000;
+// Seeds, rounds and courts barely move once a match has them.
+const HEADER_SETTLED_MS = 15 * 60 * 1000;
+const FEED_KEEPALIVE_SECONDS = 30;
 
 Gettext.bindtextdomain(UUID, GLib.get_user_data_dir() + "/locale");
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
-}
-
-let _etFormatter;
-
-function _etYmd(ms) {
-    if (ms === undefined || ms === null || isNaN(ms)) {
-        return "";
-    }
-    try {
-        if (!_etFormatter) {
-            _etFormatter = new Intl.DateTimeFormat("en-US", {
-                timeZone: "America/New_York",
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit"
-            });
-        }
-        let parts = _etFormatter.formatToParts(new Date(ms));
-        let y = "", mo = "", d = "";
-        for (let i = 0; i < parts.length; i++) {
-            if (parts[i].type === "year") {
-                y = parts[i].value;
-            } else if (parts[i].type === "month") {
-                mo = parts[i].value;
-            } else if (parts[i].type === "day") {
-                d = parts[i].value;
-            }
-        }
-        return y + "-" + mo + "-" + d;
-    } catch (e) {
-        let dt = new Date(ms);
-        return dt.getUTCFullYear() + "-" + String(dt.getUTCMonth() + 1).padStart(2, "0") + "-" + String(dt.getUTCDate()).padStart(2, "0");
-    }
 }
 
 function _localYmd(ms) {
@@ -97,6 +70,16 @@ function _recentlyFinished(startMs, now) {
 // upcoming is a rolling window rather than a calendar day.
 function _upcomingSoon(startMs, now) {
     return isNaN(startMs) || Math.abs(startMs - now) <= UPCOMING_WINDOW_MS;
+}
+
+// By start time, matches with no start time last either way.
+function _byStart(a, b, desc) {
+    let am = a.startMs;
+    let bm = b.startMs;
+    if (isNaN(am) || isNaN(bm)) {
+        return isNaN(am) && isNaN(bm) ? 0 : (isNaN(am) ? 1 : -1);
+    }
+    return desc ? bm - am : am - bm;
 }
 
 function _formatMatchTime(ms) {
@@ -158,13 +141,17 @@ function _matchKey(m) {
     return (m.tournament || "") + "::" + names.join("|");
 }
 
-function _nameKey(name) {
+function _stripAccents(name) {
     let n = String(name || "");
     try {
         n = n.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
     } catch (e) {
     }
-    return n.toLowerCase().replace(/[^a-z0-9]+/g, "");
+    return n.toLowerCase();
+}
+
+function _nameKey(name) {
+    return _stripAccents(name).replace(/[^a-z0-9]+/g, "");
 }
 
 // LiveScore names a tournament's level ("ATP 500", "WTA Finals"); reduce it to
@@ -221,12 +208,6 @@ function _isPlaceholderMatch(players) {
         }
     }
     return known === 0;
-}
-
-function _pairKeyFromNames(names) {
-    let keys = (names || []).map(_nameKey);
-    keys.sort();
-    return keys.join("|");
 }
 
 function _ordinalSet(period) {
@@ -321,9 +302,7 @@ function _parseEvent(event, tour) {
     let notes = event.notes || [];
     let roundName = "";
     let courtName = "";
-    let leadText = "";
     if (notes.length) {
-        leadText = notes[0].text || "";
         let typeText = notes[0].type || "";
         let dash = typeText.indexOf(" - ");
         if (dash >= 0) {
@@ -396,16 +375,11 @@ function _parseEvent(event, tour) {
         courtName: courtName,
         eventType: eventType,
         status: status,
-        statusCode: event.status,
         summary: event.summary || "",
-        leadText: leadText,
         teams: teams,
         isDoubles: isDoubles,
-        recent: !!event.recent,
         link: link,
-        start: event.date || "",
-        startMs: event.date ? Date.parse(event.date) : NaN,
-        isToday: _etYmd(event.date ? Date.parse(event.date) : NaN) === _etYmd(Date.now())
+        startMs: event.date ? Date.parse(event.date) : NaN
     };
 }
 
@@ -435,12 +409,7 @@ function _lsTime(esd) {
 }
 
 function _slug(name) {
-    let n = String(name || "");
-    try {
-        n = n.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    } catch (e) {
-    }
-    return n.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
+    return _stripAccents(name).replace(/[^a-z0-9]+/g, "-").replace(/^-+|-+$/g, "");
 }
 
 function _surnameKey(name) {
@@ -564,7 +533,6 @@ TennisTodayDesklet.prototype = {
         this._lsDays = {};
         this._lsDayAt = {};
         this._lsLive = null;
-        this._lsLiveKey = null;
         this._enrichByEid = {};
         this._tourInfo = {};
         this._seedByKey = {};
@@ -581,10 +549,16 @@ TennisTodayDesklet.prototype = {
         this._matchUsed = {};
         this._headerCache = [];
         this._headerAt = 0;
+        this._lastFetchAt = 0;
+        this._renderedKey = "";
+        this._locked = false;
+        this._screenSaver = null;
+        this._lsLiveDays = {};
         this._pointsSeen = false;
         this._showPoints = false;
 
         this._initHttp();
+        this._watchScreenSaver();
         this._bindSettings(deskletId);
         this._buildChrome();
         this.setHeader(_("TennisToday"));
@@ -616,24 +590,46 @@ TennisTodayDesklet.prototype = {
         this._httpSession.idle_timeout = 45;
     },
 
+    // A held connection saves a TLS handshake (~4.5 KB) on every refresh.
+    _setIdleTimeout: function (seconds) {
+        if (this._httpSession && !IS_SOUP_2) {
+            this._httpSession.idle_timeout = seconds + FEED_KEEPALIVE_SECONDS;
+        }
+    },
+
+    // No point polling a locked screen; catch up the moment it unlocks.
+    _watchScreenSaver: function () {
+        try {
+            let ScreenSaver = imports.misc.screenSaver;
+            this._screenSaver = new ScreenSaver.ScreenSaverProxy();
+            this._locked = !!this._screenSaver.screenSaverActive;
+            this._lockSignal = this._screenSaver.connectSignal("ActiveChanged", (proxy, sender, [active]) => {
+                this._locked = !!active;
+                if (!active && !this._destroyed) {
+                    this._fetch();
+                }
+            });
+        } catch (e) {
+            this._screenSaver = null;
+        }
+    },
+
     _bindSettings: function (deskletId) {
         this.settings = new Settings.DeskletSettings(this, UUID, deskletId);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-atp", "enableAtp", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-wta", "enableWta", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "enable-grand-slam", "enableGrandSlam", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-doubles", "showDoubles", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-1000", "showTier1000", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-500", "showTier500", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-250", "showTier250", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-tier-other", "showTierOther", this._onSettingsChanged, null);
+        let onChange = this._onSettingsChanged;
+        [
+            ["enable-atp", "enableAtp"], ["enable-wta", "enableWta"],
+            ["enable-grand-slam", "enableGrandSlam"], ["show-doubles", "showDoubles"],
+            ["show-tier-1000", "showTier1000"], ["show-tier-500", "showTier500"],
+            ["show-tier-250", "showTier250"], ["show-tier-other", "showTierOther"],
+            ["show-completed", "showCompleted"], ["max-completed", "maxCompleted"],
+            ["show-upcoming", "showUpcoming"], ["max-upcoming", "maxUpcoming"],
+            ["max-live", "maxLive"], ["desklet-width", "deskletWidth"],
+            ["max-height", "maxHeight"]
+        ].forEach((pair) => {
+            this.settings.bindProperty(Settings.BindingDirection.IN, pair[0], pair[1], onChange, null);
+        });
         this.settings.bindProperty(Settings.BindingDirection.IN, "refresh-seconds", "refreshSeconds", this._onRefreshSettingChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-completed", "showCompleted", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "max-completed", "maxCompleted", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "show-upcoming", "showUpcoming", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "max-upcoming", "maxUpcoming", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "max-live", "maxLive", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._onSettingsChanged, null);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "max-height", "maxHeight", this._onSettingsChanged, null);
     },
 
     // Rebuilding the list while the desklet is being dragged destroys the actor
@@ -824,34 +820,9 @@ TennisTodayDesklet.prototype = {
         }
 
         finished.sort(function (a, b) {
-            let am = a.startMs;
-            let bm = b.startMs;
-            if (isNaN(am) && isNaN(bm)) {
-                return 0;
-            }
-            if (isNaN(am)) {
-                return 1;
-            }
-            if (isNaN(bm)) {
-                return -1;
-            }
-            return bm - am;
+            return _byStart(a, b, true);
         });
-
-        upcoming.sort(function (a, b) {
-            let am = a.startMs;
-            let bm = b.startMs;
-            if (isNaN(am) && isNaN(bm)) {
-                return 0;
-            }
-            if (isNaN(am)) {
-                return 1;
-            }
-            if (isNaN(bm)) {
-                return -1;
-            }
-            return am - bm;
-        });
+        upcoming.sort(_byStart);
 
         live = live.slice(0, this.maxLive || 40);
         if (this.showCompleted) {
@@ -865,6 +836,11 @@ TennisTodayDesklet.prototype = {
             upcoming = [];
         }
         return { live: live, finished: finished, upcoming: upcoming };
+    },
+
+    _selectionKey: function () {
+        let g = this._selectedMatches();
+        return g.live.concat(g.upcoming, g.finished).map(function (m) { return m.id; }).join(",");
     },
 
     _tierEnabled: function (tier) {
@@ -917,6 +893,7 @@ TennisTodayDesklet.prototype = {
 
         let groups = this._selectedMatches();
         let visible = groups.live.concat(groups.upcoming, groups.finished);
+        this._renderedKey = visible.map(function (m) { return m.id; }).join(",");
         let liveRows = visible.filter(function (m) { return m.status === "Live"; });
         if (liveRows.some(function (m) { return m.teams.some(function (t) { return !!t.points; }); })) {
             this._pointsSeen = true;
@@ -1321,41 +1298,55 @@ TennisTodayDesklet.prototype = {
             this._timer = null;
         }
         let seconds = Math.max(MIN_REFRESH_SECONDS, parseInt(this.refreshSeconds, 10) || 60);
+        this._setIdleTimeout(seconds);
         this._timer = Mainloop.timeout_add_seconds(seconds, () => {
             if (this._fetching && this._fetchStartedAt && (Date.now() - this._fetchStartedAt > FETCH_WATCHDOG_MS)) {
                 global.logError(UUID + " fetch stuck for " + Math.round((Date.now() - this._fetchStartedAt) / 1000) + "s, resetting");
                 this._fetching = false;
             }
-            this._fetch();
+            if (!this._locked && !this._isIdleNow()) {
+                this._fetch();
+            }
             return GLib.SOURCE_CONTINUE;
         });
     },
 
-    _headerUrls: function () {
-        // ESPN's header feed is only used to enrich LiveScore matches with
-        // seeds, rounds, courts and countries, so both tours are always read.
-        return [ESPN_URL, ESPN_URL + "&league=atp"];
+    // Nothing live and nothing starting soon: scores cannot move, so poll at a
+    // relaxed pace. An empty list is an error state and keeps retrying.
+    _isIdleNow: function () {
+        if (!this._matches.length || !this._lastFetchAt) {
+            return false;
+        }
+        let now = Date.now();
+        if (now - this._lastFetchAt >= IDLE_REFRESH_MS - 5000) {
+            return false;
+        }
+        for (let i = 0; i < this._matches.length; i++) {
+            let m = this._matches[i];
+            if (m.status === "Live") {
+                return false;
+            }
+            if (m.status === "Upcoming" && (isNaN(m.startMs) || m.startMs - now < IDLE_LEAD_MS)) {
+                return false;
+            }
+        }
+        return true;
     },
 
+    // ESPN's header feed only enriches LiveScore matches with seeds, rounds,
+    // courts and countries. The base URL now carries both tours; the ATP-only
+    // URL is read just when ATP is missing from it.
     _fetchHeaders: function (done) {
-        let urls = this._headerUrls();
-        if (!urls.length) {
-            done([]);
-            return;
-        }
-        let left = urls.length;
-        let all = [];
-        for (let i = 0; i < urls.length; i++) {
-            this._fetchJson(urls[i], (json) => {
-                if (json) {
-                    all = all.concat(parseEspnHeader(json));
-                }
-                left -= 1;
-                if (left <= 0) {
-                    done(all);
-                }
+        this._fetchJson(ESPN_URL, (json) => {
+            let all = json ? parseEspnHeader(json) : [];
+            if (!json || all.some(function (m) { return m.tour === "ATP"; })) {
+                done(all);
+                return;
+            }
+            this._fetchJson(ESPN_URL + "&league=atp", (atp) => {
+                done(atp ? all.concat(parseEspnHeader(atp)) : all);
             });
-        }
+        });
     },
 
     _matchTourEnabled: function (league, tournament) {
@@ -1381,47 +1372,52 @@ TennisTodayDesklet.prototype = {
             }
         }
         // The live feed is tiny and carries every score and point, so it is read
-        // each refresh. The ~60 KB day feeds only matter when a match starts or
-        // finishes (the live set changes) or a schedule shifts (they age).
+        // each refresh. A ~12 KB day feed is read when a match of that day starts
+        // or finishes (the live set changes) or when it ages; today ages fastest.
         this._fetchJson(LIVESCORE_URL + "/live/tennis/0?MD=1", (json) => {
             let ok = !!(json && json.Stages);
             this._lsLive = ok ? _slimLivescore(json) : null;
-            let key = "";
+            let liveDays = {};
+            let changed = {};
             if (ok) {
                 this._lsLive.Stages.forEach(function (st) {
                     st.Events.forEach(function (ev) {
-                        key += ev.Eid + ",";
+                        liveDays[ev.Eid] = _utcCompact(_lsTime(ev.Esd));
                     });
                 });
-            }
-            let liveChanged = !ok || key !== this._lsLiveKey;
-            this._lsLiveKey = key;
-            let jobs = [];
-            for (let i = 0; i < days.length; i++) {
-                let day = days[i];
-                let aged = !this._lsDays[day] || now - this._lsDayAt[day] > LIST_INTERVAL_MS;
-                if (force || aged || (liveChanged && day === todayKey)) {
-                    jobs.push(day);
+                for (let eid in liveDays) {
+                    if (this._lsLiveDays[eid] !== liveDays[eid]) {
+                        changed[liveDays[eid]] = true;
+                    }
                 }
+                for (let eid in this._lsLiveDays) {
+                    if (liveDays[eid] === undefined) {
+                        changed[this._lsLiveDays[eid]] = true;
+                    }
+                }
+                this._lsLiveDays = liveDays;
             }
-            if (!jobs.length) {
-                done();
-                return;
-            }
-            let left = jobs.length;
-            for (let j = 0; j < jobs.length; j++) {
-                let day = jobs[j];
+            let jobs = days.filter((day) => {
+                let age = this._lsDays[day] ? now - this._lsDayAt[day] : Infinity;
+                let limit = day === todayKey ? LIST_INTERVAL_MS : HEADER_SETTLED_MS;
+                return force || age > limit || (!ok && day === todayKey) || changed[day];
+            });
+            let next = () => {
+                if (!jobs.length) {
+                    done();
+                    return;
+                }
+                let day = jobs.shift();
                 this._fetchJson(LIVESCORE_URL + "/date/tennis/" + day + "/0?MD=1", (dayJson) => {
                     if (dayJson && dayJson.Stages) {
                         this._lsDays[day] = _slimLivescore(dayJson);
                         this._lsDayAt[day] = Date.now();
                     }
-                    left -= 1;
-                    if (left <= 0) {
-                        done();
-                    }
+                    next();
                 }, true);
-            }
+            };
+            // One after another so they share the held connection.
+            next();
         }, true);
     },
 
@@ -1528,17 +1524,12 @@ TennisTodayDesklet.prototype = {
             courtName: "",
             eventType: eventType,
             status: status,
-            statusCode: status === "Live" ? "in" : (status === "Finished" ? "post" : "pre"),
             summary: status === "Live" && eps !== "ToFi" ? _liveSummary("", period) : "",
             endNote: endNote,
-            leadText: "",
             teams: teams,
             isDoubles: isDoubles,
-            recent: status !== "Upcoming",
             link: this._lsLink(stage, ev),
-            start: isNaN(startMs) ? "" : new Date(startMs).toISOString(),
-            startMs: startMs,
-            isToday: _etYmd(startMs) === _etYmd(now)
+            startMs: startMs
         };
     },
 
@@ -1709,6 +1700,7 @@ TennisTodayDesklet.prototype = {
         }
         this._fetching = true;
         this._fetchStartedAt = Date.now();
+        this._lastFetchAt = this._fetchStartedAt;
 
         let left = 2;
         let tick = () => {
@@ -1720,7 +1712,7 @@ TennisTodayDesklet.prototype = {
         this._fetchLivescore(force, tick);
         // Seeds, rounds and courts barely change, so ESPN's ~80 KB header is
         // read every few minutes while scores refresh every interval.
-        if (!force && this._headerAt && Date.now() - this._headerAt < LIST_INTERVAL_MS) {
+        if (!force && this._headerAt && Date.now() - this._headerAt < this._headerInterval()) {
             tick();
         } else {
             this._fetchHeaders((matches) => {
@@ -1731,6 +1723,14 @@ TennisTodayDesklet.prototype = {
                 tick();
             });
         }
+    },
+
+    // Re-read ESPN soon only while a match still lacks its round or court.
+    _headerInterval: function () {
+        let wanting = this._matches.some(function (m) {
+            return m.status !== "Finished" && !m.roundName;
+        });
+        return wanting ? LIST_INTERVAL_MS : HEADER_SETTLED_MS;
     },
 
     _finishFetch: function (header) {
@@ -1762,6 +1762,14 @@ TennisTodayDesklet.prototype = {
         } catch (e) {
             global.logError(UUID + " header error: " + e);
         }
+        // LiveScore drops idle HTTP/2 connections within ~50 s but keeps
+        // HTTP/1.1 ones for minutes, so a refresh would otherwise redo TLS.
+        if (!IS_SOUP_2 && url.indexOf(LIVESCORE_URL) === 0) {
+            try {
+                message.set_force_http1(true);
+            } catch (e) {
+            }
+        }
         if (IS_SOUP_2) {
             this._httpSession.queue_message(message, (session, msg) => {
                 let json = null;
@@ -1780,9 +1788,11 @@ TennisTodayDesklet.prototype = {
             this._httpSession.send_and_read_async(message, Soup.MessagePriority.NORMAL, this._cancellable, (session, result) => {
                 let json = null;
                 try {
+                    let bytes = this._httpSession.send_and_read_finish(result);
                     if (message.get_status() === 200) {
-                        let bytes = this._httpSession.send_and_read_finish(result);
                         json = JSON.parse(ByteArray.toString(bytes.get_data()));
+                    } else if (!this._destroyed) {
+                        global.logWarning(UUID + " HTTP " + message.get_status() + " from " + url);
                     }
                 } catch (e) {
                     // A cancelled request during teardown is expected, not an error.
@@ -1801,7 +1811,7 @@ TennisTodayDesklet.prototype = {
         let parts = [];
         for (let i = 0; i < matches.length; i++) {
             let m = matches[i];
-            parts.push(m.status, m.summary || "", m.tournament || "", m.roundName || "", m.tier || "", m.courtName || "", m.link || "", m.endNote || "");
+            parts.push(m.id, String(m.startMs), m.status, m.summary || "", m.tournament || "", m.location || "", m.roundName || "", m.tier || "", m.courtName || "", m.eventType || "", m.link || "", m.endNote || "");
             let teams = m.teams || [];
             for (let t = 0; t < teams.length; t++) {
                 let tm = teams[t];
@@ -1819,7 +1829,9 @@ TennisTodayDesklet.prototype = {
         try {
             let error = next.length ? null : _("Could not fetch scores");
             let snap = this._snapshotMatches(next);
-            if (snap === this._lastSnapshot && error === this._error) {
+            // The 24-hour windows slide with the clock, so a quiet feed can
+            // still change which matches are shown.
+            if (snap === this._lastSnapshot && error === this._error && this._selectionKey() === this._renderedKey) {
                 return;
             }
             this._lastSnapshot = snap;
@@ -1848,6 +1860,13 @@ TennisTodayDesklet.prototype = {
             }
         }
         this._dragSignals = [];
+        if (this._screenSaver && this._lockSignal) {
+            try {
+                this._screenSaver.disconnectSignal(this._lockSignal);
+            } catch (e) {
+            }
+        }
+        this._screenSaver = null;
         if (this._moveTimer) {
             Mainloop.source_remove(this._moveTimer);
             this._moveTimer = null;
@@ -1872,7 +1891,16 @@ TennisTodayDesklet.prototype = {
             this._httpSession = null;
         }
         if (this.settings) {
+            // Cinnamon fades a reloaded desklet out before calling this, by which
+            // time the new copy has registered. finalize() clears that entry
+            // whoever owns it, which silences the new copy's settings for good.
+            let manager = Main.settingsManager;
+            let id = this.settings.instanceId;
+            let live = manager && manager.uuids[UUID] ? manager.uuids[UUID][id] : null;
             this.settings.finalize();
+            if (live && live !== this.settings) {
+                manager.register(UUID, id, live);
+            }
             this.settings = null;
         }
         this._matchActors = {};
