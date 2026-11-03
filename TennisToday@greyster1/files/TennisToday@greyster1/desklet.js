@@ -553,14 +553,11 @@ TennisTodayDesklet.prototype = {
         this._headerAt = 0;
         this._lastFetchAt = 0;
         this._renderedKey = "";
-        this._locked = false;
-        this._screenSaver = null;
         this._lsLiveDays = {};
         this._pointsSeen = false;
         this._showPoints = false;
 
         this._initHttp();
-        this._watchScreenSaver();
         this._bindSettings(deskletId);
         this._buildChrome();
         this.setHeader(_("TennisToday"));
@@ -596,23 +593,6 @@ TennisTodayDesklet.prototype = {
     _setIdleTimeout: function (seconds) {
         if (this._httpSession && !IS_SOUP_2) {
             this._httpSession.idle_timeout = seconds + FEED_KEEPALIVE_SECONDS;
-        }
-    },
-
-    // No point polling a locked screen; catch up the moment it unlocks.
-    _watchScreenSaver: function () {
-        try {
-            let ScreenSaver = imports.misc.screenSaver;
-            this._screenSaver = new ScreenSaver.ScreenSaverProxy();
-            this._locked = !!this._screenSaver.screenSaverActive;
-            this._lockSignal = this._screenSaver.connectSignal("ActiveChanged", (proxy, sender, [active]) => {
-                this._locked = !!active;
-                if (!active && !this._destroyed) {
-                    this._fetch();
-                }
-            });
-        } catch (e) {
-            this._screenSaver = null;
         }
     },
 
@@ -1353,7 +1333,7 @@ TennisTodayDesklet.prototype = {
                 global.logError(UUID + " fetch stuck for " + Math.round((Date.now() - this._fetchStartedAt) / 1000) + "s, resetting");
                 this._fetching = false;
             }
-            if (!this._locked && !this._isIdleNow()) {
+            if (!this._isIdleNow()) {
                 this._fetch();
             }
             return GLib.SOURCE_CONTINUE;
@@ -1909,13 +1889,6 @@ TennisTodayDesklet.prototype = {
             }
         }
         this._dragSignals = [];
-        if (this._screenSaver && this._lockSignal) {
-            try {
-                this._screenSaver.disconnectSignal(this._lockSignal);
-            } catch (e) {
-            }
-        }
-        this._screenSaver = null;
         if (this._moveTimer) {
             Mainloop.source_remove(this._moveTimer);
             this._moveTimer = null;
