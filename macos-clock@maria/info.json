@@ -1,0 +1,7 @@
+{
+    "author": "mariamaracaja",
+    "description": "A clean macOS-inspired digital clock desklet",
+    "framework_version": "1.0",
+    "name": "macOS Clock",
+    "uuid": "macos-clock@maria"
+}

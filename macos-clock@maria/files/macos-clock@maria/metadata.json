@@ -1,0 +1,7 @@
+{
+ "uuid": "macos-clock@maria",
+ "name": "MacOS Clock desklet for Linux mint",
+ "description": "A desklet that displays the time, but cuter",
+ "prevent-decorations": false,
+ "max-instances": "100"
+}
