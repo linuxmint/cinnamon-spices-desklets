@@ -20,6 +20,8 @@ const Gettext = imports.gettext;
 
 const UUID = "TennisToday@greyster1";
 const ESPN_URL = "https://site.web.api.espn.com/apis/v2/scoreboard/header?sport=tennis";
+const ESPN_RANKINGS_URL = "https://site.api.espn.com/apis/site/v2/sports/tennis/";
+const RANKINGS_RETRY_MS = 6 * 3600 * 1000;
 const ESPN_PAGE = "https://www.espn.com/tennis/scoreboard";
 // ESPN carries no tournament level or game points; LiveScore's public feed does.
 const LIVESCORE_URL = "https://prod-public-api.livescore.com/v1/api/app";
@@ -252,6 +254,20 @@ function _countryFromLogo(url) {
     return m ? m[1].toUpperCase() : "";
 }
 
+// ESPN's rankings list the top 150 of a tour with their flag.
+function parseEspnRankings(json) {
+    let out = [];
+    let ranks = ((json && json.rankings && json.rankings[0]) || {}).ranks || [];
+    for (let i = 0; i < ranks.length; i++) {
+        let a = ranks[i].athlete || {};
+        let country = _countryFromLogo(a.flag) || String(a.citizenshipCountry || "").toUpperCase();
+        if (a.displayName && country) {
+            out.push({ name: a.displayName, country: country });
+        }
+    }
+    return out;
+}
+
 function _setIsComplete(a, b) {
     let va = Number(a);
     let vb = Number(b);
@@ -419,6 +435,29 @@ function _surnameKey(name) {
     return _nameKey(parts[parts.length - 1]);
 }
 
+// The two feeds disagree on long names ("Tomas Martin Etcheverry" and "Tomas
+// Etcheverry", "Daniel Merida" and "Daniel Merida Aguilar"). Index a player by
+// the full name and by first name plus each later name part, and look a name
+// up the same way.
+function _countryKeys(name) {
+    let parts = String(name || "").trim().split(/\s+/).map(_nameKey).filter(function (p) { return !!p; });
+    let keys = [parts.join("")];
+    for (let i = 1; i < parts.length; i++) {
+        keys.push(parts[0] + "|" + parts[i]);
+    }
+    return keys;
+}
+
+function _countryLookup(index, name) {
+    let keys = _countryKeys(name);
+    for (let i = 0; i < keys.length; i++) {
+        if (index[keys[i]]) {
+            return index[keys[i]];
+        }
+    }
+    return "";
+}
+
 // Doubles teams read "A / B" on ESPN and are two players on LiveScore; both
 // reduce to the sorted player keys, a lone player being a team of one.
 function _teamKey(names) {
@@ -539,6 +578,8 @@ TennisTodayDesklet.prototype = {
         this._tourInfo = {};
         this._seedByKey = {};
         this._playerCountry = {};
+        this._rankingsAt = {};
+        this._rankingsBusy = {};
         this._scrollHeight = 0;
         this._scrollView = null;
         this._scrollRestoreId = 0;
@@ -1601,6 +1642,9 @@ TennisTodayDesklet.prototype = {
         let bySurnames = {};
         for (let i = 0; i < (header || []).length; i++) {
             let h = header[i];
+            if (!h.isDoubles) {
+                this._learnCountries(h.teams || []);
+            }
             if (_isPlaceholderMatch((h.teams || []).map(function (t) { return { name: t.name, id: t.athleteId }; }))) {
                 continue;
             }
@@ -1645,9 +1689,6 @@ TennisTodayDesklet.prototype = {
                 }
                 for (let p = 0; p < info.players.length; p++) {
                     let pl = info.players[p];
-                    if (pl.country) {
-                        this._playerCountry[pl.key] = pl.country;
-                    }
                     if (pl.seed) {
                         this._seedByKey[m.sid + "|" + pl.key] = pl.seed;
                     }
@@ -1678,7 +1719,7 @@ TennisTodayDesklet.prototype = {
                 delete this._tourInfo[sid];
             }
         }
-        if (Object.keys(this._playerCountry).length > 2000) {
+        if (Object.keys(this._playerCountry).length > 6000) {
             this._playerCountry = {};
         }
         for (let i = 0; i < matches.length; i++) {
@@ -1694,8 +1735,60 @@ TennisTodayDesklet.prototype = {
             for (let t = 0; t < m.teams.length; t++) {
                 let key = _nameKey(m.teams[t].name);
                 m.teams[t].seed = this._seedByKey[m.sid + "|" + key] || null;
-                m.teams[t].country = this._playerCountry[key] || "";
             }
+        }
+        this._applyCountries(matches);
+    },
+
+    _learnCountries: function (players) {
+        for (let i = 0; i < players.length; i++) {
+            if (!players[i].country) {
+                continue;
+            }
+            let keys = _countryKeys(players[i].name);
+            for (let k = 0; k < keys.length; k++) {
+                this._playerCountry[keys[k]] = players[i].country;
+            }
+        }
+    },
+
+    _applyCountries: function (matches) {
+        for (let i = 0; i < matches.length; i++) {
+            if (matches[i].isDoubles) {
+                continue;
+            }
+            for (let t = 0; t < matches[i].teams.length; t++) {
+                matches[i].teams[t].country = _countryLookup(this._playerCountry, matches[i].teams[t].name);
+            }
+        }
+    },
+
+    // ESPN's header only lists the players of the current day, so a player
+    // scheduled for tomorrow has no flag yet. Read that tour's rankings once
+    // (a few hours apart at most) when someone shown is still missing one.
+    _fillMissingCountries: function (matches) {
+        let missing = {};
+        matches.forEach(function (m) {
+            if (!m.isDoubles && m.teams.some(function (t) { return !t.country; })) {
+                missing[m.tour === "WTA" ? "wta" : "atp"] = true;
+            }
+        });
+        for (let tour in missing) {
+            if (this._rankingsBusy[tour] || Date.now() - (this._rankingsAt[tour] || 0) < RANKINGS_RETRY_MS) {
+                continue;
+            }
+            this._rankingsBusy[tour] = true;
+            this._fetchJson(ESPN_RANKINGS_URL + tour + "/rankings", (json) => {
+                this._rankingsBusy[tour] = false;
+                this._rankingsAt[tour] = Date.now();
+                let players = json ? parseEspnRankings(json) : [];
+                if (!players.length) {
+                    return;
+                }
+                this._learnCountries(players);
+                this._applyCountries(this._matches);
+                this._onSettingsChanged();
+            });
         }
     },
 
@@ -1768,6 +1861,7 @@ TennisTodayDesklet.prototype = {
             let next = this._lsMatches(Date.now());
             if (next.length) {
                 this._enrich(next, header);
+                this._fillMissingCountries(next);
             } else {
                 next = this._fromHeader(header);
             }
