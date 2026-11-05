@@ -1,4 +1,4 @@
-# System Resource Monitor
+# Christmas Tree
 
 A clean, minimal desklet showing a character based retro Christmas tree with blinking lights.
 
