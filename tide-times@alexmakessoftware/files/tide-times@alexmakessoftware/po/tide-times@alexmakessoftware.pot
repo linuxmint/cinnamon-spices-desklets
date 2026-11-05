@@ -1,0 +1,200 @@
+# TIDE TIMES
+# This file is put in the public domain.
+# AlexMakesSoftware, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: tide-times@alexmakessoftware 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-11-05 20:43+0000\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:44 desklet.js:195
+msgid "Tide Times"
+msgstr ""
+
+#. desklet.js:210
+#, javascript-format
+msgid "Station: %s"
+msgstr ""
+
+#. desklet.js:214
+#, javascript-format
+msgid "Warning: nearest station is %s, %s km away"
+msgstr ""
+
+#. desklet.js:215
+#, javascript-format
+msgid "Station: %s, %s km away"
+msgstr ""
+
+#. desklet.js:227
+msgid "Right-click and choose Configure to set a location."
+msgstr ""
+
+#. desklet.js:230
+msgid "Fetching tide predictions..."
+msgstr ""
+
+#. desklet.js:235
+msgid "No prediction is available for the current time."
+msgstr ""
+
+#. desklet.js:243
+#, javascript-format
+msgid "%s m, rising"
+msgstr ""
+
+#. desklet.js:243
+#, javascript-format
+msgid "%s m, falling"
+msgstr ""
+
+#. desklet.js:246
+#, javascript-format
+msgid "%s m, rising · high at %s"
+msgstr ""
+
+#. desklet.js:246
+#, javascript-format
+msgid "%s m, falling · low at %s"
+msgstr ""
+
+#. desklet.js:252
+msgid "Could not refresh, so this may be out of date."
+msgstr ""
+
+#. desklet.js:258
+msgid "Open Waters rejected these coordinates."
+msgstr ""
+
+#. desklet.js:260
+msgid "No tide station has predictions for this location."
+msgstr ""
+
+#. desklet.js:262
+msgid "Open Waters is limiting requests. Trying again later."
+msgstr ""
+
+#. desklet.js:264
+msgid "Could not reach Open Waters. Trying again soon."
+msgstr ""
+
+#. desklet.js:266
+msgid "Open Waters is unavailable. Trying again soon."
+msgstr ""
+
+#. desklet.js:268
+msgid "Unexpected reply from Open Waters. Trying again soon."
+msgstr ""
+
+#. desklet.js:285
+#, javascript-format
+msgid "%s m"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Shows predicted sea levels for your beach as a 12-hour tide chart. Not for "
+"navigation."
+msgstr ""
+
+#. settings-schema.json->headLocation->description
+msgid "Beach location"
+msgstr ""
+
+#. settings-schema.json->locationName->description
+msgid "Label (for display only)"
+msgstr ""
+
+#. settings-schema.json->locationName->tooltip
+msgid ""
+"The name shown at the top of the desklet. It does not change the tides: the "
+"latitude and longitude below choose those."
+msgstr ""
+
+#. settings-schema.json->latitude->units
+#. settings-schema.json->longitude->units
+msgid "degrees"
+msgstr ""
+
+#. settings-schema.json->latitude->description
+msgid "Latitude"
+msgstr ""
+
+#. settings-schema.json->latitude->tooltip
+msgid ""
+"North is positive and south is negative. Predictions come from the nearest "
+"tide station, which may differ from your beach."
+msgstr ""
+
+#. settings-schema.json->longitude->description
+msgid "Longitude"
+msgstr ""
+
+#. settings-schema.json->longitude->tooltip
+msgid ""
+"East is positive and west is negative. Predictions come from the nearest "
+"tide station, which may differ from your beach."
+msgstr ""
+
+#. settings-schema.json->headSize->description
+msgid "Chart size"
+msgstr ""
+
+#. settings-schema.json->chartWidth->units
+#. settings-schema.json->chartHeight->units
+#. settings-schema.json->cornerRadius->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->chartWidth->description
+msgid "Width"
+msgstr ""
+
+#. settings-schema.json->chartHeight->description
+msgid "Height"
+msgstr ""
+
+#. settings-schema.json->headAppearance->description
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme"
+msgstr ""
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Turn this on to set the appearance below. When off, the desklet follows the "
+"Cinnamon theme."
+msgstr ""
+
+#. settings-schema.json->backgroundOpacity->description
+msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->backgroundOpacity->tooltip
+msgid "0 is fully transparent and 1 is solid."
+msgstr ""
+
+#. settings-schema.json->textColour->description
+msgid "Text colour"
+msgstr ""
+
+#. settings-schema.json->backgroundColour->description
+msgid "Background colour"
+msgstr ""
+
+#. settings-schema.json->cornerRadius->description
+msgid "Corner radius"
+msgstr ""
