@@ -127,8 +127,19 @@ function bildDatei(vorsatz, schluessel, endung) {
     return GLib.build_filenamev([BILD_ORDNER, vorsatz + GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, schluessel, -1) + endung]);
 }
 
+// Gibt es die Datei? Asynchron abgefragt (Promise), damit ein langsames Laufwerk Cinnamon nicht anhält
 function gibtEs(pfad) {
-    return GLib.file_test(pfad, GLib.FileTest.EXISTS);
+    return new Promise(fertig => {
+        Gio.File.new_for_path(pfad).query_info_async("standard::type", Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT, null, (datei, ergebnis) => {
+                try {
+                    datei.query_info_finish(ergebnis);
+                    fertig(true);
+                } catch (e) {
+                    fertig(false);              // NOT_FOUND oder nicht lesbar: wie „gibt es nicht“
+                }
+            });
+    });
 }
 
 // Bild holen und prüfen, dass es wirklich ein lesbares Bild ist
@@ -136,7 +147,7 @@ async function bildLaden(adresse, pfad) {
     let aus = await starten(["curl", "-s", "-f", "-L", "-m", "12", "--max-filesize", "3000000",
                              "-A", "Mozilla/5.0", "-o", pfad, adresse]);
     let ok = false;
-    if (aus !== null && gibtEs(pfad)) {
+    if (aus !== null && await gibtEs(pfad)) {
         try {
             let [format] = GdkPixbuf.Pixbuf.get_file_info(pfad);
             ok = !!format;
@@ -144,7 +155,7 @@ async function bildLaden(adresse, pfad) {
             ok = false;
         }
     }
-    if (!ok && gibtEs(pfad))
+    if (!ok && await gibtEs(pfad))
         GLib.unlink(pfad);
     return ok;
 }
@@ -714,8 +725,7 @@ class WebradioDesklet extends Desklet.Desklet {
 
     // alte Bilder aus dem Zwischenspeicher werfen (läuft nebenher)
     _bilderAufraeumen() {
-        if (!gibtEs(BILD_ORDNER))
-            return;
+        // fehlt der Ordner noch, scheitert find still – vorher nachsehen ist nicht nötig
         starten(["find", BILD_ORDNER, "-type", "f", "(",
                  "-name", "c-*", "-mtime", "+" + COVER_TAGE, "-o",
                  "-name", "*.kein", "-mtime", "+7", "-o",
@@ -738,18 +748,18 @@ class WebradioDesklet extends Desklet.Desklet {
     }
 
     // Logo des Senders: eigene Angabe aus der Senderliste, sonst aus dem Verzeichnis radio-browser.info
-    _logo(sender) {
+    async _logo(sender) {
         let eigen = sender.logo;
         if (eigen && !/^https?:\/\//i.test(eigen)) {
             let pfad = eigen.replace(/^file:\/\//, "").replace(/^~(?=\/)/, GLib.get_home_dir());
-            return Promise.resolve(gibtEs(pfad) ? pfad : "");
+            return await gibtEs(pfad) ? pfad : "";
         }
         let pfad = bildDatei("l-", sender.url + "|" + eigen, ".img");
         let kein = pfad.replace(/\.img$/, ".kein");
-        if (gibtEs(pfad))
-            return Promise.resolve(pfad);
-        if (gibtEs(kein))
-            return Promise.resolve("");
+        if (await gibtEs(pfad))
+            return pfad;
+        if (await gibtEs(kein))
+            return "";
         return this._einmal(pfad, async () => {
             GLib.mkdir_with_parents(BILD_ORDNER, 0o755);
             // Die Logo-Adressen im Verzeichnis sind teils veraltet – der Reihe nach probieren:
@@ -785,16 +795,16 @@ class WebradioDesklet extends Desklet.Desklet {
     }
 
     // Cover zum laufenden Titel: erst iTunes, dann Deezer (beide ohne Anmeldung)
-    _cover(titel) {
+    async _cover(titel) {
         let teile = titelTeile(titel);
         if (!teile)
-            return Promise.resolve("");
+            return "";
         let pfad = bildDatei("c-", glatt(teile.interpret) + "|" + glatt(teile.lied), ".img");
         let kein = pfad.replace(/\.img$/, ".kein");
-        if (gibtEs(pfad))
-            return Promise.resolve(pfad);
-        if (gibtEs(kein))
-            return Promise.resolve("");
+        if (await gibtEs(pfad))
+            return pfad;
+        if (await gibtEs(kein))
+            return "";
         return this._einmal(pfad, async () => {
             GLib.mkdir_with_parents(BILD_ORDNER, 0o755);
             let frage = teile.interpret + " " + teile.lied;
