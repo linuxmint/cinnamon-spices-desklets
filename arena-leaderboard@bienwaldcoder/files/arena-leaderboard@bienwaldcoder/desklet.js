@@ -1573,7 +1573,10 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
                    (this._cacheExists ? " (vorhanden)" : " (leer)"));
 
         let write = (curlPath) => {
-            lines.push("curl:          " + (curlPath || "nicht gefunden"));
+            // null = API in dieser Cinnamon-Version nicht verfügbar
+            let curlText = curlPath === null ? "nicht geprüft (Cinnamon < 6.8)"
+                                             : (curlPath || "nicht gefunden");
+            lines.push("curl:          " + curlText);
 
             let text = lines.join("\n") + "\n";
             try {
@@ -1601,10 +1604,10 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
                     write(found || "");
                 });
             } else {
-                write("");
+                write(null);
             }
         } catch (e) {
-            write("");
+            write(null);
         }
 
         return path;
