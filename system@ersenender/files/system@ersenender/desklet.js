@@ -605,7 +605,9 @@ class SystemDesklet extends Desklet.Desklet {
         let art = "keine";
         if (gpu.length)
             art = "fuehler";
-        else if (GLib.find_program_in_path("nvidia-smi"))
+        // nvidia-smi einfach starten statt PATH vorher abzusuchen: fehlt es (oder geht der Treiber nicht),
+        // kommt null zurück – asynchron, damit Cinnamon dabei nicht wartet
+        else if (await starten(["nvidia-smi", "-L"]) !== null)
             art = "nvidia";
         else {
             let karten = (await ordner("/sys/class/drm")).filter(k => /^card\d+$/.test(k));
