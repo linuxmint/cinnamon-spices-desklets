@@ -1,4 +1,4 @@
-// Hello, this is a desklet I wrote using AI to show a christmas tree.
+// Hello, this is a desklet I wrote with the help of AI to show a christmas tree.
 // Nic Nielsen - November 2026
 // New Tecumseth, Ontario, Canada
 // Merry Christmas!
@@ -124,8 +124,23 @@ class ChristmasTreeDesklet extends Desklet.Desklet {
         }
     }
 
+    // Safely converts Cinnamon RGBA strings into basic Pango-compatible Hex colors
+    _rgbaToHex(colorStr) {
+        if (!colorStr) return "#00FF00";
+        if (colorStr.startsWith("#")) return colorStr;
+
+        let match = colorStr.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+        if (match) {
+            let r = parseInt(match[1]).toString(16).padStart(2, '0');
+            let g = parseInt(match[2]).toString(16).padStart(2, '0');
+            let b = parseInt(match[3]).toString(16).padStart(2, '0');
+            return `#${r}${g}${b}`;
+        }
+        return colorStr;
+    }
+
     _updateUIState() {
-        let starColor = this.starColor || "#FFFF00";
+        let starColor = this._rgbaToHex(this.starColor || "#FFFF00");
         let showStar = this.showStar !== undefined ? this.showStar : true;
         let opacity = this.treeOpacity !== undefined ? this.treeOpacity : 1.0;
 
@@ -141,7 +156,7 @@ class ChristmasTreeDesklet extends Desklet.Desklet {
     _redrawTree() {
         let totalRows = this.rows.length;
         let maxWidth = 15;
-        let treeColor = this.treeColor || "#00FF00";
+        let treeColor = this._rgbaToHex(this.treeColor || "#00FF00");
 
         let branchIndices = [];
         let rawTreeGrid = [];
@@ -198,7 +213,14 @@ class ChristmasTreeDesklet extends Desklet.Desklet {
                     finalMarkupRow += char;
                 }
             }
-            this.rows[r].get_clutter_text().set_markup(finalMarkupRow);
+            try {
+                this.rows[r].get_clutter_text().set_markup(finalMarkupRow);
+            } catch(e) {
+                // Safeguard log to prevent total UI freeze on unexpected markup issues
+                if (globalThis.global && globalThis.global.logError) {
+                    globalThis.global.logError("Markup Error: " + e);
+                }
+            }
         }
     }
 
@@ -210,14 +232,16 @@ class ChristmasTreeDesklet extends Desklet.Desklet {
 
         let speed = this.blinkSpeed || 500;
         this._timeoutId = GLib.timeout_add(GLib.PRIORITY_DEFAULT, speed, () => {
-            this._redrawTree(); 
-            return true; 
+            this._redrawTree();
+            return true; // Return true keeps the GLib timeout loop cycling
         });
     }
 
-    on_desklet_removed() {
+    // Lifecycle cleanup hook: clears runtime intervals safely when desklet is unmounted
+    on_desklet_removed_from_desktop() {
         if (this._timeoutId) {
             GLib.source_remove(this._timeoutId);
+            this._timeoutId = null;
         }
     }
 }
@@ -225,7 +249,4 @@ class ChristmasTreeDesklet extends Desklet.Desklet {
 function main(metadata, desklet_id) {
     return new ChristmasTreeDesklet(metadata, desklet_id);
 }
-
-// Satisfy all Cinnamon compilation standards via global namespace hooks
-globalThis.main = main;
 
