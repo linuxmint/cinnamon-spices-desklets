@@ -424,10 +424,85 @@ function farbeEntfernen(d) {
 }
 // <<< Farbwahl
 
+// >>> Verschieben – dieser Block ist in allen Desklets gleich. Quelle: ~/pardus-theme/gemeinsam/ziehen.js,
+// eingesetzt von gemeinsam/ziehen-einbauen.py. Änderungen dort machen, nicht hier.
+// Cinnamon verschiebt ein Desklet nur, wenn der Mausdruck bis zur Karte durchkommt. Auf Knöpfen, Listen,
+// Zifferblättern und Balken kommt er nie an – man musste eine freie Stelle treffen, oft erst beim zweiten
+// Versuch. Hier gilt: irgendwo auf der Karte drücken und ein paar Pixel ziehen verschiebt das Desklet, ein
+// Klick ohne Bewegung bleibt ein Klick. Ausgenommen sind Teile, die selbst gezogen werden: Rollbalken,
+// Textfelder und alles, was _eigenesZiehen = true trägt (z. B. Fortschritts- und Lautstärkebalken).
+// Die Maus wird während des Drückens abgefragt statt über Ereignisse verfolgt: ein gedrückter St.Button hält
+// die Maus fest, seine Bewegungsereignisse kommen bei der Karte nicht an.
+//
+// Außerdem: Alle Desklets laufen im EINEN Cinnamon-Prozess. Ändert sich irgendein Fenster (Terminal, Browser,
+// Video), zeichnet Cinnamon neu und läuft dabei durch jedes Element jeder Karte – große Karten (Musik: ~860)
+// bremsen so den ganzen Desktop. Mit offscreen_redirect wird die Karte einmal in eine Textur gezeichnet und
+// nur neu, wenn sich in ihr etwas ändert. Gemessen 2026-11-06 mit 6 Desklets: Cinnamon 21 % → 9,5 % CPU im
+// Leerlauf, optisch kein Unterschied.
+function ziehenUeberall(d) {
+    let Clutter = imports.gi.Clutter, St = imports.gi.St, Gtk = imports.gi.Gtk, GLib = imports.gi.GLib;
+    d.actor.set_offscreen_redirect(Clutter.OffscreenRedirect.ALWAYS);
+    let takt = 0;
+    let aus = () => {
+        if (takt)
+            GLib.source_remove(takt);
+        takt = 0;
+    };
+    let eigenes = a => {
+        for (; a && a !== d.actor; a = a.get_parent()) {
+            if (a._eigenesZiehen || a instanceof St.ScrollBar || a instanceof St.Entry ||
+                (a instanceof Clutter.Text && a.editable))
+                return true;
+        }
+        return false;
+    };
+    d.actor.connect("captured-event", (actor, ereignis) => {
+        if (ereignis.type() !== Clutter.EventType.BUTTON_PRESS)
+            return Clutter.EVENT_PROPAGATE;
+        aus();
+        let g = d._draggable;
+        let quelle = ereignis.get_source();
+        if (ereignis.get_button() !== 1 || !g || g.inhibit || eigenes(quelle))
+            return Clutter.EVENT_PROPAGATE;
+        let [x0, y0] = ereignis.get_coords();
+        let druck = ereignis.copy();
+        let schwelle = Gtk.Settings.get_default().gtk_dnd_drag_threshold;
+        takt = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 15, () => {
+            // Der Druck kam bis zur Karte durch – dann zieht Cinnamon selbst
+            if (g._onEventId || g._dragInProgress || g.inhibit || d._farbWeg) {
+                takt = 0;
+                return GLib.SOURCE_REMOVE;
+            }
+            let [x, y, tasten] = global.get_pointer();
+            if (!(tasten & Clutter.ModifierType.BUTTON1_MASK)) {
+                takt = 0;                                   // losgelassen: es war ein Klick
+                return GLib.SOURCE_REMOVE;
+            }
+            if (Math.abs(x - x0) <= schwelle && Math.abs(y - y0) <= schwelle)
+                return GLib.SOURCE_CONTINUE;
+            takt = 0;
+            // den angefangenen Klick verwerfen (gibt auch die Maus frei, die der Knopf festhält)
+            for (let a = quelle; a && a !== d.actor; a = a.get_parent()) {
+                if (a instanceof St.Button)
+                    a.fake_release();
+            }
+            g._buttonDown = true;
+            // ab der Druckstelle rechnen: die Karte springt mit der nächsten Bewegung unter die Maus und
+            // bleibt nicht um die Schwelle zurück
+            g.startDrag(x0, y0, druck);
+            return GLib.SOURCE_REMOVE;
+        });
+        return Clutter.EVENT_PROPAGATE;
+    });
+    d.actor.connect("destroy", aus);
+}
+// <<< Verschieben
+
 class SystemDesklet extends Desklet.Desklet {
     constructor(metadata, desklet_id) {
         super(metadata, desklet_id);
         farbeHuelle(this);
+        ziehenUeberall(this);
         this.timeout = 0;
         this.cpuVorher = null;
         this.nvidiaTemp = null;
