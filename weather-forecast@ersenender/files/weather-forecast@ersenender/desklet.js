@@ -198,8 +198,37 @@ const AKZENTE = {gelb: [255, 203, 8], rot: [228, 6, 19], orange: [255, 140, 26],
                  tuerkis: [43, 181, 168], blau: [53, 132, 228], violett: [163, 113, 247]};
 const HINTERGRUENDE = {grau: [35, 31, 32], tuerkis: [16, 60, 62], blau: [22, 32, 54], schwarz: [14, 14, 16]};
 // die laufenden Farben dieses Desklets (0–255): Akzent, Schrift auf dem Akzent, Akzent als Schrift auf der
-// dunklen Karte (bei dunklen Farben aufgehellt) und der Kartengrund; farbeAnwenden() hält sie aktuell
+// dunklen Karte (bei dunklen Farben aufgehellt) und der Kartengrund. Jedes aufgestellte Exemplar hat seine
+// eigenen Farben (d._farbWerte); FARBE und die Tabelle FARBEN zeigen immer die des Exemplars, das gerade
+// arbeitet – farbeFuer() schaltet um, farbeHuelle() sorgt dafür, dass das vor jeder Methode geschieht
 let FARBE = {akzent: [255, 203, 8], auf: [35, 31, 32], text: [255, 203, 8], grund: [35, 31, 32]};
+let FARBE_VON = null;
+
+// FARBE und FARBEN auf die Farben des Exemplars d stellen
+function farbeFuer(d) {
+    let w = d._farbWerte;
+    if (!w || FARBE_VON === d)
+        return;
+    FARBE_VON = d;
+    FARBE = w.farbe;
+    for (let k in w.tabelle || {})
+        w.ziel[k] = w.tabelle[k];
+}
+
+// alle Methoden des Exemplars d so umhüllen, dass vor ihrem Lauf seine Farben gelten (nötig, wenn dasselbe
+// Desklet mehrfach mit verschiedenen Farben auf dem Schreibtisch steht)
+function farbeHuelle(d) {
+    let p = Object.getPrototypeOf(d);
+    Object.getOwnPropertyNames(p).forEach(n => {
+        let f = Object.getOwnPropertyDescriptor(p, n).value;
+        if (n === "constructor" || typeof f !== "function")
+            return;
+        d[n] = function () {
+            farbeFuer(d);
+            return f.apply(d, arguments);
+        };
+    });
+}
 
 // "#rrggbb" · "rgb(r, g, b)" · "rgba(r, g, b, a)" -> [r, g, b] oder null
 function farbeLesen(wert) {
@@ -273,13 +302,15 @@ function farbeStil(css, wurzel, marke) {
 // Akzentfarbe und Kartengrund aus den Einstellungen übernehmen: d = das Desklet (mit d.akzent, d.akzentEigen,
 // d.hintergrund und d.box), farben = seine Tabelle FARBEN für die selbst gezeichneten Teile (oder null)
 function farbeAnwenden(d, farben) {
+    if (d._farbWeg)
+        return;                                             // das Desklet ist schon entfernt
     let akzent = AKZENTE[d.akzent] || (d.akzent === "eigen" && farbeLesen(d.akzentEigen)) || AKZENTE.gelb;
     let weiss = [255, 255, 255];
     let text = akzent;
     for (let i = 0; i < 14 && farbeHell(text) < 0.3; i++)
         text = farbeMischen(text, weiss, 0.12);
-    FARBE = {akzent: akzent, auf: farbeHell(akzent) > 0.4 ? [35, 31, 32] : weiss, text: text,
-             grund: HINTERGRUENDE[d.hintergrund] || HINTERGRUENDE.grau};
+    let werte = {farbe: {akzent: akzent, auf: farbeHell(akzent) > 0.4 ? [35, 31, 32] : weiss, text: text,
+                         grund: HINTERGRUENDE[d.hintergrund] || HINTERGRUENDE.grau}, tabelle: null, ziel: farben};
 
     // selbst gezeichnete Teile: was in der Tabelle gelb ist, bekommt den Akzent (Ziffern die aufgehellte
     // Schriftfarbe), was dunkel auf Gelb steht, die Schriftfarbe auf dem Akzent
@@ -287,14 +318,18 @@ function farbeAnwenden(d, farben) {
         if (!farben._gelb)
             Object.defineProperty(farben, "_gelb", {value: JSON.parse(JSON.stringify(farben))});
         let gleich = (c, r, g, b) => Math.abs(c[0] * 255 - r) < 1 && Math.abs(c[1] * 255 - g) < 1 && Math.abs(c[2] * 255 - b) < 1;
+        werte.tabelle = {};
         for (let k in farben._gelb) {
             let alt = farben._gelb[k];
-            let neu = gleich(alt, 255, 203, 8) ? (/^ziffer/.test(k) ? FARBE.text : akzent)
-                : gleich(alt, 35, 31, 32) ? FARBE.auf : null;
+            let neu = gleich(alt, 255, 203, 8) ? (/^ziffer/.test(k) ? text : akzent)
+                : gleich(alt, 35, 31, 32) ? werte.farbe.auf : null;
             if (neu)
-                farben[k] = neu.map(v => v / 255).concat(alt.slice(3));
+                werte.tabelle[k] = neu.map(v => v / 255).concat(alt.slice(3));
         }
     }
+    d._farbWerte = werte;
+    FARBE_VON = null;
+    farbeFuer(d);
 
     let St = imports.gi.St, GLib = imports.gi.GLib, Gio = imports.gi.Gio, Main = imports.ui.main;
     let uuid = d._uuid || d.metadata.uuid;
@@ -312,6 +347,7 @@ function farbeAnwenden(d, farben) {
     let fertig = () => {
         if (d._farbWeg)
             return;
+        farbeFuer(d);
         if (d._stil)
             d._stil();
         if (d._zeichnen)
@@ -352,6 +388,7 @@ function farbeAnwenden(d, farben) {
         let marke = "f" + GLib.compute_checksum_for_string(GLib.ChecksumType.MD5, uuid + css + farbeHex(akzent), -1).slice(0, 12);
         let ordner = Gio.File.new_for_path(GLib.build_filenamev([GLib.get_user_cache_dir(), uuid]));
         let ziel = ordner.get_child("farben-" + marke + ".css");
+        farbeFuer(d);
         let text = farbeStil(css, wurzel, marke);
         ordner.make_directory_async(GLib.PRIORITY_DEFAULT, null, (o, erg) => {
             try {
@@ -392,6 +429,8 @@ function farbeAnwenden(d, farben) {
 // beim Entfernen des Desklets: zugeladene Stildateien und Theme-Beobachtung wieder weg
 function farbeEntfernen(d) {
     d._farbWeg = true;
+    if (FARBE_VON === d)
+        FARBE_VON = null;
     if (d._farbThema) {
         imports.ui.main.themeManager.disconnect(d._farbThema);
         d._farbThema = 0;
@@ -407,9 +446,85 @@ function farbeEntfernen(d) {
 }
 // <<< Farbwahl
 
+// >>> Verschieben – dieser Block ist in allen Desklets gleich. Quelle: ~/pardus-theme/gemeinsam/ziehen.js,
+// eingesetzt von gemeinsam/ziehen-einbauen.py. Änderungen dort machen, nicht hier.
+// Cinnamon verschiebt ein Desklet nur, wenn der Mausdruck bis zur Karte durchkommt. Auf Knöpfen, Listen,
+// Zifferblättern und Balken kommt er nie an – man musste eine freie Stelle treffen, oft erst beim zweiten
+// Versuch. Hier gilt: irgendwo auf der Karte drücken und ein paar Pixel ziehen verschiebt das Desklet, ein
+// Klick ohne Bewegung bleibt ein Klick. Ausgenommen sind Teile, die selbst gezogen werden: Rollbalken,
+// Textfelder und alles, was _eigenesZiehen = true trägt (z. B. Fortschritts- und Lautstärkebalken).
+// Die Maus wird während des Drückens abgefragt statt über Ereignisse verfolgt: ein gedrückter St.Button hält
+// die Maus fest, seine Bewegungsereignisse kommen bei der Karte nicht an.
+//
+// Außerdem: Alle Desklets laufen im EINEN Cinnamon-Prozess. Ändert sich irgendein Fenster (Terminal, Browser,
+// Video), zeichnet Cinnamon neu und läuft dabei durch jedes Element jeder Karte – große Karten (Musik: ~860)
+// bremsen so den ganzen Desktop. Mit offscreen_redirect wird die Karte einmal in eine Textur gezeichnet und
+// nur neu, wenn sich in ihr etwas ändert. Gemessen 2026-11-06 mit 6 Desklets: Cinnamon 21 % → 9,5 % CPU im
+// Leerlauf, optisch kein Unterschied.
+function ziehenUeberall(d) {
+    let Clutter = imports.gi.Clutter, St = imports.gi.St, Gtk = imports.gi.Gtk, GLib = imports.gi.GLib;
+    d.actor.set_offscreen_redirect(Clutter.OffscreenRedirect.ALWAYS);
+    let takt = 0;
+    let aus = () => {
+        if (takt)
+            GLib.source_remove(takt);
+        takt = 0;
+    };
+    let eigenes = a => {
+        for (; a && a !== d.actor; a = a.get_parent()) {
+            if (a._eigenesZiehen || a instanceof St.ScrollBar || a instanceof St.Entry ||
+                (a instanceof Clutter.Text && a.editable))
+                return true;
+        }
+        return false;
+    };
+    d.actor.connect("captured-event", (actor, ereignis) => {
+        if (ereignis.type() !== Clutter.EventType.BUTTON_PRESS)
+            return Clutter.EVENT_PROPAGATE;
+        aus();
+        let g = d._draggable;
+        let quelle = ereignis.get_source();
+        if (ereignis.get_button() !== 1 || !g || g.inhibit || eigenes(quelle))
+            return Clutter.EVENT_PROPAGATE;
+        let [x0, y0] = ereignis.get_coords();
+        let druck = ereignis.copy();
+        let schwelle = Gtk.Settings.get_default().gtk_dnd_drag_threshold;
+        takt = GLib.timeout_add(GLib.PRIORITY_DEFAULT, 15, () => {
+            // Der Druck kam bis zur Karte durch – dann zieht Cinnamon selbst
+            if (g._onEventId || g._dragInProgress || g.inhibit || d._farbWeg) {
+                takt = 0;
+                return GLib.SOURCE_REMOVE;
+            }
+            let [x, y, tasten] = global.get_pointer();
+            if (!(tasten & Clutter.ModifierType.BUTTON1_MASK)) {
+                takt = 0;                                   // losgelassen: es war ein Klick
+                return GLib.SOURCE_REMOVE;
+            }
+            if (Math.abs(x - x0) <= schwelle && Math.abs(y - y0) <= schwelle)
+                return GLib.SOURCE_CONTINUE;
+            takt = 0;
+            // den angefangenen Klick verwerfen (gibt auch die Maus frei, die der Knopf festhält)
+            for (let a = quelle; a && a !== d.actor; a = a.get_parent()) {
+                if (a instanceof St.Button)
+                    a.fake_release();
+            }
+            g._buttonDown = true;
+            // ab der Druckstelle rechnen: die Karte springt mit der nächsten Bewegung unter die Maus und
+            // bleibt nicht um die Schwelle zurück
+            g.startDrag(x0, y0, druck);
+            return GLib.SOURCE_REMOVE;
+        });
+        return Clutter.EVENT_PROPAGATE;
+    });
+    d.actor.connect("destroy", aus);
+}
+// <<< Verschieben
+
 class WetterDesklet extends Desklet.Desklet {
     constructor(metadata, desklet_id) {
         super(metadata, desklet_id);
+        farbeHuelle(this);
+        ziehenUeberall(this);
         this.helper = GLib.build_filenamev([metadata.path, "helper.py"]);
         this.daten = null;
         this.fehler = false;
