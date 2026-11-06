@@ -7,8 +7,12 @@ A clean, minimal desklet showing a character based retro Christmas tree with bli
 ## Features
 
 - **Change size**: Allows you to change the size of the desklet
-- **Change star colour**: Allows you to change the colour of the star on top of the tree
+- **Show Star**: Allows you to choose if you want a star on the top of the tree
+- **Change star colour**: Allows you to change the colour of the star on the top of the tree
 - **Change blinking speed**: Allows you to change how fast the lights blink
+- **Change Transparency**: Allows you to change the background transparency
+- **Change number of lights**: Allows you to change how many lights there are on the tree
+- **Change Tree color**: Allows you to change the color of the tree branches
 
 ## Requirements
 
@@ -20,6 +24,11 @@ Right-click the desklet on your desktop and select **Configure** to access:
 - Change Size
 - Change Transparency
 - Change light blinking speed
+- Change transparency
+- Change number of lights
+- Change Tree color
+- Show Star
+- Change Star color
 
 ## Credits
 
