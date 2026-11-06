@@ -11,6 +11,7 @@
 // bewusst nicht gescrapt.
 
 const Desklet = imports.ui.desklet;
+const Cinnamon = imports.gi.Cinnamon;
 const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
@@ -598,9 +599,63 @@ function expandHome(path) {
         return "";
     if (p === "~")
         return GLib.get_home_dir();
-    if (p.indexOf("~/") === 0)
-        return GLib.get_home_dir() + p.substring(1);
+    if (p.charAt(0) === "~" && (p.charAt(1) === "/" || p.charAt(1) === "\\"))
+        return GLib.build_filenamev([GLib.get_home_dir(), p.substring(2)]);
     return p;
+}
+
+// Dateizugriffe laufen asynchron, damit die Cinnamon-Hauptschleife nicht
+// durch langsame Laufwerke oder Netzlaufwerke blockiert wird.
+function readTextFileAsync(path, callback) {
+    let called = false;
+    let finish = function (text) {
+        if (called)
+            return;
+        called = true;
+        callback(text);
+    };
+
+    try {
+        let file = Gio.File.new_for_path(path);
+        file.load_contents_async(null, function (obj, result) {
+            try {
+                let loaded = obj.load_contents_finish(result);
+                finish(loaded[0] && loaded[1] ? ByteArray.toString(loaded[1]) : null);
+            } catch (e) {
+                finish(null);
+            }
+        });
+    } catch (e) {
+        finish(null);
+    }
+}
+
+function writeTextFileAsync(path, text, callback) {
+    let called = false;
+    let finish = function (ok, error) {
+        if (called)
+            return;
+        called = true;
+        if (callback)
+            callback(ok, error || null);
+    };
+
+    try {
+        let file = Gio.File.new_for_path(path);
+        let bytes = GLib.Bytes.new(text);
+        file.replace_contents_bytes_async(bytes, null, false,
+            Gio.FileCreateFlags.REPLACE_DESTINATION, null,
+            function (obj, result) {
+                try {
+                    obj.replace_contents_finish(result);
+                    finish(true, null);
+                } catch (e) {
+                    finish(false, e);
+                }
+            });
+    } catch (e) {
+        finish(false, e);
+    }
 }
 
 function formatTimestamp(unixSeconds) {
@@ -651,6 +706,8 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
         this._bundledLoaded = false;
         this._requestTimer = 0;
         this._cacheData = null;
+        this._cacheExists = false;
+        this._removed = false;
 
         this._initSettings();
         this._initUi();
@@ -1433,18 +1490,19 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
         global.logWarning(UUID + ": " + text + " [" + this._backendDescription() + "]");
         this._writeDiagnostics(false, text, this._lastUrl);
 
+        this._render();
+
         // Letzte Rettung: mitgelieferter Beispiel-Snapshot, damit das Desklet
         // nie komplett leer bleibt
         if (!this._payload || this._payload.bundled) {
-            let hadPayload = !!this._payload;
-            let loaded = this._loadBundled();
-            if (loaded)
-                global.log(UUID + ": zeige mitgelieferten Beispiel-Snapshot");
-            else if (!hadPayload)
-                this._payload = null;
+            this._loadBundled((loaded) => {
+                if (this._removed)
+                    return;
+                if (loaded)
+                    global.log(UUID + ": zeige mitgelieferten Beispiel-Snapshot");
+                this._render();
+            });
         }
-
-        this._render();
     }
 
     // -- Diagnose -----------------------------------------------------------
@@ -1479,8 +1537,7 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
     }
 
     _diagnosticsPath() {
-        return GLib.build_filenamev([GLib.get_home_dir(), ".cache",
-                                     UUID, "diagnostics.log"]);
+        return GLib.build_filenamev([GLib.get_user_cache_dir(), UUID, "diagnostics.log"]);
     }
 
     _writeDiagnostics(ok, detail, url) {
@@ -1511,31 +1568,43 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
         lines.push("Board:         " + this._currentBoard().id);
         lines.push("Datensatz:     " + String(this._get("cfgDataset", DEFAULT_DATASET)));
         lines.push("API-Server:    " + String(this._get("cfgApiHost", DEFAULT_API_HOST)));
-        let curlPath = "";
-        try {
-            curlPath = GLib.find_program_in_path("curl") || "";
-        } catch (e) {
-            curlPath = "";
-        }
-        lines.push("curl:          " + (curlPath || "nicht gefunden"));
-        lines.push("Cache:         " + (this._get("cfgCachePath", "") || "–") +
-                   (this._readCache() ? " (vorhanden)" : " (leer)"));
+        let cacheFile = this._cacheFile();
+        lines.push("Cache:         " + (cacheFile ? cacheFile.get_path() : "–") +
+                   (this._cacheExists ? " (vorhanden)" : " (leer)"));
 
-        let text = lines.join("\n") + "\n";
+        let write = (curlPath) => {
+            lines.push("curl:          " + (curlPath || "nicht gefunden"));
 
-        try {
-            let dir = GLib.build_filenamev([GLib.get_home_dir(), ".cache", UUID]);
-            if (!GLib.file_test(dir, GLib.FileTest.IS_DIR))
+            let text = lines.join("\n") + "\n";
+            try {
+                let dir = GLib.build_filenamev([GLib.get_user_cache_dir(), UUID]);
                 GLib.mkdir_with_parents(dir, 493);   // 0755
-            GLib.file_set_contents(path, text);
-        } catch (e) {
-            global.logWarning(UUID + ": Diagnose konnte nicht geschrieben werden: " + e);
-        }
+            } catch (e) {
+                global.logWarning(UUID + ": Diagnoseverzeichnis konnte nicht erstellt werden: " + e);
+            }
+
+            writeTextFileAsync(path, text, function (written, error) {
+                if (!written)
+                    global.logWarning(UUID + ": Diagnose konnte nicht geschrieben werden: " + error);
+            });
+
+            try {
+                global.log(UUID + ": Diagnose\n" + text);
+            } catch (e) {
+                // ignorieren
+            }
+        };
 
         try {
-            global.log(UUID + ": Diagnose\n" + text);
+            if (Cinnamon && typeof Cinnamon.find_program_in_path === "function") {
+                Cinnamon.find_program_in_path("curl", function (found) {
+                    write(found || "");
+                });
+            } else {
+                write("");
+            }
         } catch (e) {
-            // ignorieren
+            write("");
         }
 
         return path;
@@ -1600,90 +1669,57 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
     // -- Cache --------------------------------------------------------------
 
     _cacheFile() {
-        let path = expandHome(this._get("cfgCachePath", "~/.cache/" + UUID + "/leaderboard.json"));
+        let configured = String(this._get("cfgCachePath", "") || "").trim();
+        let path = configured
+            ? expandHome(configured)
+            : GLib.build_filenamev([GLib.get_user_cache_dir(), UUID, "leaderboard.json"]);
         if (!path)
             return null;
         return Gio.File.new_for_path(path);
     }
 
-    _readCache() {
-        try {
-            let file = this._cacheFile();
-            if (!file || !file.query_exists(null))
-                return null;
-
-            let result = file.load_contents(null);
-            if (!result[0])
-                return null;
-
-            let data = JSON.parse(ByteArray.toString(result[1]));
-            if (!data || data.version !== CACHE_VERSION || !data.boards)
-                return null;
-            return data;
-        } catch (e) {
-            global.logWarning(UUID + ": Cache konnte nicht gelesen werden: " + e);
-            return null;
+    _readCache(callback) {
+        let file = this._cacheFile();
+        if (!file) {
+            callback(null);
+            return;
         }
+
+        readTextFileAsync(file.get_path(), (text) => {
+            if (!text) {
+                callback(null);
+                return;
+            }
+            try {
+                let data = JSON.parse(text);
+                if (!data || data.version !== CACHE_VERSION || !data.boards) {
+                    callback(null);
+                    return;
+                }
+                this._cacheExists = true;
+                callback(data);
+            } catch (e) {
+                global.logWarning(UUID + ": Cache konnte nicht gelesen werden: " + e);
+                callback(null);
+            }
+        });
     }
 
     _loadCache() {
-        let data = this._readCache();
-        if (!data)
-            return;
+        this._readCache((data) => {
+            if (this._removed || !data)
+                return;
 
-        this._cacheData = data;
+            this._cacheData = data;
 
-        let board = this._currentBoard();
-        let cached = data.boards[board.id];
-        if (!cached || !cached.entries || !cached.entries.length)
-            return;
-
-        let entries = [];
-        for (let i = 0; i < cached.entries.length; i++) {
-            let entry = cached.entries[i];
-            if (entry && typeof entry.value === "number") {
-                if (!entry.display)
-                    entry.display = formatScore(board.kind, entry.value);
-                entries.push(entry);
-            }
-        }
-        if (!entries.length)
-            return;
-
-        this._payload = {
-            entries: entries,
-            published: cached.published || "",
-            total: cached.total || entries.length
-        };
-        this._fetchedAt = cached.fetched_at || 0;
-        this._usedBoard = board.id;
-        this._usedHost = String(this._get("cfgApiHost", DEFAULT_API_HOST) || DEFAULT_API_HOST);
-        this._usedDataset = String(this._get("cfgDataset", DEFAULT_DATASET) || DEFAULT_DATASET);
-        this._status = "ok";
-        this._render();
-    }
-
-    // Mitgelieferter Beispiel-Snapshot (data/fallback.json im Desklet-Ordner).
-    // Damit zeigt das Desklet auch ohne Netz und ohne Cache etwas Sinnvolles an.
-    _loadBundled() {
-        try {
-            if (!this._metadata || !this._metadata.path)
-                return false;
-
-            let path = GLib.build_filenamev([this._metadata.path, "data", "fallback.json"]);
-            let file = Gio.File.new_for_path(path);
-            if (!file.query_exists(null))
-                return false;
-
-            let result = file.load_contents(null);
-            if (!result[0])
-                return false;
-
-            let data = JSON.parse(ByteArray.toString(result[1]));
             let board = this._currentBoard();
-            let cached = data && data.boards ? data.boards[board.id] : null;
+            let cached = data.boards[board.id];
             if (!cached || !cached.entries || !cached.entries.length)
-                return false;
+                return;
+
+            // Eine bereits erfolgreich geladene Netzwerkantwort hat Vorrang.
+            if (this._payload && !this._payload.bundled)
+                return;
 
             let entries = [];
             for (let i = 0; i < cached.entries.length; i++) {
@@ -1691,28 +1727,95 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
                 if (entry && typeof entry.value === "number") {
                     if (!entry.display)
                         entry.display = formatScore(board.kind, entry.value);
-                    entry.kind = board.kind;
                     entries.push(entry);
                 }
             }
             if (!entries.length)
-                return false;
+                return;
 
             this._payload = {
                 entries: entries,
                 published: cached.published || "",
-                total: cached.total || entries.length,
-                bundled: true
+                total: cached.total || entries.length
             };
+            this._bundledLoaded = false;
             this._fetchedAt = cached.fetched_at || 0;
-            this._bundledLoaded = true;
-            this._status = "error";
             this._usedBoard = board.id;
-            return true;
-        } catch (e) {
-            global.logWarning(UUID + ": Beispiel-Snapshot nicht lesbar: " + e);
-            return false;
+            this._usedHost = String(this._get("cfgApiHost", DEFAULT_API_HOST) || DEFAULT_API_HOST);
+            this._usedDataset = String(this._get("cfgDataset", DEFAULT_DATASET) || DEFAULT_DATASET);
+            // Bei einem bereits gemeldeten Netzwerkfehler bleibt der Offline-
+            // Hinweis erhalten; die zwischengespeicherten Daten werden trotzdem
+            // angezeigt.
+            if (this._status !== "error")
+                this._status = "ok";
+            this._render();
+        });
+    }
+
+    // Mitgelieferter Beispiel-Snapshot (data/fallback.json im Desklet-Ordner).
+    // Damit zeigt das Desklet auch ohne Netz und ohne Cache etwas Sinnvolles an.
+    _loadBundled(callback) {
+        let done = function (loaded) {
+            callback(!!loaded);
+        };
+
+        if (!this._metadata || !this._metadata.path) {
+            done(false);
+            return;
         }
+
+        let path = GLib.build_filenamev([this._metadata.path, "data", "fallback.json"]);
+        readTextFileAsync(path, (text) => {
+            if (this._removed || !text) {
+                done(false);
+                return;
+            }
+            try {
+                let data = JSON.parse(text);
+                let board = this._currentBoard();
+                let cached = data && data.boards ? data.boards[board.id] : null;
+                if (!cached || !cached.entries || !cached.entries.length) {
+                    done(false);
+                    return;
+                }
+
+                let entries = [];
+                for (let i = 0; i < cached.entries.length; i++) {
+                    let entry = cached.entries[i];
+                    if (entry && typeof entry.value === "number") {
+                        if (!entry.display)
+                            entry.display = formatScore(board.kind, entry.value);
+                        entry.kind = board.kind;
+                        entries.push(entry);
+                    }
+                }
+                if (!entries.length) {
+                    done(false);
+                    return;
+                }
+
+                // Zwischenzeitlich geladene Cache- oder Netzwerkdaten haben Vorrang.
+                if (this._payload && !this._payload.bundled) {
+                    done(false);
+                    return;
+                }
+
+                this._payload = {
+                    entries: entries,
+                    published: cached.published || "",
+                    total: cached.total || entries.length,
+                    bundled: true
+                };
+                this._fetchedAt = cached.fetched_at || 0;
+                this._bundledLoaded = true;
+                this._status = "error";
+                this._usedBoard = board.id;
+                done(true);
+            } catch (e) {
+                global.logWarning(UUID + ": Beispiel-Snapshot nicht lesbar: " + e);
+                done(false);
+            }
+        });
     }
 
     _writeCache() {
@@ -1746,16 +1849,16 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
             }
 
             let parent = file.get_parent();
-            if (parent && !parent.query_exists(null)) {
-                try {
-                    parent.make_directory_with_parents(null);
-                } catch (e) {
-                    if (!parent.query_exists(null))
-                        throw e;
-                }
-            }
+            if (parent && parent.get_path())
+                GLib.mkdir_with_parents(parent.get_path(), 493);   // 0755
 
-            GLib.file_set_contents(file.get_path(), JSON.stringify(data));
+            writeTextFileAsync(file.get_path(), JSON.stringify(data), (written, error) => {
+                if (!written) {
+                    global.logWarning(UUID + ": Cache konnte nicht geschrieben werden: " + error);
+                    return;
+                }
+                this._cacheExists = true;
+            });
             this._cacheData = data;
         } catch (e) {
             global.logWarning(UUID + ": Cache konnte nicht geschrieben werden: " + e);
@@ -1784,6 +1887,7 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
     }
 
     on_desklet_removed(deleteConfig) {
+        this._removed = true;
         this._reqSeq++;   // laufende Antworten verwerfen
 
         if (this._timeoutId) {
@@ -1847,7 +1951,7 @@ class ArenaLeaderboardDesklet extends Desklet.Desklet {
 }
 
 function main(metadata, desklet_id) {
-    Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+    Gettext.bindtextdomain(UUID, GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]));
 
     try {
         let soup = "";

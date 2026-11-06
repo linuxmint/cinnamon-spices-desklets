@@ -58,7 +58,7 @@ Danach Cinnamon neu laden (`Alt+F2` → `r` → `Enter`).
 | Darstellung | **Top 3 hervorheben** | an | Gold/Silber/Bronze |
 | Datenquelle | **API-Server** | `https://datasets-server.huggingface.co` | Datasets-Server |
 | Datenquelle | **Datensatz** | `lmarena-ai/leaderboard-dataset` | offizieller Arena-Datensatz |
-| Datenquelle | **Cache-Datei** | `~/.cache/arena-leaderboard@bienwaldcoder/leaderboard.json` | Offline-Zwischenspeicher |
+| Datenquelle | **Cache-Datei** | leer (= `~/.cache/arena-leaderboard@bienwaldcoder/leaderboard.json`) | Offline-Zwischenspeicher |
 
 ## Datenquelle & Aktualität
 

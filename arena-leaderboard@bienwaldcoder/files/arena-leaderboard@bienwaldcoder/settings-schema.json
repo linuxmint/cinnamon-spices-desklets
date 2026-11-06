@@ -121,9 +121,9 @@
     },
     "cache_path": {
         "type": "entry",
-        "default": "~/.cache/arena-leaderboard@bienwaldcoder/leaderboard.json",
+        "default": "",
         "description": "Cache-Datei",
-        "tooltip": "Hier werden die zuletzt geladenen Daten für den Offline-Betrieb gespeichert."
+        "tooltip": "Leer = Standardpfad im Benutzer-Cache. Hier werden die zuletzt geladenen Daten für den Offline-Betrieb gespeichert."
     },
     "force_curl": {
         "type": "checkbox",
