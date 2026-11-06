@@ -1,0 +1,13 @@
+{
+    "uuid": "arena-leaderboard@bienwaldcoder",
+    "name": "Arena.ai Leaderboard",
+    "description": "Zeigt das aktuelle Leaderboard von arena.ai",
+    "comments": "Rangliste der beliebtesten KI-Modelle (Text, WebDev, Agent, Vision, Document, Search, Bild und Video) auf dem Desktop. Datenquelle: offizieller Leaderboard-Datensatz von arena.ai.",
+    "author": "bienwaldcoder",
+    "contributors": "Arena.ai Agent Mode",
+    "version": "1.2.0",
+    "max-instances": 3,
+    "multiversion": true,
+    "prevent-decorations": false,
+    "website": "https://arena.ai/leaderboard"
+}

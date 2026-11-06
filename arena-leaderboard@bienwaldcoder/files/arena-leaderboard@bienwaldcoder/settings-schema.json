@@ -1,0 +1,180 @@
+{
+    "header_board": {
+        "type": "header",
+        "description": "Leaderboard"
+    },
+    "board": {
+        "type": "combobox",
+        "default": "text",
+        "description": "Kategorie",
+        "tooltip": "Welches Leaderboard von arena.ai angezeigt wird.",
+        "options": {
+            "Text": "text",
+            "WebDev": "webdev",
+            "Agent": "agent",
+            "Vision": "vision",
+            "Document": "document",
+            "Search": "search",
+            "Text → Image": "text_to_image",
+            "Image Edit": "image_edit",
+            "Text → Video": "text_to_video",
+            "Image → Video": "image_to_video",
+            "Video Edit": "video_edit"
+        }
+    },
+    "entries": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 3,
+        "max": 25,
+        "step": 1,
+        "description": "Anzahl der Modelle",
+        "tooltip": "Wie viele Plätze der Rangliste angezeigt werden (3–25)."
+    },
+    "refresh_minutes": {
+        "type": "spinbutton",
+        "default": 30,
+        "min": 0,
+        "max": 1440,
+        "step": 5,
+        "units": "Minuten",
+        "description": "Automatisch aktualisieren",
+        "tooltip": "0 = nicht automatisch aktualisieren. Ein Linksklick auf das Desklet lädt ebenfalls neu."
+    },
+    "sep_display": {
+        "type": "separator"
+    },
+    "header_display": {
+        "type": "header",
+        "description": "Darstellung"
+    },
+    "width": {
+        "type": "spinbutton",
+        "default": 300,
+        "min": 180,
+        "max": 640,
+        "step": 10,
+        "units": "px",
+        "description": "Breite",
+        "tooltip": "Breite des Desklets in Pixeln."
+    },
+    "font_size": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 32,
+        "step": 1,
+        "units": "px",
+        "description": "Schriftgröße",
+        "tooltip": "0 = Schriftgröße des Systemthemes verwenden."
+    },
+    "show_header": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Überschrift anzeigen"
+    },
+    "header_text": {
+        "type": "entry",
+        "default": "Arena.ai · Leaderboard",
+        "description": "Text der Überschrift",
+        "dependency": "show_header"
+    },
+    "show_dots": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Farbpunkte der Anbieter anzeigen"
+    },
+    "show_bars": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Vergleichsbalken anzeigen",
+        "tooltip": "Balken relativ zum besten bzw. schwächsten angezeigten Modell."
+    },
+    "show_votes": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Stimmenzahl anzeigen"
+    },
+    "highlight": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Top 3 hervorheben"
+    },
+    "sep_advanced": {
+        "type": "separator"
+    },
+    "header_advanced": {
+        "type": "header",
+        "description": "Datenquelle & Cache"
+    },
+    "api_host": {
+        "type": "entry",
+        "default": "https://datasets-server.huggingface.co",
+        "description": "API-Server",
+        "tooltip": "Datasets-Server, von dem die Rangliste geladen wird."
+    },
+    "dataset": {
+        "type": "entry",
+        "default": "lmarena-ai/leaderboard-dataset",
+        "description": "Datensatz",
+        "tooltip": "Offizieller Leaderboard-Datensatz von Arena auf Hugging Face."
+    },
+    "cache_path": {
+        "type": "entry",
+        "default": "~/.cache/arena-leaderboard@bienwaldcoder/leaderboard.json",
+        "description": "Cache-Datei",
+        "tooltip": "Hier werden die zuletzt geladenen Daten für den Offline-Betrieb gespeichert."
+    },
+    "force_curl": {
+        "type": "checkbox",
+        "default": false,
+        "description": "curl statt libsoup verwenden",
+        "tooltip": "Nur zur Problembehebung. Lädt die Daten über das Programm curl, falls die libsoup-Anbindung des Systems nicht funktioniert."
+    },
+    "source": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Datenquelle",
+        "tooltip": "Automatisch probiert zuerst den offiziellen Hugging-Face-Datensatz und danach die täglichen GitHub-Snapshots.",
+        "options": {
+            "Automatisch (Hugging Face → GitHub)": "auto",
+            "Nur Hugging Face (offizieller Datensatz)": "hf",
+            "Nur GitHub-Snapshots (oolong-tea-2026)": "github"
+        }
+    },
+    "github_repo": {
+        "type": "entry",
+        "default": "oolong-tea-2026/arena-ai-leaderboards",
+        "description": "GitHub-Snapshot-Repository",
+        "tooltip": "Zweite Quelle mit täglichen JSON-Snapshots aller Arena-Boards."
+    },
+    "github_host": {
+        "type": "entry",
+        "default": "https://raw.githubusercontent.com",
+        "description": "GitHub-Host",
+        "tooltip": "Nur ändern, wenn du die Snapshots über einen eigenen Mirror lädst."
+    },
+    "sep_info": {
+        "type": "separator"
+    },
+    "header_info": {
+        "type": "header",
+        "description": "Hinweise"
+    },
+    "info_source": {
+        "type": "label",
+        "description": "Quelle: arena.ai (Datensatz lmarena-ai/leaderboard-dataset)."
+    },
+    "info_update": {
+        "type": "label",
+        "description": "Neue Board-Versionen erscheinen unregelmäßig, oft nur alle paar Tage."
+    },
+    "info_unofficial": {
+        "type": "label",
+        "description": "Inoffizielles Desklet, nicht von Arena.ai."
+    },
+    "info_diagnostics": {
+        "type": "label",
+        "description": "Diagnose: Rechtsklick aufs Desklet → „Verbindung testen“. Protokoll: ~/.cache/arena-leaderboard@bienwaldcoder/diagnostics.log"
+    }
+}
