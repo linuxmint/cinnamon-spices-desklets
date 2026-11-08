@@ -1,0 +1,96 @@
+{
+  "headLocation": {
+    "type": "header",
+    "description": "Beach location"
+  },
+  "locationName": {
+    "type": "entry",
+    "default": "",
+    "description": "Label (for display only)",
+    "tooltip": "The name shown at the top of the desklet. It does not change the tides: the latitude and longitude below choose those."
+  },
+  "latitude": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": -90,
+    "max": 90,
+    "step": 0.001,
+    "units": "degrees",
+    "description": "Latitude",
+    "tooltip": "North is positive and south is negative. Predictions come from the nearest tide station, which may differ from your beach."
+  },
+  "longitude": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": -180,
+    "max": 180,
+    "step": 0.001,
+    "units": "degrees",
+    "description": "Longitude",
+    "tooltip": "East is positive and west is negative. Predictions come from the nearest tide station, which may differ from your beach."
+  },
+  "headSize": {
+    "type": "header",
+    "description": "Chart size"
+  },
+  "chartWidth": {
+    "type": "spinbutton",
+    "default": 340,
+    "min": 200,
+    "max": 1000,
+    "step": 10,
+    "units": "px",
+    "description": "Width"
+  },
+  "chartHeight": {
+    "type": "spinbutton",
+    "default": 160,
+    "min": 100,
+    "max": 800,
+    "step": 10,
+    "units": "px",
+    "description": "Height"
+  },
+  "headAppearance": {
+    "type": "header",
+    "description": "Appearance"
+  },
+  "overrideTheme": {
+    "type": "switch",
+    "default": false,
+    "description": "Override desktop theme",
+    "tooltip": "Turn this on to set the appearance below. When off, the desklet follows the Cinnamon theme."
+  },
+  "backgroundOpacity": {
+    "type": "scale",
+    "default": 0.5,
+    "min": 0,
+    "max": 1,
+    "step": 0.05,
+    "dependency": "overrideTheme",
+    "description": "Background opacity",
+    "tooltip": "0 is fully transparent and 1 is solid."
+  },
+  "textColour": {
+    "type": "colorchooser",
+    "default": "rgb(255,255,255)",
+    "dependency": "overrideTheme",
+    "description": "Text colour"
+  },
+  "backgroundColour": {
+    "type": "colorchooser",
+    "default": "rgb(0,0,0)",
+    "dependency": "overrideTheme",
+    "description": "Background colour"
+  },
+  "cornerRadius": {
+    "type": "spinbutton",
+    "default": 12,
+    "min": 0,
+    "max": 50,
+    "step": 1,
+    "units": "px",
+    "dependency": "overrideTheme",
+    "description": "Corner radius"
+  }
+}

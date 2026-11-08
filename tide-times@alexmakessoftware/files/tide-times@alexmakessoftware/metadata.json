@@ -1,0 +1,8 @@
+{
+  "uuid": "tide-times@alexmakessoftware",
+  "name": "Tide Times",
+  "description": "Shows predicted sea levels for your beach as a 12-hour tide chart. Not for navigation.",
+  "version": "1.0",
+  "prevent-decorations": false,
+  "license": "MIT"
+}
