@@ -1,0 +1,141 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr ""
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr ""
+
+#: inspect.js:411
+msgid "Length"
+msgstr ""
+
+#: inspect.js:418
+msgid "Parent"
+msgstr ""
+
+#: inspect.js:427
+msgid "Children"
+msgstr ""
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr ""
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr ""
+
+#: inspect.js:442
+msgid "Visible"
+msgstr ""
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr ""
+
+#: inspect.js:448
+msgid "None"
+msgstr ""
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr ""
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr ""
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr ""
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr ""
+
+#: inspect.js:475
+msgid "Size"
+msgstr ""
+
+#: inspect.js:477
+msgid "Position"
+msgstr ""
+
+#: inspect.js:494
+msgid "Values"
+msgstr ""
+
+#: inspect.js:495
+msgid "Index"
+msgstr ""
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
+
+#: inspect.js:499
+msgid "Key"
+msgstr ""
+
+#: inspect.js:502
+msgid "Properties"
+msgstr ""
+
+#: inspect.js:503
+msgid "Name"
+msgstr ""
+
+#: inspect.js:509
+msgid "Type"
+msgstr ""
+
+#: inspect.js:510
+msgid "Value"
+msgstr ""
+
+#: terminal.js:54
+msgid "Command"
+msgstr ""
+
+#: terminal.js:59
+msgid "Status"
+msgstr ""
+
+#: terminal.js:60
+msgid "Running"
+msgstr ""
+
+#: terminal.js:73
+msgid "End Process"
+msgstr ""
+
+#: terminal.js:82
+msgid "Output"
+msgstr ""
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr ""

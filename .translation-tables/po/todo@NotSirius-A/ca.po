@@ -1,0 +1,387 @@
+# TODO DESKLET
+# This file is put in the public domain.
+# NotSirius-A, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: todo@NotSirius-A 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-13 15:24+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#. settings-schema.json->todo-page->title
+#. MyToolBar.js:93 desklet.js:261
+msgid "TODO"
+msgstr "TODO"
+
+#. TODOList.js:306 TODOList.js:375 TODOList.js:435
+msgid "Are you sure you want to remove this task?"
+msgstr "Segur que voleu eliminar aquesta tasca?"
+
+#. desklet.js:258
+msgid "Add new task"
+msgstr "Afegir tasca nova"
+
+#. metadata.json->description
+msgid "Themeable, customizable, and easy-to-use TODO desklet."
+msgstr "Miniaplicació d'escriptori personalitzable TODO de tasques pendents."
+
+#. metadata.json->name
+msgid "TODO Desklet"
+msgstr "Miniaplicació d'escriptori TODO"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Preferències"
+
+#. settings-schema.json->theme-page->title
+msgid "Theme"
+msgstr "Tema"
+
+#. settings-schema.json->todo-section->title
+msgid "Add or modify your tasks here"
+msgstr "Afegiu o modifiqueu les vostres tasques aquí"
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->todo-preferences-section->title
+msgid "TODO list"
+msgstr "Llista TODO"
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr "Disposició"
+
+#. settings-schema.json->TODO-task-theme-section->title
+msgid "TODO tasks"
+msgstr "Tasques TODO"
+
+#. settings-schema.json->toolbar-theme-section->title
+msgid "Toolbar"
+msgstr "Barra d'eines"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Decoracions de la miniaplicació"
+
+#. settings-schema.json->todo-bottom-label->description
+#, fuzzy
+msgid ""
+"How to use this desklet:\n"
+"You can add/edit tasks here or by interacting with the desklet itself:\n"
+" - Left-click on task name to edit it\n"
+" - Left-click on the task icon to mark it done/not done\n"
+" - Right-click to select multiple tasks (only relevant if using toolbar)\n"
+" - Middle-click to remove\n"
+" - If you want to add more tasks, right-click anywhere on the desklet and "
+"select the `Add new task` option inside the popup menu \n"
+" - Shift+Enter while editing task to place a new line\n"
+" - Ibus/Fcitx input is possible only through the edit button or settings\n"
+"You can find more information about this desklet on its webpage."
+msgstr ""
+"Com utilitzar aquesta miniaplicació:\n"
+"Podeu afegir/editar tasques aquí o interactuant amb la miniaplicació en sí:\n"
+"- Clic esquerre al nom d'una tasca per a editar-la\n"
+"- Clic esquerre a la icona d'una tasca per a marcar-la com a completa/"
+"pendent\n"
+"- Clic dret per a seleccionar múltiples tasques (només utilitzant la barra "
+"d'eines)\n"
+"- Clic del mig per a eliminar\n"
+"- Si voleu afegir més tasques, feu clic dret a qualsevol lloc de la "
+"miniaplicació i seleccioneu 'Afegir tasca nova' al menú emergent\n"
+"Podeu trobar més informació sobre aquesta miniaplicació d'escriptori al seu "
+"lloc web."
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Done"
+msgstr ""
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Important"
+msgstr ""
+
+#. settings-schema.json->todo-list->columns->title
+msgid "Name"
+msgstr "Nom"
+
+#. settings-schema.json->update-button->description
+msgid "Update"
+msgstr "Actualitza"
+
+#. settings-schema.json->is-toolbar-enabled->description
+msgid "Enable toolbar"
+msgstr "Activa la barra d'eines"
+
+#. settings-schema.json->is-toolbar-enabled->tooltip
+msgid ""
+"Select if you want the toolbar to show up (tasks can be selected only when "
+"toolbar is enabled)."
+msgstr ""
+"Seleccioneu si voleu que la barra d'eines es mostri (les tasques només es "
+"poden seleccionar quan s'està mostrant)."
+
+#. settings-schema.json->is-sort-enabled->description
+msgid "Sort marked/not marked tasks"
+msgstr "Ordena les tasques com a marcades/no marcades"
+
+#. settings-schema.json->is-sort-enabled->tooltip
+msgid ""
+"Select if you tasks to be sorted based on whether they're marked done or not."
+msgstr ""
+"Seleccioneu si voleu les tasques ordenades en base a si s'han marcat com a "
+"completes o no."
+
+#. settings-schema.json->is-sort-reversed->description
+msgid "Reverse order"
+msgstr "Inverteix l'ordre"
+
+#. settings-schema.json->is-sort-reversed->tooltip
+msgid "Select if you unmarked tasks to be at the top."
+msgstr "Seleccioneu si voleu que les tasques pendents apareguin a dalt."
+
+#. settings-schema.json->column-number->description
+msgid "Number of columns"
+msgstr "Número de columnes"
+
+#. settings-schema.json->column-number->tooltip
+msgid "Increase or decrease the number of columns on the layout."
+msgstr "Augmenteu o reduïu el número de columnes de la disposició."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Ombrejat del text"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Color de l'ombrejat del text"
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Mostra les decoracions de la miniaplicació"
+
+#. settings-schema.json->font->description
+msgid "Font name (choose regular versions)"
+msgstr "Nom de la font (trieu versions regulars)"
+
+#. settings-schema.json->font->tooltip
+msgid "Change font family"
+msgstr "Canvia la família de fonts"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Negreta"
+
+#. settings-schema.json->font-italic->description
+msgid "Italic"
+msgstr "Cursiva"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Set the task text color."
+msgstr "Assigneu el color de text de la tasca"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size, mostly impacts width"
+msgstr "Mida de la miniaplicació d'escriptori. Afecta especialment a l'amplada"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmenteu o reduïu la mida d'aquesta miniaplicació utilitzant el factor "
+"d'escalat."
+
+#. settings-schema.json->is-task-bg-transparent->description
+msgid "Transparent background"
+msgstr "Fons transparent"
+
+#. settings-schema.json->is-task-bg-transparent->tooltip
+msgid "Select if you want a transparent background."
+msgstr "Seleccioneu si voleu un fons transparent."
+
+#. settings-schema.json->task-background->description
+#. settings-schema.json->toolbar-background->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->task-background->tooltip
+msgid "Set the task background."
+msgstr "Assigneu el fons de la tasca."
+
+#. settings-schema.json->task-border-width->description
+#, fuzzy
+msgid "Border width (set to 0 to disable border)"
+msgstr "Mida de la icona de la tasca (0 per a no mostrar icones)"
+
+#. settings-schema.json->task-border-width->tooltip
+#, fuzzy
+msgid "Increase or decrease the task border width."
+msgstr "Augmenteu o reduïu la mida de les icones."
+
+#. settings-schema.json->task-border-color->description
+#. settings-schema.json->toolbar-border-color->description
+#, fuzzy
+msgid "Border color"
+msgstr "Color del text"
+
+#. settings-schema.json->task-border-color->tooltip
+msgid ""
+"Set the task border color (Transparent border will add more padding to "
+"tasks)."
+msgstr ""
+
+#. settings-schema.json->task-background-important->description
+msgid "Background when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-background-important->tooltip
+#, fuzzy
+msgid "Set the task background when marked as important."
+msgstr "Assigneu el fons de la tasca."
+
+#. settings-schema.json->task-border-color-important->description
+msgid "Border color when marked as important"
+msgstr ""
+
+#. settings-schema.json->task-border-color-important->tooltip
+msgid ""
+"Set the task border color when marked as important (Transparent border will "
+"add more padding to tasks)."
+msgstr ""
+
+#. settings-schema.json->task-icon-size->description
+msgid "Task icon size (set to 0 to disable icons)"
+msgstr "Mida de la icona de la tasca (0 per a no mostrar icones)"
+
+#. settings-schema.json->task-icon-size->tooltip
+msgid "Increase or decrease the icon size (set to 0 to disable icons)."
+msgstr "Augmenteu o reduïu la mida de les icones (0 = icones desactivades)."
+
+#. settings-schema.json->task-marked-icon->description
+msgid "Icon marked"
+msgstr "Icona de tasca marcada "
+
+#. settings-schema.json->task-not-marked-icon->description
+msgid "Icon not marked"
+msgstr "Icona de tasca sense marca"
+
+#. settings-schema.json->toolbar-icon-size->description
+#, fuzzy
+msgid "Icon size"
+msgstr "Mida de les icones de la barra d'eines"
+
+#. settings-schema.json->toolbar-icon-size->tooltip
+msgid "Increase or decrease the icon size."
+msgstr "Augmenteu o reduïu la mida de les icones."
+
+#. settings-schema.json->toolbar-background->tooltip
+msgid "Set the toolbar background."
+msgstr "Assigneu el fons de la barra d'eines"
+
+#. settings-schema.json->toolbar-font-color->description
+#, fuzzy
+msgid "Icon color"
+msgstr "Color de les icones de la barra d'eines"
+
+#. settings-schema.json->toolbar-font-color->tooltip
+msgid "Set the color of toolbar icons."
+msgstr "Assigneu el color de les icones de la barra d'eines."
+
+#. settings-schema.json->toolbar-border-width->description
+msgid "Border width"
+msgstr ""
+
+#. settings-schema.json->toolbar-border-width->tooltip
+#, fuzzy
+msgid ""
+"Increase or decrease the toolbar border width (set to 0 to disable border)."
+msgstr "Augmenteu o reduïu la mida de les icones (0 = icones desactivades)."
+
+#. settings-schema.json->toolbar-border-color->tooltip
+msgid ""
+"Set the toolbar border color (Transparent border will add more padding to "
+"toolbar)."
+msgstr ""
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"Les opcions següents requereixen que el sistema tingui els elements "
+"decoratius de miniaplicacions activats.\n"
+"Les preferències de miniaplicacions són a Sistema > Miniaplicacions > "
+"Opcions Generals; allí podreu activar-hi els elements decoratius."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Capçalera de la miniaplicació d'escriptori"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Assigneu la capçalera de la miniaplicació d'escriptori. La opció ha d'estar "
+"activada a la configuració del sistema."
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->description
+#, fuzzy
+msgid "Enable toolbar tooltips"
+msgstr "Activa la barra d'eines"
+
+#. settings-schema.json->are-toolbar-tooltips-enabled->tooltip
+#, fuzzy
+msgid ""
+"Select if you want tooltips to show up when hovering over toolbar buttons."
+msgstr ""
+"Seleccioneu si voleu que la barra d'eines es mostri (les tasques només es "
+"poden seleccionar quan s'està mostrant)."
+
+#. settings-schema.json->are-task-tooltips-enabled->description
+#, fuzzy
+msgid "Enable task tooltips"
+msgstr "Activa la barra d'eines"
+
+#. settings-schema.json->are-task-tooltips-enabled->tooltip
+msgid "Select if you want tooltips to show up when hovering over tasks."
+msgstr ""
+
+#. edit_dialog_gtk.ui:7
+msgid "Edit task name"
+msgstr ""
+
+#. edit_dialog_gtk.ui:74
+#, fuzzy
+msgid "Name:"
+msgstr "Nom"
+
+#~ msgid "Marked done"
+#~ msgstr "Marcada com a completa"
+
+#~ msgid "scale factor"
+#~ msgstr "Factor d'escalat"
+
+#~ msgid "Task background"
+#~ msgstr "Fons de la tasca"
+
+#~ msgid "pixels"
+#~ msgstr "píxels"
+
+#~ msgid "Toolbar background"
+#~ msgstr "Fons de la barra d'eines"

@@ -1,0 +1,212 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: clock@schorschii 1.6\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2024-11-07 13:26+0200\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Kello"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Skaalautuva kello, jossa viisareissa on portaaton liike ja kaikkea voi "
+"vapaasti mukauttaa kuvien kautta."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Analoginen kellotaulu"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Asetukset clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visuaalinen"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Kellon ulkoasu"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Vaalea"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Tumma"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Läpinäkyvä valkoinen"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Läpinäkyvä musta"
+
+#. settings-schema.json->style->options
+msgid "Semitransparent"
+msgstr "Puoliläpinäkyvä"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Mukautettu"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Valitse taustagrafiikka, jota haluat käyttää."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Näytä sekunnit"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Näytä tai piilota sekuntiviisari."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Portaaton sekuntiviisari"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Portaaton liike sekuntiviisarille sen sijaan, että siirretään joka sekunti."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Portaaton minuuttiviisari"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Portaaton liike sekuntiviisarille sen sijaan, että siirretään joka minuutti."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Piilota reunukset"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pikseliä"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Sovelman koko"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Suurenna tai pienennä kellon kokoa."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Mukautettu nimi (näkyy jos ulkoasut ovat käytössä)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Näytä sovelmassa nimeä"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Valitsemalla tämän ruudun voit lisätä nimen alla olevaan kenttään."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Sovelman nimi"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Aseta oma tunniste tähän, esim. eri aikavyöhykkeille. Kenttä ei ole "
+"käytettävissä, ellei yllä oleva valintaruutu ole valittuna."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Aikavyöhyke"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Käytä mukautettua aikavyöhykettä"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Valitsemalla tämän ruudun voit lisätä aikavyöhykkeen alla olevaan kenttään."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Muokattu aikavyöhyke"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Anna mukautettu aikavyöhyke tähän."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Mukautetut kuvat (saatavilla, jos kellon ulkoasuksi on valittuna "
+"\"mukautettu\")"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Tausta"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Valitse oma taustakuva."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Sekuntiviisari"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Valitse oma kuva sekuntiviisarille. Enintään yhtä suuri kuin taustakuva."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Minuuttiviisari"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Valitse oma kuva minuuttiviisarille. Enintään yhtä suuri kuin taustakuva."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Tuntiviisari"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr "Valitse oma kuva tuntiviisarille. Enintään yhtä suuri kuin taustakuva."

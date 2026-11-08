@@ -1,0 +1,43 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr ""
+
+#: desklet.js:177 desklet.js:199
+msgid "HTTP Status Code"
+msgstr ""
+
+#: desklet.js:234
+msgid "s"
+msgstr ""
+
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr ""
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr ""
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr ""
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr ""

@@ -1,0 +1,227 @@
+# TIME AND DATE DESKLET
+# This file is put in the public domain.
+# nightflame, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: TimeAndDate@nightflame 2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-11-05 19:28+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#. metadata.json->description
+msgid ""
+"Themeable desklet that displays the time and date. New overhauled version."
+msgstr ""
+"Témázható asztalkalmazás, amely megjeleníti az időt és a dátumot. Új, "
+"átdolgozott verzió."
+
+#. metadata.json->name
+msgid "Time and Date Desklet"
+msgstr "Idő és Dátum Asztalkalmazás"
+
+#. settings-schema.json->preferences-page->title
+msgid "Preferences"
+msgstr "Beállítások"
+
+#. settings-schema.json->theme-page->title
+#. settings-schema.json->theme-section->title
+msgid "Theme"
+msgstr "Téma"
+
+#. settings-schema.json->general-preferences-section->title
+msgid "General"
+msgstr "Általános"
+
+#. settings-schema.json->time-theme-section->title
+msgid "Time label font"
+msgstr "Időcímke betűtípusa"
+
+#. settings-schema.json->date-theme-section->title
+msgid "Date label font"
+msgstr "Dátumcímke betűtípusa"
+
+#. settings-schema.json->desklet-decorations-section->title
+msgid "Desklet decorations"
+msgstr "Asztalkalmazás dekorációk"
+
+#. settings-schema.json->time-format->description
+msgid "Time format"
+msgstr "Időformátum"
+
+#. settings-schema.json->time-format->tooltip
+msgid "Set your time format."
+msgstr "Állítsa be az időformátumot."
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Dátumformátum"
+
+#. settings-schema.json->date-format->tooltip
+msgid "Set the date format."
+msgstr "Állítsa be a dátumformátumot."
+
+#. settings-schema.json->datetime-format-label->description
+msgid ""
+"Date/time format follows `strftime` formatting. Read more on desklet's "
+"webpage or `strftime` documentation: \n"
+"https://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html"
+msgstr ""
+"A dátum/idő formátuma az `strftime` formátumot követi. További információ a "
+"desklet weboldalán vagy az `strftime` dokumentációjában található:\n"
+"https://pubs.opengroup.org/onlinepubs/007908799/xsh/strftime.html"
+
+#. settings-schema.json->refresh-period->description
+msgid "Refresh period"
+msgstr "Frissítési időszak"
+
+#. settings-schema.json->refresh-period->tooltip
+msgid "Set how quickly the clock should refresh itself."
+msgstr "Állítsa be, hogy az óra milyen gyorsan frissüljön."
+
+#. settings-schema.json->is-order-reversed->description
+msgid "Reverse label order"
+msgstr "Fordított címkesorrend"
+
+#. settings-schema.json->is-two-column->description
+msgid "Two column layout"
+msgstr "Két oszlopos elrendezés"
+
+#. settings-schema.json->is-width-forced->description
+msgid "Force specific width"
+msgstr "Specifikus szélesség erőltetése"
+
+#. settings-schema.json->is-width-forced->tooltip
+msgid ""
+"Select if you want to force the desklet to have a certain width, so it won't "
+"scale with different date length."
+msgstr ""
+"Válassza ki, ha azt szeretné, hogy a desklet egy bizonyos szélességű legyen, "
+"így az nem méreteződik a különböző dátumhosszúságokkal."
+
+#. settings-schema.json->forced-width-size->description
+msgid "Forced width size"
+msgstr "Erőltetett szélesség mérete"
+
+#. settings-schema.json->forced-width-size->tooltip
+msgid "Force desklet width."
+msgstr "Asztalkalmazás szélességének erőltetése."
+
+#. settings-schema.json->time-font->description
+#. settings-schema.json->date-font->description
+msgid "Font name (choose regular versions)"
+msgstr "Betűtípus neve (válassza a normál verziókat)"
+
+#. settings-schema.json->time-font->tooltip
+#. settings-schema.json->date-font->tooltip
+msgid "Change font family"
+msgstr "Betűtípuscsalád módosítása"
+
+#. settings-schema.json->time-font-bold->description
+#. settings-schema.json->date-font-bold->description
+msgid "Bold"
+msgstr "Félkövér"
+
+#. settings-schema.json->time-font-italic->description
+#. settings-schema.json->date-font-italic->description
+msgid "Italic"
+msgstr "Dőlt"
+
+#. settings-schema.json->time-text-color->description
+#. settings-schema.json->date-text-color->description
+msgid "Text color"
+msgstr "Szöveg színe"
+
+#. settings-schema.json->time-text-color->tooltip
+#. settings-schema.json->date-text-color->tooltip
+msgid "Set the text color."
+msgstr "Állítsa be a szöveg színét."
+
+#. settings-schema.json->time-text-shadow->description
+#. settings-schema.json->date-text-shadow->description
+msgid "Text shadow"
+msgstr "Szöveg árnyéka"
+
+#. settings-schema.json->time-text-shadow-color->description
+#. settings-schema.json->date-text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Szövegárnyék színe"
+
+#. settings-schema.json->desklet-background->description
+msgid "Background color"
+msgstr "Háttérszín"
+
+#. settings-schema.json->desklet-background->tooltip
+msgid "Set the desklet background."
+msgstr "Állítsa be az asztalkalmazás hátterét."
+
+#. settings-schema.json->desklet-border-radius->description
+msgid "Border radius"
+msgstr "Szegély sugara"
+
+#. settings-schema.json->desklet-border-radius->tooltip
+msgid "Increase or decrease border curvature."
+msgstr "A szegély görbületének növelése vagy csökkentése."
+
+#. settings-schema.json->desklet-border-width->description
+msgid "Border width (set to 0 to disable border)"
+msgstr "Szegély szélessége (a szegély letiltásához állítsa 0-ra)"
+
+#. settings-schema.json->desklet-border-width->tooltip
+msgid "Increase or decrease the desklet border width."
+msgstr "Növelje vagy csökkentse az asztali szegély szélességét."
+
+#. settings-schema.json->desklet-border-color->description
+msgid "Border color"
+msgstr "Szegély színe"
+
+#. settings-schema.json->desklet-border-color->tooltip
+msgid "Set the desklet border color."
+msgstr "Állítsa be az asztalkalmazás szegélyének színét."
+
+#. settings-schema.json->padding-scale->description
+msgid "Padding scale"
+msgstr "Kitöltési skála"
+
+#. settings-schema.json->padding-scale->tooltip
+msgid "Increase or decrease padding between elements."
+msgstr "Növelje vagy csökkentse az elemek közötti kitöltést."
+
+#. settings-schema.json->show-decorations->description
+msgid "Show desklet decorations"
+msgstr "Asztalkalmazás dekorációk megjelenítése"
+
+#. settings-schema.json->desklet-decorations-note->description
+msgid ""
+"Following settings require desklet decorations to be enabled on your "
+"system.\n"
+"Desklet preferences are located in System Settings > Desklets > General "
+"Settings tab; there you will be able to enable border/header decorations."
+msgstr ""
+"A következő beállításokhoz engedélyezni kell az asztalkalmazás dekorációkat "
+"a rendszeren.\n"
+"\n"
+"Az asztalkalmazás beállításai a Rendszerbeállítások > Asztalkalmazások > "
+"Általános beállítások lapon találhatók; ott engedélyezheti a szegély-/"
+"fejlécdekorációkat."
+
+#. settings-schema.json->desklet-header->description
+msgid "Desklet header"
+msgstr "Asztalkalmazás fejléce"
+
+#. settings-schema.json->desklet-header->tooltip
+msgid ""
+"Set your desklet header. Make sure desklet headers are enabled in system "
+"settings."
+msgstr ""
+"Állítsa be az asztalkalmazás fejlécét. Győződjön meg arról, hogy az "
+"asztalkalmazás fejlécek engedélyezve vannak a rendszerbeállításokban."

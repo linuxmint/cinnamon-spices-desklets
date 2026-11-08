@@ -1,0 +1,284 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 04:22+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:156
+msgid "Previous month..."
+msgstr "Предыдущий месяц..."
+
+#: desklet.js:158
+msgid "Next month..."
+msgstr "Следующий месяц..."
+
+#. metadata.json->comments
+msgid ""
+"Nepali Patro Desklet provides a highly configurable desklet for the Nepali "
+"Patro/Calendar (Bikram Sambat), which displays current date and browsable "
+"months. It has a number of possible customisations."
+msgstr ""
+"Настраиваемый Nepali Patro календарь (Bikram Sambat), который отображает "
+"текущую дату и просматриваемые месяцы. Он имеет множество возможных "
+"настроек."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr ""
+
+#. metadata.json->description
+msgid "Configurable Nepali Patro (Calendar) desklet"
+msgstr "Настраиваемый десклет календаря Nepali Patro"
+
+#. metadata.json->name
+msgid "Nepali Patro Desklet"
+msgstr "Непальский Календарь (Nepali Patro Desklet)"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Настройки календаря"
+
+#. settings-schema.json->language->description
+msgid "Display language"
+msgstr "Отображаемый язык"
+
+#. settings-schema.json->language->options
+msgid "English"
+msgstr ""
+
+#. settings-schema.json->language->options
+msgid "नेपाली (Nepali)"
+msgstr ""
+
+#. settings-schema.json->language->tooltip
+msgid "Select the language of desklet"
+msgstr "Выберите язык для отображения"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Элементы календаря"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Дата и Месяц"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Только дата"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Только месяц"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Выберите что отображать в календаре"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Показывать день недели"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Нет"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Полностью"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Кратко"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr "Показать полное или краткое имя дня недели, либо не показывать вовсе"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Краткое название месяца"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short Bikram Sambat month name"
+msgstr "Краткое Bikram Sambat название месяца"
+
+#. settings-schema.json->show-year->description
+msgid "Show Bikram Sambat year"
+msgstr "Отображать Bikram Sambat год"
+
+#. settings-schema.json->show-year->tooltip
+msgid ""
+"For Bikram Sambat year; show all digits, show last two digits or disable "
+"showing"
+msgstr ""
+"Для Bikram Sambat года; показать год полностью, последние две цифры или не "
+"показывать вовсе"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Показать время"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Показать или скрыть время (часы и минуты)"
+
+#. settings-schema.json->time-zone->description
+msgid "Time/Date TimeZone"
+msgstr "Часовой пояс"
+
+#. settings-schema.json->time-zone->options
+msgid "Nepali TimeZone"
+msgstr "Непальский часовой пояс"
+
+#. settings-schema.json->time-zone->options
+msgid "System TimeZone"
+msgstr "По умолчанию из системы"
+
+#. settings-schema.json->time-zone->tooltip
+msgid "Show calendar/time as per the current system/Nepali TimeZone"
+msgstr "Показать дату/время используя системный/Непальский часовой пояс"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Настройка стиля отображения"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Ориентация календаря"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Горизонтальная"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Вертикальная"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Задать фиксированный вариант ориентации календаря"
+
+#. settings-schema.json->font-family->description
+msgid "Font family for text"
+msgstr "Шрифт для текста"
+
+#. settings-schema.json->font-family->options
+msgid "Default"
+msgstr "По умолчанию"
+
+#. settings-schema.json->font-family->options
+msgid "Gargi"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Kalimati"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Lohit Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari UI"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Samanata"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Samyak Devanagari"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Sarai"
+msgstr ""
+
+#. settings-schema.json->font-family->options
+msgid "Custom"
+msgstr "Пользовательский"
+
+#. settings-schema.json->font-family->tooltip
+msgid ""
+"Set a font family for the text (common Devanagari fonts are listed and MAY "
+"or MAY NOT be available on your system)"
+msgstr ""
+"Выберите шрифт для текста (перечислены распространённые Devanagari шрифты, "
+"которые МОГУТ быть в вашей системе или НЕТ )"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (also set 'Font family' above to 'Custom')"
+msgstr ""
+"Свой шрифт для текста ('Шрифт для текста' должен быть 'Пользовательский')"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid ""
+"Set a custom font family for the text (to use a custom font family, set "
+"'Font family' above to 'Custom')"
+msgstr ""
+"Укажите свой шрифт для текста (параметр 'Шрифт для текста' должен быть "
+"установлен как 'Пользовательский')"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Размер шрифта (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Установить размер шрифта в относительных единицах измерения"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Цвет текста"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Цвет текста календаря"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Цвет текста для Субботы"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Установить цвет текста для Субботы"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Цвет текста для Воскресенья"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Установить цвет текста для Воскресенья"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Цвет фона"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Установить цвет фона календаря"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Прозрачность (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Установить уровень прозрачности календаря в процентах"

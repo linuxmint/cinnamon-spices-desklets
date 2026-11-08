@@ -1,0 +1,144 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:58 desklet.js:129
+msgid "UNKNOWN"
+msgstr "НЕИЗВЕСТНО"
+
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr ""
+
+#: desklet.js:130
+msgid "No ping output"
+msgstr "Нет вывода от ping"
+
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
+msgid "CRIT"
+msgstr "ОБРЫВ"
+
+#: desklet.js:139 desklet.js:185 desklet.js:207
+msgid "OK"
+msgstr "НА СВЯЗИ"
+
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
+msgid "WARN"
+msgstr "ВНИМАНИЕ"
+
+#: desklet.js:177 desklet.js:199
+msgid "HTTP Status Code"
+msgstr ""
+
+#: desklet.js:234
+msgid "s"
+msgstr ""
+
+#. metadata.json->description
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr "Проверьте доступность хоста через HTTP(S) или ping."
+
+#. metadata.json->name
+msgid "Host Check"
+msgstr "Проверка Хоста (Host Check)"
+
+#. settings-schema.json->head0->description
+msgid "Settings for hostcheck@schorschii"
+msgstr "Настройки для hostcheck@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Общие настройки"
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Имя, IP адрес или HTTP(S)-URL адрес для проверки"
+
+#. settings-schema.json->type->description
+msgid "Ping or HTTP(S) check"
+msgstr "Проверка через ping или HTTP(S)"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr ""
+"Выберите, проверка доступности будет осуществляться через ping или HTTP(S)."
+
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr ""
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr ""
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr ""
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr ""
+
+#. settings-schema.json->show-notifications->description
+msgid "Show notifications when state changed"
+msgstr "Показать уведомление если состояние изменилось"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "секунд"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Интервал времени между проверками"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "величина масштабирования"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Размер десклета"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr "Увеличить или уменьшить размер десклета используя масштабирование."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Скрыть декорации"
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Пользовательская текстовая метка на десклете (видно только если декорация "
+"включена)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Использовать свою текстовую метку"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr "Включите для возможности установки своей текстовой метки."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Пользовательская текстовая метка"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr "Напишите свою текстовую метку здесь."

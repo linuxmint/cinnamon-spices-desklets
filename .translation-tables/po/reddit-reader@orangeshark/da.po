@@ -1,0 +1,82 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 06:00+0300\n"
+"PO-Revision-Date: 2017-06-22 17:09+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 1.8.7.1\n"
+
+#: desklet.js:279
+#, javascript-format
+msgid "%d point"
+msgid_plural "%d points"
+msgstr[0] "%d point"
+msgstr[1] "%d points"
+
+#: desklet.js:288
+msgid "by"
+msgstr "af"
+
+#: desklet.js:298
+msgid "to"
+msgstr "til"
+
+#: desklet.js:309
+#, javascript-format
+msgid "%d comment"
+msgid_plural "%d comments"
+msgstr[0] "%d kommentar"
+msgstr[1] "%d kommentarer"
+
+#. metadata.json->name
+msgid "reddit reader desklet"
+msgstr "reddit-læser"
+
+#. metadata.json->description
+msgid "A desklet to read subreddits"
+msgstr "Et skrivebordsprogram til at læse subreddits med"
+
+#. settings-schema.json->subreddit->description
+msgid "Subreddit:"
+msgstr "Subreddit:"
+
+#. settings-schema.json->subreddit->tooltip
+msgid ""
+"supports multireddits and alterative sorting methods. eg: "
+"TheOnion+NotTheOnion, Linux/new and aww+worldnews/controversial"
+msgstr ""
+"understøtter multireddits og alternative sorteringsmetoder, f.eks.: "
+"TheOnion+NotTheOnion, Linux/new og aww+worldnews/controversial"
+
+#. settings-schema.json->height->description
+msgid "Height:"
+msgstr "Højde:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixler"
+
+#. settings-schema.json->width->description
+msgid "Width:"
+msgstr "Bredde:"
+
+#. settings-schema.json->refreshRate->description
+msgid "Refresh rate:"
+msgstr "Opdateringsinterval:"
+
+#. settings-schema.json->refreshRate->units
+msgid "minutes"
+msgstr "minutter"

@@ -1,0 +1,954 @@
+# CALENDARIUM
+# This file is put in the public domain.
+# kami911, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: calendarium@kami911 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-07-23 16:36+0200\n"
+"PO-Revision-Date: 2026-07-31 16:36+0200\n"
+"Last-Translator: Alan Mortensen <over.tackiness223@passinbox.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:61
+msgid "New Moon"
+msgstr "Nymåne"
+
+#. desklet.js:61
+msgid "Waxing Crescent"
+msgstr "Nymåne → halvmåne"
+
+#. desklet.js:61
+msgid "First Quarter"
+msgstr "Tiltagende halvmåne"
+
+#. desklet.js:61
+msgid "Waxing Gibbous"
+msgstr "Halvmåne → fuldmåne"
+
+#. desklet.js:62
+msgid "Full Moon"
+msgstr "Fuldmåne"
+
+#. desklet.js:62
+msgid "Waning Gibbous"
+msgstr "Fuldmåne → halvmåne"
+
+#. desklet.js:62
+msgid "Last Quarter"
+msgstr "Aftagende halvmåne"
+
+#. desklet.js:62
+msgid "Waning Crescent"
+msgstr "Halvmåne → nymåne"
+
+#. desklet.js:64
+msgid "Aquarius"
+msgstr "Vandmanden"
+
+#. desklet.js:64
+msgid "Pisces"
+msgstr "Fiskene"
+
+#. desklet.js:64
+msgid "Aries"
+msgstr "Vædderen"
+
+#. desklet.js:64
+msgid "Taurus"
+msgstr "Tyren"
+
+#. desklet.js:64
+msgid "Gemini"
+msgstr "Tvillingerne"
+
+#. desklet.js:64
+msgid "Cancer"
+msgstr "Krebsen"
+
+#. desklet.js:65
+msgid "Leo"
+msgstr "Løven"
+
+#. desklet.js:65
+msgid "Virgo"
+msgstr "Jomfruen"
+
+#. desklet.js:65
+msgid "Libra"
+msgstr "Vægten"
+
+#. desklet.js:65
+msgid "Scorpio"
+msgstr "Skorpionen"
+
+#. desklet.js:65
+msgid "Sagittarius"
+msgstr "Skytten"
+
+#. desklet.js:65
+msgid "Capricorn"
+msgstr "Stenbukken"
+
+#. desklet.js:67
+msgid "Rat"
+msgstr "Rotte"
+
+#. desklet.js:67
+msgid "Ox"
+msgstr "Okse"
+
+#. desklet.js:67
+msgid "Tiger"
+msgstr "Tiger"
+
+#. desklet.js:67
+msgid "Rabbit"
+msgstr "Hare"
+
+#. desklet.js:67
+msgid "Dragon"
+msgstr "Drage"
+
+#. desklet.js:67
+msgid "Snake"
+msgstr "Slange"
+
+#. desklet.js:68
+msgid "Horse"
+msgstr "Hest"
+
+#. desklet.js:68
+msgid "Goat"
+msgstr "Ged"
+
+#. desklet.js:68
+msgid "Monkey"
+msgstr "Abe"
+
+#. desklet.js:68
+msgid "Rooster"
+msgstr "Hane"
+
+#. desklet.js:68
+msgid "Dog"
+msgstr "Hund"
+
+#. desklet.js:68
+msgid "Pig"
+msgstr "Gris"
+
+#. desklet.js:70
+msgid "Wood"
+msgstr "Træ"
+
+#. desklet.js:70
+msgid "Fire"
+msgstr "Ild"
+
+#. desklet.js:70
+msgid "Earth"
+msgstr "Jord"
+
+#. desklet.js:70
+msgid "Metal"
+msgstr "Metal"
+
+#. desklet.js:70
+msgid "Water"
+msgstr "Vand"
+
+#. desklet.js:72
+msgid "Spring equinox"
+msgstr "Forårsjævndøgn"
+
+#. desklet.js:72
+msgid "Summer solstice"
+msgstr "Sommersolhverv"
+
+#. desklet.js:72
+msgid "Autumn equinox"
+msgstr "Forårsjævndøgn"
+
+#. desklet.js:72
+msgid "Winter solstice"
+msgstr "Vintersolhverv"
+
+#. desklet.js:359
+msgid "Current date"
+msgstr "Dags dato"
+
+#. desklet.js:367
+msgid "Current time"
+msgstr "Aktuelle tidspunkt"
+
+#. desklet.js:383 desklet.js:895
+msgid "Day of year"
+msgstr "Årets dag"
+
+#. desklet.js:409 desklet.js:906
+msgid "Week number"
+msgstr "Ugenummer"
+
+#. desklet.js:418 desklet.js:922
+msgid "Month highlights"
+msgstr "Månedsvisning"
+
+#. desklet.js:475 desklet.js:1062
+msgid "Moon phase"
+msgstr "Månefase"
+
+#. desklet.js:506 desklet.js:507 desklet.js:1254
+msgid "Moonrise"
+msgstr "Måneopgang"
+
+#. desklet.js:514 desklet.js:515 desklet.js:1255
+msgid "Moonset"
+msgstr "Månenedgang"
+
+#. desklet.js:532 desklet.js:533 desklet.js:561 desklet.js:1109
+msgid "Sunrise"
+msgstr "Solopgang"
+
+#. desklet.js:540 desklet.js:541 desklet.js:562 desklet.js:1110
+msgid "Sunset"
+msgstr "Solnedgang"
+
+#. desklet.js:563
+msgid "Local time"
+msgstr "Lokal tid"
+
+#. desklet.js:583 desklet.js:1152
+msgid "Western zodiac"
+msgstr "Vestlige stjernetegn"
+
+#. desklet.js:600 desklet.js:1166
+msgid "Chinese zodiac"
+msgstr "Kinesiske stjernetegn"
+
+#. desklet.js:622
+msgid "Equinox and Solstice"
+msgstr "Jævndøgn og solhverv"
+
+#. desklet.js:680 desklet.js:681 desklet.js:1396
+msgid "Events on this day"
+msgstr "Begivenheder på denne dag"
+
+#. desklet.js:682 desklet.js:683 desklet.js:1376
+msgid "Births on this day"
+msgstr "Personer født denne dag"
+
+#. desklet.js:684 desklet.js:685 desklet.js:1386
+msgid "Deaths on this day"
+msgstr "Personer døde denne dag"
+
+#. desklet.js:686 desklet.js:687 desklet.js:1439
+msgid "Article of the day"
+msgstr "Dagens artikel"
+
+#. settings-schema.json->section-altcal->title
+#. desklet.js:703
+msgid "Alternate Calendars"
+msgstr "Alternative kalendere"
+
+#. desklet.js:891
+#, javascript-format
+msgid "Day %d of %d"
+msgstr "Dag %d af %d"
+
+#. desklet.js:903
+#, javascript-format
+msgid "Week %d"
+msgstr "Uge %d"
+
+#. settings-schema.json->holiday-lookahead->units
+#. settings-schema.json->period-upcoming-lookahead->units
+#. settings-schema.json->nameday-lookahead->units
+#. desklet.js:919 desklet.js:1045 desklet.js:1071 desklet.js:1270
+msgid "days"
+msgstr "dage"
+
+#. desklet.js:933
+msgid "days until New Year"
+msgstr "dage indtil nytår"
+
+#. desklet.js:986
+msgid "public holiday"
+msgstr "offentlig helligdag"
+
+#. desklet.js:988
+msgid "weekend"
+msgstr "weekend"
+
+#. desklet.js:1029
+msgid "days left"
+msgstr "dage tilbage"
+
+#. desklet.js:1073
+msgid "Moon age"
+msgstr "Månealder"
+
+#. desklet.js:1127
+msgid "Polar day"
+msgstr "Polardag"
+
+#. desklet.js:1128
+msgid "Polar night"
+msgstr "Polarnat"
+
+#. desklet.js:1129 desklet.js:1249 desklet.js:1250
+msgid "No data"
+msgstr "Ingen data"
+
+#. desklet.js:1177
+msgid "Name days"
+msgstr "Navnedage"
+
+#. desklet.js:1179
+msgid "Tomorrow"
+msgstr "I morgen"
+
+#. desklet.js:1285
+msgid "Julian date"
+msgstr "Juliansk dato"
+
+#. desklet.js:1286
+msgid "Hebrew date"
+msgstr "Hebraisk dato"
+
+#. desklet.js:1287
+msgid "Islamic date"
+msgstr "Islamisk dato"
+
+#. desklet.js:1288
+msgid "Persian date"
+msgstr "Persisk dato"
+
+#. metadata.json->name
+msgid "Calendarium"
+msgstr "Kalendarium"
+
+#. metadata.json->description
+msgid ""
+"A rich calendar desklet with moon phase, sunrise/sunset, zodiac, name days, "
+"traditional month names, and optional Wikipedia features."
+msgstr ""
+"Et kalenderprogram til skrivebordet med månefase, solopgang/-nedgang, "
+"stjernetegn, navnedage, traditionelle månedsnavne og Wikipedia-funktioner."
+
+#. settings-schema.json->page-general->title
+msgid "General"
+msgstr "Generelt"
+
+#. settings-schema.json->page-location->title
+#. settings-schema.json->section-location->title
+msgid "Location"
+msgstr "Placering"
+
+#. settings-schema.json->page-wikipedia->title
+msgid "Wikipedia"
+msgstr "Wikipedia"
+
+#. settings-schema.json->section-datetime->title
+msgid "Date and Time"
+msgstr "Dato og klokkeslæt"
+
+#. settings-schema.json->section-progress->title
+msgid "Calendar Highlights"
+msgstr "Kalendervisning"
+
+#. settings-schema.json->section-traditional->title
+msgid "Traditional Month Names"
+msgstr "Traditionelle månedsnavne"
+
+#. settings-schema.json->section-folkdays->title
+msgid "Folk Calendar Sayings"
+msgstr "Ordsprog fra folkekalenderen"
+
+#. settings-schema.json->section-holidays->title
+msgid "National Holidays"
+msgstr "Nationale helligdage"
+
+#. settings-schema.json->section-moon->title
+msgid "Moon Phase"
+msgstr "Månefase"
+
+#. settings-schema.json->section-sun->title
+msgid "Sunrise and Sunset"
+msgstr "Solopgang og solnedgang"
+
+#. settings-schema.json->section-zodiac->title
+msgid "Zodiac"
+msgstr "Stjernetegn"
+
+#. settings-schema.json->section-namedays->title
+msgid "Name Days"
+msgstr "Navnedage"
+
+#. settings-schema.json->section-wikipedia->title
+msgid "Wikipedia (Internet Required)"
+msgstr "Wikipedia (Internet nødvendig)"
+
+#. settings-schema.json->section-appearance->title
+msgid "Appearance"
+msgstr "Udseende"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Vis dato"
+
+#. settings-schema.json->date-format-preset->description
+msgid "Date format"
+msgstr "Datoformat"
+
+#. settings-schema.json->date-format-preset->tooltip
+msgid ""
+"Select a predefined date format, or choose Custom to enter your own strftime "
+"string below."
+msgstr ""
+"Vælg et foruddefineret datoformat, eller vælg “Brugerdefineret” for at "
+"indtaste din egen strftime-streng nedenfor."
+
+#. settings-schema.json->date-format-preset->options
+msgid "Friday, 22. February 2026  (%A, %d. %B %Y)"
+msgstr "Fredag, 22. februar 2026  (%A, %d. %B %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "22. February 2026          (%d. %B %Y)"
+msgstr "22. februar 2026          (%d. %B %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "22. Feb 2026               (%d. %b %Y)"
+msgstr "22. feb 2026               (%d. %b %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "22 Feb 2026                (%d %b %Y)"
+msgstr "22 feb 2026                (%d %b %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "Fri, 22 Feb 2026           (%a, %d %b %Y)"
+msgstr "Fre, 22 feb 2026           (%a, %d %b %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "Friday, February 22, 2026  (%A, %B %d, %Y)"
+msgstr "Fredag, februar 22, 2026  (%A, %B %d, %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "February 22, 2026          (%B %d, %Y)"
+msgstr "Februar 22, 2026          (%B %d, %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "Feb 22, 2026               (%b %d, %Y)"
+msgstr "Feb 22, 2026               (%b %d, %Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "2026-02-22                 (%Y-%m-%d)"
+msgstr "2026-02-22                 (%Y-%m-%d)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "22/02/2026                 (%d/%m/%Y)"
+msgstr "22/02/2026                 (%d/%m/%Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "02/22/2026                 (%m/%d/%Y)"
+msgstr "02/22/2026                 (%m/%d/%Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "22.02.2026                 (%d.%m.%Y)"
+msgstr "22.02.2026                 (%d.%m.%Y)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "2026. February 22., Friday (%Y. %B %d., %A)"
+msgstr "2026. februar 22., Fredag (%Y. %B %d., %A)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "2026. February 22.         (%Y. %B %d.)"
+msgstr "2026. februar 22.         (%Y. %B %d.)"
+
+#. settings-schema.json->date-format-preset->options
+msgid "2026. 02. 22.              (%Y. %m. %d.)"
+msgstr "2026. 02. 22.              (%Y. %m. %d.)"
+
+#. settings-schema.json->date-format-custom->description
+msgid ""
+"Custom date format (strftime) — only active when 'Custom' is selected above"
+msgstr ""
+"Brugerdefineret datoformat (strftime) — kun aktiv når “Brugerdefineret” er "
+"valgt ovenfor"
+
+#. settings-schema.json->date-format-custom->tooltip
+msgid ""
+"strftime codes: %A=full weekday  %a=short weekday  %d=day  %B=full month  "
+"%b=short month  %Y=4-digit year  %y=2-digit year  %m=month number  %j=day of "
+"year  %H=hour(24h)  %I=hour(12h)  %M=minute  %p=AM/PM.  Example: %Y. %B %d., "
+"%A"
+msgstr ""
+"strftime-koder: %A=fuld ugedag  %a=kort ugedag  %d=dag  %B=fuld måned  "
+"%b=kort måned  %Y=4-cifret år  %y=2-cifret år  %m=månedsnummer  %j=dag i "
+"året  %H=time (24-timers)  %I=time (12-timers)  %M=minut  %p=AM/PM.  "
+"Eksempel: %Y. %B %d., %A"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Vis klokkeslæt"
+
+#. settings-schema.json->time-format->description
+msgid "Time format"
+msgstr "Tidsformat"
+
+#. settings-schema.json->time-format->options
+msgid "24-hour"
+msgstr "24-timers"
+
+#. settings-schema.json->time-format->options
+msgid "12-hour (AM/PM)"
+msgstr "12-timers (AM/PM)"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Vis sekunder"
+
+#. settings-schema.json->show-day-of-year->description
+msgid "Show day of year (e.g. Day 52 of 365)"
+msgstr "Vis dagens nummer (f.eks. Dag 52 af 365)"
+
+#. settings-schema.json->show-week-number->description
+msgid "Show ISO week number"
+msgstr "Vis ISO-ugenummeret"
+
+#. settings-schema.json->show-month-progress->description
+msgid "Show month highlights (day / days in month)"
+msgstr "Vis dagen i måneden (f.eks. 5/31 dage)"
+
+#. settings-schema.json->show-new-year-countdown->description
+msgid "Show days until New Year"
+msgstr "Vis dage indtil nytår"
+
+#. settings-schema.json->progress-separator->description
+msgid "Separator character between calendar items"
+msgstr "Adskillertegn mellem kalenderelementer"
+
+#. settings-schema.json->show-traditional->description
+msgid "Show traditional month name"
+msgstr "Vis traditionelle månedsnavne"
+
+#. settings-schema.json->traditional-lang->description
+msgid "Traditional month name tradition"
+msgstr "Tradition"
+
+#. settings-schema.json->traditional-lang->options
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "System language"
+msgstr "Systemsprog"
+
+#. settings-schema.json->traditional-lang->options
+msgid "Old Hungarian"
+msgstr "Oldungarsk"
+
+#. settings-schema.json->traditional-lang->options
+msgid "Old English (Anglo-Saxon)"
+msgstr "Oldengelsk (angelsaksisk)"
+
+#. settings-schema.json->traditional-lang->options
+msgid "Old German"
+msgstr "Oldtysk"
+
+#. settings-schema.json->show-folkdays->description
+msgid "Show folk calendar saying for today"
+msgstr "Vis dagens ordsprog fra folkekalenderen"
+
+#. settings-schema.json->folkday-locale->description
+msgid "Folk saying language"
+msgstr "Sprog"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "Hungarian"
+msgstr "Ungarsk"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "German"
+msgstr "Tysk"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "English"
+msgstr "Engelsk"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "French"
+msgstr "Fransk"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "Spanish"
+msgstr "Spansk"
+
+#. settings-schema.json->folkday-locale->options
+#. settings-schema.json->holiday-locale->options
+#. settings-schema.json->nameday-locale->options
+#. settings-schema.json->wikipedia-lang->options
+msgid "Italian"
+msgstr "Italiensk"
+
+#. settings-schema.json->show-holidays->description
+msgid "Show national holidays and weekends"
+msgstr "Vis nationale helligdage og weekender"
+
+#. settings-schema.json->holiday-locale->description
+msgid "Holiday calendar"
+msgstr "Helligdagskalender"
+
+#. settings-schema.json->holiday-lookahead->description
+msgid "Show upcoming holidays (days ahead)"
+msgstr "Vis helligdage de kommende dage"
+
+#. settings-schema.json->show-period-upcoming->description
+msgid "Show upcoming seasonal periods (days ahead)"
+msgstr "Vis kommende årstider (dage)"
+
+#. settings-schema.json->period-upcoming-lookahead->description
+msgid "Upcoming periods lookahead (days)"
+msgstr "Oversigt over kommende årstider (dage)"
+
+#. settings-schema.json->show-moon->description
+msgid "Show moon phase"
+msgstr "Vis månefase"
+
+#. settings-schema.json->show-moon-name->description
+msgid "Show moon phase name"
+msgstr "Vis månefasens navn"
+
+#. settings-schema.json->show-moon-age->description
+msgid "Show moon age (days since new moon)"
+msgstr "Vis månealder (dage siden nymåne)"
+
+#. settings-schema.json->show-moonrise->description
+msgid "Show moonrise and moonset times"
+msgstr "Vis måneopgangs- og -nedgangstider"
+
+#. settings-schema.json->show-sun->description
+msgid "Show sunrise and sunset times"
+msgstr "Vis solopgangs- og -nedgangstider"
+
+#. settings-schema.json->show-solstice->description
+msgid "Show equinox and solstice"
+msgstr "Vis jævndøgn og solhverv"
+
+#. settings-schema.json->use-manual-location->description
+msgid "Use manual location (default: Budapest, Hungary)"
+msgstr "Anvend manuel placering (standard: Budapest, Ungarn)"
+
+#. settings-schema.json->location-search->description
+msgid "Search city to auto-fill coordinates"
+msgstr "Søg by for automatisk at udfylde koordinater"
+
+#. settings-schema.json->location-search->tooltip
+msgid ""
+"Type a city name — coordinates are filled in automatically after 1.5 seconds."
+msgstr "Indtast et bynavn — koordinater indsættes efter 1,5 sekund."
+
+#. settings-schema.json->latitude->units
+#. settings-schema.json->longitude->units
+#. settings-schema.json->city1-lat->units
+#. settings-schema.json->city1-lon->units
+#. settings-schema.json->city2-lat->units
+#. settings-schema.json->city2-lon->units
+#. settings-schema.json->city3-lat->units
+#. settings-schema.json->city3-lon->units
+msgid "degrees"
+msgstr "grader"
+
+#. settings-schema.json->latitude->description
+msgid "Latitude (positive = North)"
+msgstr "Breddegrad (positiv = nord)"
+
+#. settings-schema.json->longitude->description
+msgid "Longitude (positive = East)"
+msgstr "Længdegrad (positiv = øst)"
+
+#. settings-schema.json->city1-name->description
+msgid "City 1 name (leave empty to disable)"
+msgstr "Bynavn 1 (tom for at deaktivere)"
+
+#. settings-schema.json->city1-name->tooltip
+msgid "Label for an additional city. Leave empty to hide."
+msgstr "Etiket til yderligere en by. Efterlad tom for at skjule."
+
+#. settings-schema.json->city1-lat->description
+msgid "City 1 latitude"
+msgstr "By 1's breddegrad"
+
+#. settings-schema.json->city1-lon->description
+msgid "City 1 longitude"
+msgstr "By 1's længdegrad"
+
+#. settings-schema.json->city1-tz->description
+msgid "City 1 timezone (IANA, e.g. Europe/Vienna)"
+msgstr "Tidszone for by 1 (IANA, f.eks. Europe/Vienna)"
+
+#. settings-schema.json->city1-tz->tooltip
+msgid ""
+"Filled automatically when using city search. You can also enter an IANA "
+"timezone name manually, e.g. America/New_York."
+msgstr ""
+"Udfyldes automatisk, når du bruger bysøgning. Du kan også indtaste et IANA-"
+"tidszonenavn manuelt, f.eks. America/New_York."
+
+#. settings-schema.json->city2-name->description
+msgid "City 2 name (leave empty to disable)"
+msgstr "Bynavn 2 (tom for at deaktivere)"
+
+#. settings-schema.json->city2-lat->description
+msgid "City 2 latitude"
+msgstr "By 2's breddegrad"
+
+#. settings-schema.json->city2-lon->description
+msgid "City 2 longitude"
+msgstr "By 2's længdegrad"
+
+#. settings-schema.json->city2-tz->description
+msgid "City 2 timezone (IANA, e.g. America/New_York)"
+msgstr "Tidszone for by 2 (IANA, f.eks. America/New_Year)"
+
+#. settings-schema.json->city2-tz->tooltip
+#. settings-schema.json->city3-tz->tooltip
+msgid ""
+"Filled automatically when using city search. You can also enter an IANA "
+"timezone name manually."
+msgstr ""
+"Udfyldes automatisk, når du bruger bysøgning. Du kan også indtaste et IANA-"
+"tidszonenavn manuelt."
+
+#. settings-schema.json->city3-name->description
+msgid "City 3 name (leave empty to disable)"
+msgstr "Bynavn 3 (tom for at deaktivere)"
+
+#. settings-schema.json->city3-lat->description
+msgid "City 3 latitude"
+msgstr "By 3's breddegrad"
+
+#. settings-schema.json->city3-lon->description
+msgid "City 3 longitude"
+msgstr "By 3's længdegrad"
+
+#. settings-schema.json->city3-tz->description
+msgid "City 3 timezone (IANA, e.g. Asia/Tokyo)"
+msgstr "Tidszone for by 3 (IANA, f.eks. Asia/Tokyo)"
+
+#. settings-schema.json->show-city-time->description
+msgid "Show current local time for each city"
+msgstr "Vis aktuel lokaltid for hver by"
+
+#. settings-schema.json->show-city-tz-offset->description
+msgid "Show UTC offset for each city (e.g. UTC+1)"
+msgstr "Vis UTC-forskydning for hver by (f.eks. UTC+1)"
+
+#. settings-schema.json->zodiac-western-display->description
+msgid "Western zodiac display"
+msgstr "Visning af vestlige stjernetegn"
+
+#. settings-schema.json->zodiac-western-display->tooltip
+msgid "Choose what to show for the western zodiac sign."
+msgstr "Vælg, hvad der skal vises for de vestlige stjernetegn."
+
+#. settings-schema.json->zodiac-western-display->options
+#. settings-schema.json->zodiac-chinese-display->options
+msgid "Icon and text"
+msgstr "Ikon og tekst"
+
+#. settings-schema.json->zodiac-western-display->options
+#. settings-schema.json->zodiac-chinese-display->options
+msgid "Icon only"
+msgstr "Kun ikon"
+
+#. settings-schema.json->zodiac-western-display->options
+#. settings-schema.json->zodiac-chinese-display->options
+msgid "Text only"
+msgstr "Kun tekst"
+
+#. settings-schema.json->zodiac-western-display->options
+#. settings-schema.json->zodiac-chinese-display->options
+msgid "None (hidden)"
+msgstr "Intet (skjult)"
+
+#. settings-schema.json->zodiac-chinese-display->description
+msgid "Chinese zodiac display"
+msgstr "Visning af kinesiske stjernetegn"
+
+#. settings-schema.json->zodiac-chinese-display->tooltip
+msgid "Choose what to show for the Chinese zodiac year (animal and element)."
+msgstr ""
+"Vælg, hvad der skal vises for de kinesiske stjernetegn (dyr og element)."
+
+#. settings-schema.json->show-namedays->description
+msgid "Show name days"
+msgstr "Vis navnedage"
+
+#. settings-schema.json->nameday-locale->description
+msgid "Name day calendar"
+msgstr "Navnedagskalender"
+
+#. settings-schema.json->nameday-lookahead->description
+msgid "Show upcoming name days (days ahead)"
+msgstr "Vis navnedage de kommende dage"
+
+#. settings-schema.json->nameday-two-columns->description
+msgid "Show future name days in two columns"
+msgstr "Vis fremtidige navnedage i to kolonner"
+
+#. settings-schema.json->show-wikipedia->description
+msgid "Enable Wikipedia features (requires Internet)"
+msgstr "Aktivér Wikipedia-funktioner (kræver internet)"
+
+#. settings-schema.json->wikipedia-lang->description
+msgid "Wikipedia language"
+msgstr "Sprog for Wikipedia"
+
+#. settings-schema.json->show-wiki-events->description
+msgid "Show notable events on this day"
+msgstr "Vis vigtige begivenheder på denne dag"
+
+#. settings-schema.json->show-wiki-births->description
+msgid "Show notable births on this day"
+msgstr "Vis vigtige fødselsdage på denne dag"
+
+#. settings-schema.json->show-wiki-deaths->description
+msgid "Show notable deaths on this day"
+msgstr "Vis vigtige dødsfald på denne dag"
+
+#. settings-schema.json->show-wiki-featured->description
+msgid "Show article of the day"
+msgstr "Vis dagens artikel"
+
+#. settings-schema.json->wikipedia-items-count->units
+msgid "items"
+msgstr "elementer"
+
+#. settings-schema.json->wikipedia-items-count->description
+msgid "Items shown per section"
+msgstr "Viste elementer per sektion"
+
+#. settings-schema.json->wikipedia-items-count->tooltip
+msgid ""
+"How many births, deaths, and events to display at a time. The list rotates "
+"periodically, cycling through all available entries from the cache."
+msgstr ""
+"Hvor mange fødsler, dødsfald og begivenheder der skal vises ad gangen. "
+"Listen skifter med jævne mellemrum og gennemgår alle tilgængelige poster fra "
+"cachen."
+
+#. settings-schema.json->wikipedia-rotate-minutes->units
+msgid "minutes"
+msgstr "minutter"
+
+#. settings-schema.json->wikipedia-rotate-minutes->description
+msgid "Rotate items every N minutes"
+msgstr "Skift elementer efter N minutter"
+
+#. settings-schema.json->wikipedia-rotate-minutes->tooltip
+msgid ""
+"How often to advance to the next set of items. Set to 1 to rotate every "
+"minute."
+msgstr ""
+"Hvor ofte der skal skiftes til det næste sæt af elementer. Indstil til 1 for "
+"at skifte hvert minut."
+
+#. settings-schema.json->wikipedia-cache-hours->units
+msgid "hours"
+msgstr "timer"
+
+#. settings-schema.json->wikipedia-cache-hours->description
+msgid "Cache duration for Wikipedia data"
+msgstr "Cachevarighed for Wikipedia-data"
+
+#. settings-schema.json->wikipedia-cache-hours->tooltip
+msgid ""
+"How long to keep Wikipedia data in the local cache before fetching fresh "
+"data. Lower values fetch more often; higher values reduce network usage."
+msgstr ""
+"Hvor længe Wikipedia-data opbevares i den lokale cache, før der hentes nye "
+"data. Jo lavere værdien er, desto oftere hentes der data; jo højere værdien "
+"er, desto mindre er netværksforbruget."
+
+#. settings-schema.json->icon-size->description
+msgid "Icon and symbol size"
+msgstr "Ikon- og symbolstørrelse"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Controls the display size of moon phase and zodiac symbols."
+msgstr "Styrer den viste størrelse af månefase og stjernetegn."
+
+#. settings-schema.json->icon-size->options
+msgid "Small"
+msgstr "Lille"
+
+#. settings-schema.json->icon-size->options
+msgid "Medium"
+msgstr "Mellem"
+
+#. settings-schema.json->icon-size->options
+msgid "Large"
+msgstr "Stor"
+
+#. settings-schema.json->text-scale->units
+msgid "×"
+msgstr "×"
+
+#. settings-schema.json->text-scale->description
+msgid "Text scale factor"
+msgstr "Tekstskaleringsfaktor"
+
+#. settings-schema.json->text-scale->tooltip
+msgid "Scale all text in the desklet up or down."
+msgstr "Op- eller nedskalér al tekst i skrivebordsprogrammet."
+
+#. settings-schema.json->bg-opacity->description
+msgid "Background opacity"
+msgstr "Baggrundens uigennemsigtighed"
+
+#. settings-schema.json->bg-opacity->tooltip
+msgid ""
+"0 = fully transparent (wallpaper shows through), 1 = solid black background"
+msgstr ""
+"0 = helt gennemsigtig (baggrundstapet ses igennem), 1 = ensfarvet sort "
+"baggrund"
+
+#. settings-schema.json->show-julian->description
+msgid "Show Julian calendar date"
+msgstr "Vis juliansk kalenderdato"
+
+#. settings-schema.json->show-hebrew->description
+msgid "Show Hebrew calendar date"
+msgstr "Vis hebraisk kalenderdato"
+
+#. settings-schema.json->show-islamic->description
+msgid "Show Islamic calendar date"
+msgstr "Vis islamisk kalenderdato"
+
+#. settings-schema.json->show-persian->description
+msgid "Show Persian calendar date"
+msgstr "Vis persisk kalenderdato"

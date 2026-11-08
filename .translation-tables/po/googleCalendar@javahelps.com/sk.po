@@ -1,0 +1,461 @@
+# Slovak translation of google calendar desklet.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: 2021-02-10 19:25+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Počet dní na zahrnutie"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#. desklet.js:126
+msgid "Google Calendar"
+msgstr "Kalendár Google"
+
+#. desklet.js:219
+msgid "Open Google Calendar"
+msgstr "Otvoriť kalendár Google"
+
+#. desklet.js:302
+msgid "No events found"
+msgstr "Nenašli sa žiadne udalosti"
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr "Program gcalendar nie je autorizovaný"
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr "Token programu gcalendar vypršal"
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr "Spustiť: "
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr "Neznáma chyba"
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr "Pre použitie tohto deskletu nainštalujte program gcalendar."
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr "Navštíviť: "
+
+#. desklet.js:529
+msgid "Unable to retrieve events..."
+msgstr "Nie je možné získať udalosti..."
+
+#. lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "dopoludnia"
+
+#. lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "popoludní"
+
+#. lib/xdate.js:346
+msgid "January"
+msgstr "Január"
+
+#. lib/xdate.js:346
+msgid "February"
+msgstr "Február"
+
+#. lib/xdate.js:346
+msgid "March"
+msgstr "Marec"
+
+#. lib/xdate.js:346
+msgid "April"
+msgstr "Apríl"
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr "Máj"
+
+#. lib/xdate.js:346
+msgid "June"
+msgstr "Jún"
+
+#. lib/xdate.js:346
+msgid "July"
+msgstr "Júl"
+
+#. lib/xdate.js:346
+msgid "August"
+msgstr "August"
+
+#. lib/xdate.js:346
+msgid "September"
+msgstr "September"
+
+#. lib/xdate.js:346
+msgid "October"
+msgstr "Október"
+
+#. lib/xdate.js:346
+msgid "November"
+msgstr "November"
+
+#. lib/xdate.js:346
+msgid "December"
+msgstr "December"
+
+#. lib/xdate.js:347
+msgid "Jan"
+msgstr "Jan"
+
+#. lib/xdate.js:347
+msgid "Feb"
+msgstr "Feb"
+
+#. lib/xdate.js:347
+msgid "Mar"
+msgstr "Mar"
+
+#. lib/xdate.js:347
+msgid "Apr"
+msgstr "Apr"
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr "Máj"
+
+#. lib/xdate.js:347
+msgid "Jun"
+msgstr "Jún"
+
+#. lib/xdate.js:347
+msgid "Jul"
+msgstr "Júl"
+
+#. lib/xdate.js:347
+msgid "Aug"
+msgstr "Aug"
+
+#. lib/xdate.js:347
+msgid "Sep"
+msgstr "Sep"
+
+#. lib/xdate.js:347
+msgid "Oct"
+msgstr "Okt"
+
+#. lib/xdate.js:347
+msgid "Nov"
+msgstr "Nov"
+
+#. lib/xdate.js:347
+msgid "Dec"
+msgstr "Dec"
+
+#. lib/xdate.js:348
+msgid "Sunday"
+msgstr "Nedeľa"
+
+#. lib/xdate.js:348
+msgid "Monday"
+msgstr "Pondelok"
+
+#. lib/xdate.js:348
+msgid "Tuesday"
+msgstr "Utorok"
+
+#. lib/xdate.js:348
+msgid "Wednesday"
+msgstr "Streda"
+
+#. lib/xdate.js:348
+msgid "Thursday"
+msgstr "Štvrtok"
+
+#. lib/xdate.js:348
+msgid "Friday"
+msgstr "Piatok"
+
+#. lib/xdate.js:348
+msgid "Saturday"
+msgstr "Sobota"
+
+#. lib/xdate.js:349
+msgid "Sun"
+msgstr "Ne"
+
+#. lib/xdate.js:349
+msgid "Mon"
+msgstr "Po"
+
+#. lib/xdate.js:349
+msgid "Tue"
+msgstr "Ut"
+
+#. lib/xdate.js:349
+msgid "Wed"
+msgstr "St"
+
+#. lib/xdate.js:349
+msgid "Thu"
+msgstr "Št"
+
+#. lib/xdate.js:349
+msgid "Fri"
+msgstr "Pi"
+
+#. lib/xdate.js:349
+msgid "Sat"
+msgstr "So"
+
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr "Desklet, ktorý zobrazuje vašu agendu postavenú na kalendári Google"
+
+#. settings-schema.json->page_style->title
+#, fuzzy
+msgid "Desklet Style"
+msgstr "Štýl deskletu"
+
+#. settings-schema.json->display0->description
+msgid "Google Calendar authentication"
+msgstr "Overenie totožnosti kalendára Google"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "ID klienta"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Zadajte vaše ID klienta projektu kalendára Google. Ponechajte prázdne, ak "
+"chcete použiť predvolené ID klienta."
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "Tajomstvo klienta"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Zadajte vaše tajomstvo klienta projektu kalendára Google. Ponechajte "
+"prázdne, ak chcete použiť predvolené tajomstvo klienta."
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "Konfigurácia kalendára"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr "ID účtu programu gcalendar"
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr "Zadajte ID parametra --account programu gcalendar"
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "Naplniť nasledovný zoznam s názvami všetkých mojich kalendárov"
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"Kliknutím naplníte nasledovný zoznam s názvami všetkých vašich kalendárov. "
+"Môže to chvíľu trvať."
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "Zobraziť tieto kalendáre:"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr ""
+"Ak chcete zobraziť kalendár, nastavte voľbu na TRUE (alebo zaškrtnite "
+"konkrétnu položku)"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "Kalendár"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "Má sa zobraziť?"
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "Zobrazí agendu v takomto počte dní"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "dni"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Aktualizovať každých:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minúty"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "Formát dátumu"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "Sem zadajte formát dátumu"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "Formát dnešku"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "Sem zadajte formát dnešku"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "Formát zajtrajšku"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "Sem zadajte formát zajtrajšku"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "Používať 24 hodinový čas"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "Zaškrtnutím tejto voľby sa zobrazí 24 hodinový čas"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "násobne"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Zväčšiť"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Zmení veľkosť deskletu"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Priehľadnosť"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Nastaví priehľadnosť deskletu"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Farba textu"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Kliknutím na tlačidlo vyberiete novú farbu textu"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr "Farba textu celodennej udalosti"
+
+#. settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr "Kliknutím na tlačidlo vyberiete novú farbu textu celodennej udalosti"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Farba pozadia"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Kliknutím na tlačidlo vyberiete novú farbu pozadia"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr "Rozlišovať kalendáre"
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr "Zobrazí farebné odrážky pred udalosťami"
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr "Zobraziť umiestnenie"
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr "Zobrazí umiestnenie udalosti, ak je dostupné"
+
+#. settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr "Farba textu umiestnenia"
+
+#. settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
+msgstr "Kliknutím na tlačidlo vyberiete novú farbu textu umiestnenia"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Polomer rohu"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Polomer zaoblenia rohov deskletu"
+
+#. settings-schema.json->display_mode->description
+#, fuzzy
+msgid "Display mode"
+msgstr "Má sa zobraziť?"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

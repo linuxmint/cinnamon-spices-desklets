@@ -1,0 +1,254 @@
+# Translation for simple-system-monitor@ariel
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-07 06:24-0400\n"
+"PO-Revision-Date: 2024-04-19 14:15+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: 4.0/desklet.js:35 5.8/desklet.js:43
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    on Fedora: libgtop2-devel \n"
+"\t    on Arch: libgtop \n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Ontbrekende afhankelijkheden. Gelieve te installeren: \n"
+"libgtop \n"
+"\t    op Ubuntu: gir1.2-gtop-2.0 \n"
+"\t    op Fedora: libgtop2-devel \n"
+"\t    op Arch: libgtop \n"
+"en herstart Cinnamon.\n"
+
+#: 4.0/desklet.js:236 5.8/desklet.js:298 3.0/desklet.js:238
+msgid "CPU:"
+msgstr "CPU:"
+
+#: 4.0/desklet.js:237 5.8/desklet.js:300 3.0/desklet.js:239
+msgid "Memory:"
+msgstr "Geheugen:"
+
+#: 4.0/desklet.js:238 5.8/desklet.js:302 3.0/desklet.js:240
+msgid "Download:"
+msgstr "Downloaden:"
+
+#: 4.0/desklet.js:239 5.8/desklet.js:304 3.0/desklet.js:241
+msgid "Upload:"
+msgstr "Uploaden:"
+
+#: 4.0/desklet.js:240 5.8/desklet.js:306 3.0/desklet.js:242
+msgid "Temperature:"
+msgstr "Temperatuur:"
+
+#: 4.0/desklet.js:241 5.8/desklet.js:333 3.0/desklet.js:243
+msgid "GPU:"
+msgstr "GPU:"
+
+#: 5.8/desklet.js:112
+msgid "No temp file detected at CPU path. Resetting to default."
+msgstr ""
+"Geen tijdelijk bestand gedetecteerd op CPU-pad. Terugzetten naar standaard."
+
+#: 5.8/desklet.js:116
+msgid "Invalid CPU path detected. Resetting to default."
+msgstr "Ongeldig CPU-pad gedetecteerd. Terugzetten naar standaard."
+
+#: 5.8/desklet.js:131 5.8/desklet.js:172
+msgid "error reading:"
+msgstr "fout bij het lezen:"
+
+#: 5.8/desklet.js:153
+msgid "No temp file detected at GPU path. Resetting to default."
+msgstr ""
+"Geen tijdelijk bestand gedetecteerd op GPU-pad. Terugzetten naar standaard."
+
+#: 5.8/desklet.js:157
+msgid "Invalid GPU path detected. Resetting to default."
+msgstr "Ongeldig GPU-pad gedetecteerd. Terugzetten naar standaard."
+
+#: 5.8/desklet.js:212 5.8/desklet.js:230
+msgid "Please install missing dependencies."
+msgstr "Gelieve ontbrekende afhankelijkheden te installeren."
+
+#: 3.0/desklet.js:37
+msgid ""
+"Dependencies missing. Please install \n"
+"libgtop, Network Manager and gir bindings \n"
+"\t    on Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    on Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    on Arch: libgtop, networkmanager\n"
+"and restart Cinnamon.\n"
+msgstr ""
+"Ontbrekende afhankelijkheden. Gelieve te installeren \n"
+"libgtop, Network Manager en gir-bindings \n"
+"\t    op Ubuntu: gir1.2-gtop-2.0, gir1.2-networkmanager-1.0 \n"
+"\t    op Fedora: libgtop2-devel, NetworkManager-glib-devel \n"
+"\t    op Arch: libgtop, networkmanager\n"
+"en herstart Cinnamon.\n"
+
+#. metadata.json->description
+msgid "Shows some system status values"
+msgstr "Toont enkele systeemstatuswaarden"
+
+#. metadata.json->name
+msgid "Simple System Monitor"
+msgstr "Eenvoudige Systeemmonitor"
+
+#. 5.8->settings-schema.json->head0->description
+msgid "General Settings"
+msgstr "Algemene Instellingen"
+
+#. 5.8->settings-schema.json->title_align->description
+msgid "Alignment for title strings"
+msgstr "Uitlijning voor titelstrings"
+
+#. 5.8->settings-schema.json->title_align->tooltip
+msgid "CPU, Memory, etc."
+msgstr "CPU, geheugen, enz."
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Left"
+msgstr "Links"
+
+#. 5.8->settings-schema.json->title_align->options
+#. 5.8->settings-schema.json->value_align->options
+msgid "Right"
+msgstr "Rechts"
+
+#. 5.8->settings-schema.json->value_align->description
+msgid "Alignment for value strings"
+msgstr "Uitlijning voor waardestrings"
+
+#. 5.8->settings-schema.json->value_align->tooltip
+msgid "GB, KB, etc."
+msgstr "GB, KB, enz."
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°C"
+msgstr "°C"
+
+#. 5.8->settings-schema.json->temp_units->options
+msgid "°F"
+msgstr "°F"
+
+#. 5.8->settings-schema.json->temp_units->description
+msgid "Temperature units to display"
+msgstr "Temperatuureenheid om weer te geven"
+
+#. 5.8->settings-schema.json->font_scale_size->description
+msgid "Scale factor for font size"
+msgstr "Schaalfactor voor lettergrootte"
+
+#. 5.8->settings-schema.json->font_scale_size->tooltip
+msgid ""
+"Increase or decrease this value to change the font size scale (1.2 = 120%)"
+msgstr ""
+"Verhoog of verlaag deze waarde om de schaal van de lettergrootte te wijzigen "
+"(1.2 = 120%)"
+
+#. 5.8->settings-schema.json->font_color->description
+msgid "Font color"
+msgstr "Letterkleur"
+
+#. 5.8->settings-schema.json->font_color->tooltip
+#. 5.8->settings-schema.json->background_color->tooltip
+msgid "RGB or RGBA"
+msgstr "RGB of RGBA"
+
+#. 5.8->settings-schema.json->font_family->description
+msgid "Font family for text (blank to use default)"
+msgstr "Lettertype voor tekst (leeg laten voor standaard)"
+
+#. 5.8->settings-schema.json->font_family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Stel een aangepast lettertype in voor de tekst (leeg laten voor standaard "
+"lettertype)"
+
+#. 5.8->settings-schema.json->width->units
+msgid "px"
+msgstr "px"
+
+#. 5.8->settings-schema.json->width->description
+msgid "Fixed width for the desklet"
+msgstr "Vaste breedte voor de desklet"
+
+#. 5.8->settings-schema.json->width->tooltip
+msgid ""
+"Increase or decrease this value to set the boundary width of the desklet"
+msgstr ""
+"Verhoog of verlaag deze waarde om de grensbreedte van de desklet te bepalen"
+
+#. 5.8->settings-schema.json->show_decorations->description
+msgid "Show background decorations"
+msgstr "Achtergronddecoraties weergeven"
+
+#. 5.8->settings-schema.json->show_decorations->tooltip
+msgid "Toggle to control whether the background is transparent"
+msgstr "Schakelaar om te controleren of de achtergrond transparant moet zijn"
+
+#. 5.8->settings-schema.json->background_color->description
+msgid "Background color"
+msgstr "Achtergrondkleur"
+
+#. 5.8->settings-schema.json->head1->description
+msgid "Advanced Settings"
+msgstr "Geavanceerde Instellingen"
+
+#. 5.8->settings-schema.json->customCPUPath->description
+msgid "Path to CPU temperature directory (device path)"
+msgstr "Pad naar CPU-temperatuurmap (apparaatpad)"
+
+#. 5.8->settings-schema.json->customCPUPath->tooltip
+msgid ""
+"Choose your own thermal CPU object e.g. for monitoring another temperature "
+"sensor.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+"Kies uw eigen thermische CPU-object, bv. voor het monitoren van een andere "
+"temperatuursensor.\n"
+"\n"
+"Standaard:\n"
+"/sys/class/thermal/thermal_zone0"
+
+#. 5.8->settings-schema.json->display_gpu->description
+msgid "Display GPU temperature"
+msgstr "GPU-temperatuur weergeven"
+
+#. 5.8->settings-schema.json->display_gpu->tooltip
+msgid "Toggle to control whether the GPU temperature is displayed"
+msgstr ""
+"Schakelaar om te controleren of de GPU-temperatuur moet worden weergegeven"
+
+#. 5.8->settings-schema.json->customGPUPath->description
+msgid "Path to GPU temperature directory (device path)"
+msgstr "Pad naar GPU-temperatuurmap (apparaatpad)"
+
+#. 5.8->settings-schema.json->customGPUPath->tooltip
+msgid ""
+"Choose your own thermal GPU object e.g. for monitoring a GPU.\n"
+"\n"
+"Default:\n"
+"/sys/class/thermal/thermal_zone0"
+msgstr ""
+"Kies uw eigen thermisch GPU-object, bv. voor het monitoren van een GPU.\n"
+"\n"
+"Standaard:\n"
+"/sys/class/thermal/thermal_zone0"

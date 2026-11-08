@@ -1,0 +1,294 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-06 04:22+0300\n"
+"PO-Revision-Date: 2021-09-29 01:00-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: desklet.js:156
+msgid "Previous month..."
+msgstr "Mês anterior..."
+
+#: desklet.js:158
+msgid "Next month..."
+msgstr "Próximo mês..."
+
+#. metadata.json->comments
+msgid ""
+"Nepali Patro Desklet provides a highly configurable desklet for the Nepali "
+"Patro/Calendar (Bikram Sambat), which displays current date and browsable "
+"months. It has a number of possible customisations."
+msgstr ""
+"O desklet de Nepali Patro/calendário nepalês (Bikram Sambat) é altamente "
+"configurável. É possível exibir a data atual e navegar entre os meses. "
+"Várias personalizações podem ser feitas."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Nepali Patro (Calendar) desklet"
+msgstr "Desklet de Nepali Patro (calendário nepalês) configurável"
+
+#. metadata.json->name
+msgid "Nepali Patro Desklet"
+msgstr "Desklet de Nepali Patro"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Configurações do calendário"
+
+#. settings-schema.json->language->description
+msgid "Display language"
+msgstr "Idioma de exibição"
+
+#. settings-schema.json->language->options
+msgid "English"
+msgstr "Inglês"
+
+#. settings-schema.json->language->options
+msgid "नेपाली (Nepali)"
+msgstr "नेपाली (Nepalês)"
+
+#. settings-schema.json->language->tooltip
+msgid "Select the language of desklet"
+msgstr "Escolha o idioma do desklet"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Colunas a exibir"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Dia e Mês"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Dia"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Mês"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Escolha os painéis para exibir no desklet"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Mostrar o dia da semana por extenso"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Não"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Sim, completo"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Sim, abreviado"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"Mestre o dia da semana por extenso com a palavra completa ou abreviada, ou "
+"prefira mostrar nada"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Nome curto do mês"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short Bikram Sambat month name"
+msgstr "Mostre o nome curto do mês no calendário nepalês (Bikram Sambat)"
+
+#. settings-schema.json->show-year->description
+msgid "Show Bikram Sambat year"
+msgstr "Mostrar o ano no calendário nepalês (Bikram Sambat)"
+
+#. settings-schema.json->show-year->tooltip
+msgid ""
+"For Bikram Sambat year; show all digits, show last two digits or disable "
+"showing"
+msgstr ""
+"No calendário nepalês (Bikram Sambat), mostre o ano com todos os dígitos, "
+"com os últimos dois dígitos, ou prefira mostrar nada"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Mostrar a hora"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Mostre ou esconda a hora (e minutos)"
+
+#. settings-schema.json->time-zone->description
+msgid "Time/Date TimeZone"
+msgstr "Fuso horário (hora/data)"
+
+#. settings-schema.json->time-zone->options
+msgid "Nepali TimeZone"
+msgstr "Fuso Horário do Nepal"
+
+#. settings-schema.json->time-zone->options
+msgid "System TimeZone"
+msgstr "Fuso horário do sistema"
+
+#. settings-schema.json->time-zone->tooltip
+msgid "Show calendar/time as per the current system/Nepali TimeZone"
+msgstr ""
+"Mostrar o calendário e a hora de acordo com o fuso horário do sistema atual/"
+"do Nepal"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Configuração da aparência do desklet"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Leiaute do desklet"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Vertical"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Defina o leiaute do desklet como horizontal/vertical"
+
+#. settings-schema.json->font-family->description
+msgid "Font family for text"
+msgstr "Fonte do texto"
+
+#. settings-schema.json->font-family->options
+msgid "Default"
+msgstr "Padrão"
+
+#. settings-schema.json->font-family->options
+msgid "Gargi"
+msgstr "Gargi"
+
+#. settings-schema.json->font-family->options
+msgid "Kalimati"
+msgstr "Kalimati"
+
+#. settings-schema.json->font-family->options
+msgid "Lohit Devanagari"
+msgstr "Lohit Devanagari"
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari"
+msgstr "Noto Sans Devanagari"
+
+#. settings-schema.json->font-family->options
+msgid "Noto Sans Devanagari UI"
+msgstr "Noto Sans Devanagari UI"
+
+#. settings-schema.json->font-family->options
+msgid "Samanata"
+msgstr "Samanata"
+
+#. settings-schema.json->font-family->options
+msgid "Samyak Devanagari"
+msgstr "Samyak Devanagari"
+
+#. settings-schema.json->font-family->options
+msgid "Sarai"
+msgstr "Sarai"
+
+#. settings-schema.json->font-family->options
+msgid "Custom"
+msgstr "Personalizada"
+
+#. settings-schema.json->font-family->tooltip
+msgid ""
+"Set a font family for the text (common Devanagari fonts are listed and MAY "
+"or MAY NOT be available on your system)"
+msgstr ""
+"Defina uma fonte para o texto (as fontes Devanagari comuns estão listadas, "
+"mas podem ou não estar disponíveis em seu sistema)"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (also set 'Font family' above to 'Custom')"
+msgstr ""
+"Fonte personalizada do texto (essa opção tem efeito apenas se a 'Fonte do "
+"texto' for marcada como 'Personalizada' no campo acima)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid ""
+"Set a custom font family for the text (to use a custom font family, set "
+"'Font family' above to 'Custom')"
+msgstr ""
+"Defina uma fonte para o texto (essa opção tem efeito apenas se a 'Fonte do "
+"texto' for marcada como 'Personalizada' no campo acima)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Tamanho da fonte (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Defina o tamanho do texto em pontos"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Cor do texto"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Defina a cor do texto do desklet"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Cor do texto para os Sábados"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Defina a cor do texto para os Sábados"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Cor do texto para os Domingos"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Defina a cor do texto para os Domingos"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Cor de fundo"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Defina a cor de fundo do desklet"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Transparência (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Defina a transparência do desklet em porcentagem"

@@ -1,0 +1,64 @@
+# CobiAnalogClock Desklet
+# Copyright (C) 2017 Lars Mueller
+# This file is distributed under the same license as the CobiAnalog Desklet package.
+# Lars Mueller <cobinja@yahoo.de>, 2017.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-21 14:17-0400\n"
+"PO-Revision-Date: 2024-03-21 16:04-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: 2.8/desklet.js:172 3.0/desklet.js:191
+msgid "Settings"
+msgstr "Ajustes"
+
+#: 2.8/desklet.js:185 2.8/desklet.js:370 3.0/desklet.js:204 3.0/desklet.js:394
+msgid "Clock"
+msgstr "Reloj"
+
+#. metadata.json->name
+msgid "CobiAnalogClock"
+msgstr "Reloj analógico Cobi"
+
+#. metadata.json->description
+msgid "An analog clock desklet"
+msgstr "Un desklet de reloj analógico"
+
+#: 2.8/settings.ui:7 3.0/settings.ui:7
+msgid "Analog Clock Settings"
+msgstr "Ajustes del reloj analógico"
+
+#: 2.8/settings.ui:99 3.0/settings.ui:99
+msgid "Theme"
+msgstr "Tema"
+
+#: 2.8/settings.ui:138 3.0/settings.ui:138
+msgid "Size"
+msgstr "Tamaño"
+
+#: 2.8/settings.ui:182 3.0/settings.ui:182
+msgid "Show Seconds"
+msgstr "Mostrar el segundero"
+
+#: 2.8/settings.ui:220 3.0/settings.ui:220
+msgid "Hide decorations"
+msgstr "Ocultar decoraciones"
+
+#: 2.8/settings.ui:259 3.0/settings.ui:259
+msgid "Use specific timezone"
+msgstr "Utilizar una zona horaria específica"
+
+#: 2.8/settings.ui:297 3.0/settings.ui:297
+msgid "Display Timezone"
+msgstr "Mostrar zona horaria"

@@ -1,0 +1,125 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-18 20:51+0200\n"
+"PO-Revision-Date: 2023-12-08 07:42+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:171 4.0/desklet.js:171 3.6/desklet.js:171
+msgid ""
+"Please make sure vnstat and vnstati are installed and that the vnstat daemon "
+"is running!"
+msgstr ""
+"Sørg for, at vnstat og vnstati er installerede, og at vnstat-dæmonen kører!"
+
+#: desklet.js:172 4.0/desklet.js:172 3.6/desklet.js:172
+msgid ""
+"In Linux Mint, you can simply run 'apt install vnstati' and that will take "
+"care of everything."
+msgstr ""
+"I Linux Mint kan du bare køre “apt install vnstati”, og det vil klare det "
+"fornødne."
+
+#: desklet.js:173 4.0/desklet.js:173 3.6/desklet.js:173
+msgid ""
+"In other distributions it might depend on the way things are packaged but "
+"its likely to be similar."
+msgstr ""
+"I andre distributioner kan det afhænge af, hvordan tingene er pakkede, men "
+"sandsynligvis er det meget lig."
+
+#: desklet.js:174 4.0/desklet.js:174 3.6/desklet.js:174
+msgid "The Interface detected was: "
+msgstr "Den registrerede grænseflade var: "
+
+#. metadata.json->description
+msgid "Network usage monitor using vnstat"
+msgstr "Overvågning af netværksforbrug ved hjælp af vnstat"
+
+#. metadata.json->name
+msgid "Network usage monitor"
+msgstr "Netværksforbrug"
+
+#. settings-schema.json->head->description
+#. 4.0->settings-schema.json->head->description
+#. 3.6->settings-schema.json->head->description
+msgid "Settings for the Network Usage Applet (uses vnstati)"
+msgstr "Indstillinger for Netværksforbrug (bruger vnstati)"
+
+#. settings-schema.json->useExtendedDisplay->description
+#. 4.0->settings-schema.json->useExtendedDisplay->description
+#. 3.6->settings-schema.json->useExtendedDisplay->description
+msgid "Enable Extended Display Options"
+msgstr "Aktivér udvidede visningsindstillinger"
+
+#. settings-schema.json->useExtendedDisplay->tooltip
+#. 4.0->settings-schema.json->useExtendedDisplay->tooltip
+#. 3.6->settings-schema.json->useExtendedDisplay->tooltip
+msgid "This is a new option from version 1.0.3"
+msgstr "Dette er en ny mulighed fra og med version 1.0.3"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Classic - Summary of Traffic for last Days and Months"
+msgstr "Klassisk - Resumé af de sidste dages og måneders trafik"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Classic Plus - Classic with addition of hourly statistics"
+msgstr "Klassisk plus - Klassisk med statistik for hver time"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Hourly statistics for last 24 hours"
+msgstr "Statistik for hver time de sidste 24 timer"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Daily statistics for last 30 days"
+msgstr "Daglig statistik for de sidste 30 dage"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "Monthly statistics for last 12 months"
+msgstr "Månedlig statistik for de sidste 12 måneder"
+
+#. settings-schema.json->extendedDisplay->options
+#. 4.0->settings-schema.json->extendedDisplay->options
+#. 3.6->settings-schema.json->extendedDisplay->options
+msgid "All time Top ten traffic days"
+msgstr "Top ti over dage med mest trafik"
+
+#. settings-schema.json->extendedDisplay->description
+#. 4.0->settings-schema.json->extendedDisplay->description
+#. 3.6->settings-schema.json->extendedDisplay->description
+msgid "Type of Display - default Classic"
+msgstr "Visningstype - som standard Klassisk"
+
+#. settings-schema.json->extendedDisplay->tooltip
+#. 4.0->settings-schema.json->extendedDisplay->tooltip
+#. 3.6->settings-schema.json->extendedDisplay->tooltip
+msgid ""
+"This feature offers the Classic (original) display with a number of other "
+"options"
+msgstr ""
+"Denne indstilling indeholder den oprindelige klassiske visning og andre "
+"valgmuligheder"

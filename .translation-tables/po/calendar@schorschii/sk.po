@@ -1,0 +1,248 @@
+# Slovak translation of Calendar Desklet
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Dušan Kazik <prescott66@gmail.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-30 02:38+0800\n"
+"PO-Revision-Date: 2021-02-09 12:39+0100\n"
+"Last-Translator: Dušan Kazik <prescott66@gmail.com>\n"
+"Language-Team: \n"
+"Language: sk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+
+#: desklet.js:125
+msgid "Monday"
+msgstr "Pondelok"
+
+#: desklet.js:126
+msgid "Tuesday"
+msgstr "Utorok"
+
+#: desklet.js:127
+msgid "Wednesday"
+msgstr "Streda"
+
+#: desklet.js:128
+msgid "Thursday"
+msgstr "Štvrtok"
+
+#: desklet.js:129
+msgid "Friday"
+msgstr "Piatok"
+
+#: desklet.js:130
+msgid "Saturday"
+msgstr "Sobota"
+
+#: desklet.js:131
+msgid "Sunday"
+msgstr "Nedeľa"
+
+#: desklet.js:134
+msgid "January"
+msgstr "Január"
+
+#: desklet.js:135
+msgid "February"
+msgstr "Február"
+
+#: desklet.js:136
+msgid "March"
+msgstr "Marec"
+
+#: desklet.js:137
+msgid "April"
+msgstr "Apríl"
+
+#: desklet.js:138
+msgid "May"
+msgstr "Máj"
+
+#: desklet.js:139
+msgid "June"
+msgstr "Jún"
+
+#: desklet.js:140
+msgid "July"
+msgstr "Júl"
+
+#: desklet.js:141
+msgid "August"
+msgstr "August"
+
+#: desklet.js:142
+msgid "September"
+msgstr "September"
+
+#: desklet.js:143
+msgid "October"
+msgstr "Október"
+
+#: desklet.js:144
+msgid "November"
+msgstr "November"
+
+#: desklet.js:145
+msgid "December"
+msgstr "December"
+
+#. calendar@schorschii->metadata.json->name
+#: desklet.js:275
+msgid "Calendar"
+msgstr "Kalendár"
+
+#. calendar@schorschii->metadata.json->description
+msgid ""
+"A calendar desklet that can display the number of today's appointments from "
+"an ical file."
+msgstr ""
+"Desklet s kalendárom, ktorý môže zobraziť počet dnešných schôdzok zo súboru "
+"ical."
+
+#. calendar@schorschii->settings-schema.json->notification-color->description
+msgid "Appointment number background color"
+msgstr "Farba pozadia čísla počtu schôdzok"
+
+#. calendar@schorschii->settings-schema.json->notification-color->tooltip
+msgid "Set the appointment number background color of this desklet."
+msgstr "Nastaví farbu pozadia čísla počtu schôdzok tohto deskletu."
+
+#. calendar@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skryť dekorácie"
+
+#. calendar@schorschii->settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Vlastná menovka deskletu (viditeľná iba ak sú povolené dekorácie)"
+
+#. calendar@schorschii->settings-schema.json->head2->description
+msgid "Number of appointments"
+msgstr "Počet schôdzok"
+
+#. calendar@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Vizuálne"
+
+#. calendar@schorschii->settings-schema.json->head0->description
+msgid "Settings for calendar@schorschii"
+msgstr "Nastavenia deskletu calendar@schorschii"
+
+#. calendar@schorschii->settings-schema.json->bg-img->description
+msgid "Calendar style"
+msgstr "Štýl kalendáru"
+
+#. calendar@schorschii->settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Vyberie grafiku pozadia, ktorú by ste chceli použiť."
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "Orange"
+msgstr "Oranžový"
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "White"
+msgstr "Biely"
+
+#. calendar@schorschii->settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Farba textu"
+
+#. calendar@schorschii->settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Nastaví farbu textu tohto deskletu."
+
+#. calendar@schorschii->settings-schema.json->read-appointments->description
+msgid "Show the number of today's appointments parsed from an ical file"
+msgstr "Zobraziť počet dnešných schôdzok analyzovaných zo súboru ical"
+
+#. calendar@schorschii->settings-schema.json->read-appointments->tooltip
+msgid ""
+"Checking this box allows you to set an ical file to parse in the field below."
+msgstr ""
+"Zaškrtnutím tejto položky vám bude umožnené v poli nižšie nastaviť súbor "
+"ical, ktorý sa má analyzovať."
+
+#. calendar@schorschii->settings-schema.json->ical-file->description
+msgid "Path to ical/ics file"
+msgstr "Cesta k súboru ical/ics"
+
+#. calendar@schorschii->settings-schema.json->ical-file->tooltip
+msgid ""
+"Select your ical or ics file for reading the amount of appointments today.\n"
+"\n"
+"You can configure Lightning (the Thunderbird Add-On) to save your calendar "
+"in an ical file."
+msgstr ""
+"Vyberte si súbor ical alebo ics, aby ste si mohli prečítať počet stretnutí "
+"dnes.\n"
+"\n"
+"Môžete nastaviť Lightning (doplnok aplikácie Thunderbird), ktorý uloží váš "
+"kalendár do súboru ical."
+
+#. calendar@schorschii->settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Veľkosť deskletu"
+
+#. calendar@schorschii->settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the calendar using this scale factor."
+msgstr ""
+"Zväčší alebo zmenší veľkosť kalendáru použitím tohto faktoru zmeny mierky."
+
+#. calendar@schorschii->settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "faktor zmeny mierky"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Použiť vlastnú menovku deskletu"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Zaškrtnutím tejto položky vám bude umožnené nastaviť vlastnú menovku v poli "
+"nižšie."
+
+#. calendar@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Vlastná menovka deskletu"
+
+#. calendar@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple ical files. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Tu nastavte vašu vlastnú menovku, napr. pre sledovanie viacerých súborov "
+"ical. Toto pole je dostupné až po povolení položky vyššie."
+
+msgid "Appointment number color"
+msgstr "Farba čísla počtu schôdzok"
+
+msgid "Start program on click of the desklet"
+msgstr "Spustenie programu kliknutím na desklet"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Spustiť program (napr. Thunderbird)"
+
+msgid ""
+"The command entered below will be executed on mouse click of the desklet. So "
+"you can directly start Thunderbird."
+msgstr ""
+"Nižšie zadaný príkaz bude spustený po kliknutí myšou na desklet. Tak môžete "
+"priamo spustiť aplikáciu Thunderbird."
+
+msgid "Command line"
+msgstr "Príkazový riadok"
+
+msgid "Set your program including parameters to start on click."
+msgstr "Nastavte váš program na spustenie po kliknutí vrátane parametrov."
+
+#~ msgid "Set the appointment number color of this desklet."
+#~ msgstr "Nastaví farbu čísla počtu schôdzok tohto deskletu."

@@ -1,0 +1,44 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: ViennaTextBasedWeather@f-istvan 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2025-10-28 18:58+0100\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->description
+msgid "Displays text based weather information of Vienna in German."
+msgstr "Viser tekstbaserede vejroplysninger for Wien på tysk."
+
+#. metadata.json->name
+msgid "Vienna Text Based Weather"
+msgstr "Tekstbaseret vejr for Wien"
+
+#. settings-schema.json->head->description
+msgid "Settings"
+msgstr "Indstillinger"
+
+#. settings-schema.json->height->description
+msgid "Height :"
+msgstr "Højde:"
+
+#. settings-schema.json->height->units
+#. settings-schema.json->width->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->width->description
+msgid "Width :"
+msgstr "Bredde:"

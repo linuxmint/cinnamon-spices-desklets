@@ -1,0 +1,116 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 12:46+0800\n"
+"PO-Revision-Date: 2017-10-19 19:01+0300\n"
+"Last-Translator: Peyu Yovev <spacy00001@gmail.com>\n"
+"Language-Team: \n"
+"Language: bg\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:32
+msgid "Quote of the day"
+msgstr "Цитат на деня"
+
+#: desklet.js:52
+msgid "Copy"
+msgstr "Копирай"
+
+#. quoteOfTheDay@tinnu->metadata.json->description
+msgid "A desklet that displays quotations from various sources"
+msgstr "Десклет, който показва цитати от различни източници"
+
+#. quoteOfTheDay@tinnu->metadata.json->name
+msgid "Quote of the day desklet"
+msgstr "Десклет цитат на деня"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-size->description
+msgid "Font size:"
+msgstr "Размер на шрифта:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->description
+msgid "Vertical shadow:"
+msgstr "Сянка по вертикал"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->vertical-shadow->units
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->units
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->units
+msgid "px"
+msgstr "пкс"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->file->description
+msgid "File:"
+msgstr "Файл:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-options-header->description
+msgid "Font options:"
+msgstr "Опции на шрифт:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-blur->description
+msgid "Shadow blur:"
+msgstr "Размиване на сянката:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->description
+msgid "Shadow color:"
+msgstr "Цвят на сянката:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->shadow-color->tooltip
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->tooltip
+msgid "Click to select a new text color"
+msgstr "Цъкнете за да изберете цвят на текста"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Обновявай на всеки:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "минути"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->text-color->description
+msgid "Font color:"
+msgstr "Цвят на шрифта"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->horizontal-shadow->description
+msgid "Horizontal shadow:"
+msgstr "Сянка по хоризонтал:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->font-shadow-options-
+#. header->description
+msgid "Text shadow effects:"
+msgstr "Ефекти на сянката на текста"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->advanced-options-header->
+#. description
+msgid "Advanced options:"
+msgstr "Разширени опции:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->description
+msgid "Parameters for fortune:"
+msgstr "Параметри на късметче:"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->fortune-params->tooltip
+msgid "E.g. -s, etc.  See README for more info."
+msgstr "Примерно -s и др. Виж README за още информация."
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->description
+msgid "Ignore input file"
+msgstr "Игнорирай входящия файл"
+
+#. quoteOfTheDay@tinnu->settings-schema.json->ignore-input-file->tooltip
+msgid ""
+"Use fortune's default behavior instead of an input file.  See README for "
+"more info."
+msgstr ""
+"Използва късметчетата по подразбиране, вместо входящия файл. Виж README за "
+"още информация."

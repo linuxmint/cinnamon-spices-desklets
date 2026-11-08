@@ -1,0 +1,94 @@
+# Swedish translation for googleCalendar@javahelps.com.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Åke Engelbrektson <eson@svenskasprakfiler.se>, 2020.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: googleCalendar@javahelps.com\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: 2020-01-06 11:03+0100\n"
+"Last-Translator: Åke Engelbrektson <eson@svenskasprakfiler.se>\n"
+"Language-Team: Svenska Språkfiler <contactform@svenskasprakfiler.se>\n"
+"Language: sv\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.0.6\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ""
+
+#. desklet.js:302
+msgid "No events found"
+msgstr ""
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr ""
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr ""
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr ""
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr ""
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr ""
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr ""
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr ""
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr ""
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr ""
+
+#. settings-schema.json->display_mode->description
+msgid "Display mode"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr ""
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr ""

@@ -1,0 +1,31 @@
+# DAYS COUNTDOWN
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+msgid ""
+msgstr ""
+
+#. desklet.js:77
+#, javascript-format
+msgid "New Year %f Countdown"
+msgstr ""
+
+#. settings-schema.json->font-size-section->title
+msgid "Font Sizes"
+msgstr ""
+
+#. settings-schema.json->countdown-section->title
+msgid "Countdown"
+msgstr ""
+
+#. settings-schema.json->colors-section->title
+msgid "Colors"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""

@@ -1,0 +1,226 @@
+# ANALOG CHRONOMETER TRANSLATIONS.
+# Copyright (C) 2017 FULL NAME
+# This file is distributed under the same license as the PACKAGE package.
+# Marcelo Aof, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Analog Chronometer VERSION\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 09:32+0200\n"
+"PO-Revision-Date: 2021-09-28 15:48-0300\n"
+"Last-Translator: Marcelo Aof\n"
+"Language-Team: \n"
+"Language: pt_BR\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: desklet.js:190
+msgid "Clock"
+msgstr "Relógio"
+
+#. metadata.json->description
+msgid ""
+"A scaleable analog clock desklet with smooth hands and free choice of images."
+msgstr ""
+"Um desklet de relógio analógico com tamanho de sua preferência, ponteiros "
+"suaves e que permite amplo ajuste da aparência."
+
+#. metadata.json->name
+msgid "Analog Chronometer"
+msgstr "Relógio analógico"
+
+#. settings-schema.json->head0->description
+msgid "Settings for clock@schorschii"
+msgstr "Configurações de clock@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visual"
+
+#. settings-schema.json->style->description
+msgid "Clock style"
+msgstr "Aparência do relógio"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Claro"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Escuro"
+
+#. settings-schema.json->style->options
+msgid "Light Transparent"
+msgstr "Transparente claro"
+
+#. settings-schema.json->style->options
+msgid "Dark Transparent"
+msgstr "Transparente escuro"
+
+#. settings-schema.json->style->options
+#, fuzzy
+msgid "Semitransparent"
+msgstr "Transparente claro"
+
+#. settings-schema.json->style->options
+msgid "Custom"
+msgstr "Personalizada"
+
+#. settings-schema.json->style->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Escolha a aparência do relógio que preferir."
+
+#. settings-schema.json->show-seconds-hand->description
+msgid "Show seconds hand"
+msgstr "Mostrar o ponteiro dos segundos"
+
+#. settings-schema.json->show-seconds-hand->tooltip
+msgid "Show or hide the seconds hand."
+msgstr "Mostra ou esconde o ponteiro dos segundos."
+
+#. settings-schema.json->smooth-seconds-hand->description
+msgid "Smooth second hand"
+msgstr "Suavizar o ponteiro dos segundos"
+
+#. settings-schema.json->smooth-seconds-hand->tooltip
+msgid ""
+"Use smooth animation for seconds hand instead of refreshing it only every "
+"second."
+msgstr ""
+"Suavize o movimento do ponteiro dos segundos em vez dele se mover a cada "
+"segundo."
+
+#. settings-schema.json->smooth-minutes-hand->description
+msgid "Smooth minute hand"
+msgstr "Suavizar o ponteiro dos minutos"
+
+#. settings-schema.json->smooth-minutes-hand->tooltip
+msgid ""
+"Use smooth animation for minute hand instead of moving it only once per "
+"minute."
+msgstr ""
+"Suavize o movimento do ponteiro dos minutos em vez dele se mover a cada "
+"minuto."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Esconder decorações do sistema"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pixels"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Tamanho do desklet"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the clock."
+msgstr "Aumente ou diminua o tamanho do relógio."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Rótulo personalizado do desklet (visível apenas se as decorações não "
+"estiverem escondidas)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Usar um rótulo personalizado do desklet"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Ao marcar essa opção, você poderá definir um rótulo personalizado no campo "
+"abaixo."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Rótulo personalizado do desklet"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for multiple timezones. This field is "
+"unavailable unless the checkbox above is enabled."
+msgstr ""
+"Defina o seu rótulo personalizado aqui. É útil para múltiplos fusos "
+"horários, por exemplo. Essa opção tem efeito quando a caixa de seleção acima "
+"estiver ativada."
+
+#. settings-schema.json->head3->description
+msgid "Timezone"
+msgstr "Fuso horário"
+
+#. settings-schema.json->use-custom-tz->description
+msgid "Use a custom timezone"
+msgstr "Usar um fuso horário personalizado"
+
+#. settings-schema.json->use-custom-tz->tooltip
+msgid ""
+"Checking this box allows you to set a custom timezone in the field below."
+msgstr ""
+"Ao marcar essa opção, você poderá digitar um fuso horário personalizado no "
+"campo abaixo."
+
+#. settings-schema.json->custom-tz->description
+msgid "Custom time zone"
+msgstr "Fuso horário personalizado"
+
+#. settings-schema.json->custom-tz->tooltip
+msgid "Enter your custom timezone here."
+msgstr "Digite o seu fuso horário personalizado aqui."
+
+#. settings-schema.json->head4->description
+msgid "Custom images (available if clock style is set to 'custom')"
+msgstr ""
+"Imagens personalizadas (essa opção tem efeito apenas se a aparência do "
+"relógio estiver definida como 'personalizada')"
+
+#. settings-schema.json->img-bg->description
+msgid "Background"
+msgstr "Fundo"
+
+#. settings-schema.json->img-bg->tooltip
+msgid "Choose your own background image."
+msgstr "Escolha a sua imagem de fundo."
+
+#. settings-schema.json->img-s->description
+msgid "Seconds hand"
+msgstr "Ponteiro dos segundos"
+
+#. settings-schema.json->img-s->tooltip
+msgid ""
+"Choose your own image for the seconds hand. Should be as big as the "
+"background image."
+msgstr ""
+"Escolha a sua imagem para o ponteiro dos segundos. A dimensão da imagem deve "
+"ser tão grande quanto a imagem do fundo."
+
+#. settings-schema.json->img-m->description
+msgid "Minute hand"
+msgstr "Ponteiro dos minutos"
+
+#. settings-schema.json->img-m->tooltip
+msgid ""
+"Choose your own image for the minute hand. Should be as big as the "
+"background image."
+msgstr ""
+"Escolha a sua imagem para o ponteiro dos minutos. A dimensão da imagem deve "
+"ser tão grande quanto a imagem do fundo."
+
+#. settings-schema.json->img-h->description
+msgid "Hour hand"
+msgstr "Ponteiro das horas"
+
+#. settings-schema.json->img-h->tooltip
+msgid ""
+"Choose your own image for the hour hand. Should be as big as the background "
+"image."
+msgstr ""
+"Escolha a sua imagem para o ponteiro das horas. A dimensão da imagem deve "
+"ser tão grande quanto a imagem do fundo."

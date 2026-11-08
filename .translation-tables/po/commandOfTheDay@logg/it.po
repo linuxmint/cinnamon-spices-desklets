@@ -1,0 +1,43 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-26 16:13+0800\n"
+"PO-Revision-Date: 2022-06-03 12:31+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:48
+msgid "Command of the day"
+msgstr "Comando del giorno"
+
+#. commandOfTheDay@logg->metadata.json->description
+msgid "A desklet that displays arbitrary text output from commands"
+msgstr "Un desklet che visualizza l'output di testo arbitrario dai comandi"
+
+#. commandOfTheDay@logg->metadata.json->name
+msgid "Command of the day desklet"
+msgstr "Comando del giorno - desklet"
+
+#. commandOfTheDay@logg->settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Aggiorna ogni:"
+
+#. commandOfTheDay@logg->settings-schema.json->delay->units
+msgid "minutes"
+msgstr "minuti"
+
+#. commandOfTheDay@logg->settings-schema.json->theCommand->description
+msgid "Command:"
+msgstr "Comando:"
