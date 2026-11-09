@@ -1,0 +1,9 @@
+{
+    "uuid": "battery@ersenender",
+    "name": "Battery",
+    "description": "Battery level with manufacturer, model and health of the battery, a warning threshold and battery care.",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "version": "1.0",
+    "author": "ersenender"
+}
