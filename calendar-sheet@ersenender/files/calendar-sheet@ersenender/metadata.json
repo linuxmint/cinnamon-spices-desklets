@@ -1,0 +1,9 @@
+{
+    "uuid": "calendar-sheet@ersenender",
+    "name": "Calendar",
+    "description": "Month calendar with week numbers and holidays, optionally as a three-month view. German public holidays per state, own days and import from a calendar file.",
+    "prevent-decorations": true,
+    "max-instances": "3",
+    "version": "1.0",
+    "author": "ersenender"
+}

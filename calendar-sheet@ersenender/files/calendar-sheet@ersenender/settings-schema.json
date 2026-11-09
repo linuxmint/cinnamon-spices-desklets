@@ -1,0 +1,199 @@
+{
+    "kopf-ansicht": {
+        "type": "header",
+        "description": "View"
+    },
+    "ansicht": {
+        "type": "combobox",
+        "default": "1",
+        "description": "Range",
+        "options": {
+            "One month": "1",
+            "Three months side by side": "3q",
+            "Three months stacked": "3h"
+        }
+    },
+    "drei-lage": {
+        "type": "combobox",
+        "default": "mitte",
+        "dependency": "ansicht!=1",
+        "description": "Three-month view shows",
+        "options": {
+            "Previous – current – next month": "mitte",
+            "Current month and the next two": "anfang"
+        }
+    },
+    "zeige-kw": {
+        "type": "switch",
+        "default": true,
+        "description": "Show week numbers"
+    },
+    "wochenstart": {
+        "type": "combobox",
+        "default": "mo",
+        "description": "Week starts on",
+        "options": {
+            "Monday": "mo",
+            "Sunday": "so"
+        }
+    },
+    "zeige-mond": {
+        "type": "switch",
+        "default": false,
+        "description": "Mark new moon and full moon"
+    },
+    "zeige-liste": {
+        "type": "switch",
+        "default": true,
+        "description": "List the holidays of the shown months below"
+    },
+    "liste-max": {
+        "type": "spinbutton",
+        "default": 6,
+        "min": 1,
+        "max": 20,
+        "step": 1,
+        "units": "",
+        "dependency": "zeige-liste",
+        "description": "Maximum entries in the list"
+    },
+    "zeige-abstand": {
+        "type": "switch",
+        "default": true,
+        "dependency": "zeige-liste",
+        "description": "Show the distance in the list (today, tomorrow, in 5 days)"
+    },
+    "kopf-feiertage": {
+        "type": "header",
+        "description": "Holidays"
+    },
+    "land": {
+        "type": "combobox",
+        "default": "NW",
+        "description": "Public holidays for",
+        "options": {
+            "Nordrhein-Westfalen": "NW",
+            "Baden-Württemberg": "BW",
+            "Bayern": "BY",
+            "Berlin": "BE",
+            "Brandenburg": "BB",
+            "Bremen": "HB",
+            "Hamburg": "HH",
+            "Hessen": "HE",
+            "Mecklenburg-Vorpommern": "MV",
+            "Niedersachsen": "NI",
+            "Rheinland-Pfalz": "RP",
+            "Saarland": "SL",
+            "Sachsen": "SN",
+            "Sachsen-Anhalt": "ST",
+            "Schleswig-Holstein": "SH",
+            "Thüringen": "TH",
+            "Nationwide holidays only": "DE",
+            "None": "-"
+        }
+    },
+    "eigene": {
+        "type": "list",
+        "height": 170,
+        "description": "Own days (DD.MM. for every year or DD.MM.YYYY for one year)",
+        "columns": [
+            {
+                "id": "datum",
+                "title": "Date",
+                "type": "string",
+                "default": "01.01."
+            },
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string",
+                "default": ""
+            }
+        ],
+        "default": []
+    },
+    "import-datei": {
+        "type": "filechooser",
+        "default": "",
+        "allow-none": true,
+        "description": "Import calendar file (.ics)",
+        "tooltip": "For example school holidays or religious holidays as an iCalendar file. All-day entries appear as marked days; yearly recurring ones apply to every year. The file is only read."
+    },
+    "abos": {
+        "type": "list",
+        "height": 150,
+        "description": "Calendar subscriptions: address of an .ics file on the web",
+        "tooltip": "For example the public holidays of another country, school holidays or your own online calendar (webcal:// works too). The addresses are fetched every six hours; timed and recurring entries are read as well.",
+        "columns": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string",
+                "default": ""
+            },
+            {
+                "id": "url",
+                "title": "Address",
+                "type": "string",
+                "default": "https://"
+            }
+        ],
+        "default": []
+    },
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}
