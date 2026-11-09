@@ -1,0 +1,22 @@
+{
+  "id": "dark-default",
+  "name": "Dark Default",
+  "mode": "dark",
+  "tokens": {
+    "link-bg-color": "#3d7bc8",
+    "document-bg-color": "#2d6a4f",
+    "border-color": "#2a2a2a",
+    "text-color": "#ffffff",
+    "shadow-color": "#00000080",
+    "folder-bg-color": "#4a5568",
+    "folder-border-color": "#2a2a2a",
+    "folder-icon-tint": "#ffffff",
+    "desklet-bg-color": "#2e2e2e",
+    "title-color": "#ffffff",
+    "hover-bg-color": "#4a8fd4",
+    "pressed-bg-color": "#2d5f9a",
+    "disabled-opacity": 0.35,
+    "tooltip-bg-color": "#1a1a1a",
+    "tooltip-text-color": "#ffffff"
+  }
+}

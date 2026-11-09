@@ -1,0 +1,22 @@
+{
+  "id": "avincelaunch",
+  "name": "aVinceLaunch",
+  "mode": "any",
+  "tokens": {
+    "link-bg-color": "rgba(0,0,0,0)",
+    "document-bg-color": "rgba(0,0,0,0)",
+    "border-color": "rgba(0,0,0,0)",
+    "text-color": "rgb(255,255,255)",
+    "shadow-color": "rgba(0,0,0,0.25)",
+    "folder-bg-color": "rgba(0,0,0,0)",
+    "folder-border-color": "rgba(0,0,0,0)",
+    "folder-icon-tint": "rgb(85,85,85)",
+    "desklet-bg-color": "rgba(128,128,128,0.3)",
+    "title-color": "rgb(255,255,255)",
+    "hover-bg-color": "rgb(77,127,175)",
+    "pressed-bg-color": "rgb(49,95,143)",
+    "disabled-opacity": 0.35,
+    "tooltip-bg-color": "rgb(37,37,37)",
+    "tooltip-text-color": "rgb(255,255,255)"
+  }
+}

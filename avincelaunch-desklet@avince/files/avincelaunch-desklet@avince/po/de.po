@@ -1,0 +1,2023 @@
+# aVinceLaunch - Desklet
+# Copyright (C) 2026 Angelo Vincenti - aVince Industrietechnik
+# This file is distributed under the same licence as aVinceLaunch (GPL-3.0-only).
+msgid ""
+msgstr ""
+"Project-Id-Version: aVinceLaunch 0.1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-09 21:41+0200\n"
+"PO-Revision-Date: 2026-10-09 18:02+0200\n"
+"Last-Translator: Angelo Vincenti <info@avince.de>\n"
+"Language-Team: aVince Industrietechnik\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:146
+msgid "aVinceLaunch: damaged file"
+msgstr "aVinceLaunch: beschädigte Datei"
+
+#: desklet.js:154
+#, javascript-format
+msgid ""
+"%s could not be read. It stays as it is; a copy was saved as %s. Until the "
+"file is repaired (for example from the copy) or removed, no changes are "
+"saved there. If you remove it, what was stored in it starts anew."
+msgstr ""
+"%s ist nicht lesbar. Sie bleibt unverändert; eine Kopie liegt unter %s. Bis "
+"die Datei repariert (etwa aus der Kopie) oder entfernt ist, werden dort "
+"keine Änderungen gespeichert. Wird sie entfernt, beginnt das, was darin "
+"gespeichert war, von vorn."
+
+#: desklet.js:155
+#, javascript-format
+msgid ""
+"%s could not be read. It stays as it is. Until the file is repaired or "
+"removed, no changes are saved there. If you remove it, what was stored in it"
+" starts anew."
+msgstr ""
+"%s ist nicht lesbar. Sie bleibt unverändert. Bis die Datei repariert oder "
+"entfernt ist, werden dort keine Änderungen gespeichert. Wird sie entfernt, "
+"beginnt das, was darin gespeichert war, von vorn."
+
+#: desklet.js:153
+msgid "aVinceLaunch: folder portal is view only"
+msgstr "aVinceLaunch: Ordner-Portal ist nur Ansicht"
+
+#: desklet.js:154
+#, javascript-format
+msgid ""
+"Nothing was saved in %s, because it is shown in a folder portal (view only)."
+msgstr ""
+"In %s wurde nichts gespeichert, weil der Ordner in einem Ordner-Portal "
+"angezeigt wird (nur Ansicht)."
+
+#: desklet.js:516 desklet.js:805
+msgid "Collapse fence"
+msgstr "Fence einklappen"
+
+#. settings-schema.json->expand-on-hover->description
+#: desklet.js:524
+msgid "Expand on hover when collapsed"
+msgstr "Eingeklappt beim Überfahren aufklappen"
+
+#: desklet.js:536 desklet.js:4544
+msgid "Search all fences…"
+msgstr "Alle Fences durchsuchen …"
+
+#: desklet.js:541
+msgid "Rename fence…"
+msgstr "Fence umbenennen …"
+
+#: desklet.js:549
+msgid "Duplicate fence"
+msgstr "Fence duplizieren"
+
+#. settings-schema.json->lock-section->title
+#: desklet.js:562
+msgid "Lock"
+msgstr "Sperren"
+
+#. settings-schema.json->placement-section->title
+#: desklet.js:567
+msgid "Position"
+msgstr "Position"
+
+#. settings-schema.json->resize-section->title
+#: desklet.js:581
+msgid "Size"
+msgstr "Größe"
+
+#: desklet.js:592 quickstart-dialog.py:36
+msgid "Content"
+msgstr "Inhalt"
+
+#: desklet.js:601
+msgid "Resize: drag an edge or the corner"
+msgstr "Größe: Rand oder Ecke ziehen"
+
+#: desklet.js:610
+msgid "Restore previous size"
+msgstr "Vorherige Größe wiederherstellen"
+
+#: desklet.js:615
+msgid "Restore original size"
+msgstr "Ursprüngliche Größe wiederherstellen"
+
+#: desklet.js:623
+msgid "Restore arrangement"
+msgstr "Anordnung wiederherstellen"
+
+#: desklet.js:627
+msgid "Align all fences"
+msgstr "Alle Fences ausrichten"
+
+#: desklet.js:636 desklet.js:817
+msgid "Hide titles of all fences"
+msgstr "Titel aller Fences ausblenden"
+
+#: desklet.js:643
+msgid "Reset appearance…"
+msgstr "Darstellung zurücksetzen …"
+
+#: desklet.js:670 desklet.js:801
+msgid "Open link folder"
+msgstr "Verknüpfungsordner öffnen"
+
+#: desklet.js:702
+msgid "Link folder not available"
+msgstr "Verknüpfungsordner nicht verfügbar"
+
+#: desklet.js:703
+#, javascript-format
+msgid ""
+"The folder %s could not be opened or created. Is the base folder (e.g. on a "
+"NAS) mounted?"
+msgstr ""
+"Der Ordner %s ließ sich weder öffnen noch anlegen. Ist der Basisordner (z. B. "
+"auf der NAS) eingebunden?"
+
+#: desklet.js:680
+msgid "Quick start…"
+msgstr "Schnellstart …"
+
+#: desklet.js:801
+msgid "Open folder"
+msgstr "Ordner öffnen"
+
+#: desklet.js:805
+msgid "Expand fence"
+msgstr "Fence ausklappen"
+
+#: desklet.js:818
+msgid "Show titles of all fences"
+msgstr "Titel aller Fences einblenden"
+
+#: desklet.js:847
+msgid "Move to"
+msgstr "Verschieben nach"
+
+#: desklet.js:849 desklet.js:916
+msgid "Pin to the front"
+msgstr "Vorn anpinnen"
+
+#: desklet.js:856
+msgid "Remove from fence…"
+msgstr "Aus dem Fence entfernen …"
+
+#: desklet.js:865
+msgid "Content locked (Lock ▸ Content)"
+msgstr "Inhalt gesperrt (Sperren ▸ Inhalt)"
+
+#: desklet.js:907
+#, javascript-format
+msgid "Undo: “%s” to %s"
+msgstr "Rückgängig: „%s“ nach %s"
+
+#: desklet.js:916
+msgid "Unpin"
+msgstr "Lösen"
+
+#: desklet.js:929
+msgid "No other group fence"
+msgstr "Kein anderer Gruppen-Fence"
+
+#: desklet.js:1003
+#, javascript-format
+msgid "“%s” is already in %s."
+msgstr "„%s“ ist in %s schon vorhanden."
+
+#: desklet.js:1004
+msgid "Remove it only from this fence? It goes to the trash."
+msgstr "Nur aus diesem Fence entfernen? Der Eintrag kommt in den Papierkorb."
+
+#: desklet.js:1014
+#, javascript-format
+msgid "Could not move “%s”."
+msgstr "„%s“ konnte nicht verschoben werden."
+
+#: desklet.js:1028
+#, javascript-format
+msgid "“%s” moved to %s"
+msgstr "„%s“ nach %s verschoben"
+
+#: desklet.js:1029
+#, javascript-format
+msgid "From %s. Undo is also in the context menu of any fence."
+msgstr "Aus %s. „Rückgängig“ steht auch im Kontextmenü jedes Fence."
+
+#: desklet.js:1031
+msgid "Undo"
+msgstr "Rückgängig"
+
+#: desklet.js:1046
+#, javascript-format
+msgid "Could not change “%s”."
+msgstr "„%s“ konnte nicht geändert werden."
+
+#: desklet.js:1054
+msgid "Only the last move can be undone."
+msgstr "Nur die letzte Verschiebung lässt sich rückgängig machen."
+
+#: desklet.js:1061
+#, javascript-format
+msgid "Could not move “%s” back."
+msgstr "„%s“ konnte nicht zurückverschoben werden."
+
+#: desklet.js:1070
+#, javascript-format
+msgid ""
+"Move the folder “%s” with %d entries to the trash and remove it from this "
+"fence?"
+msgstr ""
+"Den Ordner „%s“ mit %d Einträgen in den Papierkorb verschieben und aus "
+"diesem Fence entfernen?"
+
+#: desklet.js:1073
+#, javascript-format
+msgid "Move “%s” to the trash and remove it from this fence?"
+msgstr "„%s“ in den Papierkorb verschieben und aus diesem Fence entfernen?"
+
+#: desklet.js:1075
+msgid "Only the link is removed – installed programs stay installed."
+msgstr ""
+"Entfernt wird nur die Verknüpfung – installierte Programme bleiben "
+"installiert."
+
+#: desklet.js:1088
+#, javascript-format
+msgid "Could not remove “%s”."
+msgstr "„%s“ konnte nicht entfernt werden."
+
+#: desklet.js:1962 desklet.js:2550
+msgid "FREE (Ctrl)"
+msgstr "FREI (Strg)"
+
+#: desklet.js:2341 desklet.js:2380 desklet.js:2411 desklet.js:2421
+msgid "Could not duplicate the fence."
+msgstr "Der Fence konnte nicht dupliziert werden."
+
+#: desklet.js:2381
+msgid "The new link folder could not be created."
+msgstr "Der neue Verknüpfungsordner konnte nicht angelegt werden."
+
+#: desklet.js:2386
+#, javascript-format
+msgid "%s (copy)"
+msgstr "%s (Kopie)"
+
+#: desklet.js:2412
+msgid "The new fence did not start. Details are in ~/.xsession-errors."
+msgstr ""
+"Der neue Fence ist nicht gestartet. Einzelheiten stehen in ~/.xsession-"
+"errors."
+
+#: desklet.js:2415
+#, javascript-format
+msgid "Fence duplicated: %s"
+msgstr "Fence dupliziert: %s"
+
+#: desklet.js:2417
+msgid ""
+"There is no free space next to it, so the copy lies slightly offset over the "
+"original. It is unlocked – move it to its place."
+msgstr ""
+"Daneben ist kein freier Platz, darum liegt die Kopie leicht versetzt über "
+"dem Original. Sie ist entsperrt – an ihren Platz ziehen."
+
+#: desklet.js:2418
+msgid "The copy is unlocked – move it to its place."
+msgstr "Die Kopie ist entsperrt – an ihren Platz ziehen."
+
+#: desklet.js:2454
+msgid "moved"
+msgstr "verschoben"
+
+#: desklet.js:2455
+msgid "width changed"
+msgstr "Breite geändert"
+
+#: desklet.js:2456
+msgid "height changed"
+msgstr "Höhe geändert"
+
+#: desklet.js:2457
+msgid "size changed"
+msgstr "Größe geändert"
+
+#: desklet.js:2458
+msgid "size reset"
+msgstr "Größe zurückgesetzt"
+
+#: desklet.js:2459
+msgid "aligned"
+msgstr "ausgerichtet"
+
+#: desklet.js:2460
+msgid "restored"
+msgstr "zurückgeholt"
+
+#: desklet.js:2477
+msgid "Original arrangement"
+msgstr "Ursprüngliche Anordnung"
+
+#: desklet.js:2555
+#, javascript-format
+msgid "%d columns"
+msgstr "%d Spalten"
+
+#: desklet.js:2660
+msgid ""
+"Reset colours, font and border of this fence to the aVinceLaunch template?"
+msgstr ""
+"Farben, Schrift und Rahmen dieses Fence auf die Vorlage aVinceLaunch "
+"zurücksetzen?"
+
+#: desklet.js:2661
+msgid "Folder, name, size and position stay unchanged."
+msgstr "Ordner, Name, Größe und Position bleiben erhalten."
+
+#: desklet.js:3106
+#, javascript-format
+msgid ""
+"Folder not reachable:\n"
+"%s"
+msgstr ""
+"Ordner nicht erreichbar:\n"
+"%s"
+
+#: desklet.js:3107
+msgid ""
+"No folder chosen yet. Choose one under Configure → General → Link storage."
+msgstr ""
+"Noch kein Ordner gewählt. Unter Einrichten → Allgemein → Speicherort "
+"auswählen."
+
+#: desklet.js:3128
+msgid "Loading…"
+msgstr "Wird geladen …"
+
+#: desklet.js:3173
+#, javascript-format
+msgid "%d more entries – open in file manager"
+msgstr "%d weitere Einträge – in der Dateiverwaltung öffnen"
+
+#: desklet.js:3298 orderFolderEditor.py:154
+msgid "Home"
+msgstr "Start"
+
+#: desklet.js:3833
+#, javascript-format
+msgid ""
+"Link folder not reachable:\n"
+"%s\n"
+"Is the base folder (e.g. on a NAS) mounted? Another folder can be chosen under Configure → General → Link storage."
+msgstr ""
+"Verknüpfungsordner nicht erreichbar:\n"
+"%s\n"
+"Ist der Basisordner (z. B. auf der NAS) eingebunden? Einen anderen Ordner wählt man unter Einrichten → Allgemein → Speicherort."
+
+#: desklet.js:5241
+msgid "Folder portal"
+msgstr "Ordner-Portal"
+
+#: desklet.js:5511 linkImport.py:261
+msgid "Link directory not found."
+msgstr "Verknüpfungsordner nicht gefunden."
+
+#: desklet.js:5512
+msgid "Folder not reachable."
+msgstr "Ordner nicht erreichbar."
+
+#: desklet.js:5513
+msgid "Folder cannot be read."
+msgstr "Ordner kann nicht gelesen werden."
+
+#: desklet.js:5524
+msgid "No matches."
+msgstr "Keine Treffer."
+
+#: desklet.js:5526
+msgid "This folder is empty."
+msgstr "Dieser Ordner ist leer."
+
+#: desklet.js:5527
+#, javascript-format
+msgid ""
+"No launchers yet. Add applications, documents, or folders to:\n"
+"%s"
+msgstr ""
+"Noch keine Einträge. Programme, Dokumente oder Ordner hier ablegen:\n"
+"%s"
+
+#: BackHomeButton.py:62 OrderFolderHeader.py:87
+msgid "Back to home"
+msgstr "Zurück zum Anfang"
+
+#. settings-schema.json->base-directory->description
+#: BaseDirectoryChooser.py:103
+msgid "Shared base directory"
+msgstr "Gemeinsamer Basisordner"
+
+#: BaseDirectoryChooser.py:111
+msgid ""
+"Applies to ALL fences, not only to this one. To change the folder of this "
+"fence, use Link subdirectory above."
+msgstr ""
+"Gilt für ALLE Fences, nicht nur für diesen. Den Ordner nur dieses Fence "
+"ändert oben „Verknüpfungsordner“."
+
+#: BaseDirectoryChooser.py:138
+msgid "Change for all fences…"
+msgstr "Für alle Fences ändern …"
+
+#: BaseDirectoryChooser.py:140
+msgid ""
+"Select the base folder for the link groups of ALL fences. You will be asked "
+"to confirm."
+msgstr ""
+"Basisordner für die Gruppen ALLER Fences wählen. Vor dem Übernehmen kommt "
+"eine Rückfrage."
+
+#: BaseDirectoryChooser.py:178 BaseDirectoryChooser.py:388
+#: PortalPathChooser.py:219 SubdirectoryChooser.py:196
+msgid "(none selected)"
+msgstr "(nichts ausgewählt)"
+
+#: BaseDirectoryChooser.py:201
+msgid "No shared base directory selected."
+msgstr "Kein gemeinsamer Basisordner ausgewählt."
+
+#: BaseDirectoryChooser.py:204
+msgid "Shared base ready."
+msgstr "Basisordner bereit."
+
+#: BaseDirectoryChooser.py:206 SubdirectoryChooser.py:225
+msgid "Folder missing — use Browse to create or select one."
+msgstr "Ordner fehlt – über »Durchsuchen« anlegen oder auswählen."
+
+#: BaseDirectoryChooser.py:255 BaseDirectoryChooser.py:357
+#: PortalPathChooser.py:281 SubdirectoryChooser.py:408
+msgid "No folder selected."
+msgstr "Kein Ordner ausgewählt."
+
+#: BaseDirectoryChooser.py:261 SubdirectoryChooser.py:323
+#, python-format
+msgid "Could not create folder: %s"
+msgstr "Ordner konnte nicht angelegt werden: %s"
+
+#: BaseDirectoryChooser.py:265
+msgid "Selected path is not a directory."
+msgstr "Der gewählte Pfad ist kein Ordner."
+
+#: BaseDirectoryChooser.py:270
+#, python-format
+msgid "Loading shared base: %s …"
+msgstr "Basisordner wird geladen: %s …"
+
+#: BaseDirectoryChooser.py:282
+#, python-format
+msgid "Could not save the base folder (%s). Nothing was changed."
+msgstr ""
+"Der Basisordner konnte nicht gespeichert werden (%s). Es wurde nichts "
+"geändert."
+
+#: BaseDirectoryChooser.py:311
+#, python-format
+msgid "Shared base set to %s, but could not load items: %s"
+msgstr ""
+"Basisordner auf %s gesetzt, aber die Einträge ließen sich nicht laden: %s"
+
+#: BaseDirectoryChooser.py:319
+#, python-format
+msgid "Loaded shared base: %s"
+msgstr "Basisordner geladen: %s"
+
+#: BaseDirectoryChooser.py:322
+#, python-format
+msgid ""
+"Shared base set to %s. Use Link subdirectory → Browse if Items are empty."
+msgstr ""
+"Basisordner auf %s gesetzt. Bleibt die Liste leer: Verknüpfungsordner → "
+"Durchsuchen."
+
+#: BaseDirectoryChooser.py:333
+msgid "Select shared base directory"
+msgstr "Gemeinsamen Basisordner auswählen"
+
+#: BaseDirectoryChooser.py:337 BaseDirectoryChooser.py:390
+#: OrderListWidget.py:313 OrderListWidget.py:466 OrderListWidget.py:624
+#: PortalPathChooser.py:257 SubdirectoryChooser.py:387 orderFolderEditor.py:854
+msgid "_Cancel"
+msgstr "_Abbrechen"
+
+#: BaseDirectoryChooser.py:338 PortalPathChooser.py:258
+#: SubdirectoryChooser.py:388
+msgid "_Select"
+msgstr "_Auswählen"
+
+#: BaseDirectoryChooser.py:361
+msgid "Base folder unchanged."
+msgstr "Basisordner unverändert."
+
+#: BaseDirectoryChooser.py:382
+msgid "Change the base folder for ALL fences?"
+msgstr "Basisordner für ALLE Fences ändern?"
+
+#: BaseDirectoryChooser.py:385
+#, python-format
+msgid ""
+"Every fence with a link group looks for its folder under this base folder. "
+"If you only want to change the folder of this fence, cancel and use Link "
+"subdirectory instead.\n"
+"\n"
+"Current: %s\n"
+"New: %s"
+msgstr ""
+"Jeder Fence mit einer Gruppe sucht seinen Ordner unter diesem Basisordner. "
+"Soll sich nur der Ordner dieses Fence ändern: abbrechen und stattdessen "
+"„Verknüpfungsordner“ nehmen.\n"
+"\n"
+"Bisher: %s\n"
+"Neu: %s"
+
+#: BaseDirectoryChooser.py:391
+msgid "Change for all fences"
+msgstr "Für alle Fences ändern"
+
+#. settings-schema.json->folder-sort->options
+#: ItemsActionBar.py:67
+msgid "Alphabetical (mixed)"
+msgstr "Alphabetisch (gemischt)"
+
+#. settings-schema.json->folder-sort->options
+#: ItemsActionBar.py:68
+msgid "Folders first"
+msgstr "Ordner zuerst"
+
+#. settings-schema.json->folder-sort->options
+#: ItemsActionBar.py:69
+msgid "Folders last"
+msgstr "Ordner zuletzt"
+
+#. settings-schema.json->sort-mode->options
+#: ItemsActionBar.py:71
+msgid "Name Z–A"
+msgstr "Name Z–A"
+
+#. settings-schema.json->sort-mode->options
+#: ItemsActionBar.py:72
+msgid "Type (folders, programs, documents)"
+msgstr "Typ (Ordner, Programme, Dokumente)"
+
+#. settings-schema.json->sort-mode->options
+#: ItemsActionBar.py:73
+msgid "Date modified (newest first)"
+msgstr "Änderungsdatum (neueste zuerst)"
+
+#. settings-schema.json->sort-mode->options
+#: ItemsActionBar.py:74
+msgid "Recently added (newest first)"
+msgstr "Zuletzt hinzugefügt (neueste zuerst)"
+
+#: ItemsActionBar.py:113
+msgid "Refresh"
+msgstr "Aktualisieren"
+
+#: ItemsActionBar.py:114
+msgid "Reload the list from the current link folder."
+msgstr "Liste aus dem aktuellen Verknüpfungsordner neu laden."
+
+#: ItemsActionBar.py:135
+msgid ""
+"Reorder the list once. Choose an option, click the check mark, then Apply."
+msgstr ""
+"Liste einmalig neu sortieren: Art wählen, auf das Häkchen klicken, dann "
+"„Übernehmen“."
+
+#: ItemsActionBar.py:142
+msgid "Apply selected resort order"
+msgstr "Gewählte Sortierung anwenden"
+
+#: ItemsActionBar.py:153
+msgid "Apply"
+msgstr "Übernehmen"
+
+#: ItemsActionBar.py:155
+msgid ""
+"Save order, enabled state, and folder styles to .avincelaunch.json and "
+"update the desklet."
+msgstr ""
+"Reihenfolge, Aktiv-Status und Ordnerstile in .avincelaunch.json speichern "
+"und den Fence aktualisieren."
+
+#: ItemsActionBar.py:165
+msgid ""
+"The folder has changed. “Apply” saves your changes and adds the new items "
+"(“Refresh” would discard your changes)."
+msgstr ""
+"Im Ordner hat sich etwas geändert. „Übernehmen“ speichert deine Änderungen "
+"und ergänzt die neuen Einträge („Aktualisieren“ würde deine Änderungen "
+"verwerfen)."
+
+#: OrderFolderHeader.py:73
+msgid "Current Folder"
+msgstr "Aktueller Ordner"
+
+#: OrderFolderHeader.py:82
+msgid "Updated automatically when you open folders or return home."
+msgstr ""
+"Wird beim Öffnen von Ordnern und beim Zurückgehen automatisch aktualisiert."
+
+#: OrderFolderHeader.py:90
+msgid "Return to the desklet root link folder."
+msgstr "Zurück zum Verknüpfungsordner des Fence."
+
+#: OrderListWidget.py:112
+msgid "Open directory"
+msgstr "Ordner öffnen"
+
+#: OrderListWidget.py:304
+msgid "_Add"
+msgstr "_Hinzufügen"
+
+#: OrderListWidget.py:324
+msgid "Terminal"
+msgstr "Terminal"
+
+#: OrderListWidget.py:326
+msgid "x-terminal-emulator -e htop"
+msgstr "x-terminal-emulator -e htop"
+
+#. settings-schema.json->link-order-list-data->columns->title
+#. settings-schema.json->link-order-list->columns->title
+#: OrderListWidget.py:354
+msgid "Name"
+msgstr "Name"
+
+#: OrderListWidget.py:355
+msgid "Command"
+msgstr "Befehl"
+
+#: OrderListWidget.py:356
+msgid "Icon"
+msgstr "Symbol"
+
+#: OrderListWidget.py:364
+msgid "Run in terminal"
+msgstr "Im Terminal ausführen"
+
+#: OrderListWidget.py:389
+msgid "Add launcher"
+msgstr "Starter hinzufügen"
+
+#: OrderListWidget.py:405
+msgid "Could not create launcher."
+msgstr "Starter konnte nicht angelegt werden."
+
+#: OrderListWidget.py:420 linkImport.py:204
+msgid "Launcher file not found."
+msgstr "Starterdatei nicht gefunden."
+
+#: OrderListWidget.py:427
+msgid "Edit launcher"
+msgstr "Starter bearbeiten"
+
+#: OrderListWidget.py:429 OrderListWidget.py:467
+msgid "_Save"
+msgstr "_Speichern"
+
+#: OrderListWidget.py:442
+msgid "Could not update launcher."
+msgstr "Starter konnte nicht aktualisiert werden."
+
+#: OrderListWidget.py:459
+msgid "Edit folder appearance"
+msgstr "Ordnerdarstellung bearbeiten"
+
+#: OrderListWidget.py:479
+msgid "Folder icon"
+msgstr "Ordnersymbol"
+
+#: OrderListWidget.py:486
+msgid "Folder color"
+msgstr "Ordnerfarbe"
+
+#: OrderListWidget.py:547
+msgid ""
+"Not saved: the order file of this folder is damaged or cannot be written. "
+"Nothing was changed."
+msgstr ""
+"Nicht gespeichert: Die Ordnungsdatei dieses Ordners ist beschädigt oder "
+"nicht beschreibbar. Es wurde nichts geändert."
+
+#: OrderListWidget.py:613
+#, python-format
+msgid "Move \"%s\" to the trash?"
+msgstr "„%s“ in den Papierkorb verschieben?"
+
+#: OrderListWidget.py:620
+msgid ""
+"The file or folder is moved from the link folder to the trash; you can "
+"restore it from there. To only hide the entry in the fence, remove its check "
+"mark under \"Enabled\" instead."
+msgstr ""
+"Die Datei bzw. der Ordner wird aus dem Verknüpfungsordner in den Papierkorb "
+"verschoben und lässt sich von dort wiederherstellen. Um den Eintrag im Fence "
+"nur auszublenden, stattdessen den Haken unter „Aktiv“ entfernen."
+
+#: OrderListWidget.py:625
+msgid "Move to _trash"
+msgstr "In den _Papierkorb"
+
+#: OrderListWidget.py:644 linkImport.py:312
+msgid "Item not found."
+msgstr "Eintrag nicht gefunden."
+
+#: OrderListWidget.py:649
+msgid "Could not delete item."
+msgstr "Eintrag konnte nicht gelöscht werden."
+
+#. settings-schema.json->portal-path->description
+#. settings-schema.json->portal-path-chooser->description
+#: PortalPathChooser.py:155
+msgid "Portal folder"
+msgstr "Portal-Ordner"
+
+#: PortalPathChooser.py:161
+msgid ""
+"Any existing folder, local or on the NAS. It is shown as a view only - "
+"aVinceLaunch never changes anything in it."
+msgstr ""
+"Ein beliebiger vorhandener Ordner, lokal oder auf der NAS. Er wird nur "
+"angezeigt – aVinceLaunch verändert darin nie etwas."
+
+#: PortalPathChooser.py:182
+msgid "Choose…"
+msgstr "Auswählen …"
+
+#: PortalPathChooser.py:221
+msgid "No folder chosen yet."
+msgstr "Noch kein Ordner gewählt."
+
+#: PortalPathChooser.py:225
+msgid ""
+"This folder contains the aVinceLaunch base folder. The link groups stay "
+"writable; the portal only shows them. Everything else in it is view only."
+msgstr ""
+"Dieser Ordner enthält den Basisordner von aVinceLaunch. Die Gruppen bleiben "
+"beschreibbar, das Portal zeigt sie nur an. Alles andere darin ist nur "
+"Ansicht."
+
+#: PortalPathChooser.py:230
+msgid ""
+"Network share of the file manager: only reachable while it is mounted there. "
+"A permanently mounted path (e.g. /mnt/…) is more reliable."
+msgstr ""
+"Netzwerkfreigabe der Dateiverwaltung: nur erreichbar, solange sie dort "
+"eingehängt ist. Ein fest eingehängter Pfad (z. B. /mnt/…) ist zuverlässiger."
+
+#: PortalPathChooser.py:237
+msgid ""
+"View only – nothing in this folder is changed. Network drive: the fence "
+"checks it in the background."
+msgstr ""
+"Nur Ansicht – in diesem Ordner wird nichts verändert. Netzlaufwerk: Der "
+"Fence prüft es im Hintergrund."
+
+#: PortalPathChooser.py:240
+msgid "View only – nothing in this folder is changed."
+msgstr "Nur Ansicht – in diesem Ordner wird nichts verändert."
+
+#: PortalPathChooser.py:242
+msgid "Folder not reachable at the moment."
+msgstr "Ordner ist gerade nicht erreichbar."
+
+#: PortalPathChooser.py:253
+msgid "Choose the folder to show"
+msgstr "Anzuzeigenden Ordner wählen"
+
+#. settings-schema.json->subdirectory->description
+#. settings-schema.json->subdirectory-chooser->description
+#: SubdirectoryChooser.py:118
+msgid "Link subdirectory"
+msgstr "Verknüpfungsordner"
+
+#: SubdirectoryChooser.py:126
+msgid ""
+"Open the folder you want (double-click to enter it), then click Select. Only "
+"folders under the shared base directory are allowed."
+msgstr ""
+"Gewünschten Ordner öffnen (Doppelklick zum Hineingehen), dann »Auswählen« "
+"klicken. Erlaubt sind nur Ordner unterhalb des gemeinsamen Basisordners."
+
+#: SubdirectoryChooser.py:153
+msgid "Browse…"
+msgstr "Durchsuchen …"
+
+#: SubdirectoryChooser.py:155
+msgid "Select or create a link folder under the shared base directory."
+msgstr ""
+"Verknüpfungsordner unterhalb des gemeinsamen Basisordners auswählen oder "
+"anlegen."
+
+#: SubdirectoryChooser.py:219
+msgid "No link subdirectory selected."
+msgstr "Kein Verknüpfungsordner ausgewählt."
+
+#: SubdirectoryChooser.py:223
+msgid "Ready under shared base."
+msgstr "Bereit unterhalb des Basisordners."
+
+#: SubdirectoryChooser.py:232
+msgid "Not inside the shared base folder – selection not changed."
+msgstr "Nicht unterhalb des Basisordners – Auswahl nicht geändert."
+
+#: SubdirectoryChooser.py:299 SubdirectoryChooser.py:375
+#, python-format
+msgid "Could not prepare base directory: %s"
+msgstr "Basisordner konnte nicht vorbereitet werden: %s"
+
+#: SubdirectoryChooser.py:329
+#, python-format
+msgid "Loading link folder: %s …"
+msgstr "Verknüpfungsordner wird geladen: %s …"
+
+#: SubdirectoryChooser.py:340
+msgid "Could not save subdirectory setting."
+msgstr ""
+"Einstellung für den Verknüpfungsordner konnte nicht gespeichert werden."
+
+#: SubdirectoryChooser.py:352
+#, python-format
+msgid "Selected %s, but could not load items: %s"
+msgstr "%s ausgewählt, aber die Einträge ließen sich nicht laden: %s"
+
+#: SubdirectoryChooser.py:358
+#, python-format
+msgid "Selected %s, but could not load items from that folder."
+msgstr ""
+"%s ausgewählt, aber aus diesem Ordner ließen sich keine Einträge laden."
+
+#: SubdirectoryChooser.py:365
+#, python-format
+msgid "Loaded link folder: %s"
+msgstr "Verknüpfungsordner geladen: %s"
+
+#: SubdirectoryChooser.py:383
+msgid "Select link subdirectory"
+msgstr "Verknüpfungsordner auswählen"
+
+#: about-dialog.py:101
+#, python-format
+msgid "About %s"
+msgstr "Über %s"
+
+#: about-dialog.py:106 quickstart-dialog.py:91
+msgid "_Close"
+msgstr "S_chließen"
+
+#: about-dialog.py:147
+#, python-format
+msgid "Version %s (%s)"
+msgstr "Version %s (%s)"
+
+#: about-dialog.py:149
+#, python-format
+msgid "Version %s"
+msgstr "Version %s"
+
+#: about-dialog.py:185
+msgid "Support aVinceLaunch on Ko-fi"
+msgstr "aVinceLaunch auf Ko-fi unterstützen"
+
+#: about-dialog.py:199
+#, python-format
+msgid "Unable to locate %s %s"
+msgstr "%s %s nicht gefunden"
+
+#: iconPicker.py:88
+msgid "Choose icon"
+msgstr "Symbol wählen"
+
+#: linkImport.py:63
+#, python-format
+msgid "Could not find a unique destination name for %s"
+msgstr "Kein eindeutiger Zielname für %s gefunden"
+
+#: linkImport.py:201 linkImport.py:258
+msgid "Name and command are required."
+msgstr "Name und Befehl sind erforderlich."
+
+#: linkImport.py:207 linkImport.py:264 linkImport.py:315
+msgid "This fence is a folder portal (view only)."
+msgstr "Dieser Fence ist ein Ordner-Portal (nur Ansicht)."
+
+#: linkImport.py:212 linkImport.py:253
+msgid "Could not update launcher file."
+msgstr "Starterdatei konnte nicht aktualisiert werden."
+
+#: linkImport.py:299 linkImport.py:301
+msgid "Could not create launcher file."
+msgstr "Starterdatei konnte nicht angelegt werden."
+
+#: linkImport.py:322
+msgid "Could not remove item."
+msgstr "Eintrag konnte nicht entfernt werden."
+
+#: orderFolderEditor.py:849
+msgid "The list has changes that have not been applied yet."
+msgstr "Die Liste hat Änderungen, die noch nicht übernommen sind."
+
+#: orderFolderEditor.py:852
+msgid ""
+"Order or checkmarks differ from the folder. Apply them first, or discard "
+"them?"
+msgstr ""
+"Reihenfolge oder Haken weichen vom Ordner ab. Erst übernehmen oder verwerfen?"
+
+#: orderFolderEditor.py:855
+msgid "_Discard"
+msgstr "_Verwerfen"
+
+#: orderFolderEditor.py:856
+msgid "_Apply first"
+msgstr "Erst _übernehmen"
+
+#: quickstart-dialog.py:37
+msgid ""
+"Each fence shows one folder. Put applications, documents or folders there – "
+"or use Configure → Items."
+msgstr ""
+"Jeder Fence zeigt einen Ordner. Programme, Dokumente oder Ordner dort "
+"ablegen – oder über Einrichten → Inhalte."
+
+#: quickstart-dialog.py:41
+msgid "More fences"
+msgstr "Weitere Fences"
+
+#: quickstart-dialog.py:42
+msgid ""
+"Right-click → Duplicate fence: same look, a folder of its own. Or System "
+"Settings → Desklets → aVinceLaunch → +."
+msgstr ""
+"Rechtsklick → Fence duplizieren: gleiches Aussehen, eigener Ordner. Oder "
+"Systemeinstellungen → Desklets → aVinceLaunch → +."
+
+#: quickstart-dialog.py:45
+msgid "Launch"
+msgstr "Starten"
+
+#: quickstart-dialog.py:46
+msgid ""
+"A click starts an application or opens a document. Folders open inside the "
+"fence."
+msgstr ""
+"Klick startet ein Programm oder öffnet ein Dokument. Ordner öffnen sich im "
+"Fence."
+
+#: quickstart-dialog.py:49
+msgid "Move and resize"
+msgstr "Verschieben und Größe"
+
+#: quickstart-dialog.py:50
+msgid ""
+"New fences are locked. Right-click → Lock ▸ Position off, then drag the "
+"title row; resize at an edge or the corner. Hold Ctrl to move freely, "
+"without snapping."
+msgstr ""
+"Neue Fences sind gesperrt. Rechtsklick → Sperren ▸ Position aus, dann "
+"Titelzeile ziehen; Größe an Rand oder Ecke. Mit Strg frei, ohne Einrasten."
+
+#: quickstart-dialog.py:54
+msgid "Arrangement"
+msgstr "Anordnung"
+
+#: quickstart-dialog.py:55
+msgid ""
+"Right-click → Align all fences, or Restore arrangement (recent changes)."
+msgstr ""
+"Rechtsklick → Alle Fences ausrichten oder Anordnung wiederherstellen (letzte "
+"Änderungen)."
+
+#: quickstart-dialog.py:58
+msgid "Look"
+msgstr "Aussehen"
+
+#: quickstart-dialog.py:59
+msgid ""
+"Right-click → Configure… for colours and font. Reset appearance… brings back "
+"the standard look."
+msgstr ""
+"Rechtsklick → Einrichten … für Farben und Schrift. Darstellung zurücksetzen "
+"… holt das Standardaussehen zurück."
+
+#: quickstart-dialog.py:62
+msgid "Caution"
+msgstr "Vorsicht"
+
+#: quickstart-dialog.py:63
+msgid ""
+"“Reset to defaults” (☰ in Configure) also resets folder, name, size and "
+"position. “–” in System Settings → Desklets removes ALL fences – to remove "
+"one, use “Remove this fence…” (right-click a free spot)."
+msgstr ""
+"„Vorgabe wiederherstellen“ (☰ im Einrichten) setzt auch Ordner, Name, Größe "
+"und Position zurück. „–“ unter Systemeinstellungen → Desklets entfernt ALLE "
+"Fences – einen einzelnen entfernt „Diesen Fence entfernen …“ (Rechtsklick auf "
+"eine freie Stelle)."
+
+#: quickstart-dialog.py:86
+msgid "Quick start – aVinceLaunch"
+msgstr "Schnellstart – aVinceLaunch"
+
+#: quickstart-dialog.py:90
+msgid "Detailed help"
+msgstr "Ausführliche Hilfe"
+
+#: quickstart-dialog.py:113
+msgid "Quick start"
+msgstr "Schnellstart"
+
+#: settingsPageBuilder.py:82
+msgid "Custom"
+msgstr "Eigene"
+
+#. metadata.json->name
+#. settings-schema.json->color-mode->options
+msgid "aVinceLaunch"
+msgstr "aVinceLaunch"
+
+#. metadata.json->description
+msgid ""
+"Organize, access, launch: a lightweight desktop organizer with fences and "
+"launcher groups for Linux Mint Cinnamon."
+msgstr ""
+"Ordnen · Finden · Starten – ein schlanker Schreibtisch-Organisierer mit "
+"Fences und Starter-Gruppen für Linux Mint Cinnamon."
+
+#. metadata.json->comments
+msgid ""
+"aVinceLaunch turns ordinary folders of .desktop files, documents and "
+"subfolders into tidy groups on your desktop.\n"
+"\n"
+"Organize links the way you already think about them - work, utilities, "
+"graphics, or any structure you choose. Each instance points at its own "
+"folder, with in-place folder navigation, custom order and pinning, snapping, "
+"collapsing and search, locks for position, size and content, automatic "
+"sizing and group titles that stay readable on any wallpaper.\n"
+"\n"
+"- Natural, configurable organization - build a launcher layout from real "
+"directories instead of burying shortcuts in menus.\n"
+"- A cleaner desktop - keep clutter off the wallpaper and put your apps in "
+"one place you control.\n"
+"- Everything at your fingertips - launch what you need instantly instead of "
+"searching through application lists.\n"
+"\n"
+"Copy files into your link folder or manage items from the Configure dialog. "
+"The filesystem is the source of truth; aVinceLaunch keeps the display in "
+"sync.\n"
+"\n"
+"aVinceLaunch is licensed under GPL-3.0-only. It is a fork of TheLauncher "
+"1.0.3 by MHK924, whose inherited parts remain under the MIT licence; "
+"TheLauncher in turn started from Quick Links - Launcher by NotSirius-A. Many "
+"thanks to MHK924 for TheLauncher and for kindly allowing it to be built upon. "
+"See LICENSE and THIRD-PARTY-NOTICES.md in the desklet folder."
+msgstr ""
+"aVinceLaunch macht aus gewöhnlichen Ordnern mit .desktop-Dateien, Dokumenten "
+"und Unterordnern aufgeräumte Gruppen auf dem Schreibtisch.\n"
+"\n"
+"Verknüpfungen so ordnen, wie man ohnehin denkt – Arbeit, Werkzeuge, Grafik "
+"oder jede andere Struktur. Jeder Fence zeigt auf seinen eigenen Ordner, mit "
+"Ordnernavigation im Fence, eigener Reihenfolge und Anpinnen, Einrasten, "
+"Einklappen und Suche, Sperren für Position, Größe und Inhalt, automatischer "
+"Größe und Titeln, die auf jedem Hintergrundbild lesbar bleiben.\n"
+"\n"
+"- Natürliche, einstellbare Ordnung – Starter aus echten Ordnern, statt sie "
+"in Menüs zu vergraben.\n"
+"- Ein aufgeräumter Schreibtisch – kein Durcheinander auf dem Hintergrund, "
+"alle Programme an einem selbst bestimmten Ort.\n"
+"- Alles griffbereit – sofort starten statt in Programmlisten zu suchen.\n"
+"\n"
+"Dateien in den Verknüpfungsordner kopieren oder die Einträge über "
+"»Einrichten« verwalten. Maßgeblich ist das Dateisystem; aVinceLaunch hält "
+"die Anzeige aktuell.\n"
+"\n"
+"aVinceLaunch steht unter GPL-3.0-only. Es ist ein Fork von TheLauncher 1.0.3 "
+"von MHK924, dessen übernommene Teile unter der MIT-Lizenz bleiben; "
+"TheLauncher wiederum baut auf Quick Links – Launcher von NotSirius-A auf. "
+"Herzlichen Dank an MHK924 für TheLauncher und die freundliche Erlaubnis, "
+"darauf aufzubauen. Siehe LICENSE und THIRD-PARTY-NOTICES.md im Ordner des Desklets."
+
+#. settings-schema.json->general-page->title
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->appearance-page->title
+#. settings-schema.json->appearance-section->title
+msgid "Appearance"
+msgstr "Darstellung"
+
+#. settings-schema.json->layout-page->title
+msgid "Layout"
+msgstr "Ansicht"
+
+#. settings-schema.json->behaviour-page->title
+#. settings-schema.json->behavior-section->title
+msgid "Behaviour"
+msgstr "Verhalten"
+
+#. settings-schema.json->items-page->title
+#. settings-schema.json->order-section->title
+msgid "Items"
+msgstr "Inhalte"
+
+#. settings-schema.json->storage-section->title
+msgid "Link storage"
+msgstr "Speicherort"
+
+#. settings-schema.json->all-fences-section->title
+msgid "For all fences"
+msgstr "Für alle Fences"
+
+#. settings-schema.json->title-section->title
+msgid "Title"
+msgstr "Titel"
+
+#. settings-schema.json->sort-section->title
+msgid "Sorting"
+msgstr "Sortierung"
+
+#. settings-schema.json->tooltips-section->title
+msgid "Tooltips"
+msgstr "Tooltips"
+
+#. settings-schema.json->font-section->title
+msgid "Text"
+msgstr "Text"
+
+#. settings-schema.json->colors-section->title
+msgid "Colours"
+msgstr "Farben"
+
+#. settings-schema.json->layout-section->title
+msgid "Grid"
+msgstr "Raster"
+
+#. settings-schema.json->base-directory-chooser->description
+msgid "Base folder for ALL fences"
+msgstr "Basisordner für ALLE Fences"
+
+#. settings-schema.json->base-directory-chooser->tooltip
+msgid ""
+"Root folder of the link groups of every fence, not only of this one. Saved "
+"in avincelaunch/config.json. Changing it asks for confirmation first."
+msgstr ""
+"Gemeinsamer Ordner der Gruppen aller Fences, nicht nur dieses einen. "
+"Gespeichert in avincelaunch/config.json. Vor dem Ändern kommt eine Rückfrage."
+
+#. settings-schema.json->all-fences-portal-label->description
+msgid ""
+"The base folder for all fences can be changed in any fence that shows a link "
+"group."
+msgstr ""
+"Der Basisordner für alle Fences lässt sich in jedem Fence ändern, der eine "
+"Gruppe zeigt."
+
+#. settings-schema.json->subdirectory-chooser->tooltip
+msgid ""
+"Folder under the shared base directory for this desklet instance. Use Browse "
+"to select or create one."
+msgstr ""
+"Ordner unterhalb des gemeinsamen Basisordners für diesen Fence. Über "
+"»Durchsuchen« auswählen oder anlegen."
+
+#. settings-schema.json->source-mode->description
+msgid "Source"
+msgstr "Quelle"
+
+#. settings-schema.json->source-mode->tooltip
+msgid ""
+"Link group: a folder under the shared base directory, managed by "
+"aVinceLaunch. Folder portal: any existing folder, shown as a view only - "
+"aVinceLaunch never changes it."
+msgstr ""
+"Gruppe: ein Ordner im gemeinsamen Basisordner, verwaltet von aVinceLaunch. "
+"Ordner-Portal: ein beliebiger vorhandener Ordner, nur angezeigt – "
+"aVinceLaunch verändert ihn nie."
+
+#. settings-schema.json->source-mode->options
+msgid "Link group"
+msgstr "Gruppe (Verknüpfungsordner)"
+
+#. settings-schema.json->source-mode->options
+msgid "Folder portal (view only)"
+msgstr "Ordner-Portal (nur Ansicht)"
+
+#. settings-schema.json->portal-path-chooser->tooltip
+msgid "The folder this fence shows. It is only read, never changed."
+msgstr ""
+"Der Ordner, den dieser Fence zeigt. Er wird nur gelesen, nie verändert."
+
+#. settings-schema.json->portal-show-hidden->description
+msgid "Show hidden files"
+msgstr "Versteckte Dateien anzeigen"
+
+#. settings-schema.json->portal-items-label->description
+msgid ""
+"This fence is a folder portal: a view only. It is sorted automatically, and "
+"aVinceLaunch never adds, changes or deletes anything in the folder. Manage "
+"its content in the file manager."
+msgstr ""
+"Dieser Fence ist ein Ordner-Portal und nur eine Ansicht. Er wird automatisch "
+"sortiert; aVinceLaunch fügt im Ordner nichts hinzu, ändert nichts und löscht "
+"nichts. Den Inhalt in der Dateiverwaltung pflegen."
+
+#. settings-schema.json->launch-mode->description
+msgid "Launch mode"
+msgstr "Startverhalten"
+
+#. settings-schema.json->launch-mode->tooltip
+msgid "Single-click or double-click to launch applications."
+msgstr "Programme mit Einfach- oder Doppelklick starten."
+
+#. settings-schema.json->launch-mode->options
+msgid "Single-click"
+msgstr "Einfachklick"
+
+#. settings-schema.json->launch-mode->options
+msgid "Double-click"
+msgstr "Doppelklick"
+
+#. settings-schema.json->folder-click-mode->description
+msgid "Folder click action"
+msgstr "Klick auf einen Ordner"
+
+#. settings-schema.json->folder-click-mode->tooltip
+msgid "Navigate inside the desklet or open the folder in your file manager."
+msgstr "Im Fence navigieren oder den Ordner in der Dateiverwaltung öffnen."
+
+#. settings-schema.json->folder-click-mode->options
+msgid "Navigate in desklet"
+msgstr "Im Fence navigieren"
+
+#. settings-schema.json->folder-click-mode->options
+msgid "Open in file manager"
+msgstr "In der Dateiverwaltung öffnen"
+
+#. settings-schema.json->sort-mode->description
+msgid "Order in the fence"
+msgstr "Reihenfolge im Fence"
+
+#. settings-schema.json->sort-mode->tooltip
+msgid ""
+"Manual uses the order from the Items list. The other options only change the "
+"view - the manual order is kept and comes back when you switch back. Pinned "
+"items always stay in front."
+msgstr ""
+"„Manuell“ nutzt die Reihenfolge aus der Liste unter „Inhalte“. Die anderen "
+"Arten ändern nur die Ansicht – die manuelle Reihenfolge bleibt erhalten und "
+"ist beim Zurückschalten wieder da. Angepinnte Einträge stehen immer vorn."
+
+#. settings-schema.json->sort-mode->options
+msgid "Manual (Items list)"
+msgstr "Manuell (Liste unter „Inhalte“)"
+
+#. settings-schema.json->sort-mode->options
+msgid "Name A–Z"
+msgstr "Name A–Z"
+
+#. settings-schema.json->folder-sort->description
+msgid "Automatic folder sort"
+msgstr "Automatische Ordnersortierung"
+
+#. settings-schema.json->folder-sort->tooltip
+msgid ""
+"When items are sorted automatically, place folders before or after "
+"applications."
+msgstr ""
+"Bei automatischer Sortierung Ordner vor oder nach den Programmen einordnen."
+
+#. settings-schema.json->show-tooltips->description
+msgid "Show tooltips"
+msgstr "Tooltips anzeigen"
+
+#. settings-schema.json->show-tooltips->tooltip
+msgid "Display comments or names when hovering over items."
+msgstr "Beim Überfahren Name und Beschreibung des Eintrags anzeigen."
+
+#. settings-schema.json->color-mode->description
+msgid "Color mode"
+msgstr "Farbmodus"
+
+#. settings-schema.json->color-mode->options
+msgid "System"
+msgstr "System"
+
+#. settings-schema.json->color-mode->options
+msgid "Light"
+msgstr "Hell"
+
+#. settings-schema.json->color-mode->options
+msgid "Dark"
+msgstr "Dunkel"
+
+#. settings-schema.json->color-mode->tooltip
+msgid ""
+"Apply a preset palette or keep custom colors. aVinceLaunch is the default "
+"look for new fences."
+msgstr ""
+"Farbvorlage anwenden oder eigene Farben behalten. aVinceLaunch ist das "
+"Standardaussehen neuer Fences."
+
+#. settings-schema.json->light-preset->description
+msgid "Light preset"
+msgstr "Helle Vorlage"
+
+#. settings-schema.json->light-preset->tooltip
+msgid "Used when color mode is Light or System (light theme)."
+msgstr "Gilt im Farbmodus »Hell« oder »System« (helles Thema)."
+
+#. settings-schema.json->light-preset->options
+msgid "Light default"
+msgstr "Hell – Standard"
+
+#. settings-schema.json->light-preset->options
+msgid "Light soft"
+msgstr "Hell – sanft"
+
+#. settings-schema.json->light-preset->options
+msgid "Light contrast"
+msgstr "Hell – kontrastreich"
+
+#. settings-schema.json->dark-preset->description
+msgid "Dark preset"
+msgstr "Dunkle Vorlage"
+
+#. settings-schema.json->dark-preset->tooltip
+msgid "Used when color mode is Dark or System (dark theme)."
+msgstr "Gilt im Farbmodus »Dunkel« oder »System« (dunkles Thema)."
+
+#. settings-schema.json->dark-preset->options
+msgid "Dark default"
+msgstr "Dunkel – Standard"
+
+#. settings-schema.json->dark-preset->options
+msgid "Dark midnight"
+msgstr "Dunkel – Mitternacht"
+
+#. settings-schema.json->dark-preset->options
+msgid "Dark graphite"
+msgstr "Dunkel – Graphit"
+
+#. settings-schema.json->layout-style->description
+msgid "Layout style"
+msgstr "Darstellungsart"
+
+#. settings-schema.json->layout-style->options
+msgid "Tile view"
+msgstr "Kacheln"
+
+#. settings-schema.json->layout-style->options
+msgid "List view"
+msgstr "Liste"
+
+#. settings-schema.json->columns->description
+msgid "Number of columns"
+msgstr "Anzahl der Spalten"
+
+#. settings-schema.json->columns->tooltip
+msgid "Columns used in tile view."
+msgstr "Spalten in der Kachelansicht."
+
+#. settings-schema.json->row-spacing->units
+#. settings-schema.json->col-spacing->units
+#. settings-schema.json->icon-size->units
+#. settings-schema.json->text-width-padding->units
+#. settings-schema.json->border-width->units
+#. settings-schema.json->position-x->units
+#. settings-schema.json->position-y->units
+#. settings-schema.json->max-width->units
+#. settings-schema.json->max-height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->row-spacing->description
+msgid "Row spacing"
+msgstr "Zeilenabstand"
+
+#. settings-schema.json->col-spacing->description
+msgid "Column spacing"
+msgstr "Spaltenabstand"
+
+#. settings-schema.json->col-spacing->tooltip
+msgid "Horizontal gap between columns in tile view."
+msgstr "Waagrechter Abstand zwischen den Spalten in der Kachelansicht."
+
+#. settings-schema.json->text-align->description
+msgid "Text alignment"
+msgstr "Textausrichtung"
+
+#. settings-schema.json->text-align->options
+#. settings-schema.json->title-align->options
+msgid "Left"
+msgstr "Links"
+
+#. settings-schema.json->text-align->options
+#. settings-schema.json->title-align->options
+msgid "Center"
+msgstr "Mitte"
+
+#. settings-schema.json->text-align->options
+#. settings-schema.json->title-align->options
+msgid "Right"
+msgstr "Rechts"
+
+#. settings-schema.json->transparent-background->description
+msgid "Transparent desklet background"
+msgstr "Transparenter Hintergrund"
+
+#. settings-schema.json->transparent-background->tooltip
+msgid "Works well when desklet decorations are disabled."
+msgstr "Passt gut, wenn die Desklet-Rahmen ausgeschaltet sind."
+
+#. settings-schema.json->icon-size->description
+msgid "Icon size (pixels)"
+msgstr "Symbolgröße"
+
+#. settings-schema.json->icon-size->tooltip
+msgid "Set to 0 to hide icons."
+msgstr "0 blendet die Symbole aus."
+
+#. settings-schema.json->show-text->description
+msgid "Display text"
+msgstr "Beschriftung anzeigen"
+
+#. settings-schema.json->text-width-padding->description
+msgid "Text width padding"
+msgstr "Zusätzliche Textbreite"
+
+#. settings-schema.json->text-width-padding->tooltip
+msgid ""
+"Extra width added to icon size for wrapped label text (max label width = "
+"icon size + padding)."
+msgstr ""
+"Zusätzliche Breite für umbrochene Beschriftungen (größte Beschriftungsbreite "
+"= Symbolgröße + Zusatz)."
+
+#. settings-schema.json->link-font->description
+msgid "Link font"
+msgstr "Schrift der Beschriftung"
+
+#. settings-schema.json->link-font->tooltip
+msgid "Font used for item labels."
+msgstr "Schrift für die Beschriftung der Einträge."
+
+#. settings-schema.json->text-shadow->description
+msgid "Text shadow"
+msgstr "Textschatten"
+
+#. settings-schema.json->text-shadow-color->description
+msgid "Text shadow color"
+msgstr "Farbe des Textschattens"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Rahmenbreite"
+
+#. settings-schema.json->border-width->tooltip
+msgid "Set to 0 to disable border."
+msgstr "0 schaltet den Rahmen aus."
+
+#. settings-schema.json->link-bg-color->description
+msgid "Application background color"
+msgstr "Hintergrund Programme"
+
+#. settings-schema.json->document-bg-color->description
+msgid "Document background color"
+msgstr "Hintergrund Dokumente"
+
+#. settings-schema.json->folder-bg-color->description
+msgid "Folder background color"
+msgstr "Hintergrund Ordner"
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Rahmenfarbe"
+
+#. settings-schema.json->folder-border-color->description
+msgid "Folder border color"
+msgstr "Rahmenfarbe Ordner"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Textfarbe"
+
+#. settings-schema.json->desklet-bg-color->description
+msgid "Desklet background color"
+msgstr "Hintergrundfarbe des Fence"
+
+#. settings-schema.json->title-color->description
+msgid "Title color"
+msgstr "Titelfarbe"
+
+#. settings-schema.json->hover-bg-color->description
+msgid "Hover background color"
+msgstr "Hintergrund beim Überfahren"
+
+#. settings-schema.json->pressed-bg-color->description
+msgid "Pressed background color"
+msgstr "Hintergrund beim Klicken"
+
+#. settings-schema.json->folder-icon-tint->description
+msgid "Folder icon tint"
+msgstr "Tönung der Ordnersymbole"
+
+#. settings-schema.json->tooltip-bg-color->description
+msgid "Tooltip background color"
+msgstr "Tooltip-Hintergrund"
+
+#. settings-schema.json->tooltip-text-color->description
+msgid "Tooltip text color"
+msgstr "Tooltip-Textfarbe"
+
+#. settings-schema.json->disabled-opacity->description
+msgid "Disabled item opacity"
+msgstr "Deckkraft deaktivierter Einträge"
+
+#. settings-schema.json->position-x->description
+msgid "Position X"
+msgstr "Position X"
+
+#. settings-schema.json->position-y->description
+msgid "Position Y"
+msgstr "Position Y"
+
+#. settings-schema.json->snap-to-grid->description
+msgid "Snap to desklet grid"
+msgstr "Am Desklet-Raster ausrichten"
+
+#. settings-schema.json->snap-to-grid->tooltip
+msgid "Apply Cinnamon desklet grid when moving from settings."
+msgstr "Beim Verschieben über die Einstellungen Cinnamons Raster anwenden."
+
+#. settings-schema.json->capture-position-button->description
+msgid "Capture current position"
+msgstr "Aktuelle Position übernehmen"
+
+#. settings-schema.json->capture-position-button->tooltip
+msgid "Read the desklet's current on-screen position into X/Y."
+msgstr "Die aktuelle Lage des Fence auf dem Bildschirm in X/Y übernehmen."
+
+#. settings-schema.json->reset-position-button->description
+msgid "Reset position"
+msgstr "Position zurücksetzen"
+
+#. settings-schema.json->reset-position-button->tooltip
+msgid "Move the desklet back to 50, 50."
+msgstr "Den Fence zurück auf 50, 50 setzen."
+
+#. settings-schema.json->max-width->description
+msgid "Max width"
+msgstr "Maximale Breite"
+
+#. settings-schema.json->max-width->tooltip
+msgid "0 = auto from content."
+msgstr "0 = automatisch nach Inhalt."
+
+#. settings-schema.json->max-height->description
+msgid "Max height"
+msgstr "Maximale Höhe"
+
+#. settings-schema.json->max-height->tooltip
+msgid "0 = auto. Overflow scrolls when content-fit is fixed."
+msgstr "0 = automatisch. Bei fester Größe wird überstehender Inhalt gescrollt."
+
+#. settings-schema.json->content-fit->description
+msgid "Content fit"
+msgstr "Größenanpassung"
+
+#. settings-schema.json->content-fit->options
+msgid "Auto (grow with content)"
+msgstr "Automatisch (wächst mit dem Inhalt)"
+
+#. settings-schema.json->content-fit->options
+msgid "Fixed (use max dimensions)"
+msgstr "Fest (maximale Maße verwenden)"
+
+#. settings-schema.json->lock-position->description
+msgid "Lock position"
+msgstr "Position sperren"
+
+#. settings-schema.json->lock-position->tooltip
+msgid "Prevent dragging this desklet instance."
+msgstr "Verschieben und Größeändern dieses Fence verhindern."
+
+#. settings-schema.json->lock-size->description
+msgid "Lock size"
+msgstr "Größe sperren"
+
+#. settings-schema.json->lock-size->tooltip
+msgid ""
+"Like the position: a locked position also locks the size (as before). "
+"Locked: size cannot be changed. Free: size can be changed even when the "
+"position is locked."
+msgstr ""
+"„Wie die Position“: eine gesperrte Position sperrt auch die Größe (wie "
+"bisher). „Gesperrt“: Größe lässt sich nicht ändern. „Frei“: Größe lässt sich "
+"auch bei gesperrter Position ändern."
+
+#. settings-schema.json->lock-size->options
+msgid "Like the position"
+msgstr "Wie die Position"
+
+#. settings-schema.json->lock-size->options
+msgid "Locked"
+msgstr "Gesperrt"
+
+#. settings-schema.json->lock-size->options
+msgid "Free"
+msgstr "Frei"
+
+#. settings-schema.json->lock-content->description
+msgid "Lock content"
+msgstr "Inhalt sperren"
+
+#. settings-schema.json->lock-content->tooltip
+msgid ""
+"No moving, removing or pinning of items from the context menu, and the fence "
+"accepts no items from other fences or the desktop. The Items page stays "
+"available."
+msgstr ""
+"Kein Verschieben, Entfernen oder Anpinnen über das Kontextmenü; der Fence "
+"nimmt keine Symbole aus anderen Fences oder vom Schreibtisch an. Die Seite "
+"„Inhalte“ bleibt nutzbar."
+
+#. settings-schema.json->show-lock-indicator->description
+msgid "Show lock indicator"
+msgstr "Schlosssymbol anzeigen"
+
+#. settings-schema.json->show-lock-indicator->tooltip
+msgid "Display a small lock icon when position is locked."
+msgstr "Kleines Schlosssymbol zeigen, solange die Position gesperrt ist."
+
+#. settings-schema.json->order-help-label->description
+msgid ""
+"Select a folder row, then click the folder icon on the list toolbar to edit "
+"items inside it. Use the pencil (or double-click) to edit the selected row. "
+"Reorder with the toolbar arrows or choose a resort option, then Apply."
+msgstr ""
+"Eine Ordnerzeile wählen und in der Werkzeugleiste auf das Ordnersymbol "
+"klicken, um ihren Inhalt zu bearbeiten. Mit dem Stift (oder Doppelklick) die "
+"gewählte Zeile bearbeiten. Mit den Pfeilen oder einer Sortierung umordnen, "
+"dann »Übernehmen«."
+
+#. settings-schema.json->order-folder-header->description
+msgid "Current folder"
+msgstr "Aktueller Ordner"
+
+#. settings-schema.json->order-folder-header->tooltip
+msgid "Shows the folder being edited and returns to the root link folder."
+msgstr "Zeigt den bearbeiteten Ordner und führt zurück zum Verknüpfungsordner."
+
+#. settings-schema.json->order-breadcrumb-display->description
+msgid "Current folder path"
+msgstr "Pfad des aktuellen Ordners"
+
+#. settings-schema.json->order-breadcrumb-display->tooltip
+msgid "Internal breadcrumb updated when browsing folders."
+msgstr "Interner Pfad, wird beim Durchblättern aktualisiert."
+
+#. settings-schema.json->order-in-subfolder->description
+msgid "In subfolder"
+msgstr "Im Unterordner"
+
+#. settings-schema.json->order-in-subfolder->tooltip
+msgid "Internal flag for order navigation."
+msgstr "Interne Markierung für die Navigation."
+
+#. settings-schema.json->order-open-folder-id->description
+msgid "Open folder id"
+msgstr "Kennung des geöffneten Ordners"
+
+#. settings-schema.json->order-open-folder-id->tooltip
+msgid "Internal folder id used when opening a subdirectory."
+msgstr "Interne Ordnerkennung beim Öffnen eines Unterordners."
+
+#. settings-schema.json->order-folder-path->description
+msgid "Items folder"
+msgstr "Ordner der Einträge"
+
+#. settings-schema.json->order-folder-path->tooltip
+msgid "Internal path used for item ordering (not shown in UI)."
+msgstr "Interner Pfad für die Reihenfolge (nicht sichtbar)."
+
+#. settings-schema.json->link-order-list-data->columns->title
+#. settings-schema.json->link-order-list->columns->title
+msgid "Enabled"
+msgstr "Aktiv"
+
+#. settings-schema.json->link-order-list-data->columns->title
+#. settings-schema.json->link-order-list->columns->title
+msgid "ID"
+msgstr "ID"
+
+#. settings-schema.json->items-action-bar->description
+msgid "Item actions"
+msgstr "Aktionen"
+
+#. settings-schema.json->items-action-bar->tooltip
+msgid "Refresh the list and apply order, enabled state, and folder styles."
+msgstr ""
+"Liste aktualisieren und Reihenfolge, Aktiv-Status und Ordnerstile übernehmen."
+
+#. settings-schema.json->fence-title->description
+msgid "Fence name"
+msgstr "Name des Fence"
+
+#. settings-schema.json->fence-title->tooltip
+msgid "Shown in the title row. Leave empty to use the folder name."
+msgstr "Steht in der Titelzeile. Leer = Ordnername."
+
+#. settings-schema.json->show-title->description
+msgid "Show title row"
+msgstr "Titelzeile anzeigen"
+
+#. settings-schema.json->show-title->tooltip
+msgid ""
+"When off, only the name floats above the fence while the pointer is over it."
+msgstr ""
+"Ausgeschaltet schwebt nur der Name über dem Fence, solange die Maus darüber "
+"ist."
+
+#. settings-schema.json->title-align->description
+msgid "Title alignment"
+msgstr "Titelausrichtung"
+
+#. settings-schema.json->title-mode->description
+msgid "Title row position"
+msgstr "Lage der Titelzeile"
+
+#. settings-schema.json->title-mode->tooltip
+msgid ""
+"Inside the fence: the title row sits above the items, either only while the "
+"pointer is over the fence (it keeps its space) or always. Above the fence: a "
+"tab on the fence's top edge appears while the pointer is over the fence; the "
+"items keep the full height."
+msgstr ""
+"Im Fence: Die Titelzeile steht über den Symbolen – entweder nur, solange die "
+"Maus über dem Fence ist (sie behält ihren Platz), oder immer. Über dem "
+"Fence: Eine Lasche auf der Oberkante erscheint, solange die Maus über dem "
+"Fence ist; die Symbole behalten die volle Höhe."
+
+#. settings-schema.json->title-mode->options
+msgid "Inside the fence – only under the pointer"
+msgstr "Im Fence – nur unter der Maus"
+
+#. settings-schema.json->title-mode->options
+msgid "Inside the fence – always"
+msgstr "Im Fence – immer"
+
+#. settings-schema.json->title-mode->options
+msgid "Above the fence – as a tab under the pointer"
+msgstr "Über dem Fence – als Lasche unter der Maus"
+
+#. settings-schema.json->expand-on-hover->tooltip
+msgid ""
+"A collapsed fence opens while the pointer is over it and closes again when "
+"the pointer leaves. Off: open it with the arrow, a double click or the "
+"context menu."
+msgstr ""
+"Ein eingeklappter Fence öffnet sich, solange die Maus darüber ist, und "
+"schließt sich wieder, wenn sie ihn verlässt. Aus: mit dem Pfeil, einem "
+"Doppelklick oder dem Kontextmenü öffnen."
+
+#. settings-schema.json->show-search-button->description
+msgid "Search button in the title row"
+msgstr "Such-Knopf in der Titelzeile"
+
+#. settings-schema.json->show-search-button->tooltip
+msgid ""
+"Shows a magnifier in the title row. Searching is always possible via the "
+"context menu."
+msgstr ""
+"Zeigt eine Lupe in der Titelzeile. Suchen geht immer auch über das "
+"Kontextmenü."
+
+#: OrderListWidget.py:597
+msgid "Save as own _copy"
+msgstr "Als eigene _Kopie speichern"
+
+#: OrderListWidget.py:594
+msgid ""
+"Saving replaces the link in this fence with an own copy. The original file "
+"stays unchanged, but later changes to it (for example by program updates) no"
+" longer reach this launcher."
+msgstr ""
+"Beim Speichern wird der Verweis in diesem Fence durch eine eigene Kopie "
+"ersetzt. Die Originaldatei bleibt unverändert, spätere Änderungen daran "
+"(etwa durch Programm-Updates) erreichen diesen Starter aber nicht mehr."
+
+#: OrderListWidget.py:600
+msgid ""
+"Someone may have protected it on purpose. Save the changes anyway? The file "
+"stays write-protected afterwards."
+msgstr ""
+"Vielleicht wurde sie absichtlich geschützt. Die Änderungen trotzdem "
+"speichern? Die Datei bleibt danach schreibgeschützt."
+
+#: linkImport.py:291
+msgid "This launcher file is write-protected."
+msgstr "Diese Starter-Datei ist schreibgeschützt."
+
+#: linkImport.py:288
+#, python-format
+msgid "This launcher is a link to %s."
+msgstr "Dieser Starter ist ein Verweis auf %s."
+
+#: OrderListWidget.py:602
+msgid "_Save anyway"
+msgstr "_Trotzdem speichern"
+
+#: desklet.js:710
+msgid "Remove this fence…"
+msgstr "Diesen Fence entfernen …"
+
+#: desklet.js:724
+#, javascript-format
+msgid "Remove the fence “%s” from the desktop?"
+msgstr "Den Fence „%s“ vom Schreibtisch entfernen?"
+
+#: desklet.js:728
+#, javascript-format
+msgid "The folder %s is not touched."
+msgstr "Der Ordner %s bleibt unberührt."
+
+#: desklet.js:733
+#, javascript-format
+msgid "The icons stay in the folder %s."
+msgstr "Die Symbole bleiben im Ordner %s."
+
+#: desklet.js:736
+#, javascript-format
+msgid ""
+"Cinnamon deletes the settings of this fence; a copy stays in %s for at least"
+" 30 days."
+msgstr ""
+"Cinnamon löscht die Einstellungen dieses Fence; eine Kopie bleibt mindestens"
+" 30 Tage in %s."
+
+#: desklet.js:720 quickstart-dialog.py:94
+msgid "Starter layout…"
+msgstr "Startaufstellung …"
+
+#: desklet.js:723
+msgid "Remove starter layout…"
+msgstr "Startaufstellung entfernen …"
+
+#: desklet.js:3789
+msgid "The starter layout is already being set up."
+msgstr "Die Startaufstellung wird gerade eingerichtet."
+
+#: desklet.js:3818 desklet.js:3835 desklet.js:3842
+msgid "Could not open the starter layout."
+msgstr "Die Startaufstellung ließ sich nicht öffnen."
+
+#: desklet.js:3889
+#, javascript-format
+msgid "Starter layout created: %d fences"
+msgstr "Startaufstellung angelegt: %d Fences"
+
+#: desklet.js:3890
+#, javascript-format
+msgid "%d fences did not fit on your screens."
+msgstr "%d Fences hatten auf den Bildschirmen keinen Platz."
+
+#: desklet.js:3934 desklet.js:3949
+msgid "The starter layout stopped."
+msgstr "Die Startaufstellung wurde abgebrochen."
+
+#: desklet.js:3934
+msgid "Details are in ~/.xsession-errors."
+msgstr "Einzelheiten stehen in ~/.xsession-errors."
+
+#: desklet.js:3967
+msgid "Remove the starter layout?"
+msgstr "Startaufstellung entfernen?"
+
+#: desklet.js:3968
+#, javascript-format
+msgid "Fences: %s"
+msgstr "Fences: %s"
+
+#: desklet.js:3969
+#, javascript-format
+msgid ""
+"Their folders with the launchers are moved to %s – nothing is deleted. "
+"Cinnamon deletes the settings of the fences; a copy stays in the backups for"
+" at least 30 days."
+msgstr ""
+"Ihre Ordner mit den Verknüpfungen kommen nach %s – gelöscht wird nichts. "
+"Cinnamon löscht die Einstellungen der Fences; eine Kopie bleibt mindestens "
+"30 Tage in den Sicherungen."
+
+#: desklet.js:4021
+msgid "Starter layout removed"
+msgstr "Startaufstellung entfernt"
+
+#: desklet.js:4021
+#, javascript-format
+msgid "The folders are in %s."
+msgstr "Die Ordner liegen in %s."
+
+#: startaufstellung-dialog.py:44
+msgid "Internet"
+msgstr "Internet"
+
+#: startaufstellung-dialog.py:45
+msgid "Communication"
+msgstr "Kommunikation"
+
+#: startaufstellung-dialog.py:46
+msgid "Office"
+msgstr "Büro"
+
+#: startaufstellung-dialog.py:47
+msgid "Graphics & Photos"
+msgstr "Grafik & Fotos"
+
+#: startaufstellung-dialog.py:48
+msgid "Multimedia"
+msgstr "Multimedia"
+
+#: startaufstellung-dialog.py:49
+msgid "Games"
+msgstr "Spiele"
+
+#: startaufstellung-dialog.py:50
+msgid "Development"
+msgstr "Entwicklung"
+
+#: startaufstellung-dialog.py:51
+msgid "Tools"
+msgstr "Werkzeuge"
+
+#: startaufstellung-dialog.py:59
+msgid "Starter layout – aVinceLaunch"
+msgstr "Startaufstellung – aVinceLaunch"
+
+#: startaufstellung-dialog.py:66
+msgid "Create"
+msgstr "Anlegen"
+
+#: startaufstellung-dialog.py:88
+msgid ""
+"aVinceLaunch can set up nine fences with a title and sort your installed "
+"applications into them. Untick what you do not want, or choose another fence"
+" for an application. Nothing is created until you click “Create”."
+msgstr ""
+"aVinceLaunch richtet neun Fences mit Titel ein und sortiert die "
+"installierten Programme hinein. Was nicht gewünscht ist, abwählen; für ein "
+"Programm lässt sich ein anderer Fence wählen. Angelegt wird erst mit "
+"„Anlegen“."
+
+#: startaufstellung-dialog.py:119
+#, python-format
+msgid "Cinnamon settings pages (not suggested): %d"
+msgstr "Cinnamon-Einstellungsseiten (nicht vorgeschlagen): %d"
+
+#: startaufstellung-dialog.py:189
+#, python-format
+msgid "%d applications"
+msgstr "%d Programme"
+
+#: startaufstellung-dialog.py:194
+#, python-format
+msgid ""
+"Creates %(fences)d fences with %(links)d launchers, each %(w)d × %(h)d, "
+"locked."
+msgstr ""
+"Legt %(fences)d Fences mit %(links)d Verknüpfungen an, je %(w)d × %(h)d, "
+"gesperrt."
+
+#: startaufstellung-dialog.py:197
+msgid "The empty fence you started from becomes the first one."
+msgstr "Der leere Fence, von dem aus gestartet wurde, wird der erste."
+
+#: startaufstellung-dialog.py:201
+#, python-format
+msgid ""
+"There is only room for %d fences on your screens. Please untick some fences."
+msgstr ""
+"Auf den Bildschirmen ist nur Platz für %d Fences. Bitte Fences abwählen."
+
+#: startaufstellung-dialog.py:216
+msgid "Nothing was created."
+msgstr "Es wurde nichts angelegt."
+
+#: startaufstellung-dialog.py:217
+#, python-format
+msgid "The base folder %s is missing (e.g. a NAS that is not mounted)."
+msgstr "Der Basisordner %s fehlt (z. B. eine nicht eingebundene NAS)."

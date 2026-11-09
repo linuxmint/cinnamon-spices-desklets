@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aVinceLaunch – Help</title>
+<style>
+  :root {
+    --bg: #fbfbfa; --fg: #1f2328; --muted: #5d6670; --line: #d9dde1;
+    --accent: #3b6ea8; --warn-bg: #fff4e5; --warn-line: #e8a33d; --code: #eef1f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1d2024; --fg: #e6e8ea; --muted: #a2aab3; --line: #3a3f45;
+      --accent: #7fb0e6; --warn-bg: #3a2e1c; --warn-line: #c98a2e; --code: #2a2e33;
+    }
+  }
+  body { background: var(--bg); color: var(--fg); margin: 0;
+         font: 16px/1.6 "Noto Sans", "Ubuntu", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { margin: 0 0 4px; font-size: 1.8em; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+  .brand img { border-radius: 10px; }
+  .brand .sub { font-weight: 400; color: var(--muted); }
+  .slogan { color: var(--muted); margin: 0 0 24px; }
+  h2 { margin-top: 2.2em; padding-top: .6em; border-top: 1px solid var(--line); font-size: 1.3em; }
+  h3 { margin-bottom: .2em; font-size: 1.05em; }
+  a { color: var(--accent); }
+  nav ol { padding-left: 1.4em; columns: 2; column-gap: 32px; }
+  .menu { font-weight: 600; white-space: nowrap; }
+  kbd, code { background: var(--code); border-radius: 4px; padding: 1px 5px; font-size: .92em; }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn-line);
+          padding: 10px 14px; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; }
+  td, th { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  .small { color: var(--muted); font-size: .9em; }
+  @media (max-width: 560px) { nav ol { columns: 1; } }
+</style>
+</head>
+<body>
+<main>
+<header class="brand"><img src="../icon.png" alt="" width="56" height="56"><h1>aVinceLaunch <span class="sub">– Help</span></h1></header>
+<p class="slogan">Organize · Access · Launch – desktop organizer for Linux Mint Cinnamon</p>
+
+<nav>
+<ol>
+  <li><a href="#idea">The idea and the first fence</a></li>
+  <li><a href="#content">Content and order</a></li>
+  <li><a href="#launch">Launching and folders</a></li>
+  <li><a href="#itemmenu">The item menu</a></li>
+  <li><a href="#portal">Folder portal (view only)</a></li>
+  <li><a href="#title">Title row, collapsing, search</a></li>
+  <li><a href="#move">Moving and locking</a></li>
+  <li><a href="#size">Resizing</a></li>
+  <li><a href="#snap">Snapping and guides</a></li>
+  <li><a href="#arrangement">Arrangement, history, aligning</a></li>
+  <li><a href="#look">Appearance</a></li>
+  <li><a href="#menu">The context menu</a></li>
+  <li><a href="#configure">The Configure dialog</a></li>
+  <li><a href="#backup">Backing up and transferring</a></li>
+  <li><a href="#caution">Caution</a></li>
+  <li><a href="#addon">Add-on package (optional)</a></li>
+  <li><a href="#origin">Origin and licence</a></li>
+</ol>
+</nav>
+
+<h2 id="idea">1. The idea and the first fence</h2>
+<p>A <b>fence</b> is an area on the desktop that shows the content of
+<b>one folder</b>: applications (<code>.desktop</code> files), documents and
+subfolders. The folder is the source – whatever is in it appears in the
+fence; whatever is deleted there disappears.</p>
+<p>You start with <b>one</b> fence. It shows the still empty folder
+<code>default</code> in the <b>shared base directory</b> (default
+<code>~/.local/share/avincelaunch</code>). Each fence has its own
+<b>link subdirectory</b> inside it.</p>
+<p><b>More fences</b> can be added in three ways:</p>
+<ul>
+  <li><span class="menu">Right-click → Starter layout…</span> (also in the
+      quick start) – nine fences with a title (Internet, Communication, Office,
+      Graphics &amp; Photos, Multimedia, Games, Development, Tools, System) in a
+      3 × 3 grid. Your installed applications are suggested by their category:
+      untick them in the preview or assign them to another fence, then
+      <span class="menu">Create</span>. Each application is placed as a copy
+      of its <code>.desktop</code> file in the new folders; Cinnamon's settings
+      pages are not suggested. An empty fence without a name that you start
+      from becomes the first one. To undo:
+      <span class="menu">Remove starter layout…</span> – the fences go, their
+      folders are moved to
+      <code>~/.config/avincelaunch/backups/startaufstellung-…</code>.</li>
+  <li><span class="menu">Right-click → Duplicate fence</span> – same look and
+      size, but a folder of its own, still empty (a folder portal keeps the
+      same folder). The copy appears at the next free spot beside the
+      original – if there is none, slightly offset on top of it –, is
+      unlocked and can be dragged to its place right away.</li>
+  <li><span class="menu">System Settings → Desklets</span>: select aVinceLaunch
+      and click <kbd>+</kbd> at the bottom.</li>
+</ul>
+<p>A fence's name and folder are set in
+<span class="menu">Configure… → General</span>. Without a name of its own a
+fence is called like its folder.</p>
+
+<h2 id="content">2. Content and order</h2>
+<ul>
+  <li>Copy files, application launchers or folders into the link folder –
+      quickest via <span class="menu">right-click → Open link folder</span>.</li>
+  <li>Or in <span class="menu">Configure… → Items</span>: add and edit entries,
+      change the order, then apply.</li>
+</ul>
+<p>The fence updates by itself as soon as the folder changes.</p>
+<p><span class="menu">Configure… → General → Order in the fence</span> sets
+the order:</p>
+<table>
+  <tr><td class="menu">Manual (Items list)</td><td>as the list on the Items page shows it (default)</td></tr>
+  <tr><td class="menu">Name A–Z / Name Z–A</td><td>alphabetical</td></tr>
+  <tr><td class="menu">Type</td><td>folders, then programs, then documents</td></tr>
+  <tr><td class="menu">Date modified</td><td>most recently changed first</td></tr>
+  <tr><td class="menu">Recently added</td><td>newest entries first</td></tr>
+</table>
+<p>A <b>pinned</b> entry (see <a href="#itemmenu">item menu</a>) always stays
+at the front, whatever the order. If an entry is missing for a while – for
+example while a program is being reinstalled – it keeps its place in the
+list for <b>30 days</b>.</p>
+
+<h2 id="launch">3. Launching and folders</h2>
+<ul>
+  <li>A click starts an application or opens a document.
+      <span class="menu">Configure… → General → Launch mode</span>:
+      single or double click.</li>
+  <li>Folders open inside the fence; <b>Home</b> takes you back.
+      <span class="menu">Folder click action</span> can open the file
+      manager instead.</li>
+  <li>When the mouse rests on a tile for a moment, a tooltip shows the
+      full name and, below it, the description or path.</li>
+</ul>
+
+<h2 id="itemmenu">4. The item menu</h2>
+<p>A <b>right-click on an item</b> shows its name at the top of the context
+menu, followed by these entries:</p>
+<table>
+  <tr><td class="menu">Move to ▸</td><td>into another fence with a folder of its own (portals and fences with locked content are no target)</td></tr>
+  <tr><td class="menu">Pin to the front / Unpin</td><td>the entry always stays at the front, whatever the order; a pin shows it</td></tr>
+  <tr><td class="menu">Remove from fence…</td><td>after a confirmation into the <b>trash</b> – it can be restored from there</td></tr>
+</table>
+<p>After a move, every fence's context menu shows
+<span class="menu">Undo: “…” to …</span>; the notification at the screen edge
+has the same button. Only the <b>last</b> move can be undone.</p>
+<p>When the content is locked (<a href="#move">Lock ▸ Content</a>), these
+entries are greyed out.</p>
+
+<h2 id="portal">5. Folder portal (view only)</h2>
+<p>Instead of a link group, a fence can show <b>any existing folder</b>, for
+example <code>~/Downloads</code>: <span class="menu">Configure… → General →
+Link storage → Source: Folder portal (view only)</span>, then pick the folder
+with <span class="menu">Choose…</span>.</p>
+<ul>
+  <li>A portal is a <b>view only</b>: open files, start applications, go into
+      subfolders. aVinceLaunch never adds, changes or deletes anything in the
+      folder – not even a helper file of its own.</li>
+  <li><b>Exception, the base directory:</b> if a portal shows a folder that
+      contains the aVinceLaunch base directory (for example your home folder
+      <code>~</code>), the base directory and its groups stay writable – the
+      link-group fences keep working there as usual. The dialog points this
+      out when such a folder is chosen.</li>
+  <li>The portal folder is protected under its own path. A <b>symbolic
+      link</b> to it from elsewhere is not followed: if, say, a group folder
+      really points to the portal folder, aVinceLaunch writes through that
+      link as into any group.</li>
+  <li>It is always sorted automatically (setting “Automatic folder sort”); the
+      <span class="menu">Items</span> page only shows a note for portals.</li>
+  <li>At most 200 entries; below them a note leads to the rest in the file
+      manager.</li>
+  <li>Hidden files can be shown.</li>
+  <li><b>On the NAS</b> (or another network drive) aVinceLaunch looks for
+      changes itself every 30&nbsp;seconds – only while the fence is visible,
+      in the background. If the NAS cannot be reached, the fence says so and
+      tries again every minute. If it does not answer at all (reading hangs),
+      the fence shows “not reachable” after 2&nbsp;minutes and tries exactly
+      once more; if that hangs too, it waits until the NAS answers again.</li>
+</ul>
+
+<h2 id="title">6. Title row, collapsing, search</h2>
+<p>New fences show their title row (☰, name, arrow) while the pointer is
+over them. When it is turned off, a locked fence only shows its name floating
+above it while the pointer is there. Turn it on or off in
+<span class="menu">Configure… → General → Title → Show title row</span>
+or for all fences at once with
+<span class="menu">right-click → Show titles of all fences</span>
+(or <span class="menu">Hide titles of all fences</span>).</p>
+<p><span class="menu">Title row position</span>:</p>
+<ul>
+  <li><b>Inside the fence – only under the pointer</b> (default)</li>
+  <li><b>Inside the fence – always</b></li>
+  <li><b>Above the fence – as a tab under the pointer</b></li>
+</ul>
+<p>The <b>☰</b> button on the left of the title row opens the context menu.
+An unlocked fence always shows its title row – it is then the handle for
+moving.</p>
+<p><b>Collapsing:</b> with the arrow in the title row or
+<span class="menu">right-click → Collapse fence</span>. Only the title row
+remains; the space below stays free so that nothing gets covered when the
+fence opens again. Expand it with the arrow, a double click on the bar or the
+menu. With <span class="menu">Expand on hover when collapsed</span> a
+collapsed fence opens while the pointer is over it.</p>
+<p><b>Search:</b> <span class="menu">right-click → Search all fences…</span>
+opens a search field. While you type, all fences show only the entries whose
+name matches (collapsed fences stay closed). A click on a match starts it,
+<kbd>Enter</kbd> starts the first one – row by row from the top left.
+<kbd>Esc</kbd> or a click elsewhere closes the search. If you like, a
+magnifier in the title row does the same
+(<span class="menu">Configure… → General → Search button in the title row</span>).</p>
+
+<h2 id="move">7. Moving and locking</h2>
+<p><b>New fences are locked</b> – nothing moves by accident. The submenu
+<span class="menu">right-click → Lock ▸</span> has three switches:</p>
+<table>
+  <tr><td class="menu">Position</td><td>moving off or on</td></tr>
+  <tr><td class="menu">Size</td><td>resizing off or on; the dialog also offers “Like the position” (default)</td></tr>
+  <tr><td class="menu">Content</td><td>no moving, removing or pinning from the item menu, and the fence accepts no items from other fences or the desktop; the Items page stays available</td></tr>
+</table>
+<p>To move a fence:</p>
+<ol>
+  <li>Turn off <span class="menu">right-click → Lock ▸ Position</span>. The
+      menu then shows the red hint <i>Resize: drag an edge or the corner</i>.</li>
+  <li>Drag the fence by its title row.</li>
+  <li>Turn <span class="menu">Lock ▸ Position</span> back on.</li>
+</ol>
+<p>The position can also be typed in as numbers in
+<span class="menu">Configure… → Layout → Position</span> (aligned to the
+desklet grid if you like).</p>
+
+<h2 id="size">8. Resizing</h2>
+<p>With the size unlocked, drag the <b>right edge</b>, the <b>bottom
+edge</b> or the <b>bottom-right corner</b>. An outline shows the new size;
+it is saved when you release the mouse. <kbd>Esc</kbd> cancels.</p>
+<ul>
+  <li><span class="menu">Restore previous size</span> undoes the last change –
+      even when the fence is locked.</li>
+  <li><span class="menu">Restore original size</span> returns to the size
+      before the first change.</li>
+</ul>
+
+<h2 id="snap">9. Snapping and guides</h2>
+<p>While moving and resizing, a fence snaps to its neighbours: edges aligned,
+same width or height, the same gaps as between the other fences. Green guide
+lines show what it aligns to. Screen edges keep a minimum margin, and fences
+do not slide over each other. Other desklets (e.g. aVincePulse) count as
+obstacles and are never moved.</p>
+<p><b>Hold <kbd>Ctrl</kbd></b> to drag freely: no snapping, no grid, no
+overlap protection – only the screen edges remain. The fence then shows
+<b>FREE (Ctrl)</b>. A fence placed this way stays exactly there after a
+restart, too.</p>
+<p class="small">Limit: when the desklet grid is switched on or changed in
+System Settings, Cinnamon itself aligns all desklets to it – freely placed
+fences then move into the grid on the next start.</p>
+
+<h2 id="arrangement">10. Arrangement, history, aligning</h2>
+<p><span class="menu">Right-click → Restore arrangement ▸</span> lists the
+last three changes to position and size of all fences, with time and a symbol
+for the kind of change (moved, width, height, …). Changes within one minute
+count as one. The <b>Original arrangement</b> is always at the top. Restoring
+is recorded in the history too, so it can be undone.</p>
+<p><span class="menu">Align all fences</span> puts slightly misplaced fences
+back into rows and columns. What counts is where the majority stands; the
+gaps are learned on the first start. Fences moved far away stay where they
+are, and nothing gets covered.</p>
+
+<h2 id="look">11. Appearance</h2>
+<p>In <span class="menu">Configure… → Appearance</span>:</p>
+<table>
+  <tr><th>Colour mode</th><th>Effect</th></tr>
+  <tr><td>aVinceLaunch</td><td>default: transparent tiles on a grey, semi-transparent background</td></tr>
+  <tr><td>System</td><td>light or dark preset following the system theme</td></tr>
+  <tr><td>Light / Dark</td><td>the chosen light or dark preset</td></tr>
+  <tr><td>Custom</td><td>your own colours – selected automatically as soon as you change a colour</td></tr>
+</table>
+<p><span class="menu">Right-click → Reset appearance…</span> resets colours,
+font, shadow and border of <b>this</b> fence to the aVinceLaunch look, after
+a confirmation. Folder, name, size and position stay.</p>
+
+<h2 id="menu">12. The context menu</h2>
+<table>
+  <tr><td class="menu">Collapse fence / Expand fence</td><td>see <a href="#title">Collapsing</a></td></tr>
+  <tr><td class="menu">Expand on hover when collapsed</td><td>switch, see <a href="#title">Collapsing</a></td></tr>
+  <tr><td class="menu">Search all fences…</td><td>see <a href="#title">Search</a></td></tr>
+  <tr><td class="menu">Rename fence…</td><td>opens Configure; the name is at the top</td></tr>
+  <tr><td class="menu">Duplicate fence</td><td>see <a href="#idea">More fences</a></td></tr>
+  <tr><td class="menu">Lock ▸</td><td>position, size, content – see <a href="#move">Locking</a></td></tr>
+  <tr><td class="menu">Restore previous / original size</td><td>see <a href="#size">Resizing</a></td></tr>
+  <tr><td class="menu">Restore arrangement ▸</td><td>history, see <a href="#arrangement">Arrangement</a></td></tr>
+  <tr><td class="menu">Align all fences</td><td>straighten rows and columns</td></tr>
+  <tr><td class="menu">Hide / Show titles of all fences</td><td>title row of all fences at once</td></tr>
+  <tr><td class="menu">Reset appearance…</td><td>default look for this fence</td></tr>
+  <tr><td class="menu">Open link folder</td><td>this fence's folder in the file manager</td></tr>
+  <tr><td class="menu">Quick start…</td><td>the short overview</td></tr>
+  <tr><td class="menu">Starter layout… / Remove starter layout…</td><td>see <a href="#idea">More fences</a></td></tr>
+  <tr><td class="menu">About… / Configure…</td><td>Cinnamon's own entries</td></tr>
+  <tr><td class="menu">Remove this fence…</td><td>see <a href="#caution">Caution</a>; not in the menu when the right-click hits an item</td></tr>
+</table>
+<p>A right-click on an item adds its entries at the top (see
+<a href="#itemmenu">item menu</a>), and after a move also
+<span class="menu">Undo</span>.</p>
+
+<h2 id="configure">13. The Configure dialog</h2>
+<table>
+  <tr><td class="menu">General</td><td>link storage (source: link group or folder portal, link or portal folder), title (name, title row, position, alignment), behaviour (launch mode, folder click action, expand on hover, search button), sorting, tooltips, “For all fences” (shared base directory)</td></tr>
+  <tr><td class="menu">Appearance</td><td>colour mode, presets, border, font and shadow, all colours</td></tr>
+  <tr><td class="menu">Layout</td><td>grid (columns, icon size, spacing), size and content fit, position</td></tr>
+  <tr><td class="menu">Behaviour</td><td>lock: position, size, content</td></tr>
+  <tr><td class="menu">Items</td><td>edit entries and subfolders, order</td></tr>
+</table>
+<p>A new shared base directory applies at once: the link-group fences show
+the new folder, and sorting in new applications uses it too, without a
+restart. Portals keep showing their own folder.</p>
+<p><b>Base directory on a NAS</b> (or another network drive): the link-group
+fences then read their folders in the background, like a portal, so a NAS
+that hangs never stops the desktop. Changes are picked up every
+30&nbsp;seconds while a fence is visible; if the NAS cannot be reached, the
+fence says so – if reading hangs, “not reachable” after 2&nbsp;minutes – and
+tries again every minute. What you start yourself – <span class="menu">Configure…</span>,
+the item menu – still reads the folder directly; if the NAS hangs at that very
+moment, that one action waits for it.</p>
+
+<h2 id="backup">14. Backing up and transferring</h2>
+<p>In <span class="menu">Configure…</span> the <b>☰</b> menu at the top right
+offers <span class="menu">Export to a file</span> and
+<span class="menu">Import from a file</span> – each for the fence currently
+selected.</p>
+<p class="warn">An import replaces <b>all</b> settings of the fence –
+including folder, name, size and position. Before importing, check which
+state the file comes from; the file name alone does not tell.</p>
+<p>In addition, aVinceLaunch backs up the settings of every fence by itself –
+on each start, when <span class="menu">Configure…</span> opens and before
+removing, but only when something has changed.
+<code>~/.config/avincelaunch/backups/einstellungen-&lt;number&gt;/</code>
+holds the last five states plus the newest one older than a day; the file
+name is the date and time. The folder of a removed fence is deleted
+30&nbsp;days after removal.</p>
+<p><b>To bring back a saved state:</b>
+<span class="menu">Configure… → ☰ → Import from a file</span> and pick a file
+from the folder above. The <code>.config</code> folder is hidden: press
+<b>Ctrl+H</b> in the file dialog or type the path with <b>Ctrl+L</b>. The
+warning above applies – the import replaces all settings of the fence
+currently selected. If the file dialog stops responding after
+<span class="menu">Open</span>, close <span class="menu">Configure</span> and
+open it again – nothing has been changed up to then. What went wrong is
+written to <code>~/.cache/avincelaunch/einrichten-&lt;number&gt;.log</code>
+(new each time it opens) – include this file in a bug report.</p>
+<p>The content itself lives as files in the base directory and can be backed
+up like any other folder.</p>
+
+<h2 id="caution">15. Caution</h2>
+<p class="warn"><b>“Reset to defaults”</b> (☰ in Configure) resets
+<b>everything</b>: folder, name, size and position. For the look alone there
+is <span class="menu">Reset appearance…</span>.</p>
+<p class="warn">The <b>“–”</b> button in
+<span class="menu">System Settings → Desklets</span> removes <b>all</b>
+aVinceLaunch fences at once; Cinnamon deletes their settings. To remove a
+single fence, <b>right-click a free spot</b> in the fence or its title row →
+<span class="menu">Remove this fence…</span>. The confirmation names the
+fence; clicking with Ctrl held skips it. When the right-click hits an item
+the entry is not in the menu – but the narrow gap between two items counts
+as a free spot.</p>
+<p><b>After removing</b> a fence its folder and all files in it are kept –
+it is just not shown anywhere any more, and “Move to” no longer offers it.
+To see it again, add a fence (e.g. <span class="menu">Duplicate fence</span>)
+and pick the old folder in
+<span class="menu">Configure… → General → Link storage</span>. Duplicates,
+too, leave their own folder behind when removed.</p>
+<p><b>Removed by mistake?</b> Cinnamon deletes the fence's settings; the
+backup is kept for 30&nbsp;days (see <a href="#backup">Backing up</a>). To
+bring the fence back:</p>
+<ol>
+  <li>In another fence choose <span class="menu">Duplicate fence</span>.</li>
+  <li>In the new fence open <span class="menu">Configure… → ☰ → Import from a
+      file</span> and pick the newest file in
+      <code>~/.config/avincelaunch/backups/einstellungen-&lt;number&gt;/</code>
+      of the removed fence. The confirmation on removing names the number.</li>
+  <li>The fence takes over folder, name, look, size and position – it is back
+      where it was.</li>
+</ol>
+
+<h2 id="addon">16. Add-on package (optional)</h2>
+<p>A few things a desklet cannot do by itself. For them there are the
+<b>aVinceLaunch helpers</b>, a separate download (GitHub release page,
+<code>aVinceLaunch-Helfer-0.1.0.tar.gz</code>) – they are <b>not</b> part of
+the package from Cinnamon Spices:</p>
+<ul>
+  <li><b>Program watcher</b> – asks for every newly installed program or web
+      app which fence it should go into, usually with a suggestion.</li>
+  <li><b>Super+Shift+D</b> – “desktop free”: all fences and the desktop icons
+      off, press again to bring them back. The state stays after a restart,
+      until the next press. Works on X11 and Wayland.</li>
+  <li><b>Move to a fence…</b> – right-click a launcher on the desktop.</li>
+  <li><b>Double-click</b> on the free desktop – like Super+Shift+D, X11 only
+      and only if switched on at installation. It listens to mouse buttons
+      only.</li>
+</ul>
+<p>Install with <code>./install.sh</code> from the unpacked package – only
+into your own folders, with a backup of everything it replaces; remove with
+<code>~/.local/share/avincelaunch-helfer/uninstall.sh</code>. Details are in
+the package's <code>README.md</code>.</p>
+
+<h2 id="origin">17. Origin and licence</h2>
+<p class="small">aVinceLaunch is a fork of <b>TheLauncher 1.0.3</b> by MHK924
+(MIT), which in turn started from <b>Quick Links – Launcher</b> by NotSirius-A.
+Own work by Angelo Vincenti – aVince Industrietechnik under GPL-3.0-only.
+Many thanks to MHK924 for TheLauncher and for kindly allowing it to be built
+upon.
+Details in <a href="../THIRD-PARTY-NOTICES.md"><code>THIRD-PARTY-NOTICES.md</code></a>
+and <a href="../LICENSE"><code>LICENSE</code></a> in the desklet folder.</p>
+</main>
+</body>
+</html>

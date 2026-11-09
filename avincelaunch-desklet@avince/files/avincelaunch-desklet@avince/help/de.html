@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>aVinceLaunch – Hilfe</title>
+<style>
+  :root {
+    --bg: #fbfbfa; --fg: #1f2328; --muted: #5d6670; --line: #d9dde1;
+    --accent: #3b6ea8; --warn-bg: #fff4e5; --warn-line: #e8a33d; --code: #eef1f4;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1d2024; --fg: #e6e8ea; --muted: #a2aab3; --line: #3a3f45;
+      --accent: #7fb0e6; --warn-bg: #3a2e1c; --warn-line: #c98a2e; --code: #2a2e33;
+    }
+  }
+  body { background: var(--bg); color: var(--fg); margin: 0;
+         font: 16px/1.6 "Noto Sans", "Ubuntu", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 32px 20px 64px; }
+  h1 { margin: 0 0 4px; font-size: 1.8em; }
+  .brand { display: flex; align-items: center; gap: 14px; margin-bottom: 4px; }
+  .brand img { border-radius: 10px; }
+  .brand .sub { font-weight: 400; color: var(--muted); }
+  .slogan { color: var(--muted); margin: 0 0 24px; }
+  h2 { margin-top: 2.2em; padding-top: .6em; border-top: 1px solid var(--line); font-size: 1.3em; }
+  h3 { margin-bottom: .2em; font-size: 1.05em; }
+  a { color: var(--accent); }
+  nav ol { padding-left: 1.4em; columns: 2; column-gap: 32px; }
+  .menu { font-weight: 600; white-space: nowrap; }
+  kbd, code { background: var(--code); border-radius: 4px; padding: 1px 5px; font-size: .92em; }
+  .warn { background: var(--warn-bg); border-left: 4px solid var(--warn-line);
+          padding: 10px 14px; border-radius: 4px; }
+  table { border-collapse: collapse; width: 100%; }
+  td, th { text-align: left; vertical-align: top; padding: 6px 8px; border-bottom: 1px solid var(--line); }
+  .small { color: var(--muted); font-size: .9em; }
+  @media (max-width: 560px) { nav ol { columns: 1; } }
+</style>
+</head>
+<body>
+<main>
+<header class="brand"><img src="../icon.png" alt="" width="56" height="56"><h1>aVinceLaunch <span class="sub">– Hilfe</span></h1></header>
+<p class="slogan">Ordnen · Finden · Starten – Schreibtisch-Organisierer für Linux Mint Cinnamon</p>
+
+<nav>
+<ol>
+  <li><a href="#prinzip">Das Prinzip und der erste Fence</a></li>
+  <li><a href="#inhalt">Inhalt und Reihenfolge</a></li>
+  <li><a href="#starten">Starten und Ordner</a></li>
+  <li><a href="#symbolmenue">Das Symbol-Menü</a></li>
+  <li><a href="#portal">Ordner-Portal (nur Ansicht)</a></li>
+  <li><a href="#titel">Titelzeile, Einklappen, Suche</a></li>
+  <li><a href="#verschieben">Verschieben und Sperren</a></li>
+  <li><a href="#groesse">Größe ändern</a></li>
+  <li><a href="#einrasten">Einrasten und Hilfslinien</a></li>
+  <li><a href="#anordnung">Anordnung, Verlauf, Ausrichten</a></li>
+  <li><a href="#aussehen">Aussehen</a></li>
+  <li><a href="#menue">Das Kontextmenü</a></li>
+  <li><a href="#einrichten">Der Dialog „Einrichten“</a></li>
+  <li><a href="#sichern">Sichern und übertragen</a></li>
+  <li><a href="#vorsicht">Vorsicht</a></li>
+  <li><a href="#zusatzpaket">Zusatzpaket (optional)</a></li>
+  <li><a href="#herkunft">Herkunft und Lizenz</a></li>
+</ol>
+</nav>
+
+<h2 id="prinzip">1. Das Prinzip und der erste Fence</h2>
+<p>Ein <b>Fence</b> ist ein Bereich auf dem Schreibtisch, der den Inhalt
+<b>eines Ordners</b> zeigt: Programme (<code>.desktop</code>-Dateien),
+Dokumente und Unterordner. Der Ordner ist die Quelle – was dort liegt,
+erscheint im Fence; was dort gelöscht wird, verschwindet.</p>
+<p>Man beginnt mit <b>einem</b> Fence. Er zeigt den noch leeren Ordner
+<code>default</code> im <b>gemeinsamen Basisordner</b>
+(Vorgabe <code>~/.local/share/avincelaunch</code>). Jeder Fence hat darin
+seinen eigenen <b>Verknüpfungsordner</b>.</p>
+<p><b>Weitere Fences</b> entstehen auf drei Wegen:</p>
+<ul>
+  <li><span class="menu">Rechtsklick → Startaufstellung …</span> (auch im
+      Schnellstart) – neun Fences mit Titel (Internet, Kommunikation, Büro,
+      Grafik &amp; Fotos, Multimedia, Spiele, Entwicklung, Werkzeuge, System)
+      im Raster 3 × 3. Die installierten Programme werden nach ihrer Kategorie
+      vorgeschlagen: in der Vorschau abwählen oder einem anderen Fence
+      zuordnen, dann <span class="menu">Anlegen</span>. Die Programme werden
+      als Kopie ihrer <code>.desktop</code>-Datei in die neuen Ordner gelegt;
+      Cinnamons Einstellungsseiten werden nicht vorgeschlagen. Ein leerer,
+      unbenannter Fence, von dem aus man startet, wird der erste. Rückweg:
+      <span class="menu">Startaufstellung entfernen …</span> – die Fences
+      gehen, ihre Ordner kommen nach
+      <code>~/.config/avincelaunch/backups/startaufstellung-…</code>.</li>
+  <li><span class="menu">Rechtsklick → Fence duplizieren</span> – gleiches
+      Aussehen und gleiche Größe, aber ein eigener, leerer Ordner (bei einem
+      Ordner-Portal derselbe Ordner). Das Duplikat erscheint am nächsten
+      freien Platz daneben – ist keiner frei, leicht versetzt über dem
+      Original –, ist entsperrt und lässt sich gleich an seinen Platz ziehen.</li>
+  <li><span class="menu">Systemeinstellungen → Desklets</span>: aVinceLaunch
+      markieren, unten auf <kbd>+</kbd> klicken.</li>
+</ul>
+<p>Den Namen eines Fence und seinen Ordner legt man unter
+<span class="menu">Einrichten … → Allgemein</span> fest. Ohne eigenen Namen
+heißt der Fence wie sein Ordner.</p>
+
+<h2 id="inhalt">2. Inhalt und Reihenfolge</h2>
+<ul>
+  <li>Dateien, Programmverknüpfungen oder Ordner in den Verknüpfungsordner
+      kopieren – am schnellsten über
+      <span class="menu">Rechtsklick → Verknüpfungsordner öffnen</span>.</li>
+  <li>Oder im Dialog <span class="menu">Einrichten … → Inhalte</span>:
+      Einträge hinzufügen, bearbeiten, Reihenfolge ändern, dann übernehmen.</li>
+</ul>
+<p>Der Fence aktualisiert sich von selbst, sobald sich der Ordner ändert.</p>
+<p><span class="menu">Einrichten … → Allgemein → Reihenfolge im Fence</span>
+bestimmt die Ordnung:</p>
+<table>
+  <tr><td class="menu">Manuell (Liste unter „Inhalte“)</td><td>so, wie die Liste auf der Seite „Inhalte“ steht (Vorgabe)</td></tr>
+  <tr><td class="menu">Name A–Z / Name Z–A</td><td>alphabetisch</td></tr>
+  <tr><td class="menu">Typ</td><td>Ordner, dann Programme, dann Dokumente</td></tr>
+  <tr><td class="menu">Änderungsdatum</td><td>zuletzt geänderte zuerst</td></tr>
+  <tr><td class="menu">Zuletzt hinzugefügt</td><td>neueste Einträge zuerst</td></tr>
+</table>
+<p>Ein <b>angepinnter</b> Eintrag (siehe <a href="#symbolmenue">Symbol-Menü</a>)
+steht unabhängig davon immer vorn. Fehlt ein Eintrag vorübergehend – etwa
+weil ein Programm gerade neu installiert wird –, behält er seinen Platz in
+der Liste noch <b>30 Tage</b>.</p>
+
+<h2 id="starten">3. Starten und Ordner</h2>
+<ul>
+  <li>Ein Klick startet ein Programm oder öffnet ein Dokument.
+      <span class="menu">Einrichten … → Allgemein → Startverhalten</span>:
+      Einfach- oder Doppelklick.</li>
+  <li>Ordner öffnen sich im Fence; zurück geht es über <b>Start</b>.
+      Unter <span class="menu">Klick auf einen Ordner</span> lässt sich
+      stattdessen die Dateiverwaltung wählen.</li>
+  <li>Bleibt die Maus kurz ruhig auf einer Kachel, zeigt ein Tooltip den
+      vollen Namen und darunter Beschreibung bzw. Pfad.</li>
+</ul>
+
+<h2 id="symbolmenue">4. Das Symbol-Menü</h2>
+<p>Ein <b>Rechtsklick auf ein Symbol</b> zeigt oben im Kontextmenü dessen
+Namen und diese Einträge:</p>
+<table>
+  <tr><td class="menu">Verschieben nach ▸</td><td>in einen anderen Fence mit eigenem Ordner (Portale und Fences mit gesperrtem Inhalt sind kein Ziel)</td></tr>
+  <tr><td class="menu">Vorn anpinnen / Lösen</td><td>der Eintrag steht immer vorn, gleich welche Reihenfolge gilt; eine Nadel zeigt das an</td></tr>
+  <tr><td class="menu">Aus dem Fence entfernen …</td><td>nach einer Rückfrage in den <b>Papierkorb</b> – von dort lässt er sich zurückholen</td></tr>
+</table>
+<p>Nach einem Verschieben steht im Kontextmenü jedes Fence
+<span class="menu">Rückgängig: „…“ nach …</span>; die Meldung am Bildschirmrand
+hat denselben Knopf. Rückgängig geht immer nur das <b>letzte</b> Verschieben.</p>
+<p>Ist der Inhalt gesperrt (<a href="#verschieben">Sperren ▸ Inhalt</a>), sind
+diese Einträge ausgegraut.</p>
+
+<h2 id="portal">5. Ordner-Portal (nur Ansicht)</h2>
+<p>Statt eines Gruppenordners kann ein Fence einen <b>beliebigen vorhandenen
+Ordner</b> zeigen, zum Beispiel <code>~/Downloads</code>:
+<span class="menu">Einrichten … → Allgemein → Speicherort → Quelle:
+Ordner-Portal (nur Ansicht)</span>, dann mit <span class="menu">Auswählen …</span>
+den Ordner wählen.</p>
+<ul>
+  <li>Ein Portal ist eine <b>reine Ansicht</b>: Dateien öffnen, Programme starten,
+      in Unterordner gehen. aVinceLaunch legt im Ordner nichts an, ändert nichts
+      und löscht nichts – auch keine eigene Hilfsdatei.</li>
+  <li><b>Ausnahme Basisordner:</b> Zeigt ein Portal einen Ordner, in dem der
+      aVinceLaunch-Basisordner liegt (zum Beispiel den persönlichen Ordner
+      <code>~</code>), bleiben der Basisordner und seine Gruppen beschreibbar –
+      die Gruppen-Fences arbeiten dort weiter wie gewohnt. Der Dialog weist
+      beim Wählen eines solchen Ordners darauf hin.</li>
+  <li>Geschützt ist der Portalordner unter seinem eigenen Pfad. Ein
+      <b>Verweis</b> (Symlink) von anderswo auf ihn wird nicht verfolgt:
+      Zeigt etwa ein Gruppenordner in Wahrheit auf den Portalordner, schreibt
+      aVinceLaunch über diesen Verweis wie in jede Gruppe.</li>
+  <li>Sortiert wird immer automatisch (Einstellung „Automatische
+      Ordnersortierung“); die Seite <span class="menu">Inhalte</span> zeigt bei
+      Portalen nur einen Hinweis.</li>
+  <li>Höchstens 200 Einträge; darunter führt ein Hinweis zu den übrigen in der
+      Dateiverwaltung.</li>
+  <li>Versteckte Dateien lassen sich einblenden.</li>
+  <li><b>Auf der NAS</b> (oder einem anderen Netzlaufwerk) schaut aVinceLaunch
+      alle 30&nbsp;Sekunden selbst nach, ob sich etwas geändert hat – nur
+      solange der Fence sichtbar ist, im Hintergrund. Ist die NAS nicht
+      erreichbar, zeigt der Fence das an und versucht es jede Minute erneut.
+      Antwortet sie gar nicht (das Einlesen hängt), zeigt er nach
+      2&nbsp;Minuten „nicht erreichbar“ und versucht es noch genau einmal;
+      hängt auch das, wartet er, bis die NAS wieder antwortet.</li>
+</ul>
+
+<h2 id="titel">6. Titelzeile, Einklappen, Suche</h2>
+<p>Neue Fences zeigen ihre Titelzeile (☰, Name, Pfeil) unter der Maus.
+Ist sie ausgeschaltet, schwebt beim gesperrten Fence nur der Name über dem
+Fence, solange die Maus darauf steht. Ein- und ausschalten unter
+<span class="menu">Einrichten … → Allgemein → Titel → Titelzeile anzeigen</span>
+oder für alle Fences auf einmal mit
+<span class="menu">Rechtsklick → Titel aller Fences einblenden</span>
+(bzw. <span class="menu">… ausblenden</span>).</p>
+<p><span class="menu">Lage der Titelzeile</span>:</p>
+<ul>
+  <li><b>Im Fence – nur unter der Maus</b> (Vorgabe)</li>
+  <li><b>Im Fence – immer</b></li>
+  <li><b>Über dem Fence – als Lasche unter der Maus</b></li>
+</ul>
+<p>Links in der Titelzeile öffnet der Knopf <b>☰</b> das Kontextmenü.
+Ein entsperrter Fence zeigt seine Titelzeile immer – sie ist dann der Griff
+zum Verschieben.</p>
+<p><b>Einklappen:</b> mit dem Pfeil in der Titelzeile oder
+<span class="menu">Rechtsklick → Fence einklappen</span>. Übrig bleibt die
+Titelzeile; der Platz darunter bleibt frei, damit beim Aufklappen nichts
+verdeckt wird. Aufklappen mit dem Pfeil, einem Doppelklick auf die Leiste
+oder dem Menü. Mit <span class="menu">Eingeklappt beim Überfahren
+aufklappen</span> öffnet sich ein eingeklappter Fence, solange die Maus
+darauf steht.</p>
+<p><b>Suche:</b> <span class="menu">Rechtsklick → Alle Fences
+durchsuchen …</span> öffnet ein Suchfeld. Beim Tippen zeigen alle Fences nur
+noch die Einträge, deren Name passt (eingeklappte Fences bleiben zu). Ein
+Klick auf einen Treffer startet ihn, <kbd>Enter</kbd> startet den ersten –
+Reihe für Reihe von oben links. <kbd>Esc</kbd> oder ein Klick daneben
+schließt die Suche. Auf Wunsch gibt es dafür eine Lupe in der Titelzeile
+(<span class="menu">Einrichten … → Allgemein → Such-Knopf in der Titelzeile</span>).</p>
+
+<h2 id="verschieben">7. Verschieben und Sperren</h2>
+<p><b>Neue Fences sind gesperrt</b> – so verrutscht nichts aus Versehen.
+Das Untermenü <span class="menu">Rechtsklick → Sperren ▸</span> hat drei
+Schalter:</p>
+<table>
+  <tr><td class="menu">Position</td><td>Verschieben aus bzw. an</td></tr>
+  <tr><td class="menu">Größe</td><td>Größe ändern aus bzw. an; im Dialog zusätzlich „Wie die Position“ (Vorgabe)</td></tr>
+  <tr><td class="menu">Inhalt</td><td>kein Verschieben, Entfernen oder Anpinnen über das Symbol-Menü, und der Fence nimmt nichts aus anderen Fences oder vom Schreibtisch an; die Seite „Inhalte“ bleibt nutzbar</td></tr>
+</table>
+<p>So verschiebt man einen Fence:</p>
+<ol>
+  <li><span class="menu">Rechtsklick → Sperren ▸ Position</span> ausschalten.
+      Das Menü zeigt dann rot den Hinweis <i>Größe: Rand oder Ecke ziehen</i>.</li>
+  <li>Den Fence an der Titelzeile ziehen.</li>
+  <li>Danach <span class="menu">Sperren ▸ Position</span> wieder einschalten.</li>
+</ol>
+<p>Die Lage lässt sich auch unter
+<span class="menu">Einrichten … → Ansicht → Position</span> als Zahl eingeben
+(dort auf Wunsch am Desklet-Raster ausgerichtet).</p>
+
+<h2 id="groesse">8. Größe ändern</h2>
+<p>Bei entsperrter Größe am <b>rechten Rand</b>, am <b>unteren Rand</b> oder an
+der <b>Ecke unten rechts</b> ziehen. Ein Rahmen zeigt die neue Größe;
+gespeichert wird beim Loslassen. <kbd>Esc</kbd> bricht ab.</p>
+<ul>
+  <li><span class="menu">Vorherige Größe wiederherstellen</span> nimmt die
+      letzte Änderung zurück – auch bei gesperrtem Fence.</li>
+  <li><span class="menu">Ursprüngliche Größe wiederherstellen</span> holt die
+      Größe vor der ersten Änderung zurück.</li>
+</ul>
+
+<h2 id="einrasten">9. Einrasten und Hilfslinien</h2>
+<p>Beim Verschieben und Größeändern rastet ein Fence an seinen Nachbarn ein:
+Kanten bündig, gleiche Breite oder Höhe, gleiche Abstände wie zwischen den
+übrigen Fences. Grüne Hilfslinien zeigen, woran er sich ausrichtet.
+Bildschirmränder halten einen Mindestabstand, und Fences schieben sich nicht
+übereinander. Andere Desklets (z. B. aVincePulse) gelten als Hindernis und
+werden nie bewegt.</p>
+<p><b>Mit gedrückter <kbd>Strg</kbd>-Taste</b> zieht man frei: kein Einrasten,
+kein Raster, kein Überlappungsschutz – nur die Bildschirmränder bleiben.
+Angezeigt wird dann <b>FREI (Strg)</b>. Ein so gesetzter Fence bleibt auch
+nach einem Neustart genau dort.</p>
+<p class="small">Grenze: Wird in den Systemeinstellungen das Desklet-Raster
+ein- oder umgeschaltet, richtet Cinnamon selbst alle Desklets daran aus –
+frei gesetzte Fences rücken dann beim nächsten Start ins Raster.</p>
+
+<h2 id="anordnung">10. Anordnung, Verlauf, Ausrichten</h2>
+<p><span class="menu">Rechtsklick → Anordnung wiederherstellen ▸</span>
+zeigt die letzten drei Änderungen an Position und Größe aller Fences, mit
+Uhrzeit und einem Symbol für die Art (verschoben, Breite, Höhe, …).
+Änderungen innerhalb einer Minute zählen als eine. Ganz oben steht immer die
+<b>Ursprüngliche Anordnung</b>. Auch das Zurückholen landet im Verlauf und
+lässt sich so wieder rückgängig machen.</p>
+<p><span class="menu">Alle Fences ausrichten</span> bringt leicht verrutschte
+Fences zurück in Reihe und Spalte. Maßgeblich ist, wie die Mehrheit steht;
+die Abstände merkt sich aVinceLaunch beim ersten Start. Weit verschobene
+Fences bleiben, wo sie sind, und nichts wird verdeckt.</p>
+
+<h2 id="aussehen">11. Aussehen</h2>
+<p>Unter <span class="menu">Einrichten … → Darstellung</span>:</p>
+<table>
+  <tr><th>Farbmodus</th><th>Wirkung</th></tr>
+  <tr><td>aVinceLaunch</td><td>Standard: durchsichtige Kacheln auf grauem, halbdurchsichtigem Grund</td></tr>
+  <tr><td>System</td><td>helle oder dunkle Vorlage je nach Systemthema</td></tr>
+  <tr><td>Hell / Dunkel</td><td>die gewählte helle bzw. dunkle Vorlage</td></tr>
+  <tr><td>Eigene</td><td>eigene Farben – wird automatisch gewählt, sobald man eine Farbe ändert</td></tr>
+</table>
+<p><span class="menu">Rechtsklick → Darstellung zurücksetzen …</span> setzt
+nach einer Rückfrage Farben, Schrift, Schatten und Rahmen <b>dieses</b> Fence
+auf das aVinceLaunch-Aussehen zurück. Ordner, Name, Größe und Position
+bleiben.</p>
+
+<h2 id="menue">12. Das Kontextmenü</h2>
+<table>
+  <tr><td class="menu">Fence einklappen / ausklappen</td><td>siehe <a href="#titel">Einklappen</a></td></tr>
+  <tr><td class="menu">Eingeklappt beim Überfahren aufklappen</td><td>Schalter, siehe <a href="#titel">Einklappen</a></td></tr>
+  <tr><td class="menu">Alle Fences durchsuchen …</td><td>siehe <a href="#titel">Suche</a></td></tr>
+  <tr><td class="menu">Fence umbenennen …</td><td>öffnet Einrichten; der Name steht ganz oben</td></tr>
+  <tr><td class="menu">Fence duplizieren</td><td>siehe <a href="#prinzip">Weitere Fences</a></td></tr>
+  <tr><td class="menu">Sperren ▸</td><td>Position, Größe, Inhalt – siehe <a href="#verschieben">Sperren</a></td></tr>
+  <tr><td class="menu">Vorherige / Ursprüngliche Größe wiederherstellen</td><td>siehe <a href="#groesse">Größe ändern</a></td></tr>
+  <tr><td class="menu">Anordnung wiederherstellen ▸</td><td>Verlauf, siehe <a href="#anordnung">Anordnung</a></td></tr>
+  <tr><td class="menu">Alle Fences ausrichten</td><td>Reihen und Spalten begradigen</td></tr>
+  <tr><td class="menu">Titel aller Fences ausblenden / einblenden</td><td>Titelzeile bei allen Fences auf einmal</td></tr>
+  <tr><td class="menu">Darstellung zurücksetzen …</td><td>Standardaussehen für diesen Fence</td></tr>
+  <tr><td class="menu">Verknüpfungsordner öffnen</td><td>den Ordner dieses Fence in der Dateiverwaltung</td></tr>
+  <tr><td class="menu">Schnellstart …</td><td>die Kurzübersicht</td></tr>
+  <tr><td class="menu">Startaufstellung … / Startaufstellung entfernen …</td><td>siehe <a href="#prinzip">Weitere Fences</a></td></tr>
+  <tr><td class="menu">Über … / Einrichten …</td><td>Einträge von Cinnamon</td></tr>
+  <tr><td class="menu">Diesen Fence entfernen …</td><td>siehe <a href="#vorsicht">Vorsicht</a>; steht nicht im Menü, wenn der Rechtsklick ein Symbol trifft</td></tr>
+</table>
+<p>Beim Rechtsklick auf ein Symbol kommen oben dessen Einträge dazu (siehe
+<a href="#symbolmenue">Symbol-Menü</a>), nach einem Verschieben außerdem
+<span class="menu">Rückgängig</span>.</p>
+
+<h2 id="einrichten">13. Der Dialog „Einrichten“</h2>
+<table>
+  <tr><td class="menu">Allgemein</td><td>Speicherort (Quelle: Gruppe oder Ordner-Portal, Verknüpfungs- bzw. Portal-Ordner), Titel (Name, Titelzeile, Lage, Ausrichtung), Verhalten (Startverhalten, Klick auf einen Ordner, Aufklappen beim Überfahren, Such-Knopf), Sortierung, Tooltips, „Für alle Fences“ (gemeinsamer Basisordner)</td></tr>
+  <tr><td class="menu">Darstellung</td><td>Farbmodus, Vorlagen, Rahmen, Schrift und Schatten, alle Farben</td></tr>
+  <tr><td class="menu">Ansicht</td><td>Raster (Spalten, Symbolgröße, Abstände), Größe und Größenanpassung, Position</td></tr>
+  <tr><td class="menu">Verhalten</td><td>Sperren: Position, Größe, Inhalt</td></tr>
+  <tr><td class="menu">Inhalte</td><td>Einträge und Unterordner bearbeiten, Reihenfolge</td></tr>
+</table>
+<p>Ein neuer gemeinsamer Basisordner gilt sofort: Die Gruppen-Fences zeigen
+den neuen Ordner, und auch das Einsortieren neuer Programme nimmt ihn ohne
+Neustart. Portale zeigen weiter ihren eigenen Ordner.</p>
+<p><b>Basisordner auf einer NAS</b> (oder einem anderen Netzlaufwerk): Die
+Gruppen-Fences lesen ihre Ordner dann im Hintergrund, wie ein Portal – eine
+hängende NAS hält den Schreibtisch nie an. Änderungen erscheinen nach
+höchstens 30&nbsp;Sekunden, solange ein Fence sichtbar ist; ist die NAS nicht
+erreichbar, meldet der Fence das – hängt das Lesen, nach 2&nbsp;Minuten mit
+„nicht erreichbar“ – und versucht es jede Minute erneut. Was du selbst anstößt –
+<span class="menu">Einrichten …</span>, das Menü eines Eintrags – liest den
+Ordner weiterhin direkt; hängt die NAS genau dann, wartet diese eine Aktion
+auf sie.</p>
+
+<h2 id="sichern">14. Sichern und übertragen</h2>
+<p>Im Dialog <span class="menu">Einrichten …</span> bietet das Menü
+<b>☰</b> oben rechts <span class="menu">In eine Datei exportieren</span> und
+<span class="menu">Aus einer Datei importieren</span> – jeweils für den
+gerade gewählten Fence.</p>
+<p class="warn">Ein Import ersetzt <b>alle</b> Einstellungen des Fence –
+auch Ordner, Name, Größe und Position. Vor dem Import prüfen, aus welchem
+Stand die Datei stammt; der Dateiname allein sagt das nicht.</p>
+<p>Zusätzlich sichert aVinceLaunch die Einstellungen jedes Fence von selbst –
+bei jedem Start, beim Öffnen von <span class="menu">Einrichten …</span> und
+vor dem Entfernen, aber nur, wenn sich etwas geändert hat. Unter
+<code>~/.config/avincelaunch/backups/einstellungen-&lt;Nummer&gt;/</code>
+liegen die letzten fünf Stände und dazu der jüngste, der älter als einen Tag
+ist; der Dateiname ist Datum und Uhrzeit. Den Ordner eines entfernten Fence
+löscht aVinceLaunch 30&nbsp;Tage nach dem Entfernen.</p>
+<p><b>Einen gesicherten Stand zurückholen:</b>
+<span class="menu">Einrichten … → ☰ → Aus einer Datei importieren</span> und
+eine Datei aus dem Ordner oben wählen. Der Ordner <code>.config</code> ist
+versteckt: im Dateidialog <b>Strg+H</b> drücken oder mit <b>Strg+L</b> den
+Pfad eintippen. Es gilt die Warnung oben – der Import ersetzt alle
+Einstellungen des gerade gewählten Fence. Reagiert der Dateidialog nach
+<span class="menu">Öffnen</span> nicht mehr, das Fenster
+<span class="menu">Einrichten</span> schließen und neu öffnen – bis dahin ist
+nichts geändert. Was dabei schiefging, steht in
+<code>~/.cache/avincelaunch/einrichten-&lt;Nummer&gt;.log</code> (bei jedem
+Öffnen neu) – diese Datei hilft bei einer Fehlermeldung.</p>
+<p>Die Inhalte selbst liegen als Dateien im Basisordner und lassen sich wie
+jeder andere Ordner sichern.</p>
+
+<h2 id="vorsicht">15. Vorsicht</h2>
+<p class="warn"><b>„Vorgabe wiederherstellen“</b> (☰ im Dialog Einrichten)
+setzt <b>alles</b> zurück: Ordner, Name, Größe und Position. Für das Aussehen
+allein gibt es <span class="menu">Darstellung zurücksetzen …</span>.</p>
+<p class="warn">Der Knopf <b>„–“</b> unter
+<span class="menu">Systemeinstellungen → Desklets</span> entfernt
+<b>alle</b> aVinceLaunch-Fences auf einmal; Cinnamon löscht dabei deren
+Einstellungen. Einen einzelnen Fence entfernt man mit einem
+<b>Rechtsklick auf eine freie Stelle</b> im Fence oder auf die Titelzeile →
+<span class="menu">Diesen Fence entfernen …</span>. Die Rückfrage nennt den
+Fence beim Namen; mit gedrückter Strg-Taste geklickt, entfällt sie. Trifft
+der Rechtsklick ein Symbol, steht der Eintrag nicht im Menü – die schmale
+Lücke zwischen zwei Symbolen zählt aber als freie Stelle.</p>
+<p><b>Nach dem Entfernen</b> bleibt der Ordner des Fence mit allen Dateien
+erhalten – er wird nur nirgends mehr angezeigt, und „Verschieben nach“
+bietet ihn nicht mehr an. Um ihn wieder zu sehen, einen Fence anlegen (z. B.
+<span class="menu">Fence duplizieren</span>) und unter
+<span class="menu">Einrichten … → Allgemein → Speicherort</span> den alten
+Ordner wählen. Auch Duplikate hinterlassen beim Entfernen ihren eigenen
+Ordner.</p>
+<p><b>Versehentlich entfernt?</b> Cinnamon löscht die Einstellungen des
+Fence, die Sicherung bleibt 30&nbsp;Tage (siehe
+<a href="#sichern">Sichern</a>). So kommt der Fence zurück:</p>
+<ol>
+  <li>In einem anderen Fence <span class="menu">Fence duplizieren</span>.</li>
+  <li>Im neuen Fence <span class="menu">Einrichten … → ☰ → Aus einer Datei
+      importieren</span> und im Ordner
+      <code>~/.config/avincelaunch/backups/einstellungen-&lt;Nummer&gt;/</code>
+      des entfernten Fence die jüngste Datei wählen. Die Nummer nennt die
+      Rückfrage beim Entfernen.</li>
+  <li>Der Fence übernimmt Ordner, Name, Aussehen, Größe und Lage – er steht
+      wieder, wo er war.</li>
+</ol>
+
+<h2 id="zusatzpaket">16. Zusatzpaket (optional)</h2>
+<p>Ein paar Dinge kann ein Desklet nicht selbst. Dafür gibt es die
+<b>aVinceLaunch-Helfer</b> als eigenen Download (Release-Seite bei GitHub,
+<code>aVinceLaunch-Helfer-0.1.0.tar.gz</code>) – sie sind <b>nicht</b> im
+Paket aus Cinnamon Spices:</p>
+<ul>
+  <li><b>Programm-Wächter</b> – fragt bei jedem neu installierten Programm
+      oder WebApp, in welchen Fence es soll, meist mit Vorschlag.</li>
+  <li><b>Super+Umschalt+D</b> – „Schreibtisch frei“: alle Fences und die
+      Schreibtischsymbole aus, nochmal drücken holt sie zurück. Der Zustand
+      bleibt auch nach einem Neustart, bis zum nächsten Drücken. Geht unter
+      X11 und Wayland.</li>
+  <li><b>In einen Fence verschieben …</b> – Rechtsklick auf ein Programmsymbol
+      auf dem Schreibtisch.</li>
+  <li><b>Doppelklick</b> auf den freien Schreibtisch – wie Super+Umschalt+D,
+      nur unter X11 und nur, wenn bei der Installation eingeschaltet. Er hört
+      nur auf Maustasten.</li>
+</ul>
+<p>Installiert wird mit <code>./install.sh</code> aus dem entpackten Paket,
+nur in die eigenen Ordner und mit Sicherung von allem, was ersetzt wird;
+entfernt mit <code>~/.local/share/avincelaunch-helfer/uninstall.sh</code>.
+Einzelheiten stehen in der <code>README.de.md</code> des Pakets.</p>
+
+<h2 id="herkunft">17. Herkunft und Lizenz</h2>
+<p class="small">aVinceLaunch ist ein Fork von <b>TheLauncher 1.0.3</b> von
+MHK924 (MIT), das wiederum auf <b>Quick Links – Launcher</b> von NotSirius-A
+aufbaut. Eigene Arbeit von Angelo Vincenti – aVince Industrietechnik unter
+GPL-3.0-only. Herzlichen Dank an MHK924 für TheLauncher und die freundliche
+Erlaubnis, darauf aufzubauen. Einzelheiten in <a href="../THIRD-PARTY-NOTICES.md"><code>THIRD-PARTY-NOTICES.md</code></a>
+und <a href="../LICENSE"><code>LICENSE</code></a> im Ordner des Desklets.</p>
+</main>
+</body>
+</html>

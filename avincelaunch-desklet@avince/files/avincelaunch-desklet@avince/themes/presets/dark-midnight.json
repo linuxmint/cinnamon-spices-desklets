@@ -1,0 +1,22 @@
+{
+  "id": "dark-midnight",
+  "name": "Dark Midnight",
+  "mode": "dark",
+  "tokens": {
+    "link-bg-color": "#1a8fb4",
+    "document-bg-color": "#1a6b4a",
+    "border-color": "#0d2137",
+    "text-color": "#e0f0ff",
+    "shadow-color": "#000000a0",
+    "folder-bg-color": "#1e3a5f",
+    "folder-border-color": "#0d2137",
+    "folder-icon-tint": "#80d0f0",
+    "desklet-bg-color": "#0a1628",
+    "title-color": "#80d0f0",
+    "hover-bg-color": "#22a8d4",
+    "pressed-bg-color": "#157a9a",
+    "disabled-opacity": 0.4,
+    "tooltip-bg-color": "#0d2137",
+    "tooltip-text-color": "#e0f0ff"
+  }
+}
