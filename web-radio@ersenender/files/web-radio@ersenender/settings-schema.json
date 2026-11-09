@@ -1,0 +1,131 @@
+{
+    "kopf-sender": {
+        "type": "header",
+        "description": "Stations"
+    },
+    "sender": {
+        "type": "list",
+        "height": 330,
+        "description": "Name and stream address per station; sort with the arrows",
+        "tooltip": "The address is the direct stream (usually ending in .mp3, .aac or .m3u8), not the station's website. Logo: leave empty = looked up automatically; otherwise an image address (https://…) or a file (/home/…/logo.png).",
+        "columns": [
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string",
+                "default": ""
+            },
+            {
+                "id": "url",
+                "title": "Stream address",
+                "type": "string",
+                "default": "https://"
+            },
+            {
+                "id": "logo",
+                "title": "Logo (optional)",
+                "type": "string",
+                "default": ""
+            }
+        ],
+        "default": []
+    },
+    "kopf-wiedergabe": {
+        "type": "header",
+        "description": "Playback"
+    },
+    "lautstaerke": {
+        "type": "scale",
+        "default": 60,
+        "min": 0,
+        "max": 100,
+        "step": 5,
+        "description": "Volume"
+    },
+    "autostart": {
+        "type": "switch",
+        "default": false,
+        "description": "Play the last station after login"
+    },
+    "letzter": {
+        "type": "generic",
+        "default": ""
+    },
+    "kopf-anzeige": {
+        "type": "header",
+        "description": "Display"
+    },
+    "zeige-cover": {
+        "type": "switch",
+        "default": true,
+        "description": "Show track cover or station logo",
+        "tooltip": "The cover is looked up by the track text at iTunes and Deezer, the logo at radio-browser.info. When switched off, none of these requests are sent."
+    },
+    "zeige-liste": {
+        "type": "switch",
+        "default": true,
+        "description": "Station list in the desklet (click = play)"
+    },
+    "liste-zeilen": {
+        "type": "spinbutton",
+        "default": 7,
+        "min": 3,
+        "max": 20,
+        "step": 1,
+        "units": "",
+        "dependency": "zeige-liste",
+        "description": "Visible stations, scroll for more"
+    },
+    "groesse": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.8,
+        "max": 1.8,
+        "step": 0.05,
+        "description": "Size"
+    },
+    "deckkraft": {
+        "type": "scale",
+        "default": 0.82,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity"
+    },
+    "kopf-farben": {
+        "type": "header",
+        "description": "Colours"
+    },
+    "akzent": {
+        "type": "combobox",
+        "default": "gelb",
+        "description": "Accent colour",
+        "options": {
+            "Yellow": "gelb",
+            "Red": "rot",
+            "Orange": "orange",
+            "Green": "gruen",
+            "Teal": "tuerkis",
+            "Blue": "blau",
+            "Purple": "violett",
+            "Own colour": "eigen"
+        }
+    },
+    "akzent-eigen": {
+        "type": "colorchooser",
+        "default": "#ffcb08",
+        "dependency": "akzent=eigen",
+        "description": "Own accent colour"
+    },
+    "hintergrund": {
+        "type": "combobox",
+        "default": "grau",
+        "description": "Card colour",
+        "options": {
+            "Dark grey": "grau",
+            "Dark teal": "tuerkis",
+            "Dark blue": "blau",
+            "Black": "schwarz"
+        }
+    }
+}

@@ -1,0 +1,37 @@
+/* Webradio-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten. */
+.wr-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+    width: 12em;
+}
+.wr-kopf { font-size: 1.25em; font-weight: bold; color: #ffcb08; }
+.wr-sender { font-size: 0.92em; color: #d8d4c8; padding-top: 0.15em; }
+.wr-titel { font-size: 0.86em; color: #a39e94; }
+/* Zeile „läuft gerade“: Cover bzw. Senderlogo links; die Kantenlänge setzt desklet.js */
+.wr-jetzt { spacing: 0.65em; padding-top: 0.25em; }
+.wr-bild { border-radius: 5px; background-color: rgba(242, 239, 230, 0.08); color: #a39e94; }
+.wr-bedien-box {
+    margin-top: 0.8em;
+    padding: 0.7em 0 0.6em 0;
+    border-top: 1px solid rgba(242, 239, 230, 0.14);
+    border-bottom: 1px solid rgba(242, 239, 230, 0.14);
+}
+.wr-tasten { spacing: 0.9em; }
+.wr-taste { padding: 0.45em; border-radius: 99px; color: #f2efe6; }
+.wr-taste:hover { background-color: rgba(255, 203, 8, 0.24); }
+.wr-taste-haupt { padding: 0.7em; border-radius: 99px; background-color: #ffcb08; color: #231f20; }
+.wr-taste-haupt:hover { background-color: #ffd94a; }
+.wr-laut { spacing: 0.4em; padding-top: 0.6em; }
+.wr-taste-klein { padding: 0.25em; border-radius: 99px; color: #a39e94; }
+.wr-taste-klein:hover { color: #f2efe6; background-color: rgba(255, 203, 8, 0.24); }
+/* Zeichenfläche (desklet.js); die Höhe ist die Greiffläche, der Strich selbst ist dünner */
+.wr-spur { height: 1.2em; }
+.wr-zeilen { margin-top: 0.55em; }
+.wr-zeile { padding: 0.28em 0.6em; border-radius: 7px; }
+.wr-zeile:hover { background-color: rgba(255, 203, 8, 0.16); }
+.wr-zeile-name { font-size: 1em; }
+.wr-aktiv, .wr-aktiv:hover { background-color: #ffcb08; color: #231f20; font-weight: bold; }
+.wr-status { font-size: 0.8em; color: #a39e94; padding-top: 0.6em; text-align: center; }
+.wr-fehler { color: #ff7b72; }
