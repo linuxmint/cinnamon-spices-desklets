@@ -1,0 +1,26 @@
+/* Weltzeit-Desklet: dieselbe dunkle Pardus-Karte wie die Gebetszeiten.
+   Die Zifferblätter zeichnet desklet.js selbst (Farben dort oben in FARBEN). */
+.wz-box {
+    padding: 1.1em 1.2em 0.9em 1.2em;
+    border-radius: 14px;
+    border: 1px solid rgba(255, 203, 8, 0.28);
+    color: #f2efe6;
+}
+.wz-kopf { font-size: 1.25em; font-weight: bold; color: #ffcb08; }
+.wz-datum { font-size: 0.92em; color: #d8d4c8; padding-top: 0.15em; }
+.wz-uhren {
+    spacing: 1.1em;
+    margin-top: 0.8em;
+    padding-top: 0.9em;
+    border-top: 1px solid rgba(242, 239, 230, 0.14);
+}
+.wz-uhren-ohne-kopf { margin-top: 0; padding-top: 0.2em; border-top-width: 0; }
+.wz-stadt { font-size: 0.95em; font-weight: bold; text-align: center; padding-top: 0.5em; }
+.wz-stadt-hier { color: #ffcb08; }
+.wz-digital { font-size: 1em; text-align: center; }
+.wz-abstand { font-size: 0.8em; color: #a39e94; text-align: center; }
+.wz-wechsel { font-size: 0.74em; font-weight: bold; color: #ffcb08; text-align: center; }
+/* Zeitleiste (zeichnet desklet.js, Farben dort in FARBEN); die Höhe setzt desklet.js */
+.wz-leiste { margin-top: 0.8em; padding-top: 0.7em; border-top: 1px solid rgba(242, 239, 230, 0.14); }
+.wz-zurueck { margin-top: 0.5em; padding: 0.2em 0.9em; border-radius: 99px; background-color: #ffcb08; }
+.wz-zurueck-text { font-size: 0.86em; font-weight: bold; color: #231f20; }

@@ -1,0 +1,9 @@
+{
+    "uuid": "world-clock@ersenender",
+    "name": "World Time",
+    "description": "Two to eight analog clocks side by side, each with its own city.",
+    "prevent-decorations": true,
+    "max-instances": "3",
+    "version": "1.0",
+    "author": "ersenender"
+}
