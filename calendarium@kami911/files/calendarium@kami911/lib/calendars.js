@@ -6,12 +6,19 @@
  *   • Hebrew calendar (Dershowitz-Reingold algorithmic method)
  *   • Islamic calendar (tabular/arithmetic method)
  *   • Persian calendar (Solar Hijri / Jalali, algorithmic)
+ *   • French Republican calendar (equinox-based, historically accurate —
+ *     see the toFrenchRepublican doc comment below)
  *
  * All conversion routines work through the Julian Day Number (JDN) as an
- * intermediate representation so each calendar is independent of the others.
+ * intermediate representation so each calendar is independent of the others,
+ * except French Republican, which depends on lib/solstice.js for its real
+ * astronomical autumn-equinox timing (desklet.js pushes lib/ onto
+ * imports.searchPath before any lib module loads, so this resolves fine).
  *
  * This module exports a single `Calendars` object.
  */
+
+const Solstice = imports.solstice.Solstice;
 
 var Calendars = {
 
@@ -45,6 +52,21 @@ var Calendars = {
     _PERSIAN_MONTHS: [
         "Farvardin", "Ordibehesht", "Khordad", "Tir", "Mordad", "Shahrivar",
         "Mehr", "Aban", "Azar", "Dey", "Bahman", "Esfand"
+    ],
+
+    _FRENCH_REPUBLICAN_MONTHS: [
+        "Vendémiaire", "Brumaire", "Frimaire",
+        "Nivôse", "Pluviôse", "Ventôse",
+        "Germinal", "Floréal", "Prairial",
+        "Messidor", "Thermidor", "Fructidor"
+    ],
+
+    // The 5 (or 6, in a sextile/leap year) intercalary days following
+    // Fructidor. Index 5 ("Jour de la Révolution") only applies in years
+    // whose cycle spans 366 days.
+    _FRENCH_REPUBLICAN_SANSCULOTTIDES: [
+        "Jour de la Vertu", "Jour du Génie", "Jour du Travail",
+        "Jour de l'Opinion", "Jour des Récompenses", "Jour de la Révolution"
     ],
 
     // ════════════════════════════════════════════════════════════════════
@@ -371,5 +393,83 @@ var Calendars = {
     formatPersian: function(year, month, day) {
         var p = this.toPersian(year, month, day);
         return p.day + " " + this._PERSIAN_MONTHS[p.month - 1] + " " + p.year;
+    },
+
+    // ════════════════════════════════════════════════════════════════════
+    // French Republican calendar  (equinox-based, historically accurate)
+    // ════════════════════════════════════════════════════════════════════
+    //
+    // Year 1 began at the true autumnal equinox of 1792 (22 September
+    // 1792), and each subsequent Republican year begins at the *next*
+    // true autumnal equinox — not a fixed arithmetic leap-year rule (the
+    // later "Romme method" some software uses). Whether a given Republican
+    // year has 5 or 6 intercalary Sansculottide days falls out naturally
+    // from the actual number of days between two real consecutive
+    // equinoxes (365 or 366), which is why this is built on
+    // Solstice.getForYear()'s real astronomical calculation.
+
+    /**
+     * Build a local-midnight Date for the calendar day a (possibly
+     * UTC-instant) Date falls on. Mirrors solstice.js's own getNext()
+     * technique of comparing local calendar days rather than raw UTC
+     * instants, to avoid timezone-driven off-by-one-day bugs.
+     * @param {Date} d
+     * @returns {Date}
+     */
+    _localMidnight: function(d) {
+        return new Date(d.getFullYear(), d.getMonth(), d.getDate(), 0, 0, 0, 0);
+    },
+
+    /**
+     * Convert a Gregorian date to the French Republican calendar.
+     * @param {number} year   Gregorian year
+     * @param {number} month  1–12
+     * @param {number} day    1–31
+     * @returns {Object}  { year, month, day, sansculottide }
+     *   month/day are 1-based and only meaningful when sansculottide === -1;
+     *   sansculottide is 0-4 (or 0-5 in a sextile year) for one of the 5/6
+     *   intercalary days, or -1 for a regular month day.
+     */
+    toFrenchRepublican: function(year, month, day) {
+        var target = new Date(year, month - 1, day, 0, 0, 0, 0);
+
+        // Which autumn equinox is this date's applicable Republican New Year?
+        var newYearEvent    = Solstice.getForYear(year).autumn;
+        var newYearMidnight = this._localMidnight(newYearEvent);
+        var republicanYear  = year - 1791;
+
+        if (target.getTime() < newYearMidnight.getTime()) {
+            // Not yet reached this Gregorian year's autumn equinox —
+            // the applicable New Year is the previous one.
+            newYearEvent    = Solstice.getForYear(year - 1).autumn;
+            newYearMidnight = this._localMidnight(newYearEvent);
+            republicanYear  = year - 1792;
+        }
+
+        var msPerDay = 86400000;
+        var daysSinceNewYear = Math.round((target.getTime() - newYearMidnight.getTime()) / msPerDay);
+
+        if (daysSinceNewYear < 360) {
+            var rMonth = Math.floor(daysSinceNewYear / 30) + 1;
+            var rDay   = (daysSinceNewYear % 30) + 1;
+            return { year: republicanYear, month: rMonth, day: rDay, sansculottide: -1 };
+        }
+
+        return { year: republicanYear, month: 0, day: 0, sansculottide: daysSinceNewYear - 360 };
+    },
+
+    /**
+     * Format a French Republican calendar date as a human-readable string.
+     * @param {number} year   Gregorian year (will be converted internally)
+     * @param {number} month  1–12
+     * @param {number} day    1–31
+     * @returns {string}  e.g. "3 Brumaire, an 234" or "Jour de la Vertu, an 3"
+     */
+    formatFrenchRepublican: function(year, month, day) {
+        var r = this.toFrenchRepublican(year, month, day);
+        if (r.sansculottide >= 0) {
+            return this._FRENCH_REPUBLICAN_SANSCULOTTIDES[r.sansculottide] + ", an " + r.year;
+        }
+        return r.day + " " + this._FRENCH_REPUBLICAN_MONTHS[r.month - 1] + ", an " + r.year;
     }
 };
