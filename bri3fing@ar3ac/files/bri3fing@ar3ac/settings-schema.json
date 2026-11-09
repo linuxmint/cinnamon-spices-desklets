@@ -1,0 +1,234 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "general-page",
+      "appearance-page"
+    ],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": [
+        "schedule-section",
+        "sync-section",
+        "notifications-section"
+      ]
+    },
+    "appearance-page": {
+      "type": "page",
+      "title": "Appearance",
+      "sections": [
+        "style-section",
+        "colors-section"
+      ]
+    },
+    "schedule-section": {
+      "type": "section",
+      "title": "Schedule & Briefing",
+      "keys": [
+        "days-ahead",
+        "show-past-events",
+        "show-event-location",
+        "time-format-24h"
+      ]
+    },
+    "sync-section": {
+      "type": "section",
+      "title": "Synchronization & Calendar",
+      "keys": [
+        "refresh-interval",
+        "default-calendar-uid",
+        "hidden-calendars"
+      ]
+    },
+    "notifications-section": {
+      "type": "section",
+      "title": "Desktop Notifications",
+      "keys": [
+        "notify-imminent-events",
+        "notify-lead-time"
+      ]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "Dimensions & Aesthetics",
+      "keys": [
+        "transparent-background",
+        "desklet-opacity",
+        "desklet-width",
+        "desklet-height",
+        "auto-shrink-height",
+        "font-size",
+        "header-font-size",
+        "compact-mode"
+      ]
+    },
+    "colors-section": {
+      "type": "section",
+      "title": "Custom Colors",
+      "keys": [
+        "custom-colors",
+        "section-color",
+        "title-color",
+        "time-color",
+        "calendar-tag-color"
+      ]
+    }
+  },
+  "days-ahead": {
+    "type": "spinbutton",
+    "default": 14,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "units": "days",
+    "description": "Number of days ahead to include in briefing (e.g. 14 for 2 weeks)"
+  },
+  "show-past-events": {
+    "type": "switch",
+    "default": false,
+    "description": "Show today's events that have already ended"
+  },
+  "show-event-location": {
+    "type": "switch",
+    "default": true,
+    "description": "Display event location when available"
+  },
+  "time-format-24h": {
+    "type": "switch",
+    "default": true,
+    "description": "Use 24-hour time format (e.g. 14:30 vs 2:30 PM)"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 120,
+    "step": 1,
+    "units": "minutes",
+    "description": "Automatic refresh frequency"
+  },
+  "default-calendar-uid": {
+    "type": "entry",
+    "default": "",
+    "description": "Default calendar UID for quick add (leave blank for auto-selection)"
+  },
+  "hidden-calendars": {
+    "type": "entry",
+    "default": "",
+    "description": "Hidden calendar UIDs (comma-separated, or toggle via right-click menu)"
+  },
+  "notify-imminent-events": {
+    "type": "switch",
+    "default": true,
+    "description": "Show desktop notifications for upcoming events"
+  },
+  "notify-lead-time": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "units": "minutes",
+    "description": "Notification lead time before event starts",
+    "dependency": "notify-imminent-events"
+  },
+  "transparent-background": {
+    "type": "switch",
+    "default": false,
+    "description": "Fully transparent desklet background"
+  },
+  "desklet-opacity": {
+    "type": "spinbutton",
+    "default": 30,
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "units": "%",
+    "description": "Background opacity (if transparent background is disabled)"
+  },
+  "desklet-width": {
+    "type": "spinbutton",
+    "default": 340,
+    "min": 260,
+    "max": 800,
+    "step": 10,
+    "units": "px",
+    "description": "Desklet width"
+  },
+  "desklet-height": {
+    "type": "spinbutton",
+    "default": 290,
+    "min": 180,
+    "max": 1200,
+    "step": 10,
+    "units": "px",
+    "description": "Default desklet height"
+  },
+  "auto-shrink-height": {
+    "type": "switch",
+    "default": false,
+    "description": "Automatically shrink height when there are few events"
+  },
+  "max-height": {
+    "type": "spinbutton",
+    "default": 520,
+    "min": 250,
+    "max": 1200,
+    "step": 20,
+    "units": "px",
+    "description": "Maximum widget height before scrolling (useful for 2+ week agendas)"
+  },
+  "font-size": {
+    "type": "spinbutton",
+    "default": 9,
+    "min": 7,
+    "max": 18,
+    "step": 1,
+    "units": "pt",
+    "description": "Font size for event titles"
+  },
+  "header-font-size": {
+    "type": "spinbutton",
+    "default": 11,
+    "min": 8,
+    "max": 20,
+    "step": 1,
+    "units": "pt",
+    "description": "Font size for header date"
+  },
+  "compact-mode": {
+    "type": "switch",
+    "default": true,
+    "description": "Compact layout with reduced spacing and padding"
+  },
+  "custom-colors": {
+    "type": "switch",
+    "default": false,
+    "description": "Enable custom field colors"
+  },
+  "section-color": {
+    "type": "colorchooser",
+    "default": "rgb(96,165,250)",
+    "description": "Section & Day header color",
+    "dependency": "custom-colors"
+  },
+  "title-color": {
+    "type": "colorchooser",
+    "default": "rgb(243,244,246)",
+    "description": "Event title text color",
+    "dependency": "custom-colors"
+  },
+  "time-color": {
+    "type": "colorchooser",
+    "default": "rgb(209,213,219)",
+    "description": "Time & duration label color",
+    "dependency": "custom-colors"
+  },
+  "calendar-tag-color": {
+    "type": "colorchooser",
+    "default": "rgb(147,197,253)",
+    "description": "Calendar name tag color",
+    "dependency": "custom-colors"
+  }
+}

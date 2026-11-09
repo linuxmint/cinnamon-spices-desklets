@@ -1,0 +1,512 @@
+/* Bri3fing Desklet Stylesheet (Stealth & Minimalist Dark Aesthetic) */
+
+.bri3fing-container {
+    background-color: rgba(20, 20, 24, 0.88);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    padding: 8px 10px;
+    color: #f3f4f6;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.40);
+}
+
+/* Header */
+.bri3fing-header {
+    padding-bottom: 5px;
+    margin-bottom: 3px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    spacing: 6px;
+}
+
+.bri3fing-date-button {
+    padding: 0;
+    margin: 0;
+    border: none;
+    background-color: transparent;
+    text-align: left;
+}
+
+.bri3fing-date-title {
+    font-size: 11pt;
+    font-weight: bold;
+    color: #ffffff;
+    letter-spacing: -0.2px;
+    transition-duration: 120ms;
+}
+
+.bri3fing-date-button:hover .bri3fing-date-title {
+    color: #93c5fd;
+}
+
+.bri3fing-subtitle {
+    font-size: 8pt;
+    color: #9ca3af;
+    padding-top: 1px;
+}
+
+/* Action Buttons (Add, Refresh, Search) */
+.bri3fing-action-button {
+    background-color: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 5px;
+    padding: 3px 5px;
+    color: #d1d5db;
+    transition-duration: 120ms;
+}
+
+.bri3fing-action-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+    border-color: rgba(96, 165, 250, 0.60);
+    color: #ffffff;
+}
+
+.bri3fing-action-button:active {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+.bri3fing-action-button-active {
+    background-color: rgba(59, 130, 246, 0.30);
+    border-color: rgba(96, 165, 250, 0.70);
+    color: #ffffff;
+}
+
+/* Search Bar */
+.bri3fing-search-box {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 6px;
+    padding: 2px 4px 2px 8px;
+    margin-bottom: 5px;
+    spacing: 4px;
+}
+
+.bri3fing-search-entry {
+    color: #ffffff;
+    font-size: 8.5pt;
+    caret-color: #60a5fa;
+    selection-background-color: #3b82f6;
+    selected-color: #ffffff;
+}
+
+.bri3fing-search-close-button {
+    padding: 2px 4px;
+    color: #9ca3af;
+    border-radius: 4px;
+    transition-duration: 100ms;
+}
+
+.bri3fing-search-close-button:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+/* Scroll View & Content */
+.bri3fing-scroll-view {
+    padding-right: 2px;
+}
+
+.bri3fing-scroll-view.vfade {
+    -st-vfade-offset: 20px;
+}
+
+/* Custom Sleek Scrollbar */
+.bri3fing-scroll-view StScrollBar {
+    min-width: 5px;
+    max-width: 6px;
+    padding: 0;
+}
+
+.bri3fing-scroll-view StScrollBar StBin#trough {
+    background-color: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.bri3fing-scroll-view StScrollBar StButton#vhandle {
+    background-color: rgba(255, 255, 255, 0.28);
+    border-radius: 3px;
+    border: none;
+    transition-duration: 120ms;
+}
+
+.bri3fing-scroll-view StScrollBar StButton#vhandle:hover {
+    background-color: rgba(96, 165, 250, 0.75);
+}
+
+.bri3fing-scroll-view StScrollBar StButton#vhandle:active {
+    background-color: rgba(96, 165, 250, 0.95);
+}
+
+.bri3fing-schedule-box {
+    spacing: 1px;
+}
+
+/* Section Headers (Chronus-style date headers) */
+.bri3fing-section-header {
+    spacing: 4px;
+    padding-top: 5px;
+    padding-bottom: 2px;
+    margin-top: 2px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.bri3fing-section-title {
+    font-size: 7.5pt;
+    font-weight: bold;
+    color: #60a5fa;
+    letter-spacing: 0.4px;
+}
+
+.bri3fing-section-count {
+    font-size: 7.5pt;
+    color: #6b7280;
+}
+
+/* Event Row */
+.bri3fing-event-row {
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid transparent;
+    border-radius: 6px;
+    padding: 3px 6px;
+    margin-top: 1px;
+    margin-bottom: 1px;
+    min-height: 34px;
+    transition-duration: 100ms;
+}
+
+.bri3fing-event-row:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.08);
+}
+
+/* Active / Ongoing Event Highlight */
+.bri3fing-event-row-active {
+    background-color: rgba(16, 185, 129, 0.12);
+    border: 1px solid rgba(16, 185, 129, 0.45);
+}
+
+/* Imminent Event Highlight */
+.bri3fing-event-row-imminent {
+    background-color: rgba(245, 158, 11, 0.10);
+    border: 1px solid rgba(245, 158, 11, 0.40);
+}
+
+/* Calendar Color Strip */
+.bri3fing-color-pill {
+    width: 3px;
+    border-radius: 1.5px;
+    margin-right: 6px;
+    min-height: 18px;
+}
+
+/* Middle Details Box */
+.bri3fing-event-details {
+    spacing: 1px;
+    min-height: 26px;
+}
+
+.bri3fing-event-summary {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #f3f4f6;
+    line-height: 1.25;
+    min-height: 14px;
+}
+
+.bri3fing-event-meta {
+    spacing: 3px;
+}
+
+.bri3fing-time-label {
+    font-size: 7.5pt;
+    color: #e2e8f0;
+    font-weight: 500;
+}
+
+.bri3fing-meta-subtext {
+    font-size: 7.5pt;
+    color: #cbd5e1;
+}
+
+.bri3fing-meta-calendar {
+    font-size: 7pt;
+    color: #93c5fd;
+    font-weight: 500;
+    background-color: rgba(147, 197, 253, 0.12);
+    border: none;
+    border-radius: 3px;
+    padding: 1px 5px;
+    margin-left: 3px;
+}
+
+/* Status Badges */
+.bri3fing-badge-now {
+    background-color: rgba(16, 185, 129, 0.25);
+    border: 1px solid rgba(16, 185, 129, 0.70);
+    border-radius: 3px;
+    color: #34d399;
+    font-size: 7pt;
+    font-weight: bold;
+    padding: 0 4px;
+    margin-left: 4px;
+    y-align: center;
+}
+
+.bri3fing-badge-soon {
+    background-color: rgba(245, 158, 11, 0.25);
+    border: 1px solid rgba(245, 158, 11, 0.70);
+    border-radius: 3px;
+    color: #fbbf24;
+    font-size: 7pt;
+    font-weight: bold;
+    padding: 0 4px;
+    margin-left: 4px;
+    y-align: center;
+}
+
+/* Video Call Quick Join Button */
+.bri3fing-join-button {
+    background-color: rgba(59, 130, 246, 0.20);
+    border: 1px solid rgba(96, 165, 250, 0.40);
+    border-radius: 4px;
+    padding: 1px 6px;
+    margin-left: 4px;
+    y-align: center;
+    transition-duration: 100ms;
+}
+
+.bri3fing-join-button:hover {
+    background-color: rgba(59, 130, 246, 0.45);
+    border-color: rgba(96, 165, 250, 0.85);
+}
+
+.bri3fing-join-button:active {
+    background-color: rgba(59, 130, 246, 0.70);
+}
+
+.bri3fing-join-label {
+    font-size: 7pt;
+    font-weight: bold;
+    color: #bfdbfe;
+}
+
+/* Zero State / Empty State Card */
+.bri3fing-message-box {
+    padding-top: 4px;
+}
+
+.bri3fing-card-empty {
+    padding: 16px 12px;
+    spacing: 6px;
+    x-align: center;
+}
+
+.bri3fing-card-icon {
+    color: #60a5fa;
+    margin-bottom: 2px;
+}
+
+.bri3fing-card-title {
+    font-size: 10pt;
+    font-weight: bold;
+    color: #f3f4f6;
+    text-align: center;
+}
+
+.bri3fing-card-desc {
+    font-size: 8.5pt;
+    color: #9ca3af;
+    text-align: center;
+    line-height: 1.35;
+    margin-bottom: 6px;
+}
+
+/* Action Buttons in Zero State */
+.bri3fing-primary-button {
+    background-color: #2563eb;
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 8.5pt;
+    text-align: center;
+    transition-duration: 120ms;
+}
+
+.bri3fing-primary-button:hover {
+    background-color: #1d4ed8;
+}
+
+.bri3fing-secondary-button {
+    background-color: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 6px;
+    padding: 5px 12px;
+    color: #e5e7eb;
+    font-size: 8.5pt;
+    text-align: center;
+    transition-duration: 120ms;
+}
+
+.bri3fing-secondary-button:hover {
+    background-color: rgba(255, 255, 255, 0.18);
+    color: #ffffff;
+}
+
+/* Local Account Notice Banner */
+.bri3fing-account-notice-banner {
+    background-color: rgba(37, 99, 235, 0.16);
+    border: 1px solid rgba(59, 130, 246, 0.32);
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-bottom: 8px;
+    y-align: center;
+}
+
+.bri3fing-account-notice-text {
+    font-size: 8pt;
+    color: #93c5fd;
+    font-weight: 500;
+}
+
+.bri3fing-account-notice-btn {
+    background-color: rgba(59, 130, 246, 0.40);
+    border-radius: 4px;
+    padding: 2px 8px;
+    margin-left: 6px;
+    color: #ffffff;
+    font-size: 7.5pt;
+    font-weight: 600;
+    transition-duration: 120ms;
+}
+
+.bri3fing-account-notice-btn:hover {
+    background-color: rgba(59, 130, 246, 0.70);
+}
+
+/* Error Box */
+.bri3fing-error-box {
+    background-color: rgba(239, 68, 68, 0.15);
+    border: 1px solid rgba(239, 68, 68, 0.40);
+    border-radius: 8px;
+    padding: 10px;
+    spacing: 4px;
+    margin-top: 4px;
+}
+
+.bri3fing-error-title {
+    font-size: 9pt;
+    font-weight: bold;
+    color: #fca5a5;
+    text-align: center;
+}
+
+.bri3fing-error-desc {
+    font-size: 8pt;
+    color: #fecaca;
+    text-align: center;
+    line-height: 1.3;
+}
+
+/* Modal Dialog Form Elements */
+.bri3fing-dialog-form {
+    spacing: 8px;
+}
+
+.bri3fing-dialog-label {
+    font-size: 9pt;
+    font-weight: 600;
+    color: #e2e8f0;
+}
+
+.bri3fing-pill-btn {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    padding: 4px 10px;
+    color: #d1d5db;
+    font-size: 8.5pt;
+    transition-duration: 100ms;
+}
+
+.bri3fing-pill-btn:hover {
+    background-color: rgba(255, 255, 255, 0.16);
+    color: #ffffff;
+}
+
+.bri3fing-pill-btn-active {
+    background-color: rgba(37, 99, 235, 0.40);
+    border: 1px solid rgba(96, 165, 250, 0.80);
+    border-radius: 6px;
+    padding: 4px 10px;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 8.5pt;
+}
+
+/* Calendar Dropdown Selector */
+.bri3fing-dropdown-btn {
+    background-color: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    padding: 6px 12px;
+    color: #f3f4f6;
+    transition-duration: 120ms;
+}
+
+.bri3fing-dropdown-btn:hover, .bri3fing-dropdown-btn:focus {
+    background-color: rgba(255, 255, 255, 0.14);
+    border-color: rgba(96, 165, 250, 0.70);
+}
+
+.bri3fing-dropdown-btn-label {
+    color: #f8fafc;
+    font-size: 9pt;
+    font-weight: 500;
+}
+
+.bri3fing-dropdown-btn-arrow {
+    color: #94a3b8;
+    font-size: 8pt;
+    font-weight: bold;
+}
+
+.bri3fing-dropdown-options-scroll {
+    background-color: #1a1a20;
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    border-radius: 6px;
+    margin-top: 3px;
+    padding: 3px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.55);
+}
+
+.bri3fing-dropdown-options-box {
+    spacing: 2px;
+}
+
+.bri3fing-dropdown-item {
+    border-radius: 4px;
+    padding: 5px 8px;
+    color: #cbd5e1;
+    transition-duration: 100ms;
+}
+
+.bri3fing-dropdown-item:hover, .bri3fing-dropdown-item:focus {
+    background-color: rgba(59, 130, 246, 0.28);
+    color: #ffffff;
+}
+
+.bri3fing-dropdown-item-selected {
+    background-color: rgba(59, 130, 246, 0.38);
+    font-weight: 600;
+}
+
+.bri3fing-dropdown-item-label {
+    color: #f1f5f9;
+    font-size: 8.5pt;
+}
+
+.bri3fing-dropdown-item-check {
+    color: #60a5fa;
+    font-weight: bold;
+    font-size: 9pt;
+}
+

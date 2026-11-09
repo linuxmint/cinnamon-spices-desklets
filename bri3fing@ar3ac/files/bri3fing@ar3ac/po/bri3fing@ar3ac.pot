@@ -1,0 +1,489 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-25 07:37+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:64
+msgid "New Event…"
+msgstr ""
+
+#: desklet.js:68
+msgid "Refresh Briefing"
+msgstr ""
+
+#: desklet.js:72
+msgid "Online Accounts…"
+msgstr ""
+
+#: desklet.js:121
+msgid "Checking schedule…"
+msgstr ""
+
+#: desklet.js:140
+msgid "Add New Event"
+msgstr ""
+
+#: desklet.js:155
+msgid "Refresh Schedule"
+msgstr ""
+
+#: desklet.js:192 desklet.js:454
+msgid "Sunday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:454
+msgid "Monday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:454
+msgid "Tuesday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:454
+msgid "Wednesday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:455
+msgid "Thursday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:455
+msgid "Friday"
+msgstr ""
+
+#: desklet.js:192 desklet.js:455
+msgid "Saturday"
+msgstr ""
+
+#: desklet.js:194
+msgid "January"
+msgstr ""
+
+#: desklet.js:194
+msgid "February"
+msgstr ""
+
+#: desklet.js:194
+msgid "March"
+msgstr ""
+
+#: desklet.js:194
+msgid "April"
+msgstr ""
+
+#: desklet.js:194 desklet.js:458
+msgid "May"
+msgstr ""
+
+#: desklet.js:194
+msgid "June"
+msgstr ""
+
+#: desklet.js:195
+msgid "July"
+msgstr ""
+
+#: desklet.js:195
+msgid "August"
+msgstr ""
+
+#: desklet.js:195
+msgid "September"
+msgstr ""
+
+#: desklet.js:195
+msgid "October"
+msgstr ""
+
+#: desklet.js:195
+msgid "November"
+msgstr ""
+
+#: desklet.js:195
+msgid "December"
+msgstr ""
+
+#: desklet.js:351
+msgid "Updating schedule…"
+msgstr ""
+
+#: desklet.js:373
+#, javascript-format
+msgid "Updated at %s"
+msgstr ""
+
+#: desklet.js:377
+msgid "event today"
+msgstr ""
+
+#: desklet.js:379
+msgid "events today"
+msgstr ""
+
+#: desklet.js:381
+msgid "No events today"
+msgstr ""
+
+#: desklet.js:384
+msgid "Failed to retrieve events"
+msgstr ""
+
+#: desklet.js:387
+msgid "Failed to parse calendar data: "
+msgstr ""
+
+#: desklet.js:390
+msgid "Error querying calendar service"
+msgstr ""
+
+#: desklet.js:442
+msgid "Upcoming"
+msgstr ""
+
+#: desklet.js:452
+msgid "Sun"
+msgstr ""
+
+#: desklet.js:452
+msgid "Mon"
+msgstr ""
+
+#: desklet.js:452
+msgid "Tue"
+msgstr ""
+
+#: desklet.js:452
+msgid "Wed"
+msgstr ""
+
+#: desklet.js:452
+msgid "Thu"
+msgstr ""
+
+#: desklet.js:452
+msgid "Fri"
+msgstr ""
+
+#: desklet.js:452
+msgid "Sat"
+msgstr ""
+
+#: desklet.js:458
+msgid "Jan"
+msgstr ""
+
+#: desklet.js:458
+msgid "Feb"
+msgstr ""
+
+#: desklet.js:458
+msgid "Mar"
+msgstr ""
+
+#: desklet.js:458
+msgid "Apr"
+msgstr ""
+
+#: desklet.js:458
+msgid "Jun"
+msgstr ""
+
+#: desklet.js:459
+msgid "Jul"
+msgstr ""
+
+#: desklet.js:459
+msgid "Aug"
+msgstr ""
+
+#: desklet.js:459
+msgid "Sep"
+msgstr ""
+
+#: desklet.js:459
+msgid "Oct"
+msgstr ""
+
+#: desklet.js:459
+msgid "Nov"
+msgstr ""
+
+#: desklet.js:459
+msgid "Dec"
+msgstr ""
+
+#: desklet.js:471
+msgid "Today"
+msgstr ""
+
+#: desklet.js:473
+msgid "Tomorrow"
+msgstr ""
+
+#: desklet.js:538 desklet.js:636
+msgid "(Untitled event)"
+msgstr ""
+
+#: desklet.js:556 desklet.js:648
+msgid "All Day"
+msgstr ""
+
+#: desklet.js:564
+msgid "multi-day"
+msgstr ""
+
+#: desklet.js:594
+msgid "NOW"
+msgstr ""
+
+#: desklet.js:600
+msgid "SOON"
+msgstr ""
+
+#: desklet.js:678
+msgid "Delete Event"
+msgstr ""
+
+#: desklet.js:685
+msgid "Close"
+msgstr ""
+
+#: desklet.js:699
+msgid "Deleting event…"
+msgstr ""
+
+#: desklet.js:705
+msgid "Event deleted"
+msgstr ""
+
+#: desklet.js:712
+msgid "Failed to delete event"
+msgstr ""
+
+#: desklet.js:736
+msgid "No calendars connected"
+msgstr ""
+
+#: desklet.js:742
+msgid ""
+"Connect your Google Calendar or CalDAV account in Cinnamon Online Accounts "
+"to view and manage your schedule."
+msgstr ""
+
+#: desklet.js:750
+msgid "Connect Account"
+msgstr ""
+
+#: desklet.js:773
+msgid "No upcoming events"
+msgstr ""
+
+#: desklet.js:780
+#, javascript-format
+msgid "Your schedule is clear for the next %d days."
+msgstr ""
+
+#: desklet.js:786
+msgid "+ Create New Event"
+msgstr ""
+
+#: desklet.js:807
+msgid "Calendar Service Error"
+msgstr ""
+
+#: desklet.js:821
+msgid "Retry"
+msgstr ""
+
+#: desklet.js:835
+msgid "New Calendar Event"
+msgstr ""
+
+#: desklet.js:836
+msgid "Create an event synced automatically with your calendar account."
+msgstr ""
+
+#: desklet.js:848
+msgid "Event Title:"
+msgstr ""
+
+#: desklet.js:852
+msgid "e.g., Team Sync, Doctor Appointment"
+msgstr ""
+
+#: desklet.js:870
+msgid "Calendar:"
+msgstr ""
+
+#: desklet.js:905
+msgid "Date (YYYY-MM-DD):"
+msgstr ""
+
+#: desklet.js:918
+msgid "Start Time:"
+msgstr ""
+
+#: desklet.js:931
+msgid "End Time:"
+msgstr ""
+
+#: desklet.js:945 desklet.js:952 desklet.js:957
+msgid "All Day Event"
+msgstr ""
+
+#: desklet.js:966
+msgid "Location (optional):"
+msgstr ""
+
+#: desklet.js:970
+msgid "e.g., Office, Google Meet, Coffee Shop"
+msgstr ""
+
+#: desklet.js:991
+msgid "Creating event…"
+msgstr ""
+
+#: desklet.js:1010
+msgid "Event created!"
+msgstr ""
+
+#: desklet.js:1017
+msgid "Failed to create event"
+msgstr ""
+
+#: desklet.js:1031
+msgid "Cancel"
+msgstr ""
+
+#: desklet.js:1036
+msgid "Create Event"
+msgstr ""
+
+#: settings-schema.json:desklet-height
+msgid "Default desklet height"
+msgstr ""
+
+#: settings-schema.json:auto-shrink-height
+msgid "Automatically shrink height when there are few events"
+msgstr ""
+
+msgid "Open Calendar"
+msgstr ""
+
+msgid "Search Events"
+msgstr ""
+
+msgid "Search events…"
+msgstr ""
+
+msgid "Close Search"
+msgstr ""
+
+msgid "Join"
+msgstr ""
+
+msgid "Join Video Call (%s)"
+msgstr ""
+
+msgid "Join Video Call"
+msgstr ""
+
+msgid "Join Video Meeting"
+msgstr ""
+
+msgid "Visible Calendars"
+msgstr ""
+
+msgid "Upcoming Event: %s"
+msgstr ""
+
+msgid "Starting now at %s"
+msgstr ""
+
+msgid "Starts in %d min (%s)"
+msgstr ""
+
+msgid "No matching events"
+msgstr ""
+
+msgid "No events found matching \"%s\""
+msgstr ""
+
+msgid "Clear Search"
+msgstr ""
+
+msgid "Could not launch calendar application"
+msgstr ""
+
+msgid "Hidden calendar UIDs (comma-separated, or toggle via right-click menu)"
+msgstr ""
+
+msgid "Desktop Notifications"
+msgstr ""
+
+msgid "Show desktop notifications for upcoming events"
+msgstr ""
+
+msgid "Notification lead time before event starts"
+msgstr ""
+
+msgid "Connect Account…"
+msgstr ""
+
+msgid "No online account connected"
+msgstr ""
+
+msgid "Local mode"
+msgstr ""
+
+msgid "Local calendar only"
+msgstr ""
+
+msgid "Connect Google…"
+msgstr ""
+
+msgid "Edit Event…"
+msgstr ""
+
+msgid "Edit Calendar Event"
+msgstr ""
+
+msgid "Modify event details and sync changes with your calendar."
+msgstr ""
+
+msgid "Save Changes"
+msgstr ""
+
+msgid "Updating event…"
+msgstr ""
+
+msgid "Event updated!"
+msgstr ""
+
+msgid "Failed to update event"
+msgstr ""
+
+msgid "Description / Notes (optional):"
+msgstr ""
+
+msgid "e.g., Agenda, Zoom link, details"
+msgstr ""
+
+msgid "Default Calendar"
+msgstr ""
+
+
