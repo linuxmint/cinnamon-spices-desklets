@@ -26,6 +26,7 @@
         "display0",
         "clientId",
         "clientSecret",
+        "authorizeButton",
         "sep1",
         "display1",
         "gcalendarAccount",
@@ -72,6 +73,12 @@
     "description": "Client secret",
     "tooltip": "Enter your Google calendar project client secret. Leave it empty to use the default client secret."
   },
+  "authorizeButton": {
+    "type": "button",
+    "description": "Authorize Google account",
+    "tooltip": "Opens your web browser so you can grant this desklet read-only access to your Google Calendar.",
+    "callback": "onAuthorizeButtonClicked"
+  },
   "sep1": {
     "type": "separator"
   },
@@ -83,7 +90,7 @@
     "type": "combobox",
     "default": "default",
     "description": "gcalendar Account ID",
-    "tooltip": "Enter gcalendar --account id",
+    "tooltip": "Choose which authorized Google account to show events from.",
     "options": {
             "": "default",
             "default": "default"

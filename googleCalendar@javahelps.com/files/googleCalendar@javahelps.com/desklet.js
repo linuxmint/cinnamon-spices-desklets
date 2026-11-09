@@ -31,6 +31,7 @@ const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;
+const ModalDialog = imports.ui.modalDialog;
 const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("./lib/mainloopTools");
 const Tooltips = imports.ui.tooltips;
 
@@ -50,6 +51,8 @@ Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
 const TEXT_WIDTH = 250;
 const FONT_SIZE = 14;
 const HOME_PATH = GLib.get_home_dir();
+// How long to wait for the user to finish authorizing in their browser.
+const AUTH_TIMEOUT_SECONDS = 300;
 
 function _(str) {
     return Gettext.dgettext(UUID, str);
@@ -97,6 +100,14 @@ GoogleCalendarDesklet.prototype = {
         this._updateDecoration();
 
         this.isLooping = true;
+
+        // The bundled copy of gcalendar, and the state of its dependencies.
+        this.helperPath = metadata.path + "/gcalendar-launcher.py";
+        this.dependenciesOk = false;
+        this.missingPackages = [];
+        this.needsAuthorization = false;
+        this.authProcess = null;
+        this.authTimeoutID = null;
 
         // Bind properties
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], deskletID);
@@ -169,7 +180,7 @@ GoogleCalendarDesklet.prototype = {
      */
     onAllNamesButtonClicked() {
         let reader = new SpawnReader();
-        let command = ["gcalendar", "--output", "txt", "--list-calendars"];
+        let command = this.helperCommand(["--output", "txt", "--list-calendars"]);
         this.addAccountID(command, this.gcalendarAccount);
         // List of calendars already selected by user:
         let registeredCalendarNames = this.calendarName.toString().split(",");
@@ -191,7 +202,7 @@ GoogleCalendarDesklet.prototype = {
 
     populate_gcalendarAccountOptions() {
         let reader = new SpawnReader();
-        let command = ["gcalendar", "--output", "txt", "--list-accounts"];
+        let command = this.helperCommand(["--output", "txt", "--list-accounts"]);
         var new_accounts = {}; // We will populate it !
         reader.spawn(HOME_PATH, command, (output) => {
             let accounts = output.toString().trim().split(/\r?\n/);
@@ -208,8 +219,10 @@ GoogleCalendarDesklet.prototype = {
      * This function is called by deskletManager when the desklet is added to the desktop.
      */
      on_desklet_added_to_desktop(userEnabled) {
-         if (GLib.find_program_in_path("gcalendar"))
-            this.populate_gcalendarAccountOptions();
+         this.checkDependencies(() => {
+             if (this.dependenciesOk)
+                 this.populate_gcalendarAccountOptions();
+         });
          // Start the update loop
         this.updateID = null;
         //~ this.updateID = timeout_add_seconds(this.delay * 60, Lang.bind(this, this.updateLoop));
@@ -221,8 +234,14 @@ GoogleCalendarDesklet.prototype = {
             GLib.spawn_command_line_async("xdg-open https://calendar.google.com");
         });
         this._menu.addMenuItem(openGoogleCalendarItem, 0); // 0 for top position.
+         // Set "Authorize Google account" menu item.
+        let authorizeItem = new PopupMenu.PopupIconMenuItem(_("Authorize Google account"), "dialog-password", St.IconType.SYMBOLIC);
+        authorizeItem.connect("activate", (event) => {
+            this.onAuthorizeButtonClicked();
+        });
+        this._menu.addMenuItem(authorizeItem, 1);
         let intervalItem = new SliderMenuItem(this);
-        this._menu.addMenuItem(intervalItem, 1);
+        this._menu.addMenuItem(intervalItem, 2);
     },
 
     /**
@@ -231,6 +250,7 @@ GoogleCalendarDesklet.prototype = {
     on_desklet_removed() {
         this.isLooping = false;
         this.updateID = null;
+        this.stopAuthorization();
         remove_all_sources();
     },
 
@@ -239,10 +259,13 @@ GoogleCalendarDesklet.prototype = {
      */
     on_desklet_clicked(event) {
         this.isLooping = true;
-        if (!GLib.find_program_in_path("gcalendar"))
-            GLib.spawn_command_line_async("xdg-open https://github.com/slgobinath/gcalendar");
-        else
+        if (!this.dependenciesOk) {
+            this.promptInstallDependencies();
+        } else if (this.needsAuthorization) {
+            this.onAuthorizeButtonClicked();
+        } else {
             this.retrieveEventsIfAuthorized();
+        }
     },
 
     //////////////////////////////////////////// Utility Functions ////////////////////////////////////////////
@@ -267,11 +290,10 @@ GoogleCalendarDesklet.prototype = {
      * Construct gcalendar command to retrieve events.
      */
     getCalendarCommand(accountId) {
-        let command = ["gcalendar", "--output", "json"];
+        let command = this.helperCommand(["--output", "json"]);
         if (this.clientId != null && this.clientId != "") {
             command.push("--client-id");
             command.push(this.clientId);
-            this.clientId, "--client-secret", this.clientSecret
         }
         if (this.clientSecret != null && this.clientSecret != "") {
             command.push("--client-secret");
@@ -439,20 +461,23 @@ GoogleCalendarDesklet.prototype = {
 
     retrieveEventsIfAuthorized() {
         if (!this.isLooping) return;
-        if (!GLib.find_program_in_path("gcalendar")) {
-            this.showErrorMessage("No such file or directory");
+        // Do not paint over the message shown while the browser is open.
+        if (this.authProcess != null) return;
+        if (!this.dependenciesOk) {
+            this.showMissingDependencies();
             return
         }
         let accountId = this.gcalendarAccount;
         try {
             // Check the status of gcalendar
             let reader = new SpawnReader();
-            let command = ["gcalendar", "--output", "txt", "--status"];
+            let command = this.helperCommand(["--output", "txt", "--status"]);
             this.addAccountID(command, accountId);
             reader.spawn(HOME_PATH, command, (output) => {
                 let status = output.toString().trim();
                 if (status === "Authorized") {
                     // Authorized
+                    this.needsAuthorization = false;
                     this.retrieveEvents(accountId);
                 } else {
                     this.showGcalendarStatus(status, accountId);
@@ -464,6 +489,7 @@ GoogleCalendarDesklet.prototype = {
     },
 
     showGcalendarStatus(status, accountId) {
+        this.needsAuthorization = true;
         let message = _("gcalendar is not authorized");
         if (status === "Token Expired") {
             message = _("gcalendar token expired");
@@ -471,10 +497,7 @@ GoogleCalendarDesklet.prototype = {
         // Show the status on widget
         this.resetWidget(true);
         let label = CalendarUtility.label(message, this.zoom, this.textcolor);
-        let hint = _("Execute: ") + "gcalendar";
-        if (accountId != null && accountId !== "") {
-            hint = hint + " --account " + accountId;
-        }
+        let hint = _("Click here to authorize access to your Google Calendar.");
         let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
         lblHint.style = lblHint.style + "; font-style: italic;";
 
@@ -486,10 +509,6 @@ GoogleCalendarDesklet.prototype = {
         this.resetWidget(true);
         let message = _("Unknown Error");
         let hint = errorMessage;
-        if (errorMessage.includes("No such file or directory")) {
-            message = _("Install gcalendar to use this desklet.");
-            hint = _("Visit: ") + "https://github.com/slgobinath/gcalendar";
-        }
         let label = CalendarUtility.label(message, this.zoom, this.textcolor);
         let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
         lblHint.style = lblHint.style + "; font-style: italic;";
@@ -533,6 +552,155 @@ GoogleCalendarDesklet.prototype = {
             global.logError(e);
         } finally {
             this.updateInProgress = false;
+        }
+    },
+
+    /**
+     * Build a command line running the bundled copy of gcalendar.
+     * @param {String[]} args arguments to pass to gcalendar
+     * @returns {String[]} the complete command
+     */
+    helperCommand(args) {
+        return ["python3", "\"" + this.helperPath + "\""].concat(args);
+    },
+
+    /**
+     * Find out which of the libraries gcalendar needs are missing, and
+     * remember the result. Every other command is gated on this.
+     * @param {Function} onDone called once the result is known
+     */
+    checkDependencies(onDone) {
+        let reader = new SpawnReader();
+        reader.spawn(HOME_PATH, this.helperCommand(["--check-dependencies"]), (output) => {
+            let result = output.toString().trim();
+            this.dependenciesOk = (result === "OK");
+            if (this.dependenciesOk) {
+                this.missingPackages = [];
+            } else {
+                this.missingPackages = result.replace(/^MISSING\s*/, "").split(/\s+/).filter((name) => name !== "");
+            }
+            if (onDone) onDone();
+        });
+    },
+
+    /**
+     * Tell the user which packages are missing.
+     */
+    showMissingDependencies() {
+        this.resetWidget(true);
+        let message = _("Some required components are missing.");
+        let hint = _("Click here to install them.");
+        if (this.missingPackages.length === 0) {
+            // The helper could not be run at all.
+            hint = _("Python 3 is required but was not found.");
+        }
+        let label = CalendarUtility.label(message, this.zoom, this.textcolor);
+        let lblHint = CalendarUtility.label(hint, this.zoom, this.location_color, true, 8);
+        lblHint.style = lblHint.style + "; font-style: italic;";
+        this.window.add(label);
+        this.window.add(lblHint);
+    },
+
+    /**
+     * Offer to install the missing packages from the distribution's own
+     * repositories, using PackageKit and its normal authentication.
+     */
+    promptInstallDependencies() {
+        if (this.missingPackages.length === 0) {
+            this.showMissingDependencies();
+            return;
+        }
+        let dialog = new ModalDialog.ConfirmDialog(
+            _("This desklet needs the following packages from your distribution: ") + this.missingPackages.join(", "),
+            () => {
+                Util.spawn_async(["pkcon", "install", "-y"].concat(this.missingPackages), () => {
+                    this.checkDependencies(() => {
+                        if (this.dependenciesOk) {
+                            this.populate_gcalendarAccountOptions();
+                        }
+                        this.retrieveEventsIfAuthorized();
+                    });
+                });
+            }
+        );
+        dialog.open();
+    },
+
+    /**
+     * Called by the settings button and the context menu item.
+     */
+    onAuthorizeButtonClicked() {
+        if (!this.dependenciesOk) {
+            this.promptInstallDependencies();
+            return;
+        }
+        this.startAuthorization();
+    },
+
+    /**
+     * Run gcalendar so that it opens the browser for the user to grant
+     * access. gcalendar waits for the browser to come back, so the process is
+     * spawned in a way that lets it be cancelled and timed out.
+     */
+    startAuthorization() {
+        if (this.authProcess != null) return;
+        let accountId = this.gcalendarAccount;
+        if (accountId == null || accountId === "") {
+            accountId = "default";
+        }
+        try {
+            this.authProcess = new Gio.Subprocess({
+                argv: ["python3", this.helperPath, "--authorize", "--account", accountId],
+                flags: Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
+            });
+            this.authProcess.init(null);
+        } catch (e) {
+            this.authProcess = null;
+            global.logError("[" + UUID + "] Unable to start the authorization: " + e);
+            this.showErrorMessage(e.toString());
+            return;
+        }
+
+        this.resetWidget(true);
+        this.window.add(CalendarUtility.label(_("Waiting for authorization in your web browser…"), this.zoom, this.textcolor));
+
+        this.authTimeoutID = timeout_add_seconds(AUTH_TIMEOUT_SECONDS, () => {
+            this.authTimeoutID = null;
+            this.stopAuthorization();
+            return GLib.SOURCE_REMOVE;
+        });
+
+        this.authProcess.communicate_utf8_async(null, null, (proc, result) => {
+            try {
+                proc.communicate_utf8_finish(result);
+            } catch (e) {
+                global.logError("[" + UUID + "] Authorization did not complete: " + e);
+            }
+            this.authProcess = null;
+            if (this.authTimeoutID != null) {
+                source_remove(this.authTimeoutID);
+                this.authTimeoutID = null;
+            }
+            this.needsAuthorization = false;
+            this.populate_gcalendarAccountOptions();
+            this.retrieveEventsIfAuthorized();
+        });
+    },
+
+    /**
+     * Stop a pending authorization, if any.
+     */
+    stopAuthorization() {
+        if (this.authTimeoutID != null) {
+            source_remove(this.authTimeoutID);
+            this.authTimeoutID = null;
+        }
+        if (this.authProcess != null) {
+            try {
+                this.authProcess.force_exit();
+            } catch (e) {
+                global.logError("[" + UUID + "] Unable to stop the authorization: " + e);
+            }
         }
     },
 
