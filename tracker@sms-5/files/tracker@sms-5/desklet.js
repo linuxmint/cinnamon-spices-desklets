@@ -2,9 +2,9 @@ const Desklet = imports.ui.desklet;
 const St = imports.gi.St;
 const Settings = imports.ui.settings;
 const Mainloop = imports.mainloop;
-const Lang = imports.lang;
 const Gettext = imports.gettext;
 const GLib = imports.gi.GLib;
+const Gio = imports.gi.Gio;
 const Util = imports.misc.util;
 const Clutter = imports.gi.Clutter;
 const PopupMenu = imports.ui.popupMenu;
@@ -19,7 +19,7 @@ const DESKLET_ROOT = imports.ui.deskletManager.deskletMeta[UUID].path;
 if (!DESKLET_ROOT.startsWith("/usr/share/")) {
     Gettext.bindtextdomain(
         UUID,
-        GLib.get_home_dir() + "/.local/share/locale"
+        GLib.get_user_data_dir() + "/locale"
     );
 }
 
@@ -29,36 +29,61 @@ if (!DESKLET_ROOT.startsWith("/usr/share/")) {
 let forcedLanguage = null;
 let forcedCatalog = null;
 
-function setLanguage(language) {
-    if (language === forcedLanguage) return;
+function setLanguage(language, callback) {
+    if (language === forcedLanguage) {
+        if (callback) callback();
+        return;
+    }
 
     forcedLanguage = language;
     forcedCatalog = null;
 
     if (language === "en" || language === "es") {
-        forcedCatalog = loadCatalog(language);
+        loadCatalog(language, callback);
+    } else if (callback) {
+        callback();
     }
 }
 
-function loadCatalog(language) {
+function loadCatalog(language, callback) {
     const dirs = [
-        GLib.get_home_dir() + "/.local/share/locale",
+        GLib.get_user_data_dir() + "/locale",
         "/usr/share/locale"
     ];
 
-    for (let i = 0; i < dirs.length; i++) {
-        let path = dirs[i] + "/" + language + "/LC_MESSAGES/" + UUID + ".mo";
+    function tryDir(index) {
+        if (index >= dirs.length) {
+            if (callback) callback();
+            return;
+        }
 
-        if (!GLib.file_test(path, GLib.FileTest.EXISTS)) continue;
+        const path = dirs[index] + "/" + language +
+            "/LC_MESSAGES/" + UUID + ".mo";
 
-        let [ok, bytes] = GLib.file_get_contents(path);
-        if (!ok) continue;
+        Gio.File.new_for_path(path).load_contents_async(null, (file, result) => {
+            // A newer language may have been selected while this one loaded.
+            if (language !== forcedLanguage) return;
 
-        let catalog = parseCatalog(bytes);
-        if (catalog) return catalog;
+            let bytes = null;
+
+            try {
+                [, bytes] = file.load_contents_finish(result);
+            } catch (e) {
+                bytes = null;
+            }
+
+            const catalog = bytes ? parseCatalog(bytes) : null;
+
+            if (catalog) {
+                forcedCatalog = catalog;
+                if (callback) callback();
+            } else {
+                tryDir(index + 1);
+            }
+        });
     }
 
-    return null;
+    tryDir(0);
 }
 
 function parseCatalog(bytes) {
@@ -132,28 +157,28 @@ class TrackerDesklet extends Desklet.Desklet {
             Settings.BindingDirection.IN,
             "task-list",
             "taskList",
-            Lang.bind(this, this.onSettingsChanged)
+            () => this.onSettingsChanged()
         );
 
         this.settings.bindProperty(
             Settings.BindingDirection.IN,
             "sort-order",
             "sortOrder",
-            Lang.bind(this, this.onSettingsChanged)
+            () => this.onSettingsChanged()
         );
 
         this.settings.bindProperty(
             Settings.BindingDirection.IN,
             "hide-completed",
             "hideCompleted",
-            Lang.bind(this, this.onSettingsChanged)
+            () => this.onSettingsChanged()
         );
 
         this.settings.bindProperty(
             Settings.BindingDirection.IN,
             "hide-checkbox",
             "hideCheckbox",
-            Lang.bind(this, this.onSettingsChanged)
+            () => this.onSettingsChanged()
         );
 
         let appearanceBindings = [
@@ -180,11 +205,11 @@ class TrackerDesklet extends Desklet.Desklet {
                 Settings.BindingDirection.IN,
                 binding[0],
                 binding[1],
-                Lang.bind(this, this.onSettingsChanged)
+                () => this.onSettingsChanged()
             );
         }
 
-        this.updateUI();
+        setLanguage(this.language, () => this.updateUI());
         this.startLoop();
     }
 
@@ -434,8 +459,6 @@ class TrackerDesklet extends Desklet.Desklet {
     }
 
     updateUI() {
-        setLanguage(this.language);
-
         // Close menus before destroying their source actors.
         this._closeOpenMenu();
 
@@ -806,9 +829,12 @@ class TrackerDesklet extends Desklet.Desklet {
     }
 
     openSettings() {
-        Util.spawnCommandLine(
-            `xlet-settings desklet ${this.uuid} ${this._instanceId}`
-        );
+        Util.spawn([
+            "xlet-settings",
+            "desklet",
+            this.uuid,
+            String(this._instanceId)
+        ]);
     }
 
     openEditor(index) {
@@ -850,7 +876,8 @@ class TrackerDesklet extends Desklet.Desklet {
 
     // On the desktop the stage stays in NORMAL input mode, so a plain
     // St.Entry never receives keyboard focus. Temporarily switch to
-    // FOCUSED while grabbing focus
+    // FOCUSED while grabbing focus. Same workaround as published desklets
+    // (todo@NotSirius-A, calculator@scollins); the Spices scanner flags it.
     _bindEntryFocus(entry) {
         entry.clutter_text.set_editable(false);
 
@@ -1579,7 +1606,7 @@ class TrackerDesklet extends Desklet.Desklet {
     }
 
     onSettingsChanged() {
-        this.updateUI();
+        setLanguage(this.language, () => this.updateUI());
     }
 
     _getMillisecondsUntilNextRefresh() {
@@ -1612,7 +1639,7 @@ class TrackerDesklet extends Desklet.Desklet {
 
         this._timeoutId = Mainloop.timeout_add(
             this._getMillisecondsUntilNextRefresh(),
-            Lang.bind(this, this.onTimer)
+            () => this.onTimer()
         );
     }
 
