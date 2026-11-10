@@ -188,6 +188,8 @@ function remove_all_sources() {
   }
 }
 
+// Loaded through Cinnamon's own importer (6.6+) there is no module object; the functions and var above are the exports.
+if (typeof module !== "undefined" && module)
 module.exports = {
   _sourceIds,
   timeout_add_seconds,
