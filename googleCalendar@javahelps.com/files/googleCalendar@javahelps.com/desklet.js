@@ -31,7 +31,10 @@ const Gio = imports.gi.Gio;
 const Gtk = imports.gi.Gtk;
 const St = imports.gi.St;
 const PopupMenu = imports.ui.popupMenu;
-const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } = require("./lib/mainloopTools");
+const Extension = imports.ui.extension;
+// Cinnamon 6.6+ warns on require(); its own importer exposes each module's var and function symbols.
+const { timeout_add_seconds, timeout_add, setTimeout, clearTimeout, setInterval, clearInterval, source_exists, source_remove, remove_all_sources } =
+    Extension.getCurrentExtension ? Extension.getCurrentExtension().imports.lib.mainloopTools : require("./lib/mainloopTools");
 const Tooltips = imports.ui.tooltips;
 
 // Import local libraries
