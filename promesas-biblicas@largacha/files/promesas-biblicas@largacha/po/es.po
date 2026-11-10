@@ -1,0 +1,207 @@
+# PROMESAS BÍBLICAS
+# This file is put in the public domain.
+# largacha, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: promesas-biblicas@largacha 0.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-01 14:47-0500\n"
+"PO-Revision-Date: 2026-05-01 14:47-0500\n"
+"Last-Translator: largacha\n"
+"Language-Team: Español\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#. desklet.js:161
+msgid "Desconocido"
+msgstr "Desconocido"
+
+#. desklet.js:35 promesas.js:15
+msgid "Antiguo Testamento"
+msgstr "Antiguo Testamento"
+
+#. promesas.js:75
+msgid "Nuevo Testamento"
+msgstr "Nuevo Testamento"
+
+#. metadata.json->name
+msgid "Promesas Bíblicas"
+msgstr "Promesas Bíblicas"
+
+#. metadata.json->description
+msgid ""
+"Muestra una promesa bíblica diaria. Totalmente personalizable: colores, "
+"fuentes, transparencias, modo oscuro/claro automático."
+msgstr ""
+"Muestra una promesa bíblica diaria. Totalmente personalizable: colores, "
+"fuentes, transparencias, modo oscuro/claro automático."
+
+#. settings-schema.json->page-theme->title
+#. settings-schema.json->section-theme-mode->title
+msgid "Tema"
+msgstr "Tema"
+
+#. settings-schema.json->page-colors->title
+#. settings-schema.json->section-colors->title
+msgid "Colores"
+msgstr "Colores"
+
+#. settings-schema.json->page-typography->title
+#. settings-schema.json->section-typography->title
+msgid "Tipografía"
+msgstr "Tipografía"
+
+#. settings-schema.json->page-shape->title
+#. settings-schema.json->section-shape->title
+msgid "Forma"
+msgstr "Forma"
+
+#. settings-schema.json->page-content->title
+#. settings-schema.json->section-content->title
+msgid "Contenido"
+msgstr "Contenido"
+
+#. settings-schema.json->page-refresh->title
+#. settings-schema.json->section-refresh->title
+msgid "Refresco"
+msgstr "Refresco"
+
+#. settings-schema.json->theme-mode->description
+msgid "Modo de tema"
+msgstr "Modo de tema"
+
+#. settings-schema.json->theme-mode->options
+msgid "Claro"
+msgstr "Claro"
+
+#. settings-schema.json->theme-mode->options
+msgid "Oscuro"
+msgstr "Oscuro"
+
+#. settings-schema.json->theme-mode->options
+msgid "Auto (según el escritorio)"
+msgstr "Auto (según el escritorio)"
+
+#. settings-schema.json->base-theme->description
+msgid "Tema base"
+msgstr "Tema base"
+
+#. settings-schema.json->base-theme->options
+msgid "Personalizado (usa los colores de abajo)"
+msgstr "Personalizado (usa los colores de abajo)"
+
+#. settings-schema.json->base-theme->options
+msgid "Pergamino antiguo"
+msgstr "Pergamino antiguo"
+
+#. settings-schema.json->base-theme->options
+msgid "Vitral gótico"
+msgstr "Vitral gótico"
+
+#. settings-schema.json->base-theme->options
+msgid "Moderno minimalista"
+msgstr "Moderno minimalista"
+
+#. settings-schema.json->bg-opacity->description
+msgid "Opacidad del fondo"
+msgstr "Opacidad del fondo"
+
+#. settings-schema.json->corner-radius->description
+msgid "Radio de las esquinas"
+msgstr "Radio de las esquinas"
+
+#. settings-schema.json->color-bg->description
+msgid "Color de fondo"
+msgstr "Color de fondo"
+
+#. settings-schema.json->color-text->description
+msgid "Color del texto de la cita"
+msgstr "Color del texto de la cita"
+
+#. settings-schema.json->color-accent->description
+msgid "Color de acento (autor, referencia)"
+msgstr "Color de acento (autor, referencia)"
+
+#. settings-schema.json->color-border->description
+msgid "Color del borde"
+msgstr "Color del borde"
+
+#. settings-schema.json->color-divider->description
+msgid "Color del divisor"
+msgstr "Color del divisor"
+
+#. settings-schema.json->font-quote->description
+msgid "Fuente de la cita"
+msgstr "Fuente de la cita"
+
+#. settings-schema.json->font-size-quote->description
+msgid "Tamaño de la cita"
+msgstr "Tamaño de la cita"
+
+#. settings-schema.json->font-italic-quote->description
+msgid "Cita en cursiva"
+msgstr "Cita en cursiva"
+
+#. settings-schema.json->font-author->description
+msgid "Fuente del autor"
+msgstr "Fuente del autor"
+
+#. settings-schema.json->font-size-author->description
+msgid "Tamaño del autor"
+msgstr "Tamaño del autor"
+
+#. settings-schema.json->border-width->description
+msgid "Grosor del borde"
+msgstr "Grosor del borde"
+
+#. settings-schema.json->shadow-enabled->description
+msgid "Mostrar sombra"
+msgstr "Mostrar sombra"
+
+#. settings-schema.json->show-ornament->description
+msgid "Mostrar adorno decorativo (✦)"
+msgstr "Mostrar adorno decorativo (✦)"
+
+#. settings-schema.json->show-divider->description
+msgid "Mostrar línea divisoria"
+msgstr "Mostrar línea divisoria"
+
+#. settings-schema.json->text-align->description
+msgid "Alineación del texto"
+msgstr "Alineación del texto"
+
+#. settings-schema.json->text-align->options
+msgid "Izquierda"
+msgstr "Izquierda"
+
+#. settings-schema.json->text-align->options
+msgid "Centro"
+msgstr "Centro"
+
+#. settings-schema.json->text-align->options
+msgid "Justificado"
+msgstr "Justificado"
+
+#. settings-schema.json->desklet-width->description
+msgid "Ancho del desklet"
+msgstr "Ancho del desklet"
+
+#. settings-schema.json->refresh-frequency->description
+msgid "Frecuencia de refresco"
+msgstr "Frecuencia de refresco"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Diario (a medianoche)"
+msgstr "Diario (a medianoche)"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Cada hora"
+msgstr "Cada hora"
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Solo manual"
+msgstr "Solo manual"

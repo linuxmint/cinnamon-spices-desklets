@@ -1,0 +1,230 @@
+# PROMESAS BÍBLICAS
+# This file is put in the public domain.
+# largacha, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: promesas-biblicas@largacha 0.2.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-05-01 14:47-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:33 promesas.js:13
+msgid ""
+"No temas, porque yo estoy contigo; no desmayes, porque yo soy tu Dios que te "
+"esfuerzo; siempre te ayudaré, siempre te sustentaré con la diestra de mi "
+"justicia."
+msgstr ""
+
+#. desklet.js:34 promesas.js:14
+msgid "Isaías 41:10"
+msgstr ""
+
+#. desklet.js:35 promesas.js:15
+msgid "Antiguo Testamento"
+msgstr ""
+
+#. desklet.js:161
+msgid "Desconocido"
+msgstr ""
+
+#. metadata.json->name
+msgid "Promesas Bíblicas"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Muestra una promesa bíblica diaria. Totalmente personalizable: colores, "
+"fuentes, transparencias, modo oscuro/claro automático."
+msgstr ""
+
+#. settings-schema.json->page-theme->title
+msgid "Tema"
+msgstr ""
+
+#. settings-schema.json->page-colors->title
+msgid "Colores"
+msgstr ""
+
+#. settings-schema.json->page-typography->title
+msgid "Tipografía"
+msgstr ""
+
+#. settings-schema.json->page-shape->title
+msgid "Forma"
+msgstr ""
+
+#. settings-schema.json->page-content->title
+msgid "Contenido"
+msgstr ""
+
+#. settings-schema.json->page-refresh->title
+msgid "Refresco"
+msgstr ""
+
+#. settings-schema.json->section-theme-mode->title
+msgid "Modo y tema base"
+msgstr ""
+
+#. settings-schema.json->theme-mode->description
+msgid "Modo de tema"
+msgstr ""
+
+#. settings-schema.json->theme-mode->options
+msgid "Claro"
+msgstr ""
+
+#. settings-schema.json->theme-mode->options
+msgid "Oscuro"
+msgstr ""
+
+#. settings-schema.json->theme-mode->options
+msgid "Auto (según el escritorio)"
+msgstr ""
+
+#. settings-schema.json->base-theme->description
+msgid "Tema base"
+msgstr ""
+
+#. settings-schema.json->base-theme->options
+msgid "Personalizado (usa los colores de abajo)"
+msgstr ""
+
+#. settings-schema.json->base-theme->options
+msgid "Pergamino antiguo"
+msgstr ""
+
+#. settings-schema.json->base-theme->options
+msgid "Vitral gótico"
+msgstr ""
+
+#. settings-schema.json->base-theme->options
+msgid "Moderno minimalista"
+msgstr ""
+
+#. settings-schema.json->bg-opacity->description
+msgid "Opacidad del fondo"
+msgstr ""
+
+#. settings-schema.json->corner-radius->description
+msgid "Radio de las esquinas"
+msgstr ""
+
+#. settings-schema.json->section-colors->title
+msgid "Colores personalizados"
+msgstr ""
+
+#. settings-schema.json->color-bg->description
+msgid "Color de fondo"
+msgstr ""
+
+#. settings-schema.json->color-text->description
+msgid "Color del texto de la cita"
+msgstr ""
+
+#. settings-schema.json->color-accent->description
+msgid "Color de acento (autor, referencia)"
+msgstr ""
+
+#. settings-schema.json->color-border->description
+msgid "Color del borde"
+msgstr ""
+
+#. settings-schema.json->color-divider->description
+msgid "Color del divisor"
+msgstr ""
+
+#. settings-schema.json->section-typography->title
+msgid "Tipografía"
+msgstr ""
+
+#. settings-schema.json->font-quote->description
+msgid "Fuente de la cita"
+msgstr ""
+
+#. settings-schema.json->font-size-quote->description
+msgid "Tamaño de la cita"
+msgstr ""
+
+#. settings-schema.json->font-italic-quote->description
+msgid "Cita en cursiva"
+msgstr ""
+
+#. settings-schema.json->font-author->description
+msgid "Fuente del autor"
+msgstr ""
+
+#. settings-schema.json->font-size-author->description
+msgid "Tamaño del autor"
+msgstr ""
+
+#. settings-schema.json->section-shape->title
+msgid "Bordes, sombra y decoración"
+msgstr ""
+
+#. settings-schema.json->border-width->description
+msgid "Grosor del borde"
+msgstr ""
+
+#. settings-schema.json->shadow-enabled->description
+msgid "Mostrar sombra"
+msgstr ""
+
+#. settings-schema.json->show-ornament->description
+msgid "Mostrar adorno decorativo (✦)"
+msgstr ""
+
+#. settings-schema.json->show-divider->description
+msgid "Mostrar línea divisoria"
+msgstr ""
+
+#. settings-schema.json->text-align->description
+msgid "Alineación del texto"
+msgstr ""
+
+#. settings-schema.json->text-align->options
+msgid "Izquierda"
+msgstr ""
+
+#. settings-schema.json->text-align->options
+msgid "Centro"
+msgstr ""
+
+#. settings-schema.json->text-align->options
+msgid "Justificado"
+msgstr ""
+
+#. settings-schema.json->section-content->title
+msgid "Contenido visible"
+msgstr ""
+
+#. settings-schema.json->desklet-width->description
+msgid "Ancho del desklet"
+msgstr ""
+
+#. settings-schema.json->section-refresh->title
+msgid "Actualización"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->description
+msgid "Frecuencia de refresco"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Diario (a medianoche)"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Cada hora"
+msgstr ""
+
+#. settings-schema.json->refresh-frequency->options
+msgid "Solo manual"
+msgstr ""
