@@ -1,0 +1,11 @@
+{
+    "uuid": "christmasTree@NicNielsen",
+    "name": "Christmas Tree",
+    "description": "A festive retro character based Christmas tree with blinking lights!",
+    "icon": "icon.png",
+    "max-instances": 1,
+    "prevent-decorations": false,
+    "cinnamon-version": [ "5.0.0", "5.2.0", "5.4.0", "5.6.0", "5.8.0", "6.0.0", "6.2.0", "6.4.0", "6.6.0", "6.8.0", "7.0.0" ],
+    "prevent-decoration": true
+}
+
