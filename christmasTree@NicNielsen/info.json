@@ -1,8 +1,4 @@
 {
-  "uuid": "christmasTree@NicNielsen",
-  "name": "christmasTree",
-  "description": "A character based retro Christmas tree with blinking lights!",
-  "score": 0,
-  "spices-idx": 0,
-  "icon": "icon.png"
+  "author": "Nic Nielsen",
+  "license": "GPLv3"
 }
