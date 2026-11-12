@@ -1,0 +1,7 @@
+{
+    "uuid": "christmasTree@NicNielsen",
+    "name": "Christmas Tree",
+    "description": "A festive retro character based Christmas tree with blinking lights!",
+    "max-instances": 1,
+    "prevent-decorations": false
+}
