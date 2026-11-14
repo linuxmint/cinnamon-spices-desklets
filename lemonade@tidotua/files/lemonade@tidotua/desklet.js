@@ -16,6 +16,7 @@ const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
 const HEALTH_ENDPOINT = "health";
+const MODELS_ENDPOINT = "models";
 
 function LemonadeDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id)
@@ -94,7 +95,7 @@ LemonadeDesklet.prototype = {
         }
 
         if (this.allModels) {
-            // TODO: unlink click listeners and cleanup of UI
+            this.removeModelRows();
             this.allModels.length = 0;
         } else {
             this.allModels = [];
@@ -116,12 +117,35 @@ LemonadeDesklet.prototype = {
 
         let serverHeader = this.setupHeaderUI();
 
-        // DEBUG
-        this.debugText = new St.Label();
-        this.debugText.style_class = "lemonade-text-medium lemonade-text-active";
+        let topSeparator = new St.Widget({
+            style_class: 'lemonade-separator',
+            x_expand: true
+        });
+
+        /*
+        this.ramText = new St.Label({
+            style_class: "lemonade-text-medium lemonade-text-active",
+            text: _("VRAM")
+        });
+
+        let bottomSeparator = new St.Widget({
+            style_class: 'lemonade-separator',
+            x_expand: true
+        });
+        */
+
+        this.modelsTable = new St.BoxLayout({
+            vertical: true,
+            x_expand: true,
+            x_align: Clutter.ActorAlign.FILL
+        });
 
         this.window.add(serverHeader);
-        this.window.add_actor(this.debugText);
+        this.window.add_child(topSeparator);
+        //this.window.add(this.ramText);
+        //this.window.add_child(bottomSeparator);
+        this.window.add(this.modelsTable);
+
         this.setContent(this.window);
 
         this.updateServerAddressUI();
@@ -154,7 +178,6 @@ LemonadeDesklet.prototype = {
             x_expand: true,
             x_align: Clutter.ActorAlign.FILL
         });
-
 
         let iconSize = 48;
 
@@ -227,17 +250,108 @@ LemonadeDesklet.prototype = {
         }));
     },
 
+    createModelRow: function(name, recipe, is_active, is_busy) {
+        let status = is_active ? (is_busy ? _("Busy") : _("Ready")) : _("Off");
+        let status_style = is_active ? (is_busy ? "lemonade-text-bad" : "lemonade-text-good") : "lemonade-text-inactive";
+        let active_style = is_active ? "lemonade-text-active " : "lemonade-text-inactive";
+
+        let modelRow = new St.BoxLayout({
+            vertical: false,
+            x_expand: true,
+            x_align: Clutter.ActorAlign.FILL,
+            style_class: "lemonade-box-bottom"
+        });
+
+        let nameText = new St.Label({
+            x_align: Clutter.ActorAlign.START,
+            y_align: Clutter.ActorAlign.END,
+            y_expand: true,
+            x_expand: true,
+            style_class: "lemonade-text-medium lemonade-text-left" + " " + active_style,
+            text: name
+        });
+
+        let recipeText = new St.Label({
+            x_align: Clutter.ActorAlign.END,
+            y_align: Clutter.ActorAlign.END,
+            y_expand: true,
+            style_class: "lemonade-text-medium lemonade-text-middle" + " " + active_style,
+            text: recipe
+        });
+
+        let statusText = new St.Label({
+            x_align: Clutter.ActorAlign.END,
+            y_align: Clutter.ActorAlign.END,
+            y_expand: true,
+            style_class: "lemonade-text-medium lemonade-text-right" + " " + status_style,
+            text: status
+        });
+
+        modelRow.add(nameText);
+        modelRow.add(recipeText);
+        modelRow.add(statusText);
+
+        /*
+        // Try to use button
+        let sig = modelRow.connect('clicked', Lang.bind(this, function () {
+            this.launcher.spawnv(['xdg-open', this.server_url]); // TODO: replace with model unload
+        }));
+        */
+
+        this.modelsTable.add(modelRow);
+        this.modelListUI.push({
+            row: modelRow,
+            signal: null //sig
+        });
+
+    },
+
+    createModelRows: function() {
+        this.removeModelRows();
+
+        this.activeModels.forEach((model, name) => {
+            let recipe = `${model.recipe}:${model.device}`;
+            this.createModelRow(name, recipe, true, model.is_busy);
+        });
+
+        for (let model of this.allModels) {
+            if (this.activeModels.has(model.name)) continue;
+            this.createModelRow(model.name, model.recipe, false, false);
+        }
+    },
+
+    removeModelRows: function() {
+        // TODO: unlink click listeners and cleanup of UI - probably in separate array and before destroy
+        //if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
+
+        if (this.modelListUI) {
+            for (let modelRow of this.modelListUI) {
+                if (modelRow.row) {
+                    if (modelRow.signal) modelRow.row.disconnect(modelRow.signal);
+                    modelRow.row.destroy();
+                }
+            }
+        }
+
+        this.modelListUI = [];
+    },
+
     // --------------------------------------------------------------------------------------------
     // Logic
     // --------------------------------------------------------------------------------------------
 
     updateIteration: function() {
+        this.updateActiveModels();
+    },
+
+    updateActiveModels: function() {
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
             if (error) {
                 switch (data.code) {
                     case 0:
                         this.statusText.set_text(_("Offline"));
-                        break;
+                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-inactive lemonade-text-important";
+                        return;
 
                     case 401:
                         this.statusText.set_text(_("Error: Missing API key"));
@@ -247,9 +361,6 @@ LemonadeDesklet.prototype = {
                         this.statusText.set_text(_("HTTP Error ") + data.code);
                 }
                 this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
-
-                this.debugText.set_text(error.message);
-
                 return;
             } else {
                 this.statusText.set_text(_("Online"));
@@ -258,27 +369,34 @@ LemonadeDesklet.prototype = {
                     this.versionText.set_text(_("Version") + ": " + data.version);
 
                 if (data.all_models_loaded) {
-                    var debug_text = "Models:\n";
-
+                    this.activeModels.clear();
                     for (let model of data.all_models_loaded) {
                         this.activeModels.set(model.model_name, {
                             device: model.device,
                             recipe: model.recipe,
-                            is_busy: model.is_busy,
-                            status: model.status,
+                            is_busy: model.is_busy
                         });
-
-                        debug_text = debug_text + model.model_name
-                            + " (" + model.device + "/" + model.recipe + ") "
-                            + " is_busy = " + model.is_busy + ", status = " + model.status + "\n";
                     }
-
-                    this.debugText.set_text(debug_text); // DEBUG
+                    this.updateAllModels();
                 }
             }
         });
     },
 
+    updateAllModels: function() {
+        this.getWithBearerCallback(this.getFullUrl(MODELS_ENDPOINT), this.api_key, (error, data) => {
+            if (!error && data.data) {
+                this.allModels = [];
+                for (let model of data.data) {
+                    this.allModels.push({
+                        name: model.id,
+                        recipe: model.recipe
+                    });
+                }
+                this.createModelRows();
+            }
+        });
+    },
 
     getFullUrl: function(endpoint) {
         return `${this.api_url.replace(/\/$/, '')}/${endpoint.replace(/^\//, '')}`;
@@ -287,6 +405,7 @@ LemonadeDesklet.prototype = {
     getWithBearerCallback: function(url, token, callback) {
         var _this = this;
         const session = this.sharedSession;
+        if (!session) return;
         const message = Soup.Message.new('GET', url);
         message.request_headers.append('Authorization', `Bearer ${token}`);
         message.request_headers.append('Accept', 'application/json');
@@ -319,9 +438,19 @@ LemonadeDesklet.prototype = {
     // --------------------------------------------------------------------------------------------
 
     on_desklet_removed: function() {
+        if (this.sharedSession) {
+            this.sharedSession.abort();
+            this.sharedSession = null;
+        }
+
         if (this.mainloop) {
             Mainloop.source_remove(this.mainloop);
+            this.mainloop = null;
         }
+        this.resetData();
+        // Remove all signal listeners is mandatory
+        if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
+        this.removeModelRows();
     }
 };
 
