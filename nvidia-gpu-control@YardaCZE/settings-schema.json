@@ -1,0 +1,80 @@
+{
+    "head1": {
+        "type": "header",
+        "description": "Displayed Metrics & Controls"
+    },
+    "show-gpu-temp": {
+        "type": "switch",
+        "default": true,
+        "description": "Show GPU Temperature"
+    },
+    "show-cpu-temp": {
+        "type": "switch",
+        "default": true,
+        "description": "Show CPU Temperature"
+    },
+    "show-fan-speed": {
+        "type": "switch",
+        "default": true,
+        "description": "Show GPU Fan Speed (%)"
+    },
+    "show-fan-controls": {
+        "type": "switch",
+        "default": true,
+        "description": "Show Fan Control Buttons (Auto / 100%)"
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 2,
+        "min": 1,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Update interval"
+    },
+    "cpu-sensor-path": {
+        "type": "entry",
+        "default": "auto",
+        "description": "CPU thermal file path ('auto' for automatic detection)"
+    },
+    "head2": {
+        "type": "header",
+        "description": "Appearance & Customization"
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgb(20,20,20)",
+        "description": "Background color"
+    },
+    "bg-opacity": {
+        "type": "scale",
+        "default": 0.75,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background opacity"
+    },
+    "text-color": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text color"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 14,
+        "min": 8,
+        "max": 36,
+        "step": 1,
+        "units": "px",
+        "description": "Font size"
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 10,
+        "min": 0,
+        "max": 30,
+        "step": 1,
+        "units": "px",
+        "description": "Corner roundness"
+    }
+}

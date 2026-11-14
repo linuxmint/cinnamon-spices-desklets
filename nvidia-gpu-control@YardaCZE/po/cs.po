@@ -1,0 +1,61 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nvidia-gpu-control@YardaCZE\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "GPU Temp:"
+msgstr "Teplota GPU:"
+
+msgid "CPU Temp:"
+msgstr "Teplota CPU:"
+
+msgid "GPU Fan:"
+msgstr "Ventilátor GPU:"
+
+msgid "Fan Auto"
+msgstr "Auto"
+
+msgid "Fan 100%"
+msgstr "Max 100%"
+
+msgid "Displayed Metrics & Controls"
+msgstr "Zobrazené údaje a ovládání"
+
+msgid "Show GPU Temperature"
+msgstr "Zobrazit teplotu GPU"
+
+msgid "Show CPU Temperature"
+msgstr "Zobrazit teplotu CPU"
+
+msgid "Show GPU Fan Speed (%)"
+msgstr "Zobrazit rychlost ventilátoru GPU (%)"
+
+msgid "Show Fan Control Buttons (Auto / 100%)"
+msgstr "Zobrazit tlačítka ovládání ventilátoru (Auto / 100 %)"
+
+msgid "Update interval"
+msgstr "Interval aktualizace"
+
+msgid "CPU thermal file path ('auto' for automatic detection)"
+msgstr "Cesta k souboru teploty CPU ('auto' pro automatickou detekci)"
+
+msgid "Appearance & Customization"
+msgstr "Vzhled a přizpůsobení"
+
+msgid "Background color"
+msgstr "Barva pozadí"
+
+msgid "Background opacity"
+msgstr "Průhlednost pozadí"
+
+msgid "Text color"
+msgstr "Barva textu"
+
+msgid "Font size"
+msgstr "Velikost písma"
+
+msgid "Corner roundness"
+msgstr "Zakulacení rohů"
