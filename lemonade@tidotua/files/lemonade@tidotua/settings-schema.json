@@ -1,0 +1,21 @@
+{
+    "top": {
+        "type": "header",
+        "description": "Lemonade Server settings"
+    },
+
+    "api_url": {
+        "type": "entry",
+        "default": "http://127.0.0.1:13305/v1",
+        "description": "Server URL",
+        "tooltip": "Enter server URL address here with port and version endpoint"
+    },
+
+    "api_key": {
+        "type": "entry",
+        "default": "key",
+        "description": "Server API key",
+        "tooltip": "Enter optional server API key"
+    }
+
+}
