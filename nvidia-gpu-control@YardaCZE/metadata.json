@@ -1,0 +1,7 @@
+{
+    "uuid": "nvidia-gpu-control@YardaCZE",
+    "name": "NVIDIA GPU & CPU Monitor",
+    "description": "Displays GPU/CPU temperatures, GPU fan speed, and allows manual fan speed control (Auto / 100%).",
+    "version": "1.0",
+    "max-instances": "1"
+}

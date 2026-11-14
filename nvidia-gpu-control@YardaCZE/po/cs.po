@@ -1,0 +1,106 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: nvidia-gpu-control@YardaCZE\n"
+"Language: cs\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "GPU Temp:"
+msgstr "Teplota GPU:"
+
+msgid "CPU Temp:"
+msgstr "Teplota CPU:"
+
+msgid "GPU Power:"
+msgstr "Spotřeba GPU:"
+
+msgid "CPU Power:"
+msgstr "Spotřeba CPU:"
+
+msgid "GPU Fan:"
+msgstr "Ventilátor GPU:"
+
+msgid "Fan Auto"
+msgstr "Auto"
+
+msgid "Fan 100%"
+msgstr "Max 100%"
+
+msgid "Displayed Metrics & Controls"
+msgstr "Zobrazené údaje a ovládání"
+
+msgid "Show GPU Temperature"
+msgstr "Zobrazit teplotu GPU"
+
+msgid "Show CPU Temperature"
+msgstr "Zobrazit teplotu CPU"
+
+msgid "Show GPU Power Usage (W)"
+msgstr "Zobrazit spotřebu GPU (W)"
+
+msgid "Show CPU Power Usage (W)"
+msgstr "Zobrazit spotřebu CPU (W)"
+
+msgid "Show GPU Fan Speed (%)"
+msgstr "Zobrazit rychlost ventilátoru GPU (%)"
+
+msgid "Show Fan Control Buttons (Auto / 100%)"
+msgstr "Zobrazit tlačítka ovládání ventilátoru (Auto / 100 %)"
+
+msgid "Update interval"
+msgstr "Interval aktualizace"
+
+msgid "CPU thermal file path ('auto' for automatic detection)"
+msgstr "Cesta k souboru teploty CPU ('auto' pro automatickou detekci)"
+
+msgid "Custom Labels ('auto' for default translation)"
+msgstr "Vlastní popisky ('auto' pro výchozí překlad)"
+
+msgid "GPU Temperature label"
+msgstr "Popisek teploty GPU"
+
+msgid "CPU Temperature label"
+msgstr "Popisek teploty CPU"
+
+msgid "GPU Power label"
+msgstr "Popisek spotřeby GPU"
+
+msgid "CPU Power label"
+msgstr "Popisek spotřeby CPU"
+
+msgid "GPU Fan Speed label"
+msgstr "Popisek ventilátoru GPU"
+
+msgid "Auto button label"
+msgstr "Popisek tlačítka Auto"
+
+msgid "Max button label"
+msgstr "Popisek tlačítka Max"
+
+msgid "Appearance & Customization"
+msgstr "Vzhled a přizpůsobení"
+
+msgid "Desklet width"
+msgstr "Šířka deskletu"
+
+msgid "Desklet height (0 for auto)"
+msgstr "Výška deskletu (0 pro auto)"
+
+msgid "Enable dynamic temperature colors (Normal -> Orange -> Red)"
+msgstr "Povolit dynamické barvy teploty (Normální -> Oranžová -> Červená)"
+
+msgid "Background color"
+msgstr "Barva pozadí"
+
+msgid "Background opacity"
+msgstr "Průhlednost pozadí"
+
+msgid "Text color"
+msgstr "Barva textu"
+
+msgid "Font size"
+msgstr "Velikost písma"
+
+msgid "Corner roundness"
+msgstr "Zakulacení rohů"
