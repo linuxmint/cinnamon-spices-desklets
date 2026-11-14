@@ -13,6 +13,16 @@
         "default": true,
         "description": "Show CPU Temperature"
     },
+    "show-gpu-power": {
+        "type": "switch",
+        "default": true,
+        "description": "Show GPU Power Usage (W)"
+    },
+    "show-cpu-power": {
+        "type": "switch",
+        "default": true,
+        "description": "Show CPU Power Usage (W)"
+    },
     "show-fan-speed": {
         "type": "switch",
         "default": true,
@@ -39,6 +49,45 @@
     },
     "head2": {
         "type": "header",
+        "description": "Custom Labels ('auto' for default translation)"
+    },
+    "label-gpu-temp": {
+        "type": "entry",
+        "default": "auto",
+        "description": "GPU Temperature label"
+    },
+    "label-cpu-temp": {
+        "type": "entry",
+        "default": "auto",
+        "description": "CPU Temperature label"
+    },
+    "label-gpu-power": {
+        "type": "entry",
+        "default": "auto",
+        "description": "GPU Power label"
+    },
+    "label-cpu-power": {
+        "type": "entry",
+        "default": "auto",
+        "description": "CPU Power label"
+    },
+    "label-fan-speed": {
+        "type": "entry",
+        "default": "auto",
+        "description": "GPU Fan Speed label"
+    },
+    "label-btn-auto": {
+        "type": "entry",
+        "default": "auto",
+        "description": "Auto button label"
+    },
+    "label-btn-max": {
+        "type": "entry",
+        "default": "auto",
+        "description": "Max button label"
+    },
+    "head3": {
+        "type": "header",
         "description": "Appearance & Customization"
     },
     "desklet-width": {
@@ -49,6 +98,15 @@
         "step": 10,
         "units": "px",
         "description": "Desklet width"
+    },
+    "desklet-height": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 400,
+        "step": 10,
+        "units": "px",
+        "description": "Desklet height (0 for auto)"
     },
     "dynamic-colors": {
         "type": "switch",

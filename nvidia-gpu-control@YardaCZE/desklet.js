@@ -6,7 +6,6 @@ const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
-const ByteArray = imports.byteArray;
 
 const UUID = "nvidia-gpu-control@YardaCZE";
 
@@ -33,11 +32,23 @@ NvidiaGpuDesklet.prototype = {
         this.settings = new Settings.DeskletSettings(this, UUID, deskletId);
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-gpu-temp", "showGpuTemp", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-cpu-temp", "showCpuTemp", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-gpu-power", "showGpuPower", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "show-cpu-power", "showCpuPower", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-fan-speed", "showFanSpeed", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-fan-controls", "showFanControls", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "update-interval", "updateInterval", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "cpu-sensor-path", "cpuSensorPath", this._onSettingsChanged, null);
+        
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-gpu-temp", "labelGpuTemp", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-cpu-temp", "labelCpuTemp", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-gpu-power", "labelGpuPower", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-cpu-power", "labelCpuPower", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-fan-speed", "labelFanSpeed", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-btn-auto", "labelBtnAuto", this._updateLabels, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "label-btn-max", "labelBtnMax", this._updateLabels, null);
+
         this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._applyStyle, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-height", "deskletHeight", this._applyStyle, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "dynamic-colors", "dynamicColors", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "bgColor", this._applyStyle, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "bg-opacity", "bgOpacity", this._applyStyle, null);
@@ -46,8 +57,12 @@ NvidiaGpuDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "border-radius", "borderRadius", this._applyStyle, null);
 
         this._detectedCpuPath = null;
+        this._detectedRaplPath = null;
+        this._lastRaplEnergy = null;
+        this._lastRaplTime = null;
         this._detectingCpu = false;
         this._buildUI();
+        this._updateLabels();
         this._applyStyle();
         this._updateLoop();
     },
@@ -71,6 +86,20 @@ NvidiaGpuDesklet.prototype = {
         this.cpuTempVal = new St.Label({ text: "-- °C", style_class: "gpu-desklet-value" });
         this.cpuTempRow.add(this.cpuTempLabel, { expand: true, x_fill: false, x_align: St.Align.START });
         this.cpuTempRow.add(this.cpuTempVal, { x_fill: false, x_align: St.Align.END });
+
+        // GPU Power Row
+        this.gpuPowerRow = new St.BoxLayout({ vertical: false, style_class: "gpu-desklet-row" });
+        this.gpuPowerLabel = new St.Label({ text: _("GPU Power:") });
+        this.gpuPowerVal = new St.Label({ text: "-- W", style_class: "gpu-desklet-value" });
+        this.gpuPowerRow.add(this.gpuPowerLabel, { expand: true, x_fill: false, x_align: St.Align.START });
+        this.gpuPowerRow.add(this.gpuPowerVal, { x_fill: false, x_align: St.Align.END });
+
+        // CPU Power Row
+        this.cpuPowerRow = new St.BoxLayout({ vertical: false, style_class: "gpu-desklet-row" });
+        this.cpuPowerLabel = new St.Label({ text: _("CPU Power:") });
+        this.cpuPowerVal = new St.Label({ text: "-- W", style_class: "gpu-desklet-value" });
+        this.cpuPowerRow.add(this.cpuPowerLabel, { expand: true, x_fill: false, x_align: St.Align.START });
+        this.cpuPowerRow.add(this.cpuPowerVal, { x_fill: false, x_align: St.Align.END });
 
         // Fan Speed Row
         this.fanSpeedRow = new St.BoxLayout({ vertical: false, style_class: "gpu-desklet-row" });
@@ -103,6 +132,8 @@ NvidiaGpuDesklet.prototype = {
 
         this.mainContainer.add(this.gpuTempRow);
         this.mainContainer.add(this.cpuTempRow);
+        this.mainContainer.add(this.gpuPowerRow);
+        this.mainContainer.add(this.cpuPowerRow);
         this.mainContainer.add(this.fanSpeedRow);
         this.mainContainer.add(this.btnBox);
 
@@ -110,9 +141,28 @@ NvidiaGpuDesklet.prototype = {
         this._updateVisibility();
     },
 
+    _resolveLabel: function(customVal, defaultEnglish) {
+        if (customVal && customVal.trim() !== "" && customVal.trim().toLowerCase() !== "auto") {
+            return customVal;
+        }
+        return _(defaultEnglish);
+    },
+
+    _updateLabels: function() {
+        this.gpuTempLabel.set_text(this._resolveLabel(this.labelGpuTemp, "GPU Temp:"));
+        this.cpuTempLabel.set_text(this._resolveLabel(this.labelCpuTemp, "CPU Temp:"));
+        this.gpuPowerLabel.set_text(this._resolveLabel(this.labelGpuPower, "GPU Power:"));
+        this.cpuPowerLabel.set_text(this._resolveLabel(this.labelCpuPower, "CPU Power:"));
+        this.fanSpeedLabel.set_text(this._resolveLabel(this.labelFanSpeed, "GPU Fan:"));
+        this.btnAuto.set_label(this._resolveLabel(this.labelBtnAuto, "Fan Auto"));
+        this.btnMax.set_label(this._resolveLabel(this.labelBtnMax, "Fan 100%"));
+    },
+
     _updateVisibility: function() {
         this.gpuTempRow.visible = this.showGpuTemp;
         this.cpuTempRow.visible = this.showCpuTemp;
+        this.gpuPowerRow.visible = this.showGpuPower;
+        this.cpuPowerRow.visible = this.showCpuPower;
         this.fanSpeedRow.visible = this.showFanSpeed;
         this.btnBox.visible = this.showFanControls;
     },
@@ -126,9 +176,12 @@ NvidiaGpuDesklet.prototype = {
             b = match[2];
         }
         let rgbaBg = `rgba(${r}, ${g}, ${b}, ${this.bgOpacity})`;
+        let widthPx = this.deskletWidth || 240;
+        let heightStyle = (this.deskletHeight && this.deskletHeight > 0) ? `height: ${this.deskletHeight}px; ` : "";
 
-        this.mainContainer.set_width(this.deskletWidth || 240);
         this.mainContainer.set_style(
+            `width: ${widthPx}px; ` +
+            heightStyle +
             `background-color: ${rgbaBg}; ` +
             `color: ${this.textColor}; ` +
             `font-size: ${this.fontSize}px; ` +
@@ -138,6 +191,7 @@ NvidiaGpuDesklet.prototype = {
 
     _onSettingsChanged: function() {
         this._detectedCpuPath = null;
+        this._detectedRaplPath = null;
         this._updateVisibility();
         this._refreshData();
     },
@@ -170,11 +224,11 @@ NvidiaGpuDesklet.prototype = {
             return this.textColor;
         }
         if (celsius >= 85) {
-            return "#ff4444"; // Red (Critical)
+            return "#ff4444";
         } else if (celsius >= 75) {
-            return "#f39c12"; // Orange (Warning)
+            return "#f39c12";
         } else {
-            return this.textColor; // Normal
+            return this.textColor;
         }
     },
 
@@ -184,7 +238,8 @@ NvidiaGpuDesklet.prototype = {
             try {
                 let [ok, contents] = obj.load_contents_finish(res);
                 if (ok) {
-                    let rawVal = parseInt(ByteArray.toString(contents).trim(), 10);
+                    let textDec = new TextDecoder("utf-8");
+                    let rawVal = parseInt(textDec.decode(contents).trim(), 10);
                     if (!isNaN(rawVal)) {
                         this._detectedCpuPath = path;
                         let celsius = Math.round(rawVal / 1000);
@@ -194,9 +249,7 @@ NvidiaGpuDesklet.prototype = {
                         return;
                     }
                 }
-            } catch (e) {
-                // File unreadable
-            }
+            } catch (e) {}
             if (onFallback) {
                 onFallback();
             } else {
@@ -224,9 +277,7 @@ NvidiaGpuDesklet.prototype = {
                     while ((info = enumerator.next_file(null)) !== null) {
                         candidates.push("/sys/class/hwmon/" + info.get_name());
                     }
-                } catch (e) {
-                    // hwmon unavailable
-                }
+                } catch (e) {}
                 this._checkHwmonCandidates(candidates, 0);
             }
         );
@@ -247,7 +298,8 @@ NvidiaGpuDesklet.prototype = {
             try {
                 let [ok, contents] = obj.load_contents_finish(res);
                 if (ok) {
-                    let driverName = ByteArray.toString(contents).trim();
+                    let textDec = new TextDecoder("utf-8");
+                    let driverName = textDec.decode(contents).trim();
                     if (driverName === "coretemp" || driverName === "k10temp" || driverName === "zenpower") {
                         this._detectingCpu = false;
                         this._readCpuFileAsync(basePath + "/temp1_input", () => {
@@ -256,22 +308,74 @@ NvidiaGpuDesklet.prototype = {
                         return;
                     }
                 }
-            } catch (e) {
-                // Ignore
-            }
+            } catch (e) {}
             this._checkHwmonCandidates(candidates, index + 1);
         });
     },
 
+    _readCpuPowerAsync: function() {
+        let raplPaths = [
+            this._detectedRaplPath,
+            "/sys/class/powercap/intel-rapl/intel-rapl:0/energy_uj",
+            "/sys/class/powercap/intel-rapl/intel-rapl:0:0/energy_uj"
+        ];
+        
+        let tryPath = (paths, idx) => {
+            if (idx >= paths.length || !paths[idx]) {
+                this.cpuPowerVal.set_text("N/A");
+                return;
+            }
+            let p = paths[idx];
+            let file = Gio.File.new_for_path(p);
+            let now = Date.now();
+
+            file.load_contents_async(null, (obj, res) => {
+                try {
+                    let [ok, contents] = obj.load_contents_finish(res);
+                    if (ok) {
+                        let textDec = new TextDecoder("utf-8");
+                        let currentEnergy = parseInt(textDec.decode(contents).trim(), 10);
+                        if (!isNaN(currentEnergy)) {
+                            this._detectedRaplPath = p;
+                            if (this._lastRaplEnergy !== null && this._lastRaplTime !== null) {
+                                let deltaEnergy = currentEnergy - this._lastRaplEnergy;
+                                if (deltaEnergy < 0) deltaEnergy += 4294967296;
+                                let deltaTime = (now - this._lastRaplTime) / 1000.0;
+                                if (deltaTime > 0) {
+                                    let watts = (deltaEnergy / 1000000.0) / deltaTime;
+                                    if (!isNaN(watts) && watts >= 0 && watts < 500) {
+                                        this.cpuPowerVal.set_text(watts.toFixed(1) + " W");
+                                        this._lastRaplEnergy = currentEnergy;
+                                        this._lastRaplTime = now;
+                                        return;
+                                    }
+                                }
+                            }
+                            this._lastRaplEnergy = currentEnergy;
+                            this._lastRaplTime = now;
+                            this.cpuPowerVal.set_text("0.0 W");
+                            return;
+                        }
+                    }
+                } catch (e) {
+                    tryPath(paths, idx + 1);
+                    return;
+                }
+                tryPath(paths, idx + 1);
+            });
+        };
+
+        tryPath(raplPaths, 0);
+    },
+
     _refreshData: function() {
-        // 1. Read NVIDIA GPU Temp & Fan Speed asynchronously
-        if (this.showGpuTemp || this.showFanSpeed) {
+        if (this.showGpuTemp || this.showFanSpeed || this.showGpuPower) {
             try {
                 let proc = Gio.Subprocess.new(
                     [
                         "env", "LC_ALL=C",
                         "nvidia-smi",
-                        "--query-gpu=temperature.gpu,fan.speed",
+                        "--query-gpu=temperature.gpu,fan.speed,power.draw",
                         "--format=csv,noheader,nounits"
                     ],
                     Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
@@ -281,10 +385,12 @@ NvidiaGpuDesklet.prototype = {
                         let [ok, stdout, stderr] = subproc.communicate_utf8_finish(res);
                         if (ok && subproc.get_successful() && stdout) {
                             let parts = stdout.trim().split(",");
-                            if (parts.length >= 2) {
+                            if (parts.length >= 3) {
                                 let gpuTempNum = parseInt(parts[0].trim(), 10);
                                 let gpuTempStr = parts[0].trim();
                                 let fanSpeed = parts[1].trim();
+                                let powerParsed = parseFloat(parts[2].trim());
+                                let gpuPower = !isNaN(powerParsed) ? powerParsed.toFixed(1) : "N/A";
 
                                 if (!isNaN(gpuTempNum)) {
                                     let gpuColor = this._getTempColor(gpuTempNum);
@@ -292,23 +398,23 @@ NvidiaGpuDesklet.prototype = {
                                     this.gpuTempVal.set_style(`color: ${gpuColor}; font-weight: bold;`);
                                 }
                                 this.fanSpeedVal.set_text(fanSpeed + " %");
+                                this.gpuPowerVal.set_text(gpuPower + " W");
                                 return;
                             }
                         }
                         this.gpuTempVal.set_text("N/A");
-                        this.fanSpeedVal.set_text("N/A");
+                        this.gpuPowerVal.set_text("N/A");
                     } catch (e) {
                         this.gpuTempVal.set_text("Err");
-                        this.fanSpeedVal.set_text("Err");
+                        this.gpuPowerVal.set_text("Err");
                     }
                 });
             } catch (e) {
                 this.gpuTempVal.set_text("Err");
-                this.fanSpeedVal.set_text("Err");
+                this.gpuPowerVal.set_text("Err");
             }
         }
 
-        // 2. Read CPU Temperature asynchronously
         if (this.showCpuTemp) {
             if (this.cpuSensorPath && this.cpuSensorPath !== "auto") {
                 this._readCpuFileAsync(this.cpuSensorPath, null);
@@ -320,6 +426,10 @@ NvidiaGpuDesklet.prototype = {
             } else {
                 this._detectAndReadCpuAsync();
             }
+        }
+
+        if (this.showCpuPower) {
+            this._readCpuPowerAsync();
         }
     },
 
@@ -343,4 +453,3 @@ NvidiaGpuDesklet.prototype = {
 function main(metadata, deskletId) {
     return new NvidiaGpuDesklet(metadata, deskletId);
 }
-EOF
