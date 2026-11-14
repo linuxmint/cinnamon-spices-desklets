@@ -4,11 +4,28 @@
         "description": "Lemonade Server settings"
     },
 
-    "api_url": {
+    "server_addr": {
         "type": "entry",
-        "default": "http://127.0.0.1:13305/v1",
-        "description": "Server URL",
-        "tooltip": "Enter server URL address here with port and version endpoint"
+        "default": "127.0.0.1",
+        "description": "Server Address",
+        "tooltip": "Enter server IP or domain address"
+    },
+
+    "server_port": {
+        "type": "spinbutton",
+        "default": 13305,
+        "min": 0,
+        "max": 65535,
+        "step": 1,
+        "description": "Server Port",
+        "tooltip": "Port between 0 and 65535"
+    },
+
+    "api_version": {
+        "type": "entry",
+        "default": "v1",
+        "description": "Version Endpoint",
+        "tooltip": "Version endpoint vN format"
     },
 
     "api_key": {

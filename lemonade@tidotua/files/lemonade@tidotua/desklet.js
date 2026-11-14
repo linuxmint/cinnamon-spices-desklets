@@ -27,10 +27,7 @@ LemonadeDesklet.prototype = {
     _init: function (metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
 
-        // TODO: move settings to the separate method
-        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "api_url", "api_url", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onSettingChanged);
+        this.setupSettings(desklet_id);
 
         this.sharedSession = new Soup.Session();
         this.launcher = new Gio.SubprocessLauncher({
@@ -42,16 +39,44 @@ LemonadeDesklet.prototype = {
 
         this.resetData();
         this.setupUI();
+
         this.mainloop = Mainloop.timeout_add_seconds(5, () => {
             this.updateIteration();
             return true;
         });
+
         this.updateIteration();
     },
 
-    resetData: function() {
+    // --------------------------------------------------------------------------------------------
+    // Settings
+    // --------------------------------------------------------------------------------------------
+
+    setupSettings: function(desklet_id) {
+        this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "server_addr", "server_addr", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "server_port", "server_port", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "api_version", "api_version", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onSettingChanged);
+    },
+
+    onSettingChanged: function() {
         // TODO
     },
+
+    // --------------------------------------------------------------------------------------------
+    // Data
+    // --------------------------------------------------------------------------------------------
+
+    resetData: function() {
+        this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
+        this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
+
+    },
+
+    // --------------------------------------------------------------------------------------------
+    // UI
+    // --------------------------------------------------------------------------------------------
 
     setupUI: function() {
         this.window = new St.BoxLayout({
@@ -100,6 +125,7 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.FILL
         });
 
+
         let iconSize = 48;
 
         this.serverIcon = new St.Button();
@@ -114,11 +140,11 @@ LemonadeDesklet.prototype = {
         this.serverIcon.set_child(image);
 
         this.serverIconTooltip = new Tooltips.Tooltip(this.serverIcon);
-        this.serverIconTooltip.set_text(this.api_url);
+        this.serverIconTooltip.set_text(this.server_url);
 
         if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
         this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
-            this.launcher.spawnv(['xdg-open', this.api_url]);
+            this.launcher.spawnv(['xdg-open', this.server_url]);
         }));
 
         this.nameText = new St.Label({
@@ -137,7 +163,7 @@ LemonadeDesklet.prototype = {
             y_expand: true
         });
         this.versionText.style = "font-size: " + 16 + "px; color: " + "#FFFFFF" + ";";
-        this.versionText.set_text(_("version"));
+        this.versionText.set_text(_("Version"));
 
         this.statusText = new St.Label({
             x_align: Clutter.ActorAlign.START,
@@ -154,6 +180,7 @@ LemonadeDesklet.prototype = {
             y_expand: true
         });
         this.addressText.style = "font-size: " + 16 + "px; color: " + "#FFFFFF" + ";";
+        this.addressText.set_text(_("Address"));
 
         serverHeader.add(this.serverIcon);
         serverStatusRow1.add_actor(this.nameText);
@@ -168,14 +195,14 @@ LemonadeDesklet.prototype = {
         return serverHeader;
     },
 
-    onSettingChanged: function() {
-        // TODO
-    },
+    // --------------------------------------------------------------------------------------------
+    // Logic
+    // --------------------------------------------------------------------------------------------
 
     updateIteration: function() {
         let unit_size = 15 * global.ui_scale;
 
-        this.addressText.set_text(this.api_url);
+        this.addressText.set_text(_("Address") + ": " + this.server_addr);
 
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
             if (error) {
@@ -183,6 +210,8 @@ LemonadeDesklet.prototype = {
                 return;
             }
             this.debugText.set_text(JSON.stringify(data, null, 2));
+
+            this.versionText.set_text(_("Version") + ": " + data.version);
         });
     },
 
@@ -221,6 +250,10 @@ LemonadeDesklet.prototype = {
         );
     },
 
+    // --------------------------------------------------------------------------------------------
+    // Destroy
+    // --------------------------------------------------------------------------------------------
+
     on_desklet_removed: function() {
         if (this.mainloop) {
             Mainloop.source_remove(this.mainloop);
@@ -230,6 +263,10 @@ LemonadeDesklet.prototype = {
 
 
 function main(metadata, desklet_id) {
-    return new LemonadeDesklet(metadata, desklet_id);
+    try {
+        return new LemonadeDesklet(metadata, desklet_id);
+    } catch (e) {
+        global.log(`CRASH INSIDE _INIT: ${e.stack}`);
+        throw e;
+    }
 }
-
