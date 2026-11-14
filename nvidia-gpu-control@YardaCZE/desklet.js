@@ -6,10 +6,11 @@ const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const Gettext = imports.gettext;
 const Util = imports.misc.util;
+const ByteArray = imports.byteArray;
 
 const UUID = "nvidia-gpu-control@YardaCZE";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]));
 
 function _(str) {
     let translated = Gettext.dgettext(UUID, str);
@@ -43,6 +44,7 @@ NvidiaGpuDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "border-radius", "borderRadius", this._applyStyle, null);
 
         this._detectedCpuPath = null;
+        this._detectingCpu = false;
         this._buildUI();
         this._applyStyle();
         this._updateLoop();
@@ -114,7 +116,6 @@ NvidiaGpuDesklet.prototype = {
     },
 
     _applyStyle: function() {
-        // Parse rgb(r,g,b) or rgba(r,g,b,a) into rgba with custom opacity
         let match = this.bgColor.match(/\d+/g);
         let r = 20, g = 20, b = 20;
         if (match && match.length >= 3) {
@@ -139,7 +140,11 @@ NvidiaGpuDesklet.prototype = {
     },
 
     _setFanMax: function() {
-        Util.spawnCommandLine('nvidia-settings -a "[gpu:0]/GPUFanControlState=1" -a "[fan:0]/GPUTargetFanSpeed=100"');
+        Util.spawn([
+            "nvidia-settings",
+            "-a", "[gpu:0]/GPUFanControlState=1",
+            "-a", "[fan:0]/GPUTargetFanSpeed=100"
+        ]);
         Mainloop.timeout_add(500, () => {
             this._refreshData();
             return false;
@@ -147,105 +152,147 @@ NvidiaGpuDesklet.prototype = {
     },
 
     _setFanAuto: function() {
-        Util.spawnCommandLine('nvidia-settings -a "[gpu:0]/GPUFanControlState=0"');
+        Util.spawn([
+            "nvidia-settings",
+            "-a", "[gpu:0]/GPUFanControlState=0"
+        ]);
         Mainloop.timeout_add(500, () => {
             this._refreshData();
             return false;
         });
     },
 
-    _findCpuSensor: function() {
-        if (this.cpuSensorPath && this.cpuSensorPath !== "auto" && GLib.file_test(this.cpuSensorPath, GLib.FileTest.EXISTS)) {
-            return this.cpuSensorPath;
-        }
-        if (this._detectedCpuPath && GLib.file_test(this._detectedCpuPath, GLib.FileTest.EXISTS)) {
-            return this._detectedCpuPath;
-        }
-
-        // Auto-detect Intel (coretemp) or AMD (k10temp / zenpower) in hwmon
-        try {
-            let dir = Gio.File.new_for_path("/sys/class/hwmon");
-            let enumerator = dir.enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-            let info;
-            while ((info = enumerator.next_file(null)) !== null) {
-                let hwmonPath = "/sys/class/hwmon/" + info.get_name();
-                let nameFile = hwmonPath + "/name";
-                if (GLib.file_test(nameFile, GLib.FileTest.EXISTS)) {
-                    let [ok, contents] = GLib.file_get_contents(nameFile);
-                    if (ok) {
-                        let driverName = contents.toString().trim();
-                        if (driverName === "coretemp" || driverName === "k10temp" || driverName === "zenpower") {
-                            let tempFile = hwmonPath + "/temp1_input";
-                            if (GLib.file_test(tempFile, GLib.FileTest.EXISTS)) {
-                                this._detectedCpuPath = tempFile;
-                                return tempFile;
-                            }
-                        }
+    _readCpuFileAsync: function(path, onFallback) {
+        let file = Gio.File.new_for_path(path);
+        file.load_contents_async(null, (obj, res) => {
+            try {
+                let [ok, contents] = obj.load_contents_finish(res);
+                if (ok) {
+                    let rawVal = parseInt(ByteArray.toString(contents).trim(), 10);
+                    if (!isNaN(rawVal)) {
+                        this._detectedCpuPath = path;
+                        let celsius = Math.round(rawVal / 1000);
+                        this.cpuTempVal.set_text(celsius + " °C");
+                        return;
                     }
                 }
+            } catch (e) {
+                // File not found or unreadable
             }
-        } catch (e) {
-            // Fallback below
+            if (onFallback) {
+                onFallback();
+            } else {
+                this._detectedCpuPath = null;
+                this.cpuTempVal.set_text("N/A");
+            }
+        });
+    },
+
+    _detectAndReadCpuAsync: function() {
+        if (this._detectingCpu) return;
+        this._detectingCpu = true;
+
+        let hwmonDir = Gio.File.new_for_path("/sys/class/hwmon");
+        hwmonDir.enumerate_children_async(
+            "standard::name",
+            Gio.FileQueryInfoFlags.NONE,
+            GLib.PRIORITY_DEFAULT,
+            null,
+            (dirObj, res) => {
+                let candidates = [];
+                try {
+                    let enumerator = dirObj.enumerate_children_finish(res);
+                    let info;
+                    while ((info = enumerator.next_file(null)) !== null) {
+                        candidates.push("/sys/class/hwmon/" + info.get_name());
+                    }
+                } catch (e) {
+                    // hwmon unavailable
+                }
+                this._checkHwmonCandidates(candidates, 0);
+            }
+        );
+    },
+
+    _checkHwmonCandidates: function(candidates, index) {
+        if (index >= candidates.length) {
+            this._detectingCpu = false;
+            this._readCpuFileAsync("/sys/class/thermal/thermal_zone2/temp", () => {
+                this._readCpuFileAsync("/sys/class/thermal/thermal_zone0/temp", null);
+            });
+            return;
         }
 
-        // Fallback to thermal_zone
-        let fallbacks = [
-            "/sys/class/thermal/thermal_zone2/temp",
-            "/sys/class/thermal/thermal_zone0/temp"
-        ];
-        for (let path of fallbacks) {
-            if (GLib.file_test(path, GLib.FileTest.EXISTS)) {
-                this._detectedCpuPath = path;
-                return path;
+        let basePath = candidates[index];
+        let nameFile = Gio.File.new_for_path(basePath + "/name");
+        nameFile.load_contents_async(null, (obj, res) => {
+            try {
+                let [ok, contents] = obj.load_contents_finish(res);
+                if (ok) {
+                    let driverName = ByteArray.toString(contents).trim();
+                    if (driverName === "coretemp" || driverName === "k10temp" || driverName === "zenpower") {
+                        this._detectingCpu = false;
+                        this._readCpuFileAsync(basePath + "/temp1_input", () => {
+                            this._checkHwmonCandidates(candidates, index + 1);
+                        });
+                        return;
+                    }
+                }
+            } catch (e) {
+                // Ignore and check next
             }
-        }
-        return null;
+            this._checkHwmonCandidates(candidates, index + 1);
+        });
     },
 
     _refreshData: function() {
-        // 1. Read NVIDIA GPU Temp & Fan Speed (force LC_ALL=C for locale safety)
+        // 1. Read NVIDIA GPU Temp & Fan Speed asynchronously
         if (this.showGpuTemp || this.showFanSpeed) {
             try {
-                let [res, out, err, status] = GLib.spawn_command_line_sync(
-                    "env LC_ALL=C nvidia-smi --query-gpu=temperature.gpu,fan.speed --format=csv,noheader,nounits"
+                let proc = Gio.Subprocess.new(
+                    [
+                        "env", "LC_ALL=C",
+                        "nvidia-smi",
+                        "--query-gpu=temperature.gpu,fan.speed",
+                        "--format=csv,noheader,nounits"
+                    ],
+                    Gio.SubprocessFlags.STDOUT_PIPE | Gio.SubprocessFlags.STDERR_PIPE
                 );
-                if (res && status === 0) {
-                    let output = out.toString().trim();
-                    let parts = output.split(",");
-                    if (parts.length >= 2) {
-                        let gpuTemp = parts[0].trim();
-                        let fanSpeed = parts[1].trim();
-                        this.gpuTempVal.set_text(gpuTemp + " °C");
-                        this.fanSpeedVal.set_text(fanSpeed + " %");
+                proc.communicate_utf8_async(null, null, (subproc, res) => {
+                    try {
+                        let [ok, stdout, stderr] = subproc.communicate_utf8_finish(res);
+                        if (ok && subproc.get_successful() && stdout) {
+                            let parts = stdout.trim().split(",");
+                            if (parts.length >= 2) {
+                                this.gpuTempVal.set_text(parts[0].trim() + " °C");
+                                this.fanSpeedVal.set_text(parts[1].trim() + " %");
+                                return;
+                            }
+                        }
+                        this.gpuTempVal.set_text("N/A");
+                        this.fanSpeedVal.set_text("N/A");
+                    } catch (e) {
+                        this.gpuTempVal.set_text("Err");
+                        this.fanSpeedVal.set_text("Err");
                     }
-                } else {
-                    this.gpuTempVal.set_text("N/A");
-                    this.fanSpeedVal.set_text("N/A");
-                }
+                });
             } catch (e) {
                 this.gpuTempVal.set_text("Err");
                 this.fanSpeedVal.set_text("Err");
             }
         }
 
-        // 2. Read CPU Temperature
+        // 2. Read CPU Temperature asynchronously
         if (this.showCpuTemp) {
-            let cpuPath = this._findCpuSensor();
-            if (cpuPath) {
-                try {
-                    let [ok, contents] = GLib.file_get_contents(cpuPath);
-                    if (ok) {
-                        let rawVal = parseInt(contents.toString().trim(), 10);
-                        if (!isNaN(rawVal)) {
-                            let celsius = Math.round(rawVal / 1000);
-                            this.cpuTempVal.set_text(celsius + " °C");
-                        }
-                    }
-                } catch (e) {
-                    this.cpuTempVal.set_text("Err");
-                }
+            if (this.cpuSensorPath && this.cpuSensorPath !== "auto") {
+                this._readCpuFileAsync(this.cpuSensorPath, null);
+            } else if (this._detectedCpuPath) {
+                this._readCpuFileAsync(this._detectedCpuPath, () => {
+                    this._detectedCpuPath = null;
+                    this._detectAndReadCpuAsync();
+                });
             } else {
-                this.cpuTempVal.set_text("N/A");
+                this._detectAndReadCpuAsync();
             }
         }
     },
