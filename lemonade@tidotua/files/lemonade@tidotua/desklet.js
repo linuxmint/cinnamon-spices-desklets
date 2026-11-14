@@ -86,6 +86,19 @@ LemonadeDesklet.prototype = {
     resetData: function() {
         this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
+
+        if (this.activeModels) {
+            this.activeModels.clear();
+        } else {
+            this.activeModels = new Map();
+        }
+
+        if (this.allModels) {
+            // TODO: unlink click listeners and cleanup of UI
+            this.allModels.length = 0;
+        } else {
+            this.allModels = [];
+        }
     },
 
     // --------------------------------------------------------------------------------------------
@@ -98,7 +111,7 @@ LemonadeDesklet.prototype = {
         this.window = new St.BoxLayout({
             vertical: true,
             style_class: "desklet",
-            style: "border-radius: 10px; background-color: " + "#444" + "; padding: 10px; min-width: 400px;"
+            style: "border-radius: 10px; background-color: " + "#444" + "; padding: 10px; min-width: 450px;"
         });
 
         let serverHeader = this.setupHeaderUI();
@@ -181,8 +194,8 @@ LemonadeDesklet.prototype = {
             y_align: Clutter.ActorAlign.END,
             y_expand: true
         });
-        this.statusText.style = "font-size: " + 20 + "px; color: " + "#FFFFFF" + "; padding-right: " + 10 +"px;";
-        this.statusText.set_text(_("Status"));
+        this.statusText.style = "font-size: " + 20 + "px; color: " + "#00FF00" + "; padding-right: " + 10 +"px;";
+        this.statusText.set_text(_("Online"));
 
         this.addressText = new St.Label({
             x_align: Clutter.ActorAlign.END,
@@ -223,12 +236,50 @@ LemonadeDesklet.prototype = {
     updateIteration: function() {
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
             if (error) {
-                this.debugText.set_text(error.message);
-                return;
-            }
-            this.debugText.set_text(JSON.stringify(data, null, 2));
+                switch (data.code) {
+                    case 0:
+                        this.statusText.set_text(_("Offline"));
+                        break;
 
-            this.versionText.set_text(_("Version") + ": " + data.version);
+                    case 401:
+                        this.statusText.set_text(_("Error: Missing API key"));
+                        break;
+
+                    default:
+                        this.statusText.set_text(_("HTTP Error ") + data.code);
+                }
+                this.statusText.style = "font-size: " + 20 + "px; color: " + "#FF0000" + "; padding-right: " + 10 +"px;";
+
+                this.debugText.set_text(error.message);
+
+                return;
+            } else {
+                this.statusText.set_text(_("Online"));
+                this.statusText.style = "font-size: " + 20 + "px; color: " + "#00FF00" + "; padding-right: " + 10 +"px;";
+                if (data.version)
+                    this.versionText.set_text(_("Version") + ": " + data.version);
+
+                if (data.all_models_loaded) {
+                    var debug_text = "Models:\n";
+
+                    //*
+                    for (let model of data.all_models_loaded) {
+                        this.activeModels.set(model.model_name, {
+                            device: model.device,
+                            recipe: model.recipe,
+                            is_busy: model.is_busy,
+                            status: model.status,
+                        });
+
+                        debug_text = debug_text + model.model_name
+                            + " (" + model.device + "/" + model.recipe + ") "
+                            + " is_busy = " + model.is_busy + ", status = " + model.status + "\n";
+                    }
+                    //*/
+
+                    this.debugText.set_text(debug_text); // DEBUG
+                }
+            }
         });
     },
 
@@ -253,7 +304,7 @@ LemonadeDesklet.prototype = {
                     const bytes = session.send_and_read_finish(result);
                     const statusCode = message.status_code;
                     if (statusCode !== 200) {
-                        callback.call(_this, new Error(`HTTP Error ${statusCode}: ${url}`), null);
+                        callback.call(_this, new Error(`HTTP Error ${statusCode}: ${url}`), {code: statusCode});
                         return;
                     }
                     const decoder = new TextDecoder('utf-8');
@@ -261,7 +312,7 @@ LemonadeDesklet.prototype = {
                     const data = JSON.parse(responseText);
                     callback.call(_this, null, data);
                 } catch (e) {
-                    callback.call(_this, e, null);
+                    callback.call(_this, e, {code: 0});
                 }
             }
         );
