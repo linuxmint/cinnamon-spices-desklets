@@ -1,0 +1,183 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["page-appearance", "page-metrics", "page-hardware"],
+        "page-appearance": {
+            "type": "page",
+            "title": "Aparência (iOS/macOS)",
+            "sections": ["section-theme", "section-layout"]
+        },
+        "page-metrics": {
+            "type": "page",
+            "title": "Módulos Visíveis",
+            "sections": ["section-toggles"]
+        },
+        "page-hardware": {
+            "type": "page",
+            "title": "Hardware & Atualização",
+            "sections": ["section-config"]
+        },
+        "section-theme": {
+            "type": "section",
+            "title": "Tema & Efeito Glass",
+            "keys": ["theme-mode", "bg-opacity", "corner-radius", "accent-style"]
+        },
+        "section-layout": {
+            "type": "section",
+            "title": "Dimensões, Cabeçalho & Grade",
+            "keys": ["scale-size", "columns-per-row", "show-header", "header-title-mode", "custom-header-title"]
+        },
+        "section-toggles": {
+            "type": "section",
+            "title": "Monitoramento Ativo",
+            "keys": ["show-cpu", "show-ram", "show-gpu", "show-fan", "show-disk", "show-network", "show-batteries", "show-disconnected-bt"]
+        },
+        "section-config": {
+            "type": "section",
+            "title": "Sensores & Intervalos",
+            "keys": ["update-interval", "disk-mount-path", "max-fan-rpm"]
+        }
+    },
+    "theme-mode": {
+        "type": "combobox",
+        "default": "dark",
+        "description": "Tema do Widget",
+        "options": {
+            "Escuro Translúcido (macOS Dark Glass)": "dark",
+            "Claro Translúcido (iOS Light Frosted)": "light",
+            "Automático (Seguir Tema do Sistema)": "auto"
+        }
+    },
+    "bg-opacity": {
+        "type": "scale",
+        "default": 0.78,
+        "min": 0.15,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Opacidade do Fundo (Glassmorphism)"
+    },
+    "corner-radius": {
+        "type": "spinbutton",
+        "default": 24,
+        "min": 8,
+        "max": 48,
+        "step": 2,
+        "units": "px",
+        "description": "Arredondamento das Bordas (Squircle)"
+    },
+    "accent-style": {
+        "type": "combobox",
+        "default": "ios",
+        "description": "Esquema de Cores dos Anéis",
+        "options": {
+            "Cores Nativas iOS / macOS (Semafórico nas Baterias e Temperaturas)": "ios",
+            "Monocromático Azul iOS (#0A84FF)": "blue",
+            "Monocromático Verde Bateria (#30D158)": "green"
+        }
+    },
+    "scale-size": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.75,
+        "max": 1.6,
+        "step": 0.05,
+        "description": "Escala de Tamanho do Widget"
+    },
+    "columns-per-row": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 2,
+        "max": 6,
+        "step": 1,
+        "units": "colunas",
+        "description": "Anéis por Linha (Grade de Hardware e Baterias)"
+    },
+    "show-header": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar cabeçalho do sistema (Título + Uptime)"
+    },
+    "header-title-mode": {
+        "type": "combobox",
+        "default": "model",
+        "dependency": "show-header",
+        "description": "Título exibido no cabeçalho",
+        "options": {
+            "Modelo do Dispositivo / Placa-mãe (Automático)": "model",
+            "Sistema Operacional / Distro (/etc/os-release)": "distro",
+            "Hostname da Máquina (Rede)": "hostname",
+            "Nome do Usuário (@user)": "user",
+            "Texto Personalizado": "custom"
+        }
+    },
+    "custom-header-title": {
+        "type": "entry",
+        "default": "Meu Setup",
+        "dependency": "show-header",
+        "description": "Texto personalizado do cabeçalho (se selecionado acima)"
+    },
+    "show-cpu": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar CPU (Uso % e Temperatura)"
+    },
+    "show-ram": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar Memória RAM (Uso % e GB)"
+    },
+    "show-gpu": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar GPU (Uso %, Temperatura e VRAM)"
+    },
+    "show-fan": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar Cooler / Fan (RPM)"
+    },
+    "show-disk": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar Armazenamento / Disco"
+    },
+    "show-network": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar Tráfego de Rede (Download / Upload)"
+    },
+    "show-batteries": {
+        "type": "switch",
+        "default": true,
+        "description": "Mostrar Baterias (Notebook + Dispositivos Bluetooth)"
+    },
+    "show-disconnected-bt": {
+        "type": "switch",
+        "default": false,
+        "dependency": "show-batteries",
+        "description": "Mostrar dispositivos Bluetooth pareados mesmo desconectados"
+    },
+    "update-interval": {
+        "type": "spinbutton",
+        "default": 2.0,
+        "min": 1.0,
+        "max": 30.0,
+        "step": 0.5,
+        "units": "segundos",
+        "description": "Intervalo de atualização"
+    },
+    "disk-mount-path": {
+        "type": "entry",
+        "default": "/",
+        "description": "Ponto de montagem do Disco (ex: / ou /home)"
+    },
+    "max-fan-rpm": {
+        "type": "spinbutton",
+        "default": 5500,
+        "min": 1500,
+        "max": 10000,
+        "step": 100,
+        "units": "RPM",
+        "description": "RPM Máximo de Referência para o Anel do Cooler"
+    }
+}

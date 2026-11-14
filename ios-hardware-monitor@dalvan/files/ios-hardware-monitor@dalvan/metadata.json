@@ -1,0 +1,9 @@
+{
+    "uuid": "ios-hardware-monitor@dalvan",
+    "name": "iOS Hardware & Battery Monitor",
+    "description": "All-in-One Hardware (CPU, RAM, GPU, Disk, Network, Fan RPM) & Bluetooth Battery Monitor with iOS/macOS style circular gauges and glassmorphism.",
+    "version": "1.0.0",
+    "author": "dalvan03",
+    "prevent-decorations": true,
+    "max-instances": "10"
+}
