@@ -39,8 +39,20 @@ LemonadeDesklet.prototype = {
 
         this.resetData();
         this.setupUI();
+        this.restartMainLoop();
+    },
 
-        this.mainloop = Mainloop.timeout_add_seconds(5, () => {
+    restartMainLoop: function() {
+        if (this.mainloop) {
+            Mainloop.source_remove(this.mainloop);
+        }
+
+        if (!this.update_interval || this.update_interval < 5) {
+            this.update_interval = 5;
+            global.log("UPDATE INTERVAL was not defined, fallback to " + this.update_interval);
+        }
+
+        this.mainloop = Mainloop.timeout_add_seconds(this.update_interval, () => {
             this.updateIteration();
             return true;
         });
@@ -58,10 +70,13 @@ LemonadeDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "server_port", "server_port", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "api_version", "api_version", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "update_interval", "update_interval", this.onSettingChanged);
     },
 
     onSettingChanged: function() {
-        // TODO
+        this.resetData();
+        this.updateServerAddressUI();
+        this.restartMainLoop();
     },
 
     // --------------------------------------------------------------------------------------------
@@ -71,7 +86,6 @@ LemonadeDesklet.prototype = {
     resetData: function() {
         this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
-
     },
 
     // --------------------------------------------------------------------------------------------
@@ -79,6 +93,8 @@ LemonadeDesklet.prototype = {
     // --------------------------------------------------------------------------------------------
 
     setupUI: function() {
+        //let unit_size = 15 * global.ui_scale;
+
         this.window = new St.BoxLayout({
             vertical: true,
             style_class: "desklet",
@@ -95,6 +111,8 @@ LemonadeDesklet.prototype = {
         this.window.add(serverHeader);
         this.window.add_actor(this.debugText);
         this.setContent(this.window);
+
+        this.updateServerAddressUI();
     },
 
     setupHeaderUI: function() {
@@ -138,14 +156,7 @@ LemonadeDesklet.prototype = {
 
         let image = St.TextureCache.get_default().load_uri_async(icon_uri, iconSize, iconSize);
         this.serverIcon.set_child(image);
-
         this.serverIconTooltip = new Tooltips.Tooltip(this.serverIcon);
-        this.serverIconTooltip.set_text(this.server_url);
-
-        if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
-        this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
-            this.launcher.spawnv(['xdg-open', this.server_url]);
-        }));
 
         this.nameText = new St.Label({
             x_align: Clutter.ActorAlign.START,
@@ -195,15 +206,21 @@ LemonadeDesklet.prototype = {
         return serverHeader;
     },
 
+    updateServerAddressUI: function() {
+        this.addressText.set_text(_("Address") + ": " + this.server_addr);
+        this.serverIconTooltip.set_text(this.server_url);
+
+        if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
+        this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
+            this.launcher.spawnv(['xdg-open', this.server_url]);
+        }));
+    },
+
     // --------------------------------------------------------------------------------------------
     // Logic
     // --------------------------------------------------------------------------------------------
 
     updateIteration: function() {
-        let unit_size = 15 * global.ui_scale;
-
-        this.addressText.set_text(_("Address") + ": " + this.server_addr);
-
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
             if (error) {
                 this.debugText.set_text(error.message);

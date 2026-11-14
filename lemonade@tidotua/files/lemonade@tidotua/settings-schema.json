@@ -33,6 +33,16 @@
         "default": "key",
         "description": "Server API key",
         "tooltip": "Enter optional server API key"
+    },
+
+    "update_interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 5,
+        "max": 60,
+        "step": 5,
+        "description": "Update period",
+        "tooltip": "Requests and UI update period in sec"
     }
 
 }
