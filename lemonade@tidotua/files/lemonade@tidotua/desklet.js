@@ -110,16 +110,15 @@ LemonadeDesklet.prototype = {
 
         this.window = new St.BoxLayout({
             vertical: true,
-            style_class: "desklet",
-            style: "border-radius: 10px; background-color: " + "#444" + "; padding: 10px; min-width: 450px;"
+            style_class: "lemonade-container",
+            //style: "background-color: " + "#444" + ";" // TODO: change color and transparency from settings
         });
 
         let serverHeader = this.setupHeaderUI();
 
         // DEBUG
         this.debugText = new St.Label();
-        this.debugText.style = "font-size: " + 15 + "px;"
-                         + "color: " + "#FFFFFF" + ";";
+        this.debugText.style_class = "lemonade-text-medium lemonade-text-active";
 
         this.window.add(serverHeader);
         this.window.add_actor(this.debugText);
@@ -133,21 +132,21 @@ LemonadeDesklet.prototype = {
             vertical: false,
             x_expand: true,
             x_align: Clutter.ActorAlign.FILL,
-            style: "padding-bottom: " + 10 + "px;"
+            style_class: "lemonade-box-bottom"
         });
 
         let serverStatusCol = new St.BoxLayout({
             vertical: true,
             x_expand: true,
             x_align: Clutter.ActorAlign.FILL,
-            style: "padding-left: " + 15 + "px;"
+            style_class: "lemonade-box-left"
         });
 
         let serverStatusRow1 = new St.BoxLayout({
             vertical: false,
             x_expand: true,
             x_align: Clutter.ActorAlign.FILL,
-            style: "padding-bottom: " + 5 + "px;"
+            style_class: "lemonade-box-bottom"
         });
 
         let serverStatusRow2 = new St.BoxLayout({
@@ -174,37 +173,36 @@ LemonadeDesklet.prototype = {
         this.nameText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
-            y_expand: true
-
+            y_expand: true,
+            style_class: "lemonade-text-big lemonade-text-active lemonade-text-left lemonade-text-important",
+            text: _("Lemonade Server")
         });
-        this.nameText.style = "font-size: " + 20 + "px; color: " + "#FFFFFF" + "; padding-right: " + 10 +"px;";
-        this.nameText.set_text(_("Lemonade Server"));
 
         this.versionText = new St.Label({
             x_align: Clutter.ActorAlign.END,
             y_align: Clutter.ActorAlign.END,
             x_expand: true,
-            y_expand: true
+            y_expand: true,
+            style_class: "lemonade-text-small lemonade-text-active lemonade-text-right",
+            text: _("Version")
         });
-        this.versionText.style = "font-size: " + 16 + "px; color: " + "#FFFFFF" + ";";
-        this.versionText.set_text(_("Version"));
 
         this.statusText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
-            y_expand: true
+            y_expand: true,
+            style_class: "lemonade-text-big lemonade-text-active lemonade-text-left",
+            text: _("Online")
         });
-        this.statusText.style = "font-size: " + 20 + "px; color: " + "#00FF00" + "; padding-right: " + 10 +"px;";
-        this.statusText.set_text(_("Online"));
 
         this.addressText = new St.Label({
             x_align: Clutter.ActorAlign.END,
             y_align: Clutter.ActorAlign.END,
             x_expand: true,
-            y_expand: true
+            y_expand: true,
+            style_class: "lemonade-text-small lemonade-text-active lemonade-text-right",
+            text: _("Address")
         });
-        this.addressText.style = "font-size: " + 16 + "px; color: " + "#FFFFFF" + ";";
-        this.addressText.set_text(_("Address"));
 
         serverHeader.add(this.serverIcon);
         serverStatusRow1.add_actor(this.nameText);
@@ -248,21 +246,20 @@ LemonadeDesklet.prototype = {
                     default:
                         this.statusText.set_text(_("HTTP Error ") + data.code);
                 }
-                this.statusText.style = "font-size: " + 20 + "px; color: " + "#FF0000" + "; padding-right: " + 10 +"px;";
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
 
                 this.debugText.set_text(error.message);
 
                 return;
             } else {
                 this.statusText.set_text(_("Online"));
-                this.statusText.style = "font-size: " + 20 + "px; color: " + "#00FF00" + "; padding-right: " + 10 +"px;";
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-good lemonade-text-important";
                 if (data.version)
                     this.versionText.set_text(_("Version") + ": " + data.version);
 
                 if (data.all_models_loaded) {
                     var debug_text = "Models:\n";
 
-                    //*
                     for (let model of data.all_models_loaded) {
                         this.activeModels.set(model.model_name, {
                             device: model.device,
@@ -275,7 +272,6 @@ LemonadeDesklet.prototype = {
                             + " (" + model.device + "/" + model.recipe + ") "
                             + " is_busy = " + model.is_busy + ", status = " + model.status + "\n";
                     }
-                    //*/
 
                     this.debugText.set_text(debug_text); // DEBUG
                 }
