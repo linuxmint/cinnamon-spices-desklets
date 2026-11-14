@@ -256,7 +256,10 @@ export function buildMonthMatrix(year, month, firstDayOfWeek, options) {
             });
             cursor += MS_PER_DAY;
         }
-        const head = days[0];
+        // A Sunday/Saturday-start row spans two ISO weeks. Like Cinnamon's
+        // calendar, label it by the Thursday inside the displayed row.
+        const head = weekConvention === "iso"
+            ? days[(4 - firstDayOfWeek + 7) % 7] : days[0];
         weeks.push({
             week: weekNumberFor(head.year, head.month, head.day, weekConvention),
             days: days

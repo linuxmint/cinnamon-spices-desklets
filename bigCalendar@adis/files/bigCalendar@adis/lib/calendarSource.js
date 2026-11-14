@@ -149,9 +149,10 @@ function toMillis(datetime) {
 /**
  * The builtin timezone for a TZID, however the backend has spelled it.
  *
- * Tries the name as given, then just its last two path segments, which is what
+ * Tries the name as given, then its path suffixes, which is what
  * turns the long `/freeassociation.sourceforge.net/Tzfile/Europe/Bucharest`
- * form into `Europe/Bucharest`. Null when neither is a zone this system knows;
+ * form into `Europe/Bucharest`, preserving three-part names such as
+ * `America/Argentina/Buenos_Aires`. Null when no suffix is a known zone;
  * the caller then falls back rather than guessing an offset.
  */
 function builtinZone(tzid) {
@@ -160,8 +161,8 @@ function builtinZone(tzid) {
     if (zone) return zone;
 
     const parts = name.split("/");
-    if (parts.length > 2) {
-        zone = ICalGLib.Timezone.get_builtin_timezone(parts.slice(-2).join("/"));
+    for (let start = 1; start < parts.length - 1; start++) {
+        zone = ICalGLib.Timezone.get_builtin_timezone(parts.slice(start).join("/"));
         if (zone) return zone;
     }
     return null;

@@ -162,6 +162,7 @@ const MORE_LABEL_COLOR = "#9a9a9a";
 // despite older desklets calling one.
 const CLOCK_24H_SCHEMA = "org.cinnamon.desktop.interface";
 const CLOCK_24H_KEY = "clock-use-24h";
+const WEEK_START_KEY = "first-day-of-week";
 
 // Where the month last being viewed is remembered, as "YYYY-M". Deliberately
 // absent from every section in settings-schema.json, which is what keeps it
@@ -275,6 +276,11 @@ const COLOR_DEFAULTS = {
     "weekNumberColor": "#6a6a72",
     "navColor": "#c3c3c3"
 };
+function settingsNumber(value, fallback, min, max) {
+    return typeof value === "number" && Number.isFinite(value)
+        ? Math.max(min, Math.min(max, value)) : fallback;
+}
+
 function settingsColor(value, fallback = "#ffffff") {
     const text = String(value ?? "").trim();
     if (/^#(?:[0-9a-f]{3}|[0-9a-f]{6})$/i.test(text)) return text;
@@ -406,7 +412,8 @@ class DayTooltip {
         this._actor = new St.BoxLayout({
             vertical: true,
             style_class: "bigcal-tip",
-            reactive: false
+            reactive: false,
+            clip_to_allocation: true
         });
         this._actor.hide();
         Main.uiGroup.add_child(this._actor);
@@ -565,6 +572,7 @@ class DayTooltip {
                 : (row.date ? "bigcal-tip-plain bigcal-tip-date" : "bigcal-tip-plain");
 
             const label = new St.Label({ text: row.text, style_class: style_class });
+            label.clutter_text.ellipsize = Pango.EllipsizeMode.END;
             label.set_style("color: " + (fill ? textOn(fill) : this._plain) + ";" +
                 (fill ? " background-color: " + fill + ";" : ""));
             // Filled across the box, so the rows line up as one column rather
@@ -582,8 +590,14 @@ class DayTooltip {
             this._pointer[0] >= m.x && this._pointer[0] < m.x + m.width &&
             this._pointer[1] >= m.y && this._pointer[1] < m.y + m.height) ||
             Main.layoutManager.primaryMonitor;
-        const [, width] = this._actor.get_preferred_width(-1);
-        const [, height] = this._actor.get_preferred_height(width);
+        // Clear the previous monitor's limits before measuring a new day.
+        // Ellipsized labels can shrink below their natural width; clipping
+        // also bounds exceptionally tall lists on small monitors.
+        this._actor.set_size(-1, -1);
+        const width = Math.min(this._actor.get_preferred_width(-1)[1], monitor.width);
+        this._actor.set_width(width);
+        const height = Math.min(this._actor.get_preferred_height(width)[1], monitor.height);
+        this._actor.set_height(height);
 
         let left = this._pointer[0] + TOOLTIP_OFFSET_X;
         let top = this._pointer[1] + TOOLTIP_OFFSET_Y;
@@ -658,18 +672,26 @@ class BigCalendarDesklet extends Desklet.Desklet {
             this._bindSettings();
             if (!this.settings.isReady) throw new Error("Settings could not be initialized");
             this._restoreView();
-        } catch (e) {
-            logError(e, "Big Calendar: could not initialize settings");
-            this.setContent(new St.Label({ text: _("Big Calendar could not start.") }));
-            return;
-        }
-        this._buildUi();
-        this._render();
-        this._startDayTimer();
-        this._ready = true;
+            this._buildUi();
+            this._render();
+            this._startDayTimer();
+            this._ready = true;
 
-        this.setHeader(_("Big Calendar"));
-        this._openFeed();
+            this.setHeader(_("Big Calendar"));
+            this._watchSystemSettings();
+            this._openFeed();
+        } catch (e) {
+            this._ready = false;
+            this._stopDayTimer();
+            this._stopEventTimer();
+            this._disconnectSystemSettings();
+            if (this._feed) {
+                this._feed.destroy();
+                this._feed = null;
+            }
+            logError(e, "Big Calendar: could not initialize desklet");
+            this.setContent(new St.Label({ text: _("Big Calendar could not start.") }));
+        }
     }
 
     /**
@@ -864,6 +886,37 @@ class BigCalendarDesklet extends Desklet.Desklet {
         }
     }
 
+    _watchSystemSettings() {
+        if (this._systemSettingsSignals) return;
+        this._systemSettingsSignals = [];
+        try {
+            if (!this._interfaceSettings)
+                this._interfaceSettings = new Gio.Settings({ schema_id: CLOCK_24H_SCHEMA });
+            const watch = (key, callback) => {
+                const id = this._interfaceSettings.connect("changed::" + key, () => {
+                    if (!this._destroyed && this._ready) callback();
+                });
+                this._systemSettingsSignals.push(id);
+            };
+            watch(WEEK_START_KEY, () => {
+                if (this.weekStartSetting !== "auto") return;
+                this._render();
+                this._refreshEventsSoon();
+            });
+            watch(CLOCK_24H_KEY, () => {
+                if (this.eventTimeFormat !== "12" && this.eventTimeFormat !== "24") this._render();
+            });
+        } catch (e) {
+            // Explicit desklet settings still work if the desktop schema is unavailable.
+            this._disconnectSystemSettings();
+        }
+    }
+
+    _disconnectSystemSettings() {
+        for (const id of this._systemSettingsSignals || []) this._interfaceSettings.disconnect(id);
+        this._systemSettingsSignals = null;
+    }
+
     /* -------------------------------------------------------------- *
      * UI construction
      * -------------------------------------------------------------- */
@@ -1029,8 +1082,9 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
         if (showWeekNumbers) {
             const corner = new St.Label({ style_class: "bigcal-weeknum", text: "#" });
-            corner.set_style("color: " + this._color("weekNumberColor") + ";");
-            this._table.add(corner, { row: 0, col: 0, x_align: St.Align.MIDDLE });
+            corner.set_style("color: " + this._color("weekNumberColor") + ";" + this._gridLineStyle());
+            corner.set_width(this._emToPx(WEEKNUM_WIDTH_EM));
+            this._table.add(corner, { row: 0, col: 0, x_fill: true, y_fill: true });
             col = 1;
         }
 
@@ -1042,7 +1096,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             const label = new St.Label({ style_class: "bigcal-weekday", text: names[i] });
             label.set_style("color: " + (isWeekend && this.tintWeekends
                 ? this._color("weekendColor") : this._color("weekdayColor")) + ";" + this._gridLineStyle());
-            this._table.add(label, { row: 0, col: col + i, x_align: St.Align.MIDDLE });
+            this._table.add(label, { row: 0, col: col + i, x_fill: true, y_fill: true });
         }
     }
 
@@ -1056,17 +1110,17 @@ class BigCalendarDesklet extends Desklet.Desklet {
                     style_class: "bigcal-weeknum",
                     text: String(weeks[r].week.week)
                 });
-                wn.set_style("color: " + this._color("weekNumberColor") + ";");
+                wn.set_style("color: " + this._color("weekNumberColor") + ";" + this._gridLineStyle());
                 wn.set_width(this._emToPx(WEEKNUM_WIDTH_EM));
-                this._table.add(wn, { row: row, col: 0, x_align: St.Align.MIDDLE });
+                this._table.add(wn, { row: row, col: 0, x_fill: true, y_fill: true });
                 col = 1;
             }
 
             for (let c = 0; c < 7; c++) {
                 this._table.add(this._makeDayCell(weeks[r].days[c]), {
                     row: row, col: col + c,
-                    x_align: St.Align.MIDDLE,
-                    y_align: St.Align.MIDDLE
+                    x_fill: true,
+                    y_fill: true
                 });
             }
         }
@@ -1099,22 +1153,23 @@ class BigCalendarDesklet extends Desklet.Desklet {
             color = this._withAlpha(color, this.otherMonthOpacity / 100);
         }
 
-        let numberCss = "color: " + color + ";" + this._gridLineStyle();
+        let numberCss = "color: " + color + ";";
+        const radius = settingsNumber(this.cellRadius, 8, 0, 40);
 
         // Today emphasis: filled pill, outline ring, or bold text only.
         if (isToday && this.todayStyle === "filled") {
             numberCss += " background-color: " + this._color("todayBgColor") + ";";
-            numberCss += " border-radius: " + this.cellRadius + "px;";
+            numberCss += " border-radius: " + radius + "px;";
         } else if (isToday && this.todayStyle === "ring") {
             numberCss += " border: 2px solid " + this._color("todayBgColor") + ";";
-            numberCss += " border-radius: " + this.cellRadius + "px;";
+            numberCss += " border-radius: " + radius + "px;";
         } else if (isToday && this.todayStyle === "bold") {
             numberCss += " font-weight: bold;";
         } else if (cell.isWeekend && this.tintWeekends &&
                    this.weekendTintStrength > 0 && !isToday) {
             numberCss += " background-color: " +
                 this._withAlpha(this._color("weekendColor"), this.weekendTintStrength / 100) + ";";
-            numberCss += " border-radius: " + this.cellRadius + "px;";
+            numberCss += " border-radius: " + radius + "px;";
         }
 
         const number = new St.Label({ style_class: "bigcal-day", text: String(cell.day) });
@@ -1124,12 +1179,10 @@ class BigCalendarDesklet extends Desklet.Desklet {
         holder.set_child(number);
 
         const box = new St.BoxLayout({ vertical: true, style_class: "bigcal-cell", reactive: true });
-        box.set_style(CELL_PADDING);
+        box.set_style(CELL_PADDING + this._gridLineStyle());
         // Wide enough for the widest thing that has to fit, which in the
         // titles style is the title rather than the day number.
-        box.set_width(this._emToPx(this.eventStyle === "titles"
-            ? Math.max(CELL_WIDTH_EM, TITLE_WIDTH_EM)
-            : CELL_WIDTH_EM));
+        box.set_width(this._cellWidth());
         box.add(holder, { x_fill: false, x_expand: true });
 
         // Bars and titles read as a block, so they span the cell; a row of
@@ -1181,7 +1234,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
                 // unconstrained label reports its full natural width -- so
                 // without an explicit pixel width a single long event name
                 // widens its column and skews the whole grid.
-                label.set_width(this._emToPx(TITLE_WIDTH_EM));
+                label.set_width(this._cellContentWidth());
                 label.clutter_text.ellipsize = Pango.EllipsizeMode.END;
                 list.add(label, { x_fill: true, x_expand: true });
             }
@@ -1212,7 +1265,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
         // them does not, so eight overflowed the cell by two pixels at the
         // default text size and the row spilled over the days either side.
         // Measured, not calculated: six fit at 100% and seven at 200%.
-        const room = this._emToPx(CELL_WIDTH_EM) - CELL_PADDING_X * 2;
+        const room = this._cellContentWidth();
         const size = this._emToPx(DOT_SIZE_EM);
 
         let fits = this._dotsThatFit(room, size);
@@ -1414,8 +1467,17 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * text it holds.
      */
     _emToPx(em) {
-        const points = 11 * (this.fontScale / 100);
+        const points = 11 * (settingsNumber(this.fontScale, 200, 50, 400) / 100);
         return Math.round(em * points * (this._fontDpi() / 72));
+    }
+
+    _cellWidth() {
+        return this._emToPx(this.eventStyle === "titles"
+            ? Math.max(CELL_WIDTH_EM, TITLE_WIDTH_EM) : CELL_WIDTH_EM);
+    }
+
+    _cellContentWidth() {
+        return Math.max(1, this._cellWidth() - 2 * (CELL_PADDING_X + (this.showGridLines ? 1 : 0)));
     }
 
     /**
@@ -1453,11 +1515,12 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     _applyRootStyle() {
         let css = "background-color: " + this._withAlpha(this._color("bgColor"), this.bgOpacity / 100) + ";";
-        css += " border-radius: " + this.cornerRadius + "px;";
-        css += " padding: " + this.outerPadding + "px;";
-        if (this.borderWidth > 0) {
+        css += " border-radius: " + settingsNumber(this.cornerRadius, 14, 0, 60) + "px;";
+        css += " padding: " + settingsNumber(this.outerPadding, 16, 0, 80) + "px;";
+        const borderWidth = settingsNumber(this.borderWidth, 2, 0, 10);
+        if (borderWidth > 0) {
             // An outside outline keeps the layout and translucent fill intact.
-            css += " box-shadow: 0 0 0 " + this.borderWidth + "px " + this._color("borderColor") + ";";
+            css += " box-shadow: 0 0 0 " + borderWidth + "px " + this._color("borderColor") + ";";
         }
         // The base font size is set on the root so the text below scales with
         // the setting. Note this reaches the children's *glyphs* only: an em
@@ -1477,7 +1540,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
      * the uiGroup outside the desklet and inherits nothing.
      */
     _basePoints() {
-        return (11 * (this.fontScale / 100)).toFixed(1);
+        return (11 * (settingsNumber(this.fontScale, 200, 50, 400) / 100)).toFixed(1);
     }
 
     /** Optional 1px rule around every cell. */
@@ -1892,6 +1955,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             // A flashspot over the desklet swallows the very events the input
             // region is being held for, so it is cleared before the region is
             // decided rather than after.
+            this._startTimerWatchdog();
             this._clearStuckFlashspot();
             this._syncInputRegion();
             return GLib.SOURCE_CONTINUE;
@@ -1970,6 +2034,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
 
     on_desklet_removed() {
         this._destroyed = true;
+        this._disconnectSystemSettings();
 
         // Give up the input region here, and stop being reactive, rather than
         // leaving both to the actor's destruction.
@@ -2041,7 +2106,7 @@ class BigCalendarDesklet extends Desklet.Desklet {
             this.settings = null;
 
             const registry = Main.settingsManager.uuids[settings.uuid];
-            if (!registry || registry[settings.instanceId] === settings) {
+            if (registry && registry[settings.instanceId] === settings) {
                 Main.settingsManager.unregister(settings.uuid, settings.instanceId);
             }
 
