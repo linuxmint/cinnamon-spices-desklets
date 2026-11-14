@@ -1,0 +1,10 @@
+{
+    "uuid": "bigCalendar@adis",
+    "name": "Big Calendar",
+    "description": "A large, configurable month-view calendar for the desktop, with week numbers, weekend tinting and events from the calendars connected in Online Accounts.",
+    "version": "1.0",
+    "author": "adis",
+    "max-instances": "1",
+    "prevent-decorations": true,
+    "cinnamon-version": ["6.0"]
+}
