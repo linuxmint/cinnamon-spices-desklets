@@ -59,3 +59,9 @@ msgstr "Velikost písma"
 
 msgid "Corner roundness"
 msgstr "Zakulacení rohů"
+
+msgid "Desklet width"
+msgstr "Šířka deskletu"
+
+msgid "Enable dynamic temperature colors (Normal -> Orange -> Red)"
+msgstr "Povolit dynamické barvy teploty (Normální -> Oranžová -> Červená)"

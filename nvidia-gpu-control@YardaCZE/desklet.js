@@ -37,6 +37,8 @@ NvidiaGpuDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "show-fan-controls", "showFanControls", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "update-interval", "updateInterval", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "cpu-sensor-path", "cpuSensorPath", this._onSettingsChanged, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "desklet-width", "deskletWidth", this._applyStyle, null);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "dynamic-colors", "dynamicColors", this._onSettingsChanged, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "bg-color", "bgColor", this._applyStyle, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "bg-opacity", "bgOpacity", this._applyStyle, null);
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "textColor", this._applyStyle, null);
@@ -125,6 +127,7 @@ NvidiaGpuDesklet.prototype = {
         }
         let rgbaBg = `rgba(${r}, ${g}, ${b}, ${this.bgOpacity})`;
 
+        this.mainContainer.set_width(this.deskletWidth || 240);
         this.mainContainer.set_style(
             `background-color: ${rgbaBg}; ` +
             `color: ${this.textColor}; ` +
@@ -162,6 +165,19 @@ NvidiaGpuDesklet.prototype = {
         });
     },
 
+    _getTempColor: function(celsius) {
+        if (!this.dynamicColors) {
+            return this.textColor;
+        }
+        if (celsius >= 85) {
+            return "#ff4444"; // Red (Critical)
+        } else if (celsius >= 75) {
+            return "#f39c12"; // Orange (Warning)
+        } else {
+            return this.textColor; // Normal
+        }
+    },
+
     _readCpuFileAsync: function(path, onFallback) {
         let file = Gio.File.new_for_path(path);
         file.load_contents_async(null, (obj, res) => {
@@ -172,12 +188,14 @@ NvidiaGpuDesklet.prototype = {
                     if (!isNaN(rawVal)) {
                         this._detectedCpuPath = path;
                         let celsius = Math.round(rawVal / 1000);
+                        let color = this._getTempColor(celsius);
                         this.cpuTempVal.set_text(celsius + " °C");
+                        this.cpuTempVal.set_style(`color: ${color}; font-weight: bold;`);
                         return;
                     }
                 }
             } catch (e) {
-                // File not found or unreadable
+                // File unreadable
             }
             if (onFallback) {
                 onFallback();
@@ -239,7 +257,7 @@ NvidiaGpuDesklet.prototype = {
                     }
                 }
             } catch (e) {
-                // Ignore and check next
+                // Ignore
             }
             this._checkHwmonCandidates(candidates, index + 1);
         });
@@ -264,8 +282,16 @@ NvidiaGpuDesklet.prototype = {
                         if (ok && subproc.get_successful() && stdout) {
                             let parts = stdout.trim().split(",");
                             if (parts.length >= 2) {
-                                this.gpuTempVal.set_text(parts[0].trim() + " °C");
-                                this.fanSpeedVal.set_text(parts[1].trim() + " %");
+                                let gpuTempNum = parseInt(parts[0].trim(), 10);
+                                let gpuTempStr = parts[0].trim();
+                                let fanSpeed = parts[1].trim();
+
+                                if (!isNaN(gpuTempNum)) {
+                                    let gpuColor = this._getTempColor(gpuTempNum);
+                                    this.gpuTempVal.set_text(gpuTempStr + " °C");
+                                    this.gpuTempVal.set_style(`color: ${gpuColor}; font-weight: bold;`);
+                                }
+                                this.fanSpeedVal.set_text(fanSpeed + " %");
                                 return;
                             }
                         }
@@ -317,3 +343,4 @@ NvidiaGpuDesklet.prototype = {
 function main(metadata, deskletId) {
     return new NvidiaGpuDesklet(metadata, deskletId);
 }
+EOF

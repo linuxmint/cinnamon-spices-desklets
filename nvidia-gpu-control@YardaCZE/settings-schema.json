@@ -41,6 +41,20 @@
         "type": "header",
         "description": "Appearance & Customization"
     },
+    "desklet-width": {
+        "type": "spinbutton",
+        "default": 240,
+        "min": 150,
+        "max": 450,
+        "step": 10,
+        "units": "px",
+        "description": "Desklet width"
+    },
+    "dynamic-colors": {
+        "type": "switch",
+        "default": true,
+        "description": "Enable dynamic temperature colors (Normal -> Orange -> Red)"
+    },
     "bg-color": {
         "type": "colorchooser",
         "default": "rgb(20,20,20)",
