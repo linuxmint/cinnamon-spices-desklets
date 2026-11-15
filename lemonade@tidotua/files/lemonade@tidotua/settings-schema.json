@@ -43,6 +43,18 @@
         "step": 5,
         "description": "Update period",
         "tooltip": "Requests and UI update period in sec"
-    }
+    },
 
+    "bottom": {
+        "type": "header",
+        "description": "UI settings"
+    },
+
+    "background_color": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(48,48,48)",
+        "description": "Background color",
+        "tooltip": "Click the button to select a new background color"
+    }
 }

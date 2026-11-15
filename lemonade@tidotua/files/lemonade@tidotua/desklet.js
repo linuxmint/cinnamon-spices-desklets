@@ -72,10 +72,12 @@ LemonadeDesklet.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "api_version", "api_version", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onSettingChanged);
         this.settings.bindProperty(Settings.BindingDirection.IN, "update_interval", "update_interval", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "background_color", "background_color", this.onSettingChanged);
     },
 
     onSettingChanged: function() {
         this.resetData();
+        this.removeModelRows();
         this.updateServerAddressUI();
         this.restartMainLoop();
     },
@@ -88,6 +90,10 @@ LemonadeDesklet.prototype = {
         this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
 
+        this.resetModels();
+    },
+
+    resetModels: function() {
         if (this.activeModels) {
             this.activeModels.clear();
         } else {
@@ -95,7 +101,6 @@ LemonadeDesklet.prototype = {
         }
 
         if (this.allModels) {
-            this.removeModelRows();
             this.allModels.length = 0;
         } else {
             this.allModels = [];
@@ -112,7 +117,7 @@ LemonadeDesklet.prototype = {
         this.window = new St.BoxLayout({
             vertical: true,
             style_class: "lemonade-container",
-            //style: "background-color: " + "#444" + ";" // TODO: change color and transparency from settings
+            style: "background-color: " + this.background_color + ";"
         });
 
         let serverHeader = this.setupHeaderUI();
@@ -123,6 +128,7 @@ LemonadeDesklet.prototype = {
         });
 
         /*
+        // Change to Tok/s
         this.ramText = new St.Label({
             style_class: "lemonade-text-medium lemonade-text-active",
             text: _("VRAM")
@@ -241,6 +247,8 @@ LemonadeDesklet.prototype = {
     },
 
     updateServerAddressUI: function() {
+        this.window.style ="background-color: " + this.background_color + ";";
+
         this.addressText.set_text(_("Address") + ": " + this.server_addr);
         this.serverIconTooltip.set_text(this.server_url);
 
@@ -351,16 +359,20 @@ LemonadeDesklet.prototype = {
                     case 0:
                         this.statusText.set_text(_("Offline"));
                         this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-inactive lemonade-text-important";
-                        return;
+                        break;
 
                     case 401:
                         this.statusText.set_text(_("Error: Missing API key"));
+                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
                         break;
 
                     default:
                         this.statusText.set_text(_("HTTP Error ") + data.code);
+                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
                 }
-                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
+
+                this.resetModels();
+                this.removeModelRows();
                 return;
             } else {
                 this.statusText.set_text(_("Online"));
