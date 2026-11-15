@@ -10,7 +10,7 @@ Four instances of the Desklet in action.
 This project has been inspired from other Desklets such as [Disk Space](https://cinnamon-spices.linuxmint.com/desklets/view/39), [CPU Load](https://cinnamon-spices.linuxmint.com/desklets/view/44), [Simple system monitor](https://cinnamon-spices.linuxmint.com/desklets/view/29), [Network usage monitor](https://cinnamon-spices.linuxmint.com/desklets/view/15), [Top](https://cinnamon-spices.linuxmint.com/desklets/view/41), and the  [Rainmeter Win10 Widgets](https://win10widgets.com/).
 
 ## Features
-### Variables to monitor (v2.2 - July 2026)
+### Variables to monitor (v2.3 - November 2026)
 
 | System variable | Description |
 | -----------     | ----------- |
@@ -18,10 +18,12 @@ This project has been inspired from other Desklets such as [Disk Space](https://
 | CPU Temperature | CPU temperature in C or F |
 | CPU Fan         | CPU fan speed in RPM and on/off status |
 | RAM             | Used RAM as % of total, and in GB |
+| CPU & RAM       | CPU usage as line over used RAM as area, in one graph |
 | Swap            | Used Swap space as % of total, and in GB |
 | HDD             | % of I/O activity, and free and total space in the filesystem (partition)  indicated by the user |
 | GPU Usage       | GPU usage in % |
 | GPU Memory      | GPU memory usage in % |
+| GPU Usage & Memory | GPU usage as line over GPU memory usage as area, in one graph |
 | GPU Temperature | GPU temperature C or F |
 | Network         | Real-time upload and download speeds with dual-line graph, configurable interface monitoring |
 | Battery         | Current capacity %, and Status |
