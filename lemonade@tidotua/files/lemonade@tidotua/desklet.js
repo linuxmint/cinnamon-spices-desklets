@@ -274,21 +274,23 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
-            x_expand: true,
             style_class: "lemonade-text-medium lemonade-text-left" + " " + active_style,
+            style: "min-width:300px",
             text: name
         });
 
         let recipeText = new St.Label({
-            x_align: Clutter.ActorAlign.END,
+            x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
+            x_expand: true,
             y_expand: true,
+            style: "min-width:150px",
             style_class: "lemonade-text-medium lemonade-text-middle" + " " + active_style,
             text: recipe
         });
 
         let statusText = new St.Label({
-            x_align: Clutter.ActorAlign.END,
+            x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
             style_class: "lemonade-text-medium lemonade-text-right" + " " + status_style,
