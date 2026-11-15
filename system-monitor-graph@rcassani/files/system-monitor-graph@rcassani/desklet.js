@@ -171,6 +171,9 @@ SystemMonitorGraph.prototype = {
         if (this.first_run){
             this.n_values = Math.floor(this.duration / this.refresh_interval)  + 1;
             this.values = new Array(this.n_values).fill(0.0);
+            // second time series, drawn as area below the line of this.values
+            // (used by combined variables, e.g. GPU "Usage & Memory")
+            this.area_values = new Array(this.n_values).fill(0.0);
             this.cpu_cpu_tot = 0;
             this.cpu_cpu_idl = 0;
             this.hdd_cpu_tot = 0;
@@ -276,6 +279,7 @@ SystemMonitorGraph.prototype = {
         let graph_step = graph_w / (n_values -1);
 
         var value = 0.0;
+        var area_value = null; // set only by combined variables (line + area)
         var text1 = '';
         var text2 = '';
         var text3 = '';
@@ -423,6 +427,25 @@ SystemMonitorGraph.prototype = {
                       text3 = this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " " + gpumem_prefix;
                       break;
+                  case "usage-memory":
+                      // GPU usage as line, GPU memory as area
+                      switch (this.gpu_manufacturer) {
+                          case "nvidia":
+                              this.get_nvidia_gpu_use_mem();
+                              break;
+                          case "amdgpu":
+                              this.get_amdgpu_gpu_use();
+                              this.get_amdgpu_gpu_mem();
+                              break;
+                      }
+                      value = this.gpu_use / 100;
+                      area_value = this.gpu_mem[1] / this.gpu_mem[0];
+                      text1 = _("GPU");
+                      text2 = isNaN(this.gpu_use) ? "" : Math.round(this.gpu_use).toString() + "%";
+                      text3 = this.gpu_mem[1].toFixed(1) + " / "
+                            + this.gpu_mem[0].toFixed(1) + " "
+                            + (this.data_prefix_gpumem == 1 ? _("GB") : _("GiB"));
+                      break;
                   case "temperature":
                       switch (this.gpu_manufacturer) {
                           case "nvidia":
@@ -485,6 +508,13 @@ SystemMonitorGraph.prototype = {
             values.shift();
             this.values = values;
         }
+        let area_values = null;
+        if (area_value !== null) {
+            area_value = isNaN(area_value) ? 0 : Math.max(0, Math.min(1, area_value));
+            this.area_values.push(area_value);
+            this.area_values.shift();
+            area_values = this.area_values;
+        }
 
         var background_colors = this.parse_rgba_settings(this.background_color);
         var midline_colors = this.parse_rgba_settings(this.midline_color);
@@ -529,6 +559,10 @@ SystemMonitorGraph.prototype = {
             if (this.type === "network") {
                 // Draw dual-line network graph
                 this.draw_network_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width);
+            } else if (area_values) {
+                // combined graph: area for one variable, line for the other
+                this.draw_area_and_line_graph(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width,
+                                              area_values, values, line_colors, background_colors);
             } else {
                 // timeseries and area
                 ctx.setLineWidth(2 * line_width);
@@ -646,6 +680,44 @@ SystemMonitorGraph.prototype = {
         ctx.closePath();
         ctx.setSourceRGBA(up_colors[0], up_colors[1], up_colors[2], 0.3);
         ctx.fill();
+    },
+
+    draw_area_and_line_graph: function(ctx, unit_size, margin_up, graph_w, graph_h, graph_step, n_values, line_width,
+                                       area_values, line_values, colors, background_colors) {
+        // values are expected in [0, 1]
+        let y = (v) => margin_up + graph_h - (Math.max(0, Math.min(1, v)) * graph_h);
+
+        // area, drawn like the regular single-variable graph
+        ctx.setLineWidth(2 * line_width);
+        ctx.setSourceRGBA(colors[0], colors[1], colors[2], 1);
+        ctx.moveTo(unit_size, y(area_values[0]));
+        for (let i = 1; i < n_values; i++) {
+            ctx.lineTo(unit_size + (i * graph_step), y(area_values[i]));
+        }
+        ctx.strokePreserve();
+        ctx.lineTo(unit_size + graph_w, margin_up + graph_h);
+        ctx.lineTo(unit_size, margin_up + graph_h);
+        ctx.closePath();
+        ctx.setSourceRGBA(colors[0], colors[1], colors[2], 0.4);
+        ctx.fill();
+
+        // line on top, without fill: a lighter tint of the area color with an
+        // outline in the background color, so it stays visible over the area
+        const LIGHTEN = 0.35; // share of white mixed into the area color
+        let light = (c) => c + (1 - c) * LIGHTEN;
+        ctx.moveTo(unit_size, y(line_values[0]));
+        for (let i = 1; i < n_values; i++) {
+            ctx.lineTo(unit_size + (i * graph_step), y(line_values[i]));
+        }
+        ctx.save(); // keep the round join from affecting the graph border
+        ctx.setLineJoin(Cairo.LineJoin.ROUND);
+        ctx.setLineWidth(4.5 * line_width);
+        ctx.setSourceRGBA(background_colors[0], background_colors[1], background_colors[2], 1);
+        ctx.strokePreserve();
+        ctx.setLineWidth(2.5 * line_width);
+        ctx.setSourceRGBA(light(colors[0]), light(colors[1]), light(colors[2]), 1);
+        ctx.stroke();
+        ctx.restore();
     },
 
     // Helper function for safe value scaling
@@ -1036,6 +1108,31 @@ SystemMonitorGraph.prototype = {
                 } else {
                     this.gpu_mem[0] = parseInt(items[0]) / GIB_TO_MIB;
                     this.gpu_mem[1] = parseInt(items[1]) / GIB_TO_MIB;
+                }
+            }
+        );
+    },
+
+    get_nvidia_gpu_use_mem: function() {
+        // usage and memory with a single nvidia-smi call
+        spawnAsyncWithOutput(
+            ['/usr/bin/nvidia-smi', '--query-gpu=utilization.gpu,memory.total,memory.used', '--format=csv', '--id=' + this.gpu_id],
+            (success, out_string) => {
+                let lines = (success && out_string) ? out_string.split(/\r?\n/) : [];
+                if (lines.length < 2) {
+                    this.gpu_use = 0;
+                    this.gpu_mem[0] = 0;
+                    this.gpu_mem[1] = 0;
+                    return;
+                }
+                let items = lines[1].split(',');
+                this.gpu_use = parseInt(items[0]);
+                if (this.data_prefix_gpumem == 1) {
+                    this.gpu_mem[0] = parseInt(items[1]) * 1024 * 1024 / GB_TO_B;
+                    this.gpu_mem[1] = parseInt(items[2]) * 1024 * 1024 / GB_TO_B;
+                } else {
+                    this.gpu_mem[0] = parseInt(items[1]) / GIB_TO_MIB;
+                    this.gpu_mem[1] = parseInt(items[2]) / GIB_TO_MIB;
                 }
             }
         );

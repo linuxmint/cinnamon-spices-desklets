@@ -154,6 +154,7 @@
         "options" : {
             "Usage"  : "usage",
             "Memory" : "memory",
+            "Usage & Memory" : "usage-memory",
             "Temperature": "temperature"
         },
         "dependency": "type=gpu"
