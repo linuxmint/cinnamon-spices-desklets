@@ -1,3 +1,13 @@
+### 0.19.0 - August 25, 2026
+
+Features:
+
+- extract logging in a separate utility class
+
+Bugfixes:
+
+- fix some debug prefix messages
+
 ### 0.18.3 - March 5, 2026
 
 Features:
