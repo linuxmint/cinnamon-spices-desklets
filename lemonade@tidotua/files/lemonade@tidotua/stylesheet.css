@@ -2,7 +2,7 @@
     border-radius: 15px;
     padding: 15px;
     background-color: #404040;
-    min-width: 450px;
+    min-width: 400px;
 }
 
 .lemonade-box-bottom {
@@ -27,11 +27,13 @@
 
 .lemonade-text-left {
     margin-right: 5px;
+    min-width: 300px;
 }
 
 .lemonade-text-middle {
     margin-left: 5px;
     margin-right: 5px;
+    min-width: 130px;
 }
 
 .lemonade-text-right {

@@ -9,6 +9,7 @@ const St = imports.gi.St;
 const Clutter = imports.gi.Clutter;
 const Tooltips = imports.ui.tooltips;
 const Lang = imports.lang;
+const ModalDialog = imports.ui.modalDialog;
 
 imports.gi.versions.Soup = '3.0';
 const Soup = imports.gi.Soup;
@@ -17,6 +18,9 @@ const Gio = imports.gi.Gio;
 
 const HEALTH_ENDPOINT = "health";
 const MODELS_ENDPOINT = "models";
+const LOAD_ENDPOINT = "load";
+const UNLOAD_ENDPOINT = "unload";
+const STATS_ENDPOINT = "stats";
 
 function LemonadeDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id)
@@ -203,7 +207,7 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
-            style_class: "lemonade-text-big lemonade-text-active lemonade-text-left lemonade-text-important",
+            style_class: "lemonade-text-big lemonade-text-active lemonade-text-important",
             text: _("Lemonade Server")
         });
 
@@ -220,7 +224,7 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
-            style_class: "lemonade-text-big lemonade-text-active lemonade-text-left",
+            style_class: "lemonade-text-big lemonade-text-active",
             text: _("Online")
         });
 
@@ -258,14 +262,50 @@ LemonadeDesklet.prototype = {
         }));
     },
 
+    showConfirmDialog: function(promptText, onConfirmCallback) {
+        let dialog = new ModalDialog.ConfirmDialog(
+            promptText, () => {
+                if (typeof onConfirmCallback === 'function') {
+                    onConfirmCallback();
+                }
+            }
+        );
+        dialog.open();
+    },
+
     createModelRow: function(name, recipe, is_active, is_busy) {
         let status = is_active ? (is_busy ? _("Busy") : _("Ready")) : _("Off");
         let status_style = is_active ? (is_busy ? "lemonade-text-bad" : "lemonade-text-good") : "lemonade-text-inactive";
         let active_style = is_active ? "lemonade-text-active " : "lemonade-text-inactive";
 
+        let modelButton = new St.Button({
+            reactive: true,
+            x_expand: true,
+            y_expand: true,
+            x_align: Clutter.ActorAlign.FILL,
+            style_class: "lemonade-box-bottom"
+        });
+
+        let prompt = (is_active ?
+            _("Do you want to unload model?") :
+            _("Do you want to load model?")) + "\n\n" + name;
+        let sig = modelButton.connect('clicked', Lang.bind(this, function () {
+            this.showConfirmDialog(prompt, () => {
+                this.postWithBearerCallback(
+                    this.getFullUrl(is_active ? UNLOAD_ENDPOINT : LOAD_ENDPOINT),
+                    this.api_key,
+                    { model_name: name },
+                    (err, data) => {
+                        if (err) global.logError("POST failed: " + err.message);
+                    }
+                );
+            });
+        }));
+
         let modelRow = new St.BoxLayout({
             vertical: false,
             x_expand: true,
+            y_expand: true,
             x_align: Clutter.ActorAlign.FILL,
             style_class: "lemonade-box-bottom"
         });
@@ -275,7 +315,6 @@ LemonadeDesklet.prototype = {
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
             style_class: "lemonade-text-medium lemonade-text-left" + " " + active_style,
-            style: "min-width:300px",
             text: name
         });
 
@@ -284,7 +323,6 @@ LemonadeDesklet.prototype = {
             y_align: Clutter.ActorAlign.END,
             x_expand: true,
             y_expand: true,
-            style: "min-width:150px",
             style_class: "lemonade-text-medium lemonade-text-middle" + " " + active_style,
             text: recipe
         });
@@ -300,18 +338,16 @@ LemonadeDesklet.prototype = {
         modelRow.add(nameText);
         modelRow.add(recipeText);
         modelRow.add(statusText);
+        modelButton.set_child(modelRow);
 
-        /*
-        // Try to use button
-        let sig = modelRow.connect('clicked', Lang.bind(this, function () {
-            this.launcher.spawnv(['xdg-open', this.server_url]); // TODO: replace with model unload
-        }));
-        */
+        let modelTooltip = new Tooltips.Tooltip(modelButton);
+        modelTooltip.set_text(is_active ? _("Unload model") : _("Load model"));
 
-        this.modelsTable.add(modelRow);
+        this.modelsTable.add(modelButton);
         this.modelListUI.push({
-            row: modelRow,
-            signal: null //sig
+            row: modelButton,
+            tooltip: modelTooltip,
+            signal: sig
         });
 
     },
@@ -331,13 +367,11 @@ LemonadeDesklet.prototype = {
     },
 
     removeModelRows: function() {
-        // TODO: unlink click listeners and cleanup of UI - probably in separate array and before destroy
-        //if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
-
         if (this.modelListUI) {
             for (let modelRow of this.modelListUI) {
                 if (modelRow.row) {
                     if (modelRow.signal) modelRow.row.disconnect(modelRow.signal);
+                    if (modelRow.tooltip) modelRow.tooltip.destroy();
                     modelRow.row.destroy();
                 }
             }
@@ -447,6 +481,41 @@ LemonadeDesklet.prototype = {
         );
     },
 
+    postWithBearerCallback: function(url, token, requestData, callback) {
+        var _this = this;
+        const session = this.sharedSession;
+        if (!session) return;
+        const message = Soup.Message.new('POST', url);
+        message.request_headers.append('Authorization', `Bearer ${token}`);
+        message.request_headers.append('Accept', 'application/json');
+
+        const jsonString = JSON.stringify(requestData);
+        const bodyBytes = new TextEncoder().encode(jsonString);
+        message.set_request_body_from_bytes('application/json', new GLib.Bytes(bodyBytes));
+
+        session.send_and_read_async(
+            message,
+            GLib.PRIORITY_DEFAULT,
+            null,
+            (session, result) => {
+                try {
+                    const bytes = session.send_and_read_finish(result);
+                    const statusCode = message.status_code;
+                    if (statusCode < 200 || statusCode >= 300) {
+                        callback.call(_this, new Error(`HTTP Error ${statusCode}: ${url}`), {code: statusCode});
+                        return;
+                    }
+                    const decoder = new TextDecoder('utf-8');
+                    const responseText = decoder.decode(bytes.get_data());
+                    const data = responseText ? JSON.parse(responseText) : {};
+                    callback.call(_this, null, data);
+                } catch (e) {
+                    callback.call(_this, e, {code: 0});
+                }
+            }
+        );
+    },
+
     // --------------------------------------------------------------------------------------------
     // Destroy
     // --------------------------------------------------------------------------------------------
@@ -465,6 +534,7 @@ LemonadeDesklet.prototype = {
         // Remove all signal listeners is mandatory
         if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
         this.removeModelRows();
+        this.serverIconTooltip.destroy();
     }
 };
 
