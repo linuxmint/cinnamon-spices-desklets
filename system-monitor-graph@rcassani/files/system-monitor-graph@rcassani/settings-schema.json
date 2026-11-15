@@ -16,6 +16,7 @@
         "options" : {
             "CPU" : "cpu",
             "RAM" : "ram",
+            "CPU & RAM" : "cpu-ram",
             "Swap" : "swap",
             "HDD" : "hdd",
             "GPU" : "gpu",
@@ -234,6 +235,13 @@
         "description": "Line color CPU",
         "dependency": "type=cpu",
         "tooltip": "RGB or RGBA. Alpha is ignored"
+    },
+    "line-color-cpu-ram": {
+        "type": "colorchooser",
+        "default": "rgba(23,147,208,1.0)",
+        "description": "Line color CPU & RAM",
+        "dependency": "type=cpu-ram",
+        "tooltip": "RAM is drawn as area in this color, CPU usage as a lighter line. RGB or RGBA. Alpha is ignored"
     },
     "line-color-ram": {
         "type": "colorchooser",

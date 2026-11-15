@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-11-15 20:40+0100\n"
+"POT-Creation-Date: 2026-11-15 20:48+0100\n"
 "PO-Revision-Date: 2022-04-17 18:13+0100\n"
 "Last-Translator: Georg Sieber\n"
 "Language-Team: \n"
@@ -18,137 +18,141 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 
 #. settings-schema.json->type->options
-#. desklet.js:295
+#. desklet.js:299 desklet.js:362
 msgid "CPU"
 msgstr "CPU"
 
-#. desklet.js:304
+#. desklet.js:308
 msgid "CPU Temperature"
 msgstr ""
 
-#. desklet.js:316
+#. desklet.js:320
 msgid "CPU Fan"
 msgstr ""
 
-#. desklet.js:320
+#. desklet.js:324
 msgid "RPM"
 msgstr ""
 
-#. desklet.js:321
+#. desklet.js:325
 msgid "On"
 msgstr ""
 
-#. desklet.js:323
+#. desklet.js:327
 msgid "Off"
 msgstr ""
 
-#. desklet.js:326
+#. desklet.js:330
 msgid "Not detected"
 msgstr ""
 
-#. desklet.js:328
+#. desklet.js:332
 msgid "Detecting..."
 msgstr ""
 
-#. desklet.js:341 desklet.js:359 desklet.js:379 desklet.js:420 desklet.js:447
-#. desklet.js:800
+#. desklet.js:345 desklet.js:366 desklet.js:376 desklet.js:396 desklet.js:437
+#. desklet.js:464 desklet.js:817
 msgid "GB"
 msgstr "GB"
 
-#. desklet.js:344 desklet.js:362 desklet.js:382 desklet.js:423 desklet.js:447
-#. desklet.js:814
+#. desklet.js:348 desklet.js:366 desklet.js:379 desklet.js:399 desklet.js:440
+#. desklet.js:464 desklet.js:831
 msgid "GiB"
 msgstr "GiB"
 
 #. settings-schema.json->type->options
-#. desklet.js:346
+#. desklet.js:350 desklet.js:364
 msgid "RAM"
 msgstr "RAM"
 
 #. settings-schema.json->type->options
-#. desklet.js:364
+#. desklet.js:381
 msgid "Swap"
 msgstr "Swap"
 
-#. desklet.js:387
+#. desklet.js:404
 msgid "free of"
 msgstr "frei von"
 
-#. desklet.js:403
+#. desklet.js:420
 msgid "GPU Usage"
 msgstr "GPU-Auslastung"
 
-#. desklet.js:425
+#. desklet.js:442
 msgid "GPU Memory"
 msgstr "GPU-Speicher"
 
 #. settings-schema.json->type->options
-#. desklet.js:443
+#. desklet.js:460
 msgid "GPU"
 msgstr "GPU"
 
-#. desklet.js:461
+#. desklet.js:462
+msgid "VRAM"
+msgstr "VRAM"
+
+#. desklet.js:478
 #, fuzzy
 msgid "GPU Temperature"
 msgstr "GPU-Hersteller"
 
 #. settings-schema.json->type->options
-#. desklet.js:479
+#. desklet.js:496
 msgid "Network"
 msgstr ""
 
 #. settings-schema.json->type->options
-#. desklet.js:495
+#. desklet.js:512
 msgid "Battery"
 msgstr ""
 
-#. desklet.js:498
+#. desklet.js:515
 msgid "Fully charged"
 msgstr ""
 
-#. desklet.js:499
+#. desklet.js:516
 msgid "Not charging"
 msgstr ""
 
-#. desklet.js:501
+#. desklet.js:518
 msgid " hrs"
 msgstr ""
 
-#. desklet.js:771 desklet.js:794
+#. desklet.js:788 desklet.js:811
 msgid "b"
 msgstr ""
 
-#. desklet.js:773 desklet.js:808 desklet.js:822
+#. desklet.js:790 desklet.js:825 desklet.js:839
 #, fuzzy
 msgid "B"
 msgstr "GB"
 
-#. desklet.js:786
+#. desklet.js:803
 msgid "Gb"
 msgstr ""
 
-#. desklet.js:789
+#. desklet.js:806
 msgid "Mb"
 msgstr ""
 
-#. desklet.js:792
+#. desklet.js:809
 msgid "Kb"
 msgstr ""
 
-#. desklet.js:803
+#. desklet.js:820
 msgid "MB"
 msgstr ""
 
-#. desklet.js:806
+#. desklet.js:823
 msgid "KB"
 msgstr ""
 
-#. desklet.js:817
+#. desklet.js:834
 #, fuzzy
 msgid "MiB"
 msgstr "GiB"
 
-#. desklet.js:820
+#. desklet.js:837
 #, fuzzy
 msgid "KiB"
 msgstr "GiB"
@@ -176,6 +180,10 @@ msgstr "Systemvariable für den Graphen"
 #. settings-schema.json->type->tooltip
 msgid "Select the system variable to monitor."
 msgstr "Wählen Sie die Systemvariable, welche dargestellt werden soll."
+
+#. settings-schema.json->type->options
+msgid "CPU & RAM"
+msgstr "CPU & RAM"
 
 #. settings-schema.json->type->options
 msgid "HDD"
@@ -467,6 +475,18 @@ msgstr "CPU-Linienfarbe"
 #. settings-schema.json->line-color-battery->tooltip
 msgid "RGB or RGBA. Alpha is ignored"
 msgstr "RGB oder RGBA. Alpha wird ignoriert"
+
+#. settings-schema.json->line-color-cpu-ram->description
+msgid "Line color CPU & RAM"
+msgstr "Linienfarbe CPU & RAM"
+
+#. settings-schema.json->line-color-cpu-ram->tooltip
+msgid ""
+"RAM is drawn as area in this color, CPU usage as a lighter line. RGB or "
+"RGBA. Alpha is ignored"
+msgstr ""
+"RAM wird als Fläche in dieser Farbe gezeichnet, die CPU-Auslastung als "
+"hellere Linie. RGB oder RGBA. Alpha wird ignoriert"
 
 #. settings-schema.json->line-color-ram->description
 msgid "Line color RAM"

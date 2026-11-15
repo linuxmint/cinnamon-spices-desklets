@@ -129,6 +129,7 @@ SystemMonitorGraph.prototype = {
         this.settings.bindProperty(Settings.BindingDirection.IN, "text-color", "text_color", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu", "line_color_cpu", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-ram", "line_color_ram", this.on_setting_changed);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-cpu-ram", "line_color_cpu_ram", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-swap", "line_color_swap", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-hdd", "line_color_hdd", this.on_setting_changed);
         this.settings.bindProperty(Settings.BindingDirection.IN, "line-color-gpu", "line_color_gpu", this.on_setting_changed);
@@ -172,7 +173,7 @@ SystemMonitorGraph.prototype = {
             this.n_values = Math.floor(this.duration / this.refresh_interval)  + 1;
             this.values = new Array(this.n_values).fill(0.0);
             // second time series, drawn as area below the line of this.values
-            // (used by combined variables, e.g. GPU "Usage & Memory")
+            // (used by combined graphs: "CPU & RAM", GPU "Usage & Memory")
             this.area_values = new Array(this.n_values).fill(0.0);
             this.cpu_cpu_tot = 0;
             this.cpu_cpu_idl = 0;
@@ -212,6 +213,9 @@ SystemMonitorGraph.prototype = {
                   break;
               case "ram":
                   this.line_color = this.line_color_ram;
+                  break;
+              case "cpu-ram":
+                  this.line_color = this.line_color_cpu_ram;
                   break;
               case "swap":
                   this.line_color = this.line_color_swap;
@@ -349,6 +353,19 @@ SystemMonitorGraph.prototype = {
                     + this.ram_values[0].toFixed(1) + " " + ram_prefix;
               break;
 
+          case "cpu-ram":
+              // CPU usage as line, RAM usage as area
+              this.get_cpu_use();
+              this.get_ram_values();
+              value = this.cpu_use / 100;
+              area_value = this.ram_values[1] / this.ram_values[0];
+              text1 = _("CPU");
+              text2 = Math.round(this.cpu_use).toString() + "%";
+              text3 = _("RAM") + " " + this.ram_values[1].toFixed(1) + " / "
+                    + this.ram_values[0].toFixed(1) + " "
+                    + (this.data_prefix_ram == 1 ? _("GB") : _("GiB"));
+              break;
+
           case "swap":
             this.get_swap_values();
             let swap_use = 100 * this.swap_values[1] / this.swap_values[0];
@@ -442,7 +459,7 @@ SystemMonitorGraph.prototype = {
                       area_value = this.gpu_mem[1] / this.gpu_mem[0];
                       text1 = _("GPU");
                       text2 = isNaN(this.gpu_use) ? "" : Math.round(this.gpu_use).toString() + "%";
-                      text3 = this.gpu_mem[1].toFixed(1) + " / "
+                      text3 = _("VRAM") + " " + this.gpu_mem[1].toFixed(1) + " / "
                             + this.gpu_mem[0].toFixed(1) + " "
                             + (this.data_prefix_gpumem == 1 ? _("GB") : _("GiB"));
                       break;
