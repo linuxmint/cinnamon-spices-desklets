@@ -1,0 +1,8 @@
+.immich-widget { background-color: rgba(0, 0, 0, 0.35); }
+.immich-widget-caption {
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9);
+  padding: 0;
+}
+.immich-widget-message { color: white; padding: 16px; text-align: center; }
