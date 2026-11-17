@@ -16,17 +16,19 @@ const Soup = imports.gi.Soup;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
-const HEALTH_ENDPOINT = "health";
-const MODELS_ENDPOINT = "models";
-const LOAD_ENDPOINT = "load";
-const UNLOAD_ENDPOINT = "unload";
-const STATS_ENDPOINT = "stats";
+const HEALTH_ENDPOINT   = "health";
+const MODELS_ENDPOINT   = "models";
+const LOAD_ENDPOINT     = "load";
+const UNLOAD_ENDPOINT   = "unload";
+const STATS_ENDPOINT    = "stats";
 
-const SERVER_ONLINE = 0;
-const SERVER_OFFLINE = 503;
-const SERVER_API_KEY = 401;
+const SERVER_ONLINE     = 0;
+const SERVER_OFFLINE    = 503;
+const SERVER_API_KEY    = 401;
 
 const SERVER_VERSION_UNDEFINED = 0;
+
+const ICON_SIZE = 48;
 
 function LemonadeDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id)
@@ -199,17 +201,15 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.FILL
         });
 
-        let iconSize = 48;
-
         this.serverIcon = new St.Button();
-        this.serverIcon.height = iconSize;
-        this.serverIcon.width = iconSize;
+        this.serverIcon.height = ICON_SIZE;
+        this.serverIcon.width = ICON_SIZE;
 
         let icon_file = this.metadata.path + '/' + "icon.png";
         let file = Gio.file_new_for_path(icon_file);
         let icon_uri = file.get_uri();
 
-        let image = St.TextureCache.get_default().load_uri_async(icon_uri, iconSize, iconSize);
+        let image = St.TextureCache.get_default().load_uri_async(icon_uri, ICON_SIZE, ICON_SIZE);
         this.serverIcon.set_child(image);
         this.serverIconTooltip = new Tooltips.Tooltip(this.serverIcon);
 
@@ -537,17 +537,41 @@ LemonadeDesklet.prototype = {
         });
     },
 
+    // --------------------------------------------------------------------------------------------
+    // API
+    // --------------------------------------------------------------------------------------------
+
+
     getFullUrl: function(endpoint) {
         return `${this.api_url.replace(/\/$/, '')}/${endpoint.replace(/^\//, '')}`;
     },
 
     getWithBearerCallback: function(url, token, callback) {
+        const message = this.createMessage('GET', url, token);
+        this.sendAsync(url, message, callback);
+    },
+
+    postWithBearerCallback: function(url, token, requestData, callback) {
+        const message = this.createMessage('POST', url, token);
+
+        const jsonString = JSON.stringify(requestData);
+        const bodyBytes = new TextEncoder().encode(jsonString);
+        message.set_request_body_from_bytes('application/json', new GLib.Bytes(bodyBytes));
+
+        this.sendAsync(url, message, callback);
+    },
+
+    createMessage: function(method, url, token) {
+        let message = Soup.Message.new(method, url);
+        message.request_headers.append('Authorization', `Bearer ${token}`);
+        message.request_headers.append('Accept', 'application/json');
+        return message;
+    },
+
+    sendAsync: function(url, message, callback) {
         var _this = this;
         const session = this.sharedSession;
         if (!session) return;
-        const message = Soup.Message.new('GET', url);
-        message.request_headers.append('Authorization', `Bearer ${token}`);
-        message.request_headers.append('Accept', 'application/json');
 
         session.send_and_read_async(
             message,
@@ -564,41 +588,6 @@ LemonadeDesklet.prototype = {
                     const decoder = new TextDecoder('utf-8');
                     const responseText = decoder.decode(bytes.get_data());
                     const data = JSON.parse(responseText);
-                    callback.call(_this, null, data);
-                } catch (e) {
-                    callback.call(_this, e, {code: SERVER_OFFLINE});
-                }
-            }
-        );
-    },
-
-    postWithBearerCallback: function(url, token, requestData, callback) {
-        var _this = this;
-        const session = this.sharedSession;
-        if (!session) return;
-        const message = Soup.Message.new('POST', url);
-        message.request_headers.append('Authorization', `Bearer ${token}`);
-        message.request_headers.append('Accept', 'application/json');
-
-        const jsonString = JSON.stringify(requestData);
-        const bodyBytes = new TextEncoder().encode(jsonString);
-        message.set_request_body_from_bytes('application/json', new GLib.Bytes(bodyBytes));
-
-        session.send_and_read_async(
-            message,
-            GLib.PRIORITY_DEFAULT,
-            null,
-            (session, result) => {
-                try {
-                    const bytes = session.send_and_read_finish(result);
-                    const statusCode = message.status_code;
-                    if (statusCode < 200 || statusCode >= 300) {
-                        callback.call(_this, new Error(`HTTP Error ${statusCode}: ${url}`), {code: statusCode});
-                        return;
-                    }
-                    const decoder = new TextDecoder('utf-8');
-                    const responseText = decoder.decode(bytes.get_data());
-                    const data = responseText ? JSON.parse(responseText) : {};
                     callback.call(_this, null, data);
                 } catch (e) {
                     callback.call(_this, e, {code: SERVER_OFFLINE});
@@ -624,8 +613,8 @@ LemonadeDesklet.prototype = {
         this.resetData();
         // Remove all signal listeners is mandatory
         if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
-        this.removeModelRows();
         this.serverIconTooltip.destroy();
+        this.removeModelRows();
     }
 };
 
