@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="44.317707mm"
+   height="44.317703mm"
+   viewBox="0 0 44.317707 44.317703"
+   version="1.1"
+   id="svg6511"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="minute-hand-5-symbolic.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6513"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="22.627417"
+     inkscape:cx="74.202018"
+     inkscape:cy="21.831922"
+     inkscape:window-width="2560"
+     inkscape:window-height="1363"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1"
+     showguides="true" />
+  <defs
+     id="defs6508">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2426">
+      <path
+         d="m 8060.68,5204.7 c -93.72,0 -175.9,82.2 -175.9,175.9 0,93.7 82.18,175.9 175.9,175.9 93.72,0 175.91,-82.2 175.91,-175.9 0,-93.7 -82.19,-175.9 -175.91,-175.9 z"
+         id="path2424" />
+    </clipPath>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(174.538,-302.309,-302.309,-174.538,7973.41,5531.8)"
+       spreadMethod="pad"
+       id="linearGradient2434">
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0"
+         id="stop2428" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0.48211215"
+         id="stop2430" />
+      <stop
+         style="stop-opacity:1;stop-color:#d0d0d0"
+         offset="1"
+         id="stop2432" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2444">
+      <path
+         d="m 8060.68,5224.3 c -83.29,0 -156.36,73 -156.36,156.3 0,83.3 73.07,156.4 156.36,156.4 83.3,0 156.37,-73.1 156.37,-156.4 0,-83.3 -73.07,-156.3 -156.37,-156.3 z"
+         id="path2442" />
+    </clipPath>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(155.141,-268.712,-268.712,-155.141,7983.11,5515)"
+       spreadMethod="pad"
+       id="linearGradient2452">
+      <stop
+         style="stop-opacity:1;stop-color:#d0d0d0"
+         offset="0"
+         id="stop2446" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0.51788785"
+         id="stop2448" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="1"
+         id="stop2450" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.09317171,-98.332576)">
+    <path
+       id="path184"
+       style="fill:#191a1b;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0352778"
+       inkscape:transform-center-x="0.012955668"
+       inkscape:transform-center-y="-8.861611"
+       d="M 22.074467 101.089 L 21.191834 101.97008 L 21.185116 118.96853 L 21.207337 118.96853 C 20.662366 119.27826 20.286463 119.86607 20.286463 120.5245 C 20.286463 121.49474 21.102689 122.31147 22.072917 122.31147 C 23.043146 122.31147 23.859888 121.49474 23.859888 120.5245 C 23.859888 119.87012 23.488389 119.28543 22.948833 118.97421 L 22.955034 101.9706 L 22.074467 101.089 z M 22.073434 102.02537 L 22.293576 102.24448 L 22.286858 118.7489 C 22.139523 118.7304 21.992465 118.729 21.846058 118.74838 L 21.853809 102.24552 L 22.073434 102.02537 z M 22.072917 119.50699 C 22.617879 119.50699 23.088876 119.97953 23.088876 120.5245 C 23.088876 121.06948 22.617879 121.53994 22.072917 121.53994 C 21.527956 121.53994 21.055925 121.06948 21.055925 120.5245 C 21.055925 119.97953 21.527956 119.50699 22.072917 119.50699 z " />
+  </g>
+</svg>

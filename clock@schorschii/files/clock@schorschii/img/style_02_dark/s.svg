@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="44.317707mm"
+   height="44.317703mm"
+   viewBox="0 0 44.317707 44.317703"
+   version="1.1"
+   id="svg6511"
+   inkscape:version="1.2.1 (9c6d41e410, 2022-07-14)"
+   sodipodi:docname="second-hand-symbolic.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview6513"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="2.8284271"
+     inkscape:cx="-5.4800776"
+     inkscape:cy="107.30345"
+     inkscape:window-width="1499"
+     inkscape:window-height="1236"
+     inkscape:window-x="650"
+     inkscape:window-y="134"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1"
+     showguides="true"
+     inkscape:lockguides="false" />
+  <defs
+     id="defs6508">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2426">
+      <path
+         d="m 8060.68,5204.7 c -93.72,0 -175.9,82.2 -175.9,175.9 0,93.7 82.18,175.9 175.9,175.9 93.72,0 175.91,-82.2 175.91,-175.9 0,-93.7 -82.19,-175.9 -175.91,-175.9 z"
+         id="path2424" />
+    </clipPath>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(174.538,-302.309,-302.309,-174.538,7973.41,5531.8)"
+       spreadMethod="pad"
+       id="linearGradient2434">
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0"
+         id="stop2428" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0.48211215"
+         id="stop2430" />
+      <stop
+         style="stop-opacity:1;stop-color:#d0d0d0"
+         offset="1"
+         id="stop2432" />
+    </linearGradient>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath2444">
+      <path
+         d="m 8060.68,5224.3 c -83.29,0 -156.36,73 -156.36,156.3 0,83.3 73.07,156.4 156.36,156.4 83.3,0 156.37,-73.1 156.37,-156.4 0,-83.3 -73.07,-156.3 -156.37,-156.3 z"
+         id="path2442" />
+    </clipPath>
+    <linearGradient
+       x1="0"
+       y1="0"
+       x2="1"
+       y2="0"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(155.141,-268.712,-268.712,-155.141,7983.11,5515)"
+       spreadMethod="pad"
+       id="linearGradient2452">
+      <stop
+         style="stop-opacity:1;stop-color:#d0d0d0"
+         offset="0"
+         id="stop2446" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="0.51788785"
+         id="stop2448" />
+      <stop
+         style="stop-opacity:1;stop-color:#ededed"
+         offset="1"
+         id="stop2450" />
+    </linearGradient>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0.09317171,-98.332576)">
+    <path
+       d="m 22.062513,126.2264 c 0.24241,-3.5e-4 0.44056,-0.19724 0.44065,-0.44093 l -2e-5,-2.6457 c 10e-5,-0.16182 -0.0912,-0.29685 -0.22097,-0.37351 l 1.7e-4,-1.89807 c 0.16572,-0.0984 0.25795,-0.29266 0.20569,-0.48768 -0.0314,-0.11712 -0.10799,-0.21087 -0.20542,-0.26778 l 3.3e-4,-11.7467 c 0.11245,-0.32049 0.22714,-0.7675 0.22704,-1.26538 -2.8e-4,-0.49583 -0.11496,-0.94289 -0.22712,-1.26337 l 5.3e-4,-6.509208 c -1.7e-4,-0.12194 -0.0988,-0.22033 -0.22046,-0.22029 -0.02,1.9e-4 -0.0392,0.002 -0.0573,0.007 -0.0941,0.0252 -0.16346,0.11098 -0.16322,0.21276 l -5.7e-4,6.547198 c -0.10774,0.31762 -0.21419,0.74905 -0.21412,1.22637 1.8e-4,0.47775 0.10611,0.90986 0.21422,1.22746 l -4.1e-4,11.79279 c -0.16572,0.0984 -0.25771,0.2922 -0.2055,0.48704 0.0315,0.1177 0.10737,0.21122 0.20536,0.26754 l -10e-5,1.88607 c -0.13077,0.0762 -0.21992,0.21514 -0.21991,0.37737 l 10e-6,2.6457 c -1.8e-4,0.24329 0.19739,0.44089 0.44101,0.44096"
+       style="fill:#0e0102;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:0.0352778"
+       id="second-hand-6" />
+  </g>
+</svg>
