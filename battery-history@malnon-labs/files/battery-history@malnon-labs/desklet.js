@@ -3,60 +3,89 @@ const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const Gio = imports.gi.Gio;
 const GLib = imports.gi.GLib;
-const Mainloop = imports.mainloop;
+const Gettext = imports.gettext;
 const ByteArray = imports.byteArray;
 
+const UUID = "battery-history@malnon-labs";
+Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+
+function _(text) {
+    return Gettext.dgettext(UUID, text);
+}
+
 const UPOWER = "/var/lib/upower";
+const PS = "/sys/class/power_supply";
 const GAP = 600;
 const ORANGE = "#e8963a";
 const GREEN = "#4cc27f";
 const TRACK = 120;
 
+// Async file read; resolves with "" when the file can't be read.
 function readText(path) {
-    try {
-        let [ok, bytes] = Gio.File.new_for_path(path).load_contents(null);
-        return ok ? ByteArray.toString(bytes) : "";
-    } catch (e) { return ""; }
+    return new Promise((resolve) => {
+        Gio.File.new_for_path(path).load_contents_async(null, (file, res) => {
+            try {
+                let [ok, bytes] = file.load_contents_finish(res);
+                resolve(ok ? ByteArray.toString(bytes) : "");
+            } catch (e) {
+                resolve("");
+            }
+        });
+    });
 }
 
-const PS = "/sys/class/power_supply";
+// Async directory listing; resolves with [{name, mtime}].
+function listDir(path) {
+    return new Promise((resolve) => {
+        Gio.File.new_for_path(path).enumerate_children_async(
+            "standard::name,time::modified", Gio.FileQueryInfoFlags.NONE, GLib.PRIORITY_DEFAULT, null,
+            (dir, res) => {
+                let en;
+                try {
+                    en = dir.enumerate_children_finish(res);
+                } catch (e) {
+                    resolve([]);
+                    return;
+                }
+                en.next_files_async(1000, GLib.PRIORITY_DEFAULT, null, (e2, res2) => {
+                    try {
+                        resolve(e2.next_files_finish(res2).map((i) => ({
+                            name: i.get_name(),
+                            mtime: i.get_attribute_uint64("time::modified")
+                        })));
+                    } catch (e) {
+                        resolve([]);
+                    }
+                });
+            });
+    });
+}
 
 // First internal battery (type Battery, not a peripheral such as a mouse).
-function findBattery() {
-    try {
-        let en = Gio.File.new_for_path(PS).enumerate_children("standard::name", Gio.FileQueryInfoFlags.NONE, null);
-        let info, found = [];
-        while ((info = en.next_file(null)) !== null) {
-            let n = info.get_name();
-            if (readText(PS + "/" + n + "/type").trim() === "Battery" &&
-                readText(PS + "/" + n + "/scope").trim() !== "Device") found.push(n);
-        }
-        found.sort();
-        return found.length ? found[0] : null;
-    } catch (e) { return null; }
+async function findBattery() {
+    let found = [];
+    for (let f of await listDir(PS)) {
+        if ((await readText(PS + "/" + f.name + "/type")).trim() === "Battery" &&
+            (await readText(PS + "/" + f.name + "/scope")).trim() !== "Device") found.push(f.name);
+    }
+    found.sort();
+    return found.length ? found[0] : null;
 }
 
-function newestHistory(kind) {
+async function newestHistory(kind) {
     let best = null, bestT = 0;
-    try {
-        let en = Gio.File.new_for_path(UPOWER).enumerate_children(
-            "standard::name,time::modified", Gio.FileQueryInfoFlags.NONE, null);
-        let info;
-        while ((info = en.next_file(null)) !== null) {
-            let n = info.get_name();
-            if (n.indexOf("history-" + kind + "-") !== 0 || n.indexOf("Wireless") >= 0 ||
-                n.indexOf("generic_id") >= 0) continue;
-            let t = info.get_attribute_uint64("time::modified");
-            if (t > bestT) { bestT = t; best = UPOWER + "/" + n; }
-        }
-    } catch (e) {}
+    for (let f of await listDir(UPOWER)) {
+        if (f.name.indexOf("history-" + kind + "-") !== 0 || f.name.indexOf("Wireless") >= 0 ||
+            f.name.indexOf("generic_id") >= 0) continue;
+        if (f.mtime > bestT) { bestT = f.mtime; best = UPOWER + "/" + f.name; }
+    }
     return best;
 }
 
-function parse(path, since) {
+async function parse(path, since) {
     let rows = [];
     if (!path) return rows;
-    readText(path).split("\n").forEach(function(line) {
+    (await readText(path)).split("\n").forEach(function(line) {
         let p = line.trim().split(/\s+/);
         if (p.length !== 3) return;
         let t = parseInt(p[0]);
@@ -65,10 +94,10 @@ function parse(path, since) {
     return rows;
 }
 
-function sessions(days, fullWh) {
+async function sessions(days, fullWh) {
     let since = Math.floor(Date.now() / 1000) - days * 86400;
-    let charge = parse(newestHistory("charge"), since);
-    let rate = parse(newestHistory("rate"), since);
+    let charge = await parse(await newestHistory("charge"), since);
+    let rate = await parse(await newestHistory("rate"), since);
     let segs = [], cur = null;
     charge.forEach(function(r) {
         let t = r[0], pct = r[1], st = r[2];
@@ -99,8 +128,8 @@ function dayLabel(ts) {
     let a = new Date(d.getFullYear(), d.getMonth(), d.getDate()).getTime();
     let b = new Date(now.getFullYear(), now.getMonth(), now.getDate()).getTime();
     let diff = Math.round((b - a) / 86400000);
-    if (diff === 0) return "TODAY";
-    if (diff === 1) return "YESTERDAY";
+    if (diff === 0) return _("TODAY");
+    if (diff === 1) return _("YESTERDAY");
     return ["SUN", "MON", "TUE", "WED", "THU", "FRI", "SAT"][d.getDay()] + " " + d.getDate() + " " +
         ["JAN", "FEB", "MAR", "APR", "MAY", "JUN", "JUL", "AUG", "SEP", "OCT", "NOV", "DEC"][d.getMonth()];
 }
@@ -116,10 +145,11 @@ BatteryDesklet.prototype = {
 
     _init: function(metadata, desklet_id) {
         Desklet.Desklet.prototype._init.call(this, metadata, desklet_id);
+        this._timer = 0;
+        this._removed = false;
+        this._busy = false;
         this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
-        this.settings.bind("rows", "rows", this._update);
-        this.settings.bind("days", "days", this._update);
-        this.settings.bind("scale", "scale", this._update);
+        ["rows", "days", "scale"].forEach((k) => this.settings.bind(k, k, () => this._update()));
         this.settings.bind("interval", "interval", () => this._schedule());
         this.setHeader("");
         this._update();
@@ -127,44 +157,64 @@ BatteryDesklet.prototype = {
     },
 
     _schedule: function() {
-        if (this._timer) Mainloop.source_remove(this._timer);
-        this._timer = Mainloop.timeout_add_seconds(this.interval || 60, () => { this._update(); return true; });
+        if (this._timer) GLib.source_remove(this._timer);
+        this._timer = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, this.interval || 60, () => {
+            this._update();
+            return GLib.SOURCE_CONTINUE;
+        });
     },
 
     on_desklet_removed: function() {
-        if (this._timer) Mainloop.source_remove(this._timer);
+        this._removed = true;
+        if (this._timer) GLib.source_remove(this._timer);
+        this._timer = 0;
     },
 
-    _bat: function(name) { return this._batName ? readText(PS + "/" + this._batName + "/" + name).trim() : ""; },
+    async _bat(name) {
+        return this._batName ? (await readText(PS + "/" + this._batName + "/" + name)).trim() : "";
+    },
 
     // Energy in Wh; falls back to charge (µAh) x design voltage when energy_* is missing.
-    _fullWh: function() {
-        let e = parseInt(this._bat("energy_full"));
+    async _fullWh() {
+        let e = parseInt(await this._bat("energy_full"));
         if (e) return e / 1e6;
-        let c = parseInt(this._bat("charge_full")), v = parseInt(this._bat("voltage_min_design")) ||
-            parseInt(this._bat("voltage_now"));
+        let c = parseInt(await this._bat("charge_full")), v = parseInt(await this._bat("voltage_min_design")) ||
+            parseInt(await this._bat("voltage_now"));
         return c && v ? c * v / 1e12 : 0;
     },
 
     // Power in W; falls back to current x voltage when power_now is missing.
-    _watts: function() {
-        let p = parseInt(this._bat("power_now"));
+    async _watts() {
+        let p = parseInt(await this._bat("power_now"));
         if (p) return p / 1e6;
-        let i = parseInt(this._bat("current_now")), v = parseInt(this._bat("voltage_now"));
+        let i = parseInt(await this._bat("current_now")), v = parseInt(await this._bat("voltage_now"));
         return i && v ? Math.abs(i) * v / 1e12 : 0;
     },
 
-    _update: function() {
-        this._batName = this._batName || findBattery();
-        if (!this._batName) {
-            this.setContent(new St.Label({ text: "No battery found", style_class: "bh-sub",
-                style: "padding: 16px;" }));
-            return;
+    async _update() {
+        if (this._busy) return;
+        this._busy = true;
+        try {
+            this._batName = this._batName || await findBattery();
+            if (!this._batName) {
+                if (!this._removed) this.setContent(new St.Label({ text: _("No battery found"),
+                    style_class: "bh-sub", style: "padding: 16px;" }));
+                return;
+            }
+            let fullWh = await this._fullWh();
+            let pct = parseInt(await this._bat("capacity")) || 0;
+            let status = (await this._bat("status")) || "Unknown";
+            let watts = await this._watts();
+            let list = (await sessions(this.days || 7, fullWh)).reverse().slice(0, this.rows || 7);
+            if (!this._removed) this._render(fullWh, pct, status, watts, list);
+        } catch (e) {
+            global.logError(UUID + ": " + e);
+        } finally {
+            this._busy = false;
         }
-        let fullWh = this._fullWh();
-        let pct = parseInt(this._bat("capacity")) || 0;
-        let status = this._bat("status") || "Unknown";
-        let watts = this._watts();
+    },
+
+    _render: function(fullWh, pct, status, watts, list) {
         let s = this.scale || 1;
 
         let card = new St.BoxLayout({ vertical: true, style_class: "bh-card",
@@ -175,21 +225,20 @@ BatteryDesklet.prototype = {
         head.add(new St.Label({ text: pct + "%", style_class: "bh-pct",
             style: "color:" + (status === "Discharging" ? (pct <= 20 ? "#e5584f" : "#f2f3f5") : GREEN) + ";" }));
         let hr = new St.BoxLayout({ vertical: true, style: "padding-left: 12px;" });
-        let state = status === "Discharging" ? "On battery" : status === "Charging" ? "Charging" : status;
+        let state = status === "Discharging" ? _("On battery") : status === "Charging" ? _("Charging") : status;
         hr.add(new St.Label({ text: state, style_class: "bh-time" }));
         let left = "";
         if (watts > 0.5) {
             let e = pct / 100 * fullWh;
             let hrs = status === "Discharging" ? e / watts : (status === "Charging" ? (fullWh - e) / watts : 0);
-            left = " · " + watts.toFixed(1) + " W" + (hrs > 0 ? " · " + dur(hrs * 3600) +
-                (status === "Charging" ? " to full" : " left") : "");
+            left = " · " + watts.toFixed(1) + " W";
+            if (hrs > 0) left += " · " + (status === "Charging" ? _("%s to full") : _("%s left")).format(dur(hrs * 3600));
         }
-        hr.add(new St.Label({ text: "Battery history" + left, style_class: "bh-sub" }));
+        hr.add(new St.Label({ text: _("Battery history") + left, style_class: "bh-sub" }));
         head.add(hr, { y_align: St.Align.MIDDLE });
         card.add(head);
 
         // Session rows, newest first, grouped by day
-        let list = sessions(this.days || 7, fullWh).reverse().slice(0, this.rows || 7);
         let lastDay = null;
         list.forEach(function(sess) {
             let day = dayLabel(sess.start);
@@ -220,11 +269,11 @@ BatteryDesklet.prototype = {
             let r = new St.BoxLayout({ vertical: true, style: "padding-left: 12px; width: " + Math.round(64 * s) + "px;" });
             r.add(new St.Label({ text: (dis ? "−" : "+") + Math.abs(sess.p1 - sess.p0).toFixed(0) + "%",
                 style_class: "bh-delta", style: "color:" + col + ";" }));
-            r.add(new St.Label({ text: sess.watts.toFixed(1) + " W avg", style_class: "bh-watts" }));
+            r.add(new St.Label({ text: _("%s W avg").format(sess.watts.toFixed(1)), style_class: "bh-watts" }));
             row.add(r);
             card.add(row);
         });
-        if (!list.length) card.add(new St.Label({ text: "No sessions recorded yet", style_class: "bh-meta",
+        if (!list.length) card.add(new St.Label({ text: _("No sessions recorded yet"), style_class: "bh-meta",
             style: "padding-top: 8px;" }));
 
         this.setContent(card);
