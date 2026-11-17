@@ -1,0 +1,18 @@
+{
+    "uuid": "power-users@malnon-labs",
+    "name": "Power Users",
+    "description": "Apps ranked by estimated power use, from CPU time and battery draw",
+    "icon": "battery",
+    "prevent-decorations": true,
+    "max-instances": "1",
+    "cinnamon-version": [
+        "5.4",
+        "5.6",
+        "5.8",
+        "6.0",
+        "6.2",
+        "6.4",
+        "6.6"
+    ],
+    "version": "1.0.0"
+}
