@@ -1,0 +1,9 @@
+.pu-card { background-color: rgba(24, 26, 32, 0.82); border-radius: 16px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.08); }
+.pu-title { font-size: 8pt; font-weight: bold; color: #7d8491; letter-spacing: 1px; }
+.pu-big { font-size: 22pt; font-weight: bold; color: #f2f3f5; }
+.pu-sub { font-size: 8pt; color: #9aa0ab; }
+.pu-name { font-size: 10pt; color: #e6e8ec; }
+.pu-meta { font-size: 8pt; color: #8b92a0; }
+.pu-val { font-size: 11pt; font-weight: bold; }
+.pu-track { background-color: rgba(255,255,255,0.09); border-radius: 4px; height: 6px; }
+.pu-note { font-size: 7pt; color: #6b7280; padding-top: 10px; }
