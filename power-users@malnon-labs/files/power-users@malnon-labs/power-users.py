@@ -14,8 +14,8 @@ import sys
 import time
 
 CLK = os.sysconf("SC_CLK_TCK")
-STATE = os.path.join(os.environ.get("XDG_CACHE_HOME") or os.path.expanduser("~/.cache"),
-                     "power-users-desklet.json")
+STATE = sys.argv[1] if len(sys.argv) > 1 else os.path.join(
+    os.environ.get("XDG_CACHE_HOME") or os.path.expanduser("~/.cache"), "power-users@malnon-labs.json")
 PS = "/sys/class/power_supply"
 STOP = {"systemd", "cinnamon", "cinnamon-sessio", "cinnamon-launc", "init", "bash", "fish",
         "zsh", "sh", "dash", "gnome-terminal-", "sshd", "login", "dbus-daemon", "(sd-pam)",
