@@ -95,6 +95,8 @@ LemonadeDesklet.prototype = {
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
 
         this.resetModels();
+        this.serverOnline = false;
+        this.resetStats();
     },
 
     resetModels: function() {
@@ -109,6 +111,11 @@ LemonadeDesklet.prototype = {
         } else {
             this.allModels = [];
         }
+    },
+
+    resetStats: function() {
+        this.context = 0;
+        this.tps = 0;
     },
 
     // --------------------------------------------------------------------------------------------
@@ -126,23 +133,17 @@ LemonadeDesklet.prototype = {
 
         let serverHeader = this.setupHeaderUI();
 
-        let topSeparator = new St.Widget({
+        this.topSeparator = new St.Widget({
             style_class: 'lemonade-separator',
             x_expand: true
         });
 
-        /*
-        // Change to Tok/s
-        this.ramText = new St.Label({
-            style_class: "lemonade-text-medium lemonade-text-active",
-            text: _("VRAM")
-        });
+        let statsRow = this.setupStatsUI();
 
-        let bottomSeparator = new St.Widget({
+        this.bottomSeparator = new St.Widget({
             style_class: 'lemonade-separator',
             x_expand: true
         });
-        */
 
         this.modelsTable = new St.BoxLayout({
             vertical: true,
@@ -151,14 +152,15 @@ LemonadeDesklet.prototype = {
         });
 
         this.window.add(serverHeader);
-        this.window.add_child(topSeparator);
-        //this.window.add(this.ramText);
-        //this.window.add_child(bottomSeparator);
+        this.window.add_child(this.topSeparator);
+        this.window.add(statsRow);
+        this.window.add_child(this.bottomSeparator);
         this.window.add(this.modelsTable);
 
         this.setContent(this.window);
 
         this.updateServerAddressUI();
+        this.updateStatsUI();
     },
 
     setupHeaderUI: function() {
@@ -250,6 +252,36 @@ LemonadeDesklet.prototype = {
         return serverHeader;
     },
 
+    setupStatsUI: function() {
+        this.statsRow = new St.BoxLayout({
+            vertical: false,
+            x_expand: true,
+            x_align: Clutter.ActorAlign.FILL
+        });
+
+        this.contextText = new St.Label({
+            x_align: Clutter.ActorAlign.START,
+            y_align: Clutter.ActorAlign.END,
+            y_expand: true,
+            style_class: "lemonade-text-medium lemonade-text-left",
+            text: _("Context")
+        });
+
+        this.tpsText = new St.Label({
+            x_align: Clutter.ActorAlign.END,
+            y_align: Clutter.ActorAlign.END,
+            x_expand: true,
+            y_expand: true,
+            style_class: "lemonade-text-medium lemonade-text-right",
+            text: _("TPS")
+        });
+
+        this.statsRow.add_actor(this.contextText);
+        this.statsRow.add_actor(this.tpsText);
+
+        return this.statsRow;
+    },
+
     updateServerAddressUI: function() {
         this.window.style ="background-color: " + this.background_color + ";";
 
@@ -260,6 +292,28 @@ LemonadeDesklet.prototype = {
         this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
             this.launcher.spawnv(['xdg-open', this.server_url]);
         }));
+    },
+
+    updateStatsUI: function() {
+        if (this.serverOnline) {
+            let active = this.activeModels.size > 0;
+            let style = active ? "lemonade-text-active" : "lemonade-text-inactive";
+            let context = active ? this.context : 0;
+            let tps = active ? this.tps : 0;
+
+            this.contextText.set_text(_("Context") + ":   " + context.toLocaleString());
+            this.contextText.style_class = "lemonade-text-medium lemonade-text-left " + style;
+            this.tpsText.set_text(_("TPS") + ":   " + tps.toFixed(1));
+            this.tpsText.style_class = "lemonade-text-medium lemonade-text-right " + style;
+
+            this.topSeparator.show();
+            this.statsRow.show();
+            this.bottomSeparator.show();
+        } else {
+            this.topSeparator.hide();
+            this.statsRow.hide();
+            this.bottomSeparator.hide();
+        }
     },
 
     showConfirmDialog: function(promptText, onConfirmCallback) {
@@ -407,10 +461,10 @@ LemonadeDesklet.prototype = {
                         this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
                 }
 
-                this.resetModels();
+                this.resetData();
                 this.removeModelRows();
-                return;
             } else {
+                this.serverOnline = true;
                 this.statusText.set_text(_("Online"));
                 this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-good lemonade-text-important";
                 if (data.version)
@@ -425,9 +479,16 @@ LemonadeDesklet.prototype = {
                             is_busy: model.is_busy
                         });
                     }
+
                     this.updateAllModels();
+                    if (this.activeModels.size > 0) {
+                        this.updateStats();
+                    } else {
+                        this.resetStats();
+                    }
                 }
             }
+            this.updateStatsUI();
         });
     },
 
@@ -443,6 +504,16 @@ LemonadeDesklet.prototype = {
                 }
                 this.createModelRows();
             }
+        });
+    },
+
+    updateStats: function() {
+        this.getWithBearerCallback(this.getFullUrl(STATS_ENDPOINT), this.api_key, (error, data) => {
+            if (error) return;
+
+            this.context = (data.cache_tokens || 0) + (data.input_tokens || 0) + (data.output_tokens || 0);
+            this.tps = data.live && data.live.estimated_tokens_per_second ? data.live.estimated_tokens_per_second : (data.tokens_per_second || 0);
+            this.updateStatsUI();
         });
     },
 
