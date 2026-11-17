@@ -22,6 +22,12 @@ const LOAD_ENDPOINT = "load";
 const UNLOAD_ENDPOINT = "unload";
 const STATS_ENDPOINT = "stats";
 
+const SERVER_ONLINE = 0;
+const SERVER_OFFLINE = 503;
+const SERVER_API_KEY = 401;
+
+const SERVER_VERSION_UNDEFINED = 0;
+
 function LemonadeDesklet(metadata, desklet_id) {
     this._init(metadata, desklet_id)
 }
@@ -94,9 +100,10 @@ LemonadeDesklet.prototype = {
         this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
 
-        this.resetModels();
-        this.serverOnline = false;
+        this.serverError = SERVER_OFFLINE;
+        this.serverVersion = SERVER_VERSION_UNDEFINED;
         this.resetStats();
+        this.resetModels();
     },
 
     resetModels: function() {
@@ -160,6 +167,7 @@ LemonadeDesklet.prototype = {
         this.setContent(this.window);
 
         this.updateServerAddressUI();
+        this.updateServerStatusUI();
         this.updateStatsUI();
     },
 
@@ -294,8 +302,34 @@ LemonadeDesklet.prototype = {
         }));
     },
 
+    updateServerStatusUI: function() {
+        switch (this.serverError) {
+            case SERVER_ONLINE:
+                this.statusText.set_text(_("Online"));
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-good lemonade-text-important";
+                break;
+
+            case SERVER_OFFLINE:
+                this.statusText.set_text(_("Offline"));
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-inactive lemonade-text-important";
+                break;
+
+            case SERVER_API_KEY:
+                this.statusText.set_text(_("Error: Missing API key"));
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
+                break;
+
+            default:
+                this.statusText.set_text(_("HTTP Error ") + data.code);
+                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
+        }
+
+        let version = (this.serverVersion == SERVER_VERSION_UNDEFINED) ? _("unknown") : this.serverVersion;
+        this.versionText.set_text(_("Version") + ": " + version);
+    },
+
     updateStatsUI: function() {
-        if (this.serverOnline) {
+        if (this.serverError == SERVER_ONLINE) {
             let active = this.activeModels.size > 0;
             let style = active ? "lemonade-text-active" : "lemonade-text-inactive";
             let context = active ? this.context : 0;
@@ -336,6 +370,7 @@ LemonadeDesklet.prototype = {
             reactive: true,
             x_expand: true,
             y_expand: true,
+            x_fill: true,
             x_align: Clutter.ActorAlign.FILL,
             style_class: "lemonade-box-bottom"
         });
@@ -360,8 +395,7 @@ LemonadeDesklet.prototype = {
             vertical: false,
             x_expand: true,
             y_expand: true,
-            x_align: Clutter.ActorAlign.FILL,
-            style_class: "lemonade-box-bottom"
+            x_align: Clutter.ActorAlign.FILL
         });
 
         let nameText = new St.Label({
@@ -375,15 +409,15 @@ LemonadeDesklet.prototype = {
         let recipeText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
-            x_expand: true,
             y_expand: true,
             style_class: "lemonade-text-medium lemonade-text-middle" + " " + active_style,
             text: recipe
         });
 
         let statusText = new St.Label({
-            x_align: Clutter.ActorAlign.START,
+            x_align: Clutter.ActorAlign.END,
             y_align: Clutter.ActorAlign.END,
+            x_expand: false, // use this to align this column
             y_expand: true,
             style_class: "lemonade-text-medium lemonade-text-right" + " " + status_style,
             text: status
@@ -445,30 +479,15 @@ LemonadeDesklet.prototype = {
     updateActiveModels: function() {
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
             if (error) {
-                switch (data.code) {
-                    case 0:
-                        this.statusText.set_text(_("Offline"));
-                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-inactive lemonade-text-important";
-                        break;
-
-                    case 401:
-                        this.statusText.set_text(_("Error: Missing API key"));
-                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
-                        break;
-
-                    default:
-                        this.statusText.set_text(_("HTTP Error ") + data.code);
-                        this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
-                }
-
                 this.resetData();
                 this.removeModelRows();
+                this.serverError = data.code;
             } else {
-                this.serverOnline = true;
-                this.statusText.set_text(_("Online"));
-                this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-good lemonade-text-important";
-                if (data.version)
-                    this.versionText.set_text(_("Version") + ": " + data.version);
+                this.serverError = SERVER_ONLINE;
+
+                if (data.version) {
+                    this.serverVersion = data.version;
+                }
 
                 if (data.all_models_loaded) {
                     this.activeModels.clear();
@@ -488,6 +507,7 @@ LemonadeDesklet.prototype = {
                     }
                 }
             }
+            this.updateServerStatusUI();
             this.updateStatsUI();
         });
     },
@@ -546,7 +566,7 @@ LemonadeDesklet.prototype = {
                     const data = JSON.parse(responseText);
                     callback.call(_this, null, data);
                 } catch (e) {
-                    callback.call(_this, e, {code: 0});
+                    callback.call(_this, e, {code: SERVER_OFFLINE});
                 }
             }
         );
@@ -581,7 +601,7 @@ LemonadeDesklet.prototype = {
                     const data = responseText ? JSON.parse(responseText) : {};
                     callback.call(_this, null, data);
                 } catch (e) {
-                    callback.call(_this, e, {code: 0});
+                    callback.call(_this, e, {code: SERVER_OFFLINE});
                 }
             }
         );
