@@ -1,0 +1,37 @@
+{
+  "interval": {
+    "type": "spinbutton",
+    "default": 60,
+    "min": 15,
+    "max": 600,
+    "step": 15,
+    "units": "seconds",
+    "description": "Refresh interval"
+  },
+  "rows": {
+    "type": "spinbutton",
+    "default": 7,
+    "min": 3,
+    "max": 15,
+    "step": 1,
+    "units": "sessions",
+    "description": "Sessions to show"
+  },
+  "days": {
+    "type": "spinbutton",
+    "default": 7,
+    "min": 1,
+    "max": 30,
+    "step": 1,
+    "units": "days",
+    "description": "History window"
+  },
+  "scale": {
+    "type": "scale",
+    "default": 1.0,
+    "min": 0.7,
+    "max": 1.6,
+    "step": 0.05,
+    "description": "Size"
+  }
+}
