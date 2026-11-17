@@ -1,0 +1,34 @@
+{
+    "text-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(0,0,0)",
+	    "description" : "Text color",
+	    "tooltip" : "Click the button to select a new text color"
+    },
+    "container-color" : {
+	    "type": "colorchooser",
+	    "default" : "rgb(255,255,255)",
+	    "description" : "Container color",
+	    "tooltip" : "Click the button to select a new color for the container"
+    },
+    "use-custom-format" : {
+        "type" : "switch",
+        "default" : false,
+        "description": "Use a custom date format",
+        "tooltip": "Check this to define a custom format for the time in the clock desklet."
+    },
+    "date-format": {
+        "type": "entry",
+        "dependency" : "use-custom-format",
+        "default": "%l:%M %p",
+        "description": "Date format",
+        "tooltip" : "Set your custom format here."
+    },
+    "bg-image": {
+        "type": "filechooser",
+        "default": "",
+        "description": "Background photo",
+        "tooltip": "Select an image file for the container background. Clear the selection for no image.",
+        "select-dir": false
+    }
+}
