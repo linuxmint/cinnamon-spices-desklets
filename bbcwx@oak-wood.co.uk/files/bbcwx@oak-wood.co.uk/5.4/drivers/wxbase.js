@@ -104,6 +104,9 @@ var Driver = class Driver {
   // Wind direction should be a 16 point compass bearing, eg SSW
   // Day names should be English three letter abbreviations, eg Mon, Tue
   _emptyData() {
+    // A new object rather than clearing in place: the desklet keeps showing
+    // the previous one until this refresh has finished.
+    this.data = new Object();
     this.data.city = '';
     this.data.country = '';
     this.data.wgs84 = new Object();
@@ -190,7 +193,11 @@ var Driver = class Driver {
       if (userAgent) _httpSession.user_agent = userAgent;
       _httpSession.queue_message(message, function (session, message) {
         if (message.status_code == 200) {
-          try { callback.call(here, message.response_body.data.toString()); } catch (e) { global.logError(e) }
+          try { callback.call(here, message.response_body.data.toString()); } catch (e) {
+            global.logError(e);
+            // the callback is what updates the display; with false, drivers take their usual failure path
+            callback.call(here, false);
+          }
         } else {
           global.logWarning('Error retrieving address ' + url + '. Status: ' + message.status_code + ': ' + message.reason_phrase);
           here.data.status.lasterror = message.status_code;
@@ -206,7 +213,11 @@ var Driver = class Driver {
           try {
             const bytes = _httpSession.send_and_read_finish(result);
             callback.call(here, ByteArray.toString(bytes.get_data()));
-          } catch (e) { global.logError(e) }
+          } catch (e) {
+            global.logError(e);
+            // the callback is what updates the display; with false, drivers take their usual failure path
+            callback.call(here, false);
+          }
         } else {
           global.logWarning('Error retrieving address ' + url + '. Status: ' + message.get_status() + ': ' + message.get_reason_phrase());
           here.data.status.lasterror = message.get_status();
