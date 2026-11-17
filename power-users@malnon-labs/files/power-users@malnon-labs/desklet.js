@@ -27,7 +27,6 @@ PowerDesklet.prototype = {
         this._state = GLib.get_user_cache_dir() + "/" + UUID + ".json";
         this._timer = 0;
         this._removed = false;
-        this._minW = 0;
         this.settings = new Settings.DeskletSettings(this, metadata.uuid, desklet_id);
         ["base_w", "rows", "scale"].forEach((k) => this.settings.bind(k, k, () => this._render()));
         this.settings.bind("interval", "interval", () => this._schedule());
@@ -89,9 +88,7 @@ PowerDesklet.prototype = {
             return;
         }
         let dis = d.discharging;
-        // base_w 0 = auto: lowest draw seen since the desklet started
-        if (dis && d.power_w > 0.5) this._minW = this._minW ? Math.min(this._minW, d.power_w) : d.power_w;
-        let base = this.base_w > 0 ? this.base_w : this._minW;
+        let base = this.base_w || 5;
         let dynamic = dis ? Math.max(0, d.power_w - base) : 0;
         let totalCpu = d.total_cpu || 1;
         let col = dis ? ORANGE : BLUE;
@@ -129,7 +126,7 @@ PowerDesklet.prototype = {
         if (!rows.length) card.add(new St.Label({ text: _("Nothing using noticeable CPU"), style_class: "pu-sub",
             style: "padding-top: 8px;" }));
 
-        card.add(new St.Label({ text: _("Estimate: CPU time share of battery draw above the baseline. Average over the last %d s.")
+        card.add(new St.Label({ text: _("Estimate: CPU time share of battery draw above the baseline. Avg over last %d s.")
                 .format(Math.round(d.window)), style_class: "pu-note" }));
         this.setContent(card);
     }

@@ -1,12 +1,12 @@
 {
   "base_w": {
     "type": "spinbutton",
-    "default": 0,
-    "min": 0,
+    "default": 5,
+    "min": 0.5,
     "max": 15,
     "step": 0.5,
     "units": "W",
-    "description": "Baseline draw not blamed on apps (0 = auto: lowest seen)"
+    "description": "Baseline draw (screen, idle) not blamed on apps"
   },
   "rows": {
     "type": "spinbutton",
