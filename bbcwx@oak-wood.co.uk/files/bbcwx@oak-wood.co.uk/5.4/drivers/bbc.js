@@ -4,7 +4,7 @@ const Gettext = imports.gettext;
 const UUID = 'bbcwx@oak-wood.co.uk';
 const DESKLET_DIR = imports.ui.deskletManager.deskletMeta[UUID].path;
 imports.searchPath.push(`${DESKLET_DIR}/drivers`);
-const Marknote = imports.marknote;
+const XmlParser = imports.xmlparser;
 const wxBase = imports.wxbase;
 
 const SERVICE_STATUS_ERROR = wxBase.SERVICE_STATUS_ERROR;
@@ -68,8 +68,7 @@ var Driver = class Driver extends wxBase.Driver {
     }
     let days = [];
 
-    let parser = new Marknote.marknote.Parser();
-    let doc = parser.parse(rss);
+    let doc = XmlParser.parse(rss);
     if (!doc) {
       this.data.status.forecast = SERVICE_STATUS_ERROR;
       this.data.status.meta = SERVICE_STATUS_ERROR;
@@ -135,8 +134,7 @@ var Driver = class Driver extends wxBase.Driver {
       this.data.status.cc = SERVICE_STATUS_ERROR;
       return;
     }
-    let parser = new Marknote.marknote.Parser();
-    let doc = parser.parse(rss);
+    let doc = XmlParser.parse(rss);
     if (!doc) {
       this.data.status.cc = SERVICE_STATUS_ERROR;
       return;
