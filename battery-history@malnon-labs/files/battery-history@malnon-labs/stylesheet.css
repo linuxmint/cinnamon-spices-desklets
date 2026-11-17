@@ -1,0 +1,10 @@
+.bh-card { background-color: rgba(24, 26, 32, 0.82); border-radius: 16px; padding: 16px 18px; border: 1px solid rgba(255,255,255,0.08); }
+.bh-pct { font-size: 30pt; font-weight: bold; color: #f2f3f5; }
+.bh-sub { font-size: 9pt; color: #9aa0ab; }
+.bh-title { font-size: 8pt; font-weight: bold; color: #7d8491; letter-spacing: 1px; }
+.bh-day { font-size: 8pt; font-weight: bold; color: #7d8491; padding-top: 8px; }
+.bh-time { font-size: 10pt; color: #e6e8ec; }
+.bh-meta { font-size: 8pt; color: #8b92a0; }
+.bh-delta { font-size: 11pt; font-weight: bold; }
+.bh-watts { font-size: 8pt; color: #8b92a0; }
+.bh-track { background-color: rgba(255,255,255,0.09); border-radius: 4px; height: 8px; width: 120px; }
