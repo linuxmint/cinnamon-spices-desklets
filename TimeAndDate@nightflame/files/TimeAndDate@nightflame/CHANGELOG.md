@@ -1,3 +1,21 @@
+## [2.1.1] - 09.01.2026
+
+### Changed
+
+- `README.md`: added a warning that `%W` and `%U` formats won't work
+
+## [2.1] - 01.01.2026
+
+### Changed
+
+- Default date format from `%A,%e %B` to `%A, %-d %B`
+- Moved `is-order-reversed`, `is-two-column`, `is-width-forced`, `forced-width-size"` settings from Preferences to Theme tab 
+- Regenerated translation files
+
+### Fixed
+
+- Desklet freezing/crashing when inputting an invalid strftime format (happened often while editing format)
+
 ## [2.0.1] - 13.12.2025
 
 Small CSS update/fix

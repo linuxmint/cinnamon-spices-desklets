@@ -29,11 +29,7 @@
                 "time-format",
                 "date-format",
                 "datetime-format-label",
-                "refresh-period",
-                "is-order-reversed",
-                "is-two-column",
-                "is-width-forced",
-                "forced-width-size"
+                "refresh-period"
             ]            
         },
         "theme-section": {
@@ -44,7 +40,11 @@
                 "desklet-border-radius",
                 "desklet-border-width",
                 "desklet-border-color",
-                "padding-scale"
+                "padding-scale",
+                "is-order-reversed",
+                "is-two-column",
+                "is-width-forced",
+                "forced-width-size"
             ]
         }, 
         "time-theme-section": {
@@ -81,13 +81,13 @@
         "type": "entry",
         "default": "%H:%M",
         "description": "Time format",
-        "tooltip": "Set your time format."
+        "tooltip": "Set your time format. Leave empty to remove"
     },
     "date-format": {
         "type": "entry",
-        "default": "%A,%e %B",
+        "default": "%A, %-d %B",
         "description": "Date format",
-        "tooltip": "Set the date format."
+        "tooltip": "Set the date format. Leave empty to remove"
     },
     "datetime-format-label": {
         "type": "label",
