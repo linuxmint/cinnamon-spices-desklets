@@ -43,12 +43,6 @@ LemonadeDesklet.prototype = {
         this.setupSettings(desklet_id);
 
         this.sharedSession = new Soup.Session();
-        this.launcher = new Gio.SubprocessLauncher({
-            flags: (
-                Gio.SubprocessFlags.STDIN_PIPE |
-                Gio.SubprocessFlags.STDOUT_PIPE |
-                Gio.Subprocess.STDERR_PIPE)
-        });
 
         this.resetData();
         this.setupUI();
@@ -298,7 +292,12 @@ LemonadeDesklet.prototype = {
 
         if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
         this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
-            this.launcher.spawnv(['xdg-open', this.server_url]);
+            try {
+                Gio.AppInfo.launch_default_for_uri(this.server_url, null);
+
+            } catch (e) {
+                global.logError("Could not open " + this.server_url + ": " + e.message);
+            }
         }));
     },
 
@@ -320,7 +319,7 @@ LemonadeDesklet.prototype = {
                 break;
 
             default:
-                this.statusText.set_text(_("HTTP Error ") + data.code);
+                this.statusText.set_text(_("HTTP Error ") + this.serverError);
                 this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
         }
 
@@ -473,11 +472,14 @@ LemonadeDesklet.prototype = {
     // --------------------------------------------------------------------------------------------
 
     updateIteration: function() {
+        if (this.destroyed) return;
         this.updateActiveModels();
     },
 
     updateActiveModels: function() {
         this.getWithBearerCallback(this.getFullUrl(HEALTH_ENDPOINT), this.api_key, (error, data) => {
+            if (this.destroyed) return;
+
             if (error) {
                 this.resetData();
                 this.removeModelRows();
@@ -514,12 +516,17 @@ LemonadeDesklet.prototype = {
 
     updateAllModels: function() {
         this.getWithBearerCallback(this.getFullUrl(MODELS_ENDPOINT), this.api_key, (error, data) => {
+            if (this.destroyed) return;
+
             if (!error && data.data) {
                 this.allModels = [];
                 for (let model of data.data) {
                     this.allModels.push({
                         name: model.id,
                         recipe: model.recipe
+                        // TODO:
+                        // max_context_window or context_length for max context
+                        // https://lemonade-server.ai/docs/api/openai/#response-format_9
                     });
                 }
                 this.createModelRows();
@@ -529,11 +536,18 @@ LemonadeDesklet.prototype = {
 
     updateStats: function() {
         this.getWithBearerCallback(this.getFullUrl(STATS_ENDPOINT), this.api_key, (error, data) => {
-            if (error) return;
+            if (this.destroyed) return;
 
-            this.context = (data.cache_tokens || 0) + (data.input_tokens || 0) + (data.output_tokens || 0);
-            this.tps = data.live && data.live.estimated_tokens_per_second ? data.live.estimated_tokens_per_second : (data.tokens_per_second || 0);
-            this.updateStatsUI();
+            if (!error && data) {
+                this.context =
+                    (data.cache_tokens || 0) +
+                    (data.input_tokens || 0) +
+                    (data.output_tokens || 0);
+                this.tps = data.live && data.live.estimated_tokens_per_second ?
+                    data.live.estimated_tokens_per_second :
+                    (data.tokens_per_second || 0);
+                this.updateStatsUI();
+            }
         });
     },
 
@@ -581,14 +595,31 @@ LemonadeDesklet.prototype = {
                 try {
                     const bytes = session.send_and_read_finish(result);
                     const statusCode = message.status_code;
-                    if (statusCode !== 200) {
-                        callback.call(_this, new Error(`HTTP Error ${statusCode}: ${url}`), {code: statusCode});
+                    if (statusCode < 200 || statusCode >= 300) {
+                        callback.call(
+                            _this,
+                            new Error(`HTTP Error ${statusCode}: ${url}`),
+                            {code: statusCode}
+                        );
                         return;
                     }
                     const decoder = new TextDecoder('utf-8');
                     const responseText = decoder.decode(bytes.get_data());
-                    const data = JSON.parse(responseText);
-                    callback.call(_this, null, data);
+                    if (responseText) {
+                        try {
+                            const data = JSON.parse(responseText);
+                            callback.call(_this, null, data);
+                        } catch (e) {
+                            callback.call(
+                                _this,
+                                new Error(`Invalid JSON from server: ${url}`),
+                                {code: SERVER_OFFLINE}
+                            );
+                            return;
+                        }
+                    } else {
+                        callback.call(_this, null, {});
+                    }
                 } catch (e) {
                     callback.call(_this, e, {code: SERVER_OFFLINE});
                 }
@@ -601,6 +632,8 @@ LemonadeDesklet.prototype = {
     // --------------------------------------------------------------------------------------------
 
     on_desklet_removed: function() {
+        this.destroyed = true;
+
         if (this.sharedSession) {
             this.sharedSession.abort();
             this.sharedSession = null;
