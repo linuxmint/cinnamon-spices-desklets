@@ -59,7 +59,7 @@ LemonadeDesklet.prototype = {
 
         if (!this.update_interval || this.update_interval < 5) {
             this.update_interval = 5;
-            global.log("UPDATE INTERVAL was not defined, fallback to " + this.update_interval);
+            global.logWarning("UPDATE INTERVAL was not defined, fallback to " + this.update_interval);
         }
 
         this.mainloop = Mainloop.timeout_add_seconds(this.update_interval, () => {
@@ -158,9 +158,9 @@ LemonadeDesklet.prototype = {
         });
 
         this.window.add(serverHeader);
-        this.window.add_child(this.topSeparator);
+        this.window.add(this.topSeparator);
         this.window.add(statsRow);
-        this.window.add_child(this.bottomSeparator);
+        this.window.add(this.bottomSeparator);
         this.window.add(this.modelsTable);
 
         this.setContent(this.window);
@@ -212,6 +212,15 @@ LemonadeDesklet.prototype = {
         this.serverIcon.set_child(image);
         this.serverIconTooltip = new Tooltips.Tooltip(this.serverIcon);
 
+        this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
+            try {
+                Gio.AppInfo.launch_default_for_uri(this.server_url, null);
+
+            } catch (e) {
+                global.logError("Could not open " + this.server_url + ": " + e.message);
+            }
+        }));
+
         this.nameText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
@@ -233,7 +242,7 @@ LemonadeDesklet.prototype = {
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
             y_expand: true,
-            style_class: "lemonade-text-big lemonade-text-active",
+            style_class: "lemonade-text-medium lemonade-text-active",
             text: _("Online")
         });
 
@@ -247,10 +256,10 @@ LemonadeDesklet.prototype = {
         });
 
         serverHeader.add(this.serverIcon);
-        serverStatusRow1.add_actor(this.nameText);
-        serverStatusRow1.add_actor(this.versionText);
-        serverStatusRow2.add_actor(this.statusText);
-        serverStatusRow2.add_actor(this.addressText);
+        serverStatusRow1.add(this.nameText);
+        serverStatusRow1.add(this.versionText);
+        serverStatusRow2.add(this.statusText);
+        serverStatusRow2.add(this.addressText);
 
         serverHeader.add(serverStatusCol);
         serverStatusCol.add(serverStatusRow1);
@@ -283,8 +292,8 @@ LemonadeDesklet.prototype = {
             text: _("TPS")
         });
 
-        this.statsRow.add_actor(this.contextText);
-        this.statsRow.add_actor(this.tpsText);
+        this.statsRow.add(this.contextText);
+        this.statsRow.add(this.tpsText);
 
         return this.statsRow;
     },
@@ -296,16 +305,6 @@ LemonadeDesklet.prototype = {
     updateServerAddressUI: function() {
         this.addressText.set_text(_("Address") + ": " + this.server_addr + ":" + this.server_port);
         this.serverIconTooltip.set_text(this.server_url);
-
-        if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
-        this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
-            try {
-                Gio.AppInfo.launch_default_for_uri(this.server_url, null);
-
-            } catch (e) {
-                global.logError("Could not open " + this.server_url + ": " + e.message);
-            }
-        }));
     },
 
     updateServerStatusUI: function() {
@@ -321,7 +320,7 @@ LemonadeDesklet.prototype = {
                 break;
 
             case SERVER_API_KEY:
-                this.statusText.set_text(_("Error: Missing API key"));
+                this.statusText.set_text(_("Error: Invalid or missing API key"));
                 this.statusText.style_class = "lemonade-text-medium lemonade-text-left lemonade-text-bad lemonade-text-important";
                 break;
 
@@ -331,7 +330,7 @@ LemonadeDesklet.prototype = {
         }
 
         let version = (this.serverVersion == SERVER_VERSION_UNDEFINED) ? _("unknown") : this.serverVersion;
-        this.versionText.set_text(_("Version") + ": " + version);
+        this.versionText.set_text(_("Version") + ": " + version.split("~")[0]);
     },
 
     updateStatsUI: function() {
@@ -630,7 +629,7 @@ LemonadeDesklet.prototype = {
 
     getWithBearerCallback: function(url, token, callback) {
         const message = this.createMessage('GET', url, token);
-        this.sendAsync(url, message, callback);
+        this.sendAsync(message, callback);
     },
 
     postWithBearerCallback: function(url, token, requestData, callback) {
@@ -640,7 +639,7 @@ LemonadeDesklet.prototype = {
         const bodyBytes = new TextEncoder().encode(jsonString);
         message.set_request_body_from_bytes('application/json', new GLib.Bytes(bodyBytes));
 
-        this.sendAsync(url, message, callback);
+        this.sendAsync(message, callback);
     },
 
     createMessage: function(method, url, token) {
@@ -652,7 +651,7 @@ LemonadeDesklet.prototype = {
         return message;
     },
 
-    sendAsync: function(url, message, callback) {
+    sendAsync: function(message, callback) {
         var _this = this;
         const session = this.sharedSession;
         if (!session) return;
@@ -668,7 +667,7 @@ LemonadeDesklet.prototype = {
                     if (statusCode < 200 || statusCode >= 300) {
                         callback.call(
                             _this,
-                            new Error(`HTTP Error ${statusCode}: ${url}`),
+                            new Error(`HTTP Error ${statusCode}: ${message.uri}`),
                             {code: statusCode}
                         );
                         return;
@@ -682,7 +681,7 @@ LemonadeDesklet.prototype = {
                         } catch (e) {
                             callback.call(
                                 _this,
-                                new Error(`Invalid JSON from server: ${url}`),
+                                new Error(`Invalid JSON from server: ${message.uri}`),
                                 {code: SERVER_OFFLINE}
                             );
                             return;
@@ -726,7 +725,7 @@ function main(metadata, desklet_id) {
     try {
         return new LemonadeDesklet(metadata, desklet_id);
     } catch (e) {
-        global.log(`CRASH INSIDE _INIT: ${e.stack}`);
+        global.log(`CRASH INSIDE main: ${e.stack}`);
         throw e;
     }
 }
