@@ -91,7 +91,7 @@ LemonadeDesklet.prototype = {
         this.updateServerStatusUI();
         this.updateStatsUI();
 
-        this.removeModelRows(); // Do we need it?
+        this.removeModelRows();
     },
 
     onUpdateIntervalChanged: function() {
@@ -367,24 +367,11 @@ LemonadeDesklet.prototype = {
         dialog.open();
     },
 
-    createModelRow: function(name, recipe, is_active, is_busy) {
-        let status = is_active ? (is_busy ? _("Busy") : _("Ready")) : _("Off");
-        let status_style = is_active ? (is_busy ? "lemonade-text-bad" : "lemonade-text-good") : "lemonade-text-inactive";
-        let active_style = is_active ? "lemonade-text-active " : "lemonade-text-inactive";
-
-        let modelButton = new St.Button({
-            reactive: true,
-            x_expand: true,
-            y_expand: true,
-            x_fill: true,
-            x_align: Clutter.ActorAlign.FILL,
-            style_class: "lemonade-box-bottom"
-        });
-
-        let prompt = (is_active ?
-            _("Do you want to unload model?") :
-            _("Do you want to load model?")) + "\n\n" + name;
-        let sig = modelButton.connect('clicked', Lang.bind(this, function () {
+    modelClickAction: function(name, is_active) {
+        return () => {
+            let prompt = (is_active ?
+                _("Do you want to unload model?") :
+                _("Do you want to load model?")) + "\n\n" + name;
             this.showConfirmDialog(prompt, () => {
                 this.postWithBearerCallback(
                     this.getFullUrl(is_active ? UNLOAD_ENDPOINT : LOAD_ENDPOINT),
@@ -395,9 +382,28 @@ LemonadeDesklet.prototype = {
                     }
                 );
             });
+        };
+    },
+
+    createModelRow: function(name, recipe, is_active, is_busy) {
+        let modelButton = new St.Button({
+            reactive: true,
+            x_expand: true,
+            y_expand: true,
+            x_fill: true,
+            x_align: Clutter.ActorAlign.FILL,
+            style_class: "lemonade-box-bottom"
+        });
+
+        let modelTooltip = new Tooltips.Tooltip(modelButton);
+
+        let sig = modelButton.connect('clicked', Lang.bind(this, function () {
+            if (modelButton.clickCallback) {
+                modelButton.clickCallback();
+            }
         }));
 
-        let modelRow = new St.BoxLayout({
+        let container = new St.BoxLayout({
             vertical: false,
             x_expand: true,
             y_expand: true,
@@ -407,68 +413,118 @@ LemonadeDesklet.prototype = {
         let nameText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
-            y_expand: true,
-            style_class: "lemonade-text-medium lemonade-text-left" + " " + active_style,
-            text: name
+            y_expand: true
         });
 
         let recipeText = new St.Label({
             x_align: Clutter.ActorAlign.START,
             y_align: Clutter.ActorAlign.END,
-            y_expand: true,
-            style_class: "lemonade-text-medium lemonade-text-middle" + " " + active_style,
-            text: recipe
+            y_expand: true
         });
 
         let statusText = new St.Label({
             x_align: Clutter.ActorAlign.END,
             y_align: Clutter.ActorAlign.END,
             x_expand: false, // use this to align this column
-            y_expand: true,
-            style_class: "lemonade-text-medium lemonade-text-right" + " " + status_style,
-            text: status
+            y_expand: true
         });
 
-        modelRow.add(nameText);
-        modelRow.add(recipeText);
-        modelRow.add(statusText);
-        modelButton.set_child(modelRow);
+        container.add(nameText);
+        container.add(recipeText);
+        container.add(statusText);
+        modelButton.set_child(container);
 
-        let modelTooltip = new Tooltips.Tooltip(modelButton);
-        modelTooltip.set_text(is_active ? _("Unload model") : _("Load model"));
-
-        this.modelsTable.add(modelButton);
-        this.modelListUI.push({
+        return { ui: {
             row: modelButton,
             tooltip: modelTooltip,
+            name: nameText,
+            recipe: recipeText,
+            status: statusText,
             signal: sig
-        });
-
+        }};
     },
 
-    createModelRows: function() {
-        this.removeModelRows();
+    updateModelRow(modelRow, name, recipe, is_active, is_busy) {
+        let status = is_active ? (is_busy ? _("Busy") : _("Ready")) : _("Off");
+        let status_style = is_active ? (is_busy ? "lemonade-text-bad" : "lemonade-text-good") : "lemonade-text-inactive";
+        let active_style = is_active ? "lemonade-text-active " : "lemonade-text-inactive";
+
+        modelRow.ui.tooltip.set_text(is_active ? _("Unload model") + " " + name :
+            _("Load model") + " " + name);
+        modelRow.ui.name.set_text(name);
+        modelRow.ui.name.style_class = "lemonade-text-medium lemonade-text-left" + " " + active_style;
+        modelRow.ui.recipe.set_text(recipe);
+        modelRow.ui.recipe.style_class = "lemonade-text-medium lemonade-text-middle" + " " + active_style;
+        modelRow.ui.status.set_text(status);
+        modelRow.ui.status.style_class = "lemonade-text-medium lemonade-text-right" + " " + status_style;
+
+        modelRow.ui.row.clickCallback = this.modelClickAction(name, is_active);
+
+        modelRow.data = {}
+        modelRow.data.name = name;
+        modelRow.data.recipe = recipe;
+        modelRow.data.is_active = is_active;
+        modelRow.data.is_busy = is_busy;
+    },
+
+    compareModelRow(modelRow, name, recipe, is_active, is_busy) {
+        return modelRow.data.name == name &&
+            modelRow.data.recipe == recipe &&
+            modelRow.data.is_active == is_active &&
+            modelRow.data.is_busy == is_busy;
+    },
+
+    recycleModelRow: function(index, name, recipe, is_active, is_busy) {
+        let modelRow;
+        if (index < this.modelListUI.length) {
+            modelRow = this.modelListUI[index];
+            if (this.compareModelRow(modelRow, name, recipe, is_active, is_busy)) {
+                return;
+            }
+        } else {
+            modelRow = this.createModelRow(name, recipe, is_active, is_busy);
+            this.modelListUI.push(modelRow);
+            this.modelsTable.add(modelRow.ui.row);
+        }
+        this.updateModelRow(modelRow, name, recipe, is_active, is_busy);
+    },
+
+    updateModelRows: function() {
+        let i = 0;
 
         this.activeModels.forEach((model, name) => {
             let recipe = `${model.recipe}:${model.device}`;
-            this.createModelRow(name, recipe, true, model.is_busy);
+            this.recycleModelRow(i, name, recipe, true, model.is_busy);
+            ++i;
         });
 
         for (let model of this.allModels) {
             if (this.activeModels.has(model.name)) continue;
-            this.createModelRow(model.name, model.recipe, false, false);
+            this.recycleModelRow(i, model.name, model.recipe, false, false);
+            ++i;
+        }
+
+        // Cleanup
+        if (i < this.modelListUI.length) {
+            let newSize = i;
+            for (; i < this.modelListUI.length; i++) {
+                this.removeModelRow(this.modelListUI[i]);
+            }
+            this.modelListUI.length = newSize;
+        }
+    },
+
+    removeModelRow: function(modelRow) {
+        if (modelRow.ui.row) {
+            if (modelRow.ui.signal) modelRow.ui.row.disconnect(modelRow.ui.signal);
+            if (modelRow.ui.tooltip) modelRow.ui.tooltip.destroy();
+            modelRow.ui.row.destroy();
         }
     },
 
     removeModelRows: function() {
-        if (this.modelListUI) {
-            for (let modelRow of this.modelListUI) {
-                if (modelRow.row) {
-                    if (modelRow.signal) modelRow.row.disconnect(modelRow.signal);
-                    if (modelRow.tooltip) modelRow.tooltip.destroy();
-                    modelRow.row.destroy();
-                }
-            }
+        for (let modelRow of this.modelListUI) {
+            this.removeModelRow(modelRow);
         }
 
         this.modelListUI.length = 0;
@@ -481,7 +537,6 @@ LemonadeDesklet.prototype = {
     updateIteration: function() {
         if (this.destroyed) return;
         this.updateActiveModels();
-        //global.log("Update");
     },
 
     updateActiveModels: function() {
@@ -537,7 +592,7 @@ LemonadeDesklet.prototype = {
                         // https://lemonade-server.ai/docs/api/openai/#response-format_9
                     });
                 }
-                this.createModelRows();
+                this.updateModelRows();
             }
         });
     },
