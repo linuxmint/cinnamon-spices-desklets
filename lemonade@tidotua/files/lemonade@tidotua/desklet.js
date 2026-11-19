@@ -294,7 +294,7 @@ LemonadeDesklet.prototype = {
     },
 
     updateServerAddressUI: function() {
-        this.addressText.set_text(_("Address") + ": " + this.server_addr);
+        this.addressText.set_text(_("Address") + ": " + this.server_addr + ":" + this.server_port);
         this.serverIconTooltip.set_text(this.server_url);
 
         if (this.serverIcon && this.serverIconSig) this.serverIcon.disconnect(this.serverIconSig);
@@ -562,6 +562,11 @@ LemonadeDesklet.prototype = {
                             recipe: model.recipe,
                             is_busy: model.is_busy
                         });
+                    }
+
+                    if (data.models_generation !== this.modelsGeneration) {
+                        this.modelsGeneration = data.models_generation;
+                        this.updateAllModels();
                     }
 
                     this.updateAllModels();

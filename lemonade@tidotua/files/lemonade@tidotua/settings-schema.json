@@ -14,7 +14,7 @@
     "server_port": {
         "type": "spinbutton",
         "default": 13305,
-        "min": 0,
+        "min": 1,
         "max": 65535,
         "step": 1,
         "description": "Server Port",
@@ -53,7 +53,7 @@
     "background_color": {
         "type": "colorchooser",
         "indent": true,
-        "default": "rgb(48,48,48)",
+        "default": "rgb(40,40,40)",
         "description": "Background color",
         "tooltip": "Click the button to select a new background color"
     }
