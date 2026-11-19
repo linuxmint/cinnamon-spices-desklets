@@ -43,7 +43,10 @@ LemonadeDesklet.prototype = {
         this.setupSettings(desklet_id);
 
         this.sharedSession = new Soup.Session();
+        this.activeModels = new Map();
+        this.allModels = [];
 
+        this.resetServerURL();
         this.resetData();
         this.setupUI();
         this.restartMainLoop();
@@ -73,18 +76,25 @@ LemonadeDesklet.prototype = {
 
     setupSettings: function(desklet_id) {
         this.settings = new Settings.DeskletSettings(this, this.metadata["uuid"], desklet_id);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "server_addr", "server_addr", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "server_port", "server_port", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "api_version", "api_version", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "update_interval", "update_interval", this.onSettingChanged);
-        this.settings.bindProperty(Settings.BindingDirection.IN, "background_color", "background_color", this.onSettingChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "server_addr", "server_addr", this.onServerChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "server_port", "server_port", this.onServerChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "api_version", "api_version", this.onServerChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "api_key", "api_key", this.onServerChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "update_interval", "update_interval", this.onUpdateIntervalChanged);
+        this.settings.bindProperty(Settings.BindingDirection.IN, "background_color", "background_color", this.updateStyles);
     },
 
-    onSettingChanged: function() {
+    onServerChanged: function() {
+        this.resetServerURL();
         this.resetData();
-        this.removeModelRows();
         this.updateServerAddressUI();
+        this.updateServerStatusUI();
+        this.updateStatsUI();
+
+        this.removeModelRows(); // Do we need it?
+    },
+
+    onUpdateIntervalChanged: function() {
         this.restartMainLoop();
     },
 
@@ -93,9 +103,6 @@ LemonadeDesklet.prototype = {
     // --------------------------------------------------------------------------------------------
 
     resetData: function() {
-        this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
-        this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
-
         this.serverError = SERVER_OFFLINE;
         this.serverVersion = SERVER_VERSION_UNDEFINED;
         this.resetStats();
@@ -103,22 +110,18 @@ LemonadeDesklet.prototype = {
     },
 
     resetModels: function() {
-        if (this.activeModels) {
-            this.activeModels.clear();
-        } else {
-            this.activeModels = new Map();
-        }
-
-        if (this.allModels) {
-            this.allModels.length = 0;
-        } else {
-            this.allModels = [];
-        }
+        this.activeModels.clear();
+        this.allModels.length = 0;
     },
 
     resetStats: function() {
         this.context = 0;
         this.tps = 0;
+    },
+
+    resetServerURL: function() {
+        this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
+        this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
     },
 
     // --------------------------------------------------------------------------------------------
@@ -161,6 +164,8 @@ LemonadeDesklet.prototype = {
         this.window.add(this.modelsTable);
 
         this.setContent(this.window);
+
+        this.modelListUI = [];
 
         this.updateServerAddressUI();
         this.updateServerStatusUI();
@@ -284,9 +289,11 @@ LemonadeDesklet.prototype = {
         return this.statsRow;
     },
 
-    updateServerAddressUI: function() {
+    updateStyles: function() {
         this.window.style ="background-color: " + this.background_color + ";";
+    },
 
+    updateServerAddressUI: function() {
         this.addressText.set_text(_("Address") + ": " + this.server_addr);
         this.serverIconTooltip.set_text(this.server_url);
 
@@ -464,7 +471,7 @@ LemonadeDesklet.prototype = {
             }
         }
 
-        this.modelListUI = [];
+        this.modelListUI.length = 0;
     },
 
     // --------------------------------------------------------------------------------------------
@@ -474,6 +481,7 @@ LemonadeDesklet.prototype = {
     updateIteration: function() {
         if (this.destroyed) return;
         this.updateActiveModels();
+        //global.log("Update");
     },
 
     updateActiveModels: function() {
@@ -577,7 +585,9 @@ LemonadeDesklet.prototype = {
 
     createMessage: function(method, url, token) {
         let message = Soup.Message.new(method, url);
-        message.request_headers.append('Authorization', `Bearer ${token}`);
+        if (token) {
+            message.request_headers.append('Authorization', `Bearer ${token}`);
+        }
         message.request_headers.append('Accept', 'application/json');
         return message;
     },

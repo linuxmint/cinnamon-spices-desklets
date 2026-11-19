@@ -30,7 +30,7 @@
 
     "api_key": {
         "type": "entry",
-        "default": "key",
+        "default": "",
         "description": "Server API key",
         "tooltip": "Enter optional server API key"
     },
