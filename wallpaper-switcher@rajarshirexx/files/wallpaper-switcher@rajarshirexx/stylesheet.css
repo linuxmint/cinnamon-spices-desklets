@@ -1,0 +1,34 @@
+.wallpaper-switcher-container {
+    background-color: rgba(18, 20, 26, 0.45);
+    background-gradient-direction: vertical;
+    background-gradient-start: rgba(255, 255, 255, 0.14);
+    background-gradient-end: rgba(12, 14, 20, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    border-radius: 18px;
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.45), 0 6px 20px 0 rgba(0, 0, 0, 0.35);
+    padding: 3px 8px;
+    spacing: 3px;
+}
+
+.wallpaper-switcher-button {
+    color: rgba(255, 255, 255, 0.95);
+    font-size: 13px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 12px;
+    border: 1px solid transparent;
+    transition-duration: 150ms;
+}
+
+.wallpaper-switcher-button:hover {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.30);
+    box-shadow: inset 0 1px 0 0 rgba(255, 255, 255, 0.30);
+}
+
+.wallpaper-switcher-button:active {
+    color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.28);
+}
+

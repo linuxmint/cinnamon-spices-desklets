@@ -1,0 +1,10 @@
+{
+    "uuid": "wallpaper-switcher@rajarshirexx",
+    "name": "Wallpaper Switcher",
+    "description": "Minimal floating controller for desktop wallpaper slideshows",
+    "icon": "icon.png",
+    "author": "Rajarshirexx",
+    "prevent-decorations": true,
+    "max-instances": 1
+}
+
