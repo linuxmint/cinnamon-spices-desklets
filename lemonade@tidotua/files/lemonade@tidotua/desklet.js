@@ -568,7 +568,6 @@ LemonadeDesklet.prototype = {
                         this.updateAllModels();
                     }
 
-                    this.updateAllModels();
                     if (this.activeModels.size > 0) {
                         this.updateStats();
                     } else {
