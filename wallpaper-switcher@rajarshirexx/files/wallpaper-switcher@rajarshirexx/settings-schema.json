@@ -1,0 +1,55 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": ["main"],
+        "main": {
+            "type": "page",
+            "title": "General",
+            "sections": ["sec-directory", "sec-interval"]
+        },
+        "sec-directory": {
+            "type": "section",
+            "title": "Wallpaper Directory",
+            "keys": ["wallpaper-dir"]
+        },
+        "sec-interval": {
+            "type": "section",
+            "title": "Slideshow Interval",
+            "keys": ["interval", "custom-interval"]
+        }
+    },
+    "wallpaper-dir": {
+        "type": "filechooser",
+        "description": "Folder containing wallpapers",
+        "default": "~/Pictures/Wallpapers",
+        "select-dir": true,
+        "tooltip": "Directory containing your wallpaper images (.jpg, .jpeg, .png, .webp)"
+    },
+    "interval": {
+        "type": "combobox",
+        "description": "Interval between changes",
+        "default": 600,
+        "options": {
+            "1 minute": 60,
+            "5 minutes": 300,
+            "10 minutes": 600,
+            "15 minutes": 900,
+            "30 minutes": 1800,
+            "1 hour": 3600,
+            "Custom": -1
+        },
+        "tooltip": "How frequently the desktop background changes"
+    },
+    "custom-interval": {
+        "type": "spinbutton",
+        "description": "Custom interval (seconds)",
+        "default": 600,
+        "min": 5,
+        "max": 86400,
+        "step": 10,
+        "units": "seconds",
+        "dependency": "interval=-1",
+        "tooltip": "Specify custom interval in seconds"
+    }
+}
+
