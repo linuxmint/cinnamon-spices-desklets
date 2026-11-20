@@ -78,14 +78,22 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
         this._stopTimer();
     }
 
+    _getDefaultWallpaperDir() {
+        let picturesDir = GLib.get_user_special_dir(GLib.UserDirectory.DIRECTORY_PICTURES);
+        if (!picturesDir) {
+            picturesDir = GLib.get_home_dir();
+        }
+        return GLib.build_filenamev([picturesDir, "Wallpapers"]);
+    }
+
     _resolvePath(rawPath) {
         if (!rawPath || typeof rawPath !== "string") {
-            return GLib.get_home_dir() + "/Pictures/Wallpapers";
+            return this._getDefaultWallpaperDir();
         }
 
         let p = rawPath.trim();
         if (p === "") {
-            return GLib.get_home_dir() + "/Pictures/Wallpapers";
+            return this._getDefaultWallpaperDir();
         }
 
         if (p.startsWith("file://")) {
@@ -95,8 +103,9 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
             }
         }
 
-        if (p === "~" || p.startsWith("~/")) {
-            return GLib.get_home_dir() + p.substring(1);
+        if (p.startsWith("~")) {
+            let sub = p.replace(/^~[\\/]?/, "");
+            return GLib.build_filenamev([GLib.get_home_dir(), sub]);
         }
 
         return p;
@@ -115,8 +124,9 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
             if (s.startsWith("file://")) {
                 file = Gio.File.new_for_uri(s);
             } else {
-                if (s === "~" || s.startsWith("~/")) {
-                    s = GLib.get_home_dir() + s.substring(1);
+                if (s.startsWith("~")) {
+                    let sub = s.replace(/^~[\\/]?/, "");
+                    s = GLib.build_filenamev([GLib.get_home_dir(), sub]);
                 }
                 file = Gio.File.new_for_path(s);
             }
@@ -131,46 +141,41 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
         }
     }
 
-    _getWallpaperList() {
+    _loadWallpapersAsync(callback) {
         let folderPath = this._resolvePath(this.wallpaper_dir);
-        let list = [];
-
         try {
             let dir = Gio.File.new_for_path(folderPath);
-            if (!dir.query_exists(null)) {
-                return list;
-            }
-
-            let fileType = dir.query_file_type(Gio.FileQueryInfoFlags.NONE, null);
-            if (fileType !== Gio.FileType.DIRECTORY) {
-                return list;
-            }
-
-            let enumerator = dir.enumerate_children(
+            dir.enumerate_children_async(
                 "standard::name,standard::type",
                 Gio.FileQueryInfoFlags.NONE,
-                null
-            );
-
-            let info;
-            while ((info = enumerator.next_file(null)) !== null) {
-                if (info.get_file_type() === Gio.FileType.REGULAR) {
-                    let name = info.get_name();
-                    let lower = name.toLowerCase();
-                    if (SUPPORTED_EXTENSIONS.some(ext => lower.endsWith(ext))) {
-                        let child = dir.get_child(name);
-                        list.push(child.get_uri());
+                GLib.PRIORITY_DEFAULT,
+                null,
+                (obj, res) => {
+                    let list = [];
+                    try {
+                        let enumerator = obj.enumerate_children_finish(res);
+                        let info;
+                        while ((info = enumerator.next_file(null)) !== null) {
+                            if (info.get_file_type() === Gio.FileType.REGULAR) {
+                                let name = info.get_name();
+                                let lower = name.toLowerCase();
+                                if (SUPPORTED_EXTENSIONS.some(ext => lower.endsWith(ext))) {
+                                    let child = dir.get_child(name);
+                                    list.push(child.get_uri());
+                                }
+                            }
+                        }
+                        enumerator.close(null);
+                    } catch (e) {
+                        // Handled gracefully if folder not found or inaccessible
                     }
+                    list.sort();
+                    callback(list);
                 }
-            }
-            enumerator.close(null);
+            );
         } catch (e) {
-            global.logError("wallpaper-switcher: error enumerating directory: " + e.message);
-            return [];
+            callback([]);
         }
-
-        list.sort();
-        return list;
     }
 
     _getCurrentWallpaperUri() {
@@ -198,43 +203,44 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
     }
 
     _navigate(step) {
-        let list = this._getWallpaperList();
-        if (list.length === 0) {
-            return;
-        }
+        this._loadWallpapersAsync((list) => {
+            if (!list || list.length === 0) {
+                return;
+            }
 
-        if (list.length === 1) {
-            this._setWallpaperUri(list[0]);
+            if (list.length === 1) {
+                this._setWallpaperUri(list[0]);
+                if (!this._isPaused) {
+                    this._startTimer();
+                }
+                return;
+            }
+
+            let normalizedList = list.map(item => this._normalizeUri(item));
+            let currentRaw = this._getCurrentWallpaperUri();
+            let currentNormalized = this._normalizeUri(currentRaw);
+
+            let currentIndex = normalizedList.indexOf(currentNormalized);
+            if (currentIndex === -1 && currentRaw) {
+                // Basename fallback if path encoding or symlink differences occur
+                let currentBase = GLib.path_get_basename(currentNormalized || currentRaw);
+                currentIndex = normalizedList.findIndex(item => GLib.path_get_basename(item) === currentBase);
+            }
+
+            let nextIndex;
+            if (currentIndex === -1) {
+                nextIndex = step > 0 ? 0 : list.length - 1;
+            } else {
+                nextIndex = (currentIndex + step + list.length) % list.length;
+            }
+
+            this._setWallpaperUri(list[nextIndex]);
+
+            // Reset slideshow interval after manual navigation if not paused
             if (!this._isPaused) {
                 this._startTimer();
             }
-            return;
-        }
-
-        let normalizedList = list.map(item => this._normalizeUri(item));
-        let currentRaw = this._getCurrentWallpaperUri();
-        let currentNormalized = this._normalizeUri(currentRaw);
-
-        let currentIndex = normalizedList.indexOf(currentNormalized);
-        if (currentIndex === -1 && currentRaw) {
-            // Basename fallback if path encoding or symlink differences occur
-            let currentBase = GLib.path_get_basename(currentNormalized || currentRaw);
-            currentIndex = normalizedList.findIndex(item => GLib.path_get_basename(item) === currentBase);
-        }
-
-        let nextIndex;
-        if (currentIndex === -1) {
-            nextIndex = step > 0 ? 0 : list.length - 1;
-        } else {
-            nextIndex = (currentIndex + step + list.length) % list.length;
-        }
-
-        this._setWallpaperUri(list[nextIndex]);
-
-        // Reset slideshow interval after manual navigation if not paused
-        if (!this._isPaused) {
-            this._startTimer();
-        }
+        });
     }
 
     _onPrevClicked() {
@@ -300,4 +306,3 @@ class WallpaperSwitcherDesklet extends Desklet.Desklet {
 function main(metadata, desklet_id) {
     return new WallpaperSwitcherDesklet(metadata, desklet_id);
 }
-
