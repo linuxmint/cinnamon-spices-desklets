@@ -214,8 +214,16 @@ MyDesklet.prototype = {
         const timeout = this.timeout || 5;
 
         const needed = this._neededCalls();
+        if (needed.length === 0) return;
 
-        for (let key of needed) {
+        // A single curl process runs all SOAP requests in sequence ("--next"
+        // starts a new request; per-request options must be repeated after it).
+        // This resolves the host once and reuses the keep-alive connection,
+        // instead of spawning one process, DNS lookup and TCP connection per call.
+        // After each response curl prints a marker naming the call, so the output
+        // can be split reliably even when a single request fails.
+        const cmd = ["curl", "-s"];
+        needed.forEach((key, i) => {
             const c = CALLS[key];
             const body =
                 '<?xml version="1.0"?>' +
@@ -223,15 +231,31 @@ MyDesklet.prototype = {
                 ' s:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">' +
                 '<s:Body><u:' + c.action + ' xmlns:u="' + c.service + '"/>' +
                 '</s:Body></s:Envelope>';
-            const url = "http://" + host + ":" + port + c.path;
-            const cmd = [
-                "curl", "-s", "--max-time", String(timeout),
+            if (i > 0) cmd.push("--next");
+            cmd.push(
+                "--max-time", String(timeout),
                 "-H", 'Content-Type: text/xml; charset="utf-8"',
                 "-H", "SOAPAction: " + c.service + "#" + c.action,
                 "--data", body,
-                url
-            ];
-            Util.spawn_async(cmd, (out) => this._onReply(out, key));
+                "-w", "\n" + this._marker(key) + "\n",
+                "http://" + host + ":" + port + c.path
+            );
+        });
+        Util.spawn_async(cmd, (out) => this._onBatchReply(out, needed));
+    },
+
+    _marker(key) {
+        return "<!--fritzbox:" + key + "-->";
+    },
+
+    _onBatchReply(output, keys) {
+        if (this._removed || !output || typeof output !== "string") return;
+        let rest = output;
+        for (let key of keys) {
+            const idx = rest.indexOf(this._marker(key));
+            if (idx < 0) break;
+            this._onReply(rest.slice(0, idx), key);
+            rest = rest.slice(idx + this._marker(key).length);
         }
     },
 
