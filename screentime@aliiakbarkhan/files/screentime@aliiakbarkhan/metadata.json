@@ -1,0 +1,8 @@
+{
+  "uuid": "screentime@aliiakbarkhan",
+  "name": "Screen Time",
+  "description": "Shows today's active screen time. Pauses counting when you're idle/AFK and resets automatically each day.",
+  "version": "1.0",
+  "max-instances": "1",
+  "prevent-decorations": false
+}
