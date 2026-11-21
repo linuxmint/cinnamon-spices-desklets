@@ -1,0 +1,251 @@
+#
+# Translators:
+# Emanuele Gori, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: fritzbox@emanuelegori\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-25 13:23+0100\n"
+"PO-Revision-Date: 2026-10-25 12:56+0100\n"
+"Last-Translator: Emanuele Gori\n"
+"Language-Team: Italian\n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:56
+msgid "Model:"
+msgstr "Modello:"
+
+#: desklet.js:57
+msgid "Firmware:"
+msgstr "Firmware:"
+
+#: desklet.js:58
+msgid "WAN link:"
+msgstr "Link WAN:"
+
+#: desklet.js:59
+msgid "WAN type:"
+msgstr "Tipo WAN:"
+
+#: desklet.js:60
+msgid "Max ↓/↑:"
+msgstr "Max ↓/↑:"
+
+#: desklet.js:61
+msgid "Connection:"
+msgstr "Connessione:"
+
+#: desklet.js:62
+msgid "Last error:"
+msgstr "Ultimo errore:"
+
+#: desklet.js:63
+msgid "Uptime:"
+msgstr "Uptime:"
+
+#: desklet.js:64
+msgid "Public IP:"
+msgstr "IP pubblico:"
+
+#: desklet.js:65
+msgid "Total ↓/↑:"
+msgstr "Totale ↓/↑:"
+
+#: desklet.js:66
+msgid "Rate ↓/↑:"
+msgstr "Velocità ↓/↑:"
+
+#: desklet.js:67
+msgid "Firmware update:"
+msgstr "Aggiornamento FW:"
+
+#: desklet.js:284
+msgid "Yes"
+msgstr "Sì"
+
+#: desklet.js:284
+msgid "No"
+msgstr "No"
+
+#: desklet.js:343
+#, javascript-format
+msgid "%dd %dh %dm"
+msgstr "%dg %dh %dm"
+
+#: desklet.js:344
+#, javascript-format
+msgid "%dh %dm"
+msgstr "%dh %dm"
+
+#: desklet.js:345
+#, javascript-format
+msgid "%dm"
+msgstr "%dm"
+
+#. metadata.json->name
+msgid "FRITZ!Box Status"
+msgstr "Stato FRITZ!Box"
+
+#. metadata.json->description
+msgid ""
+"Shows FRITZ!Box operational parameters via unauthenticated TR-064 / IGD UPnP "
+"LAN endpoints. Each parameter can be toggled individually."
+msgstr ""
+"Mostra parametri di funzionamento del FRITZ!Box via TR-064 / IGD UPnP "
+"(endpoint LAN non autenticati). Parametri attivabili singolarmente."
+
+#. settings-schema.json->connection-header->description
+msgid "FRITZ!Box connection"
+msgstr "Connessione FRITZ!Box"
+
+#. settings-schema.json->host->description
+msgid "Address (host or IP)"
+msgstr "Indirizzo (host o IP)"
+
+#. settings-schema.json->host->tooltip
+msgid "Hostname or IP of the FRITZ!Box on the LAN. Default: fritz.box"
+msgstr "Hostname o IP del FRITZ!Box in LAN. Default: fritz.box"
+
+#. settings-schema.json->port->description
+msgid "TR-064 / IGD port"
+msgstr "Porta TR-064 / IGD"
+
+#. settings-schema.json->delay->units
+#. settings-schema.json->timeout->units
+msgid "seconds"
+msgstr "secondi"
+
+#. settings-schema.json->delay->description
+msgid "Refresh interval"
+msgstr "Intervallo di aggiornamento"
+
+#. settings-schema.json->timeout->description
+msgid "Request timeout"
+msgstr "Timeout richiesta"
+
+#. settings-schema.json->params-header->description
+msgid "Parameters to display"
+msgstr "Parametri da mostrare"
+
+#. settings-schema.json->show-model->description
+msgid "FRITZ!Box model"
+msgstr "Modello FRITZ!Box"
+
+#. settings-schema.json->show-model->tooltip
+msgid "Read from /tr64desc.xml"
+msgstr "Letto da /tr64desc.xml"
+
+#. settings-schema.json->show-firmware->description
+msgid "FRITZ!OS firmware"
+msgstr "Firmware FRITZ!OS"
+
+#. settings-schema.json->show-wan-status->description
+msgid "WAN physical link status"
+msgstr "Stato link fisico WAN"
+
+#. settings-schema.json->show-wan-type->description
+msgid "WAN access type (DSL/LTE/Cable/Ethernet)"
+msgstr "Tipo accesso WAN (DSL/LTE/Cable/Ethernet)"
+
+#. settings-schema.json->show-max-rates->description
+msgid "Negotiated max down/up rates"
+msgstr "Velocità max down/up negoziate"
+
+#. settings-schema.json->show-conn-status->description
+msgid "Internet connection status"
+msgstr "Stato connessione Internet"
+
+#. settings-schema.json->show-conn-error->description
+msgid "Last connection error"
+msgstr "Ultimo errore di connessione"
+
+#. settings-schema.json->show-uptime->description
+msgid "Connection uptime"
+msgstr "Uptime connessione"
+
+#. settings-schema.json->show-uptime->tooltip
+msgid ""
+"Time since the last Internet connection renegotiation (not since the router "
+"was powered on). In the FRITZ!Box UI: Internet → Overview → \"Connected "
+"since …\"."
+msgstr ""
+"Tempo dall'ultima negoziazione della connessione Internet (non "
+"dall'accensione del router). Nella UI FRITZ!Box: Internet → Panoramica → "
+"\"Connesso dal …\"."
+
+#. settings-schema.json->show-public-ip->description
+msgid "Public IP address"
+msgstr "Indirizzo IP pubblico"
+
+#. settings-schema.json->show-bytes-total->description
+msgid "Total bytes sent / received"
+msgstr "Byte totali inviati / ricevuti"
+
+#. settings-schema.json->show-bytes-total->tooltip
+msgid ""
+"Cumulative WAN interface counter (64-bit). Resets only on router reboot or "
+"manual counter reset. Does NOT match the daily \"online counters\" page of "
+"the FRITZ!Box UI, which is not exposed via TR-064."
+msgstr ""
+"Contatore cumulativo dell'interfaccia WAN (contatore a 64 bit). Si azzera "
+"solo al riavvio del router o al reset manuale del contatore. NON corrisponde "
+"ai \"Contatori online\" giornalieri della UI FRITZ!Box, che non sono esposti "
+"via TR-064."
+
+#. settings-schema.json->show-throughput->description
+msgid "Instantaneous throughput (↓ / ↑)"
+msgstr "Throughput istantaneo (↓ / ↑)"
+
+#. settings-schema.json->show-throughput->tooltip
+msgid ""
+"Instantaneous rate in bit/s, as reported by the router itself. The FRITZ!Box "
+"UI refreshes about every 5 s: set the same polling interval here to match."
+msgstr ""
+"Velocità istantanea in bit/s, fornita direttamente dal router. La UI FRITZ!"
+"Box aggiorna circa ogni 5 s: per allinearsi, impostare lo stesso intervallo "
+"di polling."
+
+#. settings-schema.json->show-update-available->description
+msgid "Firmware update available"
+msgstr "Aggiornamento firmware disponibile"
+
+#. settings-schema.json->style-header->description
+msgid "Style"
+msgstr "Stile"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Font"
+
+#. settings-schema.json->font-color->description
+msgid "Text color"
+msgstr "Colore testo"
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr "Colore etichette"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Colore sfondo"
+
+#. settings-schema.json->background-transparency->description
+msgid "Background transparency"
+msgstr "Trasparenza sfondo"
+
+#. settings-schema.json->border-color->description
+msgid "Border color"
+msgstr "Colore bordo"
+
+#. settings-schema.json->border-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Spessore bordo"
