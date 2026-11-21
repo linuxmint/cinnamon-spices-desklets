@@ -2,7 +2,6 @@
 const Desklet = imports.ui.desklet;
 const GLib = imports.gi.GLib;
 const Gettext = imports.gettext;
-const Mainloop = imports.mainloop;
 const Settings = imports.ui.settings;
 const St = imports.gi.St;
 const Util = imports.misc.util;
@@ -102,17 +101,13 @@ MyDesklet.prototype = {
 
         this._buildUI();
         this._fetchStaticInfo();
-        this._schedule(1);
+        this._startTimer();
     },
 
     _onSettingsChanged() {
         this._buildUI();
         this._render();
-        if (this.updateId > 0) {
-            Mainloop.source_remove(this.updateId);
-            this.updateId = 0;
-        }
-        this._schedule(1);
+        this._startTimer();
     },
 
     _buildUI() {
@@ -168,23 +163,31 @@ MyDesklet.prototype = {
 
     on_desklet_removed() {
         this._removed = true;
+        this._stopTimer();
+    },
+
+    // Polls immediately, then every "delay" seconds through a single periodic
+    // source that keeps itself alive by returning GLib.SOURCE_CONTINUE.
+    _startTimer() {
+        this._stopTimer();
+        if (this._removed) return;
+        this._poll();
+        const sec = Math.max(1, Math.round(this.delay || 10));
+        this.updateId = GLib.timeout_add_seconds(GLib.PRIORITY_DEFAULT, sec, () => {
+            if (this._removed) {
+                this.updateId = 0;
+                return GLib.SOURCE_REMOVE;
+            }
+            this._poll();
+            return GLib.SOURCE_CONTINUE;
+        });
+    },
+
+    _stopTimer() {
         if (this.updateId > 0) {
-            Mainloop.source_remove(this.updateId);
+            GLib.source_remove(this.updateId);
             this.updateId = 0;
         }
-    },
-
-    _schedule(sec) {
-        if (this._removed) return;
-        this.updateId = Mainloop.timeout_add_seconds(sec, () => this._tick());
-    },
-
-    _tick() {
-        this.updateId = 0;
-        if (this._removed) return GLib.SOURCE_REMOVE;
-        this._poll();
-        this._schedule(this.delay || 10);
-        return GLib.SOURCE_REMOVE;
     },
 
     // Legge info statiche (modello/firmware) da /tr64desc.xml una tantum.
