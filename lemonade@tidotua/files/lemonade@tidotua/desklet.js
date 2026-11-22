@@ -216,13 +216,13 @@ LemonadeDesklet.prototype = {
         this.serverIcon.set_child(image);
         this.serverIconTooltip = new Tooltips.Tooltip(this.serverIcon);
 
-        this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
+        this.serverIconSig = this.serverIcon.connect('clicked', () => {
             try {
                 Gio.AppInfo.launch_default_for_uri(this.server_url, null);
             } catch (e) {
                 global.logError("Could not open " + this.server_url + ": " + e.message);
             }
-        }));
+        });
 
         this.nameText = new St.Label({
             x_align: Clutter.ActorAlign.START,
@@ -402,11 +402,11 @@ LemonadeDesklet.prototype = {
 
         let modelTooltip = new Tooltips.Tooltip(modelButton);
 
-        let sig = modelButton.connect('clicked', Lang.bind(this, function () {
+        let sig = modelButton.connect('clicked', () => {
             if (modelButton.clickCallback) {
                 modelButton.clickCallback();
             }
-        }));
+        });
 
         let container = new St.BoxLayout({
             vertical: false,
