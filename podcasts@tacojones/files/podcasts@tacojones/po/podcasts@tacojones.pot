@@ -1,0 +1,231 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-22 19:57-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#. metadata.json->name
+#: desklet.js:46
+msgid "Podcasts"
+msgstr ""
+
+#: desklet.js:93
+msgid "Refresh"
+msgstr ""
+
+#: desklet.js:123
+msgid "Back 10 seconds"
+msgstr ""
+
+#: desklet.js:124 desklet.js:547 desklet.js:582
+msgid "Pause"
+msgstr ""
+
+#: desklet.js:126
+msgid "Forward 10 seconds"
+msgstr ""
+
+#: desklet.js:127 desklet.js:548
+msgid "Stop"
+msgstr ""
+
+#: desklet.js:248
+msgid "No feeds yet"
+msgstr ""
+
+#: desklet.js:253 desklet.js:262
+msgid "Checking feeds…"
+msgstr ""
+
+#: desklet.js:263
+#, javascript-format
+msgid "Checked %s"
+msgstr ""
+
+#: desklet.js:279
+msgid "not a valid address"
+msgstr ""
+
+#: desklet.js:300
+msgid "this is an episode's address, not a feed's"
+msgstr ""
+
+#: desklet.js:312
+#, javascript-format
+msgid "the feed is over %d MB"
+msgstr ""
+
+#: desklet.js:318
+msgid "not a podcast feed"
+msgstr ""
+
+#: desklet.js:332
+msgid "No feeds yet: right-click → Configure"
+msgstr ""
+
+#: desklet.js:348
+#, javascript-format
+msgid "Couldn't load: %s"
+msgstr ""
+
+#: desklet.js:496 desklet.js:513
+msgid "(untitled)"
+msgstr ""
+
+#: desklet.js:498
+#, javascript-format
+msgid "%s left"
+msgstr ""
+
+#: desklet.js:519
+msgid "GStreamer's playbin is missing"
+msgstr ""
+
+#: desklet.js:535
+#, javascript-format
+msgid "Couldn't play: %s"
+msgstr ""
+
+#: desklet.js:536
+msgid "the episode's server couldn't be reached"
+msgstr ""
+
+#: desklet.js:580
+msgid "Play"
+msgstr ""
+
+#: desklet.js:657
+msgid "Close"
+msgstr ""
+
+#: desklet.js:826
+msgid "just now"
+msgstr ""
+
+#: desklet.js:828
+#, javascript-format
+msgid "%d minute ago"
+msgid_plural "%d minutes ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:831
+#, javascript-format
+msgid "%d hour ago"
+msgid_plural "%d hours ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:834
+#, javascript-format
+msgid "%d day ago"
+msgid_plural "%d days ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:836
+#, javascript-format
+msgid "%d week ago"
+msgid_plural "%d weeks ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:838
+#, javascript-format
+msgid "%d month ago"
+msgid_plural "%d months ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:839
+#, javascript-format
+msgid "%d year ago"
+msgid_plural "%d years ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: desklet.js:858
+#, javascript-format
+msgid "%d h %d min"
+msgstr ""
+
+#: desklet.js:858
+#, javascript-format
+msgid "%d min"
+msgstr ""
+
+#. metadata.json->description
+msgid "Follows podcast feeds and plays their latest episodes."
+msgstr ""
+
+#. settings-schema.json->feeds->description
+msgid "Podcast feeds"
+msgstr ""
+
+#. settings-schema.json->feeds->columns->title
+msgid "Name (optional)"
+msgstr ""
+
+#. settings-schema.json->feeds->columns->title
+msgid "Feed URL"
+msgstr ""
+
+#. settings-schema.json->episodes-per-feed->description
+msgid "Episodes shown per feed"
+msgstr ""
+
+#. settings-schema.json->episodes-per-feed->units
+msgid "episodes"
+msgstr ""
+
+#. settings-schema.json->refresh-minutes->description
+msgid "Check feeds every"
+msgstr ""
+
+#. settings-schema.json->refresh-minutes->units
+msgid "minutes"
+msgstr ""
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr ""
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->corner-radius->units
+msgid "pixels"
+msgstr ""
+
+#. settings-schema.json->height->description
+msgid "List height"
+msgstr ""
+
+#. settings-schema.json->background-opacity->description
+msgid "Background opacity"
+msgstr ""
+
+#. settings-schema.json->background-opacity->units
+msgid "%"
+msgstr ""
+
+#. settings-schema.json->corner-radius->description
+msgid "Corner radius"
+msgstr ""
+
+#. settings-schema.json->show-covers->description
+msgid "Show cover art"
+msgstr ""
