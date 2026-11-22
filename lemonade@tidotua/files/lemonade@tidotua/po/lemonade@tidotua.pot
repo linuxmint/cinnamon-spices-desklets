@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: lemonade@tidotua 1.0\n"
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
-"POT-Creation-Date: 2026-11-20 00:44+0200\n"
+"POT-Creation-Date: 2026-11-22 20:09+0200\n"
 "PO-Revision-Date: \n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -17,71 +17,71 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#. desklet.js:229
+#. desklet.js:232
 msgid "Lemonade Server"
 msgstr ""
 
-#. desklet.js:238 desklet.js:333
+#. desklet.js:241 desklet.js:336
 msgid "Version"
 msgstr ""
 
-#. desklet.js:246 desklet.js:313
+#. desklet.js:249 desklet.js:316
 msgid "Online"
 msgstr ""
 
-#. desklet.js:255 desklet.js:306
+#. desklet.js:258 desklet.js:309
 msgid "Address"
 msgstr ""
 
-#. desklet.js:283 desklet.js:343
+#. desklet.js:286 desklet.js:348
 msgid "Context"
 msgstr ""
 
-#. desklet.js:292 desklet.js:345
+#. desklet.js:295 desklet.js:351
 msgid "TPS"
 msgstr ""
 
-#. desklet.js:318
+#. desklet.js:321
 msgid "Offline"
 msgstr ""
 
-#. desklet.js:323
+#. desklet.js:326
 msgid "Error: Invalid or missing API key"
 msgstr ""
 
-#. desklet.js:328
+#. desklet.js:331
 msgid "HTTP Error "
 msgstr ""
 
-#. desklet.js:332
+#. desklet.js:335
 msgid "unknown"
 msgstr ""
 
-#. desklet.js:372
+#. desklet.js:378
 msgid "Do you want to unload model?"
 msgstr ""
 
-#. desklet.js:373
+#. desklet.js:379
 msgid "Do you want to load model?"
 msgstr ""
 
-#. desklet.js:447
+#. desklet.js:453
 msgid "Busy"
 msgstr ""
 
-#. desklet.js:447
+#. desklet.js:453
 msgid "Ready"
 msgstr ""
 
-#. desklet.js:447
+#. desklet.js:453
 msgid "Off"
 msgstr ""
 
-#. desklet.js:451
+#. desklet.js:457
 msgid "Unload model"
 msgstr ""
 
-#. desklet.js:452
+#. desklet.js:458
 msgid "Load model"
 msgstr ""
 
@@ -110,7 +110,7 @@ msgid "Server Port"
 msgstr ""
 
 #. settings-schema.json->server_port->tooltip
-msgid "Port between 0 and 65535"
+msgid "Port between 1 and 65535"
 msgstr ""
 
 #. settings-schema.json->api_version->description

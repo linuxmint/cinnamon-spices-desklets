@@ -3,6 +3,7 @@
     "uuid": "lemonade@tidotua",
     "name": "Lemonade AI server status",
     "description": "Provides Lemonade AI server status and actions.",
-    "version": "1.0",
-    "prevent-decorations": true
+    "prevent-decorations": true,
+    "shell-version": "5.8",
+    "version": "1.0"
 }

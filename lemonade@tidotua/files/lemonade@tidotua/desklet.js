@@ -123,7 +123,8 @@ LemonadeDesklet.prototype = {
     },
 
     resetServerURL: function() {
-        this.server_url=`http://${this.server_addr.replace(/\/$/, '')}:${this.server_port}`;
+        let addr = this.server_addr.trim().replace(/^https?:\/\//, '').replace(/\/$/, '');
+        this.server_url = `http://${addr}:${this.server_port}`;
         this.api_url = `${this.server_url}/${this.api_version.replace(/^\//, '')}`
     },
 
@@ -218,7 +219,6 @@ LemonadeDesklet.prototype = {
         this.serverIconSig = this.serverIcon.connect('clicked', Lang.bind(this, function () {
             try {
                 Gio.AppInfo.launch_default_for_uri(this.server_url, null);
-
             } catch (e) {
                 global.logError("Could not open " + this.server_url + ": " + e.message);
             }
@@ -383,7 +383,7 @@ LemonadeDesklet.prototype = {
                     this.api_key,
                     { model_name: name },
                     (err, data) => {
-                        if (err) global.logError("POST failed: " + err.message);
+                        if (err) global.logError("Model action failed: " + err.message);
                     }
                 );
             });
@@ -449,7 +449,7 @@ LemonadeDesklet.prototype = {
         }};
     },
 
-    updateModelRow(modelRow, name, recipe, is_active, is_busy) {
+    updateModelRow: function(modelRow, name, recipe, is_active, is_busy) {
         let status = is_active ? (is_busy ? _("Busy") : _("Ready")) : _("Off");
         let status_style = is_active ? (is_busy ? "lemonade-text-bad" : "lemonade-text-good") : "lemonade-text-inactive";
         let active_style = is_active ? "lemonade-text-active " : "lemonade-text-inactive";
@@ -472,7 +472,7 @@ LemonadeDesklet.prototype = {
         modelRow.data.is_busy = is_busy;
     },
 
-    compareModelRow(modelRow, name, recipe, is_active, is_busy) {
+    compareModelRow: function(modelRow, name, recipe, is_active, is_busy) {
         return modelRow.data.name == name &&
             modelRow.data.recipe == recipe &&
             modelRow.data.is_active == is_active &&
@@ -549,6 +549,7 @@ LemonadeDesklet.prototype = {
             if (this.destroyed) return;
 
             if (error) {
+                global.logError("Active models get error: " + error.message);
                 this.resetData();
                 this.removeModelRows();
                 this.serverError = data.code;
@@ -595,6 +596,12 @@ LemonadeDesklet.prototype = {
         this.getWithBearerCallback(this.getFullUrl(MODELS_ENDPOINT), this.api_key, (error, data) => {
             if (this.destroyed) return;
 
+            if (error) {
+                global.logError("All models get error: " + error.message);
+                this.modelsGeneration = undefined;
+                return;
+            }
+
             if (!error && data.data) {
                 this.allModels = [];
                 for (let model of data.data) {
@@ -612,6 +619,11 @@ LemonadeDesklet.prototype = {
     updateStats: function() {
         this.getWithBearerCallback(this.getFullUrl(STATS_ENDPOINT), this.api_key, (error, data) => {
             if (this.destroyed) return;
+
+            if (error) {
+                global.logError("Stats get error: " + error.message);
+                return;
+            }
 
             if (!error && data) {
                 this.context =
@@ -746,7 +758,7 @@ function main(metadata, desklet_id) {
     try {
         return new LemonadeDesklet(metadata, desklet_id);
     } catch (e) {
-        global.log(`CRASH INSIDE main: ${e.stack}`);
+        global.logError(`CRASH INSIDE main: ${e.stack}`);
         throw e;
     }
 }

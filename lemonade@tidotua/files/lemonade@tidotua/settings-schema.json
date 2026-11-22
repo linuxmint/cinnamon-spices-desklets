@@ -18,7 +18,7 @@
         "max": 65535,
         "step": 1,
         "description": "Server Port",
-        "tooltip": "Port between 0 and 65535"
+        "tooltip": "Port between 1 and 65535"
     },
 
     "api_version": {
