@@ -1,0 +1,7 @@
+{
+    "uuid": "systemd-status@aloxvim",
+    "name": "Systemd Service Status",
+    "description": "Shows the status of one or more systemd services with a colored indicator (green active, grey stopped, red failed).",
+    "version": "1.2",
+    "max-instances": 1
+}

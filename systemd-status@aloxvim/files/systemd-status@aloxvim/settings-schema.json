@@ -1,0 +1,102 @@
+{
+    "head-services": {
+        "type": "header",
+        "description": "Services to monitor"
+    },
+    "services": {
+        "type": "list",
+        "description": "Add one row per unit. The name may include '.service' or not ('.timer', '.socket', '.mount'... also work).",
+        "columns": [
+            {"id": "name",  "title": "Unit (e.g. nginx.service)", "type": "string"},
+            {"id": "label", "title": "Label (optional)",          "type": "string"},
+            {"id": "user",  "title": "User unit (--user)",        "type": "boolean"}
+        ],
+        "default": [
+            {"name": "NetworkManager.service", "label": "Network",  "user": false},
+            {"name": "cron.service",           "label": "",         "user": false},
+            {"name": "ssh.service",            "label": "SSH",      "user": false}
+        ]
+    },
+
+    "head-general": {
+        "type": "header",
+        "description": "General"
+    },
+    "title": {
+        "type": "entry",
+        "default": "Services",
+        "description": "Title (leave empty to hide it)"
+    },
+    "interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 3600,
+        "step": 1,
+        "units": "seconds",
+        "description": "Refresh interval"
+    },
+    "show-substate": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show the sub-state (running, exited, dead...) next to the name"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 11,
+        "min": 6,
+        "max": 40,
+        "step": 1,
+        "units": "pt",
+        "description": "Font size"
+    },
+    "dot-size": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 4,
+        "max": 48,
+        "step": 1,
+        "units": "px",
+        "description": "Dot size"
+    },
+    "terminal": {
+        "type": "entry",
+        "default": "x-terminal-emulator",
+        "description": "Terminal opened when clicking a service (shows systemctl status)"
+    },
+
+    "head-colors": {
+        "type": "header",
+        "description": "Colors"
+    },
+    "color-active": {
+        "type": "colorchooser",
+        "default": "rgb(46,204,64)",
+        "description": "Active (running)"
+    },
+    "color-inactive": {
+        "type": "colorchooser",
+        "default": "rgb(140,140,140)",
+        "description": "Inactive (stopped)"
+    },
+    "color-failed": {
+        "type": "colorchooser",
+        "default": "rgb(231,52,52)",
+        "description": "Failed"
+    },
+    "color-transition": {
+        "type": "colorchooser",
+        "default": "rgb(241,176,30)",
+        "description": "Starting / stopping / reloading"
+    },
+    "color-unknown": {
+        "type": "colorchooser",
+        "default": "rgb(155,89,182)",
+        "description": "Not found / unknown"
+    },
+    "color-text": {
+        "type": "colorchooser",
+        "default": "rgb(255,255,255)",
+        "description": "Text"
+    }
+}
