@@ -10,7 +10,10 @@ const ModalDialog = imports.ui.modalDialog;
 const Dialog = imports.ui.dialog;
 const CinnamonEntry = imports.ui.cinnamonEntry;
 
-const I18n = require('./i18n');
+// Own modules, see desklet.js.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
 
 // onSave(username, password) is called with the entered values.

@@ -1,16 +1,19 @@
 // Connection to the FRITZ!Box shared by all desklet instances: shared settings (address,
 // credentials, refresh interval), HTTP, login, session id, one polling timer per box and
-// AHA commands. Cinnamon caches require()d modules per path, so the module-level state
+// AHA commands. Cinnamon loads each module once, so the module-level state
 // below is common to every instance of the desklet.
 
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 const Soup = imports.gi.Soup;
 
-const FritzAuth = require('./fritzauth');
-const FritzXml = require('./fritzxml');
-const Credentials = require('./credentials');
-const I18n = require('./i18n');
+// Own modules, see desklet.js.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const FritzAuth = Me ? Me.fritzauth : require('./fritzauth');
+const FritzXml = Me ? Me.fritzxml : require('./fritzxml');
+const Credentials = Me ? Me.credentials : require('./credentials');
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
 
 const EMPTY_SID = "0000000000000000";

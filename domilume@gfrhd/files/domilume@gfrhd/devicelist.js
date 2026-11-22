@@ -4,7 +4,10 @@
 // Row format (columns in settings-schema.json):
 //   { show, big, boost, frost, name, type, ain }
 
-const I18n = require('./i18n');
+// Own modules, see desklet.js.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
 
 const NOT_FOUND = _("not found");

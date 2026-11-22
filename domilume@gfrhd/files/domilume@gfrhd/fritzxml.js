@@ -1,7 +1,10 @@
 // Parsing of FRITZ!Box AHA-HTTP XML replies (pure JS, testable with plain gjs).
 
 // ETSI unit types of the FRITZ!Smart Energy 250 sub-units.
-const I18n = require('./i18n');
+// Own modules, see desklet.js.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
 
 const UNIT_IMPORT = 65281;   // consumption (Bezug)

@@ -8,9 +8,12 @@ const GLib = imports.gi.GLib;
 const St = imports.gi.St;
 const Main = imports.ui.main;
 
-const FritzXml = require('./fritzxml');
-const Charts = require('./charts');
-const I18n = require('./i18n');
+// Own modules, see desklet.js.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const FritzXml = Me ? Me.fritzxml : require('./fritzxml');
+const Charts = Me ? Me.charts : require('./charts');
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
 
 const COLOR_POWER = "#f2a93b";
@@ -30,7 +33,7 @@ const TOOLTIP_DELAY_MS = 500;
 // connects to each actor's "destroy"; with tiles rebuilt on every refresh that caused GJS
 // "call back into JSAPI during the sweeping phase of GC" warnings. This one only listens
 // to enter/leave/press events and owns a single label.
-class TileTooltip {
+var TileTooltip = class TileTooltip {
     constructor() {
         this._label = new St.Label({ name: "Tooltip", visible: false });
         // The theme centers tooltip lines (text-align) and may ellipsize long ones.
@@ -95,7 +98,7 @@ class TileTooltip {
         this.hide();
         this._label.destroy();
     }
-}
+};
 
 function fmt(n, digits) {
     return I18n.num(n, digits);

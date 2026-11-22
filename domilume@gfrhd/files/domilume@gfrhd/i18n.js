@@ -1,4 +1,4 @@
-// Translations (gettext, domain = UUID, .mo files in ~/.local/share/locale as installed by
+// Translations (gettext, domain = UUID, .mo files in $XDG_DATA_HOME/locale as installed by
 // Cinnamon Spices) and number formatting in the user's locale. No Cinnamon imports, so the
 // modules using it can still be tested with plain gjs (untranslated English then).
 
@@ -7,7 +7,7 @@ const GLib = imports.gi.GLib;
 
 const UUID = "domilume@gfrhd";
 
-Gettext.bindtextdomain(UUID, GLib.get_home_dir() + "/.local/share/locale");
+Gettext.bindtextdomain(UUID, GLib.build_filenamev([GLib.get_user_data_dir(), "locale"]));
 
 function _(str) {
     return Gettext.dgettext(UUID, str);

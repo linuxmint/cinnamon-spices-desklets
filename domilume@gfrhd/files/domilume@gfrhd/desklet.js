@@ -6,14 +6,20 @@ const Clutter = imports.gi.Clutter;
 const GLib = imports.gi.GLib;
 const Gio = imports.gi.Gio;
 
-const FritzClient = require('./fritzclient');
-const FritzXml = require('./fritzxml');
-const DeviceList = require('./devicelist');
-const I18n = require('./i18n');
+// Own modules: Cinnamon 6.8+ provides them via getCurrentExtension() (require() is deprecated
+// there). Older versions have no getCurrentExtension() and do not reload modules imported via
+// imports.desklets[uuid] when the desklet is reloaded or updated, so they use require().
+// Either way each module is loaded once and shared by all desklet instances.
+const Me = imports.ui.extension.getCurrentExtension
+    ? imports.ui.extension.getCurrentExtension().imports : null;
+const FritzClient = Me ? Me.fritzclient : require('./fritzclient');
+const FritzXml = Me ? Me.fritzxml : require('./fritzxml');
+const DeviceList = Me ? Me.devicelist : require('./devicelist');
+const I18n = Me ? Me.i18n : require('./i18n');
 const _ = I18n._;
-const Discovery = require('./discovery');
-const CredentialsDialog = require('./credentialsDialog');
-const Tiles = require('./tiles');
+const Discovery = Me ? Me.discovery : require('./discovery');
+const CredentialsDialog = Me ? Me.credentialsDialog : require('./credentialsDialog');
+const Tiles = Me ? Me.tiles : require('./tiles');
 
 const UUID = "domilume@gfrhd";
 const HOST_CHANGE_DELAY_MS = 1500;
