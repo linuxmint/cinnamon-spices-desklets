@@ -112,10 +112,13 @@ LemonadeDesklet.prototype = {
     resetModels: function() {
         this.activeModels.clear();
         this.allModels.length = 0;
+        this.modelsGeneration = undefined;
+        this.model_loaded = undefined;
     },
 
     resetStats: function() {
         this.context = 0;
+        this.context_total = 0;
         this.tps = 0;
     },
 
@@ -337,10 +340,13 @@ LemonadeDesklet.prototype = {
         if (this.serverError == SERVER_ONLINE) {
             let active = this.activeModels.size > 0;
             let style = active ? "lemonade-text-active" : "lemonade-text-inactive";
-            let context = active ? this.context : 0;
+            let context = (active ? this.context : 0) / 1000.0; // Use k measure
+            let context_total = (active ? this.context_total : 0) / 1000.0; // Use k measure
+            let context_percent = ((active && this.context_total) ? 100 * this.context / this.context_total : 0);
             let tps = active ? this.tps : 0;
 
-            this.contextText.set_text(_("Context") + ":   " + context.toLocaleString());
+            this.contextText.set_text(_("Context") + `:   ${context.toFixed(0)}K` +
+                ((active && this.context_total) ? ` / ${context_total.toFixed(0)}K (${context_percent.toFixed(0)}%)` : ""));
             this.contextText.style_class = "lemonade-text-medium lemonade-text-left " + style;
             this.tpsText.set_text(_("TPS") + ":   " + tps.toFixed(1));
             this.tpsText.style_class = "lemonade-text-medium lemonade-text-right " + style;
@@ -553,6 +559,8 @@ LemonadeDesklet.prototype = {
                     this.serverVersion = data.version;
                 }
 
+                this.model_loaded = data.model_loaded;
+
                 if (data.all_models_loaded) {
                     this.activeModels.clear();
                     for (let model of data.all_models_loaded) {
@@ -566,6 +574,9 @@ LemonadeDesklet.prototype = {
                     if (data.models_generation !== this.modelsGeneration) {
                         this.modelsGeneration = data.models_generation;
                         this.updateAllModels();
+                    } else {
+                        // We should still update active models status even whole list was not changed
+                        this.updateModelRows();
                     }
 
                     if (this.activeModels.size > 0) {
@@ -589,10 +600,8 @@ LemonadeDesklet.prototype = {
                 for (let model of data.data) {
                     this.allModels.push({
                         name: model.id,
-                        recipe: model.recipe
-                        // TODO:
-                        // max_context_window or context_length for max context
-                        // https://lemonade-server.ai/docs/api/openai/#response-format_9
+                        recipe: model.recipe,
+                        context_length: model.context_length
                     });
                 }
                 this.updateModelRows();
@@ -609,9 +618,22 @@ LemonadeDesklet.prototype = {
                     (data.cache_tokens || 0) +
                     (data.input_tokens || 0) +
                     (data.output_tokens || 0);
+
+                // Suggest last loaded model was used for last inference
+                if (this.model_loaded) {
+                    this.context_total = 0;
+                    for (let model of this.allModels) {
+                        if (model.name == this.model_loaded) {
+                            this.context_total = model.context_length;
+                            break;
+                        }
+                    }
+                }
+
                 this.tps = data.live && data.live.estimated_tokens_per_second ?
                     data.live.estimated_tokens_per_second :
                     (data.tokens_per_second || 0);
+
                 this.updateStatsUI();
             }
         });
