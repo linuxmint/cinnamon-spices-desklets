@@ -1,0 +1,9 @@
+{
+    "uuid": "up-clock@brahim",
+    "name": "Clepsydra",
+    "description": "An animated bubble clock desklet — 24h/AM-PM, colour themes, dot ring, chameleon macOS palette mode, font picker, and countdown timer.",
+    "max-instances": "10",
+    "multiversion": true,
+    "author": "Brahim Salem (ported from Up-Clock by Gabriel Barbosa)",
+    "last-edited": 1761800000
+}
