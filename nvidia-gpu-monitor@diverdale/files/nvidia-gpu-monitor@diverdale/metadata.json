@@ -1,0 +1,8 @@
+{
+  "uuid": "nvidia-gpu-monitor@diverdale",
+  "name": "NVIDIA GPU Monitor",
+  "description": "Per-GPU temperature, usage, VRAM, power, fan, and process count for NVIDIA cards. Uses async nvidia-smi calls so it never blocks Cinnamon.",
+  "prevent-decorations": false,
+  "max-instances": 1,
+  "version": "0.1.0"
+}
