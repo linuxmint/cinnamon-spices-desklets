@@ -1,0 +1,144 @@
+# Cinnaclock Desklet
+# Language: zh_CN
+msgid ""
+msgstr ""
+"Project-Id-Version: Cinnaclock\n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. settings-schema.json->pages
+msgid "General"
+msgstr "常规"
+
+msgid "Layer 1"
+msgstr "图层 1"
+
+msgid "Layer 2"
+msgstr "图层 2"
+
+msgid "Layer 3"
+msgstr "图层 3"
+
+#. settings-schema.json->sections
+msgid "Format Style"
+msgstr "格式样式"
+
+msgid "Background Style"
+msgstr "背景样式"
+
+msgid "Text Style"
+msgstr "文本样式"
+
+msgid "Shadow"
+msgstr "阴影"
+
+#. settings-schema.json->descriptions
+msgid "Show background"
+msgstr "显示背景"
+
+msgid "Background Color"
+msgstr "背景颜色"
+
+msgid "Corner Radius"
+msgstr "圆角半径"
+
+msgid "Show Layer 1"
+msgstr "显示图层 1"
+
+msgid "Show Layer 2"
+msgstr "显示图层 2"
+
+msgid "Show Layer 3"
+msgstr "显示图层 3"
+
+msgid "Layer 1 Format"
+msgstr "图层 1 格式"
+
+msgid "Layer 2 Format"
+msgstr "图层 2 格式"
+
+msgid "Layer 3 Format"
+msgstr "图层 3 格式"
+
+msgid "Layer 1 Vertical Offset"
+msgstr "图层 1 垂直偏移"
+
+msgid "Layer 2 Vertical Offset"
+msgstr "图层 2 垂直偏移"
+
+msgid "Layer 3 Vertical Offset"
+msgstr "图层 3 垂直偏移"
+
+msgid "Layer 1 Horizontal Offset"
+msgstr "图层 1 水平偏移"
+
+msgid "Layer 2 Horizontal Offset"
+msgstr "图层 2 水平偏移"
+
+msgid "Layer 3 Horizontal Offset"
+msgstr "图层 3 水平偏移"
+
+msgid "Font"
+msgstr "字体"
+
+msgid "Color"
+msgstr "颜色"
+
+msgid "Uppercase"
+msgstr "大写"
+
+msgid "Horizontal offset"
+msgstr "水平偏移"
+
+msgid "Vertical offset"
+msgstr "垂直偏移"
+
+msgid "Blur"
+msgstr "模糊"
+
+msgid "Select a Preset"
+msgstr "选择预设"
+
+#. settings-schema.json->options
+msgid "Manual"
+msgstr "手动"
+
+msgid "Modern Blue"
+msgstr "现代蓝"
+
+msgid "Clear Orange"
+msgstr "透明橙"
+
+msgid "Digital Neon"
+msgstr "数字霓虹"
+
+msgid "Minimal Dark"
+msgstr "极简黑"
+
+msgid "Minimal White"
+msgstr "极简白"
+
+msgid "Phantom"
+msgstr "幻影"
+
+msgid "Cyberpunk"
+msgstr "赛博朋克"
+
+#. settings-schema.json->tooltips
+msgid "Set the background color and transparency of the desklet"
+msgstr "设置小工具的背景颜色和透明度"
+
+msgid "Example: %H:%M for 24h"
+msgstr "示例: %H:%M 表示 24 小时制"
+
+msgid "Example: %A for full weekday name"
+msgstr "示例: %A 表示星期全称"
+
+msgid "Example: %e %B %Y"
+msgstr "示例: %e %B %Y"
+
+#. desklet.js
+msgid "Edit Config"
+msgstr "编辑配置"
