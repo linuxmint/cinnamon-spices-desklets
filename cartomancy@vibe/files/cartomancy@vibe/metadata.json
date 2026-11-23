@@ -1,0 +1,7 @@
+{
+    "uuid": "cartomancy@vibe",
+    "name": "Cartomancy Vibe",
+    "description": "Click to draw a card",
+    "prevent-resizing": false,
+    "icon": "icon"
+}
