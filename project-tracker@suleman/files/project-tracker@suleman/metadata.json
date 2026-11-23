@@ -1,0 +1,9 @@
+{
+    "uuid": "project-tracker@suleman",
+    "name": "Project Tracker",
+    "description": "Track VS Code projects with git stats — last commit, total commits, repo size",
+    "version": "1.0.0",
+    "author": "suleman",
+    "max-instances": "1",
+    "last-edited": 1747612800
+}
