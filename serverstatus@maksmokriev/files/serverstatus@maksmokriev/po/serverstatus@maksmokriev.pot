@@ -1,54 +1,51 @@
-# SERVER STATUS
-# This file is put in the public domain.
-# maksmokriev, 2025
+# SERVER STATUS Desklet.
+# This file is distributed under the same license as the PACKAGE package.
+# Maksym Mokriev <maksmokriev@gmail.com>, 2025.
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: serverstatus@maksmokriev 1.2.0\n"
-"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
-"issues\n"
-"POT-Creation-Date: 2026-01-04 08:44+0100\n"
-"PO-Revision-Date: \n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: 1.2.2\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-01-04 19:22+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: desklet.js:23
 msgid "Server Status"
 msgstr ""
 
-#: desklet.js:84
+#: desklet.js:70
 msgid "Need to setup"
 msgstr ""
 
-#: desklet.js:173
+#: desklet.js:153
 msgid "Error ping command on "
 msgstr ""
 
-#: desklet.js:179
+#: desklet.js:160
 msgid "Error creating ping process "
 msgstr ""
 
-#: desklet.js:205
+#: desklet.js:193
 msgid "Error curl command on "
 msgstr ""
 
-#: desklet.js:211
+#: desklet.js:200
 msgid "Error creating curl process "
+msgstr ""
+
+#. metadata.json->description
+msgid "A desklet that checks a host via ping or HTTP(S) and displays if it is available."
 msgstr ""
 
 #. metadata.json->name
 msgid "Server status"
-msgstr ""
-
-#. metadata.json->description
-msgid ""
-"A desklet that checks a host via ping or HTTP(S) and displays if it is "
-"available."
 msgstr ""
 
 #. settings-schema.json->page_servers->title
@@ -87,6 +84,10 @@ msgstr ""
 msgid "Update every (seconds):"
 msgstr ""
 
+#. settings-schema.json->ResponseTime->description
+msgid "Response time (seconds):"
+msgstr ""
+
 #. settings-schema.json->TextColorBasic->description
 msgid "Basic text color"
 msgstr ""
@@ -108,8 +109,7 @@ msgid "Text color for WARNING"
 msgstr ""
 
 #. settings-schema.json->TextColorWARN->tooltip
-msgid ""
-"Click the button to select a new text color for warning in connect status"
+msgid "Click the button to select a new text color for warning in connect status"
 msgstr ""
 
 #. settings-schema.json->TextColorERR->description
@@ -134,6 +134,27 @@ msgstr ""
 
 #. settings-schema.json->BoxBgColor->tooltip
 msgid "Click the button to select a new background color for each elements"
+msgstr ""
+
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr ""
+
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr ""
+
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr ""
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr ""
+
+#. settings-schema.json->ContainerWidth->description
+msgid "Container width"
 msgstr ""
 
 #. settings-schema.json->FontSize->description

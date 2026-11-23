@@ -18,6 +18,7 @@
       "sections": [
         "section_text_color",
         "section_background",
+        "section_icons",
         "section_width"
       ]
     },
@@ -26,7 +27,8 @@
       "title": "",
       "keys": [
         "ServerNames",
-        "TimeRepeat"
+        "TimeRepeat",
+        "ResponseTime"
       ]
     },
     "section_text_color": {
@@ -45,6 +47,16 @@
       "keys": [
         "ContainerBgColor",
         "BoxBgColor"
+      ]
+    },
+    "section_width": {
+      "type": "section",
+      "title": "",
+      "keys": [
+        "CustomIcons",
+        "icon_OK",
+        "icon_ERR",
+        "icon_WARN"
       ]
     },
     "section_width": {
@@ -110,6 +122,15 @@
     "step": 1
   },
 
+  "ResponseTime": {
+    "default": 10,
+    "type": "scale",
+    "min": 1,
+    "max": 30,
+    "description": "Response time (seconds):",
+    "step": 1
+  },
+
   "TextColorBasic": {
     "type": "colorchooser",
     "indent": true,
@@ -156,6 +177,34 @@
     "default": "rgba(0,0,0,0.2)",
     "description": "Color for element background",
     "tooltip": "Click the button to select a new background color for each elements"
+  },
+
+  "CustomIcons": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Set custom icons",
+    "tooltip": "Enable the checkbox to set your own status icons"
+  },
+
+  "icon_OK": {
+    "dependency": "CustomIcons",
+    "type": "iconfilechooser",
+    "description": "Icon for a successful connection",
+    "default": "emblem-ok-symbolic"
+  },
+
+  "icon_ERR": {
+    "dependency": "CustomIcons",
+    "type": "iconfilechooser",
+    "description": "Icon for a failed connection",
+    "default": "dialog-error-symbolic"
+  },
+
+  "icon_WARN": {
+    "dependency": "CustomIcons",
+    "type": "iconfilechooser",
+    "description": "Icon for the warning",
+    "default": "dialog-warning-symbolic"
   },
 
   "FontSize": {
