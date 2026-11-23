@@ -1,0 +1,8 @@
+{
+    "uuid": "workspace-indicator@dajare",
+    "name": "Workspace Indicator Desklet",
+    "description": "Displays the number of the currently active workspace.",
+    "version": "3.0",
+    "author": "dajare",
+    "prevent-decorations": true
+}
