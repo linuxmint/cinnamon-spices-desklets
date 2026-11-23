@@ -1,0 +1,258 @@
+{
+    "head_feeds": {
+        "type": "header",
+        "description": "Calendar feeds"
+    },
+    "feeds": {
+        "type": "textview",
+        "default": "",
+        "description": "ICS feed URLs, one per line (up to 10)",
+        "tooltip": "One ICS or webcal address per line. Put a name and a vertical bar in front of an address to label that calendar. Lines starting with # are ignored."
+    },
+    "refresh_minutes": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 1,
+        "max": 120,
+        "step": 1,
+        "units": "minutes",
+        "description": "Refresh feeds every",
+        "tooltip": "How often to re-download the calendar feeds."
+    },
+    "http_timeout": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 5,
+        "max": 60,
+        "step": 1,
+        "units": "seconds",
+        "description": "Network timeout",
+        "tooltip": "Give up on a feed that does not respond within this time."
+    },
+    "show_feed_errors": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show a warning when a feed fails to load",
+        "tooltip": "Displays a small notice rather than silently showing an incomplete day."
+    },
+
+    "head_content": {
+        "type": "header",
+        "description": "What to show"
+    },
+    "max_upcoming": {
+        "type": "spinbutton",
+        "default": 4,
+        "min": 0,
+        "max": 12,
+        "step": 1,
+        "description": "Maximum upcoming events listed",
+        "tooltip": "Events shown below the focused 'next' card. The list only ever covers the rest of today."
+    },
+    "keep_ongoing": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Treat an event happening right now as the focused event",
+        "tooltip": "When on, an appointment already in progress stays in the spotlight until it ends."
+    },
+    "show_all_day": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Include all-day events",
+        "tooltip": "All-day events appear in a separate strip above the focused card."
+    },
+    "hide_declined": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Hide cancelled and declined events",
+        "tooltip": "Skips events marked CANCELLED, and invitations you have declined."
+    },
+    "hide_transparent": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Hide events marked as free / not busy",
+        "tooltip": "Skips events with TRANSP:TRANSPARENT, which usually means 'does not block my time'."
+    },
+    "show_location": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show location",
+        "tooltip": "Displays the event location on the focused card when there is room."
+    },
+    "show_calendar_name": {
+        "type": "combobox",
+        "default": "multiple",
+        "description": "Show which calendar an event came from",
+        "options": {
+            "Only when you have more than one": "multiple",
+            "Always": "always",
+            "Never": "never"
+        },
+        "tooltip": "The calendar's own name is read from the feed. If it does not publish one, the name you typed before the URL is used, and failing that the site it came from."
+    },
+    "show_meeting_link": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show a join button for video meetings",
+        "tooltip": "Finds the meeting link for Google Meet, Zoom, Teams, Webex, Jitsi and others, and puts a join button on the focused card."
+    },
+    "meeting_link_in_list": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Also mark later meetings in the list",
+        "indent": true,
+        "dependency": "show_meeting_link",
+        "tooltip": "Adds a small join button to upcoming events that have a video link."
+    },
+    "meeting_lead_minutes": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "units": "minutes",
+        "description": "Only show the join button within",
+        "indent": true,
+        "dependency": "show_meeting_link",
+        "tooltip": "Hides the join button until the meeting is this close, so it appears when it is actually useful. Set to 0 to always show it."
+    },
+    "show_countdown": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show a live countdown to the next event",
+        "tooltip": "Ticks every ten seconds in the last minutes before an appointment, and less often when the day is quiet."
+    },
+    "imminent_minutes": {
+        "type": "spinbutton",
+        "default": 15,
+        "min": 0,
+        "max": 120,
+        "step": 5,
+        "units": "minutes",
+        "description": "Flag an event as imminent when it starts within",
+        "tooltip": "Imminent events get a brighter accent and a stronger glow. Set to 0 to disable."
+    },
+    "time_format": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Time format",
+        "options": {
+            "Follow system locale": "auto",
+            "12 hour": "12h",
+            "24 hour": "24h"
+        }
+    },
+
+    "head_layout": {
+        "type": "header",
+        "description": "Size and layout"
+    },
+    "desklet_width": {
+        "type": "spinbutton",
+        "default": 380,
+        "min": 220,
+        "max": 900,
+        "step": 10,
+        "units": "px",
+        "description": "Width",
+        "tooltip": "The layout adapts itself to this width: narrow widths switch to a compact single-column form, wide widths reveal more detail."
+    },
+    "scale": {
+        "type": "scale",
+        "default": 1.0,
+        "min": 0.7,
+        "max": 2.0,
+        "step": 0.05,
+        "description": "Text scale",
+        "tooltip": "Scales every font size and spacing in the desklet."
+    },
+    "density": {
+        "type": "combobox",
+        "default": "auto",
+        "description": "Layout density",
+        "options": {
+            "Adapt to width": "auto",
+            "Compact": "compact",
+            "Comfortable": "comfortable",
+            "Spacious": "spacious"
+        }
+    },
+    "show_header": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show the date header",
+        "tooltip": "The line reading 'Today' with the date and remaining event count."
+    },
+    "show_progress": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Show a progress bar for an event in progress",
+        "tooltip": "A thin accent bar showing how far through the current appointment you are."
+    },
+
+    "head_appearance": {
+        "type": "header",
+        "description": "Appearance"
+    },
+    "color_mode": {
+        "type": "combobox",
+        "default": "position",
+        "description": "Assign rainbow colours by",
+        "options": {
+            "Position in the day": "position",
+            "Calendar feed": "calendar",
+            "Time of day": "clock"
+        },
+        "tooltip": "'Position in the day' walks the rainbow down the list. 'Calendar feed' keeps each calendar a stable colour. 'Time of day' maps morning to evening across the spectrum."
+    },
+    "surface_opacity": {
+        "type": "scale",
+        "default": 0.72,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.02,
+        "description": "Background opacity",
+        "tooltip": "Fluent acrylic works best somewhere between 0.55 and 0.85. Set to 0 for a fully transparent surface."
+    },
+    "glow": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Accent glow on the focused card",
+        "tooltip": "Soft neon bloom around the next appointment."
+    },
+    "tint_surface": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Tint surfaces with the accent colour",
+        "tooltip": "Bleeds a trace of the event's neon colour into its card background."
+    },
+    "dark_surface": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Dark surface",
+        "tooltip": "Turn off for a light acrylic surface with dark text."
+    },
+
+    "head_behaviour": {
+        "type": "header",
+        "description": "Behaviour"
+    },
+    "click_action": {
+        "type": "combobox",
+        "default": "refresh",
+        "description": "On click",
+        "options": {
+            "Do nothing": "none",
+            "Refresh now": "refresh",
+            "Open calendar application": "open"
+        }
+    },
+    "calendar_command": {
+        "type": "entry",
+        "default": "xdg-open https://calendar.google.com/",
+        "description": "Calendar command",
+        "indent": true,
+        "dependency": "click_action=open",
+        "tooltip": "Command run when the desklet is clicked."
+    }
+}
