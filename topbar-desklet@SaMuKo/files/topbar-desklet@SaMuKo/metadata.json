@@ -1,0 +1,16 @@
+{
+    "uuid": "topbar-desklet@SaMuKo",
+    "name": "Topbar Desklet",
+    "description": "Barra vertical desplegable con iconos de aplicaciones configurables.",
+    "version": 1,
+    "max-instances": 1,
+    "multiversion": false,
+    "author": "SaMuKo",
+    "url": "https://github.com/SaMuKo/topbar-desklet",
+    "keybindings": {
+        "toggle-topbar": {
+            "name": "Toggle Topbar Desklet",
+            "value": "<Control>q"
+        }
+    }
+}

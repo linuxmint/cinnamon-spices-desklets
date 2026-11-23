@@ -1,0 +1,17 @@
+[
+    {
+        "name": "Disney+",
+        "icon": "chrome-mbjafbmjpcimpkkihihoideiofnoalmh-Default",
+        "command": "/opt/google/chrome/google-chrome --profile-directory=Default --app-id=mbjafbmjpcimpkkihihoideiofnoalmh %U"
+    },
+    {
+        "name": "MAX",
+        "icon": "msedge-ldohheajbdblfgcgojahofgchabadgeg-Default",
+        "command": "/opt/microsoft/msedge/microsoft-edge --profile-directory=Default --app-id=ldohheajbdblfgcgojahofgchabadgeg --app-url=https://play.max.com/profile-picker"
+    },
+    {
+        "name": "Netflix",
+        "icon": "msedge-eppojlglocelodeimnohnlnionkobfln-Default",
+        "command": "/opt/microsoft/msedge/microsoft-edge --profile-directory=Default --app-id=eppojlglocelodeimnohnlnionkobfln --app-url=https://www.netflix.com/browse"
+    }
+]
