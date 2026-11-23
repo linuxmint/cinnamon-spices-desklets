@@ -1,0 +1,7 @@
+{
+    "uuid": "cpu-gpu-monitor@alexsmolya",
+    "name": "CPU & GPU Monitor",
+    "description": "Monitor CPU, RAM, AMD CPU temperature, and NVIDIA GPU metrics with history graphs",
+    "author": "Alex Smolya",
+    "version": "1.0.0"
+}
