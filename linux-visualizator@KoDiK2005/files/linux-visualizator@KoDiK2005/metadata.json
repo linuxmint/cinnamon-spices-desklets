@@ -1,0 +1,9 @@
+{
+    "uuid": "linux-visualizator@KoDiK2005",
+    "name": "Linux Visualizator",
+    "description": "Real-time visualization of CPU, RAM/Swap, network, disks and GPU load.",
+    "version": "1.0",
+    "max-instances": "1",
+    "prevent-decorations": true,
+    "author": "KoDiK2005"
+}
