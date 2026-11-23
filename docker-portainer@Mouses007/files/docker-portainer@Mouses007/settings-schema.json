@@ -1,0 +1,90 @@
+{
+  "info-header": {
+    "type": "label",
+    "description": "Docker Manager — Monitor and control Docker containers.\n\nWithout an API token: uses local docker CLI directly (no Portainer needed).\n\nWith Portainer: enter host, port and API token below.\nCreate a token in Portainer: My Account → Access tokens → Add access token\n\nThe Environment ID can be found in Portainer under Environments."
+  },
+  "portainer-host": {
+    "type": "entry",
+    "default": "localhost",
+    "description": "Portainer host",
+    "tooltip": "IP or hostname, e.g. 192.168.1.100 or localhost"
+  },
+  "portainer-port": {
+    "type": "spinbutton",
+    "default": 9000,
+    "min": 1,
+    "max": 65535,
+    "step": 1,
+    "units": "",
+    "description": "Portainer port",
+    "tooltip": "Default: 9000 (HTTP) or 9443 (HTTPS)"
+  },
+"api-key": {
+    "type": "entry",
+    "default": "",
+    "description": "API token (X-API-Key) — stored in plain text",
+    "tooltip": "Portainer → My Account → Access tokens → Add access token. Note: stored unencrypted by Cinnamon settings."
+  },
+  "endpoint-id": {
+    "type": "spinbutton",
+    "default": 3,
+    "min": 1,
+    "max": 999,
+    "step": 1,
+    "units": "",
+    "description": "Environment ID (local)",
+    "tooltip": "Portainer environment ID for local Docker"
+  },
+  "endpoint-id-2": {
+    "type": "spinbutton",
+    "default": 4,
+    "min": 0,
+    "max": 999,
+    "step": 1,
+    "units": "",
+    "description": "Environment ID (2nd) — 0 = disabled",
+    "tooltip": "Portainer environment ID for second environment (e.g. NAS)"
+  },
+  "endpoint-name-2": {
+    "type": "entry",
+    "default": "NAS",
+    "description": "Name of second environment",
+    "tooltip": "Shown in the environment toggle button"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 30,
+    "min": 5,
+    "max": 300,
+    "step": 5,
+    "units": "seconds",
+    "description": "Refresh interval"
+  },
+  "font-size": {
+    "type": "spinbutton",
+    "default": 12,
+    "min": 9,
+    "max": 18,
+    "step": 1,
+    "units": "px",
+    "description": "Font size"
+  },
+  "bg-opacity": {
+    "type": "spinbutton",
+    "default": 88,
+    "min": 0,
+    "max": 100,
+    "step": 5,
+    "units": "%",
+    "description": "Background opacity (0 = invisible, 100 = solid)"
+  },
+  "min-width": {
+    "type": "spinbutton",
+    "default": 480,
+    "min": 300,
+    "max": 900,
+    "step": 20,
+    "units": "px",
+    "description": "Width"
+  }
+}
