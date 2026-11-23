@@ -1,0 +1,57 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: CPU Temp Ring 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-23 08:57+0530\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:249
+msgid "CPU"
+msgstr ""
+
+#: desklet.js:249
+msgid "No sensor"
+msgstr ""
+
+#: desklet.js:250
+msgid "peak"
+msgstr ""
+
+msgid "Size"
+msgstr ""
+
+msgid "Refresh interval"
+msgstr ""
+
+msgid "Show Fahrenheit"
+msgstr ""
+
+msgid "Show history sparkline"
+msgstr ""
+
+msgid "Show per-core bars"
+msgstr ""
+
+msgid "Background opacity"
+msgstr ""
+
+msgid "Font"
+msgstr ""
+
+msgid "CPU Temp Ring"
+msgstr ""
+
+msgid "Minimal ring-gauge CPU temperature monitor with per-core bars and a history sparkline."
+msgstr ""

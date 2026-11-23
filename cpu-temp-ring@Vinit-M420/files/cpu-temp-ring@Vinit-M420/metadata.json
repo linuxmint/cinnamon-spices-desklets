@@ -1,0 +1,8 @@
+{
+    "uuid": "cpu-temp-ring@Vinit-M420",
+    "name": "CPU Temp Ring",
+    "description": "Minimal ring-gauge CPU temperature monitor with per-core bars and a history sparkline.",
+    "version": "1.0",
+    "max-instances": "3",
+    "prevent-decorations": true
+}
