@@ -1,0 +1,9 @@
+{
+    "uuid": "ai-feed@suleman",
+    "name": "AI Feed",
+    "description": "Aggregates trending AI repos, papers, models, news, and discussion into one live desktop feed",
+    "version": "1.0.0",
+    "cinnamon-version": ["5.4", "5.6", "5.8", "6.0", "6.2", "6.4"],
+    "max-instances": 1,
+    "prevent-decorations": true
+}
