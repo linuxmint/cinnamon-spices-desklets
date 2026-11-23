@@ -1,0 +1,286 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: workspace-switcher-desklet@mgldvd 1.0.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-09-25 03:17+0000\n"
+"PO-Revision-Date: 2026-09-25 03:17+0000\n"
+"Last-Translator: mgldvd\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. metadata.json->name
+msgid "Workspace Switcher Desklet"
+msgstr "Переключатель рабочих областей (десклет)"
+
+#. metadata.json->description
+msgid "One translucent rectangle per workspace on your desktop. Click or scroll to switch. Fully customizable: colors, borders, size, labels, position and multi-monitor."
+msgstr "По одному полупрозрачному прямоугольнику на каждую рабочую область прямо на рабочем столе. Щёлкните или прокрутите колесо мыши, чтобы переключиться. Полностью настраивается: цвета, рамки, размер, подписи, положение и несколько мониторов."
+
+#. settings-schema.json->page-layout->title
+msgid "Layout"
+msgstr "Расположение"
+
+#. settings-schema.json->page-rects->title
+msgid "Rectangles"
+msgstr "Прямоугольники"
+
+#. settings-schema.json->page-colors->title
+msgid "Colors"
+msgstr "Цвета"
+
+#. settings-schema.json->page-label->title
+#. settings-schema.json->sec-label->title
+msgid "Label"
+msgstr "Метка"
+
+#. settings-schema.json->page-behavior->title
+msgid "Behavior"
+msgstr "Поведение"
+
+#. settings-schema.json->sec-position->title
+msgid "Screen position"
+msgstr "Положение на экране"
+
+#. settings-schema.json->sec-arrangement->title
+msgid "Arrangement"
+msgstr "Компоновка"
+
+#. settings-schema.json->sec-size->title
+msgid "Size"
+msgstr "Размер"
+
+#. settings-schema.json->sec-border->title
+#. settings-schema.json->sec-border-colors->title
+msgid "Border"
+msgstr "Рамка"
+
+#. settings-schema.json->sec-bg->title
+msgid "Background"
+msgstr "Фон"
+
+#. settings-schema.json->sec-scroll->title
+msgid "Mouse wheel"
+msgstr "Колесо мыши"
+
+#. settings-schema.json->monitor->description
+msgid "Monitor"
+msgstr "Монитор"
+
+#. settings-schema.json->monitor->tooltip
+msgid "With Manual position the desklet stays where you drag it; All monitors then copies it to the same spot on every other monitor."
+msgstr "При ручном положении десклет остаётся там, куда вы его перетащили; «Все мониторы» копирует его в то же место на каждом другом мониторе."
+
+#. settings-schema.json->monitor->options
+msgid "Primary monitor"
+msgstr "Основной монитор"
+
+#. settings-schema.json->monitor->options
+msgid "All monitors"
+msgstr "Все мониторы"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 1"
+msgstr "Монитор 1"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 2"
+msgstr "Монитор 2"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 3"
+msgstr "Монитор 3"
+
+#. settings-schema.json->monitor->options
+msgid "Monitor 4"
+msgstr "Монитор 4"
+
+#. settings-schema.json->position->description
+msgid "Position"
+msgstr "Положение"
+
+#. settings-schema.json->position->options
+msgid "Manual (drag)"
+msgstr "Вручную (перетаскивание)"
+
+#. settings-schema.json->position->options
+msgid "Top left"
+msgstr "Вверху слева"
+
+#. settings-schema.json->position->options
+msgid "Top center"
+msgstr "Вверху по центру"
+
+#. settings-schema.json->position->options
+msgid "Top right"
+msgstr "Вверху справа"
+
+#. settings-schema.json->position->options
+msgid "Center left"
+msgstr "По центру слева"
+
+#. settings-schema.json->position->options
+msgid "Center center"
+msgstr "По центру"
+
+#. settings-schema.json->position->options
+msgid "Center right"
+msgstr "По центру справа"
+
+#. settings-schema.json->position->options
+msgid "Bottom left"
+msgstr "Внизу слева"
+
+#. settings-schema.json->position->options
+msgid "Bottom center"
+msgstr "Внизу по центру"
+
+#. settings-schema.json->position->options
+msgid "Bottom right"
+msgstr "Внизу справа"
+
+#. settings-schema.json->margin->units
+#. settings-schema.json->spacing->units
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+#. settings-schema.json->border-width->units
+#. settings-schema.json->border-width-active->units
+#. settings-schema.json->border-radius->units
+#. settings-schema.json->font-size->units
+msgid "px"
+msgstr "пикс."
+
+#. settings-schema.json->margin->description
+msgid "Margin from screen edge"
+msgstr "Отступ от края экрана"
+
+#. settings-schema.json->orientation->description
+msgid "Orientation"
+msgstr "Ориентация"
+
+#. settings-schema.json->orientation->options
+msgid "Horizontal"
+msgstr "По горизонтали"
+
+#. settings-schema.json->orientation->options
+msgid "Vertical"
+msgstr "По вертикали"
+
+#. settings-schema.json->per-line->description
+msgid "Rectangles per row/column (0 = all in one line)"
+msgstr "Прямоугольников в строке/столбце (0 = все в одну линию)"
+
+#. settings-schema.json->spacing->description
+msgid "Spacing between rectangles"
+msgstr "Расстояние между прямоугольниками"
+
+#. settings-schema.json->width->description
+msgid "Width"
+msgstr "Ширина"
+
+#. settings-schema.json->height->description
+msgid "Height"
+msgstr "Высота"
+
+#. settings-schema.json->shadow->description
+msgid "Drop shadow"
+msgstr "Тень"
+
+#. settings-schema.json->border-width->description
+msgid "Border width"
+msgstr "Толщина рамки"
+
+#. settings-schema.json->border-width-active->description
+msgid "Border width (active workspace)"
+msgstr "Толщина рамки (активная рабочая область)"
+
+#. settings-schema.json->border-radius->description
+msgid "Corner radius"
+msgstr "Радиус скругления углов"
+
+#. settings-schema.json->bg-color->description
+#. settings-schema.json->border-color->description
+msgid "Normal"
+msgstr "Обычный"
+
+#. settings-schema.json->bg-color-hover->description
+#. settings-schema.json->border-color-hover->description
+msgid "Hover"
+msgstr "При наведении"
+
+#. settings-schema.json->bg-color-active->description
+#. settings-schema.json->border-color-active->description
+msgid "Active workspace"
+msgstr "Активная рабочая область"
+
+#. settings-schema.json->label-mode->description
+msgid "Show"
+msgstr "Показывать"
+
+#. settings-schema.json->label-mode->options
+msgid "Nothing"
+msgstr "Ничего"
+
+#. settings-schema.json->label-mode->options
+msgid "Number (1, 2, 3)"
+msgstr "Номер (1, 2, 3)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals (I, II, III)"
+msgstr "Римские цифры (I, II, III)"
+
+#. settings-schema.json->label-mode->options
+msgid "Roman numerals lowercase (i, ii, iii)"
+msgstr "Строчные римские цифры (i, ii, iii)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters (A, B, C)"
+msgstr "Буквы (A, B, C)"
+
+#. settings-schema.json->label-mode->options
+msgid "Letters lowercase (a, b, c)"
+msgstr "Строчные буквы (a, b, c)"
+
+#. settings-schema.json->label-mode->options
+msgid "Workspace name"
+msgstr "Название рабочей области"
+
+#. settings-schema.json->custom-names->description
+msgid "Custom names (workspaces without one use the Cinnamon name)"
+msgstr "Свои названия (для рабочих областей без названия используется название из Cinnamon)"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Workspace"
+msgstr "Рабочая область"
+
+#. settings-schema.json->custom-names->columns->title
+msgid "Name"
+msgstr "Название"
+
+#. settings-schema.json->font-size->description
+msgid "Font size"
+msgstr "Размер шрифта"
+
+#. settings-schema.json->font-bold->description
+msgid "Bold"
+msgstr "Жирный"
+
+#. settings-schema.json->label-color->description
+msgid "Text color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->label-color-active->description
+msgid "Text color (active workspace)"
+msgstr "Цвет текста (активная рабочая область)"
+
+#. settings-schema.json->scroll-switch->description
+msgid "Scroll to switch workspace"
+msgstr "Переключать рабочие области колесом мыши"
+
+#. settings-schema.json->scroll-wrap->description
+msgid "Wrap around at first/last workspace"
+msgstr "Переходить от последней рабочей области к первой и обратно"

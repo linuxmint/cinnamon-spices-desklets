@@ -1,0 +1,346 @@
+{
+    "layout": {
+        "type": "layout",
+        "pages": [
+            "page-layout",
+            "page-rects",
+            "page-colors",
+            "page-label",
+            "page-behavior"
+        ],
+        "page-layout": {
+            "type": "page",
+            "title": "Layout",
+            "sections": [
+                "sec-position",
+                "sec-arrangement"
+            ]
+        },
+        "page-rects": {
+            "type": "page",
+            "title": "Rectangles",
+            "sections": [
+                "sec-size",
+                "sec-border"
+            ]
+        },
+        "page-colors": {
+            "type": "page",
+            "title": "Colors",
+            "sections": [
+                "sec-bg",
+                "sec-border-colors"
+            ]
+        },
+        "page-label": {
+            "type": "page",
+            "title": "Label",
+            "sections": [
+                "sec-label"
+            ]
+        },
+        "page-behavior": {
+            "type": "page",
+            "title": "Behavior",
+            "sections": [
+                "sec-scroll"
+            ]
+        },
+        "sec-position": {
+            "type": "section",
+            "title": "Screen position",
+            "keys": [
+                "monitor",
+                "position",
+                "margin"
+            ]
+        },
+        "sec-arrangement": {
+            "type": "section",
+            "title": "Arrangement",
+            "keys": [
+                "orientation",
+                "per-line",
+                "spacing"
+            ]
+        },
+        "sec-size": {
+            "type": "section",
+            "title": "Size",
+            "keys": [
+                "width",
+                "height",
+                "shadow"
+            ]
+        },
+        "sec-border": {
+            "type": "section",
+            "title": "Border",
+            "keys": [
+                "border-width",
+                "border-width-active",
+                "border-radius"
+            ]
+        },
+        "sec-bg": {
+            "type": "section",
+            "title": "Background",
+            "keys": [
+                "bg-color",
+                "bg-color-hover",
+                "bg-color-active"
+            ]
+        },
+        "sec-border-colors": {
+            "type": "section",
+            "title": "Border",
+            "keys": [
+                "border-color",
+                "border-color-hover",
+                "border-color-active"
+            ]
+        },
+        "sec-label": {
+            "type": "section",
+            "title": "Label",
+            "keys": [
+                "label-mode",
+                "custom-names",
+                "font-size",
+                "font-bold",
+                "label-color",
+                "label-color-active"
+            ]
+        },
+        "sec-scroll": {
+            "type": "section",
+            "title": "Mouse wheel",
+            "keys": [
+                "scroll-switch",
+                "scroll-wrap"
+            ]
+        }
+    },
+    "monitor": {
+        "type": "combobox",
+        "default": "primary",
+        "description": "Monitor",
+        "tooltip": "With Manual position the desklet stays where you drag it; All monitors then copies it to the same spot on every other monitor.",
+        "options": {
+            "Primary monitor": "primary",
+            "All monitors": "all",
+            "Monitor 1": "0",
+            "Monitor 2": "1",
+            "Monitor 3": "2",
+            "Monitor 4": "3"
+        }
+    },
+    "position": {
+        "type": "combobox",
+        "default": "manual",
+        "description": "Position",
+        "options": {
+            "Manual (drag)": "manual",
+            "Top left": "top-left",
+            "Top center": "top-center",
+            "Top right": "top-right",
+            "Center left": "center-left",
+            "Center center": "center-center",
+            "Center right": "center-right",
+            "Bottom left": "bottom-left",
+            "Bottom center": "bottom-center",
+            "Bottom right": "bottom-right"
+        }
+    },
+    "margin": {
+        "type": "spinbutton",
+        "default": 20,
+        "min": 0,
+        "max": 500,
+        "step": 1,
+        "units": "px",
+        "description": "Margin from screen edge",
+        "dependency": "position!=manual"
+    },
+    "orientation": {
+        "type": "combobox",
+        "default": "horizontal",
+        "description": "Orientation",
+        "options": {
+            "Horizontal": "horizontal",
+            "Vertical": "vertical"
+        }
+    },
+    "per-line": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 36,
+        "step": 1,
+        "units": "",
+        "description": "Rectangles per row/column (0 = all in one line)"
+    },
+    "spacing": {
+        "type": "spinbutton",
+        "default": 8,
+        "min": 0,
+        "max": 100,
+        "step": 1,
+        "units": "px",
+        "description": "Spacing between rectangles"
+    },
+    "width": {
+        "type": "spinbutton",
+        "default": 80,
+        "min": 8,
+        "max": 800,
+        "step": 1,
+        "units": "px",
+        "description": "Width"
+    },
+    "height": {
+        "type": "spinbutton",
+        "default": 50,
+        "min": 8,
+        "max": 800,
+        "step": 1,
+        "units": "px",
+        "description": "Height"
+    },
+    "shadow": {
+        "type": "switch",
+        "default": false,
+        "description": "Drop shadow"
+    },
+    "border-width": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "units": "px",
+        "description": "Border width"
+    },
+    "border-width-active": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 0,
+        "max": 20,
+        "step": 1,
+        "units": "px",
+        "description": "Border width (active workspace)"
+    },
+    "border-radius": {
+        "type": "spinbutton",
+        "default": 0,
+        "min": 0,
+        "max": 400,
+        "step": 1,
+        "units": "px",
+        "description": "Corner radius"
+    },
+    "bg-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.08)",
+        "description": "Normal"
+    },
+    "bg-color-hover": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.18)",
+        "description": "Hover"
+    },
+    "bg-color-active": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.25)",
+        "description": "Active workspace"
+    },
+    "border-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.7)",
+        "description": "Normal"
+    },
+    "border-color-hover": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.7)",
+        "description": "Hover"
+    },
+    "border-color-active": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,1)",
+        "description": "Active workspace"
+    },
+    "label-mode": {
+        "type": "combobox",
+        "default": "none",
+        "description": "Show",
+        "options": {
+            "Nothing": "none",
+            "Number (1, 2, 3)": "number",
+            "Roman numerals (I, II, III)": "roman",
+            "Roman numerals lowercase (i, ii, iii)": "roman-lower",
+            "Letters (A, B, C)": "letter",
+            "Letters lowercase (a, b, c)": "letter-lower",
+            "Workspace name": "name"
+        }
+    },
+    "custom-names": {
+        "type": "list",
+        "description": "Custom names (workspaces without one use the Cinnamon name)",
+        "columns": [
+            {
+                "id": "workspace",
+                "title": "Workspace",
+                "type": "integer",
+                "min": 1,
+                "max": 36,
+                "default": 1
+            },
+            {
+                "id": "name",
+                "title": "Name",
+                "type": "string"
+            }
+        ],
+        "default": [],
+        "dependency": "label-mode=name"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 6,
+        "max": 96,
+        "step": 1,
+        "units": "px",
+        "description": "Font size",
+        "dependency": "label-mode!=none"
+    },
+    "font-bold": {
+        "type": "switch",
+        "default": false,
+        "description": "Bold",
+        "dependency": "label-mode!=none"
+    },
+    "label-color": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,0.7)",
+        "description": "Text color",
+        "dependency": "label-mode!=none"
+    },
+    "label-color-active": {
+        "type": "colorchooser",
+        "default": "rgba(255,255,255,1)",
+        "description": "Text color (active workspace)",
+        "dependency": "label-mode!=none"
+    },
+    "scroll-switch": {
+        "type": "switch",
+        "default": true,
+        "description": "Scroll to switch workspace"
+    },
+    "scroll-wrap": {
+        "type": "switch",
+        "default": false,
+        "description": "Wrap around at first/last workspace",
+        "dependency": "scroll-switch"
+    }
+}
