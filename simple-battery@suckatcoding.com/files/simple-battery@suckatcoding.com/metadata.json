@@ -1,0 +1,7 @@
+{
+    "uuid": "simple-battery@suckatcoding.com",
+    "name": "Simple Battery",
+    "description": "Displays battery status, uptime, and usage in a sleek, minimalist progress bar.",
+    "prevent-decorations": true,
+    "version": "1.0.0"
+}
