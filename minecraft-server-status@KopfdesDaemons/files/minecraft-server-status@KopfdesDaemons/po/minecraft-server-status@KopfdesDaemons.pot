@@ -1,0 +1,117 @@
+# MINECRAFT SERVER STATUS
+# This file is put in the public domain.
+# KopfdesDaemons, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: minecraft-server-status@KopfdesDaemons 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-22 23:29+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:29 helpers/ui.js:22
+msgid "Minecraft Server Status"
+msgstr ""
+
+#. desklet.js:30 helpers/ui.js:42
+msgid "Reload"
+msgstr ""
+
+#. helpers/ui.js:55
+msgid "Add server in the desklet settings."
+msgstr ""
+
+#. helpers/ui.js:99
+#, javascript-format
+msgid "%s ms"
+msgstr ""
+
+#. helpers/ui.js:162
+msgid "Loading..."
+msgstr ""
+
+#. helpers/ui.js:193
+msgid "Error loading status"
+msgstr ""
+
+#. metadata.json->description
+msgid "Displays up status and player count of a Minecraft server."
+msgstr ""
+
+#. settings-schema.json->server-page->title
+#. settings-schema.json->server-section->title
+msgid "Server"
+msgstr ""
+
+#. settings-schema.json->style-page->title
+msgid "Style"
+msgstr ""
+
+#. settings-schema.json->size-section->title
+msgid "Size"
+msgstr ""
+
+#. settings-schema.json->background-section->title
+msgid "Background"
+msgstr ""
+
+#. settings-schema.json->layout-section->title
+msgid "Layout"
+msgstr ""
+
+#. settings-schema.json->font-section->title
+msgid "Font"
+msgstr ""
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr ""
+
+#. settings-schema.json->server-addresses->columns->title
+msgid "Name"
+msgstr ""
+
+#. settings-schema.json->server-addresses->columns->title
+msgid "Address"
+msgstr ""
+
+#. settings-schema.json->max-height->units
+msgid "em"
+msgstr ""
+
+#. settings-schema.json->max-height->description
+msgid "Max height"
+msgstr ""
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->units
+msgid "minutes"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->show-header->description
+msgid "Show header"
+msgstr ""
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr ""
