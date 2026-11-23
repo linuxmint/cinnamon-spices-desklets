@@ -1,0 +1,46 @@
+{
+    "head": {
+        "type": "header",
+        "description": "Desktop Clock"
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Hide frame / decorations"
+    },
+    "size": {
+        "type": "spinbutton",
+        "default": 180,
+        "min": 64,
+        "max": 640,
+        "step": 8,
+        "units": "pixels",
+        "description": "Clock size"
+    },
+    "show-seconds": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Second hand"
+    },
+    "show-digital": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Digital time underneath"
+    },
+    "hour24": {
+        "type": "checkbox",
+        "default": false,
+        "description": "24-hour digital time"
+    },
+    "show-ticks": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Tick marks"
+    },
+    "face-image": {
+        "type": "filechooser",
+        "default": "",
+        "description": "Clock face image (PNG with transparency)",
+        "select-dir": false
+    }
+}
