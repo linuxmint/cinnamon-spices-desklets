@@ -1,0 +1,77 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "colors-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["general-section"]
+    },
+    "colors-page": {
+      "type": "page",
+      "title": "Colors",
+      "sections": ["accent-section", "text-section", "background-section"]
+    },
+    "general-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["show-headline", "loading-animation", "hide-decorations"]
+    },
+    "accent-section": {
+      "type": "section",
+      "title": "Accent",
+      "keys": ["show-accent-color", "accent-color"]
+    },
+    "text-section": {
+      "type": "section",
+      "title": "Text",
+      "keys": ["label-color", "values-color"]
+    },
+    "background-section": {
+      "type": "section",
+      "title": "Background",
+      "keys": ["row-background-color"]
+    }
+  },
+  "show-headline": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show headline"
+  },
+  "loading-animation": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Loading animation"
+  },
+  "show-accent-color": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show accent color"
+  },
+  "accent-color": {
+    "type": "colorchooser",
+    "default": "rgb(47, 255, 82)",
+    "description": "Accent color",
+    "dependency": "show-accent-color=true"
+  },
+  "label-color": {
+    "type": "colorchooser",
+    "default": "rgb(255, 255, 255)",
+    "description": "Label color"
+  },
+  "values-color": {
+    "type": "colorchooser",
+    "default": "rgb(255, 255, 255)",
+    "description": "Values color"
+  },
+  "row-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(0, 0, 0, 0.253)",
+    "description": "Row background color"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": false
+  }
+}
