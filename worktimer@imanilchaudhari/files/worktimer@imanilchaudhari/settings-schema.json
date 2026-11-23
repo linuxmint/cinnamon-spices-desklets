@@ -1,0 +1,50 @@
+{
+  "working-hours": {
+    "type": "spinbutton",
+    "default": 8,
+    "min": 1,
+    "max": 16,
+    "step": 1,
+    "units": "hours",
+    "description": "Working hours per session",
+    "tooltip": "Total hours in your work session"
+  },
+  "reminder-interval": {
+    "type": "combobox",
+    "default": 60,
+    "options": {
+      "Every 5 minutes": 5,
+      "Every 15 minutes": 15,
+      "Every 30 minutes": 30,
+      "Every hour": 60
+    },
+    "description": "Periodic reminder interval",
+    "tooltip": "How often to receive remaining-time reminders"
+  },
+  "show-seconds": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show seconds in display"
+  },
+  "sound-enabled": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Play sound on reminders"
+  },
+  "reminder-sound": {
+    "type": "combobox",
+    "default": "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga",
+    "options": {
+      "Alarm Clock": "/usr/share/sounds/freedesktop/stereo/alarm-clock-elapsed.oga",
+      "Bell": "/usr/share/sounds/freedesktop/stereo/bell.oga",
+      "Complete": "/usr/share/sounds/freedesktop/stereo/complete.oga",
+      "Message": "/usr/share/sounds/freedesktop/stereo/message-new-instant.oga",
+      "Attention": "/usr/share/sounds/freedesktop/stereo/window-attention.oga",
+      "Warning": "/usr/share/sounds/freedesktop/stereo/dialog-warning.oga",
+      "Mint: Dialog": "/usr/share/sounds/LinuxMint/stereo/dialog-information.ogg",
+      "Mint: System Ready": "/usr/share/sounds/LinuxMint/stereo/system-ready.ogg"
+    },
+    "description": "Reminder sound",
+    "tooltip": "Sound to play when a reminder fires"
+  }
+}

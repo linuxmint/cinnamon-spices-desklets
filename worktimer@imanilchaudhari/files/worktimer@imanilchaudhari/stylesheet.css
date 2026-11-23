@@ -1,0 +1,85 @@
+.wt-root {
+    padding: 14px 16px;
+    spacing: 8px;
+    background-color: rgba(10, 10, 20, 0.88);
+    border-radius: 14px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    min-width: 220px;
+}
+
+.wt-title {
+    font-size: 11px;
+    font-weight: bold;
+    color: rgba(255, 255, 255, 0.45);
+    letter-spacing: 2px;
+}
+
+.wt-clock {
+    font-size: 46px;
+    font-weight: bold;
+    font-family: monospace;
+    color: #4ade80;
+}
+
+.wt-sublabel {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.55);
+}
+
+.wt-bar-bg {
+    height: 6px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    /* clip child to rounded corners */
+}
+
+.wt-bar-fill {
+    height: 6px;
+    border-radius: 3px;
+    background-color: #4ade80;
+    /* width is set dynamically in JS */
+    transition-duration: 800;
+}
+
+.wt-status {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.4);
+}
+
+.wt-btnrow {
+    spacing: 8px;
+}
+
+.wt-btn {
+    border-radius: 7px;
+    padding: 5px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    border: none;
+}
+
+.wt-btn-primary {
+    background-color: #166534;
+    color: #ffffff;
+}
+
+.wt-btn-primary:hover {
+    background-color: #15803d;
+}
+
+.wt-btn-primary:active {
+    background-color: #14532d;
+}
+
+.wt-btn-secondary {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.wt-btn-secondary:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.wt-btn-secondary:active {
+    background-color: rgba(255, 255, 255, 0.06);
+}

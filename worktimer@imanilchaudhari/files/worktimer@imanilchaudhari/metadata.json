@@ -1,0 +1,8 @@
+{
+  "uuid": "worktimer@imanilchaudhari",
+  "name": "Work Timer",
+  "description": "Work session timer with hourly reminders showing remaining time",
+  "version": "1.0.0",
+  "author": "imanilchaudhari",
+  "max-instances": 1
+}
