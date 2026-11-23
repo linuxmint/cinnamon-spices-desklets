@@ -1,0 +1,580 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": ["general", "appearance", "ring", "vertical", "advanced"],
+    
+    "general": {
+      "type": "page",
+      "title": "General",
+      "sections": ["s-options", "s-behavior", "s-motion"]
+    },
+    "appearance": {
+      "type": "page",
+      "title": "Appearance",
+      "sections": ["s-appearance-visual", "s-appearance-theme", "s-appearance-caps", "s-appearance-shades"]
+    },
+    "ring": {
+      "type": "page",
+      "title": "Circular",
+      "sections": ["s-ring-general", "s-ring-rotation"]
+    },
+    "vertical": {
+      "type": "page",
+      "title": "Vertical",
+      "sections": ["s-bars-general", "s-bars-bars"]
+    },
+    "advanced": {
+      "type": "page",
+      "title": "Advanced",
+      "sections": ["s-advanced-preset", "s-advanced-motion", "s-advanced-canvas"]
+    },
+    
+    
+    
+    "s-options": {
+      "type": "section",
+      "title": "Options",
+      "keys": ["style", "threshold", "max_fps"]
+    },
+    "s-behavior": {
+      "type": "section",
+      "title": "Behavior",
+      "keys": ["scroll_resize"]
+    },
+    
+    "s-motion": {
+      "type": "section",
+      "title": "Motion",
+      "keys": ["noise_reduction", "smooth_filter", "smooth_amount", "autosens", "sensitivity"]
+    },
+    
+    "s-appearance-visual": {
+      "type": "section",
+      "title": "Visual",
+      "keys": ["background_enabled", "background_color", "border_color"]
+    },
+    "s-appearance-theme": {
+      "type": "section",
+      "title": "Theme",
+      "keys": ["theme", "color_from", "color_to", "cap_color", "accent_color"]
+    },
+    "s-appearance-caps": {
+      "type": "section",
+      "title": "Peak Caps",
+      "keys": ["cap_enabled", "cap_size", "cap_fall_animation", "cap_fall"]
+    },
+    "s-appearance-shades": {
+      "type": "section",
+      "title": "Shades",
+      "keys": ["glow_enabled", "glow_strength", "glow_radius", "glow_core", "shade", "shade_intensity", "shade_speed"]
+    },
+    
+    
+    "s-ring-general": {
+      "type": "section",
+      "title": "General",
+      "keys": [
+        "ring_size",
+        "ring_substyle",
+        "ring_bar_fill",
+        "ring_bars",
+        "ring_mirror",
+        
+        "ring_inner_radius", "ring_inner_width", "ring_min_length"
+      ]
+    },
+    "s-ring-rotation": {
+      "type": "section",
+      "title": "Ring Rotation",
+      "keys": [
+        "ring_rotation",
+        "ring_rotation_react",
+        "ring_rotation_spectral"
+      ]
+    },
+    
+    
+    "s-bars-general": {
+      "type": "section",
+      "title": "General",
+      "keys": ["bars_width", "bars_substyle", "bars_fill", "bars_line_width"]
+    },
+    "s-bars-bars": {
+      "type": "section",
+      "title": "Bands",
+      "keys": ["bars_count", "bars_mirror", "bars_min_length"]
+    },
+    
+    
+    "s-advanced-preset": {
+      "type": "section",
+      "title": "Preset",
+      "keys": ["advanced_preset"]
+    },
+    "s-advanced-canvas": {
+      "type": "section",
+      "title": "Canvas",
+      "keys": ["advanced_size"]
+    },
+    "s-advanced-motion": {
+      "type": "section",
+      "title": "Motion",
+      "keys": ["advanced_intensity", "advanced_speed"]
+    }
+  },
+  
+  
+  "style": {
+    "type": "combobox",
+    "default": "ring",
+    "description": "Visualizer Style",
+    "options": {
+      "Circular": "ring",
+      "Vertical": "bars",
+      "Advanced": "advanced"
+    }
+  },
+  "threshold": {
+    "type": "spinbutton",
+    "default": -72,
+    "min": -100,
+    "max": -10,
+    "step": 1,
+    "units": "dB",
+    "description": "Silence Threshold"
+  },
+  "max_fps": {
+    "type": "spinbutton",
+    "default": 60,
+    "min": 10,
+    "max": 144,
+    "step": 1,
+    "units": "FPS",
+    "description": "Render Rate"
+  },
+  "source": {
+    "type": "entry",
+    "default": "",
+    "description": "Capture source override (empty = auto)"
+  },
+  
+  "scroll_resize": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Resize with Scroll"
+  },
+  
+  "noise_reduction": {
+    "type": "scale",
+    "default": 0.65,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Noise Reduction"
+  },
+  "smooth_filter": {
+    "type": "combobox",
+    "default": "smooth",
+    "description": "Frequency Smoothing Filter",
+    "options": {
+      "Off": "off",
+      "Monstercat": "monstercat",
+      "Skirt (Winamp Style)": "skirt",
+      "Smooth": "smooth",
+      "Gaussian": "gaussian"
+    }
+  },
+  "smooth_amount": {
+    "type": "scale",
+    "default": 0.65,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Frequency Smoothing Amount"
+  },
+  "autosens": {
+    "type": "scale",
+    "default": 2,
+    "min": 0,
+    "max": 5,
+    "step": 1,
+    "description": "Auto Sensitivity (0 = off)"
+  },
+  "sensitivity": {
+    "type": "scale",
+    "default": 100,
+    "min": 1,
+    "max": 400,
+    "step": 1,
+    "dependency": "autosens=0",
+    "description": "Manual sensitivity (used when auto-sens is off)"
+  },
+  
+  
+  "background_enabled": {
+    "type": "switch",
+    "default": false,
+    "description": "Show Desklet Background",
+    "tooltip": "Off (default) removes Cinnamon's desklet background and border."
+  },
+  "background_color": {
+    "type": "colorchooser",
+    "default": "rgba(0,0,0,0.35)",
+    "description": "Background Color",
+    "dependency": "background_enabled",
+    "indent": true
+  },
+  "border_color": {
+    "type": "colorchooser",
+    "default": "rgba(255,255,255,0.15)",
+    "description": "Border Color",
+    "dependency": "background_enabled",
+    "indent": true
+  },
+  
+  "theme": {
+    "type": "combobox",
+    "default": "neon",
+    "description": "Color Theme",
+    "tooltip": "Pick a preset, or Custom to use your own colors.",
+    "options": {
+      "Neon": "neon",
+      "Sunset": "sunset",
+      "Mono": "mono",
+      "Matrix": "matrix",
+      "Vaporwave": "vaporwave",
+      "Cyberpunk": "cyberpunk",
+      "Tron": "tron",
+      "Custom": "user"
+    }
+  },
+  "color_from": {
+    "type": "colorchooser",
+    "default": "rgba(204,40,149,0.8)",
+    "description": "Low amplitude color",
+    "dependency": "theme=user",
+    "indent": true
+  },
+  "color_to": {
+    "type": "colorchooser",
+    "default": "rgba(255,208,65,0.8)",
+    "description": "High amplitude color",
+    "dependency": "theme=user",
+    "indent": true
+  },
+  "cap_color": {
+    "type": "colorchooser",
+    "default": "rgba(0,0,0,0.6)",
+    "description": "Peak cap color",
+    "dependency": "theme=user",
+    "indent": true
+  },
+  "accent_color": {
+    "type": "colorchooser",
+    "default": "rgba(99, 69, 44, 0.6)",
+    "description": "Inner ring / accent color",
+    "dependency": "theme=user",
+    "indent": true
+  },
+  
+  
+  "cap_enabled": {
+    "type": "switch",
+    "default": true,
+    "description": "Show Peak Caps"
+  },
+  "cap_size": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 10,
+    "step": 1,
+    "units": "px",
+    "dependency": "cap_enabled=true",
+    "description": "Peak Cap Thickness"
+  },
+  "cap_fall_animation": {
+    "type": "combobox",
+    "default": "ease_out",
+    "dependency": "cap_enabled=true",
+    "description": "Cap Fall Effect",
+    "options": {
+      "Linear": "linear",
+      "Ease Out": "ease_out",
+      "Ease In Out": "ease_in_out",
+      "Ease Out Bounce": "ease_out_bounce"
+    }
+  },
+  "cap_fall": {
+    "type": "scale",
+    "default": 0.5,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "dependency": "cap_enabled=true",
+    "description": "Cap Fall Speed"
+  },
+  "glow_enabled": {
+    "type": "switch",
+    "default": false,
+    "description": "Glow"
+  },
+  "glow_strength": {
+    "type": "scale",
+    "default": 1.3,
+    "min": 0.1,
+    "max": 3.0,
+    "step": 0.01,
+    "dependency": "glow_enabled=true",
+    "description": "Glow Strength"
+  },
+  "glow_radius": {
+    "type": "scale",
+    "default": 6,
+    "min": 2,
+    "max": 40,
+    "step": 1,
+    "units": "px",
+    "dependency": "glow_enabled=true",
+    "description": "Glow Radius"
+  },
+  "glow_core": {
+    "type": "scale",
+    "default": 0.10,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "dependency": "glow_enabled=true",
+    "description": "Core Boost"
+  },
+  "shade": {
+    "type": "combobox",
+    "default": "none",
+    "description": "Shade effect",
+    "options": {
+      "None": "none",
+      "Chromatic aberration": "chroma",
+      "CRT": "crt",
+      "Heat haze": "haze",
+      "Glitch": "glitch",
+      "Hue cycle": "hue",
+      "Outline": "outline",
+      "Vignette": "vignette",
+      "Scanlines": "scanlines",
+      "Film grain": "grain",
+      "Beat flash": "flash"
+    }
+  },
+  "shade_intensity": {
+    "type": "scale",
+    "default": 0.5,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Shade intensity"
+  },
+  "shade_speed": {
+    "type": "scale",
+    "default": 1.0,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 0.01,
+    "description": "Shade animation speed"
+  },
+  
+  
+  
+  
+  
+  "ring_size": {
+    "type": "spinbutton",
+    "default": 250,
+    "min": 100,
+    "max": 1000,
+    "step": 10,
+    "units": "px",
+    "description": "Ring Canvas Size (square)"
+  },
+  "ring_substyle": {
+    "type": "combobox",
+    "default": "bars",
+    "description": "Ring Substyle",
+    "options": {
+      "Radial Bars": "bars",
+      "Area": "area"
+    }
+  },
+  "ring_bar_fill": {
+    "type": "spinbutton",
+    "default": 0.85,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.01,
+    "dependency": "ring_substyle=bars",
+    "description": "Bar Width (fraction of slot)"
+  },
+  "ring_inner_radius": {
+    "type": "spinbutton",
+    "default": 7,
+    "min": 1,
+    "max": 25,
+    "step": 1,
+    "description": "Inner ring radius (%)"
+  },
+  "ring_inner_width": {
+    "type": "spinbutton",
+    "default": 3,
+    "min": 0,
+    "max": 10,
+    "step": 0.1,
+    "description": "Inner ring stroke width"
+  },
+  "ring_min_length": {
+    "type": "spinbutton",
+    "default": 3,
+    "min": 1,
+    "max": 10,
+    "step": 0.1,
+    "description": "Baseline bar length (px)"
+  },
+  "ring_rotation": {
+    "type": "scale",
+    "default": 0,
+    "min": -60,
+    "max": 60,
+    "step": 1,
+    "description": "Constant Rotation (degrees/second)"
+  },
+  "ring_rotation_react": {
+    "type": "scale",
+    "default": 0.0,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Reaction to Beats Rotation Multiplier"
+  },
+  "ring_rotation_spectral": {
+    "type": "scale",
+    "default": 0.6,
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.01,
+    "description": "Rotation Multiplier Bias by Spectral Centroid"
+  },
+  
+  "bars_substyle": {
+    "type": "combobox",
+    "default": "bars",
+    "description": "Bars substyle",
+    "options": {
+      "Vertical Bars": "bars",
+      "Area": "area",
+      "Line": "line"
+    }
+  },
+  "ring_bars": {
+    "type": "spinbutton",
+    "default": 64,
+    "min": 8,
+    "max": 512,
+    "step": 8,
+    "description": "Number of Bars"
+  },
+  "ring_mirror": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Mirror (4-fold symmetry)"
+  },
+  
+  
+  
+  
+  "bars_width": {
+    "type": "spinbutton",
+    "default": 400,
+    "min": 100,
+    "max": 2000,
+    "step": 10,
+    "units": "px",
+    "description": "Canvas Width"
+  },
+  "bars_fill": {
+    "type": "spinbutton",
+    "default": 0.85,
+    "min": 0.1,
+    "max": 1.0,
+    "step": 0.01,
+    "dependency": "bars_substyle=bars",
+    "description": "Bar Width (fraction of slot)"
+  },
+  "bars_line_width": {
+    "type": "spinbutton",
+    "default": 2,
+    "min": 1,
+    "max": 20,
+    "step": 1,
+    "units": "px",
+    "dependency": "bars_substyle=line",
+    "description": "Line thickness"
+  },
+  "bars_min_length": {
+    "type": "spinbutton",
+    "default": 3,
+    "min": 1,
+    "max": 10,
+    "step": 0.1,
+    "description": "Baseline bar length (px)"
+  },
+  "bars_count": {
+    "type": "spinbutton",
+    "default": 64,
+    "min": 8,
+    "max": 512,
+    "step": 8,
+    "description": "Number of bars"
+  },
+  "bars_mirror": {
+    "type": "checkbox",
+    "default": false,
+    "description": "Grow Bars from the center (top-bottom mirror)"
+  },
+  
+  "advanced_preset": {
+    "type": "combobox",
+    "default": "fire_ring",
+    "description": "Advanced preset",
+    "options": {
+      "Fire Ring": "fire_ring",
+      "Sunset": "sunset"
+    }
+  },
+  "advanced_size": {
+    "type": "spinbutton",
+    "default": 300,
+    "min": 100,
+    "max": 1200,
+    "step": 10,
+    "units": "px",
+    "description": "Advanced canvas width (height follows the preset aspect)"
+  },
+  "advanced_intensity": {
+    "type": "scale",
+    "default": 1.0,
+    "min": 0.0,
+    "max": 2.0,
+    "step": 0.01,
+    "description": "Effect intensity (1.0 = default)"
+  },
+  "advanced_speed": {
+    "type": "scale",
+    "default": 1.0,
+    "min": 0.0,
+    "max": 3.0,
+    "step": 0.01,
+    "description": "Animation speed"
+  },
+  "position": {
+    "type": "generic",
+    "default": {}
+  }
+}

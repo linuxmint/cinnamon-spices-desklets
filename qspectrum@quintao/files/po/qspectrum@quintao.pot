@@ -1,0 +1,455 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-11-23 14:26+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+msgid "QSpectrum"
+msgstr ""
+
+#. metadata.json->description
+msgid ""
+"Bring your Cinnamon desktop to life with a sleek, real-time audio visualizer"
+" that transforms sound into beautiful, fluid motion."
+msgstr ""
+
+#. settings-schema.json->general->title
+#. settings-schema.json->s-ring-general->title
+#. settings-schema.json->s-bars-general->title
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->appearance->title
+msgid "Appearance"
+msgstr ""
+
+#. settings-schema.json->ring->title
+#. settings-schema.json->style->options
+msgid "Circular"
+msgstr ""
+
+#. settings-schema.json->vertical->title
+#. settings-schema.json->style->options
+msgid "Vertical"
+msgstr ""
+
+#. settings-schema.json->advanced->title
+#. settings-schema.json->style->options
+msgid "Advanced"
+msgstr ""
+
+#. settings-schema.json->s-options->title
+msgid "Options"
+msgstr ""
+
+#. settings-schema.json->s-behavior->title
+msgid "Behavior"
+msgstr ""
+
+#. settings-schema.json->s-motion->title
+#. settings-schema.json->s-advanced-motion->title
+msgid "Motion"
+msgstr ""
+
+#. settings-schema.json->s-appearance-visual->title
+msgid "Visual"
+msgstr ""
+
+#. settings-schema.json->s-appearance-theme->title
+msgid "Theme"
+msgstr ""
+
+#. settings-schema.json->s-appearance-caps->title
+msgid "Peak Caps"
+msgstr ""
+
+#. settings-schema.json->s-appearance-shades->title
+msgid "Shades"
+msgstr ""
+
+#. settings-schema.json->s-ring-rotation->title
+msgid "Ring Rotation"
+msgstr ""
+
+#. settings-schema.json->s-bars-bars->title
+msgid "Bands"
+msgstr ""
+
+#. settings-schema.json->s-advanced-preset->title
+msgid "Preset"
+msgstr ""
+
+#. settings-schema.json->s-advanced-canvas->title
+msgid "Canvas"
+msgstr ""
+
+#. settings-schema.json->style->description
+msgid "Visualizer Style"
+msgstr ""
+
+#. settings-schema.json->threshold->units
+msgid "dB"
+msgstr ""
+
+#. settings-schema.json->threshold->description
+msgid "Silence Threshold"
+msgstr ""
+
+#. settings-schema.json->max_fps->units
+msgid "FPS"
+msgstr ""
+
+#. settings-schema.json->max_fps->description
+msgid "Render Rate"
+msgstr ""
+
+#. settings-schema.json->source->description
+msgid "Capture source override (empty = auto)"
+msgstr ""
+
+#. settings-schema.json->scroll_resize->description
+msgid "Resize with Scroll"
+msgstr ""
+
+#. settings-schema.json->noise_reduction->description
+msgid "Noise Reduction"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->description
+msgid "Frequency Smoothing Filter"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->options
+msgid "Off"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->options
+msgid "Monstercat"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->options
+msgid "Skirt (Winamp Style)"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->options
+msgid "Smooth"
+msgstr ""
+
+#. settings-schema.json->smooth_filter->options
+msgid "Gaussian"
+msgstr ""
+
+#. settings-schema.json->smooth_amount->description
+msgid "Frequency Smoothing Amount"
+msgstr ""
+
+#. settings-schema.json->autosens->description
+msgid "Auto Sensitivity (0 = off)"
+msgstr ""
+
+#. settings-schema.json->sensitivity->description
+msgid "Manual sensitivity (used when auto-sens is off)"
+msgstr ""
+
+#. settings-schema.json->background_enabled->description
+msgid "Show Desklet Background"
+msgstr ""
+
+#. settings-schema.json->background_enabled->tooltip
+msgid "Off (default) removes Cinnamon's desklet background and border."
+msgstr ""
+
+#. settings-schema.json->background_color->description
+msgid "Background Color"
+msgstr ""
+
+#. settings-schema.json->border_color->description
+msgid "Border Color"
+msgstr ""
+
+#. settings-schema.json->theme->description
+msgid "Color Theme"
+msgstr ""
+
+#. settings-schema.json->theme->tooltip
+msgid "Pick a preset, or Custom to use your own colors."
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Neon"
+msgstr ""
+
+#. settings-schema.json->theme->options
+#. settings-schema.json->advanced_preset->options
+msgid "Sunset"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Mono"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Matrix"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Vaporwave"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Cyberpunk"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Tron"
+msgstr ""
+
+#. settings-schema.json->theme->options
+msgid "Custom"
+msgstr ""
+
+#. settings-schema.json->color_from->description
+msgid "Low amplitude color"
+msgstr ""
+
+#. settings-schema.json->color_to->description
+msgid "High amplitude color"
+msgstr ""
+
+#. settings-schema.json->cap_color->description
+msgid "Peak cap color"
+msgstr ""
+
+#. settings-schema.json->accent_color->description
+msgid "Inner ring / accent color"
+msgstr ""
+
+#. settings-schema.json->cap_enabled->description
+msgid "Show Peak Caps"
+msgstr ""
+
+#. settings-schema.json->cap_size->units
+#. settings-schema.json->glow_radius->units
+#. settings-schema.json->ring_size->units
+#. settings-schema.json->bars_width->units
+#. settings-schema.json->bars_line_width->units
+#. settings-schema.json->advanced_size->units
+msgid "px"
+msgstr ""
+
+#. settings-schema.json->cap_size->description
+msgid "Peak Cap Thickness"
+msgstr ""
+
+#. settings-schema.json->cap_fall_animation->description
+msgid "Cap Fall Effect"
+msgstr ""
+
+#. settings-schema.json->cap_fall_animation->options
+msgid "Linear"
+msgstr ""
+
+#. settings-schema.json->cap_fall_animation->options
+msgid "Ease Out"
+msgstr ""
+
+#. settings-schema.json->cap_fall_animation->options
+msgid "Ease In Out"
+msgstr ""
+
+#. settings-schema.json->cap_fall_animation->options
+msgid "Ease Out Bounce"
+msgstr ""
+
+#. settings-schema.json->cap_fall->description
+msgid "Cap Fall Speed"
+msgstr ""
+
+#. settings-schema.json->glow_enabled->description
+msgid "Glow"
+msgstr ""
+
+#. settings-schema.json->glow_strength->description
+msgid "Glow Strength"
+msgstr ""
+
+#. settings-schema.json->glow_radius->description
+msgid "Glow Radius"
+msgstr ""
+
+#. settings-schema.json->glow_core->description
+msgid "Core Boost"
+msgstr ""
+
+#. settings-schema.json->shade->description
+msgid "Shade effect"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "None"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Chromatic aberration"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "CRT"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Heat haze"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Glitch"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Hue cycle"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Outline"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Vignette"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Scanlines"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Film grain"
+msgstr ""
+
+#. settings-schema.json->shade->options
+msgid "Beat flash"
+msgstr ""
+
+#. settings-schema.json->shade_intensity->description
+msgid "Shade intensity"
+msgstr ""
+
+#. settings-schema.json->shade_speed->description
+msgid "Shade animation speed"
+msgstr ""
+
+#. settings-schema.json->ring_size->description
+msgid "Ring Canvas Size (square)"
+msgstr ""
+
+#. settings-schema.json->ring_substyle->description
+msgid "Ring Substyle"
+msgstr ""
+
+#. settings-schema.json->ring_substyle->options
+msgid "Radial Bars"
+msgstr ""
+
+#. settings-schema.json->ring_substyle->options
+#. settings-schema.json->bars_substyle->options
+msgid "Area"
+msgstr ""
+
+#. settings-schema.json->ring_bar_fill->description
+#. settings-schema.json->bars_fill->description
+msgid "Bar Width (fraction of slot)"
+msgstr ""
+
+#. settings-schema.json->ring_inner_radius->description
+msgid "Inner ring radius (%)"
+msgstr ""
+
+#. settings-schema.json->ring_inner_width->description
+msgid "Inner ring stroke width"
+msgstr ""
+
+#. settings-schema.json->ring_min_length->description
+#. settings-schema.json->bars_min_length->description
+msgid "Baseline bar length (px)"
+msgstr ""
+
+#. settings-schema.json->ring_rotation->description
+msgid "Constant Rotation (degrees/second)"
+msgstr ""
+
+#. settings-schema.json->ring_rotation_react->description
+msgid "Reaction to Beats Rotation Multiplier"
+msgstr ""
+
+#. settings-schema.json->ring_rotation_spectral->description
+msgid "Rotation Multiplier Bias by Spectral Centroid"
+msgstr ""
+
+#. settings-schema.json->bars_substyle->description
+msgid "Bars substyle"
+msgstr ""
+
+#. settings-schema.json->bars_substyle->options
+msgid "Vertical Bars"
+msgstr ""
+
+#. settings-schema.json->bars_substyle->options
+msgid "Line"
+msgstr ""
+
+#. settings-schema.json->ring_bars->description
+msgid "Number of Bars"
+msgstr ""
+
+#. settings-schema.json->ring_mirror->description
+msgid "Mirror (4-fold symmetry)"
+msgstr ""
+
+#. settings-schema.json->bars_width->description
+msgid "Canvas Width"
+msgstr ""
+
+#. settings-schema.json->bars_line_width->description
+msgid "Line thickness"
+msgstr ""
+
+#. settings-schema.json->bars_count->description
+msgid "Number of bars"
+msgstr ""
+
+#. settings-schema.json->bars_mirror->description
+msgid "Grow Bars from the center (top-bottom mirror)"
+msgstr ""
+
+#. settings-schema.json->advanced_preset->description
+msgid "Advanced preset"
+msgstr ""
+
+#. settings-schema.json->advanced_preset->options
+msgid "Fire Ring"
+msgstr ""
+
+#. settings-schema.json->advanced_size->description
+msgid "Advanced canvas width (height follows the preset aspect)"
+msgstr ""
+
+#. settings-schema.json->advanced_intensity->description
+msgid "Effect intensity (1.0 = default)"
+msgstr ""
+
+#. settings-schema.json->advanced_speed->description
+msgid "Animation speed"
+msgstr ""

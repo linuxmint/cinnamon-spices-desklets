@@ -1,0 +1,10 @@
+{
+  "uuid": "qspectrum@quintao",
+  "name": "QSpectrum",
+  "version": "0.1.1",
+  "description": "Bring your Cinnamon desktop to life with a sleek, real-time audio visualizer that transforms sound into beautiful, fluid motion.",
+  "prevent-decorations": false,
+  "max-instances": 10,
+  "cinnamon-version": ["6.2"],
+  "author": "raphaelquintao"
+}
