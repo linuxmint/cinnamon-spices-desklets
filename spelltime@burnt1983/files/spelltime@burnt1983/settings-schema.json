@@ -1,0 +1,20 @@
+{
+    "head": {
+        "type": "header",
+        "description": "Spelltime"
+    },
+    "hide-decorations": {
+        "type": "checkbox",
+        "default": true,
+        "description": "Hide frame / decorations"
+    },
+    "font-size": {
+        "type": "spinbutton",
+        "default": 36,
+        "min": 14,
+        "max": 96,
+        "step": 2,
+        "units": "px",
+        "description": "Font size"
+    }
+}
