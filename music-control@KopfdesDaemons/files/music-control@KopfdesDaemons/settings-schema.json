@@ -1,0 +1,58 @@
+{
+  "header0": {
+    "type": "header",
+    "description": "General"
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.5,
+    "max": 3,
+    "step": 0.1,
+    "description": "Desklet scale size"
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "description": "Hide decorations",
+    "default": true
+  },
+  "header1": {
+    "type": "header",
+    "description": "Border"
+  },
+  "border-color": {
+    "type": "colorchooser",
+    "default": "#ffffff",
+    "description": "Border color"
+  },
+  "border-size": {
+    "type": "scale",
+    "default": 0.2,
+    "min": 0,
+    "max": 1,
+    "step": 0.1,
+    "units": "em",
+    "description": "Border size"
+  },
+  "border-radius": {
+    "type": "scale",
+    "default": 10,
+    "min": 0,
+    "max": 10,
+    "step": 0.5,
+    "units": "em",
+    "description": "Border radius"
+  },
+  "header2": {
+    "type": "header",
+    "description": "Cover"
+  },
+  "cover-opacity": {
+    "type": "scale",
+    "min": 0.0,
+    "max": 1.0,
+    "step": 0.05,
+    "default": 1.0,
+    "description": "Opacity of the cover art"
+  }
+}
