@@ -1,0 +1,8 @@
+{
+  "uuid": "sticky-pad@burnt1983",
+  "name": "Sticky Pad",
+  "description": "Yellow legal-pad notebook on the desktop. Click and type.",
+  "prevent-decorations": true,
+  "max-instances": "8",
+  "version": "1.0.0"
+}

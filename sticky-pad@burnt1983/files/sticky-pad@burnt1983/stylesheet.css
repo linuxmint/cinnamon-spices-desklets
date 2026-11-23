@@ -1,0 +1,14 @@
+.sticky-pad {
+    background-color: #F8E36B;
+    padding: 12px 12px 12px 36px;
+    border: 1px solid #E0C84A;
+}
+.sticky-pad-entry, .sticky-pad-entry StEntry, .sticky-pad StEntry {
+    background-color: transparent;
+    color: #2A2314;
+    selected-color: #1A150C;
+    caret-color: #2A2314;
+    font-size: 16px;
+    border: none;
+    box-shadow: none;
+}
