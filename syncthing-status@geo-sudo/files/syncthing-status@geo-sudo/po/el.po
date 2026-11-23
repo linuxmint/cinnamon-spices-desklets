@@ -1,0 +1,77 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: syncthing-status@geo-sudo 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 01:32+0000\n"
+"PO-Revision-Date: 2026-04-24 01:32+0000\n"
+"Last-Translator: Your Name <you@example.com>\n"
+"Language-Team: Greek <el@li.org>\n"
+"Language: el\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: desklet.js:25
+msgid "Folders"
+msgstr "Φάκελοι"
+
+#: desklet.js:32
+msgid " folders tracked"
+msgstr " φάκελοι παρακολουθούνται"
+
+#: desklet.js:52
+msgid "Paused"
+msgstr "Σε παύση"
+
+#: desklet.js:55
+msgid "Error"
+msgstr "Σφάλμα"
+
+#: desklet.js:58
+msgid "Scanning"
+msgstr "Σάρωση"
+
+#: desklet.js:61
+msgid "Syncing"
+msgstr "Συγχρονισμός"
+
+#: desklet.js:64
+msgid "Up to Date"
+msgstr "Ενημερωμένο"
+
+# Settings
+msgid "Syncthing URL (include http:// and port & make sure it's accessible)"
+msgstr "URL του Syncthing (συμπεριλάβετε http:// και θύρα & βεβαιωθείτε ότι είναι προσβάσιμο)"
+
+msgid "Usually http://127.0.0.1:8384 for local instances."
+msgstr "Συνήθως http://127.0.0.1:8384 για τοπικές εγκαταστάσεις."
+
+msgid "API Key"
+msgstr "Κλειδί API"
+
+msgid "Find this in Syncthing -> Actions -> Settings -> General"
+msgstr "Βρείτε το στο Syncthing -> Ενέργειες -> Ρυθμίσεις -> Γενικά"
+
+msgid "Refresh Interval"
+msgstr "Διάστημα ανανέωσης"
+
+msgid "Timeout Interval"
+msgstr "Διάστημα λήξης χρόνου"
+
+msgid "seconds"
+msgstr "δευτερόλεπτα"
+
+msgid "Size Scale"
+msgstr "Κλιμάκωση μεγέθους"
+
+msgid "Adjust the overall size of the desklet"
+msgstr "Προσαρμόστε το συνολικό μέγεθος του desklet"
+
+msgid "multiplier"
+msgstr "πολλαπλασιαστής"
+
+msgid "Dark Mode"
+msgstr "Σκούρα λειτουργία"
+
+msgid "Switch between light and dark themes"
+msgstr "Εναλλαγή μεταξύ φωτεινών και σκούρων θεμάτων"

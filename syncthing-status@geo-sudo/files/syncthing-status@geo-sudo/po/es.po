@@ -1,0 +1,78 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: syncthing-status@geo-sudo\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-04-24 01:34+0200\n"
+"PO-Revision-Date: 2026-04-24 01:34+0200\n"
+"Last-Translator: George Salib <your-email@example.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:25
+msgid "Folders"
+msgstr "Carpetas"
+
+#: desklet.js:32
+msgid " folders tracked"
+msgstr " carpetas rastreadas"
+
+#: desklet.js:52
+msgid "Paused"
+msgstr "En pausa"
+
+#: desklet.js:55
+msgid "Error"
+msgstr "Error"
+
+#: desklet.js:58
+msgid "Scanning"
+msgstr "Escaneando"
+
+#: desklet.js:61
+msgid "Syncing"
+msgstr "Sincronizando"
+
+#: desklet.js:64
+msgid "Up to Date"
+msgstr "Actualizado"
+
+# Settings
+msgid "Syncthing URL (include http:// and port & make sure it's accessible)"
+msgstr "URL de Syncthing (incluya http:// y el puerto y asegúrese de que sea accesible)"
+
+msgid "Usually http://127.0.0.1:8384 for local instances."
+msgstr "Normalmente http://127.0.0.1:8384 para instancias locales."
+
+msgid "API Key"
+msgstr "Clave API"
+
+msgid "Find this in Syncthing -> Actions -> Settings -> General"
+msgstr "Encuéntrelo en Syncthing -> Acciones -> Ajustes -> General"
+
+msgid "Refresh Interval"
+msgstr "Intervalo de actualización"
+
+msgid "Timeout Interval"
+msgstr "Intervalo de tiempo de espera"
+
+msgid "seconds"
+msgstr "segundos"
+
+msgid "Size Scale"
+msgstr "Escala de tamaño"
+
+msgid "Adjust the overall size of the desklet"
+msgstr "Ajusta el tamaño general del desklet"
+
+msgid "multiplier"
+msgstr "multiplicador"
+
+msgid "Dark Mode"
+msgstr "Modo oscuro"
+
+msgid "Switch between light and dark themes"
+msgstr "Alternar entre temas claros y oscuros"
