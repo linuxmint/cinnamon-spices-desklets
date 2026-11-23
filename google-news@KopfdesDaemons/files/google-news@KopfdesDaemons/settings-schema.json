@@ -1,0 +1,148 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": ["general-page", "style-page"],
+    "general-page": {
+      "type": "page",
+      "title": "General",
+      "sections": ["size-section", "api-section"]
+    },
+    "style-page": {
+      "type": "page",
+      "title": "Style",
+      "sections": ["style-section", "header-style-section", "news-feed-style-section"]
+    },
+    "style-section": {
+      "type": "section",
+      "title": "General",
+      "keys": ["hide-decorations", "background-color"]
+    },
+    "api-section": {
+      "type": "section",
+      "title": "API Settings",
+      "keys": ["ceid", "refresh-interval", "news-keywords"]
+    },
+    "size-section": {
+      "type": "section",
+      "title": "Size",
+      "keys": ["scale-size", "width", "height"]
+    },
+    "header-style-section": {
+      "type": "section",
+      "title": "Header",
+      "keys": ["show-header", "show-header-text", "header-text", "header-text-color", "show-header-icon", "show-reload-button"]
+    },
+    "news-feed-style-section": {
+      "type": "section",
+      "title": "News Feed",
+      "keys": ["news-item-background-color", "news-item-text-color"]
+    }
+  },
+  "scale-size": {
+    "type": "scale",
+    "default": 1,
+    "min": 0.5,
+    "max": 2,
+    "step": 0.1,
+    "description": "Scale size"
+  },
+  "width": {
+    "type": "spinbutton",
+    "default": 35,
+    "min": 10,
+    "max": 100,
+    "step": 1,
+    "units": "em",
+    "description": "Width"
+  },
+  "height": {
+    "type": "spinbutton",
+    "default": 43,
+    "min": 10,
+    "max": 100,
+    "step": 1,
+    "units": "em",
+    "description": "Height"
+  },
+  "ceid": {
+    "type": "entry",
+    "default": "",
+    "description": "Country and language",
+    "tooltip": "e.g. US:en, DE:de"
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 10,
+    "min": 1,
+    "max": 60,
+    "step": 1,
+    "description": "Refresh interval in minutes"
+  },
+  "news-keywords": {
+    "type": "list",
+    "columns": [
+      {
+        "id": "keyword",
+        "title": "Search Keywords for news",
+        "type": "string"
+      }
+    ],
+    "default": []
+  },
+  "hide-decorations": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Hide decorations"
+  },
+  "show-header": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show header"
+  },
+  "header-text": {
+    "type": "entry",
+    "default": "Google News",
+    "description": "Custom header text",
+    "dependency": "show-header"
+  },
+  "show-header-icon": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show icon",
+    "dependency": "show-header"
+  },
+  "show-header-text": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show header text",
+    "dependency": "show-header"
+  },
+  "header-text-color": {
+    "type": "colorchooser",
+    "default": "inherit",
+    "description": "Header text color",
+    "dependency": "show-header"
+  },
+  "show-reload-button": {
+    "type": "checkbox",
+    "default": true,
+    "description": "Show reload button",
+    "dependency": "show-header"
+  },
+  "news-item-background-color": {
+    "type": "colorchooser",
+    "default": "rgba(98, 100, 110, 0.36)",
+    "description": "News item background color"
+  },
+  "news-item-text-color": {
+    "type": "colorchooser",
+    "default": "inherit",
+    "description": "Text color",
+    "dependency": "show-header"
+  },
+  "background-color": {
+    "type": "colorchooser",
+    "default": "rgba(255, 255, 255, 0)",
+    "description": "Background color"
+  }
+}
