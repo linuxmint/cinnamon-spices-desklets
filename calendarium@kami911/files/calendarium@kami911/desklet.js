@@ -329,9 +329,9 @@ CalendariumDesklet.prototype = {
     },
 
     _loadNamedayData: function(callback) {
-        let ndLang = this._resolveLocale(this.nameday_locale,  ["hu","de","en","fr","es","it"], "en");
-        let fdLang = this._resolveLocale(this.folkday_locale,  ["hu","de","en","fr","es","it"], "hu");
-        let hlLang = this._resolveLocale(this.holiday_locale,  ["hu","de","en","fr","es","it"], "hu");
+        let ndLang = this._resolveLocale(this.nameday_locale,  ["hu","de","en","fi","fr","es","it"], "en");
+        let fdLang = this._resolveLocale(this.folkday_locale,  ["hu","de","en","fi","fr","es","it"], "hu");
+        let hlLang = this._resolveLocale(this.holiday_locale,  ["hu","de","en","fi","fr","es","it"], "hu");
         // Extra safety: never pass "auto" to data loaders (guards against stale GJS module cache)
         if (!ndLang || ndLang === "auto") ndLang = "en";
         if (!fdLang || fdLang === "auto") fdLang = "hu";
@@ -1308,7 +1308,7 @@ CalendariumDesklet.prototype = {
         let d    = now.getDate();
         let y    = now.getFullYear();
         let lang = this._resolveLocale(
-            this.wikipedia_lang, ["en","de","hu","fr","es","it"], "en"
+            this.wikipedia_lang, ["en","de","hu","fi","fr","es","it"], "en"
         );
 
         // If we already have data for today, re-render immediately (rotation)
