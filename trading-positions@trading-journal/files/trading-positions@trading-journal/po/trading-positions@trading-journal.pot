@@ -22,7 +22,7 @@ msgid "Open positions & bots"
 msgstr ""
 
 #: desklet.js:205
-msgid "Connecting…"
+msgid "Connecting"
 msgstr ""
 
 #: desklet.js:235
@@ -101,7 +101,7 @@ msgid "running"
 msgstr ""
 
 #: desklet.js:362
-msgid "Ø Entry"
+msgid " Entry"
 msgstr ""
 
 #: desklet.js:363
@@ -113,17 +113,15 @@ msgid "PnL"
 msgstr ""
 
 #. metadata.json->name
-msgid "Trading Positions"
+msgid "AutarkTrade Positionen"
 msgstr ""
 
 #. metadata.json->description
-msgid "Shows open positions from the Crypto Trading Journal"
+msgid "Shows open positions from the AutarkTrade"
 msgstr ""
 
 #. settings-schema.json->info-header->description
-msgid ""
-"This desklet requires a running Crypto Trading Journal.\n"
-"github.com/Mouses007/Crypto-Trading-Journal"
+msgid "This desklet requires a running AutarkTrade.\n"
 msgstr ""
 
 #. settings-schema.json->server-host->description
@@ -138,17 +136,13 @@ msgstr ""
 msgid "Server port"
 msgstr ""
 
-#. settings-schema.json->server-port->tooltip
-msgid "Default: 8080"
-msgstr ""
-
 #. settings-schema.json->api-key->description
 msgid "ESP32 API key"
 msgstr ""
 
 #. settings-schema.json->api-key->tooltip
 msgid ""
-"From Journal → Settings → ESP32 Display → Generate key. Works even with the "
+"From AutarkTrade  Settings  ESP32 Display  Generate key. Works even with the "
 "password gate enabled."
 msgstr ""
 
@@ -173,8 +167,7 @@ msgid "Show realized PnL"
 msgstr ""
 
 #. settings-schema.json->show-realized-pnl->tooltip
-msgid ""
-"Shows the already realized PnL of the open position (e.g. funding fees)"
+msgid "Shows the already realized PnL of the open position (e.g. funding fees)"
 msgstr ""
 
 #. settings-schema.json->show-bots->description
@@ -188,7 +181,25 @@ msgid ""
 msgstr ""
 
 #. settings-schema.json->show-github-link->description
-msgid "Show GitHub link in footer"
+msgid "Show app name in footer"
+msgstr ""
+
+#. settings-schema.json->bitunix-link->description
+msgid "Bitunix shortcut (BX) next to the coin"
+msgstr ""
+
+#. settings-schema.json->bitunix-link->tooltip
+msgid ""
+"Clicking the coin opens it in the AutarkTrade chart; BX opens the coin's "
+"trading page on Bitunix (only for Bitunix positions)."
+msgstr ""
+
+#. desklet.js:_symbolZelle
+msgid "Open in the AutarkTrade chart"
+msgstr ""
+
+#. desklet.js:_symbolZelle
+msgid "Open on Bitunix"
 msgstr ""
 
 #. settings-schema.json->font-size->units
@@ -215,4 +226,335 @@ msgstr ""
 
 #. settings-schema.json->min-width->description
 msgid "Width"
+msgstr ""
+
+#: desklet.js
+msgid "Certificate answer unreadable"
+msgstr ""
+
+#: desklet.js
+msgid "Server sent no CA certificate"
+msgstr ""
+
+#: desklet.js
+msgid "Fingerprint mismatch  connection tampered?"
+msgstr ""
+
+#: desklet.js
+msgid "Fetching"
+msgstr ""
+
+#: desklet.js
+msgid "Server too old  /api/esp32/ca missing (404)"
+msgstr ""
+
+#: desklet.js
+msgid "Compare the fingerprint with Settings  General  HTTPS in the web app:"
+msgstr ""
+
+#: desklet.js
+msgid "Then press \"Fingerprint matches\" in the desklet settings."
+msgstr ""
+
+#: desklet.js
+msgid "Fetch the server certificate first"
+msgstr ""
+
+#: desklet.js
+msgid "Host changed  fetch the certificate again"
+msgstr ""
+
+#: desklet.js
+msgid "Could not save the certificate:"
+msgstr ""
+
+#: desklet.js
+msgid ""
+"HTTPS is on but not paired yet.\n"
+"Settings  \"Fetch server certificate\", compare, confirm."
+msgstr ""
+
+#: desklet.js
+msgid ""
+"Certificate does not match  pair again\n"
+"(or the host is not in the server certificate)"
+msgstr ""
+
+#: desklet.js
+msgid "HTTPS connection failed  check the HTTPS port"
+msgstr ""
+
+#. settings-schema.json->use-https->description
+msgid "Encrypted (HTTPS, port 8443)"
+msgstr ""
+
+#. settings-schema.json->use-https->tooltip
+msgid ""
+"Talks to AutarkTrade over HTTPS and trusts only the server certificate you "
+"paired below. Without it the API key and your account data travel "
+"unencrypted. The port above (8080) is still used to fetch the certificate "
+"when pairing."
+msgstr ""
+
+#. settings-schema.json->https-port->description
+msgid "HTTPS port"
+msgstr ""
+
+#. settings-schema.json->ca-fetch->description
+msgid "1. Fetch server certificate"
+msgstr ""
+
+#. settings-schema.json->ca-fetch->tooltip
+msgid ""
+"Fetches the AutarkTrade CA over http://host:port/api/esp32/ca and shows its "
+"SHA-256 fingerprint below."
+msgstr ""
+
+#. settings-schema.json->ca-pending->description
+msgid "Fingerprint to compare"
+msgstr ""
+
+#. settings-schema.json->ca-pending->tooltip
+msgid ""
+"Must match Settings  General  HTTPS in the AutarkTrade web app. Only then "
+"confirm."
+msgstr ""
+
+#. settings-schema.json->ca-confirm->description
+msgid "2. Fingerprint matches  pair"
+msgstr ""
+
+#. settings-schema.json->ca-confirm->tooltip
+msgid ""
+"Stores the certificate (0600) next to the desklet settings. From then on "
+"only this certificate is trusted."
+msgstr ""
+
+#. settings-schema.json->ca-paired->description
+msgid "Paired certificate (SHA-256)"
+msgstr ""
+
+#. settings-schema.json->ca-paired->tooltip
+msgid ""
+"Empty = not paired. If the server certificate changes, pair again with the "
+"two buttons above."
+msgstr ""
+
+#. settings-schema.json->server-port->tooltip
+msgid ""
+"Default: 8080 (HTTP). With HTTPS on it is only used to fetch the certificate "
+"when pairing."
+msgstr ""
+
+#. settings-schema.json->alarm-header->description
+msgid "Chart alarms"
+msgstr ""
+
+#. settings-schema.json->alarme-an->description
+msgid "Show chart alarms on the desktop"
+msgstr ""
+
+#. settings-schema.json->alarme-an->tooltip
+msgid ""
+"Fetches alarm triggers with the main key (the display key is not enough) and "
+"shows them as a notification and in the desklet."
+msgstr ""
+
+#. settings-schema.json->alarm-intervall->description
+msgid "Check for alarms every"
+msgstr ""
+
+#. settings-schema.json->alarm-preis->description
+msgid "Price alarms"
+msgstr ""
+
+#. settings-schema.json->alarm-linie->description
+msgid "Line alarms"
+msgstr ""
+
+#. settings-schema.json->alarm-zone->description
+msgid "Zone alarms"
+msgstr ""
+
+#. settings-schema.json->alarm-momentum->description
+msgid "Momentum alarms"
+msgstr ""
+
+#. settings-schema.json->alarm-lsob->description
+msgid "Liquidity sweep / order block alarms"
+msgstr ""
+
+#. settings-schema.json->alarm-ton->description
+msgid "Play a sound"
+msgstr ""
+
+#. settings-schema.json->sprache-an->description
+msgid "Read alarms aloud"
+msgstr ""
+
+#. settings-schema.json->sprache-an->tooltip
+msgid ""
+"Uses the Piper voice when installed (install.sh --stimme), otherwise spd-say."
+msgstr ""
+
+#. settings-schema.json->sprache-ab->description
+msgid "Read aloud from level"
+msgstr ""
+
+#. settings-schema.json->sprache-ab->options
+msgid "All alarms (info and up)"
+msgstr ""
+
+#. settings-schema.json->sprache-ab->options
+msgid "Warnings and trade entries"
+msgstr ""
+
+#. settings-schema.json->sprache-ab->options
+msgid "Only trade entries"
+msgstr ""
+
+#. settings-schema.json->ruhe-an->description
+msgid "Quiet hours (notification only, no sound or speech)"
+msgstr ""
+
+#. settings-schema.json->ruhe-von->description
+msgid "Quiet from"
+msgstr ""
+
+#. settings-schema.json->ruhe-von->units
+msgid "h"
+msgstr ""
+
+#. settings-schema.json->ruhe-bis->description
+msgid "Quiet until"
+msgstr ""
+
+#. settings-schema.json->alarm-test->description
+msgid "Test alarm"
+msgstr ""
+
+#. settings-schema.json->alarm-test->tooltip
+msgid "Shows, plays and reads a sample alarm  also during quiet hours."
+msgstr ""
+
+#: desklet.js
+msgid "Alarms need the main key, not the display key"
+msgstr ""
+
+#: desklet.js
+msgid "Alarm"
+msgstr ""
+
+#: desklet.js
+msgid "Test alarm from the desklet settings"
+msgstr ""
+
+#. settings-schema.json->stimme->description
+msgid "Voice"
+msgstr ""
+
+#. settings-schema.json->stimme->options
+msgid "Thorsten (German, male)"
+msgstr ""
+
+#. settings-schema.json->stimme->options
+msgid "Jenny (Dioco) (English, female)"
+msgstr ""
+
+#. settings-schema.json->stimme->tooltip
+msgid ""
+"Piper voices, offline. Jenny reads the German alarm texts with the common "
+"words translated."
+msgstr ""
+
+#. settings-schema.json->chart-header->description
+msgid "Price chart"
+msgstr ""
+
+#. settings-schema.json->chart-an->description
+msgid "Show price chart"
+msgstr ""
+
+#. settings-schema.json->chart-an->tooltip
+msgid "Line chart from Binance futures, fetched directly (public, no key)."
+msgstr ""
+
+#. settings-schema.json->chart-symbol->tooltip
+msgid "e.g. BTC, ETH, SOLUSDT  USDT is added when missing."
+msgstr ""
+
+#. settings-schema.json->chart-spanne->description
+msgid "Time span"
+msgstr ""
+
+#. settings-schema.json->chart-spanne->options
+msgid "1 hour"
+msgstr ""
+
+#. settings-schema.json->chart-spanne->options
+msgid "24 hours"
+msgstr ""
+
+#. settings-schema.json->chart-spanne->options
+msgid "7 days"
+msgstr ""
+
+#. settings-schema.json->chart-spanne->options
+msgid "30 days"
+msgstr ""
+
+#. settings-schema.json->chart-hoehe->description
+msgid "Chart height"
+msgstr ""
+
+#: desklet.js
+msgid "Unknown symbol"
+msgstr ""
+
+#: desklet.js
+msgid "No data"
+msgstr ""
+
+#: desklet.js
+msgid "Low"
+msgstr ""
+
+#: desklet.js
+msgid "High"
+msgstr ""
+
+#. settings-schema.json->chart-art->description
+msgid "Display"
+msgstr ""
+
+#. settings-schema.json->chart-art->options
+msgid "Line"
+msgstr ""
+
+#. settings-schema.json->chart-art->options
+msgid "Candles"
+msgstr ""
+
+#. settings-schema.json->pnl-prozent->description
+msgid "Show PnL in percent"
+msgstr ""
+
+#. settings-schema.json->pnl-prozent->tooltip
+msgid ""
+"Profit/loss relative to the margin (like the exchange's ROE). Also "
+"switchable with the % button in the desklet header."
+msgstr ""
+
+#: desklet.js
+msgid "Grid"
+msgstr ""
+
+#. settings-schema.json->bot-usdt->description
+msgid "Bot values in USDT"
+msgstr ""
+
+#. settings-schema.json->bot-usdt->tooltip
+msgid ""
+"Coin-margined bots (e.g. SOL) report profit in the coin. On: converted to "
+"USDT at the current price."
 msgstr ""

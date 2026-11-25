@@ -1,18 +1,23 @@
-/* Trading Positions Desklet Stylesheet */
+/* AutarkTrade-Desklet (Positionen) Stylesheet
+ *
+ * Farben = Tokens der Web-App (bg #05080a, panel #0c1216, panel-soft #131c22,
+ * line #1d2b33, text #e8f4f6, muted #8ea5af, accent #1fd6c4, good #3fbf8f,
+ * bad #e0574c, warn #d8a33a), Radius 14 für die Fläche. Der Hintergrund kommt
+ * mit der eingestellten Deckkraft aus desklet.js (_applyStyle). */
 
 .trading-desklet {
-    padding: 10px 12px 8px 12px;
-    spacing: 3px;
+    padding: 12px 14px 10px 14px;
+    spacing: 4px;
     min-width: 400px;
-    background-color: rgba(15, 20, 28, 0.88);
-    border-radius: 8px;
-    border: 1px solid rgba(255,255,255,0.12);
+    background-color: rgba(12, 18, 22, 0.90);
+    border-radius: 14px;
+    border: 1px solid #1d2b33;
 }
 
 /* ---- Header ---- */
 .desklet-header-row {
     spacing: 10px;
-    padding-bottom: 4px;
+    padding-bottom: 6px;
 }
 .desklet-logo {
     icon-size: 32px;
@@ -20,23 +25,31 @@
 .desklet-title-box {
     spacing: 0px;
 }
+.desklet-title-row {
+    spacing: 0px;
+}
 .desklet-title {
-    color: #ffffff;
+    color: #e8f4f6;
+    font-weight: bold;
+}
+.desklet-title-akzent {
+    color: #1fd6c4;
     font-weight: bold;
 }
 .desklet-subtitle {
-    color: #8aaac0;
+    color: #8ea5af;
 }
 
-/* ---- Separatoren ---- */
-.separator {
-    color: #2a3a4a;
-    font-size: 9px;
-    padding: 1px 0;
+/* ---- Trennlinien (1px-Flächen statt Strichzeichen) ---- */
+.linie {
+    height: 1px;
+    background-color: #1d2b33;
+    margin: 3px 0;
 }
-.separator-thin {
-    color: #243040;
-    font-size: 9px;
+.linie-duenn {
+    height: 1px;
+    background-color: #131c22;
+    margin: 2px 0;
 }
 
 /* ---- Content-Bereich ---- */
@@ -48,65 +61,147 @@
 /* ---- Status / Empty ---- */
 .status-label,
 .no-positions-label {
-    color: #aabccc;
+    color: #8ea5af;
     font-size: 12px;
     padding: 6px 0;
 }
 
-/* ---- Gesamt-PnL ---- */
+/* ---- Börsen-/Bot-Kopf (Abschnitt) ---- */
 .total-row {
-    padding: 2px 0;
+    padding: 4px 8px;
+    margin-top: 4px;
+    background-color: #131c22;
+    border-radius: 10px;
 }
 .total-label {
     font-weight: bold;
+    color: #e8f4f6;
 }
 
 /* ---- Positions-Header ---- */
 .header-row {
     spacing: 0px;
-    padding: 2px 0 1px 0;
+    padding: 4px 8px 1px 8px;
 }
 .header-cell {
-    color: #7a9ab8;
-    font-weight: bold;
+    color: #8ea5af;
 }
 
 /* ---- Positions-Zeilen ---- */
 .position-row {
     spacing: 0px;
-    padding: 2px 0;
+    padding: 2px 8px;
 }
 
 .symbol-cell {
-    color: #ffffff;
+    color: #e8f4f6;
     font-weight: bold;
 }
+/* Coin als Link in den AutarkTrade-Chart, „BX" zur Bitunix-Handelsseite (wie .kpBx in der Web-App) */
+.symbol-link { padding: 0; }
+.symbol-link:hover .symbol-cell { color: #1fd6c4; }
+.bitunix-link {
+    color: rgb(90, 156, 255);
+    background-color: rgba(90, 156, 255, 0.14);
+    font-weight: bold;
+    padding: 0 3px;
+    margin-left: 5px;
+    border-radius: 2px;
+}
+.bitunix-link:hover { color: rgb(140, 185, 255); background-color: rgba(90, 156, 255, 0.3); }
 .side-cell {
     font-weight: bold;
 }
-.side-long    { color: #2ecc71; }
-.side-short   { color: #e74c3c; }
-.side-neutral { color: #95a5a6; }
+.side-long    { color: #3fbf8f; }
+.side-short   { color: #e0574c; }
+.side-neutral { color: #8ea5af; }
 
 .leverage-cell {
-    color: #c0d0e0;
+    color: #8ea5af;
 }
 .price-cell {
-    color: #d0e0f0;
+    color: #e8f4f6;
 }
 .pnl-cell {
     font-weight: bold;
 }
-.pnl-profit { color: #2ecc71; }
-.pnl-loss   { color: #e74c3c; }
+.pnl-profit { color: #3fbf8f; }
+.pnl-loss   { color: #e0574c; }
 
 /* ---- Fußzeile ---- */
 .desklet-footer {
     padding-top: 3px;
 }
 .footer-time {
-    color: #7a9ab8;
+    color: #5e7580;
 }
 .footer-right {
-    color: #6a8aaa;
+    color: #5e7580;
 }
+
+/* ---- Alarme ---- */
+.alarm-box {
+    padding-bottom: 4px;
+}
+.alarm-zeile {
+    border-radius: 6px;
+    padding: 4px 8px;
+    margin-bottom: 3px;
+    background-color: rgba(216, 163, 58, 0.18);
+    border-left: 3px solid #d8a33a;
+}
+.alarm-zeile:hover { background-color: rgba(216, 163, 58, 0.30); }
+.alarm-einstieg {
+    background-color: rgba(31, 214, 196, 0.18);
+    border-left-color: #1fd6c4;
+}
+.alarm-einstieg:hover { background-color: rgba(31, 214, 196, 0.30); }
+.alarm-info {
+    background-color: rgba(142, 165, 175, 0.15);
+    border-left-color: #8ea5af;
+}
+.alarm-text {
+    color: #e8f4f6;
+    font-weight: bold;
+}
+.alarm-weg {
+    color: #8ea5af;
+    padding-left: 10px;
+}
+
+/* ---- Schnellschalter Sprachausgabe ---- */
+.sprach-knopf {
+    padding: 6px;
+    border-radius: 6px;
+    color: #1fd6c4;
+}
+.sprach-knopf:hover { background-color: rgba(31, 214, 196, 0.15); }
+.sprach-aus { color: #5e7580; }
+
+/* ---- Kurs-Chart ---- */
+.chart-box {
+    spacing: 2px;
+    padding-bottom: 4px;
+}
+.chart-titel {
+    color: #e8f4f6;
+    font-weight: bold;
+}
+.chart-wert {
+    color: #8ea5af;
+    font-weight: bold;
+}
+.chart-spanne {
+    color: #5e7580;
+    font-size: 0.9em;
+}
+
+/* ---- Schnellschalter PnL in Prozent ---- */
+.prozent-knopf {
+    color: #1fd6c4;
+    font-weight: bold;
+    padding: 2px 8px;
+    border-radius: 6px;
+}
+.prozent-knopf:hover { background-color: rgba(31, 214, 196, 0.15); }
+.prozent-aus { color: #5e7580; }
