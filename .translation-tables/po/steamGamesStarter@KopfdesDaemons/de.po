@@ -1,0 +1,72 @@
+# STEAM GAMES STARTER
+# This file is put in the public domain.
+# KopfdesDaemons, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: steamGamesStarter@KopfdesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-10-11 14:57+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:40 desklet.js:211
+msgid "Steam Games Starter"
+msgstr "Steam-Spiele-Starter"
+
+#. desklet.js:148
+msgid "Last played:"
+msgstr "Zuletzt gespielt:"
+
+#. desklet.js:175
+msgid "No installed games found"
+msgstr "Keine installierten Spiele gefunden"
+
+#. desklet.js:223
+msgid "Loading..."
+msgstr "Lade..."
+
+#. metadata.json->description
+msgid "Start Steam games from your desktop."
+msgstr "Starte Steam Spiele von deinem Desktop."
+
+#. settings-schema.json->head0->description
+msgid "General"
+msgstr "Allgemein"
+
+#. settings-schema.json->steam-install-type->description
+msgid "Steam installation type"
+msgstr "Steaminstallationsart"
+
+#. settings-schema.json->steam-install-type->options
+msgid "System package"
+msgstr "Systempaket"
+
+#. settings-schema.json->steam-install-type->options
+msgid "Flatpak"
+msgstr "Flatpak"
+
+#. settings-schema.json->number-of-games->description
+msgid "Maximum number of games"
+msgstr "Maximalanzahl der Spiele"
+
+#. settings-schema.json->head1->description
+msgid "Style"
+msgstr "Stil"
+
+#. settings-schema.json->max-desklet-height->description
+msgid "Maximum height of the desklet"
+msgstr "Maximalhöhe des Desklets"
+
+#. settings-schema.json->background-color->description
+msgid "Background color"
+msgstr "Hintergrundfarbe"

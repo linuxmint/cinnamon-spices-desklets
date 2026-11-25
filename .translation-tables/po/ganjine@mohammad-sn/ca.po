@@ -1,0 +1,145 @@
+# Ganjine desklet for Cinnamon
+# This file is put in the public domain.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: ganjine@mohammad-sn 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 14:07+0200\n"
+"PO-Revision-Date: 2024-05-15 14:16+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->description
+msgid "A desklet that displays random persian poems from ganjoor.net."
+msgstr ""
+"Una miniaplicació d'escriptori que mostra poemes perses presos a l'atzar de "
+"ganjoor.net."
+
+#. metadata.json->name
+msgid "Ganjine"
+msgstr "Ganjine"
+
+#. settings-schema.json->section1->description
+msgid "Appearance"
+msgstr "Aspecte"
+
+#. settings-schema.json->font->description
+msgid "Font"
+msgstr "Lletra"
+
+#. settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Color del text"
+
+#. settings-schema.json->text-color->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Cliqueu sobre el botó per canviar el color del text"
+
+#. settings-schema.json->decoration->description
+msgid "Show default desklet decoration"
+msgstr "Decoració predeterminada de la miniaplicació"
+
+#. settings-schema.json->section2->description
+msgid "Options"
+msgstr "Paràmetres"
+
+#. settings-schema.json->interval-minutes->units
+msgid "minutes"
+msgstr "minuts"
+
+#. settings-schema.json->interval-minutes->description
+msgid "Refresh interval"
+msgstr "Interval d'actualització"
+
+#. settings-schema.json->limit-poems->description
+msgid "Limit poems to specified poet"
+msgstr "Limita els poemes a un autor particular"
+
+#. settings-schema.json->selected-poet->options
+msgid "حافظ"
+msgstr "حافظ"
+
+#. settings-schema.json->selected-poet->options
+msgid "خیام"
+msgstr "خیام"
+
+#. settings-schema.json->selected-poet->options
+msgid "ابوسعید ابوالخیر"
+msgstr "ابوسعید ابوالخیر"
+
+#. settings-schema.json->selected-poet->options
+msgid "صائب"
+msgstr "صائب"
+
+#. settings-schema.json->selected-poet->options
+msgid "سعدی"
+msgstr "سعدی"
+
+#. settings-schema.json->selected-poet->options
+msgid "باباطاهر"
+msgstr "باباطاهر"
+
+#. settings-schema.json->selected-poet->options
+msgid "مولوی"
+msgstr "مولوی"
+
+#. settings-schema.json->selected-poet->options
+msgid "اوحدی"
+msgstr "اوحدی"
+
+#. settings-schema.json->selected-poet->options
+msgid "خواجو"
+msgstr "خواجو"
+
+#. settings-schema.json->selected-poet->options
+msgid "شهریار"
+msgstr "شهریار"
+
+#. settings-schema.json->selected-poet->options
+msgid "عراقی"
+msgstr "عراقی"
+
+#. settings-schema.json->selected-poet->options
+msgid "فروغی بسطامی"
+msgstr "فروغی بسطامی"
+
+#. settings-schema.json->selected-poet->options
+msgid "سلمان ساوجی"
+msgstr "سلمان ساوجی"
+
+#. settings-schema.json->selected-poet->options
+msgid "محتشم کاشانی"
+msgstr "محتشم کاشانی"
+
+#. settings-schema.json->selected-poet->options
+msgid "امیرخسرو دهلوی"
+msgstr "امیرخسرو دهلوی"
+
+#. settings-schema.json->selected-poet->options
+msgid "سیف فرغانی"
+msgstr "سیف فرغانی"
+
+#. settings-schema.json->selected-poet->options
+msgid "عبید زاکانی"
+msgstr "عبید زاکانی"
+
+#. settings-schema.json->selected-poet->options
+msgid "هاتف اصفهانی"
+msgstr "هاتف اصفهانی"
+
+#. settings-schema.json->selected-poet->options
+msgid "رهی معیری"
+msgstr "رهی معیری"
+
+#. settings-schema.json->selected-poet->description
+msgid "Select poet"
+msgstr "Trieu un poeta"

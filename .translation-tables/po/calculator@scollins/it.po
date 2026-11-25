@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 23:35+0200\n"
+"PO-Revision-Date: 2022-06-03 12:23+0200\n"
+"Last-Translator: Dragone2 <dragone2@risposteinformatiche.it>\n"
+"Language-Team: \n"
+"Language: it\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:27 desklet.js:50
+msgid "Back"
+msgstr "Indietro"
+
+#: desklet.js:28 desklet.js:52
+msgid "Reset"
+msgstr "Reset"
+
+#: desklet.js:51
+msgid "Clear Entry"
+msgstr "Cancella immissione"
+
+#: desklet.js:53
+msgid "Copy to Clipboard"
+msgstr "Copia negli Appunti"
+
+#: desklet.js:54
+msgid "Paste from Clipboard"
+msgstr "Incolla dagli Appunti"
+
+#: desklet.js:55
+msgid "Inverse"
+msgstr "Inverso"
+
+#: desklet.js:58
+msgid "Swap Sign"
+msgstr "Scambia segno"
+
+#: desklet.js:82
+msgid "Scientific Notation"
+msgstr "Notazione scientifica"
+
+#: desklet.js:791
+msgid "Swap Entries"
+msgstr "Scambia Voci"
+
+#: desklet.js:795
+msgid "Reciprocal"
+msgstr "Reciproco"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1056
+msgid "Degrees"
+msgstr "Gradi"
+
+#. settings-schema.json->angleMode->options
+#: desklet.js:1064
+msgid "Radians"
+msgstr "Radianti"
+
+#: desklet.js:1074
+msgid "RPN"
+msgstr "RPN"
+
+#: desklet.js:1083
+msgid "4-Function"
+msgstr "4-Funzioni"
+
+#. settings-schema.json->layout->options
+#: desklet.js:1090
+msgid "Scientific"
+msgstr "Scientifica"
+
+#: desklet.js:1099
+msgid "Copy"
+msgstr "Copia"
+
+#: desklet.js:1103
+msgid "Paste"
+msgstr "Incola"
+
+#. metadata.json->name
+#: desklet.js:1109
+msgid "Desktop Calculator"
+msgstr "Calcolatrice Desklet"
+
+#. metadata.json->description
+msgid "A calculator Desklet"
+msgstr "Una calcolatrice Desklet"
+
+#. settings-schema.json->style->description
+#. settings-schema.json->layout->description
+msgid "Style"
+msgstr "Stile"
+
+#. settings-schema.json->style->options
+msgid "Light"
+msgstr "Chiaro"
+
+#. settings-schema.json->style->options
+msgid "Dark"
+msgstr "Scuro"
+
+#. settings-schema.json->angleMode->description
+msgid "Angle Measure"
+msgstr "Misura Angolo"
+
+#. settings-schema.json->rpn->description
+msgid "Use Reverse-Polish Notation"
+msgstr "Usa Notazione Polacca Inversa"
+
+#. settings-schema.json->layout->options
+msgid "4-function"
+msgstr "4-funzioni"
+
+#. settings-schema.json->precision->description
+msgid "Precision"
+msgstr "Precisione"
+
+#. settings-schema.json->precision->units
+msgid "digits"
+msgstr "cifre"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Scorciatoia per portare in primo piano"

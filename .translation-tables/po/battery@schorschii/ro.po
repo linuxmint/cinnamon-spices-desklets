@@ -1,0 +1,183 @@
+# Romanian translations for  package.
+# Copyright (C) 2023 THE 'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the  package.
+# Automatically generated, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-14 05:12-0400\n"
+"PO-Revision-Date: 2023-07-07 23:49-0400\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: ro\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : (n==0 || (n%100 > 0 && n%100 < "
+"20)) ? 1 : 2;\n"
+"X-Generator: Poedit 3.3.1\n"
+
+#: desklet.js:356
+msgid "Battery"
+msgstr "Baterie"
+
+#. metadata.json->description
+msgid "A battery desklet in iOS style with multi-battery support."
+msgstr ""
+"Un desklet pentru baterie în stil iOS cu suport pentru mai multe baterii."
+
+#. metadata.json->name
+msgid "Battery Level Indicator"
+msgstr "Indicator de nivel al bateriei"
+
+#. settings-schema.json->head0->description
+msgid "Settings for battery@schorschii"
+msgstr "Setări pentru battery@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Vizual"
+
+#. settings-schema.json->showpercent->description
+msgid "Show battery capacity in percent"
+msgstr "Afișează capacitatea bateriei în procente"
+
+#. settings-schema.json->showpercent->tooltip
+msgid "Battery capacity is only shown when plug/flash icon is not visible."
+msgstr ""
+"Capacitatea bateriei este afișată numai atunci când pictograma fișă/flash nu "
+"este vizibilă."
+
+#. settings-schema.json->showremaining->description
+msgid "Show remaining battery time"
+msgstr ""
+
+#. settings-schema.json->showplug->description
+msgid "Show plug/flash icon when power supply is plugged in"
+msgstr ""
+"Afișarea pictogramei de conectare/flash atunci când sursa de alimentare este "
+"conectată"
+
+#. settings-schema.json->showplug->tooltip
+msgid ""
+"flash icon: power online and battery is charging\n"
+"plug icon: power online but battery is not charging"
+msgstr ""
+"pictograma flash: alimentarea online și bateria se încarcă\n"
+"pictograma fișă: alimentarea online, dar bateria nu se încarcă"
+
+#. settings-schema.json->bg-img->description
+msgid "Battery style"
+msgstr "Stilul bateriei"
+
+#. settings-schema.json->bg-img->options
+msgid "Transparent"
+msgstr "Transparent"
+
+#. settings-schema.json->bg-img->options
+msgid "Black"
+msgstr "Negru"
+
+#. settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Selectează grafica de fundal pe care dorești să o utilizezi."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Ascunde decorațiunile"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor de scalare"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Dimensiune Desklet"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the battery using this scale factor."
+msgstr ""
+"Mărește sau micșorează dimensiunea bateriei folosind acest factor de scalare."
+
+#. settings-schema.json->head2->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etichetă personalizată pentru desklet (vizibilă numai dacă sunt activate "
+"decorațiile)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Folosește o etichetă personalizată pentru desklet"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Dacă bifezi această casetă, poți seta o etichetă personalizată în câmpul de "
+"mai jos."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etichetă personalizată pentru desklet"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple batteries. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Setează aici eticheta ta personalizată, de exemplu, pentru monitorizarea mai "
+"multor baterii. Acest câmp nu este disponibil decât dacă caseta de "
+"verificare de mai sus este activată."
+
+#. settings-schema.json->head3->description
+msgid "Advanced"
+msgstr "Avansat"
+
+#. settings-schema.json->devfile_capacity->description
+msgid "Path to battery capacity file (device file)"
+msgstr ""
+"Calea de acces la fișierul de capacitate a bateriei (fișier dispozitiv)"
+
+#. settings-schema.json->devfile_capacity->tooltip
+msgid ""
+"Choose your own capacity file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Alege propriul fișier de capacitate, de exemplu, pentru monitorizarea "
+"bateriei secundare.\n"
+"\n"
+"Implicit:\n"
+"/sys/class/power_supply/CMBx/capacity\n"
+"/sys/class/power_supply/BATx/capacity\n"
+"\n"
+"Înlocuiește x cu numărul bateriei."
+
+#. settings-schema.json->devfile_status->description
+msgid "Path to battery status file (device file)"
+msgstr "Cale de acces la fișierul de stare a bateriei (fișier de dispozitiv)"
+
+#. settings-schema.json->devfile_status->tooltip
+msgid ""
+"Choose your own status file e.g. for monitoring your secondary battery.\n"
+"\n"
+"Default:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Replace x with battery number."
+msgstr ""
+"Alege propriul fișier de stare, de exemplu, pentru monitorizarea bateriei "
+"secundare.\n"
+"\n"
+"Implicit:\n"
+"/sys/class/power_supply/CMBx/status\n"
+"/sys/class/power_supply/BATx/status\n"
+"\n"
+"Înlocuiește x cu numărul bateriei."

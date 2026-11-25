@@ -1,0 +1,384 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: 2021-04-11 10:39+0200\n"
+"Last-Translator: Balazs Bosak <bossbob88@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Névtelen"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Eszközök"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Kibontás"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Összecsukás"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Cinnamon beállítások megnyitása"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Sandbox indítása"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Parancs futtatása"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Megvizsgál"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Nagyító megnyitása"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Téma újratöltése"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Cinnamon környezet újraindítása"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "X-Munkamenet naplófájl"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Korábbi hibák elrejtése"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Törlés"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Cinnamon naplófájl"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Időbélyeg megjelenítése"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Infók"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Figyelmeztetések"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Hibák"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Nyomok"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Másolás"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Végtelen"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Újratöltés"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Példányok"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "maximális érték"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr "Kiemelés"
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Beállítás"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Bővítmények"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr "nem sikerült létrehozni az uuid kiterjesztési elemét"
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Nincs engedélyezve ilyen típusú bővítmény"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr ""
+"(Nyomja meg a Pause vagy a Control gombot az események átengedésének "
+"letiltásához)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr ""
+"(Nyomja meg a Pause vagy a Control gombot az események átengedésének "
+"engedélyezéséhez)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr "Hossz"
+
+#: inspect.js:418
+msgid "Parent"
+msgstr "Szülő"
+
+#: inspect.js:427
+msgid "Children"
+msgstr "Gyermek"
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr "Magasság"
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr "Szélesség"
+
+#: inspect.js:442
+msgid "Visible"
+msgstr "Látható"
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr "Stílusosztály"
+
+#: inspect.js:448
+msgid "None"
+msgstr "Nincs"
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr "Cím"
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr "Osztály"
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr "Munkaterület"
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr "Monitor"
+
+#: inspect.js:475
+msgid "Size"
+msgstr "Méret"
+
+#: inspect.js:477
+msgid "Position"
+msgstr "Pozíció"
+
+#: inspect.js:494
+msgid "Values"
+msgstr "Értékek"
+
+#: inspect.js:495
+msgid "Index"
+msgstr "Index"
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr "Térkép elemek"
+
+#: inspect.js:499
+msgid "Key"
+msgstr "Billentyű"
+
+#: inspect.js:502
+msgid "Properties"
+msgstr "Tulajdonságok"
+
+#: inspect.js:503
+msgid "Name"
+msgstr "Név"
+
+#: inspect.js:509
+msgid "Type"
+msgstr "Típus"
+
+#: inspect.js:510
+msgid "Value"
+msgstr "Érték"
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Megnyitás"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Mentés"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Mentés másként"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Sandbox"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Értékelés"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Stílus"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Az aktuális stíluslap betöltése"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Nem találhatók hibák"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Lap bezárása"
+
+#: terminal.js:54
+msgid "Command"
+msgstr "Parancs"
+
+#: terminal.js:59
+msgid "Status"
+msgstr "Állapot"
+
+#: terminal.js:60
+msgid "Running"
+msgstr "Folyamatban"
+
+#: terminal.js:73
+msgid "End Process"
+msgstr "Folyamat befejezése"
+
+#: terminal.js:82
+msgid "Output"
+msgstr "Kimenet"
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr "Leállítva"
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Futtatás"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "összes"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Váltás erre"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Bezárás"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Ablakok"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr ""
+"Egy asztalkalmazás a Cinnamon felhasználói felületének hibajavítására és "
+"fejlesztésére"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr "Stephen Collins - szerző"
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"Ez az asztalkalmazás olyan eszközöket nyújt, amelyek segítenek a Cinnamon "
+"egyes összetevőinek és állapotinformációinak megtekintésében, "
+"hibajavításában és ellenőrzésében, illetve akár új kód tesztelésében a "
+"Cinnamon újraindítása nélkül."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Fejlesztői eszközök"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "Induláskor"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Előző állapot megjegyzése"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Megjelenítés"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Összecsukott"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Legfelülre hozás gyorsbillentyű"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Asztalkalmazás középre igazítása a képernyőn emelt módban"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Sandbox fejléc"

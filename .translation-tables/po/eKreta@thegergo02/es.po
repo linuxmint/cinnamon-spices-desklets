@@ -1,0 +1,276 @@
+# SOME DESCRIPTIVE TITLE.
+# This file is put in the public domain.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: eKreta@thegergo02 0.3\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-04-29 14:50-0400\n"
+"PO-Revision-Date: 2024-05-01 12:35-0400\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:174
+msgid ""
+"Error: Couldn't login with the credetinals given. (Check the desklet "
+"settings.)"
+msgstr ""
+"Error: No se ha podido iniciar sesión con las credenciales facilitadas. "
+"(Compruebe la configuración del desklet)."
+
+#: desklet.js:557
+msgid "Monday"
+msgstr "Lunes"
+
+#: desklet.js:561
+msgid "Tuesday"
+msgstr "Martes"
+
+#: desklet.js:565
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: desklet.js:569
+msgid "Thursday"
+msgstr "Jueves"
+
+#: desklet.js:573
+msgid "Friday"
+msgstr "Viernes"
+
+#: desklet.js:577
+msgid "Saturday"
+msgstr "Sábado"
+
+#: desklet.js:581
+msgid "Sunday"
+msgstr "Domingo"
+
+#: desklet.js:585
+msgid "Not a day"
+msgstr "Ni un día"
+
+#. metadata.json->name
+msgid "eKreta desklet"
+msgstr "desklet eKreta"
+
+#. metadata.json->description
+msgid "Displays your grades from the eKreta API."
+msgstr "Muestra tus calificaciones desde la API de eKreta."
+
+#. settings-schema.json->head0->description
+msgid "Settings for eKreta desklet."
+msgstr "Configuración del desklet eKreta."
+
+#. settings-schema.json->inst_id->description
+msgid "Institution ID (klik*********)"
+msgstr "ID de la institución (klik*********)"
+
+#. settings-schema.json->inst_id->tooltip
+msgid "When you got your URL to login, before the first dot you got the ID."
+msgstr ""
+"Cuando tienes su URL para iniciar sesión, antes del primer punto tienes el "
+"ID."
+
+#. settings-schema.json->usr->description
+msgid "Your username for the eKreta system."
+msgstr "Su nombre de usuario para el sistema eKreta."
+
+#. settings-schema.json->usr->tooltip
+#. settings-schema.json->pass->tooltip
+msgid "You need this to fetch data from the eKreta system."
+msgstr "Lo necesita para obtener datos del sistema eKreta."
+
+#. settings-schema.json->pass->description
+msgid "Your password for the eKreta system."
+msgstr "Su contraseña para el sistema eKreta."
+
+#. settings-schema.json->delay_minutes->description
+msgid "Data update time interval."
+msgstr "Intervalo de tiempo de actualización de los datos."
+
+#. settings-schema.json->delay_minutes->tooltip
+msgid "The time to wait till' the next data update. (In minutes)."
+msgstr ""
+"El tiempo de espera hasta la próxima actualización de datos. (En minutos)."
+
+#. settings-schema.json->gzip_enabled->description
+msgid "Enable gZip"
+msgstr "Habilitar gZip"
+
+#. settings-schema.json->gzip_enabled->tooltip
+msgid ""
+"Enable this if you want faster responses. On really old hardware, (if it can "
+"run Cinnamon, it can't be that old) it's better to turn off compression."
+msgstr ""
+"Actívela si quieres respuestas más rápidas. En hardware realmente antiguo, "
+"(si puede ejecutar Cinnamon, no puede ser tan antiguo) es mejor desactivar "
+"la compresión."
+
+#. settings-schema.json->head1->description
+msgid "Grade averages"
+msgstr "Promedios de notas"
+
+#. settings-schema.json->show_grades->description
+msgid "Your grade averages"
+msgstr "Sus promedios de notas"
+
+#. settings-schema.json->show_grades->tooltip
+msgid "Show your grade averages."
+msgstr "Muestra tus promedios de notas."
+
+#. settings-schema.json->group_sub_categ->description
+msgid "Group by subject category"
+msgstr "Agrupar por categorías de materias"
+
+#. settings-schema.json->group_sub_categ->tooltip
+msgid "Group your average grades by their category. (Doesn't look always good)"
+msgstr "Agrupa tus notas medias por categorías. (No siempre queda bien)"
+
+#. settings-schema.json->show_class_av->description
+msgid "Class averages"
+msgstr "Promedios de clase"
+
+#. settings-schema.json->show_class_av->tooltip
+msgid "Show class averages next to your averages."
+msgstr "Muestra los promedios de la clase junto a tus promedios."
+
+#. settings-schema.json->show_grade_diff->description
+msgid "Show grade average difference"
+msgstr "Mostrar diferencia de nota media"
+
+#. settings-schema.json->show_grade_diff->tooltip
+msgid ""
+"Show the difference between your avereages, and your class's averages (You "
+"have to turn on class averages)."
+msgstr ""
+"Muestra la diferencia entre tus promedios, y los promedios de tu clase "
+"(Tienes que activar los promedios de la clase)."
+
+#. settings-schema.json->perfect_grade_value->description
+msgid "Perfect Grade."
+msgstr "Calificación perfecta."
+
+#. settings-schema.json->perfect_grade_value->tooltip
+msgid "If your grade equals to this, it will be displayed as a perfect grade."
+msgstr "Si su nota es igual a ésta, se mostrará como una nota perfecta."
+
+#. settings-schema.json->almost_perfect_grade_value->description
+msgid "Almost Perfect Grade."
+msgstr "Calificación casi perfecta."
+
+#. settings-schema.json->almost_perfect_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as an almost "
+"perfect grade."
+msgstr ""
+"Si su nota es superior o igual a ésta, se mostrará como una nota casi "
+"perfecta."
+
+#. settings-schema.json->good_grade_value->description
+msgid "Good Grade."
+msgstr "Buena calificación."
+
+#. settings-schema.json->good_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a good "
+"grade."
+msgstr "Si su nota es mayor o igual a ésta, se mostrará como una buena nota."
+
+#. settings-schema.json->middle_grade_value->description
+msgid "Middle Grade."
+msgstr "Calificación Media."
+
+#. settings-schema.json->middle_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a middle "
+"grade."
+msgstr "Si su nota es superior o igual a ésta, aparecerá como nota media."
+
+#. settings-schema.json->bad_grade_value->description
+msgid "Bad Grade."
+msgstr "Mala calificación."
+
+#. settings-schema.json->bad_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a bad grade."
+msgstr "Si su nota es mayor o igual a ésta, se mostrará como mala nota."
+
+#. settings-schema.json->really_bad_grade_value->description
+msgid "Really Bad Grade."
+msgstr "Muy mala calificación."
+
+#. settings-schema.json->really_bad_grade_value->tooltip
+msgid ""
+"If your grade greater or equals to this, it will be displayed as a really "
+"bad grade. (Study sometimes...)"
+msgstr ""
+"Si tu nota es mayor o igual que esta, se mostrará como una nota realmente "
+"mala. (Estudia a veces...)"
+
+#. settings-schema.json->head2->description
+msgid "Grades"
+msgstr "Calificaciones"
+
+#. settings-schema.json->show_grade_panel->description
+msgid "Your grades"
+msgstr "Sus calificaciones"
+
+#. settings-schema.json->show_grade_panel->tooltip
+msgid "Show your grades."
+msgstr "Muestra tus calificaciones."
+
+#. settings-schema.json->group_grades_sub->description
+msgid "Group grades by subject"
+msgstr "Agrupar las calificaciones por asignatura"
+
+#. settings-schema.json->group_grades_sub->tooltip
+msgid "Group your grades by the subject."
+msgstr "Agrupa tus notas por asignaturas."
+
+#. settings-schema.json->head3->description
+msgid "Absences"
+msgstr "Ausencias"
+
+#. settings-schema.json->show_absences->description
+msgid "Your absences"
+msgstr "Sus ausencias"
+
+#. settings-schema.json->show_absences->tooltip
+msgid "Show your absences."
+msgstr "Muestra tus ausencias."
+
+#. settings-schema.json->sort_absences->description
+msgid "Sort absences by subject"
+msgstr "Ordenar las ausencias por asignatura"
+
+#. settings-schema.json->sort_absences->tooltip
+msgid "Organize your absences by your subjects."
+msgstr "Organiza tus ausencias por asignaturas."
+
+#. settings-schema.json->head4->description
+msgid "Lessons"
+msgstr "Lecciones"
+
+#. settings-schema.json->show_lessons->description
+msgid "Show lessons"
+msgstr "Mostrar lecciones"
+
+#. settings-schema.json->show_lessons->tooltip
+msgid "Show your lessons."
+msgstr "Muestra tus lecciones."
+
+#. settings-schema.json->show_filtered_days->description
+msgid "Filter days"
+msgstr "Filtrar días"
+
+#. settings-schema.json->show_filtered_days->tooltip
+msgid "Show just days you have lessons."
+msgstr "Muestra sólo los días que tienes clase."

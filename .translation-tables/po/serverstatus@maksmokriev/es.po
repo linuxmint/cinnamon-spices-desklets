@@ -1,0 +1,175 @@
+# SERVER STATUS
+# This file is put in the public domain.
+# maksmokriev, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: serverstatus@maksmokriev 1.2.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-01-04 08:44+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.8\n"
+
+#: desklet.js:23
+msgid "Server Status"
+msgstr "Estado del servidor"
+
+#: desklet.js:84
+msgid "Need to setup"
+msgstr "Necesita configuración"
+
+#: desklet.js:173
+msgid "Error ping command on "
+msgstr "Error en el comando ping en "
+
+#: desklet.js:179
+msgid "Error creating ping process "
+msgstr "Error al crear el proceso ping "
+
+#: desklet.js:205
+msgid "Error curl command on "
+msgstr "Error en el comando curl en "
+
+#: desklet.js:211
+msgid "Error creating curl process "
+msgstr "Error al crear el proceso curl "
+
+#. metadata.json->name
+msgid "Server status"
+msgstr "Estado del servidor"
+
+#. metadata.json->description
+msgid ""
+"A desklet that checks a host via ping or HTTP(S) and displays if it is "
+"available."
+msgstr ""
+"Un desklet que comprueba un host mediante ping o HTTP(S) y muestra si está "
+"disponible."
+
+#. settings-schema.json->page_servers->title
+msgid "Servers for checks"
+msgstr "Servidores para comprobar"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Estilo Desklet"
+
+#. settings-schema.json->ServerNames->description
+msgid "Status for this Servers:"
+msgstr "Estado de estos servidores:"
+
+#. settings-schema.json->ServerNames->tooltip
+msgid "You can set only types: ping, http or https"
+msgstr "Solo se pueden configurar los tipos: ping, http o https"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Name"
+msgstr "Nombre"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "IP or Domen"
+msgstr "IP o Dominio"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Type for check"
+msgstr "Tipo de comprobación"
+
+#. settings-schema.json->ServerNames->columns->title
+msgid "Display it?"
+msgstr "¿Mostrarlo?"
+
+#. settings-schema.json->TimeRepeat->description
+msgid "Update every (seconds):"
+msgstr "Actualizar cada (segundos):"
+
+#. settings-schema.json->TextColorBasic->description
+msgid "Basic text color"
+msgstr "Color básico del texto"
+
+#. settings-schema.json->TextColorBasic->tooltip
+msgid "Click the button to select a new text color for Basic text"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de texto para el texto "
+"básico"
+
+#. settings-schema.json->TextColorOK->description
+msgid "Text color for OK"
+msgstr "Color del texto para OK"
+
+#. settings-schema.json->TextColorOK->tooltip
+msgid "Click the button to select a new text color for successful connect"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de texto para indicar "
+"que la conexión se ha establecido correctamente"
+
+#. settings-schema.json->TextColorWARN->description
+msgid "Text color for WARNING"
+msgstr "Color del texto para ADVERTENCIA"
+
+#. settings-schema.json->TextColorWARN->tooltip
+msgid ""
+"Click the button to select a new text color for warning in connect status"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de texto para las "
+"advertencias en el estado de conexión"
+
+#. settings-schema.json->TextColorERR->description
+msgid "Text color for ERROR"
+msgstr "Color del texto para ERROR"
+
+#. settings-schema.json->TextColorERR->tooltip
+msgid "Click the button to select a new text color for error in connect"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de texto para los "
+"errores de conexión"
+
+#. settings-schema.json->ContainerBgColor->description
+msgid "Color for container background"
+msgstr "Color para el fondo del contenedor"
+
+#. settings-schema.json->ContainerBgColor->tooltip
+msgid "Click the button to select a new background color for basic container"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de fondo para el "
+"contenedor básico"
+
+#. settings-schema.json->BoxBgColor->description
+msgid "Color for element background"
+msgstr "Color para el fondo del elemento"
+
+#. settings-schema.json->BoxBgColor->tooltip
+msgid "Click the button to select a new background color for each elements"
+msgstr ""
+"Haga clic en el botón para seleccionar un nuevo color de fondo para cada "
+"elemento"
+
+#. settings-schema.json->FontSize->description
+msgid "Font size"
+msgstr "Tamaño de la fuente"
+
+#. settings-schema.json->FontSize->units
+#. settings-schema.json->ContainerWidth->units
+msgid "pixels"
+msgstr "pixeles"
+
+#. settings-schema.json->ContainerFixedWidth->description
+msgid "Set a fixed width for the container"
+msgstr "Establecer un ancho fijo para el contenedor"
+
+#. settings-schema.json->ContainerFixedWidth->tooltip
+msgid "Enable checkbox to set the fixed width of the container"
+msgstr ""
+"Active la casilla de verificación para establecer el ancho fijo del "
+"contenedor"
+
+#. settings-schema.json->ContainerWidth->description
+msgid "Container width"
+msgstr "Ancho del contenedor"

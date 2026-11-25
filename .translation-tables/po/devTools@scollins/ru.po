@@ -1,0 +1,375 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 12:40+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:247 tabPanel.js:25
+msgid "Untitled"
+msgstr "Без названия"
+
+#: desklet.js:289
+msgid "Tools"
+msgstr "Инструменты"
+
+#: desklet.js:406 desklet.js:538
+msgid "Expand"
+msgstr "Раскрыть"
+
+#. settings-schema.json->collapsedStartState->options
+#: desklet.js:410 desklet.js:555
+msgid "Collapse"
+msgstr "Свернуть"
+
+#: desklet.js:432
+msgid "Open Cinnamon Settings"
+msgstr "Открыть настройки Cinnamon"
+
+#: desklet.js:440
+msgid "Start Sandbox"
+msgstr "Запустить песочницу"
+
+#: desklet.js:448
+msgid "Run command line"
+msgstr "Запустить командную строку"
+
+#: desklet.js:456 extensions.js:160 extensions.js:178 inspect.js:369
+#: inspect.js:555 windows.js:89
+msgid "Inspect"
+msgstr "Исследовать"
+
+#: desklet.js:464
+msgid "Open Looking Glass"
+msgstr "Открыть Looking Glass"
+
+#: desklet.js:474
+msgid "Reload Theme"
+msgstr "Перезагрузить тему оформления"
+
+#: desklet.js:484
+msgid "Restart Cinnamon"
+msgstr "Перезапустить Cinnamon"
+
+#: errorLog.js:44
+msgid "X-Session Log"
+msgstr "Лог X-Session"
+
+#: errorLog.js:62
+msgid "Hide old errors"
+msgstr "Скрыть старые ошибки"
+
+#: errorLog.js:77 terminal.js:68
+msgid "Clear"
+msgstr "Очистить"
+
+#: errorLog.js:130
+msgid "Cinnamon Log"
+msgstr "Лог Cinnamon"
+
+#: errorLog.js:147
+msgid "Show Timestamp"
+msgstr "Показать временные метки"
+
+#: errorLog.js:155
+msgid "Infos"
+msgstr "Информация"
+
+#: errorLog.js:163
+msgid "Warnings"
+msgstr "Предупреждения"
+
+#: errorLog.js:171
+msgid "Errors"
+msgstr "Ошибки"
+
+#: errorLog.js:179
+msgid "Traces"
+msgstr "Трассировка"
+
+#: errorLog.js:193
+msgid "Copy"
+msgstr "Копировать"
+
+#: extensions.js:70
+msgid "Infinite"
+msgstr "Не ограничено"
+
+#: extensions.js:125
+msgid "Reload"
+msgstr "Перезагрузить"
+
+#: extensions.js:130 extensions.js:165
+msgid "Remove"
+msgstr "Удалить"
+
+#: extensions.js:136
+msgid "Instances"
+msgstr "Экземпляры"
+
+#: extensions.js:136
+msgid "maximum of"
+msgstr "максимум из"
+
+#: extensions.js:155 extensions.js:173
+msgid "Highlight"
+msgstr ""
+
+#: extensions.js:186
+msgid "Configure"
+msgstr "Настроить"
+
+#: extensions.js:271
+msgid "Extensions"
+msgstr "Расширения"
+
+#: extensions.js:353 extensions.js:381
+msgid "failed to create extension item for uuid"
+msgstr ""
+
+#: extensions.js:361 extensions.js:389
+msgid "No extensions of this type are enabled"
+msgstr "Нет включённых расширений этого типа"
+
+#: inspect.js:126
+msgid "(Press Pause or Control to disable event pass through)"
+msgstr "(Нажмите Pause или Control для отключения событий)"
+
+#: inspect.js:128
+msgid "(Press Pause or Control to enable event pass through)"
+msgstr "(Нажмите Pause или Control для активации событий)"
+
+#: inspect.js:411
+msgid "Length"
+msgstr ""
+
+#: inspect.js:418
+msgid "Parent"
+msgstr ""
+
+#: inspect.js:427
+msgid "Children"
+msgstr ""
+
+#. settings-schema.json->height->description
+#: inspect.js:438
+msgid "Height"
+msgstr ""
+
+#. settings-schema.json->width->description
+#: inspect.js:440
+msgid "Width"
+msgstr ""
+
+#: inspect.js:442
+msgid "Visible"
+msgstr ""
+
+#: inspect.js:446
+msgid "Style Class"
+msgstr ""
+
+#: inspect.js:448
+msgid "None"
+msgstr ""
+
+#: inspect.js:456 windows.js:70
+msgid "Title"
+msgstr ""
+
+#: inspect.js:459 windows.js:75
+msgid "Class"
+msgstr ""
+
+#: inspect.js:462 windows.js:80
+msgid "Workspace"
+msgstr ""
+
+#: inspect.js:471
+msgid "Monitor"
+msgstr ""
+
+#: inspect.js:475
+msgid "Size"
+msgstr ""
+
+#: inspect.js:477
+msgid "Position"
+msgstr ""
+
+#: inspect.js:494
+msgid "Values"
+msgstr ""
+
+#: inspect.js:495
+msgid "Index"
+msgstr ""
+
+#: inspect.js:498
+msgid "Map Elements"
+msgstr ""
+
+#: inspect.js:499
+msgid "Key"
+msgstr ""
+
+#: inspect.js:502
+msgid "Properties"
+msgstr ""
+
+#: inspect.js:503
+msgid "Name"
+msgstr ""
+
+#: inspect.js:509
+msgid "Type"
+msgstr ""
+
+#: inspect.js:510
+msgid "Value"
+msgstr ""
+
+#: sandbox.js:76
+msgid "Open"
+msgstr "Открыть"
+
+#: sandbox.js:82
+msgid "Save"
+msgstr "Сохранить"
+
+#: sandbox.js:88
+msgid "Save As"
+msgstr "Сохранить как"
+
+#: sandbox.js:149
+msgid "Sandbox"
+msgstr "Песочница"
+
+#: sandbox.js:165
+msgid "Evaluate"
+msgstr "Выявить ошибки"
+
+#: sandbox.js:170
+msgid "Javascript"
+msgstr "Код javascript"
+
+#: sandbox.js:174
+msgid "Style"
+msgstr "Код стиля"
+
+#: sandbox.js:180
+msgid "Load current stylesheet"
+msgstr "Загрузить текущую таблицу стиля"
+
+#: sandbox.js:204
+msgid "No errors detected"
+msgstr "Ошибок не обнаружено"
+
+#: tab.js:126
+msgid "Close Tab"
+msgstr "Закрыть вкладку"
+
+#: terminal.js:54
+msgid "Command"
+msgstr ""
+
+#: terminal.js:59
+msgid "Status"
+msgstr ""
+
+#: terminal.js:60
+msgid "Running"
+msgstr ""
+
+#: terminal.js:73
+msgid "End Process"
+msgstr ""
+
+#: terminal.js:82
+msgid "Output"
+msgstr ""
+
+#: terminal.js:108
+msgid "Stopped"
+msgstr ""
+
+#: terminal.js:231
+msgid "Run"
+msgstr "Выполнить"
+
+#: windows.js:24 windows.js:126
+msgid "all"
+msgstr "все"
+
+#: windows.js:95
+msgid "Switch to"
+msgstr "Переключиться на"
+
+#: windows.js:101
+msgid "Close"
+msgstr "Закрыть"
+
+#: windows.js:144
+msgid "Windows"
+msgstr "Окна"
+
+#. metadata.json->description
+msgid "A desklet for troubleshooting and developing in the Cinnamon UI"
+msgstr ""
+"Десклет для выявления проблем и разработки пользовательского интерфейса "
+"Cinnamon"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr ""
+
+#. metadata.json->comments
+msgid ""
+"This desklet provides tools to help troubleshoot, view and control certain "
+"Cinnamon components and status information, and even test new code without "
+"restarting Cinnamon."
+msgstr ""
+"Этот десклет предоставляет инструменты, помогающие устранять неполадки, "
+"просматривать и проверять отдельные компоненты Cinnamon используя различную "
+"отчётность. А ещё, тестировать новый код без перезапуска Cinnamon."
+
+#. metadata.json->name
+msgid "Developer's Tools"
+msgstr "Инструменты Разработчика (Developer's Tools)"
+
+#. settings-schema.json->collapsedStartState->description
+msgid "On startup"
+msgstr "При запуске"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Remember Previous State"
+msgstr "Использовать предыдущее состояние"
+
+#. settings-schema.json->collapsedStartState->options
+msgid "Show"
+msgstr "Развернуть"
+
+#. settings-schema.json->collapsed->description
+msgid "Collapsed"
+msgstr "Свернуть"
+
+#. settings-schema.json->raiseKey->description
+msgid "Raise to top shorcut key"
+msgstr "Переместить на передний план"
+
+#. settings-schema.json->centerRaised->description
+msgid "Center the desklet on the screen in raised mode"
+msgstr "Установить по центру экрана, при перемещении на передний план"
+
+#. settings-schema.json->sandboxHeader->description
+msgid "Sandbox header"
+msgstr "Подключить этот код к песочницам"

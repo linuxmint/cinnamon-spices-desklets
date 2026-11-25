@@ -1,0 +1,462 @@
+# GOOGLE CALENDAR
+# This file is put in the public domain.
+# slgobinath, 2017
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: googleCalendar@javahelps.com 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-04-21 23:14+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. settings-schema.json->interval->description
+#. desklet.js:66 desklet.js:74
+msgid "Number of days to include"
+msgstr "Päivien määrä"
+
+#. desklet.js:66 desklet.js:74
+msgid ": "
+msgstr ": "
+
+#. metadata.json->name
+#. settings-schema.json->page_gcalendar->title
+#. desklet.js:126
+msgid "Google Calendar"
+msgstr "Google Calendar"
+
+#. desklet.js:219
+msgid "Open Google Calendar"
+msgstr "Avaa Google Calendar"
+
+#. desklet.js:302
+msgid "No events found"
+msgstr "Ei tapahtumia"
+
+#. desklet.js:467
+msgid "gcalendar is not authorized"
+msgstr "gcalendar ei myönnetty valtuutusta"
+
+#. desklet.js:469
+msgid "gcalendar token expired"
+msgstr "gcalendar token on vanhentunut"
+
+#. desklet.js:474
+msgid "Execute: "
+msgstr "Suorita: "
+
+#. desklet.js:487
+msgid "Unknown Error"
+msgstr "Tuntematon virhe"
+
+#. desklet.js:490
+msgid "Install gcalendar to use this desklet."
+msgstr "Asennus gcalendar tarvitaan."
+
+#. desklet.js:491
+msgid "Visit: "
+msgstr "Verkkosivulle: "
+
+#. desklet.js:529
+msgid "Unable to retrieve events..."
+msgstr "Tapahtumia ei voitu hakea..."
+
+#. lib/utility.js:158 lib/xdate.js:350
+msgid "AM"
+msgstr "AP"
+
+#. lib/utility.js:158 lib/xdate.js:351
+msgid "PM"
+msgstr "IP"
+
+#. lib/xdate.js:346
+msgid "January"
+msgstr "Tammikuu"
+
+#. lib/xdate.js:346
+msgid "February"
+msgstr "Helmikuu"
+
+#. lib/xdate.js:346
+msgid "March"
+msgstr "Maaliskuu"
+
+#. lib/xdate.js:346
+msgid "April"
+msgstr "Huhtikuu"
+
+#. lib/xdate.js:346
+msgctxt "long"
+msgid "May"
+msgstr "Toukokuu"
+
+#. lib/xdate.js:346
+msgid "June"
+msgstr "Kesäkuu"
+
+#. lib/xdate.js:346
+msgid "July"
+msgstr "Heinäkuu"
+
+#. lib/xdate.js:346
+msgid "August"
+msgstr "Elokuu"
+
+#. lib/xdate.js:346
+msgid "September"
+msgstr "Syyskuu"
+
+#. lib/xdate.js:346
+msgid "October"
+msgstr "Lokakuu"
+
+#. lib/xdate.js:346
+msgid "November"
+msgstr "Marraskuu"
+
+#. lib/xdate.js:346
+msgid "December"
+msgstr "Joulukuu"
+
+#. lib/xdate.js:347
+msgid "Jan"
+msgstr "Tam"
+
+#. lib/xdate.js:347
+msgid "Feb"
+msgstr "Hel"
+
+#. lib/xdate.js:347
+msgid "Mar"
+msgstr "Mar"
+
+#. lib/xdate.js:347
+msgid "Apr"
+msgstr "Huh"
+
+#. lib/xdate.js:347
+msgctxt "short"
+msgid "May"
+msgstr "Tou"
+
+#. lib/xdate.js:347
+msgid "Jun"
+msgstr "Kes"
+
+#. lib/xdate.js:347
+msgid "Jul"
+msgstr "Hei"
+
+#. lib/xdate.js:347
+msgid "Aug"
+msgstr "Elo"
+
+#. lib/xdate.js:347
+msgid "Sep"
+msgstr "Syy"
+
+#. lib/xdate.js:347
+msgid "Oct"
+msgstr "Lok"
+
+#. lib/xdate.js:347
+msgid "Nov"
+msgstr "Mar"
+
+#. lib/xdate.js:347
+msgid "Dec"
+msgstr "Jou"
+
+#. lib/xdate.js:348
+msgid "Sunday"
+msgstr "Sunnuntai"
+
+#. lib/xdate.js:348
+msgid "Monday"
+msgstr "Maanantai"
+
+#. lib/xdate.js:348
+msgid "Tuesday"
+msgstr "Tiistai"
+
+#. lib/xdate.js:348
+msgid "Wednesday"
+msgstr "Keskiviikko"
+
+#. lib/xdate.js:348
+msgid "Thursday"
+msgstr "Torstai"
+
+#. lib/xdate.js:348
+msgid "Friday"
+msgstr "Perjantai"
+
+#. lib/xdate.js:348
+msgid "Saturday"
+msgstr "Launtai"
+
+#. lib/xdate.js:349
+msgid "Sun"
+msgstr "Su"
+
+#. lib/xdate.js:349
+msgid "Mon"
+msgstr "Ma"
+
+#. lib/xdate.js:349
+msgid "Tue"
+msgstr "Ti"
+
+#. lib/xdate.js:349
+msgid "Wed"
+msgstr "Ke"
+
+#. lib/xdate.js:349
+msgid "Thu"
+msgstr "To"
+
+#. lib/xdate.js:349
+msgid "Fri"
+msgstr "Pe"
+
+#. lib/xdate.js:349
+msgid "Sat"
+msgstr "La"
+
+#. metadata.json->description
+msgid "A desklet that displays your agenda based on Google Calendar"
+msgstr ""
+"Näyttää työpöydällä Google-kalenterin tapahtumat teksteinä työpöydällä. "
+"Ohjelman gcalendar asennus tarvitaan"
+
+#. settings-schema.json->page_style->title
+msgid "Desklet Style"
+msgstr "Ulkoasu"
+
+#. settings-schema.json->display0->description
+msgid "Google Calendar authentication"
+msgstr "Google Calendar tunnistautuminen"
+
+#. settings-schema.json->clientId->description
+msgid "Client Id"
+msgstr "Asiakastunnus"
+
+#. settings-schema.json->clientId->tooltip
+msgid ""
+"Enter your Google calendar project client id. Leave it empty to use the "
+"default client id."
+msgstr ""
+"Anna Google-kalenterin Client ID (asiakastunnus) näyttää pitkältä "
+"verkkotunnukselta, joka päättyy aina sanoihin .apps.googleusercontent.com. "
+"Jätä kenttä tyhjäksi, jos käytät oletus tunnusta."
+
+#. settings-schema.json->clientSecret->description
+msgid "Client secret"
+msgstr "Asiakkaan sala-avain"
+
+#. settings-schema.json->clientSecret->tooltip
+msgid ""
+"Enter your Google calendar project client secret. Leave it empty to use the "
+"default client secret."
+msgstr ""
+"Anna Google-kalenterin asiakkaan sala-avain (client secret). Käytännössä "
+"tämä on pitkä merkkijono (api-salasana). Jätä kenttä tyhjäksi, jos käytät "
+"oletus salaisuutta."
+
+#. settings-schema.json->display1->description
+msgid "Calendar configuration"
+msgstr "Kalenterin määritykset"
+
+#. settings-schema.json->gcalendarAccount->description
+msgid "gcalendar Account ID"
+msgstr "gcalendar tunnus"
+
+#. settings-schema.json->gcalendarAccount->tooltip
+msgid "Enter gcalendar --account id"
+msgstr ""
+"Anna gcalendar --account id tyypillisesti \"gcalendar --account koti tai "
+"työ\" muotoa. Kyseessä on itse keksimäsi nimimerkki tai tunnus tilille"
+
+#. settings-schema.json->gcalendarAccount->options
+msgid "default"
+msgstr "oletus"
+
+#. settings-schema.json->allNamesButton->description
+msgid "Fill in the list bellow with the names of all my calendars"
+msgstr "Täytä alla olevaan luetteloon kaikkien kalentereidesi nimet"
+
+#. settings-schema.json->allNamesButton->tooltip
+msgid ""
+"Click to fill in the list bellow with the names of all your calendars. It "
+"may take a little while."
+msgstr ""
+"Napautus täyttää alla olevan luettelon kaikkien kalenteriesi nimillä. "
+"Kestää hetken.aikaa."
+
+#. settings-schema.json->calendarNames->description
+msgid "Display these calendars:"
+msgstr "Näytä nämä kalenterit:"
+
+#. settings-schema.json->calendarNames->tooltip
+msgid "If you want to diplay a calendar, set it to TRUE (or check its box)."
+msgstr "Jos haluat näyttää kalenterin valitse valintaruutu.."
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Calendar"
+msgstr "Kalenteri"
+
+#. settings-schema.json->calendarNames->columns->title
+msgid "Display it?"
+msgstr "Näytä"
+
+#. settings-schema.json->interval->tooltip
+msgid "Show the agenda for these number of days"
+msgstr "Montako päivää tapahtumat näytetään"
+
+#. settings-schema.json->interval->units
+msgid "days"
+msgstr "päivää"
+
+#. settings-schema.json->delay->description
+msgid "Update every:"
+msgstr "Päivitysväli:"
+
+#. settings-schema.json->delay->units
+msgid "minutes"
+msgstr "min"
+
+#. settings-schema.json->date_format->description
+msgid "Date format"
+msgstr "Päiväys"
+
+#. settings-schema.json->date_format->tooltip
+msgid "Enter the date format here"
+msgstr "Esitysmuotoa voi vaihtaa ja järjestystä muuttaa"
+
+#. settings-schema.json->today_format->description
+msgid "Today format"
+msgstr "Tänään"
+
+#. settings-schema.json->today_format->tooltip
+msgid "Enter the today format here"
+msgstr "Esitysmuotoa voi vaihtaa ja järjestystä muuttaa"
+
+#. settings-schema.json->tomorrow_format->description
+msgid "Tomorrow format"
+msgstr "Huomenna"
+
+#. settings-schema.json->tomorrow_format->tooltip
+msgid "Enter the tomorrow format here"
+msgstr "Esitysmuotoa voi vaihtaa ja järjestystä muuttaa"
+
+#. settings-schema.json->use_24h_clock->description
+msgid "Use 24h clock"
+msgstr "Käytä 24h kelloa"
+
+#. settings-schema.json->use_24h_clock->tooltip
+msgid "Check to show time in 24h"
+msgstr "Jos aika näytetään 24 tunnin muodossa"
+
+#. settings-schema.json->zoom->units
+msgid "times"
+msgstr "kerroin"
+
+#. settings-schema.json->zoom->description
+msgid "Zoom by"
+msgstr "Suurennus"
+
+#. settings-schema.json->zoom->tooltip
+msgid "Change the size of the desklet"
+msgstr "Muuta sovelman kokoa"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency"
+msgstr "Läpinäkyvyys"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of the desklet"
+msgstr "Aseta sovelman läpikuultavuus"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Tekstin väri"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Valitse tekstin väri painamalla nappia"
+
+#. settings-schema.json->alldaytextcolor->description
+msgid "All day event text color"
+msgstr "Koko päivän tapahtuman tekstiväri"
+
+#. settings-schema.json->alldaytextcolor->tooltip
+msgid "Click the button to select a new all day event text color"
+msgstr "Valitse uusi tekstiväri koko päivän kestävälle tapahtumalle"
+
+#. settings-schema.json->bgcolor->description
+msgid "Background color"
+msgstr "Taustaväri"
+
+#. settings-schema.json->bgcolor->tooltip
+msgid "Click the button to select a new background color"
+msgstr "Valitse uusi taustaväri painamalla nappia"
+
+#. settings-schema.json->diff_calendar->description
+msgid "Differentiate calendars"
+msgstr "Erottele kalenterit"
+
+#. settings-schema.json->diff_calendar->tooltip
+msgid "Show color bullets in front of events"
+msgstr "Värilliset pallot tapahtumien edessä"
+
+#. settings-schema.json->show_location->description
+msgid "Show location"
+msgstr "Näytä sijainti"
+
+#. settings-schema.json->show_location->tooltip
+msgid "Display the event location if available"
+msgstr "Tapahtumapaikka"
+
+#. settings-schema.json->location_color->description
+msgid "Location text color"
+msgstr "Sijaintitekstin väri"
+
+#. settings-schema.json->location_color->tooltip
+msgid "Click the button to select a new location text color"
+msgstr "Valitse sijaintitekstin väri"
+
+#. settings-schema.json->cornerradius->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->cornerradius->description
+msgid "Corner radius"
+msgstr "Kulmien pyöristys"
+
+#. settings-schema.json->cornerradius->tooltip
+msgid "Radius for rounding the desklet's corners"
+msgstr "Kulmien pyöristyssäde työpöydällä"
+
+#. settings-schema.json->display_mode->description
+msgid "Display mode"
+msgstr "Näyttömoodi"
+
+#. settings-schema.json->display_mode->options
+msgid "normal"
+msgstr "normaali"
+
+#. settings-schema.json->display_mode->options
+msgid "compact"
+msgstr "tiivis"
+
+#. settings-schema.json->display_mode->options
+msgid "ultra compact"
+msgstr "pienikokoinen"

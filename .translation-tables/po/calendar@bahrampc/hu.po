@@ -1,0 +1,199 @@
+# SHAMSI CALENDAR DESKLET
+# This file is put in the public domain.
+# bahrampc, 2025
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: calendar@bahrampc 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-01-06 17:42+0330\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->comments
+msgid ""
+"Shamsi Calendar Desklet provides a highly configurable desklet to display "
+"current date and browsable months."
+msgstr ""
+"A Samszi Naptár Asztalkalmazás egy jól konfigurálható asztalkalmazás az "
+"aktuális dátum és a böngészhető hónapok megjelenítéséhez."
+
+#. metadata.json->contributors
+msgid "Bahram Afzali"
+msgstr "Bahram Afzali"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Konfigurálható naptár asztalkalmazás"
+
+#. metadata.json->name
+msgid "Shamsi Calendar Desklet"
+msgstr "Samszi Naptár Asztalkalmazás"
+
+#. settings-schema.json->top->description
+msgid "Shamsi calendar configuration"
+msgstr "Samszi naptár beállítás"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Megjelenítendő panelek"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Mindkettő ma és hónap"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Csak ma"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Csak hónap"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Válassza ki a asztalkalmazásban megjeleníteni kívánt paneleket"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "A hét napjának megjelenítése"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "Nem"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Teljes"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Rövid"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"A hét napjára; teljes név, rövid név megjelenítése vagy a megjelenítés "
+"letiltása"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Rövid hónap név"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Rövid hónap név megjelenítése"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Év megjelenítése"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"Évre; az összes számjegy megjelenítése, az utolsó két számjegy "
+"megjelenítése vagy a megjelenítés letiltása"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Idő megjelenítése"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Idő megjelenítése vagy elrejtése (óra és perc)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "24 órás óraformátum használata"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr "Automatikus előrelépés"
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr "Ha változik a hónap, frissítse az asztalkalmazást"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Asztalkalmazás stílusának beállítása"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Asztalkalmazás elrendezése"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Vízszintes"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Függőleges"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr ""
+"Állítsa be az asztalkalmazás általános elrendezését vízszintesre/"
+"függőlegesre"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr ""
+"Egyéni betűtípuscsalád a szöveghez (az alapértelmezett használathoz üres)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Állítson be egyéni betűtípuscsaládot a szöveghez (az alapértelmezett "
+"betűtípus használatához üres)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Betűméret (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Állítsa be a szöveg betűméretét pontokban"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Szöveg színe"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Az asztalkalmazás szöveg színének beállítása"
+
+#. settings-schema.json->colour-friday->description
+msgid "Text colour for Fridays"
+msgstr "Szöveg színe pénteken"
+
+#. settings-schema.json->colour-friday->tooltip
+msgid "Set text colour for Fridays"
+msgstr "Állítsa be a szöveg színét péntekre"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Háttérszín"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Állítsa be az asztalkalmazás háttérszínét"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Átlátszóság (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Állítsa be az asztalkalmazás átlátszóságát százalékban"

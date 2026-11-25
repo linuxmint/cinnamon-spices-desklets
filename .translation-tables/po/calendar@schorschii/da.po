@@ -1,0 +1,244 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-30 02:38+0800\n"
+"PO-Revision-Date: 2017-06-20 18:12+0200\n"
+"Last-Translator: Alan Mortensen <alanmortensen.am@gmail.com>\n"
+"Language-Team: \n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: desklet.js:125
+msgid "Monday"
+msgstr "Mandag"
+
+#: desklet.js:126
+msgid "Tuesday"
+msgstr "Tirsdag"
+
+#: desklet.js:127
+msgid "Wednesday"
+msgstr "Onsdag"
+
+#: desklet.js:128
+msgid "Thursday"
+msgstr "Torsdag"
+
+#: desklet.js:129
+msgid "Friday"
+msgstr "Fredag"
+
+#: desklet.js:130
+msgid "Saturday"
+msgstr "Lørdag"
+
+#: desklet.js:131
+msgid "Sunday"
+msgstr "Søndag"
+
+#: desklet.js:134
+msgid "January"
+msgstr "Januar"
+
+#: desklet.js:135
+msgid "February"
+msgstr "Februar"
+
+#: desklet.js:136
+msgid "March"
+msgstr "Marts"
+
+#: desklet.js:137
+msgid "April"
+msgstr "April"
+
+#: desklet.js:138
+msgid "May"
+msgstr "Maj"
+
+#: desklet.js:139
+msgid "June"
+msgstr "Juni"
+
+#: desklet.js:140
+msgid "July"
+msgstr "Juli"
+
+#: desklet.js:141
+msgid "August"
+msgstr "August"
+
+#: desklet.js:142
+msgid "September"
+msgstr "September"
+
+#: desklet.js:143
+msgid "October"
+msgstr "Oktober"
+
+#: desklet.js:144
+msgid "November"
+msgstr "November"
+
+#: desklet.js:145
+msgid "December"
+msgstr "December"
+
+#. calendar@schorschii->metadata.json->name
+#: desklet.js:275
+msgid "Calendar"
+msgstr "Kalender"
+
+#. calendar@schorschii->metadata.json->description
+msgid ""
+"A calendar desklet that can display the number of today's appointments from "
+"an ical file."
+msgstr ""
+"Et kalenderskrivebordsprogram som viser antallet af dagens aftaler fra en "
+"iCal-fil."
+
+#. calendar@schorschii->settings-schema.json->notification-color->description
+msgid "Appointment number background color"
+msgstr "Baggrundsfarve for aftalenummer"
+
+#. calendar@schorschii->settings-schema.json->notification-color->tooltip
+msgid "Set the appointment number background color of this desklet."
+msgstr "Angiv baggrundsfarven for aftalenummeret for dette skrivebordsprogram."
+
+#. calendar@schorschii->settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Skjul boks rundt om kalenderen"
+
+#. calendar@schorschii->settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr "Tilpasset etiket (kun synlig hvis boksen rundt om er aktiveret)"
+
+#. calendar@schorschii->settings-schema.json->head2->description
+msgid "Number of appointments"
+msgstr "Antal aftaler"
+
+#. calendar@schorschii->settings-schema.json->head1->description
+msgid "Visual"
+msgstr "Visuel"
+
+#. calendar@schorschii->settings-schema.json->head0->description
+msgid "Settings for calendar@schorschii"
+msgstr "Indstillinger for calendar@schorschii"
+
+#. calendar@schorschii->settings-schema.json->bg-img->description
+msgid "Calendar style"
+msgstr "Kalenderstil"
+
+#. calendar@schorschii->settings-schema.json->bg-img->tooltip
+msgid "Select the background graphic you would like to use."
+msgstr "Vælg den baggrundsgrafik, du ønsker at bruge."
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "Orange"
+msgstr "Orange"
+
+#. calendar@schorschii->settings-schema.json->bg-img->options
+msgid "White"
+msgstr "Hvid"
+
+#. calendar@schorschii->settings-schema.json->text-color->description
+msgid "Text color"
+msgstr "Tekstfarve"
+
+#. calendar@schorschii->settings-schema.json->text-color->tooltip
+msgid "Set the text color of this desklet."
+msgstr "Angiv tekstfarven for dette skrivebordsprogram."
+
+#. calendar@schorschii->settings-schema.json->read-appointments->description
+msgid "Show the number of today's appointments parsed from an ical file"
+msgstr "Vis antallet af dagens aftaler læst fra en iCal-fil."
+
+#. calendar@schorschii->settings-schema.json->read-appointments->tooltip
+msgid ""
+"Checking this box allows you to set an ical file to parse in the field below."
+msgstr ""
+"Afkrydsning af dette felt lader dig angive en iCal-fil, der skal læses fra, "
+"i feltet nedenunder."
+
+#. calendar@schorschii->settings-schema.json->ical-file->description
+msgid "Path to ical/ics file"
+msgstr "Sti til iCal/ics-fil"
+
+#. calendar@schorschii->settings-schema.json->ical-file->tooltip
+msgid ""
+"Select your ical or ics file for reading the amount of appointments today.\n"
+"\n"
+"You can configure Lightning (the Thunderbird Add-On) to save your calendar "
+"in an ical file."
+msgstr ""
+"Vælg din ical- eller ics-fil for at læse antallet af aftaler i dag.\n"
+"\n"
+"Du kan konfigurere Lightning (Thunderbird-tilføjelsen) til at gemme din "
+"kalender som en iCal-fil."
+
+#. calendar@schorschii->settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Skrivebordsprogrammets størrelse"
+
+#. calendar@schorschii->settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the calendar using this scale factor."
+msgstr ""
+"Forøg eller formindsk kalenderens størrelse med denne skaleringsfaktor."
+
+#. calendar@schorschii->settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "skaleringsfaktor"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Anvend tilpasset etiket"
+
+#. calendar@schorschii->settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Afkrydsning af dette felt lader dig angive en tilpasset etiket i feltet "
+"nedenfor."
+
+#. calendar@schorschii->settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Tilpasset etiket"
+
+#. calendar@schorschii->settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here, e.g. for monitoring multiple ical files. This "
+"field is unavailable unless the checkbox above is enabled."
+msgstr ""
+"Angiv en tilpasset etiket her, f.eks. til monitorering af flere iCal-filer. "
+"Feltet er utilgængeligt, med mindre afkrydsningsfeltet ovenfor er markeret."
+
+msgid "Appointment number color"
+msgstr "Aftalenummerets farve"
+
+msgid "Start program on click of the desklet"
+msgstr "Start program ved klik på skrivebordsprogrammet"
+
+msgid "Start a program (e.g. Thunderbird)"
+msgstr "Start et program (f.eks. Thunderbird)"
+
+msgid ""
+"The command entered below will be executed on mouse click of the desklet. So "
+"you can directly start Thunderbird."
+msgstr ""
+"Kommandoen indtastet nedenfor, vil blive udført ved klik på "
+"skrivebordsprogrammet. Du kan således starte Thunderbird direkte."
+
+msgid "Command line"
+msgstr "Kommandolinje"
+
+msgid "Set your program including parameters to start on click."
+msgstr "Angiv det program inkl. parametre, der skal startes ved klik."

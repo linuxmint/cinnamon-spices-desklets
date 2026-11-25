@@ -1,0 +1,156 @@
+# MINTOO - THE MINT ASSISTANT
+# This file is put in the public domain.
+# sujitagarwal, 2020
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: mintoo@sujitagarwal 1.2\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-01-08 11:21-0500\n"
+"PO-Revision-Date: \n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
+"Language-Team: \n"
+"Language: fi\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. desklet.js:42
+msgid "Lock the Screen"
+msgstr "Lukitse näyttö"
+
+#. desklet.js:43
+msgid "Logout"
+msgstr "Kirjaudu ulos"
+
+#. desklet.js:44
+msgid "Shutdown"
+msgstr "Sammuta"
+
+#. desklet.js:45
+msgid "Restart"
+msgstr "Käynnistä"
+
+#. metadata.json->name
+msgid "Mintoo - The Mint Assistant"
+msgstr "Mintoo - Mint avustaja"
+
+#. metadata.json->description
+msgid ""
+"A friendly assistant for your Linux Mint. Now with more features to "
+"customize the look and feel!"
+msgstr ""
+"Linux Mint avustaja. Nyt enemmän ominaisuuksia, joilla voit muokata "
+"ulkoasua ja tuntumaa!"
+
+#. settings-schema.json->head0->description
+msgid "Settings for Mintoo"
+msgstr "Asetukset Mintoo"
+
+#. settings-schema.json->desklet-size->units
+msgid "pixels"
+msgstr "pikseliä"
+
+#. settings-schema.json->desklet-size->description
+msgid "Desklet size"
+msgstr "Sovelman koko"
+
+#. settings-schema.json->desklet-size->tooltip
+msgid "Increase or decrease the size of the Mintoo Desklet."
+msgstr "Suurenna tai pienennä Mintoo Deskletin kokoa."
+
+#. settings-schema.json->button-color->description
+msgid "Button Color"
+msgstr "Painikkeen väri"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Linux Mint Green"
+msgstr "Linux Mint vihreä"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Black"
+msgstr "Musta"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Light)"
+msgstr "Sininen (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Blue (Dark)"
+msgstr "Sininen (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Light)"
+msgstr "Vihreä (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Green (Dark)"
+msgstr "Vihreä (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Light)"
+msgstr "Punainen (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Red (Dark)"
+msgstr "Punainen (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Light)"
+msgstr "Violetti (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Purple (Dark)"
+msgstr "Violetti (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Light)"
+msgstr "Oranssi (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Orange (Dark)"
+msgstr "Oranssi (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Light)"
+msgstr "Pinkki (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Pink (Dark)"
+msgstr "Pinkki (tumma)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Light)"
+msgstr "Harmaa (vaalea)"
+
+#. settings-schema.json->button-color->options
+#. settings-schema.json->button-hover-color->options
+msgid "Gray (Dark)"
+msgstr "Harmaa (tumma)"
+
+#. settings-schema.json->button-color->tooltip
+#. settings-schema.json->button-hover-color->tooltip
+msgid "Select the button hover style."
+msgstr "Valitse painikkeen leijuntatyyli."
+
+#. settings-schema.json->button-hover-color->description
+msgid "Button Hover Color"
+msgstr "Painikkeen leijuntaväri"

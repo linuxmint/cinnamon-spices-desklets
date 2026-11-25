@@ -1,0 +1,75 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-07-20 11:58-0400\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#. metadata.json->contributors
+msgid "Stephen Collins - Author"
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Bernard(zagortenay333) - Mint-x theme"
+msgstr ""
+
+#. metadata.json->contributors
+msgid "Corbin(RavetcoFX) - Bugfix"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Mint"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Mint-X"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Clean"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Ghost"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Ice"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Forest"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Hot Rod"
+msgstr ""
+
+#. 4.6->settings-schema.json->theme->options
+#. 5.4->settings-schema.json->theme->options
+#. 2.8->settings-schema.json->theme->options
+msgid "Camouflage (tries to blend in)"
+msgstr ""

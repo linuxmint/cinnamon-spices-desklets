@@ -1,0 +1,161 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2021-12-06 10:33+0100\n"
+"Last-Translator: Kálmán „KAMI” Szalai <kami911@gmail.com>\n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Mag %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr "CPU használat"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "CPU használat megjelenítése"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "CPU terheltség"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "CPU terheltség asztalkalmazás beállításai"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Általános"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Összes CPU mag megjelenítése"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr ""
+"Az egyes CPU magok kihasználtságának megjelenítése a teljes CPU "
+"kihasználtság helyett."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "másodperc"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Frissítési gyakoriság"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Növelje vagy csökkentse a frissítési gyakoriságot másodpercben."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Elrendezés"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Dizájn"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Vékony"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Tömör"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Vastag"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Kör"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Sebességmérő"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Teljes kör"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "léptéktényező"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Növelje vagy csökkentse az asztalkalmazás méretét."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "oszlopok"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Oszlopok száma"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Növelje vagy csökkentse az oszlopok számát."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Színek"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Betűszín"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Szín téma"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Véletlenszerű"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Statikus"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Dinamikus"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Statikus témaszín"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Háttér"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Háttér megjelenítése"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Díszítések elrejtése"

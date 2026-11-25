@@ -1,0 +1,426 @@
+# SevenSegmentClock desklet for Cinnamon.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the SevenSegmentClock package.
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2024-05-14 22:02+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#. metadata.json->name
+#: desklet.js:136
+msgid "Seven Segment Digital Clock"
+msgstr "Rellotge digital de set segments"
+
+#: desklet.js:520
+msgid "Time is an illusion"
+msgstr "El temps és una il·lusió"
+
+#: desklet.js:520
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr ""
+"Rellotge digital de set segments personalitzable, que ofereix també data i "
+"temps de Unix"
+
+#. settings-schema.json->general->title
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->digit->title
+msgid "Digits"
+msgstr "Dígits"
+
+#. settings-schema.json->clock->title
+msgid "Clock"
+msgstr "Rellotge"
+
+#. settings-schema.json->date-unix->title
+msgid "Date and Unix time"
+msgstr "Data i hora de Unix"
+
+#. settings-schema.json->general-layout->title
+msgid "Main layout"
+msgstr "Disposició principal"
+
+#. settings-schema.json->background->title
+msgid "Background"
+msgstr "Fons"
+
+#. settings-schema.json->digit-appearance->title
+msgid "Digit appearance"
+msgstr "Aspecte dels dígits"
+
+#. settings-schema.json->digit-darksegments->title
+msgid "Dark segments"
+msgstr "Segments obscurs"
+
+#. settings-schema.json->digit-stroke->title
+msgid "Stroke"
+msgstr "Vores dels segments"
+
+#. settings-schema.json->clock-appearance->title
+msgid "Clock appearance"
+msgstr "Aspecte del rellotge"
+
+#. settings-schema.json->date-appearance->title
+msgid "Date appearance"
+msgstr "Aspecte de la data"
+
+#. settings-schema.json->unix-appearance->title
+msgid "Unix time appearance"
+msgstr "Aspecte del temps de Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Date - Unix"
+msgstr "Rellotge - data - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Unix - Date"
+msgstr "Rellotge - Unix - data"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Clock - Unix"
+msgstr "Data - rellotge - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Unix - Clock"
+msgstr "Data - Unix - rellotge"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Clock - Date"
+msgstr "Unix - rellotge - data"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Date - Clock"
+msgstr "Unix - data - rellotge"
+
+#. settings-schema.json->main-layout->description
+msgid "Vertical order of main elements"
+msgstr "Ordre vertical dels elements principals"
+
+#. settings-schema.json->layout-gap->units
+#. settings-schema.json->stroke-width->units
+#. settings-schema.json->clock-height->units
+#. settings-schema.json->date-height->units
+#. settings-schema.json->unix-height->units
+msgid "pixel"
+msgstr "píxels"
+
+#. settings-schema.json->layout-gap->description
+msgid "Space between main elements"
+msgstr "Espai entre els elements principals"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Mostra el fons"
+
+#. settings-schema.json->background-color->description
+#. settings-schema.json->digit-color->description
+#. settings-schema.json->dark-color->description
+#. settings-schema.json->stroke-color->description
+msgid "Color"
+msgstr "Color"
+
+#. settings-schema.json->background-opacity->units
+#. settings-schema.json->digit-opacity->units
+#. settings-schema.json->digit-margin->units
+#. settings-schema.json->dark-opacity->units
+#. settings-schema.json->stroke-opacity->units
+msgid "percent"
+msgstr "percentatge"
+
+#. settings-schema.json->background-opacity->description
+#. settings-schema.json->digit-opacity->description
+#. settings-schema.json->dark-opacity->description
+#. settings-schema.json->stroke-opacity->description
+msgid "Opacity"
+msgstr "Opacitat"
+
+#. settings-schema.json->round-corners->description
+msgid "Round corners"
+msgstr "Cantonades arrodonides"
+
+#. settings-schema.json->background-shadow->description
+msgid "Shadow"
+msgstr "Ombrejat"
+
+#. settings-schema.json->digit-skew->units
+msgid "degrees"
+msgstr "graus"
+
+#. settings-schema.json->digit-skew->description
+msgid "Skew"
+msgstr "Inclinació"
+
+#. settings-schema.json->digit-margin->description
+msgid "Relative space between digits"
+msgstr "Espai relatiu entre els dígits"
+
+#. settings-schema.json->digit-margin->tooltip
+msgid "This value will be increasingly reduced by the digit skew."
+msgstr "Com més inclinació tinguin els dígits, més es reduirà aquest espai."
+
+#. settings-schema.json->digit-alt69->description
+msgid "Alternative 6 and 9"
+msgstr "Formes alternatives de 6 i 9"
+
+#. settings-schema.json->digit-alt7->description
+msgid "Alternative 7"
+msgstr "Forma alternativa del 7"
+
+#. settings-schema.json->dark-enabled->description
+msgid "Show dark segments of the digits"
+msgstr "Mostra el segments foscos dels dígits"
+
+#. settings-schema.json->dark-color->options
+msgid "Black"
+msgstr "Negre"
+
+#. settings-schema.json->dark-color->options
+msgid "White"
+msgstr "Blanc"
+
+#. settings-schema.json->dark-color->options
+msgid "same as illuminated"
+msgstr "mateix que il·luminats"
+
+#. settings-schema.json->stroke-enabled->description
+msgid "Add stroke"
+msgstr "Dibuixa les vores"
+
+#. settings-schema.json->stroke-width->description
+msgid "Width"
+msgstr "Amplada"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Mostra el rellotge"
+
+#. settings-schema.json->clock-height->description
+#. settings-schema.json->date-height->description
+#. settings-schema.json->unix-height->description
+msgid "Digit height"
+msgstr "Alçada dels dígits"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Mostra els segons"
+
+#. settings-schema.json->small-seconds->description
+msgid "Smaller seconds"
+msgstr "Segons en petit"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "none"
+msgstr "cap"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "half space"
+msgstr "mig espai"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "full space"
+msgstr "espai sencer"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "decimal point"
+msgstr "punt decimal"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "colon"
+msgstr "dos punts"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "dash"
+msgstr "guió"
+
+#. settings-schema.json->clock-divider->description
+#. settings-schema.json->date-divider->description
+#. settings-schema.json->unix-divider->description
+msgid "Divider type"
+msgstr "Tipus de divisor"
+
+#. settings-schema.json->clock-blink->description
+msgid "Blinking divider (only decimal point and colon)"
+msgstr "El divisor parpelleja (només punt decimal i dos punts)"
+
+#. settings-schema.json->leading-zero->options
+msgid "on"
+msgstr "sí"
+
+#. settings-schema.json->leading-zero->options
+msgid "off"
+msgstr "no"
+
+#. settings-schema.json->leading-zero->options
+#. settings-schema.json->clock-ampm->options
+msgid "hide"
+msgstr "oculta"
+
+#. settings-schema.json->leading-zero->options
+msgid "remove"
+msgstr "elimina"
+
+#. settings-schema.json->leading-zero->description
+msgid "Leading zero in hours"
+msgstr "Zeros davant les hores"
+
+#. settings-schema.json->clock-12h->description
+msgid "12h instead of 24h"
+msgstr "12h enlloc de 24h"
+
+#. settings-schema.json->clock-ampm->options
+msgid "only A and P"
+msgstr "sols A i P"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 1"
+msgstr "variant amb M (1)"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 2"
+msgstr "variant amb M (2)"
+
+#. settings-schema.json->clock-ampm->description
+msgid "AM/PM indicator"
+msgstr "Indicador de AM/PM"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Mostra la data"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Month - Day"
+msgstr "Any - mes - dia"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Day - Month"
+msgstr "Any - dia - mes"
+
+#. settings-schema.json->date-format->options
+msgid "Day - Month - Year"
+msgstr "Dia - mes - any"
+
+#. settings-schema.json->date-format->options
+msgid "Month - Day - Year"
+msgstr "Mes - dia - any"
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Format de la data"
+
+#. settings-schema.json->show-unix->description
+msgid "Show Unix time"
+msgstr "Mostra el temps Unix"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by OpenClipart"
+msgstr "Estil de l'OpenClipart"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by alex8664"
+msgstr "Estil de alex8664"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by Cfaerber"
+msgstr "Estil de Cfaerber"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by h2g2bob"
+msgstr "Estil de h2g2bob"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Light"
+msgstr "Estil DSEG clàssic clar de Keshikan's"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Regular"
+msgstr "Estil DSEG clàssic regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Bold"
+msgstr "Estil DSEG clàssic en gruixut de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Light"
+msgstr "Estil DSEG clàssic mini, prim, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Regular"
+msgstr "Estil DSEG clàssic mini, regular, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Bold"
+msgstr "Estil DSEG clàssic mini, gruixut, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Light"
+msgstr "Estil DSEG modern prim de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Regular"
+msgstr "Estil DSEG modern regular de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Bold"
+msgstr "Estil DSEG modern, gruixut, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Light"
+msgstr "Estil DSEG modern mini, prim, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Regular"
+msgstr "Estil DSEG modernmini, regular, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Bold"
+msgstr "Estil DSEG modern mini, gruixut, de Keshikan"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 1"
+msgstr "Simple 1"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 2"
+msgstr "Simple 2"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 3"
+msgstr "Simple 3"
+
+#. settings-schema.json->digit-style->options
+msgid "Curved"
+msgstr "Corbat"
+
+#. settings-schema.json->digit-style->description
+msgid "Digit style"
+msgstr "Estil dels dígits"

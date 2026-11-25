@@ -1,0 +1,40 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-17 23:31+0200\n"
+"PO-Revision-Date: 2017-04-25 21:52+0800\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: zh_CN\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.8.11\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: desklet.js:215
+msgid "xkcd"
+msgstr "xkcd"
+
+#: desklet.js:223
+msgid "View latest xkcd"
+msgstr "查看最新的xkcd"
+
+#: desklet.js:226
+msgid "Open save folder"
+msgstr "打开保存文件夹"
+
+#. metadata.json->name
+msgid "xkcd comics viewer"
+msgstr "xkcd漫画查看器"
+
+#. metadata.json->description
+msgid "A viewer for today's xkcd comic"
+msgstr "今天的xkcd漫画查看器"

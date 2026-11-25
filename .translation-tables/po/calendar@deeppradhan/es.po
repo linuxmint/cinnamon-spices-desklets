@@ -1,0 +1,302 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-03-18 11:02-0400\n"
+"PO-Revision-Date: 2024-03-15 15:10-0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#: desklet.js:29
+msgid "January"
+msgstr "Enero"
+
+#: desklet.js:29
+msgid "February"
+msgstr "Febrero"
+
+#: desklet.js:29
+msgid "March"
+msgstr "Marzo"
+
+#: desklet.js:29
+msgid "April"
+msgstr "Abril"
+
+#: desklet.js:29
+msgid "May"
+msgstr "Mayo"
+
+#: desklet.js:30
+msgid "June"
+msgstr "Junio"
+
+#: desklet.js:30
+msgid "July"
+msgstr "Julio"
+
+#: desklet.js:30
+msgid "August"
+msgstr "Agosto"
+
+#: desklet.js:30
+msgid "September"
+msgstr "Septiembre"
+
+#: desklet.js:30
+msgid "October"
+msgstr "Octubre"
+
+#: desklet.js:30
+msgid "November"
+msgstr "Noviembre"
+
+#: desklet.js:31
+msgid "December"
+msgstr "Diciembre"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Sunday"
+msgstr "Domingo"
+
+#. settings-schema.json->first-day->options
+#: desklet.js:34
+msgid "Monday"
+msgstr "Lunes"
+
+#: desklet.js:34
+msgid "Tuesday"
+msgstr "Martes"
+
+#: desklet.js:34
+msgid "Wednesday"
+msgstr "Miércoles"
+
+#: desklet.js:35
+msgid "Thursday"
+msgstr "Jueves"
+
+#: desklet.js:35
+msgid "Friday"
+msgstr "Viernes"
+
+#: desklet.js:35
+msgid "Saturday"
+msgstr "Sábado"
+
+#: desklet.js:135
+msgid "Previous month..."
+msgstr "Mes anterior..."
+
+#: desklet.js:137
+msgid "Next month..."
+msgstr "Próximo mes..."
+
+#: desklet.js:152
+msgid "Calendar"
+msgstr "Calendario"
+
+#. metadata.json->comments
+msgid ""
+"Calendar Desklet provides a highly configurable desklet to display current "
+"date and browsable months. It has a number of possible customisations."
+msgstr ""
+"Calendar Desklet proporciona un desklet altamente configurable para mostrar "
+"la fecha actual y meses disponibles. Tiene una serie de posibles "
+"personalizaciones."
+
+#. metadata.json->contributors
+msgid "Deep Pradhan"
+msgstr "Deep Pradhan"
+
+#. metadata.json->description
+msgid "Configurable Calendar desklet"
+msgstr "Desklet de un calendario personalizable"
+
+#. metadata.json->name
+msgid "Calendar desklet"
+msgstr "Desklet de Calendario"
+
+#. settings-schema.json->top->description
+msgid "Calendar configuration"
+msgstr "Configuración de calendario"
+
+#. settings-schema.json->panels->description
+msgid "Panels to show"
+msgstr "Paneles a mostrar"
+
+#. settings-schema.json->panels->options
+msgid "Both Today & Month"
+msgstr "Hoy y Mes"
+
+#. settings-schema.json->panels->options
+msgid "Today only"
+msgstr "Solo Hoy"
+
+#. settings-schema.json->panels->options
+msgid "Month only"
+msgstr "Solo Mes"
+
+#. settings-schema.json->panels->tooltip
+msgid "Select the panels to display in desklet"
+msgstr "Seleccione los paneles que se mostrarán en el desklet"
+
+#. settings-schema.json->show-weekday->description
+msgid "Show day of week"
+msgstr "Mostrar día de la semana"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "No"
+msgstr "No mostrar"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Full"
+msgstr "Mostrar"
+
+#. settings-schema.json->show-weekday->options
+#. settings-schema.json->show-year->options
+msgid "Short"
+msgstr "Mostrar abreviatura"
+
+#. settings-schema.json->show-weekday->tooltip
+msgid "For day of week; show full name, short name or disable showing"
+msgstr ""
+"Para el día de la semana; mostrar el nombre completo, el nombre abreviado o "
+"desactivar la visualización"
+
+#. settings-schema.json->short-month-name->description
+msgid "Short month name"
+msgstr "Nombre abreviado del mes"
+
+#. settings-schema.json->short-month-name->tooltip
+msgid "Show short month name"
+msgstr "Mostrar nombre abreviado del mes"
+
+#. settings-schema.json->show-year->description
+msgid "Show year"
+msgstr "Mostrar año"
+
+#. settings-schema.json->show-year->tooltip
+msgid "For year; show all digits, show last two digits or disable showing"
+msgstr ""
+"Para el año; mostrar todos los dígitos, mostrar los dos últimos dígitos o no "
+"mostrarlos"
+
+#. settings-schema.json->show-time->description
+msgid "Show time"
+msgstr "Mostrar hora"
+
+#. settings-schema.json->show-time->tooltip
+msgid "Show or hide time (hours and minutes)"
+msgstr "Mostrar u ocultar la hora (horas y minutos)"
+
+#. settings-schema.json->use-24h->description
+msgid "Use 24h clock"
+msgstr "Usar un reloj de 24 h"
+
+#. settings-schema.json->auto-advance->description
+msgid "Auto-advance"
+msgstr "Avance automático"
+
+#. settings-schema.json->auto-advance->tooltip
+msgid "When the month changes, update the desklet"
+msgstr "Cuando cambie el mes, actualiza el desklet"
+
+#. settings-schema.json->first-day->description
+msgid "First day of week"
+msgstr "Primer día de la semana"
+
+#. settings-schema.json->display->description
+msgid "Desklet style configuration"
+msgstr "Configuración del estilo del desklet"
+
+#. settings-schema.json->layout->description
+msgid "Layout of desklet"
+msgstr "Disposición del desklet"
+
+#. settings-schema.json->layout->options
+msgid "Horizontal"
+msgstr "Horizontal"
+
+#. settings-schema.json->layout->options
+msgid "Vertical"
+msgstr "Vertical"
+
+#. settings-schema.json->layout->tooltip
+msgid "Set the overall layout to horizontal/vertical of desklet"
+msgstr "Establecer la disposición general del desklet en horizontal/vertical"
+
+#. settings-schema.json->custom-font-family->description
+msgid "Custom font family for text (blank to use default)"
+msgstr ""
+"Familia de fuentes personalizada para el texto (en blanco para usar la "
+"predeterminada)"
+
+#. settings-schema.json->custom-font-family->tooltip
+msgid "Set a custom font family for the text (blank to use default font)"
+msgstr ""
+"Establezca una familia de fuentes personalizada para el texto (en blanco "
+"para usar la fuente por defecto)"
+
+#. settings-schema.json->font-size->description
+msgid "Font size (pt)"
+msgstr "Tamaño de fuente (pt)"
+
+#. settings-schema.json->font-size->tooltip
+msgid "Set the text font size in points"
+msgstr "Establecer el tamaño de la fuente del texto en puntos"
+
+#. settings-schema.json->colour-text->description
+msgid "Text colour"
+msgstr "Color del texto"
+
+#. settings-schema.json->colour-text->tooltip
+msgid "Set text colour of desklet"
+msgstr "Establecer el color del texto del desklet"
+
+#. settings-schema.json->colour-sundays->description
+msgid "Text colour for Sundays"
+msgstr "Color del texto para los Domingos"
+
+#. settings-schema.json->colour-sundays->tooltip
+msgid "Set text colour for Sundays"
+msgstr "Fijar el color del texto para los Domingos"
+
+#. settings-schema.json->colour-saturdays->description
+msgid "Text colour for Saturdays"
+msgstr "Color del texto para los Sábados"
+
+#. settings-schema.json->colour-saturdays->tooltip
+msgid "Set text colour for Saturdays"
+msgstr "Fijar el color del texto para los Sábados"
+
+#. settings-schema.json->colour-background->description
+msgid "Background colour"
+msgstr "Color de fondo"
+
+#. settings-schema.json->colour-background->tooltip
+msgid "Set background colour of desklet"
+msgstr "Establecer el color de fondo del desklet"
+
+#. settings-schema.json->transparency->description
+msgid "Transparency (%)"
+msgstr "Transparencia (%)"
+
+#. settings-schema.json->transparency->tooltip
+msgid "Set the transparency of desklet in percentage"
+msgstr "Establecer la transparencia del desklet en porcentaje"

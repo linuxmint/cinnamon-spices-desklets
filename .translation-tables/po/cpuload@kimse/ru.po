@@ -1,0 +1,157 @@
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator: blogdron\n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.1\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr "Ядро %d"
+
+#: desklet.js:232
+msgid "CPU usage"
+msgstr ""
+"Загрузка\n"
+"CPU"
+
+#. metadata.json->description
+msgid "Displays CPU load"
+msgstr "Отображать загрузку процессора"
+
+#. metadata.json->name
+msgid "CPU Load"
+msgstr "Загрузка Процессора (CPU Load)"
+
+#. settings-schema.json->head0->description
+msgid "Settings for the CPU Load desklet"
+msgstr "Настройки десклета Загрузка Процессора"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "Общие настройки"
+
+#. settings-schema.json->per-core->description
+msgid "Show all CPU cores"
+msgstr "Показать все ядра процессора"
+
+#. settings-schema.json->per-core->tooltip
+msgid "Display utilization of each CPU core rather than total CPU utilization."
+msgstr "Показать загрузку каждого ядра процессора, а не общую загрузку процессора."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "секунд"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Период обновления"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in seconds."
+msgstr "Увеличить или уменьшить период обновления в секундах."
+
+#. settings-schema.json->head2->description
+msgid "Layout"
+msgstr "Отображение"
+
+#. settings-schema.json->design->description
+msgid "Design"
+msgstr "Дизайн"
+
+#. settings-schema.json->design->options
+msgid "Thin"
+msgstr "Тонкий"
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr "Компактный"
+
+#. settings-schema.json->design->options
+msgid "Thick"
+msgstr "Широкий"
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr "Индикатор"
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr "Спидометр"
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr "Полная окружность"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "величина масштабирования"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Размер десклета"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of the desklet."
+msgstr "Увеличить или уменьшить размер десклета."
+
+#. settings-schema.json->number-of-columns->units
+msgid "columns"
+msgstr "столбцы"
+
+#. settings-schema.json->number-of-columns->description
+msgid "Number of columns"
+msgstr "Число столбцов"
+
+#. settings-schema.json->number-of-columns->tooltip
+msgid "Increase or decrease number of columns."
+msgstr "Увеличьте или уменьшите количество столбцов."
+
+#. settings-schema.json->head3->description
+msgid "Colors"
+msgstr "Цвета"
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr "Цвет текста"
+
+#. settings-schema.json->color-theme->description
+msgid "Color theme"
+msgstr "Цвет индикации"
+
+#. settings-schema.json->color-theme->options
+msgid "Random"
+msgstr "Случайный"
+
+#. settings-schema.json->color-theme->options
+msgid "Static"
+msgstr "Свой цвет"
+
+#. settings-schema.json->color-theme->options
+msgid "Dynamic"
+msgstr "Динамический"
+
+#. settings-schema.json->static-theme-color->description
+msgid "Static theme color"
+msgstr "Свой цвет индикации"
+
+#. settings-schema.json->head4->description
+msgid "Background"
+msgstr "Фон"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Показать фон"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Скрыть декорации"

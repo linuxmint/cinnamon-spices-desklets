@@ -1,0 +1,92 @@
+# SYSTEM UPTIME
+# This file is put in the public domain.
+# KopfDesDaemons, 2024
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: systemUptime@KopfDesDaemons 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-04-03 18:54+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.4.2\n"
+
+#. metadata.json->name
+#. desklet.js:39
+msgid "System Uptime"
+msgstr "Rendszer üzemidő"
+
+#. desklet.js:102
+msgid "Uptime:"
+msgstr "Üzemidő:"
+
+#. desklet.js:110
+msgid "Start time:"
+msgstr "Indítási idő:"
+
+#. desklet.js:169
+msgid "days"
+msgstr "napok"
+
+#. desklet.js:169
+msgid "hrs"
+msgstr "óra"
+
+#. desklet.js:169
+msgid "min"
+msgstr "perc"
+
+#. desklet.js:175
+msgid "hours"
+msgstr "óra"
+
+#. desklet.js:175
+msgid "minutes"
+msgstr "perc"
+
+#. desklet.js:179 desklet.js:212
+msgid "Error"
+msgstr "Hiba"
+
+#. metadata.json->description
+msgid "Displays the current system uptime."
+msgstr "Megjeleníti a rendszer aktuális üzemidejét."
+
+#. settings-schema.json->head0->description
+msgid "Style"
+msgstr "Stílus"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet scale size"
+msgstr "Asztalkalmazás mérete"
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Dekorációk elrejtése"
+
+#. settings-schema.json->label-color->description
+msgid "Label color"
+msgstr "Címke színe"
+
+#. settings-schema.json->show-icon->description
+msgid "Show icon"
+msgstr "Ikon megjelenítése"
+
+#. settings-schema.json->head1->description
+msgid "Value format"
+msgstr "Érték formátum"
+
+#. settings-schema.json->show-start-date->description
+msgid "Show start date"
+msgstr "Indítási idő megjelenítése"
+
+#. settings-schema.json->show-uptime-in-days->description
+msgid "Show uptime in days"
+msgstr "Üzemidő megjelenítése napokban"

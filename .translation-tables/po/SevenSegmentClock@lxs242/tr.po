@@ -1,0 +1,424 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Serkan ÖNDER <serkanonder@outlook.com>, 2021.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-14 21:49+0200\n"
+"PO-Revision-Date: 2021-02-28 23:27+0300\n"
+"Last-Translator: Serkan ÖNDER <serkanonder@outlook.com>\n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#. metadata.json->name
+#: desklet.js:136
+msgid "Seven Segment Digital Clock"
+msgstr "Seven Segment Digital Clock"
+
+#: desklet.js:520
+msgid "Time is an illusion"
+msgstr "Zaman bir yanılsamadır"
+
+#: desklet.js:520
+msgid "Albert Einstein"
+msgstr "Albert Einstein"
+
+#. metadata.json->description
+msgid "Customizable seven segment digital clock with date and Unix time"
+msgstr "Tarih ve Unix saati ile özelleştirilebilir yedi segmentli dijital saat"
+
+#. settings-schema.json->general->title
+msgid "General"
+msgstr "Genel"
+
+#. settings-schema.json->digit->title
+msgid "Digits"
+msgstr "Rakamlar"
+
+#. settings-schema.json->clock->title
+msgid "Clock"
+msgstr "Saat"
+
+#. settings-schema.json->date-unix->title
+msgid "Date and Unix time"
+msgstr "Tarih ve Unix saati"
+
+#. settings-schema.json->general-layout->title
+msgid "Main layout"
+msgstr "Ana düzen"
+
+#. settings-schema.json->background->title
+msgid "Background"
+msgstr "Arkaplan"
+
+#. settings-schema.json->digit-appearance->title
+msgid "Digit appearance"
+msgstr "Rakam görünümü"
+
+#. settings-schema.json->digit-darksegments->title
+msgid "Dark segments"
+msgstr "Koyu segmentler"
+
+#. settings-schema.json->digit-stroke->title
+msgid "Stroke"
+msgstr "Tarz"
+
+#. settings-schema.json->clock-appearance->title
+msgid "Clock appearance"
+msgstr "Saat görünümü"
+
+#. settings-schema.json->date-appearance->title
+msgid "Date appearance"
+msgstr "Tarih görünümü"
+
+#. settings-schema.json->unix-appearance->title
+msgid "Unix time appearance"
+msgstr "Unix zaman görünümü"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Date - Unix"
+msgstr "Saat - Tarih - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Clock - Unix - Date"
+msgstr "Saat - Unix - Tarih"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Clock - Unix"
+msgstr "Tarih - Saat - Unix"
+
+#. settings-schema.json->main-layout->options
+msgid "Date - Unix - Clock"
+msgstr "Tarih - Unix - Saat"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Clock - Date"
+msgstr "Unix - Saat - Tarih"
+
+#. settings-schema.json->main-layout->options
+msgid "Unix - Date - Clock"
+msgstr "Unix - Tarih - Saat"
+
+#. settings-schema.json->main-layout->description
+msgid "Vertical order of main elements"
+msgstr "Ana öğelerin dikey sırası"
+
+#. settings-schema.json->layout-gap->units
+#. settings-schema.json->stroke-width->units
+#. settings-schema.json->clock-height->units
+#. settings-schema.json->date-height->units
+#. settings-schema.json->unix-height->units
+msgid "pixel"
+msgstr "piksel"
+
+#. settings-schema.json->layout-gap->description
+msgid "Space between main elements"
+msgstr "Ana öğeler arasındaki boşluk"
+
+#. settings-schema.json->show-background->description
+msgid "Show background"
+msgstr "Arka planı göster"
+
+#. settings-schema.json->background-color->description
+#. settings-schema.json->digit-color->description
+#. settings-schema.json->dark-color->description
+#. settings-schema.json->stroke-color->description
+msgid "Color"
+msgstr "Renk"
+
+#. settings-schema.json->background-opacity->units
+#. settings-schema.json->digit-opacity->units
+#. settings-schema.json->digit-margin->units
+#. settings-schema.json->dark-opacity->units
+#. settings-schema.json->stroke-opacity->units
+msgid "percent"
+msgstr "yüzde"
+
+#. settings-schema.json->background-opacity->description
+#. settings-schema.json->digit-opacity->description
+#. settings-schema.json->dark-opacity->description
+#. settings-schema.json->stroke-opacity->description
+msgid "Opacity"
+msgstr "Matlık"
+
+#. settings-schema.json->round-corners->description
+msgid "Round corners"
+msgstr "Yuvarlak köşeler"
+
+#. settings-schema.json->background-shadow->description
+msgid "Shadow"
+msgstr "Gölge"
+
+#. settings-schema.json->digit-skew->units
+msgid "degrees"
+msgstr "derece"
+
+#. settings-schema.json->digit-skew->description
+msgid "Skew"
+msgstr "Eğrilik"
+
+#. settings-schema.json->digit-margin->description
+msgid "Relative space between digits"
+msgstr "Basamaklar arasındaki göreli boşluk"
+
+#. settings-schema.json->digit-margin->tooltip
+msgid "This value will be increasingly reduced by the digit skew."
+msgstr "Bu değer, basamak çarpıklığıyla giderek azalacaktır."
+
+#. settings-schema.json->digit-alt69->description
+msgid "Alternative 6 and 9"
+msgstr "Alternatif 6 ve 9"
+
+#. settings-schema.json->digit-alt7->description
+msgid "Alternative 7"
+msgstr "Alternatif 7"
+
+#. settings-schema.json->dark-enabled->description
+msgid "Show dark segments of the digits"
+msgstr "Basamakların koyu kısımlarını göster"
+
+#. settings-schema.json->dark-color->options
+msgid "Black"
+msgstr "Siyah"
+
+#. settings-schema.json->dark-color->options
+msgid "White"
+msgstr "Beyaz"
+
+#. settings-schema.json->dark-color->options
+msgid "same as illuminated"
+msgstr "aydınlatılmış ile aynı"
+
+#. settings-schema.json->stroke-enabled->description
+msgid "Add stroke"
+msgstr "Tarz ekle"
+
+#. settings-schema.json->stroke-width->description
+msgid "Width"
+msgstr "Genişlik"
+
+#. settings-schema.json->show-clock->description
+msgid "Show clock"
+msgstr "Saati göster"
+
+#. settings-schema.json->clock-height->description
+#. settings-schema.json->date-height->description
+#. settings-schema.json->unix-height->description
+msgid "Digit height"
+msgstr "Rakam yüksekliği"
+
+#. settings-schema.json->show-seconds->description
+msgid "Show seconds"
+msgstr "Saniyeleri göster"
+
+#. settings-schema.json->small-seconds->description
+msgid "Smaller seconds"
+msgstr "Daha küçük saniye"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "none"
+msgstr "yok"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "half space"
+msgstr "yarım boşluk"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "full space"
+msgstr "tam boşluk"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "decimal point"
+msgstr "ondalık nokta"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "colon"
+msgstr "iki nokta üst üste"
+
+#. settings-schema.json->clock-divider->options
+#. settings-schema.json->date-divider->options
+#. settings-schema.json->unix-divider->options
+msgid "dash"
+msgstr "tire"
+
+#. settings-schema.json->clock-divider->description
+#. settings-schema.json->date-divider->description
+#. settings-schema.json->unix-divider->description
+msgid "Divider type"
+msgstr "Ayırıcı tipi"
+
+#. settings-schema.json->clock-blink->description
+msgid "Blinking divider (only decimal point and colon)"
+msgstr "Ayırıcı (sadece ondalık nokta ve iki nokta üst üste)"
+
+#. settings-schema.json->leading-zero->options
+msgid "on"
+msgstr "açık"
+
+#. settings-schema.json->leading-zero->options
+msgid "off"
+msgstr "kapalı"
+
+#. settings-schema.json->leading-zero->options
+#. settings-schema.json->clock-ampm->options
+msgid "hide"
+msgstr "gizle"
+
+#. settings-schema.json->leading-zero->options
+msgid "remove"
+msgstr "kaldır"
+
+#. settings-schema.json->leading-zero->description
+msgid "Leading zero in hours"
+msgstr "Saatte sıfır önde"
+
+#. settings-schema.json->clock-12h->description
+msgid "12h instead of 24h"
+msgstr "24s yerine 12s"
+
+#. settings-schema.json->clock-ampm->options
+msgid "only A and P"
+msgstr "sadece A ve P"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 1"
+msgstr "M varyantı 1 ile"
+
+#. settings-schema.json->clock-ampm->options
+msgid "with M variant 2"
+msgstr "M varyantı 2 ile"
+
+#. settings-schema.json->clock-ampm->description
+msgid "AM/PM indicator"
+msgstr "ÖÖ/ÖS göstergesi"
+
+#. settings-schema.json->show-date->description
+msgid "Show date"
+msgstr "Tarihi göster"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Month - Day"
+msgstr "Yıl - Ay - Gün"
+
+#. settings-schema.json->date-format->options
+msgid "Year - Day - Month"
+msgstr "Yıl - Gün - Ay"
+
+#. settings-schema.json->date-format->options
+msgid "Day - Month - Year"
+msgstr "Gün - Ay - Yıl"
+
+#. settings-schema.json->date-format->options
+msgid "Month - Day - Year"
+msgstr "Ay - Gün - Yıl"
+
+#. settings-schema.json->date-format->description
+msgid "Date format"
+msgstr "Tarih biçimi"
+
+#. settings-schema.json->show-unix->description
+msgid "Show Unix time"
+msgstr "Unix zamanını göster"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by OpenClipart"
+msgstr "OpenClipart Stili"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by alex8664"
+msgstr "alex8664 Stili"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by Cfaerber"
+msgstr "Cfaerber Stili"
+
+#. settings-schema.json->digit-style->options
+msgid "Style by h2g2bob"
+msgstr "h2g2bob Stili"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Light"
+msgstr "Keshikan DSEG Klasik İnce"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Regular"
+msgstr "Keshikan DSEG Klasik Normal"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Bold"
+msgstr "Keshikan DSEG Classic Kalın"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Light"
+msgstr "Keshikan DSEG Klasik Mini İnce"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Regular"
+msgstr "Keshikan DSEG Klasik Mini Normal"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Classic Mini Bold"
+msgstr "Keshikan DSEG Klasik Mini Kalın"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Light"
+msgstr "Keshikan DSEG Modern İnce"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Regular"
+msgstr "Keshikan DSEG Modern Normal"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Bold"
+msgstr "Keshikan DSEG Modern Kalın"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Light"
+msgstr "Keshikan DSEG Modern Mini İnce"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Regular"
+msgstr "Keshikan DSEG Modern Mini Normal"
+
+#. settings-schema.json->digit-style->options
+msgid "Keshikan's DSEG Modern Mini Bold"
+msgstr "Keshikan DSEGModern Mini Kalın"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 1"
+msgstr "Basit 1"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 2"
+msgstr "Basit 2"
+
+#. settings-schema.json->digit-style->options
+msgid "Simple 3"
+msgstr "Basit 3"
+
+#. settings-schema.json->digit-style->options
+msgid "Curved"
+msgstr "Eğri"
+
+#. settings-schema.json->digit-style->description
+msgid "Digit style"
+msgstr "Rakam stili"

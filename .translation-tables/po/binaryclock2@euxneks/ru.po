@@ -1,0 +1,81 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-27 10:16+0200\n"
+"PO-Revision-Date: 2022-05-20 14:08+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: ru\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
+"n%10<=4 && (n%100<12 || n%100>14) ? 1 : 2);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:64
+msgid "Clock"
+msgstr "Часы"
+
+#. binaryclock2@euxneks->metadata.json->name
+msgid "Binary Clock²"
+msgstr "Двоичные часы²"
+
+#. binaryclock2@euxneks->metadata.json->description
+msgid ""
+"Based off of entelechy's binary clock, fixed to work with 17.2 and also "
+"added the option to have squared pips instead of circled pips."
+msgstr ""
+"Основан на двоичных часах Энтелехии, исправлен для работы с 17.2, а "
+"также добавлена возможность иметь квадратные точки вместо обведенных "
+"точек."
+
+#. binaryclock2@euxneks->settings-schema.json->head->description
+msgid "Style"
+msgstr "Стиль"
+
+#. binaryclock2@euxneks->settings-schema.json->head2->description
+msgid "Format"
+msgstr "Формат"
+
+#. binaryclock2@euxneks->settings-schema.json->show-seconds->description
+msgid "Display seconds"
+msgstr "Отображать секунды"
+
+#. binaryclock2@euxneks->settings-schema.json->show-seconds->tooltip
+msgid "Show seconds in the binary display"
+msgstr "Отображать секунды на двоичном дисплее"
+
+#. binaryclock2@euxneks->settings-schema.json->color->description
+msgid "Pip color:"
+msgstr "Цвет точек:"
+
+#. binaryclock2@euxneks->settings-schema.json->color->tooltip
+msgid "Select a color for pips only"
+msgstr "Выберите цвет только для пипсов"
+
+#. binaryclock2@euxneks->settings-schema.json->pip-type->description
+msgid "Use circles for pips"
+msgstr "Использовать круги для точек"
+
+#. binaryclock2@euxneks->settings-schema.json->pip-type->tooltip
+msgid "Use circles or squares for pips"
+msgstr "Использовать круги или квадраты для точек"
+
+#. binaryclock2@euxneks->settings-schema.json->size->description
+msgid "Pip size:"
+msgstr "Размер точек:"
+
+#. binaryclock2@euxneks->settings-schema.json->size->tooltip
+msgid "Select a size/diameter for the pips"
+msgstr "Выберите размер/диаметр точек"
+
+#. binaryclock2@euxneks->settings-schema.json->size->units
+msgid "pixels"
+msgstr "пикс"

@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# Daniel <d3vf4n (at) tutanota (dot) com>, 2023.
+# This file is distributed under the same license as the PACKAGE package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2024-05-15 00:14+0200\n"
+"PO-Revision-Date: 2024-05-15 00:27+0200\n"
+"Last-Translator: Daniel <d3vf4n (at) tutanota (dot) com>\n"
+"Language-Team: \n"
+"Language: ca\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.0.1\n"
+
+#: desklet.js:58 desklet.js:129
+msgid "UNKNOWN"
+msgstr "Desconegut"
+
+#: desklet.js:114
+msgid "Error executing ping command!"
+msgstr "S'ha produït un error executant l'ordre «ping»"
+
+#: desklet.js:130
+msgid "No ping output"
+msgstr "No hi ha resposta al PING"
+
+#: desklet.js:135 desklet.js:161 desklet.js:181 desklet.js:203
+msgid "CRIT"
+msgstr "CRÍTIC"
+
+#: desklet.js:139 desklet.js:185 desklet.js:207
+msgid "OK"
+msgstr "CORRECTE"
+
+#: desklet.js:143 desklet.js:189 desklet.js:211 desklet.js:218
+msgid "WARN"
+msgstr "AVÍS"
+
+#: desklet.js:177 desklet.js:199
+msgid "HTTP Status Code"
+msgstr "Codi d'estat HTTP"
+
+#: desklet.js:234
+msgid "s"
+msgstr "s"
+
+#. metadata.json->description
+msgid "Checks a host via ping or HTTP(S) and displays if it is available."
+msgstr ""
+"Comprova i mostra l'estat de la connexió a una màquina amfitrió via els "
+"protocols PING o HTTP(S)"
+
+#. metadata.json->name
+msgid "Host Check"
+msgstr "Comprova la connexió a un amfitrió"
+
+#. settings-schema.json->head0->description
+msgid "Settings for hostcheck@schorschii"
+msgstr "Ajusts per a hostcheck@schorschii"
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr "General"
+
+#. settings-schema.json->host->description
+msgid "Hostname, IP address or HTTP(S)-URL to check"
+msgstr "Nom d'amfitrió, adreça IP o URL HTTP(S) a comprovar"
+
+#. settings-schema.json->type->description
+msgid "Ping or HTTP(S) check"
+msgstr "Comprovació de l'amfitrió"
+
+#. settings-schema.json->type->tooltip
+msgid "Choose, if this desklet should do a ping or HTTP(S) check."
+msgstr "Tria si la comprovació es fa amb PING o HTTP(S)."
+
+#. settings-schema.json->type->options
+msgid "Ping"
+msgstr "Ping"
+
+#. settings-schema.json->type->options
+msgid "HTTP(S)"
+msgstr "HTTP(S)"
+
+#. settings-schema.json->success-status-code->description
+msgid "HTTP success status code"
+msgstr "Codi d'estat HTTP d'èxit"
+
+#. settings-schema.json->success-status-code->tooltip
+msgid "Choose the HTTP status code which should be assumed as success"
+msgstr "Trieu el codi d'estat HTTP que s'interpretarà com a èxit"
+
+#. settings-schema.json->show-notifications->description
+msgid "Show notifications when state changed"
+msgstr "Notifica els canvis d'estat"
+
+#. settings-schema.json->interval->units
+msgid "seconds"
+msgstr "segons"
+
+#. settings-schema.json->interval->description
+msgid "Time's interval of check"
+msgstr "Freqüència de comprovació"
+
+#. settings-schema.json->scale-size->units
+msgid "scale factor"
+msgstr "factor d'escala"
+
+#. settings-schema.json->scale-size->description
+msgid "Desklet size"
+msgstr "Mida de la miniaplicació"
+
+#. settings-schema.json->scale-size->tooltip
+msgid "Increase or decrease the size of this desklet using this scale factor."
+msgstr ""
+"Augmenta o disminueix la mida de la miniaplicació\n"
+"d'escriptori amb aquest factor de canvi d'escala."
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide decorations"
+msgstr "Oculta les decoracions"
+
+#. settings-schema.json->head3->description
+msgid "Custom desklet label (only visible if decorations are enabled)"
+msgstr ""
+"Etiqueta personalitzada de miniaplicació d'escriptori (només visible si les "
+"decoracions estan habilitades)"
+
+#. settings-schema.json->use-custom-label->description
+msgid "Use a custom desklet label"
+msgstr "Utilitza una etiqueta de miniaplicació d'escriptori personalitzada"
+
+#. settings-schema.json->use-custom-label->tooltip
+msgid "Checking this box allows you to set a custom label in the field below."
+msgstr ""
+"Marcant aquesta casella, podeu establir\n"
+"una etiqueta personalitzada al camp següent."
+
+#. settings-schema.json->custom-label->description
+msgid "Custom desklet label"
+msgstr "Etiqueta personalitzada"
+
+#. settings-schema.json->custom-label->tooltip
+msgid ""
+"Set your custom label here. This field is unavailable unless the checkbox "
+"above is enabled."
+msgstr ""
+"Establiu aquí la vostra etiqueta personalitzada. Aquest camp no està\n"
+"disponible a menys que la casella de selecció de dalt estigui habilitada."

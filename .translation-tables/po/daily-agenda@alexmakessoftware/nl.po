@@ -1,0 +1,185 @@
+# DAILY AGENDA
+# This file is put in the public domain.
+# AlexMakesSoftware, 2025
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: daily-agenda@alexmakessoftware 1\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2025-07-07 21:15+0100\n"
+"PO-Revision-Date: 2025-08-25 15:25+0200\n"
+"Last-Translator: qadzek\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:60
+msgid "Daily Agenda"
+msgstr "Dagelijkse Agenda"
+
+#. desklet.js:219
+msgid "ICS Today: Unknown source type: "
+msgstr "ICS Vandaag: Onbekend brontype: "
+
+#. desklet.js:246
+msgid "ICS Today: problem reading calendar file, result = "
+msgstr "ICS Vandaag: probleem bij lezen van kalenderbestand, resultaat = "
+
+#. desklet.js:250
+msgid "ICS Today: Failed to read file: "
+msgstr "ICS Vandaag: Lezen van bestand mislukt: "
+
+#. desklet.js:267
+msgid "ICS Today: Failed to fetch calendar from URL: "
+msgstr "ICS Vandaag: Kon kalender niet ophalen van URL:"
+
+#. desklet.js:277
+msgid "Last checked"
+msgstr "Laatst gecontroleerd"
+
+#. desklet.js:282
+msgid "Next"
+msgstr "Volgende"
+
+#. desklet.js:302
+msgid "All day"
+msgstr "Hele dag"
+
+#. desklet.js:305
+msgid "Today's Events:"
+msgstr "Evenementen vandaag:"
+
+#. desklet.js:309
+msgid "No events today."
+msgstr "Geen evenementen vandaag."
+
+#. metadata.json->description
+msgid "Displays today's events from your calendar"
+msgstr "Toont de evenementen van vandaag uit je kalender"
+
+#. settings-schema.json->head0->description
+msgid "Calendar Source"
+msgstr "Kalenderbron"
+
+#. settings-schema.json->sourceType->description
+msgid "Calendar source"
+msgstr "Kalenderbron"
+
+#. settings-schema.json->sourceType->options
+msgid "From URL"
+msgstr "Via URL"
+
+#. settings-schema.json->sourceType->options
+msgid "From local file"
+msgstr "Via lokaal bestand"
+
+#. settings-schema.json->icsUrl->description
+msgid "Calendar URL"
+msgstr "Kalender-URL"
+
+#. settings-schema.json->icsUrl->tooltip
+msgid ""
+"Only used if source is set to 'From URL'. Paste a public .ics (calendar "
+"share) link from Proton, Google, etc."
+msgstr ""
+"Alleen gebruikt als de bron is ingesteld op 'Via URL'. Plak een openbare ."
+"ics-link (kalenderdelen) van Proton, Google, enz."
+
+#. settings-schema.json->icsFilePath->description
+msgid "Path to local .ics file"
+msgstr "Pad naar lokaal .ics-bestand"
+
+#. settings-schema.json->icsFilePath->tooltip
+msgid "Only used if source is set to 'From local file', point to an ICS file."
+msgstr ""
+"Alleen gebruikt als de bron is ingesteld op 'Via lokaal bestand', verwijst "
+"naar een ICS-bestand."
+
+#. settings-schema.json->head1->description
+msgid "Widget Dimensions"
+msgstr "Widgetafmetingen"
+
+#. settings-schema.json->width->units
+#. settings-schema.json->height->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->width->description
+msgid "Widget width"
+msgstr "Widgetbreedte"
+
+#. settings-schema.json->height->description
+msgid "Widget height"
+msgstr "Widgethoogte"
+
+#. settings-schema.json->head2->description
+msgid "Custom Styles"
+msgstr "Aangepaste stijlen"
+
+#. settings-schema.json->overrideTheme->description
+msgid "Override desktop theme (enables the settings below)"
+msgstr "Desktopthema overschrijven (activeert onderstaande instellingen)"
+
+#. settings-schema.json->overrideTheme->tooltip
+msgid ""
+"Check this to override the desktop theme and configure the appearance "
+"manually"
+msgstr ""
+"Vink dit aan om het desktopthema te overschrijven en de weergave handmatig "
+"aan te passen"
+
+#. settings-schema.json->font->description
+msgid "Font family"
+msgstr "Lettertypefamilie"
+
+#. settings-schema.json->font->tooltip
+msgid "Example: Sans, Monospace, Serif"
+msgstr "Voorbeeld: Sans, Monospace, Serif"
+
+#. settings-schema.json->fontSize->units
+msgid "pt"
+msgstr "pt"
+
+#. settings-schema.json->fontSize->description
+msgid "Font size"
+msgstr "Lettergrootte"
+
+#. settings-schema.json->textcolor->description
+msgid "Text color"
+msgstr "Tekstkleur"
+
+#. settings-schema.json->textcolor->tooltip
+msgid "Click the button to select a new text color"
+msgstr "Klik op de knop om een nieuwe tekstkleur te selecteren"
+
+#. settings-schema.json->head4->description
+msgid "Footer Options"
+msgstr "Voettekstopties"
+
+#. settings-schema.json->showLastChecked->description
+msgid "Show 'last checked' line"
+msgstr "Laat 'laatst gecontroleerd' regel zien"
+
+#. settings-schema.json->showRefreshNowButton->description
+msgid "Show 'refresh now' button"
+msgstr "Laat 'nu vernieuwen' knop zien"
+
+#. settings-schema.json->head3->description
+msgid "Update Schedule"
+msgstr "Update schema"
+
+#. settings-schema.json->checkInterval->units
+msgid "minutes"
+msgstr "minuten"
+
+#. settings-schema.json->checkInterval->description
+msgid "Check interval"
+msgstr "Controle-interval"
+
+#. settings-schema.json->checkInterval->tooltip
+msgid "How often to check the calendar file for updates"
+msgstr "Hoe vaak het kalenderbestand gecontroleerd moet worden op updates"

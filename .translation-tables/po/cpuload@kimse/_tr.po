@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-12-05 11:05+0300\n"
+"PO-Revision-Date: 2020-12-04 20:26+0300\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: tr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"X-Poedit-Basepath: ..\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: desklet.js\n"
+"X-Poedit-SearchPath-1: settings-schema.json\n"
+
+#: desklet.js:232
+#, javascript-format
+msgid "Core %d"
+msgstr ""
+
+#. settings-schema.json->head1->description
+msgid "General"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr ""
+
+#. settings-schema.json->design->options
+msgid "Compact"
+msgstr ""
+
+#. settings-schema.json->circle->description
+msgid "Circle"
+msgstr ""
+
+#. settings-schema.json->circle->options
+msgid "Speedometer"
+msgstr ""
+
+#. settings-schema.json->circle->options
+msgid "Full Circle"
+msgstr ""
+
+#. settings-schema.json->font-color->description
+msgid "Font color"
+msgstr ""
