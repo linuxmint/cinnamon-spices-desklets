@@ -1,0 +1,150 @@
+# LEMONADE AI SERVER STATUS
+# This file is put in the public domain.
+# tidotua, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: lemonade@tidotua 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-11-22 20:09+0200\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. desklet.js:232
+msgid "Lemonade Server"
+msgstr ""
+
+#. desklet.js:241 desklet.js:336
+msgid "Version"
+msgstr ""
+
+#. desklet.js:249 desklet.js:316
+msgid "Online"
+msgstr ""
+
+#. desklet.js:258 desklet.js:309
+msgid "Address"
+msgstr ""
+
+#. desklet.js:286 desklet.js:348
+msgid "Context"
+msgstr ""
+
+#. desklet.js:295 desklet.js:351
+msgid "TPS"
+msgstr ""
+
+#. desklet.js:321
+msgid "Offline"
+msgstr ""
+
+#. desklet.js:326
+msgid "Error: Invalid or missing API key"
+msgstr ""
+
+#. desklet.js:331
+msgid "HTTP Error "
+msgstr ""
+
+#. desklet.js:335
+msgid "unknown"
+msgstr ""
+
+#. desklet.js:378
+msgid "Do you want to unload model?"
+msgstr ""
+
+#. desklet.js:379
+msgid "Do you want to load model?"
+msgstr ""
+
+#. desklet.js:453
+msgid "Busy"
+msgstr ""
+
+#. desklet.js:453
+msgid "Ready"
+msgstr ""
+
+#. desklet.js:453
+msgid "Off"
+msgstr ""
+
+#. desklet.js:457
+msgid "Unload model"
+msgstr ""
+
+#. desklet.js:458
+msgid "Load model"
+msgstr ""
+
+#. metadata.json->name
+msgid "Lemonade AI server status"
+msgstr ""
+
+#. metadata.json->description
+msgid "Provides Lemonade AI server status and actions."
+msgstr ""
+
+#. settings-schema.json->top->description
+msgid "Lemonade Server settings"
+msgstr ""
+
+#. settings-schema.json->server_addr->description
+msgid "Server Address"
+msgstr ""
+
+#. settings-schema.json->server_addr->tooltip
+msgid "Enter server IP or domain address"
+msgstr ""
+
+#. settings-schema.json->server_port->description
+msgid "Server Port"
+msgstr ""
+
+#. settings-schema.json->server_port->tooltip
+msgid "Port between 1 and 65535"
+msgstr ""
+
+#. settings-schema.json->api_version->description
+msgid "Version Endpoint"
+msgstr ""
+
+#. settings-schema.json->api_version->tooltip
+msgid "Version endpoint vN format"
+msgstr ""
+
+#. settings-schema.json->api_key->description
+msgid "Server API key"
+msgstr ""
+
+#. settings-schema.json->api_key->tooltip
+msgid "Enter optional server API key"
+msgstr ""
+
+#. settings-schema.json->update_interval->description
+msgid "Update period"
+msgstr ""
+
+#. settings-schema.json->update_interval->tooltip
+msgid "Requests and UI update period in sec"
+msgstr ""
+
+#. settings-schema.json->bottom->description
+msgid "UI settings"
+msgstr ""
+
+#. settings-schema.json->background_color->description
+msgid "Background color"
+msgstr ""
+
+#. settings-schema.json->background_color->tooltip
+msgid "Click the button to select a new background color"
+msgstr ""

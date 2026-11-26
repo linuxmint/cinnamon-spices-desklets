@@ -1,0 +1,9 @@
+{
+    "max-instances": 5,
+    "uuid": "lemonade@tidotua",
+    "name": "Lemonade AI server status",
+    "description": "Provides Lemonade AI server status and actions.",
+    "prevent-decorations": true,
+    "shell-version": "5.8",
+    "version": "1.0"
+}

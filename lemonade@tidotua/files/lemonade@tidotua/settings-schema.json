@@ -1,0 +1,60 @@
+{
+    "top": {
+        "type": "header",
+        "description": "Lemonade Server settings"
+    },
+
+    "server_addr": {
+        "type": "entry",
+        "default": "127.0.0.1",
+        "description": "Server Address",
+        "tooltip": "Enter server IP or domain address"
+    },
+
+    "server_port": {
+        "type": "spinbutton",
+        "default": 13305,
+        "min": 1,
+        "max": 65535,
+        "step": 1,
+        "description": "Server Port",
+        "tooltip": "Port between 1 and 65535"
+    },
+
+    "api_version": {
+        "type": "entry",
+        "default": "v1",
+        "description": "Version Endpoint",
+        "tooltip": "Version endpoint vN format"
+    },
+
+    "api_key": {
+        "type": "entry",
+        "default": "",
+        "description": "Server API key",
+        "tooltip": "Enter optional server API key"
+    },
+
+    "update_interval": {
+        "type": "spinbutton",
+        "default": 5,
+        "min": 5,
+        "max": 60,
+        "step": 5,
+        "description": "Update period",
+        "tooltip": "Requests and UI update period in sec"
+    },
+
+    "bottom": {
+        "type": "header",
+        "description": "UI settings"
+    },
+
+    "background_color": {
+        "type": "colorchooser",
+        "indent": true,
+        "default": "rgb(40,40,40)",
+        "description": "Background color",
+        "tooltip": "Click the button to select a new background color"
+    }
+}

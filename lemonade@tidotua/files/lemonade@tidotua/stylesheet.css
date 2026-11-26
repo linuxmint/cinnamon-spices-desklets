@@ -1,0 +1,69 @@
+.lemonade-container {
+    border-radius: 15px;
+    padding: 15px;
+    background-color: #404040;
+    min-width: 530px;
+}
+
+.lemonade-box-bottom {
+    margin-bottom: 5px;
+}
+
+.lemonade-box-left {
+    margin-left: 15px;
+}
+
+.lemonade-text-big {
+    font-size: 20px;
+}
+
+.lemonade-text-medium {
+    font-size: 18px;
+}
+
+.lemonade-text-small {
+    font-size: 16px;
+}
+
+.lemonade-text-left {
+    margin-right: 5px;
+    min-width: 300px;
+}
+
+.lemonade-text-middle {
+    margin-left: 5px;
+    margin-right: 5px;
+    min-width: 140px;
+}
+
+.lemonade-text-right {
+    margin-left: 5px;
+}
+
+.lemonade-text-active {
+    color: #FFF;
+}
+
+.lemonade-text-inactive {
+    color: #AAA;
+}
+
+.lemonade-text-good {
+    color: #0F0;
+}
+
+.lemonade-text-bad {
+    color: #F00;
+    font-weight: bold;
+}
+
+.lemonade-text-important {
+    font-weight: bold;
+}
+
+.lemonade-separator {
+    height: 1px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
