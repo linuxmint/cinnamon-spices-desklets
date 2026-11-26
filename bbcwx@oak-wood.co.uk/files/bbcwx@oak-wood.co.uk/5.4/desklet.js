@@ -5,7 +5,6 @@
  * Copyright 2014 - 2018 Chris Hastie. Forked from accudesk@logan; original
  * code Copyright 2013 loganj.
  *
- * Includes the marknote library, Copyright 2011 jbulb.org.
  * Icons Copyright 2010 Merlin the Red, 2010 VClouds, 2010
  * d3stroy and 2004 digitalchet.
  * See help.html for further credits and license information.
@@ -328,6 +327,7 @@ MyDesklet.prototype = {
         this.stationID = this.bbc__stationID;
         this.service = new BBC.Driver(this.stationID);
     }
+    this.displayedData = this.service.data;
 
     this._setDerivedValues();
     this._createWindow();
@@ -829,24 +829,41 @@ MyDesklet.prototype = {
     // let now = new Date().toLocaleFormat('%H:%M:%S');
     // global.log('bbcwx (instance ' + this.desklet_id + '): refreshing forecast at ' + now);
 
-    // Remove the existing time banner
-    if (this.bannerupdated && this.buttoncontainer) {
-      this.buttoncontainer.remove_actor(this.bannericon);
-      this.buttoncontainer.remove_actor(this.bannerupdated);
-      this.buttoncontainer.remove_actor(this.buttons);
-    }
-
     // Update the current time for the display
-    this._setLastUpdated();
-    this.buttoncontainer.add_actor(this.bannericon);
-    this.buttoncontainer.add_actor(this.bannerupdated);
-    this.buttoncontainer.add_actor(this.buttons);
+    this.currentTime = new Date();
+    this.lastupdated = this.currentTime.toLocaleFormat('%c');
+    this.bannerupdated.label = this.lastupdated;
 
-    // pass this to refreshData as it needs to call display* functions once the data
-    // is updated
-    this.service.refreshData(this);
-    this.redraw();
+    // Drivers fill a fresh data object and call display* as each response is
+    // processed. Collect those calls and render once, when all parts are in,
+    // so the screen keeps showing the previous report until there is
+    // something new to show: fresh data, or an error.
+    this.refreshGeneration = (this.refreshGeneration || 0) + 1;
+    this.service.refreshData(this._renderWhenRefreshComplete(this.refreshGeneration));
     this._doLoop();
+  },
+
+  _renderWhenRefreshComplete: function (generation) {
+    let pendingParts = new Set(['displayCurrent', 'displayForecast', 'displayMeta']);
+    let markDone = (part) => {
+      pendingParts.delete(part);
+      if (pendingParts.size > 0) return;
+      // a newer refresh has started; its result will be shown instead
+      if (generation !== this.refreshGeneration) return;
+      this._showRefreshedData();
+    };
+    return {
+      displayCurrent: () => markDone('displayCurrent'),
+      displayForecast: () => markDone('displayForecast'),
+      displayMeta: () => markDone('displayMeta')
+    };
+  },
+
+  _showRefreshedData: function () {
+    this.displayedData = this.service.data;
+    this.displayCurrent();
+    this.displayForecast();
+    this.displayMeta();
   },
 
   // Begin / restart the main loop, waiting for refreshSec before updating again
@@ -862,7 +879,7 @@ MyDesklet.prototype = {
   displayForecast: function () {
     // global.log('bbcwx (instance ' + this.desklet_id + '): entering displayForecast');
     for (let f = 0; f < this.no; f++) {
-      let day = this.service.data.days[f];
+      let day = this.displayedData.days[f];
       this.labels[f].text = (this.daynames[day.day]) ? this.daynames[day.day] : '';
       let fwiconimage = this._getIconImage(day.icon, BBCWX_ICON_HEIGHT * this.zoom);
       // fwiconimage.set_size(BBCWX_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_ICON_HEIGHT*this.zoom);
@@ -880,9 +897,9 @@ MyDesklet.prototype = {
 
   // Update the display of the current observations
   displayCurrent: function () {
-    let cc = this.service.data.cc;
+    let cc = this.displayedData.cc;
     if (this.cwicon) {
-      let cwimage = this._getIconImage(this.service.data.cc.icon, BBCWX_CC_ICON_HEIGHT * this.zoom);
+      let cwimage = this._getIconImage(this.displayedData.cc.icon, BBCWX_CC_ICON_HEIGHT * this.zoom);
       // cwimage.set_size(BBCWX_CC_ICON_HEIGHT*this.iconprops.aspect*this.zoom, BBCWX_CC_ICON_HEIGHT*this.zoom);
       this.cwicon.set_child(cwimage);
     }
@@ -898,8 +915,8 @@ MyDesklet.prototype = {
     if (this.windspeed) this.windspeed.text = ((cc.wind_direction) ? cc.wind_direction : '') + ((cc.wind_direction && typeof cc.wind_speed !== 'undefined' && cc.wind_speed !== null) ? ', ' : '') + this._formatWindspeed(cc.wind_speed, true);
     if (this.feelslike) this.feelslike.text = this._formatTemperature(cc.feelslike, true);
     if (this.visibility) this.visibility.text = this._formatVisibility(cc.visibility, true);
-    if (this.service.data.status.cc != SERVICE_STATUS_OK && this.weathertext) {
-      this.weathertext.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No Data');
+    if (this.displayedData.status.cc != SERVICE_STATUS_OK && this.weathertext) {
+      this.weathertext.text = (this.displayedData.status.lasterror) ? _('Error: %s').format(this.displayedData.status.lasterror) : _('No Data');
     }
   },
 
@@ -917,12 +934,12 @@ MyDesklet.prototype = {
       this.tooltiplocation = this.manuallocation;
     } else {
       // if city name from service is empty, use wgs84, or stationID
-      if (!this.service.data.city.toString().length) {
-        if (this.service.capabilities.meta.wgs84 && this.service.data.status.meta === SERVICE_STATUS_OK) {
+      if (!this.displayedData.city.toString().length) {
+        if (this.service.capabilities.meta.wgs84 && this.displayedData.status.meta === SERVICE_STATUS_OK) {
           // If city name is empty and source is 'service', we'll look it up with Google!
           if (locsrc == 'service') locsrc = 'google';
-          this.displaycity = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
-          this.tooltiplocation = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
+          this.displaycity = this.displayedData.wgs84.lat + ',' + this.displayedData.wgs84.lon;
+          this.tooltiplocation = this.displayedData.wgs84.lat + ',' + this.displayedData.wgs84.lon;
         } else {
           this.displaycity = this.stationID;
           this.tooltiplocation = this.stationID;
@@ -930,13 +947,13 @@ MyDesklet.prototype = {
       } else {
         // initially set the displayed location to that from the data service,
         // if available. Google / Yahoo lookups we'll do asyncronously later
-        this.displaycity = this.service.data.city;
-        this.tooltiplocation = this.service.data.city;
-        if (this.show.meta.region && this.service.data.region) {
-          this.displaycity += ', ' + this.service.data.region;
+        this.displaycity = this.displayedData.city;
+        this.tooltiplocation = this.displayedData.city;
+        if (this.show.meta.region && this.displayedData.region) {
+          this.displaycity += ', ' + this.displayedData.region;
         }
-        if (this.show.meta.country && this.service.data.country) {
-          this.displaycity += ', ' + this.service.data.country;
+        if (this.show.meta.country && this.displayedData.country) {
+          this.displaycity += ', ' + this.displayedData.country;
         }
       }
     }
@@ -966,13 +983,13 @@ MyDesklet.prototype = {
       }));
     }
 
-    if (this.service.data.status.meta !== SERVICE_STATUS_OK) {
-      this.cityname.text = (this.service.data.status.lasterror) ? _('Error: %s').format(this.service.data.status.lasterror) : _('No Data');
+    if (this.displayedData.status.meta !== SERVICE_STATUS_OK) {
+      this.cityname.text = (this.displayedData.status.lasterror) ? _('Error: %s').format(this.displayedData.status.lasterror) : _('No Data');
     }
 
     // do async lookup of location with yahoo or google
     else if (this.service.capabilities.meta.wgs84 && (locsrc == 'yahoo' || locsrc == 'google')) {
-      let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
+      let latlon = this.displayedData.wgs84.lat + ',' + this.displayedData.wgs84.lon;
       // check the cache
       if (typeof this._geocache[locsrc][latlon] === 'object' && typeof this._geocache[locsrc][latlon].city !== 'undefined') {
         // debugging
@@ -1015,9 +1032,9 @@ MyDesklet.prototype = {
     let locale = LANGLIST[0];
     let url = '';
     if (locsrc == 'yahoo') {
-      url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + this.service.data.wgs84.lat + '%2C' + this.service.data.wgs84.lon + '%22%20and%20gflags%3D%22R%22%20and%20locale%3D%22' + locale + '%22&format=json&callback=';
+      url = 'http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20geo.placefinder%20where%20text%3D%22' + this.displayedData.wgs84.lat + '%2C' + this.displayedData.wgs84.lon + '%22%20and%20gflags%3D%22R%22%20and%20locale%3D%22' + locale + '%22&format=json&callback=';
     } else if (locsrc == 'google') {
-      url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.service.data.wgs84.lat + '%2C' + this.service.data.wgs84.lon + '&language=' + locale;
+      url = 'https://maps.googleapis.com/maps/api/geocode/json?latlng=' + this.displayedData.wgs84.lat + '%2C' + this.displayedData.wgs84.lon + '&language=' + locale;
     } else {
       // set some error flag?
       return;
@@ -1079,7 +1096,7 @@ MyDesklet.prototype = {
     }
 
     let json = JSON.parse(data);
-    let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
+    let latlon = this.displayedData.wgs84.lat + ',' + this.displayedData.wgs84.lon;
     this._geocache.yahoo[latlon] = new Object();
 
     try {
@@ -1114,7 +1131,7 @@ MyDesklet.prototype = {
 
     let json = JSON.parse(data);
 
-    let latlon = this.service.data.wgs84.lat + ',' + this.service.data.wgs84.lon;
+    let latlon = this.displayedData.wgs84.lat + ',' + this.displayedData.wgs84.lon;
     this._geocache.google[latlon] = new Object();
 
     try {
