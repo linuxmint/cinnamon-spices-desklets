@@ -1,0 +1,241 @@
+/* Domilume dashboard. Colors: amber = power/energy, blue = temperature,
+   green = switched on, yellow = boost / attention, light blue = frost protection.
+   Tile width and background opacity are set per instance from the settings (inline style). */
+
+.fritz-main {
+    spacing: 8px;
+}
+
+.fritz-grid {
+    spacing: 8px;
+}
+
+.fritz-grid-row {
+    spacing: 8px;
+}
+
+.fritz-tile {
+    background-color: rgba(20, 24, 29, 0.75);
+    border: 1px solid rgba(255, 255, 255, 0.07);
+    border-radius: 9px;
+    padding: 9px 12px 10px 12px;
+    spacing: 3px;
+    color: #e8ecef;
+}
+
+.fritz-offline {
+    color: #8a939b;
+}
+
+.fritz-offline-badge {
+    font-size: 7.5pt;
+    font-weight: bold;
+    color: #e7c14a;
+    border: 1px solid rgba(231, 193, 74, 0.6);
+    border-radius: 4px;
+    padding: 0 4px;
+}
+
+.fritz-tile-header {
+    spacing: 8px;
+}
+
+.fritz-tile-name {
+    font-weight: bold;
+    font-size: 9.5pt;
+}
+
+.fritz-battery {
+    spacing: 3px;
+    color: #98a3ad;
+    font-size: 8.5pt;
+}
+
+.fritz-battery-low {
+    color: #e7c14a;
+    font-weight: bold;
+}
+
+.fritz-tile-main {
+    spacing: 6px;
+    padding-top: 2px;
+}
+
+.fritz-value {
+    font-size: 14pt;
+    font-weight: bold;
+}
+
+.fritz-unit {
+    font-size: 9pt;
+    color: #98a3ad;
+    padding-bottom: 2px;
+}
+
+/* second value right of the main value: set point, plug temperature, meter reading, humidity */
+.fritz-secondary {
+    font-size: 8.5pt;
+    color: #98a3ad;
+    padding-bottom: 3px;
+}
+
+/* plug energy today (amber) / yesterday (grey), on the line of the power */
+.fritz-energy {
+    font-size: 8.5pt;
+    padding-bottom: 3px;
+    padding-left: 4px;
+}
+
+.fritz-energy-today {
+    color: #f2a93b;
+}
+
+.fritz-energy-yesterday {
+    color: #98a3ad;
+}
+
+.fritz-humidity {
+    color: #a78bfa;
+    spacing: 3px;
+}
+
+.fritz-sub {
+    font-size: 8.5pt;
+    color: #98a3ad;
+}
+
+/* fixed height for the line under the value (plain text or remaining-time pill) */
+.fritz-sub-row {
+    height: 19px;
+}
+
+.fritz-tile-footer {
+    padding-top: 6px;
+}
+
+/* plug toggle switch */
+.fritz-switch {
+    width: 26px;
+    height: 13px;
+    border-radius: 7px;
+    padding: 1px;
+    border: 1px solid transparent;   /* always there, so focus does not change the size */
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.fritz-switch-knob {
+    width: 11px;
+    height: 11px;
+    border-radius: 6px;
+    background-color: #e8ecef;
+}
+
+.fritz-switch-on {
+    background-color: #7cc96f;
+}
+
+.fritz-switch-locked {
+    background-color: rgba(255, 255, 255, 0.08);
+}
+
+.fritz-switch-locked .fritz-switch-knob {
+    background-color: #6c757d;
+}
+
+.fritz-switch-locked.fritz-switch-on {
+    background-color: #3f6339;
+}
+
+.fritz-switch-locked.fritz-switch-on .fritz-switch-knob {
+    background-color: #9aa59a;
+}
+
+.fritz-switch:focus {
+    border-color: #f2a93b;
+}
+
+/* thermostat buttons: Frostschutz · − · + · Boost */
+.fritz-round-button {
+    width: 23px;
+    height: 23px;
+    min-width: 23px;
+    min-height: 23px;
+    padding: 0;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background-color: rgba(255, 255, 255, 0.09);
+    color: #e8ecef;
+}
+
+.fritz-round-button:hover {
+    border-color: rgba(255, 255, 255, 0.6);
+    background-color: rgba(255, 255, 255, 0.16);
+}
+
+.fritz-round-button:focus {
+    border-color: #f2a93b;
+}
+
+.fritz-step-button {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.fritz-active-boost {
+    background-color: #e7c14a;
+    border-color: #e7c14a;
+    color: #1e1703;
+}
+
+.fritz-active-frost {
+    background-color: #9ec9f0;
+    border-color: #9ec9f0;
+    color: #0b1824;
+}
+
+/* remaining time of boost / frost protection */
+.fritz-pill {
+    spacing: 4px;
+    border-radius: 9px;
+    padding: 0 8px;
+    height: 17px;
+    font-size: 8.5pt;
+    font-weight: bold;
+}
+
+.fritz-pill-boost {
+    background-color: #e7c14a;
+    color: #1e1703;
+}
+
+.fritz-pill-frost {
+    background-color: #9ec9f0;
+    color: #0b1824;
+}
+
+.fritz-status {
+    font-size: 8pt;
+    color: #c3ccd4;
+    background-color: rgba(20, 24, 29, 0.7);
+    border-radius: 6px;
+    padding: 2px 8px;
+}
+
+.fritz-empty {
+    color: #e8ecef;
+    background-color: rgba(20, 24, 29, 0.85);
+    border-radius: 9px;
+    padding: 10px 14px;
+}
+
+/* graphs */
+.fritz-graph {
+    margin-top: 4px;
+}
+
+.fritz-graph-row {
+    spacing: 14px;
+}
+
+.fritz-graph-stack {
+    spacing: 2px;
+}

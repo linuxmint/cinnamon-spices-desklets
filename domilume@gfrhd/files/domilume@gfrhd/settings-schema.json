@@ -1,0 +1,323 @@
+{
+  "layout": {
+    "type": "layout",
+    "pages": [
+      "page-connection",
+      "page-devices",
+      "page-look"
+    ],
+    "page-connection": {
+      "type": "page",
+      "title": "Connection",
+      "sections": [
+        "section-box",
+        "section-status",
+        "section-update",
+        "section-prices"
+      ]
+    },
+    "page-devices": {
+      "type": "page",
+      "title": "Devices",
+      "sections": [
+        "section-devices-wait",
+        "section-devices"
+      ]
+    },
+    "section-box": {
+      "type": "section",
+      "title": "FRITZ!Box",
+      "keys": [
+        "fritzbox-ip",
+        "discover",
+        "set-credentials"
+      ]
+    },
+    "section-update": {
+      "type": "section",
+      "title": "Updates",
+      "keys": [
+        "refresh-interval"
+      ]
+    },
+    "section-prices": {
+      "type": "section",
+      "title": "Electricity prices",
+      "keys": [
+        "price-import",
+        "price-export"
+      ]
+    },
+    "section-devices": {
+      "type": "section",
+      "title": "Displayed devices",
+      "keys": [
+        "devices-hint",
+        "device-list",
+        "reload-devices"
+      ],
+      "dependency": "connection-state=ok"
+    },
+    "section-devices-wait": {
+      "type": "section",
+      "title": "Not connected yet",
+      "dependency": "connection-state!=ok",
+      "keys": [
+        "devices-wait-hint"
+      ]
+    },
+    "section-status": {
+      "type": "section",
+      "title": "Status",
+      "keys": [
+        "status-searching",
+        "status-notfound",
+        "status-ok",
+        "status-no-address",
+        "status-no-credentials",
+        "status-login-failed",
+        "status-blocked",
+        "status-unreachable",
+        "status-no-right",
+        "status-error"
+      ]
+    },
+    "page-look": {
+      "type": "page",
+      "title": "Appearance",
+      "sections": [
+        "section-look"
+      ]
+    },
+    "section-look": {
+      "type": "section",
+      "title": "Tiles",
+      "keys": [
+        "columns",
+        "tile-width",
+        "background-opacity",
+        "energy-range"
+      ]
+    }
+  },
+  "fritzbox-ip": {
+    "type": "entry",
+    "default": "",
+    "description": "FRITZ!Box address",
+    "tooltip": "Host name or IP, e.g. fritz.box or 192.168.178.1. If you do not know it: “Search automatically”."
+  },
+  "discover": {
+    "type": "button",
+    "description": "Search automatically",
+    "callback": "discoverFritzBox",
+    "tooltip": "Looks for the FRITZ!Box by the name fritz.box and via UPnP in the local network and enters the address found above."
+  },
+  "set-credentials": {
+    "type": "button",
+    "description": "Set credentials…",
+    "callback": "openCredentialsDialog",
+    "tooltip": "Opens a dialog on the desktop. User name and password are stored in the keyring, not in this settings file."
+  },
+  "refresh-interval": {
+    "type": "spinbutton",
+    "default": 30,
+    "min": 10,
+    "max": 3600,
+    "step": 5,
+    "units": "seconds",
+    "description": "Refresh interval",
+    "tooltip": "Applies to all Domilume desklets. The devices send new measurements about every 1–2 minutes; shorter intervals mainly show switch states sooner."
+  },
+  "price-import": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 200,
+    "step": 0.01,
+    "units": "ct/kWh",
+    "description": "Electricity price",
+    "tooltip": "Applies to all Domilume desklets. Used by the energy tooltip to estimate the costs. 0 = show no costs."
+  },
+  "price-export": {
+    "type": "spinbutton",
+    "default": 0,
+    "min": 0,
+    "max": 200,
+    "step": 0.01,
+    "units": "ct/kWh",
+    "description": "Feed-in tariff",
+    "tooltip": "Applies to all Domilume desklets. Used by the tooltip to estimate the feed-in credit. 0 = show nothing."
+  },
+  "devices-hint": {
+    "type": "label",
+    "description": "The list fills itself as soon as address and credentials are correct.\nThe order here is the order on the desktop (▲ ▼).\nBoost and frost protection (minutes, at most 1440) apply to thermostats and groups only; double-click a row to change them."
+  },
+  "device-list": {
+    "type": "list",
+    "default": [],
+    "height": 320,
+    "hidden-buttons": [
+      "+",
+      "-"
+    ],
+    "columns": [
+      {
+        "id": "show",
+        "title": "Show",
+        "type": "boolean",
+        "default": true,
+        "align": 0.5
+      },
+      {
+        "id": "big",
+        "title": "Large",
+        "type": "boolean",
+        "default": false,
+        "align": 0.5
+      },
+      {
+        "id": "boost",
+        "title": "Boost (min)",
+        "type": "integer",
+        "default": 30,
+        "min": 0,
+        "max": 1440,
+        "step": 5
+      },
+      {
+        "id": "frost",
+        "title": "Frost protection (min)",
+        "type": "integer",
+        "default": 10,
+        "min": 0,
+        "max": 1440,
+        "step": 5
+      },
+      {
+        "id": "name",
+        "title": "Name",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "id": "type",
+        "title": "Type",
+        "type": "string",
+        "default": ""
+      },
+      {
+        "id": "ain",
+        "title": "AIN",
+        "type": "string",
+        "default": ""
+      }
+    ]
+  },
+  "reload-devices": {
+    "type": "button",
+    "description": "Reload device list",
+    "callback": "reloadDeviceList"
+  },
+  "devices-wait-hint": {
+    "type": "label",
+    "description": "The device list appears here as soon as the FRITZ!Box is connected.\nPlease set the address and the credentials on the “Connection” page first."
+  },
+  "connection-state": {
+    "type": "generic",
+    "default": "",
+    "description": "Set by the desklet: ok, no-address, no-credentials, login-failed, blocked, unreachable, no-right, error"
+  },
+  "status-searching": {
+    "type": "label",
+    "description": "Searching …",
+    "dependency": "status=searching"
+  },
+  "status-notfound": {
+    "type": "label",
+    "description": "✗ No FRITZ!Box found. Is this computer in the same network? Otherwise enter the address by hand,\ne.g. 192.168.178.1 (printed on the bottom of the box, or the gateway in the network settings).",
+    "dependency": "status=notfound"
+  },
+  "status-ok": {
+    "type": "label",
+    "description": "✓ Connected to the FRITZ!Box. The devices are listed on the “Devices” page.",
+    "dependency": "status=ok"
+  },
+  "status-no-address": {
+    "type": "label",
+    "description": "No address yet. Enter it above or click “Search automatically”.",
+    "dependency": "status=no-address"
+  },
+  "status-no-credentials": {
+    "type": "label",
+    "description": "No credentials yet. Click “Set credentials…”.",
+    "dependency": "status=no-credentials"
+  },
+  "status-login-failed": {
+    "type": "label",
+    "description": "✗ Login failed: wrong user name or password.",
+    "dependency": "status=login-failed"
+  },
+  "status-blocked": {
+    "type": "label",
+    "description": "✗ After failed attempts the FRITZ!Box blocks the login for a while. Please wait a moment.",
+    "dependency": "status=blocked"
+  },
+  "status-unreachable": {
+    "type": "label",
+    "description": "✗ No FRITZ!Box answers at this address. Check the address or use “Search automatically”.",
+    "dependency": "status=unreachable"
+  },
+  "status-no-right": {
+    "type": "label",
+    "description": "✗ The user may not access Smart Home.\nIn the FRITZ!Box, give the user the “Smart Home” permission under System → FRITZ!Box Users.",
+    "dependency": "status=no-right"
+  },
+  "status-error": {
+    "type": "label",
+    "description": "✗ Unexpected error. The message is shown at the bottom of the desklet.",
+    "dependency": "status=error"
+  },
+  "status": {
+    "type": "generic",
+    "default": "",
+    "description": "Set by the desklet: state for the status line"
+  },
+  "columns": {
+    "type": "spinbutton",
+    "default": 3,
+    "min": 1,
+    "max": 6,
+    "step": 1,
+    "units": "",
+    "description": "Columns"
+  },
+  "tile-width": {
+    "type": "spinbutton",
+    "default": 172,
+    "min": 120,
+    "max": 320,
+    "step": 4,
+    "units": "px",
+    "description": "Tile width"
+  },
+  "background-opacity": {
+    "type": "spinbutton",
+    "default": 75,
+    "min": 30,
+    "max": 100,
+    "step": 5,
+    "units": "%",
+    "description": "Tile background opacity"
+  },
+  "energy-range": {
+    "type": "combobox",
+    "default": "7",
+    "options": {
+      "7 days": "7",
+      "31 days": "31",
+      "12 months": "12"
+    },
+    "description": "Period of the energy bars",
+    "tooltip": "For large tiles and the feed-in"
+  }
+}

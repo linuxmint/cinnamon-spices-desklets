@@ -1,0 +1,10 @@
+{
+  "uuid": "domilume@gfrhd",
+  "name": "Domilume",
+  "description": "Your FRITZ!Box smart home at a glance: plugs, thermostats, sensors and energy meter as tiles with history graphs.",
+  "version": "1.0",
+  "multiversion": false,
+  "website": "https://github.com/gfrhd",
+  "max-instances": 10,
+  "prevent-decorations": true
+}

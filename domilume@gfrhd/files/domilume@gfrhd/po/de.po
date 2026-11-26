@@ -1,0 +1,677 @@
+# DOMILUME
+# This file is put in the public domain.
+# gfrhd, 2026
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: domilume@gfrhd 1.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-11-22 15:44+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. credentialsDialog.js:22
+msgid "FRITZ!Box credentials"
+msgstr "FRITZ!Box-Zugangsdaten"
+
+#. credentialsDialog.js:23
+msgid ""
+"A FRITZ!Box user with the “Smart Home” permission. The credentials are "
+"stored in the keyring, not in the desklet settings.\n"
+"Leave both fields empty to remove them."
+msgstr "Benutzer mit dem Recht „Smart Home“. Die Zugangsdaten werden im Schlüsselbund gespeichert, nicht in den Desklet-Einstellungen.\nBeide Felder leer lassen, um sie zu entfernen."
+
+#. credentialsDialog.js:28
+msgid "User name"
+msgstr "Benutzername"
+
+#. credentialsDialog.js:38
+msgid "Password"
+msgstr "Passwort"
+
+#. credentialsDialog.js:56
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#. credentialsDialog.js:57
+msgid "Save"
+msgstr "Speichern"
+
+#. desklet.js:85
+msgid "Reading credentials from the keyring…"
+msgstr "Lese Zugangsdaten aus dem Schlüsselbund…"
+
+#. desklet.js:120
+msgid "Connecting…"
+msgstr "Verbinde…"
+
+#. desklet.js:235
+msgid "Searching for the FRITZ!Box…"
+msgstr "Suche FRITZ!Box…"
+
+#. desklet.js:244
+#, javascript-format
+msgid "FRITZ!Box found: %s"
+msgstr "FRITZ!Box gefunden: %s"
+
+#. desklet.js:245
+msgid "FRITZ!Box found"
+msgstr "FRITZ!Box gefunden"
+
+#. desklet.js:245
+#, javascript-format
+msgid "Address %s (via %s)"
+msgstr "Adresse %s (über %s)"
+
+#. desklet.js:253
+msgid "No FRITZ!Box found – please enter the address in the settings"
+msgstr "Keine FRITZ!Box gefunden – bitte die Adresse in den Einstellungen eintragen"
+
+#. desklet.js:254
+msgid "No FRITZ!Box found"
+msgstr "Keine FRITZ!Box gefunden"
+
+#. desklet.js:255
+msgid ""
+"Is this computer in the same network? Otherwise enter the address in the "
+"settings."
+msgstr "Ist dieser Rechner im selben Netz? Sonst die Adresse in den Einstellungen von Hand eintragen."
+
+#. desklet.js:260
+#, javascript-format
+msgid "Search failed: %s"
+msgstr "Suche fehlgeschlagen: %s"
+
+#. desklet.js:261
+msgid "Search for the FRITZ!Box failed"
+msgstr "Suche nach der FRITZ!Box fehlgeschlagen"
+
+#. desklet.js:284
+#, javascript-format
+msgid "Keyring: %s"
+msgstr "Schlüsselbund: %s"
+
+#. desklet.js:336
+msgid "No address – Settings → “Search automatically”"
+msgstr "Keine Adresse – Einstellungen → „Automatisch suchen“"
+
+#. desklet.js:341
+msgid "No credentials – Settings → “Set credentials…”"
+msgstr "Keine Zugangsdaten – Einstellungen → „Zugangsdaten festlegen…“"
+
+#. desklet.js:384
+#, javascript-format
+msgid "Switching %s failed"
+msgstr "%s schalten fehlgeschlagen"
+
+#. desklet.js:401
+#, javascript-format
+msgid "Set point of %s failed"
+msgstr "Solltemperatur %s fehlgeschlagen"
+
+#. desklet.js:417
+#, javascript-format
+msgid "Boost for %s failed"
+msgstr "Boost %s fehlgeschlagen"
+
+#. desklet.js:417
+#, javascript-format
+msgid "Frost protection for %s failed"
+msgstr "Frostschutz %s fehlgeschlagen"
+
+#. desklet.js:496
+msgid "No devices selected – Settings → Devices"
+msgstr "Keine Geräte ausgewählt – Einstellungen → Geräte"
+
+#. desklet.js:497
+msgid "No devices loaded yet"
+msgstr "Noch keine Geräte geladen"
+
+#. devicelist.js:10
+msgid "not found"
+msgstr "nicht gefunden"
+
+#. fritzclient.js:336
+msgid "Switch command not confirmed"
+msgstr "Schaltbefehl nicht bestätigt"
+
+#. fritzclient.js:336
+#, javascript-format
+msgid "%s: the FRITZ!Box does not report the new state."
+msgstr "%s: die FRITZ!Box meldet den neuen Zustand nicht."
+
+#. fritzclient.js:345
+msgid "Set point not confirmed"
+msgstr "Solltemperatur nicht bestätigt"
+
+#. fritzclient.js:346
+#, javascript-format
+msgid "%s: the FRITZ!Box does not report %s °C."
+msgstr "%s: die FRITZ!Box meldet %s °C nicht."
+
+#. fritzclient.js:364
+msgid "Boost not confirmed"
+msgstr "Boost nicht bestätigt"
+
+#. fritzclient.js:364
+msgid "Frost protection not confirmed"
+msgstr "Frostschutz nicht bestätigt"
+
+#. fritzclient.js:366
+#, javascript-format
+msgid "%s: the FRITZ!Box does not report boost as active."
+msgstr "%s: die FRITZ!Box meldet Boost nicht als aktiv."
+
+#. fritzclient.js:366
+#, javascript-format
+msgid "%s: the FRITZ!Box still reports boost as active."
+msgstr "%s: die FRITZ!Box meldet Boost weiterhin als aktiv."
+
+#. fritzclient.js:367
+#, javascript-format
+msgid "%s: the FRITZ!Box does not report frost protection as active."
+msgstr "%s: die FRITZ!Box meldet Frostschutz nicht als aktiv."
+
+#. fritzclient.js:367
+#, javascript-format
+msgid "%s: the FRITZ!Box still reports frost protection as active."
+msgstr "%s: die FRITZ!Box meldet Frostschutz weiterhin als aktiv."
+
+#. fritzclient.js:376
+msgid "Connection to the FRITZ!Box restored"
+msgstr "Verbindung zur FRITZ!Box wiederhergestellt"
+
+#. fritzclient.js:386
+msgid "Connection to the FRITZ!Box lost"
+msgstr "Verbindung zur FRITZ!Box verloren"
+
+#. fritzclient.js:386 tiles.js:154
+msgid "No connection to the FRITZ!Box"
+msgstr "Keine Verbindung zur FRITZ!Box"
+
+#. fritzclient.js:400
+msgid "Invalid address"
+msgstr "Ungültige Adresse"
+
+#. fritzclient.js:438
+msgid "No credentials"
+msgstr "Keine Zugangsdaten"
+
+#. fritzclient.js:442
+#, javascript-format
+msgid "Login page: HTTP %s"
+msgstr "Login-Seite: HTTP %s"
+
+#. fritzclient.js:445
+#, javascript-format
+msgid "Login blocked for another %s s"
+msgstr "Login gesperrt, noch %s s"
+
+#. fritzclient.js:447
+msgid "No login challenge received – is this a FRITZ!Box?"
+msgstr "Keine Login-Challenge erhalten – ist das eine FRITZ!Box?"
+
+#. fritzclient.js:454
+#, javascript-format
+msgid "Login wrong, blocked for %s s"
+msgstr "Login falsch, gesperrt für %s s"
+
+#. fritzclient.js:455
+msgid "Login failed (user name/password?)"
+msgstr "Login fehlgeschlagen (Benutzer/Passwort?)"
+
+#. fritzclient.js:487
+msgid "No access to Smart Home (permission missing?)"
+msgstr "Kein Zugriff auf Smart Home (Recht fehlt?)"
+
+#. fritzxml.js:159
+msgid "feed-in"
+msgstr "Einspeisung"
+
+#. fritzxml.js:161
+msgid "consumption"
+msgstr "Verbrauch"
+
+#. fritzxml.js:168
+#, javascript-format
+msgid "Group: %s"
+msgstr "Gruppe: %s"
+
+#. fritzxml.js:168
+msgid "Group"
+msgstr "Gruppe"
+
+#. fritzxml.js:221 tiles.js:535
+msgid "not connected"
+msgstr "nicht verbunden"
+
+#. fritzxml.js:229 fritzxml.js:244
+msgid "on"
+msgstr "an"
+
+#. fritzxml.js:229 fritzxml.js:244
+msgid "off"
+msgstr "aus"
+
+#. fritzxml.js:238
+#, javascript-format
+msgid "Boost, %s left"
+msgstr "Boost noch %s"
+
+#. fritzxml.js:240
+#, javascript-format
+msgid "Frost protection, %s left"
+msgstr "Frostschutz noch %s"
+
+#. fritzxml.js:242 tiles.js:554
+#, javascript-format
+msgid "Target %s °C"
+msgstr "Soll %s °C"
+
+#. fritzxml.js:250 fritzxml.js:254
+#, javascript-format
+msgid "Meter %s kWh"
+msgstr "Zähler %s kWh"
+
+#. fritzxml.js:257
+#, javascript-format
+msgid "Battery %s %% (low)"
+msgstr "Batterie %s %% (schwach)"
+
+#. fritzxml.js:257
+#, javascript-format
+msgid "Battery %s %%"
+msgstr "Batterie %s %%"
+
+#. tiles.js:150
+msgid "offline"
+msgstr "offline"
+
+#. tiles.js:153
+#, javascript-format
+msgid "No connection to the FRITZ!Box since %s – last known values"
+msgstr "Keine Verbindung zur FRITZ!Box seit %s – letzte bekannte Werte"
+
+#. tiles.js:169
+msgid "Lowest battery of the thermostats:"
+msgstr "Niedrigster Stand der Regler:"
+
+#. tiles.js:219
+#, javascript-format
+msgid "today %s kWh"
+msgstr "heute %s kWh"
+
+#. tiles.js:221
+#, javascript-format
+msgid "yesterday %s kWh"
+msgstr "gestern %s kWh"
+
+#. tiles.js:232
+msgid "Today:"
+msgstr "Heute:"
+
+#. tiles.js:234
+msgid "Yesterday:"
+msgstr "Gestern:"
+
+#. tiles.js:238
+msgid "Year ≈:"
+msgstr "Jahr ≈:"
+
+#. tiles.js:290
+#, javascript-format
+msgid "%s: no connection"
+msgstr "%s: keine Verbindung"
+
+#. tiles.js:291
+#, javascript-format
+msgid "%s: locked at the FRITZ!Box"
+msgstr "%s: an der FRITZ!Box gesperrt"
+
+#. tiles.js:292
+#, javascript-format
+msgid "Switch off %s"
+msgstr "%s ausschalten"
+
+#. tiles.js:292
+#, javascript-format
+msgid "Switch on %s"
+msgstr "%s einschalten"
+
+#. tiles.js:301
+msgid "End frost protection"
+msgstr "Frostschutz beenden"
+
+#. tiles.js:301
+#, javascript-format
+msgid "Frost protection for %s min"
+msgstr "Frostschutz für %s min"
+
+#. tiles.js:303 tiles.js:305
+#, javascript-format
+msgid "Set point %s °C"
+msgstr "Solltemperatur %s °C"
+
+#. tiles.js:308
+msgid "End boost"
+msgstr "Boost beenden"
+
+#. tiles.js:308
+#, javascript-format
+msgid "Boost for %s min"
+msgstr "Boost für %s min"
+
+#. tiles.js:345
+#, javascript-format
+msgid "%s left"
+msgstr "noch %s"
+
+#. tiles.js:431 tiles.js:460 tiles.js:466
+msgid "now"
+msgstr "jetzt"
+
+#. tiles.js:447
+msgid "%a %d %b"
+msgstr "%a %d.%m."
+
+#. tiles.js:451
+msgid "12 months ago"
+msgstr "vor 12 Mon."
+
+#. tiles.js:451
+msgid "this month"
+msgstr "dieser Monat"
+
+#. tiles.js:451
+#, javascript-format
+msgid "%s days ago"
+msgstr "vor %s Tagen"
+
+#. tiles.js:451
+msgid "today"
+msgstr "heute"
+
+#. tiles.js:555
+msgid "Target: off"
+msgstr "Soll: aus"
+
+#. tiles.js:556
+msgid "Target: on"
+msgstr "Soll: an"
+
+#. tiles.js:581
+msgid "Feed-in meter reading"
+msgstr "Zählerstand Einspeisung"
+
+#. metadata.json->name
+msgid "Domilume"
+msgstr "Domilume"
+
+#. metadata.json->description
+msgid ""
+"Your FRITZ!Box smart home at a glance: plugs, thermostats, sensors and "
+"energy meter as tiles with history graphs."
+msgstr "Dein FRITZ!Box-Smart-Home auf einen Blick: Steckdosen, Thermostate, Sensoren und Stromzähler als Kacheln mit Verlaufsgraphen."
+
+#. settings-schema.json->page-connection->title
+msgid "Connection"
+msgstr "Verbindung"
+
+#. settings-schema.json->page-devices->title
+msgid "Devices"
+msgstr "Geräte"
+
+#. settings-schema.json->section-box->title
+msgid "FRITZ!Box"
+msgstr "FRITZ!Box"
+
+#. settings-schema.json->section-update->title
+msgid "Updates"
+msgstr "Aktualisierung"
+
+#. settings-schema.json->section-prices->title
+msgid "Electricity prices"
+msgstr "Strompreise"
+
+#. settings-schema.json->section-devices->title
+msgid "Displayed devices"
+msgstr "Angezeigte Geräte"
+
+#. settings-schema.json->section-devices-wait->title
+msgid "Not connected yet"
+msgstr "Noch keine Verbindung"
+
+#. settings-schema.json->section-status->title
+msgid "Status"
+msgstr "Status"
+
+#. settings-schema.json->page-look->title
+msgid "Appearance"
+msgstr "Darstellung"
+
+#. settings-schema.json->section-look->title
+msgid "Tiles"
+msgstr "Kacheln"
+
+#. settings-schema.json->fritzbox-ip->description
+msgid "FRITZ!Box address"
+msgstr "Adresse der FRITZ!Box"
+
+#. settings-schema.json->fritzbox-ip->tooltip
+msgid ""
+"Host name or IP, e.g. fritz.box or 192.168.178.1. If you do not know it: "
+"“Search automatically”."
+msgstr "Hostname oder IP, z.B. fritz.box oder 192.168.178.1. Wenn du sie nicht kennst: „Automatisch suchen“."
+
+#. settings-schema.json->discover->description
+msgid "Search automatically"
+msgstr "Automatisch suchen"
+
+#. settings-schema.json->discover->tooltip
+msgid ""
+"Looks for the FRITZ!Box by the name fritz.box and via UPnP in the local "
+"network and enters the address found above."
+msgstr "Sucht die FRITZ!Box über den Namen fritz.box und per UPnP im lokalen Netz und trägt die gefundene Adresse oben ein."
+
+#. settings-schema.json->set-credentials->description
+msgid "Set credentials…"
+msgstr "Zugangsdaten festlegen…"
+
+#. settings-schema.json->set-credentials->tooltip
+msgid ""
+"Opens a dialog on the desktop. User name and password are stored in the "
+"keyring, not in this settings file."
+msgstr "Öffnet einen Dialog auf dem Desktop. Benutzername und Passwort werden im Schlüsselbund gespeichert, nicht in dieser Einstellungsdatei."
+
+#. settings-schema.json->refresh-interval->units
+msgid "seconds"
+msgstr "Sekunden"
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr "Aktualisierungsintervall"
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid ""
+"Applies to all Domilume desklets. The devices send new measurements about "
+"every 1–2 minutes; shorter intervals mainly show switch states sooner."
+msgstr "Gilt für alle Domilume-Desklets. Die Geräte senden etwa alle 1–2 Minuten neue Messwerte; kürzere Intervalle zeigen vor allem Schaltzustände schneller."
+
+#. settings-schema.json->price-import->units
+#. settings-schema.json->price-export->units
+msgid "ct/kWh"
+msgstr "ct/kWh"
+
+#. settings-schema.json->price-import->description
+msgid "Electricity price"
+msgstr "Strompreis (Bezug)"
+
+#. settings-schema.json->price-import->tooltip
+msgid ""
+"Applies to all Domilume desklets. Used by the energy tooltip to estimate the "
+"costs. 0 = show no costs."
+msgstr "Gilt für alle Domilume-Desklets. Damit schätzt der Verbrauchs-Tooltip die Kosten. 0 = keine Kosten anzeigen."
+
+#. settings-schema.json->price-export->description
+msgid "Feed-in tariff"
+msgstr "Einspeisevergütung"
+
+#. settings-schema.json->price-export->tooltip
+msgid ""
+"Applies to all Domilume desklets. Used by the tooltip to estimate the feed-"
+"in credit. 0 = show nothing."
+msgstr "Gilt für alle Domilume-Desklets. Damit schätzt der Tooltip die Vergütung der Einspeisung. 0 = nichts anzeigen."
+
+#. settings-schema.json->devices-hint->description
+msgid ""
+"The list fills itself as soon as address and credentials are correct.\n"
+"The order here is the order on the desktop (▲ ▼).\n"
+"Boost and frost protection (minutes, at most 1440) apply to thermostats and "
+"groups only; double-click a row to change them."
+msgstr "Die Liste füllt sich automatisch, sobald Adresse und Zugangsdaten stimmen.\nDie Reihenfolge hier ist die Reihenfolge auf dem Desktop (▲ ▼).\nBoost und Frostschutz (Minuten, höchstens 1440) gelten nur für Thermostate und Gruppen; ändern per Doppelklick auf die Zeile."
+
+#. settings-schema.json->device-list->columns->title
+msgid "Show"
+msgstr "Anzeigen"
+
+#. settings-schema.json->device-list->columns->title
+msgid "Large"
+msgstr "Groß"
+
+#. settings-schema.json->device-list->columns->title
+msgid "Boost (min)"
+msgstr "Boost (min)"
+
+#. settings-schema.json->device-list->columns->title
+msgid "Frost protection (min)"
+msgstr "Frostschutz (min)"
+
+#. settings-schema.json->device-list->columns->title
+msgid "Name"
+msgstr "Name"
+
+#. settings-schema.json->device-list->columns->title
+msgid "Type"
+msgstr "Typ"
+
+#. settings-schema.json->device-list->columns->title
+msgid "AIN"
+msgstr "AIN"
+
+#. settings-schema.json->reload-devices->description
+msgid "Reload device list"
+msgstr "Geräteliste neu laden"
+
+#. settings-schema.json->devices-wait-hint->description
+msgid ""
+"The device list appears here as soon as the FRITZ!Box is connected.\n"
+"Please set the address and the credentials on the “Connection” page first."
+msgstr "Die Geräteliste erscheint hier, sobald die Verbindung zur FRITZ!Box steht.\nBitte zuerst auf der Seite „Verbindung“ die Adresse und die Zugangsdaten festlegen."
+
+#. settings-schema.json->connection-state->description
+msgid ""
+"Set by the desklet: ok, no-address, no-credentials, login-failed, blocked, "
+"unreachable, no-right, error"
+msgstr "Vom Desklet gesetzt: ok, no-address, no-credentials, login-failed, blocked, unreachable, no-right, error"
+
+#. settings-schema.json->status-searching->description
+msgid "Searching …"
+msgstr "Suche läuft …"
+
+#. settings-schema.json->status-notfound->description
+msgid ""
+"✗ No FRITZ!Box found. Is this computer in the same network? Otherwise enter "
+"the address by hand,\n"
+"e.g. 192.168.178.1 (printed on the bottom of the box, or the gateway in the "
+"network settings)."
+msgstr "✗ Keine FRITZ!Box gefunden. Ist dieser Rechner im selben Netz? Sonst die Adresse von Hand eintragen,\nz.B. 192.168.178.1 (steht auf der Unterseite der Box oder als Gateway in den Netzwerkeinstellungen)."
+
+#. settings-schema.json->status-ok->description
+msgid ""
+"✓ Connected to the FRITZ!Box. The devices are listed on the “Devices” page."
+msgstr "✓ Verbunden mit der FRITZ!Box. Die Geräte stehen auf der Seite „Geräte“."
+
+#. settings-schema.json->status-no-address->description
+msgid "No address yet. Enter it above or click “Search automatically”."
+msgstr "Noch keine Adresse. Trage sie oben ein oder klicke auf „Automatisch suchen“."
+
+#. settings-schema.json->status-no-credentials->description
+msgid "No credentials yet. Click “Set credentials…”."
+msgstr "Noch keine Zugangsdaten. Klicke auf „Zugangsdaten festlegen…“."
+
+#. settings-schema.json->status-login-failed->description
+msgid "✗ Login failed: wrong user name or password."
+msgstr "✗ Anmeldung fehlgeschlagen: Benutzername oder Passwort stimmt nicht."
+
+#. settings-schema.json->status-blocked->description
+msgid ""
+"✗ After failed attempts the FRITZ!Box blocks the login for a while. Please "
+"wait a moment."
+msgstr "✗ Die FRITZ!Box sperrt die Anmeldung nach Fehlversuchen vorübergehend. Bitte kurz warten."
+
+#. settings-schema.json->status-unreachable->description
+msgid ""
+"✗ No FRITZ!Box answers at this address. Check the address or use “Search "
+"automatically”."
+msgstr "✗ Unter dieser Adresse antwortet keine FRITZ!Box. Adresse prüfen oder „Automatisch suchen“."
+
+#. settings-schema.json->status-no-right->description
+msgid ""
+"✗ The user may not access Smart Home.\n"
+"In the FRITZ!Box, give the user the “Smart Home” permission under System → "
+"FRITZ!Box Users."
+msgstr "✗ Der Benutzer darf nicht auf Smart Home zugreifen.\nIn der FRITZ!Box unter System → FRITZ!Box-Benutzer das Recht „Smart Home“ geben."
+
+#. settings-schema.json->status-error->description
+msgid "✗ Unexpected error. The message is shown at the bottom of the desklet."
+msgstr "✗ Unerwarteter Fehler. Die Meldung steht unten im Desklet."
+
+#. settings-schema.json->status->description
+msgid "Set by the desklet: state for the status line"
+msgstr "Vom Desklet gesetzt: Zustand für die Statuszeile"
+
+#. settings-schema.json->columns->description
+msgid "Columns"
+msgstr "Spalten"
+
+#. settings-schema.json->tile-width->units
+msgid "px"
+msgstr "px"
+
+#. settings-schema.json->tile-width->description
+msgid "Tile width"
+msgstr "Kachelbreite"
+
+#. settings-schema.json->background-opacity->units
+msgid "%"
+msgstr "%"
+
+#. settings-schema.json->background-opacity->description
+msgid "Tile background opacity"
+msgstr "Deckkraft des Kachelhintergrunds"
+
+#. settings-schema.json->energy-range->options
+msgid "7 days"
+msgstr "7 Tage"
+
+#. settings-schema.json->energy-range->options
+msgid "31 days"
+msgstr "31 Tage"
+
+#. settings-schema.json->energy-range->options
+msgid "12 months"
+msgstr "12 Monate"
+
+#. settings-schema.json->energy-range->description
+msgid "Period of the energy bars"
+msgstr "Zeitraum der Energiebalken"
+
+#. settings-schema.json->energy-range->tooltip
+msgid "For large tiles and the feed-in"
+msgstr "Gilt für große Kacheln und die Einspeisung"
