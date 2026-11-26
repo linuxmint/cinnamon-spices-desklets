@@ -1,0 +1,9 @@
+{
+    "size": { "type": "scale", "default": 0.85, "min": 0.4, "max": 2.0, "step": 0.05, "description": "Size" },
+    "interval": { "type": "spinbutton", "default": 2, "min": 1, "max": 30, "step": 1, "units": "seconds", "description": "Refresh interval" },
+    "fahrenheit": { "type": "switch", "default": false, "description": "Show Fahrenheit" },
+    "show-graph": { "type": "switch", "default": true, "description": "Show history sparkline" },
+    "show-cores": { "type": "switch", "default": true, "description": "Show per-core bars" },
+    "bg-opacity": { "type": "scale", "default": 0.55, "min": 0.0, "max": 1.0, "step": 0.05, "description": "Background opacity" },
+    "font": { "type": "fontchooser", "default": "Ubuntu Sans", "description": "Font" }
+}
