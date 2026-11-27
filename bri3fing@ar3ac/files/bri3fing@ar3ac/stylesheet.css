@@ -442,6 +442,31 @@
     font-size: 8.5pt;
 }
 
+.bri3fing-preset-pill {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    border-radius: 5px;
+    padding: 2px 8px;
+    color: #cbd5e1;
+    font-size: 8pt;
+    transition-duration: 100ms;
+}
+
+.bri3fing-preset-pill:hover, .bri3fing-preset-pill:focus {
+    background-color: rgba(59, 130, 246, 0.30);
+    border-color: rgba(96, 165, 250, 0.70);
+    color: #ffffff;
+}
+
+.bri3fing-validation-error {
+    color: #fca5a5;
+    background-color: rgba(239, 68, 68, 0.14);
+    border: 1px solid rgba(239, 68, 68, 0.40);
+    border-radius: 5px;
+    padding: 4px 8px;
+    font-size: 8.5pt;
+}
+
 /* Calendar Dropdown Selector */
 .bri3fing-dropdown-btn {
     background-color: rgba(255, 255, 255, 0.08);

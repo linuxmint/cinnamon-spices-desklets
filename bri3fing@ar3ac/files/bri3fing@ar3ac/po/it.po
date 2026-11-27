@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bri3fing@ar3ac 1.0.0\n"
+"Project-Id-Version: bri3fing@ar3ac 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-25 07:37+0100\n"
 "PO-Revision-Date: 2026-10-25 07:26+0100\n"
@@ -488,3 +488,147 @@ msgid "Default Calendar"
 msgstr "Calendario predefinito"
 
 
+
+msgid "%"
+msgstr "%"
+
+msgid "%d min"
+msgstr "%d min"
+
+msgid "%dh"
+msgstr "%dh"
+
+msgid "%dh %dm"
+msgstr "%dh %dm"
+
+msgid "+1 week"
+msgstr "+1 settimana"
+
+msgid "A Cinnamon desklet for your daily schedule briefing and fast event creation synced with Google Calendar via GNOME Online Accounts / EDS"
+msgstr "Una desklet Cinnamon per il riepilogo giornaliero degli impegni e la creazione rapida di eventi sincronizzati con Google Calendar tramite Account Online GNOME / EDS"
+
+msgid "Appearance"
+msgstr "Aspetto"
+
+msgid "Apply changes to:"
+msgstr "Applica le modifiche a:"
+
+msgid "Automatic refresh frequency"
+msgstr "Frequenza di aggiornamento automatico"
+
+msgid "Background opacity (if transparent background is disabled)"
+msgstr "Opacità sfondo (se lo sfondo trasparente è disabilitato)"
+
+msgid "Bri3fing"
+msgstr "Bri3fing"
+
+msgid "Calendar name tag color"
+msgstr "Colore etichetta calendario"
+
+msgid "Compact layout with reduced spacing and padding"
+msgstr "Layout compatto con spaziatura e margini ridotti"
+
+msgid "Custom Colors"
+msgstr "Colori personalizzati"
+
+msgid "Default calendar UID for quick add (leave blank for auto-selection)"
+msgstr "UID calendario predefinito per aggiunta rapida (lascia vuoto per selezione automatica)"
+
+msgid "Delete Recurring Event"
+msgstr "Elimina Evento Ricorrente"
+
+msgid "Desklet width"
+msgstr "Larghezza desklet"
+
+msgid "Dimensions & Aesthetics"
+msgstr "Dimensioni ed Estetica"
+
+msgid "Display event location when available"
+msgstr "Mostra il luogo dell'evento se disponibile"
+
+msgid "Do you want to delete only this occurrence or the entire recurring series?"
+msgstr "Vuoi eliminare solo questa occorrenza o l'intera serie ricorrente?"
+
+msgid "Enable custom field colors"
+msgstr "Abilita colori personalizzati per i campi"
+
+msgid "Entire Series"
+msgstr "Intera Serie"
+
+msgid "Event"
+msgstr "Evento"
+
+msgid "Event title text color"
+msgstr "Colore titolo evento"
+
+msgid "Font size for event titles"
+msgstr "Dimensione testo per i titoli degli eventi"
+
+msgid "Font size for header date"
+msgstr "Dimensione testo per la data nell'intestazione"
+
+msgid "Fully transparent desklet background"
+msgstr "Sfondo desklet completamente trasparente"
+
+msgid "General"
+msgstr "Generale"
+
+msgid "In %s: %s"
+msgstr "Tra %s: %s"
+
+msgid "Invalid date format (expected YYYY-MM-DD)."
+msgstr "Formato data non valido (atteso AAAA-MM-GG)."
+
+msgid "Invalid start or end time (expected HH:MM)."
+msgstr "Orario di inizio o fine non valido (atteso HH:MM)."
+
+msgid "Now: %s"
+msgstr "Ora: %s"
+
+msgid "Number of days ahead to include in briefing (e.g. 14 for 2 weeks)"
+msgstr "Numero di giorni futuri da includere nel briefing (es. 14 per 2 settimane)"
+
+msgid "Open in Maps"
+msgstr "Apri su Mappa"
+
+msgid "Please enter an event title."
+msgstr "Inserisci un titolo per l'evento."
+
+msgid "Read-only calendar"
+msgstr "Calendario in sola lettura"
+
+msgid "Recurring event"
+msgstr "Evento ricorrente"
+
+msgid "Schedule & Briefing"
+msgstr "Agenda e Briefing"
+
+msgid "Section & Day header color"
+msgstr "Colore intestazioni sezione e giorno"
+
+msgid "Show today's events that have already ended"
+msgstr "Mostra gli eventi di oggi già terminati"
+
+msgid "Synchronization & Calendar"
+msgstr "Sincronizzazione e Calendario"
+
+msgid "This Occurrence"
+msgstr "Questa Occorrenza"
+
+msgid "Time & duration label color"
+msgstr "Colore etichetta orario e durata"
+
+msgid "Use 24-hour time format (e.g. 14:30 vs 2:30 PM)"
+msgstr "Usa formato 24 ore (es. 14:30 invece di 2:30 PM)"
+
+msgid "days"
+msgstr "giorni"
+
+msgid "minutes"
+msgstr "minuti"
+
+msgid "pt"
+msgstr "pt"
+
+msgid "px"
+msgstr "px"

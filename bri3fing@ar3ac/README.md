@@ -19,15 +19,16 @@ Designed with a stealth, minimalist dark glass aesthetic that blends seamlessly 
 - **Zero-Friction OS-Native Integration:** No Google Cloud Console setup, no client secret JSON files, and no 7-day token expiration hurdles. Bri3fing taps directly into Linux Mint's native **Online Accounts** (GNOME Online Accounts + Evolution Data Server).
 - **Guided First-Launch Onboarding:** When launched for the first time without an online account configured, Bri3fing displays a guided onboarding card with a direct `[ Connect Account… ]` action, automatically monitoring and refreshing your agenda the moment Google or CalDAV login is completed.
 - **Chronus-Style Day-by-Day Agenda:** Continuous timeline organized day-by-day (e.g. *Today*, *Tomorrow*, *Tuesday, Oct 27*, *Monday, Nov 2*), skipping empty days for maximum clarity across a 2-week (or custom) horizon.
-- **One-Click Video Meeting Join:** Auto-detects Google Meet, Zoom, Microsoft Teams, Webex, and Jitsi links and displays a discrete `[ 📹 Join ]` action button directly on the event row.
+- **Live Next-Up Briefing & Minute-Accurate Alerts:** Lightweight 60-second in-memory ticker updates the header countdown (*"In 25 min: Team Sync"* / *"Now: Standup"*), refreshes **NOW** / **SOON** badges on the exact minute, handles midnight rollover automatically, and triggers native desktop notifications precisely on schedule without extra backend polling.
+- **One-Click Video Meeting Join & Maps:** Auto-detects Google Meet, Zoom, Microsoft Teams, Webex, and Jitsi links (`[ 📹 Join ]`) and adds an `[ 🗺 Open in Maps ]` (OpenStreetMap) button for physical event locations.
 - **Header Calendar Launcher:** Clicking the header date title instantly opens GNOME Calendar or the system default calendar.
 - **Real-Time Inline Search:** Expandable search bar (`[ 🔍 ]`) to filter your agenda on the fly by event title, location, description, or calendar source.
-- **Desktop Notifications:** Native Cinnamon desktop alerts 10 or 15 minutes before upcoming events begin so you never miss an appointment.
-- **Calendar Visibility Filtering:** Quickly hide or show individual calendars directly from the right-click context menu (*Visible Calendars*) or settings.
-- **Visual Status Badges & Smooth Scroll:** Calendar color indicator strips, start/end time ranges, location tags, real-time badges (**NOW** / **SOON**), smooth edge fade (`vfade`), and a sleek 5px glass scrollbar.
-- **Quick Event Creation & In-Place Editing:** Add new appointments (`[+]`) or click any existing event to inspect details, modify in place (`[ Edit Event… ]`), or delete directly from your desktop with instant two-way background sync to Google Calendar.
+- **Calendar Visibility Filtering & Read-Only Awareness:** Quickly hide or show individual calendars from the right-click context menu (*Visible Calendars*) or settings, while automatically filtering read-only calendars (e.g. Holidays, Birthdays) out of event creation/editing selectors.
+- **Visual Status Badges & Smooth Scroll:** Calendar color indicator strips, start/end time ranges, recurring event indicators (`↻`), location tags, real-time badges (**NOW** / **SOON**), smooth edge fade (`vfade`), and a sleek 5px glass scrollbar.
+- **Quick Event Creation, Presets & Safe Recurring Editing:** Add new appointments (`[+]`) with one-click date/duration presets (`Today`, `Tomorrow`, `+1 week`, `30m`, `1h`, `2h`) and inline validation, or click any existing event to inspect details, edit/delete a **single occurrence** or **entire recurring series**, and sync changes in the background to Google Calendar.
+- **Worldwide Timezone & DST Accuracy:** Preserves explicit `TZID` / `VTIMEZONE`, UTC (`Z`), RFC 5545 floating times, fractional offsets, and POSIX `TZ` overrides across every timezone on Earth.
 - **Offline First:** Cached locally in the system's Evolution Data Server database, ensuring your schedule is always visible even without internet connectivity.
-- **Native Internationalization (i18n):** Multilingual support out of the box with English (`en`) and Italian (`it`) translations.
+- **Complete Native Internationalization (i18n):** 100% translated UI and Cinnamon settings catalogs out of the box in English (`en`) and Italian (`it`), plus a complete `.pot` template for community translators.
 - **Fully Customizable:** Flexible Cinnamon settings for desklet width, stable default height, background opacity, font scaling, briefing range, and custom field color pickers.
 
 ---
@@ -124,7 +125,7 @@ Bri3fing includes a standalone, timezone-aware backend helper interfacing direct
     --date 2026-10-26 \
     --all-day
 
-# Edit an existing event
+# Edit an existing event (omitted fields like --date/--location are preserved)
 ./desklet/bri3fing@ar3ac/eds_helper.py edit \
     --calendar system-calendar \
     --uid <event-uid> \
@@ -132,8 +133,21 @@ Bri3fing includes a standalone, timezone-aware backend helper interfacing direct
     --start 15:30 \
     --end 16:30
 
-# Delete an event
+# Edit or delete only a single occurrence of a recurring event
+./desklet/bri3fing@ar3ac/eds_helper.py delete \
+    --calendar system-calendar \
+    --uid <event-uid> \
+    --rid 20261204T150000Z \
+    --mod-type this
+
+# Delete an event (or entire recurring series)
 ./desklet/bri3fing@ar3ac/eds_helper.py delete --calendar system-calendar --uid <event-uid>
+```
+
+### Running Tests
+
+```bash
+python3 -m unittest discover -s tests -v
 ```
 
 ---
@@ -174,13 +188,20 @@ Configure Bri3fing directly through Cinnamon Desklet Settings (*Right-click widg
 bri3fing/
 ├── LICENSE                    # GNU General Public License v3.0
 ├── README.md                  # Public documentation & user guide
+├── CHANGELOG.md               # Release history (Keep a Changelog)
 ├── .gitignore                 # Git ignore rules
+├── .github/
+│   ├── workflows/ci.yml       # Automated test, syntax & i18n CI pipeline
+│   └── ISSUE_TEMPLATE/        # Bug report template
 ├── docs/
 │   └── screenshots/           # Documentation and showcase preview images
 ├── scripts/
 │   ├── install.sh             # Automated installer & translation compiler
 │   ├── uninstall.sh           # Clean uninstallation script
 │   └── package.sh             # Release packaging script (.zip)
+├── tests/
+│   ├── test_eds_helper.py     # Validation & 16-timezone global DST test suite
+│   └── test_desklet_assets.py # Metadata, schema, GJS, Spices & i18n checks
 └── desklet/
     └── bri3fing@ar3ac/        # Cinnamon Desklet bundle
         ├── metadata.json      # Desklet metadata & versioning
@@ -190,16 +211,15 @@ bri3fing/
         ├── eds_helper.py      # Standalone EDS backend helper
         ├── icon.png           # Desklet icon
         ├── screenshot.png     # Cinnamon Spices thumbnail preview
-        └── po/                # Localization catalogs
+        └── po/                # Localization catalogs (100% UI + settings)
             ├── bri3fing@ar3ac.pot # Cinnamon Spices translation template
-            ├── bri3fing.pot   # Translation template
             ├── en.po          # English base translation
             └── it.po          # Italian translation
 ```
 
 ---
 
-## Support
+## ☕ Support
 
 If you find **Bri3fing** useful and would like to support its ongoing development and maintenance, consider buying me a coffee:
 

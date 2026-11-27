@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: bri3fing@ar3ac 1.0.0\n"
+"Project-Id-Version: bri3fing@ar3ac 1.1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-10-25 07:37+0100\n"
 "PO-Revision-Date: 2026-10-25 07:26+0100\n"
@@ -486,3 +486,147 @@ msgid "Default Calendar"
 msgstr "Default Calendar"
 
 
+
+msgid "%"
+msgstr "%"
+
+msgid "%d min"
+msgstr "%d min"
+
+msgid "%dh"
+msgstr "%dh"
+
+msgid "%dh %dm"
+msgstr "%dh %dm"
+
+msgid "+1 week"
+msgstr "+1 week"
+
+msgid "A Cinnamon desklet for your daily schedule briefing and fast event creation synced with Google Calendar via GNOME Online Accounts / EDS"
+msgstr "A Cinnamon desklet for your daily schedule briefing and fast event creation synced with Google Calendar via GNOME Online Accounts / EDS"
+
+msgid "Appearance"
+msgstr "Appearance"
+
+msgid "Apply changes to:"
+msgstr "Apply changes to:"
+
+msgid "Automatic refresh frequency"
+msgstr "Automatic refresh frequency"
+
+msgid "Background opacity (if transparent background is disabled)"
+msgstr "Background opacity (if transparent background is disabled)"
+
+msgid "Bri3fing"
+msgstr "Bri3fing"
+
+msgid "Calendar name tag color"
+msgstr "Calendar name tag color"
+
+msgid "Compact layout with reduced spacing and padding"
+msgstr "Compact layout with reduced spacing and padding"
+
+msgid "Custom Colors"
+msgstr "Custom Colors"
+
+msgid "Default calendar UID for quick add (leave blank for auto-selection)"
+msgstr "Default calendar UID for quick add (leave blank for auto-selection)"
+
+msgid "Delete Recurring Event"
+msgstr "Delete Recurring Event"
+
+msgid "Desklet width"
+msgstr "Desklet width"
+
+msgid "Dimensions & Aesthetics"
+msgstr "Dimensions & Aesthetics"
+
+msgid "Display event location when available"
+msgstr "Display event location when available"
+
+msgid "Do you want to delete only this occurrence or the entire recurring series?"
+msgstr "Do you want to delete only this occurrence or the entire recurring series?"
+
+msgid "Enable custom field colors"
+msgstr "Enable custom field colors"
+
+msgid "Entire Series"
+msgstr "Entire Series"
+
+msgid "Event"
+msgstr "Event"
+
+msgid "Event title text color"
+msgstr "Event title text color"
+
+msgid "Font size for event titles"
+msgstr "Font size for event titles"
+
+msgid "Font size for header date"
+msgstr "Font size for header date"
+
+msgid "Fully transparent desklet background"
+msgstr "Fully transparent desklet background"
+
+msgid "General"
+msgstr "General"
+
+msgid "In %s: %s"
+msgstr "In %s: %s"
+
+msgid "Invalid date format (expected YYYY-MM-DD)."
+msgstr "Invalid date format (expected YYYY-MM-DD)."
+
+msgid "Invalid start or end time (expected HH:MM)."
+msgstr "Invalid start or end time (expected HH:MM)."
+
+msgid "Now: %s"
+msgstr "Now: %s"
+
+msgid "Number of days ahead to include in briefing (e.g. 14 for 2 weeks)"
+msgstr "Number of days ahead to include in briefing (e.g. 14 for 2 weeks)"
+
+msgid "Open in Maps"
+msgstr "Open in Maps"
+
+msgid "Please enter an event title."
+msgstr "Please enter an event title."
+
+msgid "Read-only calendar"
+msgstr "Read-only calendar"
+
+msgid "Recurring event"
+msgstr "Recurring event"
+
+msgid "Schedule & Briefing"
+msgstr "Schedule & Briefing"
+
+msgid "Section & Day header color"
+msgstr "Section & Day header color"
+
+msgid "Show today's events that have already ended"
+msgstr "Show today's events that have already ended"
+
+msgid "Synchronization & Calendar"
+msgstr "Synchronization & Calendar"
+
+msgid "This Occurrence"
+msgstr "This Occurrence"
+
+msgid "Time & duration label color"
+msgstr "Time & duration label color"
+
+msgid "Use 24-hour time format (e.g. 14:30 vs 2:30 PM)"
+msgstr "Use 24-hour time format (e.g. 14:30 vs 2:30 PM)"
+
+msgid "days"
+msgstr "days"
+
+msgid "minutes"
+msgstr "minutes"
+
+msgid "pt"
+msgstr "pt"
+
+msgid "px"
+msgstr "px"

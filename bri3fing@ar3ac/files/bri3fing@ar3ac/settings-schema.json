@@ -170,15 +170,6 @@
     "default": false,
     "description": "Automatically shrink height when there are few events"
   },
-  "max-height": {
-    "type": "spinbutton",
-    "default": 520,
-    "min": 250,
-    "max": 1200,
-    "step": 20,
-    "units": "px",
-    "description": "Maximum widget height before scrolling (useful for 2+ week agendas)"
-  },
   "font-size": {
     "type": "spinbutton",
     "default": 9,

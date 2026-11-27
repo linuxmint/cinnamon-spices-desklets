@@ -487,3 +487,147 @@ msgid "Default Calendar"
 msgstr ""
 
 
+
+msgid "%"
+msgstr ""
+
+msgid "%d min"
+msgstr ""
+
+msgid "%dh"
+msgstr ""
+
+msgid "%dh %dm"
+msgstr ""
+
+msgid "+1 week"
+msgstr ""
+
+msgid "A Cinnamon desklet for your daily schedule briefing and fast event creation synced with Google Calendar via GNOME Online Accounts / EDS"
+msgstr ""
+
+msgid "Appearance"
+msgstr ""
+
+msgid "Apply changes to:"
+msgstr ""
+
+msgid "Automatic refresh frequency"
+msgstr ""
+
+msgid "Background opacity (if transparent background is disabled)"
+msgstr ""
+
+msgid "Bri3fing"
+msgstr ""
+
+msgid "Calendar name tag color"
+msgstr ""
+
+msgid "Compact layout with reduced spacing and padding"
+msgstr ""
+
+msgid "Custom Colors"
+msgstr ""
+
+msgid "Default calendar UID for quick add (leave blank for auto-selection)"
+msgstr ""
+
+msgid "Delete Recurring Event"
+msgstr ""
+
+msgid "Desklet width"
+msgstr ""
+
+msgid "Dimensions & Aesthetics"
+msgstr ""
+
+msgid "Display event location when available"
+msgstr ""
+
+msgid "Do you want to delete only this occurrence or the entire recurring series?"
+msgstr ""
+
+msgid "Enable custom field colors"
+msgstr ""
+
+msgid "Entire Series"
+msgstr ""
+
+msgid "Event"
+msgstr ""
+
+msgid "Event title text color"
+msgstr ""
+
+msgid "Font size for event titles"
+msgstr ""
+
+msgid "Font size for header date"
+msgstr ""
+
+msgid "Fully transparent desklet background"
+msgstr ""
+
+msgid "General"
+msgstr ""
+
+msgid "In %s: %s"
+msgstr ""
+
+msgid "Invalid date format (expected YYYY-MM-DD)."
+msgstr ""
+
+msgid "Invalid start or end time (expected HH:MM)."
+msgstr ""
+
+msgid "Now: %s"
+msgstr ""
+
+msgid "Number of days ahead to include in briefing (e.g. 14 for 2 weeks)"
+msgstr ""
+
+msgid "Open in Maps"
+msgstr ""
+
+msgid "Please enter an event title."
+msgstr ""
+
+msgid "Read-only calendar"
+msgstr ""
+
+msgid "Recurring event"
+msgstr ""
+
+msgid "Schedule & Briefing"
+msgstr ""
+
+msgid "Section & Day header color"
+msgstr ""
+
+msgid "Show today's events that have already ended"
+msgstr ""
+
+msgid "Synchronization & Calendar"
+msgstr ""
+
+msgid "This Occurrence"
+msgstr ""
+
+msgid "Time & duration label color"
+msgstr ""
+
+msgid "Use 24-hour time format (e.g. 14:30 vs 2:30 PM)"
+msgstr ""
+
+msgid "days"
+msgstr ""
+
+msgid "minutes"
+msgstr ""
+
+msgid "pt"
+msgstr ""
+
+msgid "px"
+msgstr ""
