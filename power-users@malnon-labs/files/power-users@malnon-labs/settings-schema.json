@@ -1,0 +1,37 @@
+{
+  "base_w": {
+    "type": "spinbutton",
+    "default": 5,
+    "min": 0.5,
+    "max": 15,
+    "step": 0.5,
+    "units": "W",
+    "description": "Baseline draw (screen, idle) not blamed on apps"
+  },
+  "rows": {
+    "type": "spinbutton",
+    "default": 6,
+    "min": 3,
+    "max": 10,
+    "step": 1,
+    "units": "apps",
+    "description": "Apps to show"
+  },
+  "interval": {
+    "type": "spinbutton",
+    "default": 60,
+    "min": 15,
+    "max": 300,
+    "step": 15,
+    "units": "seconds",
+    "description": "Refresh interval"
+  },
+  "scale": {
+    "type": "scale",
+    "default": 1.0,
+    "min": 0.7,
+    "max": 1.6,
+    "step": 0.05,
+    "description": "Size"
+  }
+}
