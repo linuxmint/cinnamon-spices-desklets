@@ -109,11 +109,11 @@ MyDesklet.prototype = {
         }
 
         if (xkcdId === null || xkcdId === undefined) {
-            url = "http://www.xkcd.com/info.0.json";
+            url = "https://www.xkcd.com/info.0.json";
             filename = `${this.save_path}/temp.json`;
             this.download_file(url, filename, this.on_json_downloaded.bind(this));
         } else {
-            url = `http://www.xkcd.com/${xkcdId}/info.0.json`;
+            url = `https://www.xkcd.com/${xkcdId}/info.0.json`;
             filename = `${this.save_path}/${xkcdId}.json`;
             let jsonFile = Gio.file_new_for_path(filename);
             if (jsonFile.query_exists(null)) {

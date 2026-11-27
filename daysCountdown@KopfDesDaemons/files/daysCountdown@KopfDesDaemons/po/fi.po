@@ -9,8 +9,8 @@ msgstr ""
 "Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
 "issues\n"
 "POT-Creation-Date: 2026-04-03 13:08+0200\n"
-"PO-Revision-Date: 2025-01-21 16:31+0200\n"
-"Last-Translator: \n"
+"PO-Revision-Date: 2026-10-21 17:19+0300\n"
+"Last-Translator: Kimmo Kujansuu <mrkujansuu@gmail.com>\n"
 "Language-Team: JTi65\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
@@ -21,26 +21,28 @@ msgstr ""
 #. metadata.json->name
 #. desklet.js:19
 msgid "Days Countdown"
-msgstr "Päivien lähtölaskenta"
+msgstr "Päiviä jäljellä"
 
 #. desklet.js:77
-#, fuzzy, javascript-format
+#, javascript-format
 msgid "New Year %f Countdown"
-msgstr "Päivien lähtölaskenta"
+msgstr "Uusi vuosi %f"
 
 #. desklet.js:98
 #, javascript-format
 msgid "%f days"
-msgstr "%f päiviä"
+msgstr "%f päivää"
 
 #. metadata.json->description
 msgid "Countdown of the remaining days to a date."
-msgstr "Jäljellä olevien päivien laskeminen tiettyyn päivämäärään."
+msgstr ""
+"Jäljellä olevien päivien määrä esim. montako päivää on uuteen vuoteen tai "
+"syntymäpäivään."
 
 #. settings-schema.json->general-page->title
 #. settings-schema.json->general-section->title
 msgid "General"
-msgstr "Yleinwn"
+msgstr "Yleinen"
 
 #. settings-schema.json->style-page->title
 msgid "Style"
@@ -48,16 +50,15 @@ msgstr "Tyyli"
 
 #. settings-schema.json->font-size-section->title
 msgid "Font Sizes"
-msgstr ""
+msgstr "Fonttikoko"
 
 #. settings-schema.json->countdown-section->title
-#, fuzzy
 msgid "Countdown"
-msgstr "Päivien lähtölaskenta"
+msgstr "Jäljellä"
 
 #. settings-schema.json->colors-section->title
 msgid "Colors"
-msgstr ""
+msgstr "Värit"
 
 #. settings-schema.json->label-text->description
 msgid "Text for the label"
@@ -65,11 +66,11 @@ msgstr "Otsikon teksti"
 
 #. settings-schema.json->scale-size->description
 msgid "Desklet scale size"
-msgstr ""
+msgstr "Ikkunan koko"
 
 #. settings-schema.json->countdown-date->description
 msgid "Date to which the countdown counts down"
-msgstr "Päivämäärä, johon lähtölaskenta alkaa"
+msgstr "Päivämäärä mistä laskenta alkaa"
 
 #. settings-schema.json->refresh-interval->options
 msgid "only after starting"
@@ -113,11 +114,11 @@ msgstr "Otsikon väri"
 
 #. settings-schema.json->font-size-countdown->description
 msgid "Font size for the countdown text"
-msgstr "Lähtölaskennan tekstin väri"
+msgstr "Laskennan tekstiväri"
 
 #. settings-schema.json->color-countdown->description
 msgid "Countdown color"
-msgstr "Lähtölaskennan numeron väri"
+msgstr "Laskennan numeroväri"
 
 #. settings-schema.json->hide-decorations->description
 msgid "Hide decorations"

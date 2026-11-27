@@ -24,7 +24,7 @@ msgstr "Album Art"
 
 #. desklet.js:434
 msgid "Display Album Art at full size"
-msgstr "Näytä kuva sovelluksella"
+msgstr "Näytä kansikuva täydessä koossa"
 
 #. desklet.js:441
 msgid "Do not display this image"
@@ -40,8 +40,7 @@ msgstr "Albumin kansikuvat Radio3.0:lle ja Enhanced Sound:lle"
 
 #. metadata.json->description
 msgid "A digital photo frame desklet to display an album art, if available"
-msgstr ""
-"Valokuvakehys, joka näyttää albumien kansikuvat, jos sellainen on saatavilla"
+msgstr "Valokuvakehys näyttää albumien kansikuvat työpöydällä"
 
 #. settings-schema.json->height->description
 msgid "Height"
@@ -114,7 +113,7 @@ msgstr "sekuntia"
 
 #. settings-schema.json->fade-delay->tooltip
 msgid "0 means no fade"
-msgstr "0 tarkoittaa, ettei häivytystä"
+msgstr "0 (ei häivytystä)"
 
 #. settings-schema.json->enable-at-startup->description
 msgid "Activate Album Art display at startup"
@@ -122,80 +121,80 @@ msgstr "Aktivoi Album Art käynnistyksen yhteydessä"
 
 #. settings-schema.json->show-title->description
 msgid "Show the title"
-msgstr ""
+msgstr "Näytä nimi"
 
 #. settings-schema.json->style-font-weight->description
 msgid "Font weight"
-msgstr ""
+msgstr "Fontin paksuus"
 
 #. settings-schema.json->style-font-weight->options
 msgid "normal"
-msgstr ""
+msgstr "normaali"
 
 #. settings-schema.json->style-font-weight->options
 msgid "bold"
-msgstr ""
+msgstr "vahva"
 
 #. settings-schema.json->style-font-family->description
 msgid "Font family"
-msgstr ""
+msgstr "Fonttiperhe"
 
 #. settings-schema.json->style-font-family->options
 msgid "monospace"
-msgstr ""
+msgstr "tasavälinen"
 
 #. settings-schema.json->style-font-family->options
 msgid "sans-serif"
-msgstr ""
+msgstr "sans-serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "serif"
-msgstr ""
+msgstr "serif"
 
 #. settings-schema.json->style-font-family->options
 msgid "cursive"
-msgstr ""
+msgstr "kursiivi"
 
 #. settings-schema.json->style-font-family->options
 msgid "fantasy"
-msgstr ""
+msgstr "fantasia"
 
 #. settings-schema.json->style-font-size->description
 msgid "Font size"
-msgstr ""
+msgstr "Fontin koko"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-small"
-msgstr ""
+msgstr "xx-pienin"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-small"
-msgstr ""
+msgstr "x-pieni"
 
 #. settings-schema.json->style-font-size->options
 msgid "small"
-msgstr ""
+msgstr "pieni"
 
 #. settings-schema.json->style-font-size->options
 msgid "medium"
-msgstr ""
+msgstr "keskikoko"
 
 #. settings-schema.json->style-font-size->options
 msgid "large"
-msgstr ""
+msgstr "suuri"
 
 #. settings-schema.json->style-font-size->options
 msgid "x-large"
-msgstr ""
+msgstr "x-suuri"
 
 #. settings-schema.json->style-font-size->options
 msgid "xx-large"
-msgstr ""
+msgstr "xx-suurin"
 
 #. settings-schema.json->style-color->description
 msgid "Font color"
-msgstr ""
+msgstr "Fontin väri"
 
 #. settings-schema.json->style-background-color->description
 msgid "Background color"
-msgstr ""
+msgstr "Taustaväri"

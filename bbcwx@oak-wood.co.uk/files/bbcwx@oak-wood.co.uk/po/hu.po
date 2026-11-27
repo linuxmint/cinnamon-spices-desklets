@@ -175,7 +175,7 @@ msgstr "%f higany/inch"
 #: 5.4/desklet.js:1315 3.0/desklet.js:1206
 #, javascript-format
 msgid "%fmm"
-msgstr "%fhigany/mm"
+msgstr "%f higany/mm"
 
 #: 5.4/desklet.js:1317 3.0/desklet.js:1208
 #, javascript-format
