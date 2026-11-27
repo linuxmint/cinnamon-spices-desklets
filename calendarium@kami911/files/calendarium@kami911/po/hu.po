@@ -30,7 +30,7 @@ msgstr "Első negyed"
 
 #. desklet.js:61
 msgid "Waxing Gibbous"
-msgstr "Növekvő telihold előtt"
+msgstr "Növekvő domború Hold"
 
 #. desklet.js:62
 msgid "Full Moon"
@@ -38,7 +38,7 @@ msgstr "Telihold"
 
 #. desklet.js:62
 msgid "Waning Gibbous"
-msgstr "Fogyó telihold után"
+msgstr "Fogyó domború Hold"
 
 #. desklet.js:62
 msgid "Last Quarter"
