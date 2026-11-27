@@ -98,7 +98,7 @@ To remove the desklet and its localization catalogs cleanly:
 
 ## CLI Backend Helper (`eds_helper.py`)
 
-Bri3fing includes a standalone backend helper interfacing directly with `Evolution Data Server` via Python GObject introspection (`gir1.2-ecal-2.0` and `gir1.2-edataserver-1.2`):
+Bri3fing includes a standalone, timezone-aware backend helper interfacing directly with `Evolution Data Server` via Python GObject introspection (`gir1.2-ecal-2.0` and `gir1.2-edataserver-1.2`). It accurately converts events across explicit `TZID` timezones, UTC timestamps (`Z`), RFC 5545 floating times, and daylight saving time transitions into the local system timezone:
 
 ```bash
 # List all configured calendar sources

@@ -14,6 +14,11 @@ import time
 import uuid
 
 try:
+    from zoneinfo import ZoneInfo
+except ImportError:
+    ZoneInfo = None
+
+try:
     import gi
     gi.require_version('EDataServer', '1.2')
     gi.require_version('ECal', '2.0')
@@ -103,6 +108,160 @@ def list_calendars(registry=None):
     return calendars
 
 
+def _resolve_ical_timezone(tzid, client=None):
+    """Resolves a timezone identifier (IANA, libical TZID, UTC, or cached VTIMEZONE) to an ICalGLib.Timezone."""
+    if not tzid:
+        return None
+
+    clean_tzid = tzid.strip()
+    if clean_tzid.startswith(":"):
+        clean_tzid = clean_tzid[1:].strip()
+    if not clean_tzid:
+        return None
+
+    if clean_tzid.upper() in ("UTC", "ETC/UTC", "GMT", "ETC/GMT", "Z"):
+        return ICalGLib.Timezone.get_utc_timezone()
+
+    if client is not None:
+        try:
+            ok, tz = client.get_timezone_sync(clean_tzid, None)
+            if ok and tz is not None:
+                return tz
+        except Exception:
+            pass
+
+    for lookup in (
+        lambda name: ICalGLib.Timezone.get_builtin_timezone(name),
+        lambda name: ICalGLib.Timezone.get_builtin_timezone_from_tzid(name),
+    ):
+        try:
+            tz = lookup(clean_tzid)
+            if tz is not None:
+                return tz
+        except Exception:
+            pass
+
+    try:
+        matched = ECal.match_tzid(clean_tzid)
+        if matched:
+            tz = ICalGLib.Timezone.get_builtin_timezone_from_tzid(matched)
+            if tz is not None:
+                return tz
+    except Exception:
+        pass
+
+    return None
+
+
+def get_local_ical_timezone():
+    """
+    Returns the effective local ICalGLib.Timezone, honoring POSIX TZ overrides
+    first, then Evolution Data Server's system timezone and /etc/localtime.
+    """
+    tz_env = os.environ.get("TZ", "").strip()
+    if tz_env:
+        tz = _resolve_ical_timezone(tz_env)
+        if tz is not None:
+            return tz
+
+    try:
+        tz = ECal.util_get_system_timezone()
+        if tz is not None:
+            return tz
+    except Exception:
+        pass
+
+    try:
+        loc = ECal.util_get_system_timezone_location()
+        if loc:
+            tz = _resolve_ical_timezone(loc)
+            if tz is not None:
+                return tz
+    except Exception:
+        pass
+
+    try:
+        localtime_path = os.path.realpath("/etc/localtime")
+        marker = "/zoneinfo/"
+        if marker in localtime_path:
+            tz_name = localtime_path.split(marker, 1)[1]
+            tz = _resolve_ical_timezone(tz_name)
+            if tz is not None:
+                return tz
+    except Exception:
+        pass
+
+    return None
+
+
+def _get_property_tzid(comp, prop_kind):
+    """Extracts the TZID parameter string from an iCal component property, if present."""
+    try:
+        prop = comp.get_first_property(prop_kind)
+        if prop is not None:
+            param = prop.get_first_parameter(ICalGLib.ParameterKind.TZID_PARAMETER)
+            if param is not None:
+                return param.get_tzid()
+    except Exception:
+        pass
+    return None
+
+
+def ical_time_to_timestamp(ical_time, local_zone=None, fallback_tzid=None, client=None):
+    """
+    Converts a timed ICalGLib.Time instance to a UTC Unix timestamp while
+    preserving its timezone across all global timezones and DST rules:
+    - UTC ('Z') timestamps
+    - Explicit TZID / VTIMEZONE (IANA, Exchange/Outlook, fractional offsets)
+    - Fallback TZID resolution via EDS cache, libical, or Python zoneinfo
+    - RFC 5545 floating times interpreted in the effective local OS timezone
+    """
+    if ical_time.is_utc():
+        return ical_time.as_timet_with_zone(ICalGLib.Timezone.get_utc_timezone())
+
+    tz = ical_time.get_timezone()
+    if tz is not None:
+        return ical_time.as_timet_with_zone(tz)
+
+    if fallback_tzid:
+        resolved_tz = _resolve_ical_timezone(fallback_tzid, client=client)
+        if resolved_tz is not None:
+            return ical_time.as_timet_with_zone(resolved_tz)
+
+        if ZoneInfo is not None:
+            try:
+                zi = ZoneInfo(fallback_tzid.strip())
+                aware_dt = datetime.datetime(
+                    ical_time.get_year(),
+                    ical_time.get_month(),
+                    ical_time.get_day(),
+                    ical_time.get_hour(),
+                    ical_time.get_minute(),
+                    ical_time.get_second(),
+                    tzinfo=zi
+                )
+                return int(aware_dt.timestamp())
+            except Exception:
+                pass
+
+    # RFC 5545 floating time: interpret directly in the effective local OS timezone
+    # so it always matches datetime.fromtimestamp() (including custom POSIX TZ rules).
+    try:
+        local_dt = datetime.datetime(
+            ical_time.get_year(),
+            ical_time.get_month(),
+            ical_time.get_day(),
+            ical_time.get_hour(),
+            ical_time.get_minute(),
+            ical_time.get_second()
+        )
+        return int(local_dt.timestamp())
+    except Exception:
+        if local_zone is not None:
+            return ical_time.as_timet_with_zone(local_zone)
+        return ical_time.as_timet_with_zone(ICalGLib.Timezone.get_utc_timezone())
+
+
 def get_events(days_ahead=7, include_past_today=False, target_calendar_uids=None):
     """
     Queries events across enabled calendars for the specified day range.
@@ -110,6 +269,7 @@ def get_events(days_ahead=7, include_past_today=False, target_calendar_uids=None
     """
     registry = get_source_registry()
     sources = registry.list_sources(EDataServer.SOURCE_EXTENSION_CALENDAR)
+    local_zone = get_local_ical_timezone()
 
     now_dt = datetime.datetime.now()
     today_date = now_dt.date()
@@ -152,6 +312,8 @@ def get_events(days_ahead=7, include_past_today=False, target_calendar_uids=None
 
         try:
             client = ECal.Client.connect_sync(source, ECal.ClientSourceType.EVENTS, 5, None)
+            if local_zone is not None:
+                client.set_default_timezone(local_zone)
         except Exception:
             continue
 
@@ -185,9 +347,11 @@ def get_events(days_ahead=7, include_past_today=False, target_calendar_uids=None
                     event_date = ev_start_date
                     is_multi_day = (display_end_date > ev_start_date)
                 else:
-                    utc_zone = ICalGLib.Timezone.get_utc_timezone()
-                    ev_start_ts = start_time.as_timet_with_zone(utc_zone)
-                    ev_end_ts = end_time.as_timet_with_zone(utc_zone)
+                    start_tzid = _get_property_tzid(comp, ICalGLib.PropertyKind.DTSTART_PROPERTY)
+                    end_tzid = _get_property_tzid(comp, ICalGLib.PropertyKind.DTEND_PROPERTY) or start_tzid
+
+                    ev_start_ts = ical_time_to_timestamp(start_time, local_zone, fallback_tzid=start_tzid, client=client)
+                    ev_end_ts = ical_time_to_timestamp(end_time, local_zone, fallback_tzid=end_tzid, client=client)
 
                     start_local_dt = datetime.datetime.fromtimestamp(ev_start_ts)
                     end_local_dt = datetime.datetime.fromtimestamp(ev_end_ts)
@@ -196,8 +360,15 @@ def get_events(days_ahead=7, include_past_today=False, target_calendar_uids=None
                     end_time_str = end_local_dt.strftime("%H:%M")
                     date_str = start_local_dt.date().isoformat()
                     event_date = start_local_dt.date()
-                    display_end_date = end_local_dt.date()
+                    if end_local_dt > start_local_dt and end_local_dt.time() == datetime.time.min:
+                        display_end_date = (end_local_dt - datetime.timedelta(seconds=1)).date()
+                    else:
+                        display_end_date = end_local_dt.date()
                     is_multi_day = (display_end_date > event_date)
+
+                # Exclude events that already finished strictly before today's start (00:00 local)
+                if ev_end_ts < range_start_ts or (ev_end_ts == range_start_ts and ev_start_ts < range_start_ts):
+                    return True
 
                 # Filter past events if requested
                 if not include_past_today and ev_end_ts < current_ts:

@@ -765,7 +765,8 @@ Bri3fingDesklet.prototype = {
         let year = parseInt(parts[0], 10);
         let month = parseInt(parts[1], 10) - 1;
         let day = parseInt(parts[2], 10);
-        let d = new Date(year, month, day);
+        // Use local noon to avoid midnight DST transition quirks in timezones such as Chile/Cuba
+        let d = new Date(year, month, day, 12, 0, 0);
 
         let shortDays = [_("Sun"), _("Mon"), _("Tue"), _("Wed"), _("Thu"), _("Fri"), _("Sat")];
         let fullDays = [
