@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128" width="128" height="128">
+   <defs>
+      <clipPath id="card-clip">
+         <rect x="6" y="6" width="116" height="116" rx="26" ry="26" />
+      </clipPath>
+   </defs>
+   <g clip-path="url(#card-clip)">
+      <rect x="6" y="6" width="39" height="116" fill="#1d5fa7" />
+      <rect x="45" y="6" width="38" height="116" fill="#f4f3ef" />
+      <rect x="83" y="6" width="39" height="116" fill="#c9382b" />
+   </g>
+   <rect x="6" y="6" width="116" height="116" rx="26" ry="26" fill="none" stroke="#181b1f" stroke-width="5" />
+
+   <g font-family="Ubuntu, sans-serif" font-size="21" font-weight="bold" text-anchor="middle">
+      <text x="64" y="33" fill="none" stroke="#181b1f" stroke-width="5" stroke-linejoin="round">E D F</text>
+      <text x="64" y="33" fill="#ffffff">E D F</text>
+   </g>
+
+   <path d="M68.5 39 L49.5 66.5 H63.5 L59.5 89 L79 60.5 H65 Z" fill="#ffd24c" stroke="#181b1f" stroke-width="3.8" stroke-linejoin="round" />
+
+   <g font-family="Ubuntu, sans-serif" font-size="19" font-weight="bold" letter-spacing="1" text-anchor="middle">
+      <text x="64" y="110" fill="none" stroke="#181b1f" stroke-width="5" stroke-linejoin="round">TEMPO</text>
+      <text x="64" y="110" fill="#ffffff">TEMPO</text>
+   </g>
+</svg>

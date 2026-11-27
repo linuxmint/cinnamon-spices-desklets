@@ -1,0 +1,84 @@
+# EDF TEMPO
+# Copyright (C) 2026
+# This file is distributed under the same license as the edf-tempo@aubin package.
+# AubinMahe, 2026.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: edf-tempo@aubin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/issues\n"
+"POT-Creation-Date: 2026-11-27 10:35+0100\n"
+"PO-Revision-Date: 2026-11-27 10:35+0100\n"
+"Last-Translator: Aubin Mahé <aubin.mahe@gmail.com>\n"
+"Language-Team: French <traduc@traduc.org>\n"
+"Language: fr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+msgid "Also display today's Tempo color"
+msgstr "Afficher aussi la couleur Tempo d'aujourd'hui"
+
+msgid "Base64-encoded client_id:client_secret from data.rte-france.com (overrides credentials file when set)."
+msgstr "Identifiants client_id:client_secret encodés en Base64 depuis data.rte-france.com (prioritaire sur le fichier)."
+
+msgid "Blue"
+msgstr "Bleu"
+
+msgid "Credentials file (.env or secret)"
+msgstr "Fichier d'identifiants (.env ou secret)"
+
+msgid "Displays tomorrow's EDF Tempo tariff color."
+msgstr "Affiche la couleur tarifaire EDF Tempo du lendemain."
+
+msgid "EDF Tempo"
+msgstr "EDF Tempo"
+
+msgid "Error"
+msgstr "Erreur"
+
+msgid "Hide desklet decorations"
+msgstr "Masquer le cadre du desklet"
+
+msgid "Increase or decrease refresh interval in minutes."
+msgstr "Augmente ou réduit l'intervalle de rafraîchissement, en minutes."
+
+msgid "Missing RTE credentials"
+msgstr "Identifiants RTE manquants"
+
+msgid "Not configured"
+msgstr "Non configuré"
+
+msgid "Pending"
+msgstr "En attente"
+
+msgid "RTE OAuth2 credentials (Base64)"
+msgstr "Identifiants OAuth2 RTE (Base64)"
+
+msgid "RTE error"
+msgstr "Erreur RTE"
+
+msgid "Red"
+msgstr "Rouge"
+
+msgid "Refresh interval"
+msgstr "Intervalle de rafraîchissement"
+
+msgid "Refresh now"
+msgstr "Rafraîchir maintenant"
+
+msgid "Select a .env file containing RTE_CREDENTIALS_BASE64 or a plain Base64 secret file (Ctrl+H in dialog to show hidden files like .env)."
+msgstr "Sélectionne un fichier .env contenant RTE_CREDENTIALS_BASE64 ou un fichier secret Base64 brut (Ctrl+H dans la boîte de dialogue pour voir les fichiers cachés comme .env)."
+
+msgid "Settings of edf-tempo@aubin Desklet"
+msgstr "Réglages du Desklet edf-tempo@aubin"
+
+msgid "Today"
+msgstr "Aujourd'hui"
+
+msgid "Tomorrow"
+msgstr "Demain"
+
+msgid "White"
+msgstr "Blanc"

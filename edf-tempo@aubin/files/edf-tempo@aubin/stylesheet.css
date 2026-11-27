@@ -1,0 +1,87 @@
+.tempo-container {
+   padding: 4px 6px;
+}
+
+.tempo-icon {
+   background-image: url("icon.svg");
+   background-size: 48px 48px;
+   width: 48px;
+   height: 48px;
+   margin-right: 10px;
+}
+
+.tempo-row {
+   margin-bottom: 5px;
+}
+
+.tempo-day-label {
+   font-family: Ubuntu, sans-serif;
+   font-size: 13px;
+   color: #d6d4ce;
+   width: 135px;
+   margin-right: 10px;
+   text-align: left;
+}
+
+.tempo-day-label-tomorrow {
+   font-family: Ubuntu, sans-serif;
+   font-size: 14px;
+   font-weight: bold;
+   color: #fff;
+   width: 135px;
+   margin-right: 10px;
+   text-align: left;
+}
+
+.tempo-badge {
+   font-family: Ubuntu, sans-serif;
+   font-size: 13px;
+   font-weight: bold;
+   border-radius: 10px;
+   padding: 2px 12px;
+   width: 92px;
+   text-align: center;
+   border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.tempo-badge-tomorrow {
+   font-size: 15px;
+   padding: 3px 14px;
+}
+
+.tempo-blue {
+   background-color: #1d5fa7;
+   color: #fff;
+   border-color: #3a82cf;
+}
+
+.tempo-white {
+   background-color: #f4f3ef;
+   color: #1e2226;
+   border-color: #b8b4aa;
+}
+
+.tempo-red {
+   background-color: #c9382b;
+   color: #fff;
+   border-color: #e45a4d;
+}
+
+.tempo-pending {
+   background-color: #4a4f55;
+   color: #e2e0da;
+   border-color: #676d75;
+}
+
+.tempo-error {
+   background-color: #6e2b25;
+   color: #ffd7d2;
+   border-color: #a3463d;
+}
+
+.tempo-footer {
+   font-family: Ubuntu, sans-serif;
+   font-size: 11px;
+   color: #a6a39b;
+   text-align: right;
+}

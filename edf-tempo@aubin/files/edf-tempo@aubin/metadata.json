@@ -1,0 +1,8 @@
+{
+    "uuid": "edf-tempo@aubin",
+    "name": "EDF Tempo",
+    "author": "Aubin MAHE",
+    "description": "Displays tomorrow's EDF Tempo tariff color.",
+    "version": "1.0.0",
+    "max-instances": "1"
+}
