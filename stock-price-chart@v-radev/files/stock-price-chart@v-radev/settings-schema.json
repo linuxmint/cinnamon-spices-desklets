@@ -1,0 +1,183 @@
+{
+    "settingsLayout": {
+        "type": "layout",
+        "pages": [
+            "generalSettingsPage",
+            "renderSettingsPage",
+            "layoutSettingsPage"
+        ],
+        "generalSettingsPage": {
+            "type": "page",
+            "title": "General",
+            "sections": [
+                "generalSettingsTickerSection"
+            ]
+        },
+        "renderSettingsPage": {
+            "type": "page",
+            "title": "Render settings",
+            "sections": [
+                "renderSettingsFontSection",
+                "renderSettingsChartSection"
+            ]
+        },
+        "layoutSettingsPage": {
+            "type": "page",
+            "title": "Layout",
+            "sections": [
+                "layoutSizeSettingsSection",
+                "layoutEffectsSettingsSection"
+            ]
+        },
+        "generalSettingsTickerSection": {
+            "type": "section",
+            "title": "Financial Data",
+            "keys": [
+                "tickerSymbol",
+                "daysPeriodToShow",
+                "showCompanyNameOrTicker",
+                "updateDataButton"
+            ]
+        },
+        "renderSettingsFontSection": {
+            "type": "section",
+            "title": "Font",
+            "keys": [
+                "fontColor",
+                "shouldScaleFontSize",
+                "fontScale"
+            ]
+        },
+        "renderSettingsChartSection": {
+            "type": "section",
+            "title": "Chart",
+            "keys": [
+                "chartAxesColor",
+                "chartMidlinesColor",
+                "chartLineColor"
+            ]
+        },
+        "layoutSizeSettingsSection": {
+            "type": "section",
+            "title": "Desklet",
+            "keys": [
+                "deskletScaleSize"
+            ]
+        },
+        "layoutEffectsSettingsSection": {
+            "type": "section",
+            "title": "Effects",
+            "keys": [
+                "transparency",
+                "backgroundColor",
+                "cornerRadius"
+            ]
+        }
+    },
+
+    "deskletScaleSize": {
+        "type": "scale",
+        "default": 1.5,
+        "min": 0.1,
+        "max": 5.0,
+        "step": 0.1,
+        "description": "Desklet scale size",
+        "tooltip": "Adjust scale size of the desklet"
+    },
+    "transparency": {
+        "type": "scale",
+        "default": 0.7,
+        "min": 0.0,
+        "max": 1.0,
+        "step": 0.05,
+        "description": "Background transparency",
+        "tooltip": "The higher the value, the more solid the desklet's background"
+    },
+    "backgroundColor": {
+        "type": "colorchooser",
+        "default": "rgb(50,50,50)",
+        "description": "Background color",
+        "tooltip": "Desklet background color"
+    },
+    "cornerRadius": {
+        "type": "spinbutton",
+        "default": 12,
+        "min": 0,
+        "max": 50,
+        "step": 1,
+        "units": "pixels",
+        "description": "Corner radius",
+        "tooltip": "The higher the value, the rounder the desklet's corners"
+    },
+
+    "tickerSymbol": {
+      "type": "entry",
+      "default": "TSLA",
+      "description": "Ticker symbol",
+      "tooltip": "The stock ticker symbol to display data for (e.g., AAPL, GOOGL, MSFT)"
+    },
+    "daysPeriodToShow": {
+      "type": "scale",
+      "default": 7,
+      "min": 1,
+      "max": 31,
+      "step": 1,
+      "description": "Days period to show",
+      "tooltip": "Number of past days to display in the stock price chart"
+    },
+    "showCompanyNameOrTicker": {
+      "type": "checkbox",
+      "default": true,
+      "description": "Display full company name instead of ticker symbol",
+      "tooltip": "Show the company name if available; otherwise, show the ticker symbol."
+    },
+    "updateDataButton": {
+      "type": "button",
+      "callback": "onClickUpdateDataButton",
+      "description": "Refresh data",
+      "tooltip": "Fetch the latest stock data immediately."
+    },
+
+    "fontColor": {
+        "type": "colorchooser",
+        "description": "Font color",
+        "tooltip": "Color for text labels",
+        "default": "rgb(0,0,0)"
+    },
+    "shouldScaleFontSize": {
+        "type": "checkbox",
+        "default": false,
+        "description": "Enable font size scaling",
+        "tooltip": "Apply custom font size instead of the system default size"
+    },
+    "fontScale": {
+        "type": "spinbutton",
+        "default": 1,
+        "min": 1,
+        "max": 20,
+        "step": 0.25,
+        "units": "points",
+        "description": "Font size scale factor",
+        "tooltip": "Enlarge/reduce the font size",
+        "dependency": "shouldScaleFontSize"
+    },
+
+    "chartAxesColor": {
+      "type": "colorchooser",
+      "description": "Chart axes color",
+      "tooltip": "Color for the chart axes",
+      "default": "rgb(0,0,0)"
+    },
+    "chartMidlinesColor": {
+      "type": "colorchooser",
+      "description": "Chart midlines color",
+      "tooltip": "Chart midlines color",
+      "default": "rgba(150,150,150,0.5)"
+    },
+    "chartLineColor": {
+      "type": "colorchooser",
+      "description": "Chart line color",
+      "tooltip": "Chart line color",
+      "default": "rgb(142, 202, 230)"
+    }
+}
