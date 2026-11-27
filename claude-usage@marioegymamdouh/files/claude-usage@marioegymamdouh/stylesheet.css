@@ -1,0 +1,28 @@
+.cu-root {
+    border-radius: 12px;
+    padding: 12px 14px;
+    color: #f2ede6;
+    font-family: sans-serif;
+    spacing: 8px;
+}
+.cu-header { spacing: 8px; }
+.cu-title { font-weight: bold; font-size: 1.15em; color: #f2ede6; }
+.cu-sub { font-size: 0.85em; color: rgba(242, 237, 230, 0.6); }
+.cu-row { spacing: 3px; }
+.cu-row-head { spacing: 6px; }
+.cu-name { font-size: 0.95em; color: #f2ede6; }
+.cu-pct { font-size: 0.95em; font-weight: bold; color: #f2ede6; }
+.cu-reset { font-size: 0.8em; color: rgba(242, 237, 230, 0.6); }
+.cu-bar {
+    height: 8px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.14);
+}
+.cu-bar-fill { height: 8px; border-radius: 4px; background-color: #5cab73; }
+.cu-fill-normal   { background-color: #5cab73; }
+.cu-fill-warning  { background-color: #e0a44c; }
+.cu-fill-critical { background-color: #d9534f; }
+.cu-fill-locked   { background-color: #8a8a8a; }
+.cu-status { font-size: 0.85em; color: #e0a44c; }
+.cu-error { font-size: 0.85em; color: #f0857f; }
+.cu-footer { font-size: 0.75em; color: rgba(242, 237, 230, 0.5); }
