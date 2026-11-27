@@ -1,0 +1,111 @@
+# EDF TEMPO
+# This file is put in the public domain.
+# AubinMahe, 2026
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: edf-tempo@aubin 1.0.0\n"
+"Report-Msgid-Bugs-To: https://github.com/linuxmint/cinnamon-spices-desklets/"
+"issues\n"
+"POT-Creation-Date: 2026-11-27 10:38+0100\n"
+"PO-Revision-Date: \n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. metadata.json->name
+#. desklet.js:93
+msgid "EDF Tempo"
+msgstr ""
+
+#. metadata.json->description
+msgid "Displays tomorrow's EDF Tempo tariff color."
+msgstr ""
+
+#. settings-schema.json->head0->description
+msgid "Settings of edf-tempo@aubin Desklet"
+msgstr ""
+
+#. settings-schema.json->show-today->description
+msgid "Also display today's Tempo color"
+msgstr ""
+
+#. settings-schema.json->hide-decorations->description
+msgid "Hide desklet decorations"
+msgstr ""
+
+#. settings-schema.json->credentials-file->description
+msgid "Credentials file (.env or secret)"
+msgstr ""
+
+#. settings-schema.json->credentials-file->tooltip
+msgid ""
+"Select a .env file containing RTE_CREDENTIALS_BASE64 or a plain Base64 "
+"secret file (Ctrl+H in dialog to show hidden files like .env)."
+msgstr ""
+
+#. settings-schema.json->rte-credentials->description
+msgid "RTE OAuth2 credentials (Base64)"
+msgstr ""
+
+#. settings-schema.json->rte-credentials->tooltip
+msgid ""
+"Base64-encoded client_id:client_secret from data.rte-france.com (overrides "
+"credentials file when set)."
+msgstr ""
+
+#. settings-schema.json->refresh-interval->description
+msgid "Refresh interval"
+msgstr ""
+
+#. settings-schema.json->refresh-interval->tooltip
+msgid "Increase or decrease refresh interval in minutes."
+msgstr ""
+
+#. desklet.js:94
+msgid "Refresh now"
+msgstr ""
+
+#. desklet.js:272
+msgid "Blue"
+msgstr ""
+
+#. desklet.js:275
+msgid "White"
+msgstr ""
+
+#. desklet.js:278
+msgid "Red"
+msgstr ""
+
+#. desklet.js:284
+msgid "Not configured"
+msgstr ""
+
+#. desklet.js:287
+msgid "Error"
+msgstr ""
+
+#. desklet.js:289
+msgid "Pending"
+msgstr ""
+
+#. desklet.js:329
+msgid "Tomorrow"
+msgstr ""
+
+#. desklet.js:331
+msgid "Today"
+msgstr ""
+
+#. desklet.js:335
+msgid "Missing RTE credentials"
+msgstr ""
+
+#. desklet.js:338
+msgid "RTE error"
+msgstr ""

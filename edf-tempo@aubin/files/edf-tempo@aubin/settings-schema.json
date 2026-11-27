@@ -1,0 +1,40 @@
+{
+   "head0": {
+      "type": "header",
+      "description": "Settings of edf-tempo@aubin Desklet"
+   },
+   "show-today": {
+      "type": "checkbox",
+      "description": "Also display today's Tempo color",
+      "default": true
+   },
+   "hide-decorations": {
+      "type": "checkbox",
+      "description": "Hide desklet decorations",
+      "default": false
+   },
+   "credentials-file": {
+      "type": "filechooser",
+      "select-dir": false,
+      "default": "",
+      "description": "Credentials file (.env or secret)",
+      "tooltip": "Select a .env file containing RTE_CREDENTIALS_BASE64 or a plain Base64 secret file (Ctrl+H in dialog to show hidden files like .env)."
+   },
+   "rte-credentials": {
+      "type": "entry",
+      "expand-width": true,
+      "default": "",
+      "description": "RTE OAuth2 credentials (Base64)",
+      "tooltip": "Base64-encoded client_id:client_secret from data.rte-france.com (overrides credentials file when set)."
+   },
+   "refresh-interval": {
+      "type": "spinbutton",
+      "default": 30,
+      "step": 5,
+      "min": 5,
+      "max": 180,
+      "units": "minutes",
+      "description": "Refresh interval",
+      "tooltip": "Increase or decrease refresh interval in minutes."
+   }
+}
